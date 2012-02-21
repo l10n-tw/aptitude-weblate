@@ -1,7 +1,21 @@
-The upstream aptitude mercurial repository is available from
-<http://hg.debian.org/hg/aptitude/head>.  The Debian packaging is
-maintained using hg-buildpackage; the upstream and Debian branches are
-available at <http://hg.debian.org/hg/aptitude/debian-upstream> and
-<http://hg.debian.org/hg/aptitude/debian> respectively.
+After a period of aptitude development being almost stopped, it has been resumed
+by the end of 2011 by Daniel Hartwig <mandyke@gmail.com> and Manuel A. Fernandez
+Montecelo <manuel.montezelo@gmail.com>.
 
- -- Daniel Burrows <dburrows@debian.org>, Sun, 22 Jun 2008 20:25:33 -0700
+Christian PERRIER <bubulle@debian.org> and Axel Beckert <abe@debian.org> made
+this possible by requesting to give us access to the development repository and
+other resources, and by counselling, testing and sponsoring of packages.
+
+The first released version with the renewed team happened with the changelog
+entry:
+
+  aptitude (0.6.5-1) unstable; urgency=low
+
+  [...]
+
+   -- Daniel Hartwig <mandyke@gmail.com>  Tue, 07 Feb 2012 09:14:11 +0800
+
+
+The development of aptitude is hosted on:
+
+  http://anonscm.debian.org/gitweb/?p=aptitude/aptitude.git
