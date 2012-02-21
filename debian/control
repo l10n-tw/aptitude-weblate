@@ -66,11 +66,11 @@ Architecture: any
 Depends: aptitude (= ${binary:Version}) | aptitude-gtk (= ${binary:Version}), ${misc:Depends}
 Recommends: libcwidget3-dbg
 Description: Debug symbols for the aptitude package manager
- aptitude is a terminal-based package manager with a number of useful
- features, including: a mutt-like syntax for matching packages in a
- flexible manner, dselect-like persistence of user actions, the
- ability to retrieve and display the Debian changelog of most
- packages, and a command-line mode similar to that of apt-get.
+ aptitude is a package manager with a number of useful features,
+ including: a mutt-like syntax for matching packages in a flexible
+ manner, dselect-like persistence of user actions, the ability to
+ retrieve and display the Debian changelog of most packages, and a
+ command-line mode similar to that of apt-get.
  .
  This package contains the debugging symbols for aptitude.  You only
  need these if you want to generate debugging backtraces of aptitude;
@@ -85,8 +85,14 @@ Provides: aptitude-doc
 Depends: ${misc:Depends}
 Suggests: aptitude
 Description: Czech manual for aptitude, a terminal-based package manager
- aptitude is a terminal-based package manager.  This package contains
- the Czech version of the aptitude user's manual in HTML format.
+ aptitude is a package manager with a number of useful features,
+ including: a mutt-like syntax for matching packages in a flexible
+ manner, dselect-like persistence of user actions, the ability to
+ retrieve and display the Debian changelog of most packages, and a
+ command-line mode similar to that of apt-get.
+ .
+ This package contains the Czech version of the aptitude user's
+ manual in HTML format.
 
 Package: aptitude-doc-en
 Section: doc
@@ -96,8 +102,14 @@ Provides: aptitude-doc
 Depends: ${misc:Depends}
 Suggests: aptitude
 Description: English manual for aptitude, a terminal-based package manager
- aptitude is a terminal-based package manager.  This package contains
- the English version of the aptitude user's manual in HTML format.
+ aptitude is a package manager with a number of useful features,
+ including: a mutt-like syntax for matching packages in a flexible
+ manner, dselect-like persistence of user actions, the ability to
+ retrieve and display the Debian changelog of most packages, and a
+ command-line mode similar to that of apt-get.
+ .
+ This package contains the English version of the aptitude user's
+ manual in HTML format.
 
 Package: aptitude-doc-es
 Section: doc
@@ -107,8 +119,14 @@ Provides: aptitude-doc
 Depends: ${misc:Depends}
 Suggests: aptitude
 Description: Spanish manual for aptitude, a terminal-based package manager
- aptitude is a terminal-based package manager.  This package contains
- the Spanish version of the aptitude user's manual in HTML format.
+ aptitude is a package manager with a number of useful features,
+ including: a mutt-like syntax for matching packages in a flexible
+ manner, dselect-like persistence of user actions, the ability to
+ retrieve and display the Debian changelog of most packages, and a
+ command-line mode similar to that of apt-get.
+ .
+ This package contains the Spanish version of the aptitude user's
+ manual in HTML format.
 
 Package: aptitude-doc-fi
 Section: doc
@@ -118,8 +136,14 @@ Provides: aptitude-doc
 Depends: ${misc:Depends}
 Suggests: aptitude
 Description: Finnish manual for aptitude, a terminal-based package manager
- aptitude is a terminal-based package manager.  This package contains
- the Finnish version of the aptitude user's manual in HTML format.
+ aptitude is a package manager with a number of useful features,
+ including: a mutt-like syntax for matching packages in a flexible
+ manner, dselect-like persistence of user actions, the ability to
+ retrieve and display the Debian changelog of most packages, and a
+ command-line mode similar to that of apt-get.
+ .
+ This package contains the Finnish version of the aptitude user's
+ manual in HTML format.
 
 Package: aptitude-doc-fr
 Section: doc
@@ -129,8 +153,14 @@ Provides: aptitude-doc
 Depends: ${misc:Depends}
 Suggests: aptitude
 Description: French manual for aptitude, a terminal-based package manager
- aptitude is a terminal-based package manager.  This package contains
- the French version of the aptitude user's manual in HTML format.
+ aptitude is a package manager with a number of useful features,
+ including: a mutt-like syntax for matching packages in a flexible
+ manner, dselect-like persistence of user actions, the ability to
+ retrieve and display the Debian changelog of most packages, and a
+ command-line mode similar to that of apt-get.
+ .
+ This package contains the French version of the aptitude user's
+ manual in HTML format.
 
 Package: aptitude-doc-ja
 Section: doc
@@ -140,5 +170,11 @@ Provides: aptitude-doc
 Depends: ${misc:Depends}
 Suggests: aptitude
 Description: Japanese manual for aptitude, a terminal-based package manager
- aptitude is a terminal-based package manager.  This package contains
- the Japanese version of the aptitude user's manual in HTML format.
+ aptitude is a package manager with a number of useful features,
+ including: a mutt-like syntax for matching packages in a flexible
+ manner, dselect-like persistence of user actions, the ability to
+ retrieve and display the Debian changelog of most packages, and a
+ command-line mode similar to that of apt-get.
+ .
+ This package contains the Japanese version of the aptitude user's
+ manual in HTML format.
