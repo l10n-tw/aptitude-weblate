@@ -1,12 +1,4 @@
-aptitude (0.6.4-2) UNRELEASED; urgency=low
-
-  [ Manuel A. Fernandez Montecelo ]
-  * Acknowledge and incorporate changes from NMUs (thanks Philipp Kern and Kurt
-    Roeckx).
-  * List items wrongly nested in the document (Closes: #365615).  Thanks
-    Kobayashi Noritada <nori1@dolphin.c.u-tokyo.ac.jp>.
-  * Update dead URL for regular expressions in the manual, thanks Diederik de
-    Haas <didi.debian@cknow.org> (Closes: #581508)
+aptitude (0.6.5-1) unstable; urgency=low
 
   [ Christian Perrier ]
   * Drop now useless aptitude-man-ja.xsl file. Closes: #489711
@@ -37,7 +29,7 @@ aptitude (0.6.4-2) UNRELEASED; urgency=low
   * Minor fixes in documentation and changelog. Closes: #403220
   * More precise wording suggested by jidanni in the
     manpage. Closes: #542293
-  * Switch Polish manpages to po4a. Thanks to Michał Kułach. Closes: #656820
+  * Switch Polish manpages to po4a. Thanks to Michał Kułach. Closes: #656819
   * Update Polish translations. Closes: #657174
 
   [ Daniel Hartwig ]
@@ -60,8 +52,31 @@ aptitude (0.6.4-2) UNRELEASED; urgency=low
     correct. (Closes: #651373)
   * Don't run file in aptitude-run-state-bundle.
     Thanks to Sven Joachim for the patch (Closes: #635572)
+  * Add versions, newlines to --help (Closes: #581597, #604392)
+  * Fix prompt strings. (Closes: #652419)
+  * Fix typo triggering "unexpected null solution". Thanks to Hristo
+    Hristov for the patch (Closes: #552747)
+  * Added Homepage field to package info.
 
- -- Christian Perrier <bubulle@debian.org>  Sat, 31 Dec 2011 13:23:11 +0100
+  [ Manuel A. Fernandez Montecelo ]
+  * Acknowledge and incorporate changes from NMUs (thanks Philipp Kern and Kurt
+    Roeckx).
+  * Changes in packaging:
+    - Bump Standards-Version to 3.9.2, no changes needed.
+    - Bump debhelper compat level to v8 from v5, no changes needed.
+    - Set as maintainer the team "aptitude Devel", with aptitude-devel@alioth as
+      e-mail address.  Set Daniel Burrows to Uploader.
+  * Incorporating patches and bug fixes:
+    - List items wrongly nested in the document (Closes: #365615).  Thanks
+      Kobayashi Noritada <nori1@dolphin.c.u-tokyo.ac.jp>.
+    - Update dead URL for regular expressions in the manual, thanks Diederik de
+      Haas <didi.debian@cknow.org> (Closes: #581508)
+    - Enabling hardened build flags through dpkg-buildflags, thanks Moritz
+      Muehlenhoff (Closes: #657532)
+    - Fix for bug (Closes: #242269): Properly document 'Q' and 'q' keys for user
+      interface in the Help file.  Thanks Sebastian Kapfer and Stéphane Aulery.
+
+ -- Daniel Hartwig <mandyke@gmail.com>  Tue, 07 Feb 2012 09:14:11 +0800
 
 aptitude (0.6.4-1.2) unstable; urgency=low
 
