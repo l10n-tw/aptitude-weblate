@@ -2,15 +2,6 @@
 # Copyright (C) 2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the aptitude package.
 #
-<<<<<<< HEAD
-# MichaÅ KuÅach <michal.kulach@gmail.com>, 2012.
-msgid ""
-msgstr ""
-"Project-Id-Version: aptitude 0.6.3\n"
-"POT-Creation-Date: 2011-05-14 21:10-0600\n"
-"PO-Revision-Date: 2012-01-17 22:11+0100\n"
-"Last-Translator: MichaÅ KuÅach <michal.kulach@gmail.com>\n"
-=======
 # Michał Kułach <michal.kulach@gmail.com>, 2012.
 msgid ""
 msgstr ""
@@ -18,7 +9,6 @@ msgstr ""
 "POT-Creation-Date: 2012-02-07 01:25+0800\n"
 "PO-Revision-Date: 2012-02-07 20:43+0100\n"
 "Last-Translator: Michał Kułach <michal.kulach@gmail.com>\n"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "Language-Team: Polish <debian-l10n-polish@lists.debian.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -28,8 +18,6 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 1.2\n"
 
-<<<<<<< HEAD
-=======
 #. type: Content of the aptitude entity
 #: en/aptitude.xml:5
 #, fuzzy
@@ -17877,17 +17865,12 @@ msgstr ""
 msgid "Command-line reference"
 msgstr "Wiersz poleceń"
 
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 #. type: Content of: <refentry><refentryinfo><title>
 #: en/manpage.xml:17
 msgid "aptitude"
 msgstr "aptitude"
 
-<<<<<<< HEAD
-#.  NWalsh's docbook scripts use this to generate the footer:
-=======
 #.  NWalsh's docbook scripts use this to generate the footer: 
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 #. type: Content of: <refentry><refentryinfo>
 #: en/manpage.xml:20
 msgid ""
@@ -17950,11 +17933,7 @@ msgstr "8"
 #. type: Content of: <refentry><refnamediv><refpurpose>
 #: en/manpage.xml:60
 msgid "high-level interface to the package manager"
-<<<<<<< HEAD
-msgstr "interfejs wysokiego poziomu do menedÅ¼era pakietÃ³w."
-=======
 msgstr "interfejs wysokiego poziomu do menedżera pakietów."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsynopsisdiv><cmdsynopsis>
 #: en/manpage.xml:65
@@ -18021,11 +18000,7 @@ msgid ""
 "choice='plain' rep='repeat'><replaceable>packages</replaceable></arg>"
 msgstr ""
 "<command>aptitude</command> <arg choice='plain'>extract-cache-subset</arg> "
-<<<<<<< HEAD
-"<arg choice='plain'><replaceable>katalog-wyjÅciowy</replaceable></arg> <arg "
-=======
 "<arg choice='plain'><replaceable>katalog-wyjściowy</replaceable></arg> <arg "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "choice='plain' rep='repeat'><replaceable>pakiety</replaceable></arg>"
 
 #. type: Content of: <refentry><refsynopsisdiv><cmdsynopsis>
@@ -18089,27 +18064,13 @@ msgstr ""
 msgid "<command>aptitude</command> <arg choice='plain'>help</arg>"
 msgstr "<command>aptitude</command> <arg choice='plain'>help</arg>"
 
-<<<<<<< HEAD
-#. type: Content of: <refentry><refsect1><title>
-#: en/manpage.xml:184 en/manpage.xml:2509 en/manpage.xml:2714
-msgid "Description"
-msgstr "Opis"
-
-=======
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 #. type: Content of: <refentry><refsect1><para>
 #: en/manpage.xml:187
 msgid ""
 "&aptitude; is a text-based interface to the Debian GNU/Linux package system."
 msgstr ""
-<<<<<<< HEAD
-"Program &aptitude; jest tekstowym interfejsem do systemu pakietÃ³w dystrybucji "
-"Debian "
-"GNU/Linux."
-=======
 "Program &aptitude; jest tekstowym interfejsem do systemu pakietów "
 "dystrybucji Debian GNU/Linux."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><para>
 #: en/manpage.xml:192
@@ -18118,24 +18079,14 @@ msgid ""
 "management tasks such as installing, upgrading, and removing packages.  "
 "Actions may be performed from a visual interface or from the command-line."
 msgstr ""
-<<<<<<< HEAD
-"Pozwala uÅ¼ytkownikowi przeglÄdaÄ listÄ pakietÃ³w i wykonywaÄ zadania zwiÄzane "
-"z zarzÄdzaniem nimi, takie jak instalowanie, uaktualnianie i usuwanie. "
-"Zadania te moÅ¼na wykonywaÄ w trybie wizualnym lub z wiersza poleceÅ."
-=======
 "Pozwala użytkownikowi przeglądać listę pakietów i wykonywać zadania związane "
 "z zarządzaniem nimi, takie jak instalowanie, uaktualnianie i usuwanie. "
 "Zadania te można wykonywać w trybie wizualnym lub z wiersza poleceń."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><title>
 #: en/manpage.xml:200
 msgid "Command-line actions"
-<<<<<<< HEAD
-msgstr "Wiersz poleceÅ"
-=======
 msgstr "Wiersz poleceń"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><para>
 #: en/manpage.xml:203
@@ -18145,25 +18096,15 @@ msgid ""
 "perform.  If an action is not specified on the command-line, &aptitude; will "
 "start up in visual mode."
 msgstr ""
-<<<<<<< HEAD
-"Pierwszy argument nie zaczynajÄcy siÄ dywizem (<quote><literal>-</literal></"
-"quote>) jest traktowany jako akcja, ktÃ³rÄ ma wykonaÄ program. JeÅli akcja "
-"nie zostanie podana w wierszu poleceÅ, &aptitude; uruchomi siÄ w trybie "
-=======
 "Pierwszy argument nie zaczynający się dywizem (<quote><literal>-</literal></"
 "quote>) jest traktowany jako akcja, którą ma wykonać program. Jeśli akcja "
 "nie zostanie podana w wierszu poleceń, &aptitude; uruchomi się w trybie "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "wizualnym."
 
 #. type: Content of: <refentry><refsect1><para>
 #: en/manpage.xml:210
 msgid "The following actions are available:"
-<<<<<<< HEAD
-msgstr "DostÄpne sÄ nastÄpujÄce akcje:"
-=======
 msgstr "Dostępne są następujące akcje:"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:215
@@ -18181,16 +18122,6 @@ msgid ""
 "linkend='secSearchPatterns'><quote>Search Patterns</quote></link> in the "
 "&aptitude; reference manual)."
 msgstr ""
-<<<<<<< HEAD
-"Instaluje jeden lub wiÄcej pakietÃ³w. Nazwy pakietÃ³w naleÅ¼y podaÄ po "
-"poleceniu <quote>install</quote>; jeÅli zawiera ona znak tyldy "
-"(<quote><literal>~</literal></quote>) lub znak zapytania (<quote><literal>?</"
-"literal></quote>), bÄdzie traktowana jako wzorzec wyszukiwania i zostanÄ "
-"zainstalowane wszystkie pakiety, ktÃ³re go speÅniajÄ (zapoznaj siÄ z "
-"rozdziaÅem <link linkend='secSearchPatterns'><quote>Search Patterns</quote><"
-"/link> w "
-"podrÄczniku &aptitude;)."
-=======
 "Instaluje jeden lub więcej pakietów. Nazwy pakietów należy podać po "
 "poleceniu <quote>install</quote>; jeśli zawiera ona znak tyldy "
 "(<quote><literal>~</literal></quote>) lub znak zapytania (<quote><literal>?</"
@@ -18198,7 +18129,6 @@ msgstr ""
 "zainstalowane wszystkie pakiety, które go spełniają (zapoznaj się z "
 "rozdziałem <link linkend='secSearchPatterns'><quote>Search Patterns</quote></"
 "link> w podręczniku &aptitude;)."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:232
@@ -18212,15 +18142,6 @@ msgid ""
 "experimental</literal></quote>. You cannot specify both an archive and a "
 "version for a package."
 msgstr ""
-<<<<<<< HEAD
-"Aby wybraÄ okreÅlonÄ wersjÄ pakietu, naleÅ¼y dodaÄ do nazwy "
-"<quote><literal>=<replaceable>wersja</replaceable></literal></quote> np. "
-"<quote><literal>aptitude install apt=0.3.1</literal></quote>. Analogicznie, "
-"aby wybraÄ pakiet z okreÅlonego archiwum, naleÅ¼y dodaÄ <quote><literal>/"
-"<replaceable>archiwum</replaceable></literal></quote> np. "
-"<quote><literal>aptitude install apt/experimental</literal></quote>. Nie "
-"moÅ¼na jednak podaÄ nazwy archiwum i wersji pakietu jednoczeÅnie."
-=======
 "Aby wybrać określoną wersję pakietu, należy dodać do nazwy "
 "<quote><literal>=<replaceable>wersja</replaceable></literal></quote> np. "
 "<quote><literal>aptitude install apt=0.3.1</literal></quote>. Analogicznie, "
@@ -18228,7 +18149,6 @@ msgstr ""
 "<replaceable>archiwum</replaceable></literal></quote> np. "
 "<quote><literal>aptitude install apt/experimental</literal></quote>. Nie "
 "można jednak podać nazwy archiwum i wersji pakietu jednocześnie."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:241
@@ -18239,19 +18159,11 @@ msgid ""
 "<literal>aptitude remove wesnoth+</literal> will install <literal>wesnoth</"
 "literal>, not remove it.  The following override specifiers are available:"
 msgstr ""
-<<<<<<< HEAD
-"Nie kaÅ¼dy pakiet podany w linii poleceÅ musi byÄ zainstalowany; moÅ¼na "
-"nakazaÄ &aptitude; wykonaÄ inne dziaÅanie zwiÄzane z pakietem przez dodanie "
-"<quote>operatora nadpisania</quote> do jego nazwy. PrzykÅadowo, "
-"<literal>aptitude remove wesnoth+</literal> zainstaluje <literal>wesnoth</"
-"literal>, zamiast go usunÄÄ. DostÄpne sÄ nastÄpujÄce operatory nadpisania:"
-=======
 "Nie każdy pakiet podany w linii poleceń musi być zainstalowany; można "
 "nakazać &aptitude; wykonać inne działanie związane z pakietem przez dodanie "
 "<quote>operatora nadpisania</quote> do jego nazwy. Przykładowo, "
 "<literal>aptitude remove wesnoth+</literal> zainstaluje <literal>wesnoth</"
 "literal>, zamiast go usunąć. Dostępne są następujące operatory nadpisania:"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><variablelist><varlistentry><term>
 #: en/manpage.xml:252
@@ -18277,15 +18189,9 @@ msgid ""
 "be immediately removed)."
 msgstr ""
 "Instaluje <replaceable>pakiet</replaceable> i natychmiast oznacza go jako "
-<<<<<<< HEAD
-"<link linkend='secAutoInstall'>automatycznie zainstalowany</link> (proszÄ "
-"zauwaÅ¼yÄ, Å¼e jeÅli nic nie jest zaleÅ¼ne od <replaceable>pakietu</"
-"replaceable>, spowoduje to jego natychmiastowe usuniÄcie)."
-=======
 "<link linkend='secAutoInstall'>automatycznie zainstalowany</link> (proszę "
 "zauważyć, że jeśli nic nie jest zależne od <replaceable>pakietu</"
 "replaceable>, spowoduje to jego natychmiastowe usunięcie)."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><variablelist><varlistentry><term>
 #: en/manpage.xml:275
@@ -18308,13 +18214,8 @@ msgid ""
 "Purge <replaceable>package</replaceable>: remove it and all its associated "
 "configuration and data files."
 msgstr ""
-<<<<<<< HEAD
-"CzyÅci <replaceable>pakiet</replaceable> - usuwa go wraz ze wszystkimi "
-"zwiÄzanymi z nim plikami z danymi oraz plikami konfiguracyjnymi."
-=======
 "Czyści <replaceable>pakiet</replaceable> - usuwa go wraz ze wszystkimi "
 "związanymi z nim plikami z danymi oraz plikami konfiguracyjnymi."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><variablelist><varlistentry><term>
 #: en/manpage.xml:294
@@ -18328,15 +18229,9 @@ msgid ""
 "installation, upgrade, or removal, and prevent this package from being "
 "automatically upgraded in the future."
 msgstr ""
-<<<<<<< HEAD
-"Wstrzymuje <replaceable>pakiet</replaceable> - odwoÅuje wszystkie aktywne "
-"instalacje, uaktualnienia lub usuniÄcia i zapobiega automatycznym "
-"aktualizacjom w przyszÅoÅci."
-=======
 "Wstrzymuje <replaceable>pakiet</replaceable> - odwołuje wszystkie aktywne "
 "instalacje, uaktualnienia lub usunięcia i zapobiega automatycznym "
 "aktualizacjom w przyszłości."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><variablelist><varlistentry><term>
 #: en/manpage.xml:306
@@ -18350,17 +18245,10 @@ msgid ""
 "installation, removal, or upgrade.  Unlike <quote>hold</quote> (above) this "
 "does not prevent automatic upgrades in the future."
 msgstr ""
-<<<<<<< HEAD
-"Zatrzymuje <replaceable>pakiet</replaceable> w obecnej wersji - odwoÅuje "
-"wszystkie instalacje, usuniÄcia lub uaktualnienia. W przeciwieÅstwie do "
-"<quote>hold</quote> (powyÅ¼ej) to polecenie nie zapobiega automatycznym "
-"aktualizacjom w przyszÅoÅci."
-=======
 "Zatrzymuje <replaceable>pakiet</replaceable> w obecnej wersji - odwołuje "
 "wszystkie instalacje, usunięcia lub uaktualnienia. W przeciwieństwie do "
 "<quote>hold</quote> (powyżej) to polecenie nie zapobiega automatycznym "
 "aktualizacjom w przyszłości."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><variablelist><varlistentry><term>
 #: en/manpage.xml:318
@@ -18388,11 +18276,7 @@ msgid ""
 "linkend='secAutoInstall'>manually installed</link>."
 msgstr ""
 "Oznacza <replaceable>pakiet</replaceable> jako <link "
-<<<<<<< HEAD
-"linkend='secAutoInstall'>zainstalowany rÄcznie</link>."
-=======
 "linkend='secAutoInstall'>zainstalowany ręcznie</link>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:339
@@ -18400,13 +18284,8 @@ msgid ""
 "As a special case, <quote><literal>install</literal></quote> with no "
 "arguments will act on any stored/pending actions."
 msgstr ""
-<<<<<<< HEAD
-"Jako szczegÃ³lny przypadek, <quote><literal>install</literal></quote> bez "
-"dodatkowych argumentÃ³w przeprowadzi wszystkie zaplanowane wczeÅniej akcje."
-=======
 "Jako szczególny przypadek, <quote><literal>install</literal></quote> bez "
 "dodatkowych argumentów przeprowadzi wszystkie zaplanowane wcześniej akcje."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><note><para>
 #: en/manpage.xml:345
@@ -18424,15 +18303,9 @@ msgstr ""
 "polecenie <quote><literal>install</literal></quote> zmodyfikuje "
 "przechowywane przez &aptitude; informacje o akcjach do wykonania. Co za tym "
 "idzie, po wpisaniu polecenia (np.) <quote><literal>aptitude install foo bar</"
-<<<<<<< HEAD
-"literal></quote> i przerwaniu  instalacji po rozpoczÄciu pobierania i "
-"instalowania pakietÃ³w przez &aptitude;, naleÅ¼y wykonaÄ "
-"<quote><literal>aptitude remove foo bar</literal></quote> aby odwoÅaÄ to "
-=======
 "literal></quote> i przerwaniu  instalacji po rozpoczęciu pobierania i "
 "instalowania pakietów przez &aptitude;, należy wykonać "
 "<quote><literal>aptitude remove foo bar</literal></quote> aby odwołać to "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "polecenie."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
@@ -18462,19 +18335,6 @@ msgid ""
 "linkend='manpageFullUpgrade'><literal>full-upgrade</literal></link> "
 "commands, without otherwise altering its state."
 msgstr ""
-<<<<<<< HEAD
-"Te polecenia sÄ podobne do <quote><literal>install</literal></quote>, ale "
-"przeprowadzajÄ nazwanÄ akcjÄ na wszystkich pakietach podanych w linii "
-"poleceÅ, ktÃ³re nie sÄ <link linkend='parOverrideSpecifiers'>nadpisane</"
-"link>. RÃ³Å¼nica pomiÄdzy <literal>hold</literal> a <literal>keep</literal> "
-"polega na tym, Å¼e <literal>hold</literal> spowoduje zignorowanie pakietu "
-"przy poleceniach <link linkend='manpageSafeUpgrade'><literal>safe-upgrade</"
-"literal></link> i <link linkend='manpageFullUpgrade'><literal>full-upgrade</"
-"literal></link>, podczas gdy <literal>keep</literal> jedynie odwoÅuje "
-"zaplanowanÄ akcjÄ zwiÄzanÄ z pakietem. Z kolei <literal>unhold</literal> "
-"pozwoli "
-"pakietowi byÄ uaktualnianym za pomocÄ poleceÅ <literal>safe-upgrade</"
-=======
 "Te polecenia są podobne do <quote><literal>install</literal></quote>, ale "
 "przeprowadzają nazwaną akcję na wszystkich pakietach podanych w linii "
 "poleceń, które nie są <link linkend='parOverrideSpecifiers'>nadpisane</"
@@ -18485,7 +18345,6 @@ msgstr ""
 "literal></link>, podczas gdy <literal>keep</literal> jedynie odwołuje "
 "zaplanowaną akcję związaną z pakietem. Z kolei <literal>unhold</literal> "
 "pozwoli pakietowi być uaktualnianym za pomocą poleceń <literal>safe-upgrade</"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "literal> i <link linkend='manpageFullUpgrade'><literal>full-upgrade</"
 "literal></link>, bez kolejnego zmieniania ich stanu."
 
@@ -18496,13 +18355,8 @@ msgid ""
 "will remove all packages whose name contains <quote><literal>deity</"
 "literal></quote>."
 msgstr ""
-<<<<<<< HEAD
-"PrzykÅadowo, <quote><literal>aptitude remove '~ndeity'</literal></quote> "
-"usunie wszystkie pakiety zawierajÄce w swej nazwie ciÄg "
-=======
 "Przykładowo, <quote><literal>aptitude remove '~ndeity'</literal></quote> "
 "usunie wszystkie pakiety zawierające w swej nazwie ciąg "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "<quote><literal>deity</literal></quote>."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
@@ -18520,15 +18374,9 @@ msgid ""
 "packages in the <quote><literal>libs</literal></quote> section as having "
 "been automatically installed."
 msgstr ""
-<<<<<<< HEAD
-"Oznacza pakiety jako zainstalowane, odpowiednio: automatycznie lub rÄcznie, "
-"korzystajÄc z tej samej skÅadni co w poleceniu <quote><literal>install</"
-"literal></quote>. PrzykÅadowo, <quote><literal>aptitude markauto '~slibs'</"
-=======
 "Oznacza pakiety jako zainstalowane, odpowiednio: automatycznie lub ręcznie, "
 "korzystając z tej samej składni co w poleceniu <quote><literal>install</"
 "literal></quote>. Przykładowo, <quote><literal>aptitude markauto '~slibs'</"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "literal></quote> oznaczy wszystkie pakiety z sekcji <quote><literal>libs</"
 "literal></quote>, jako zainstalowane automatycznie."
 
@@ -18539,15 +18387,9 @@ msgid ""
 "<quote><link linkend='secAutoInstall'>Managing Automatically Installed "
 "Packages</link></quote> in the &aptitude; reference manual."
 msgstr ""
-<<<<<<< HEAD
-"Aby uzyskaÄ wiÄcej informacji o pakietach zainstalowanych automatycznie, "
-"zapoznaj siÄ z rozdziaÅem <quote><link linkend='secAutoInstall'>Managing "
-"Automatically Installed Packages</link></quote> w podrÄczniku &aptitude;."
-=======
 "Aby uzyskać więcej informacji o pakietach zainstalowanych automatycznie, "
 "zapoznaj się z rozdziałem <quote><link linkend='secAutoInstall'>Managing "
 "Automatically Installed Packages</link></quote> w podręczniku &aptitude;."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:418
@@ -18564,21 +18406,12 @@ msgid ""
 "dependencies of the source packages that build those binary packages are "
 "satisfied."
 msgstr ""
-<<<<<<< HEAD
-"UzupeÅnia zaleÅ¼noÅci na czas budowania pakietu. KaÅ¼da nazwa pakietu moÅ¼e byÄ "
-"pakietem ÅºrÃ³dÅowym, w takim przypadku instalowane sÄ zaleÅ¼noÅci na czas "
-"budowania pakietu ÅºrÃ³dÅowego; w przeciwnym razie, pakiety binarne sÄ "
-"znajdywane wedÅug wzoru uÅ¼ywanego w poleceniu <quote><literal>install</"
-"literal></quote>, a uzupeÅniane sÄ zaleÅ¼noÅci na czas budowania pakietu, "
-"bÄdÄcego pakietem ÅºrÃ³dÅowym dla danego pakietu binarnego."
-=======
 "Uzupełnia zależności na czas budowania pakietu. Każda nazwa pakietu może być "
 "pakietem źródłowym, w takim przypadku instalowane są zależności na czas "
 "budowania pakietu źródłowego; w przeciwnym razie, pakiety binarne są "
 "znajdywane według wzoru używanego w poleceniu <quote><literal>install</"
 "literal></quote>, a uzupełniane są zależności na czas budowania pakietu, "
 "będącego pakietem źródłowym dla danego pakietu binarnego."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:432
@@ -18588,13 +18421,8 @@ msgid ""
 "Depends-Indep</literal> or <literal>Build-Conflicts-Indep</literal>) will be "
 "obeyed."
 msgstr ""
-<<<<<<< HEAD
-"W poÅÄczeniu z parametrem <literal>--arch-only</literal> aptitude uzupeÅnia "
-"tylko zaleÅ¼noÅci na czas budowania zaleÅ¼ne od architektury (tzn. nie "
-=======
 "W połączeniu z parametrem <literal>--arch-only</literal> aptitude uzupełnia "
 "tylko zależności na czas budowania zależne od architektury (tzn. nie "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "<literal>Build-Depends-Indep</literal>, ani <literal>Build-Conflicts-Indep</"
 "literal>)."
 
@@ -18616,13 +18444,8 @@ msgid ""
 msgstr ""
 "Zabrania pakietowi uaktualnienia do danej wersji. Zapobiegnie to "
 "automatycznej aktualizacji do tej wersji, ale pozwoli na automatyczne "
-<<<<<<< HEAD
-"aktualizacje do przyszÅych.  DomyÅlnie to &aptitude; wybierze wersjÄ "
-"do ktÃ³rej pakiet bÄdzie mÃ³gÅ byÄ normalnie uaktualniony, moÅ¼na to nadpisaÄ "
-=======
 "aktualizacje do przyszłych.  Domyślnie to &aptitude; wybierze wersję do "
 "której pakiet będzie mógł być normalnie uaktualniony, można to nadpisać "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "przez dodanie <quote><literal>=<replaceable>wersja</replaceable></literal></"
 "quote> do nazwy pakietu, np. <quote><literal>aptitude forbid-version "
 "vim=1.2.3.broken-4</literal></quote>."
@@ -18636,21 +18459,12 @@ msgid ""
 "quote> will remove the ban. <literal>--schedule-only</literal> here can be "
 "used to just remove the ban without installing anything."
 msgstr ""
-<<<<<<< HEAD
-"To polecenie jest uÅ¼yteczne do unikania uszkodzonych wersji pakietÃ³w, bez "
-"potrzeby rÄcznego ustawiania i usuwania statusu zatrzymania. JeÅli jednak "
-"zaistnieje potrzeba zainstalowania zabronionej wersji, polecenie "
-"<quote><literal>install</literal></quote> usunie ten zakaz. Opcja <literal>"
-"--schedule-only</literal> moÅ¼e byÄ uÅ¼yta do usuniÄcia zakazu, bez "
-"instalowania czegokolwiek."
-=======
 "To polecenie jest użyteczne do unikania uszkodzonych wersji pakietów, bez "
 "potrzeby ręcznego ustawiania i usuwania statusu zatrzymania. Jeśli jednak "
 "zaistnieje potrzeba zainstalowania zabronionej wersji, polecenie "
 "<quote><literal>install</literal></quote> usunie ten zakaz. Opcja <literal>--"
 "schedule-only</literal> może być użyta do usunięcia zakazu, bez instalowania "
 "czegokolwiek."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:470
@@ -18663,11 +18477,7 @@ msgid ""
 "Updates the list of available packages from the &apt; sources (this is "
 "equivalent to <quote><literal>apt-get update</literal></quote>)"
 msgstr ""
-<<<<<<< HEAD
-"Uaktualnia listÄ dostÄpnych pakietÃ³w ze ÅºrÃ³deÅ &apt; (jest to odpowiednik "
-=======
 "Uaktualnia listę dostępnych pakietów ze źródeł &apt; (jest to odpowiednik "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "<quote><literal>apt-get update</literal></quote>)"
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
@@ -18687,15 +18497,6 @@ msgid ""
 "literal></link> command-line option is supplied."
 msgstr ""
 "Uaktualnia zainstalowane pakiety do najnowszych wersji. Zainstalowane "
-<<<<<<< HEAD
-"pakiety nie bÄdÄ usuniÄte, chyba Å¼e nie sÄ uÅ¼ywane (zapoznaj siÄ z rozdziaÅem "
-"<quote><link linkend='secAutoInstall'>Managing Automatically Installed "
-"Packages</link></quote> w podrÄczniku &aptitude;).  Pakiety ktÃ³re "
-"nie sÄ aktualnie zainstalowane, mogÄ zostaÄ zainstalowane aby rozwiÄzaÄ "
-"zaleÅ¼noÅci, chyba Å¼e uÅ¼yto takÅ¼e polecenia <link "
-"linkend='cmdlineOptionNoNewInstalls'><literal>--no-new-installs</"
-"literal></link>."
-=======
 "pakiety nie będą usunięte, chyba że nie są używane (zapoznaj się z "
 "rozdziałem <quote><link linkend='secAutoInstall'>Managing Automatically "
 "Installed Packages</link></quote> w podręczniku &aptitude;).  Pakiety które "
@@ -18703,7 +18504,6 @@ msgstr ""
 "zależności, chyba że użyto także polecenia <link "
 "linkend='cmdlineOptionNoNewInstalls'><literal>--no-new-installs</literal></"
 "link>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:498
@@ -18718,16 +18518,6 @@ msgid ""
 "literal> will attempt to upgrade the <systemitem>bash</systemitem> package "
 "and remove the <systemitem>dash</systemitem> package."
 msgstr ""
-<<<<<<< HEAD
-"JeÅli nie podano Å¼adnych <replaceable>pakiet</replaceable>Ã³w w wierszu "
-"poleceÅ, &aptitude; sprÃ³buje zaktualizowaÄ wszystkie pakiety, dajÄce siÄ "
-"uaktualniÄ. W przeciwnym wypadku &aptitude; uaktualni tylko pakiety, ktÃ³rych "
-"nazwy podano w poleceniu. Nazwy <replaceable>pakiet</replaceable>Ã³w mogÄ byÄ "
-"rozszerzone przez przyrostki (na tej samej zasadzie, jak argumenty "
-"<literal>aptitude install</literal>), wiÄc moÅ¼na przekazaÄ tutaj &aptitude; "
-"dodatkowe polecenie np. <literal>aptitude safe-upgrade bash dash-</literal> "
-"spowoduje uaktualnienie pakietu <systemitem>bash</systemitem> i usuniÄcie "
-=======
 "Jeśli nie podano żadnych <replaceable>pakiet</replaceable>ów w wierszu "
 "poleceń, &aptitude; spróbuje zaktualizować wszystkie pakiety, dające się "
 "uaktualnić. W przeciwnym wypadku &aptitude; uaktualni tylko pakiety, których "
@@ -18736,7 +18526,6 @@ msgstr ""
 "<literal>aptitude install</literal>), więc można przekazać tutaj &aptitude; "
 "dodatkowe polecenie np. <literal>aptitude safe-upgrade bash dash-</literal> "
 "spowoduje uaktualnienie pakietu <systemitem>bash</systemitem> i usunięcie "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "pakietu <systemitem>dash</systemitem>."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -18747,15 +18536,9 @@ msgid ""
 "<link linkend='manpageFullUpgrade'><literal>full-upgrade</literal></link> "
 "command to upgrade as many packages as possible."
 msgstr ""
-<<<<<<< HEAD
-"Czasami istnieje potrzeba usuniÄcia jednego pakietu, aby zaktualizowaÄ inny; "
-"to polecenie nie jest w stanie uaktualniaÄ pakietÃ³w w takich przypadkach. "
-"Aby wykonaÄ wszystkie moÅ¼liwe aktualizacje, naleÅ¼y uÅ¼yÄ polecenia <link "
-=======
 "Czasami istnieje potrzeba usunięcia jednego pakietu, aby zaktualizować inny; "
 "to polecenie nie jest w stanie uaktualniać pakietów w takich przypadkach. "
 "Aby wykonać wszystkie możliwe aktualizacje, należy użyć polecenia <link "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "linkend='manpageFullUpgrade'><literal>full-upgrade</literal></link>."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
@@ -18774,19 +18557,11 @@ msgid ""
 "upgrade</literal></link> cannot upgrade."
 msgstr ""
 "Uaktualnia zainstalowane pakiety do najnowszych wersji, w razie potrzeby "
-<<<<<<< HEAD
-"usuwajÄc lub instalujÄc inne pakiety. To polecenie jest mniej konserwatywne "
-"od <link linkend='manpageSafeUpgrade'><literal>safe-upgrade</literal></link> "
-"i w zwiÄzku z tym, bardziej prawdopodobne jest aby przeprowadziÅo "
-"niepoÅ¼ÄdanÄ akcjÄ. Ma jednak moÅ¼liwoÅÄ uaktualniania pakietÃ³w, ktÃ³rych nie "
-"jest w stanie zaktualizowaÄ polecenie <link "
-=======
 "usuwając lub instalując inne pakiety. To polecenie jest mniej konserwatywne "
 "od <link linkend='manpageSafeUpgrade'><literal>safe-upgrade</literal></link> "
 "i w związku z tym, bardziej prawdopodobne jest aby przeprowadziło "
 "niepożądaną akcję. Ma jednak możliwość uaktualniania pakietów, których nie "
 "jest w stanie zaktualizować polecenie <link "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "linkend='manpageSafeUpgrade'><literal>safe-upgrade</literal></link>."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -18802,16 +18577,6 @@ msgid ""
 "literal> will attempt to upgrade the <systemitem>bash</systemitem> package "
 "and remove the <systemitem>dash</systemitem> package."
 msgstr ""
-<<<<<<< HEAD
-"JeÅli nie podano Å¼adnych <replaceable>pakiet</replaceable>Ã³w w wierszu "
-"poleceÅ, &aptitude; sprÃ³buje zaktualizowaÄ wszystkie pakiety, dajÄce siÄ "
-"uaktualniÄ. W przeciwnym wypadku &aptitude; uaktualni tylko pakiety, ktÃ³rych "
-"nazwy podano w poleceniu. Nazwy <replaceable>pakiet</replaceable>Ã³w mogÄ byÄ "
-"rozszerzone przez przyrostki (na tej samej zasadzie, jak argumenty "
-"<literal>aptitude install</literal>), wiÄc moÅ¼na przekazaÄ tutaj &aptitude; "
-"dodatkowe polecenie np. <literal>aptitude safe-upgrade bash dash-</literal> "
-"spowoduje uaktualnienie pakietu <systemitem>bash</systemitem> i usuniÄcie "
-=======
 "Jeśli nie podano żadnych <replaceable>pakiet</replaceable>ów w wierszu "
 "poleceń, &aptitude; spróbuje zaktualizować wszystkie pakiety, dające się "
 "uaktualnić. W przeciwnym wypadku &aptitude; uaktualni tylko pakiety, których "
@@ -18820,7 +18585,6 @@ msgstr ""
 "<literal>aptitude install</literal>), więc można przekazać tutaj &aptitude; "
 "dodatkowe polecenie np. <literal>aptitude safe-upgrade bash dash-</literal> "
 "spowoduje uaktualnienie pakietu <systemitem>bash</systemitem> i usunięcie "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "pakietu <systemitem>dash</systemitem>."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><note><para>
@@ -18830,13 +18594,8 @@ msgid ""
 "historical reasons, and &aptitude; still recognizes <literal>dist-upgrade</"
 "literal> as a synonym for <literal>full-upgrade</literal>."
 msgstr ""
-<<<<<<< HEAD
-"To polecenie byÅo pierwotnie nazwane <literal>dist-upgrade</literal> z "
-"powodÃ³w historycznych i &aptitude; wciÄÅ¼ rozpoznaje <literal>dist-upgrade</"
-=======
 "To polecenie było pierwotnie nazwane <literal>dist-upgrade</literal> z "
 "powodów historycznych i &aptitude; wciąż rozpoznaje <literal>dist-upgrade</"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "literal> jako synonim do <literal>full-upgrade</literal>."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
@@ -18851,15 +18610,9 @@ msgid ""
 "state indicates an installation, removal, or upgrade will have this sticky "
 "state cleared."
 msgstr ""
-<<<<<<< HEAD
-"OdwoÅuje wszystkie zaplanowane akcje na wszystkich pakietach; kaÅ¼demu "
-"pakietowi, ktÃ³ry byÅ oznaczony jako do instalacji, usuniÄcia lub "
-"uaktualnienia, to oznaczenie zostanie usuniÄte."
-=======
 "Odwołuje wszystkie zaplanowane akcje na wszystkich pakietach; każdemu "
 "pakietowi, który był oznaczony jako do instalacji, usunięcia lub "
 "uaktualnienia, to oznaczenie zostanie usunięte."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:579
@@ -18873,13 +18626,8 @@ msgid ""
 "(equivalent to pressing <quote><keycap>f</keycap></quote> when in visual "
 "mode)."
 msgstr ""
-<<<<<<< HEAD
-"Usuwa wszystkie wewnÄtrzne informacje o tym, ktÃ³re pakiety sÄ <quote>nowe</"
-"quote> (rÃ³wnowaÅ¼ne wciÅniÄciu <quote><keycap>f</keycap></quote> w trybie "
-=======
 "Usuwa wszystkie wewnętrzne informacje o tym, które pakiety są <quote>nowe</"
 "quote> (równoważne wciśnięciu <quote><keycap>f</keycap></quote> w trybie "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "wizualnym)."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
@@ -18898,15 +18646,6 @@ msgid ""
 "the section <quote><link linkend='secSearchPatterns'>Search Patterns</link></"
 "quote> in the &aptitude; reference manual."
 msgstr ""
-<<<<<<< HEAD
-"Wyszukuje pakiety pasujÄce do jednego z wzorcÃ³w podanych po poleceniu. "
-"ZostanÄ wypisane wszystkie pakiety pasujÄce do ktÃ³regokolwiek z tych "
-"wzorcÃ³w, np. <quote><literal>aptitude search '~N' edit</literal></quote> "
-"wypisze <quote>nowe</quote> pakiety i wszystkie pakiety, ktÃ³rych nazwa "
-"zawiera <quote>edit</quote>. Aby uzyskaÄ wiÄcej informacji o wzorcach "
-"wyszukiwania, zapoznaj siÄ z rozdziaÅem <quote><link "
-"linkend='secSearchPatterns'>Search Patterns</link></quote> w podrÄczniku "
-=======
 "Wyszukuje pakiety pasujące do jednego z wzorców podanych po poleceniu. "
 "Zostaną wypisane wszystkie pakiety pasujące do któregokolwiek z tych "
 "wzorców, np. <quote><literal>aptitude search '~N' edit</literal></quote> "
@@ -18914,7 +18653,6 @@ msgstr ""
 "zawiera <quote>edit</quote>. Aby uzyskać więcej informacji o wzorcach "
 "wyszukiwania, zapoznaj się z rozdziałem <quote><link "
 "linkend='secSearchPatterns'>Search Patterns</link></quote> w podręczniku "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "&aptitude;."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><note><para>
@@ -18931,19 +18669,6 @@ msgid ""
 "<quote><literal>aptitude search '~N edit'</literal></quote> will only show "
 "<quote>new</quote> packages whose name contains <quote>edit</quote>."
 msgstr ""
-<<<<<<< HEAD
-"W powyÅ¼szym przykÅadzie <quote><literal>aptitude search '~N' edit</literal></"
-"quote> ma dwa argumenty po poleceniu <literal>search</literal> i dlatego "
-"wyszukiwanie jest prowadzone dla <emphasis>dwÃ³ch</emphasis> wzorcÃ³w: "
-"<quote><literal>~N</literal></quote> i <quote><literal>edit</literal></"
-"quote>. Jak opisano w <link linkend='secSearchPatterns'>dokumentacji "
-"wyszukiwania</link>, <emphasis>pojedynczy</emphasis> wzorzec skÅadajÄcy siÄ "
-"z dwÃ³ch podwzorcÃ³w oddzielonych spacjÄ (np. <quote><literal>~N edit</"
-"literal></quote>), jest dopasowywany tylko jeÅli pasujÄ <emphasis>oba</"
-"emphasis> podwzorce. Dlatego polecenie <quote><literal>aptitude search '~N "
-"edit'</literal></quote> pokaÅ¼e wyÅÄcznie <quote>nowe</quote> pakiety, "
-"ktÃ³rych nazwa zawiera <quote>edit</quote>."
-=======
 "W powyższym przykładzie <quote><literal>aptitude search '~N' edit</literal></"
 "quote> ma dwa argumenty po poleceniu <literal>search</literal> i dlatego "
 "wyszukiwanie jest prowadzone dla <emphasis>dwóch</emphasis> wzorców: "
@@ -18955,7 +18680,6 @@ msgstr ""
 "emphasis> podwzorce. Dlatego polecenie <quote><literal>aptitude search '~N "
 "edit'</literal></quote> pokaże wyłącznie <quote>nowe</quote> pakiety, "
 "których nazwa zawiera <quote>edit</quote>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:627
@@ -18964,37 +18688,15 @@ msgid ""
 "literal></link> option, the output of <literal>aptitude search</literal> "
 "will look something like this:"
 msgstr ""
-<<<<<<< HEAD
-"JeÅli nie zostanie podana opcja <link linkend='cmdlineOptionFormat'><literal>"
-"-F</"
-"literal></link>, wynik polecenia <literal>aptitude search</literal> bÄdzie "
-"wyglÄdaÄ podobnie jak poniÅ¼ej:"
-=======
 "Jeśli nie zostanie podana opcja <link "
 "linkend='cmdlineOptionFormat'><literal>-F</literal></link>, wynik polecenia "
 "<literal>aptitude search</literal> będzie wyglądać podobnie jak poniżej:"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><screen>
 #: en/manpage.xml:633
 #, no-wrap
 msgid ""
 "i   apt                             - Advanced front-end for dpkg\n"
-<<<<<<< HEAD
-"pi  apt-build                       - frontend to apt to build, optimize and "
-"in\n"
-"cp  apt-file                        - APT package searching utility -- "
-"command-\n"
-"ihA raptor-utils                    - Raptor RDF Parser utilities"
-msgstr ""
-"i   apt                             - Zaawansowana nakÅadka na dpkg\n"
-"pi  apt-build                       - NakÅadka apt do budowania, "
-"optymalizowani\n"
-"cp  apt-file                        - Wyszukiwanie plikÃ³w wewnÄtrz pakietÃ³w "
-"Deb\n"
-"ihA raptor-utils                    - Raptor RDF parser and serializer "
-"utilitie"
-=======
 "pi  apt-build                       - frontend to apt to build, optimize and in\n"
 "cp  apt-file                        - APT package searching utility -- command-\n"
 "ihA raptor-utils                    - Raptor RDF Parser utilities"
@@ -19003,7 +18705,6 @@ msgstr ""
 "pi  apt-build                       - Nakładka apt do budowania, optymalizowani\n"
 "cp  apt-file                        - Wyszukiwanie plików wewnątrz pakietów Deb\n"
 "ihA raptor-utils                    - Raptor RDF parser and serializer utilitie"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:639
@@ -19022,20 +18723,6 @@ msgid ""
 "configuration files will be removed.  If the third character is <literal>A</"
 "literal>, the package was automatically installed."
 msgstr ""
-<<<<<<< HEAD
-"KaÅ¼de wyszukiwanie jest wypisane w osobnym wierszu. Pierwszy znak kaÅ¼dego "
-"wiersza oznacza obecny stan pakietu: najpopularniejsze to: <literal>p</"
-"literal> oznaczajÄcy, Å¼e nie ma Åladu po istnieniu tego pakietu w systemie; "
-"<literal>c</literal> - pakiet zostaÅ usuniÄty, ale jego pliki konfiguracyjne "
-"pozostaÅy w systemie; <literal>i</literal> - pakiet jest zainstalowany oraz "
-"<literal>v</literal> - pakiet jest pakietem wirtualnym.  Drugi znak pokazuje "
-"zapisanÄ akcjÄ (jeÅli istnieje, w przeciwnym wypadku wyÅwietlana jest tu "
-"spacja), ktÃ³ra ma byÄ wykonana na tym pakiecie, najczÄÅciej spotykane akcje "
-"to: <literal>i</literal> - pakiet ma zostaÄ zainstalowany; <literal>d</"
-"literal> - pakiet bÄdzie usuniÄty oraz <literal>p</literal> - pakiet i jego "
-"pliki konfiguracyjne majÄ zostaÄ usuniÄte. JeÅli trzecim znakiem jest "
-"<literal>A</literal>, to pakiet byÅ zainstalowany automatycznie."
-=======
 "Każde wyszukiwanie jest wypisane w osobnym wierszu. Pierwszy znak każdego "
 "wiersza oznacza obecny stan pakietu: najpopularniejsze to: <literal>p</"
 "literal> oznaczający, że nie ma śladu po istnieniu tego pakietu w systemie; "
@@ -19048,7 +18735,6 @@ msgstr ""
 "literal> - pakiet będzie usunięty oraz <literal>p</literal> - pakiet i jego "
 "pliki konfiguracyjne mają zostać usunięte. Jeśli trzecim znakiem jest "
 "<literal>A</literal>, to pakiet był zainstalowany automatycznie."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:660
@@ -19060,22 +18746,12 @@ msgid ""
 "linkend='cmdlineOptionFormat'><literal>-F</literal></link> and <link "
 "linkend='cmdlineOptionSort'><literal>--sort</literal></link>."
 msgstr ""
-<<<<<<< HEAD
-"Aby poznaÄ peÅnÄ listÄ moÅ¼liwych oznaczeÅ stanÃ³w i akcji, zapoznaj siÄ z "
-"rozdziaÅem <quote><link linkend='secAccessingPackageInformation'>Accessing "
-"Package "
-"Information</link></quote> w podrÄczniku &aptitude;. Aby dostosowaÄ wynik "
-"polecenia <literal>search</literal>, zapoznaj siÄ z opcjami <link "
-"linkend='cmdlineOptionFormat'><literal>-F</literal></link> i <link "
-"linkend='cmdlineOptionSort'><literal>--sort</literal></link> wiersza poleceÅ."
-=======
 "Aby poznać pełną listę możliwych oznaczeń stanów i akcji, zapoznaj się z "
 "rozdziałem <quote><link linkend='secAccessingPackageInformation'>Accessing "
 "Package Information</link></quote> w podręczniku &aptitude;. Aby dostosować "
 "wynik polecenia <literal>search</literal>, zapoznaj się z opcjami <link "
 "linkend='cmdlineOptionFormat'><literal>-F</literal></link> i <link "
 "linkend='cmdlineOptionSort'><literal>--sort</literal></link> wiersza poleceń."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:675
@@ -19093,16 +18769,6 @@ msgid ""
 "linkend='secSearchPatterns'>Search Patterns</link></quote> in the &aptitude; "
 "reference manual)."
 msgstr ""
-<<<<<<< HEAD
-"WyÅwietla szczegÃ³Åowe informacje o jednym lub wiÄcej pakiecie, podanym po "
-"poleceniu. JeÅli nazwa pakietu zawiera znak tyldy (<quote><literal>~</"
-"literal></quote>) lub znak zapytania (<quote><literal>?</literal></quote>), "
-"bÄdzie traktowana jako wzorzec wyszukiwania i zostanÄ wyÅwietlone wszystkie "
-"pakiety ktÃ³re go "
-"speÅniajÄ, (zapoznaj siÄ z rozdziaÅem <link "
-"linkend='secSearchPatterns'><quote>Search Patterns</quote></link> w "
-"podrÄczniku &aptitude;)."
-=======
 "Wyświetla szczegółowe informacje o jednym lub więcej pakiecie, podanym po "
 "poleceniu. Jeśli nazwa pakietu zawiera znak tyldy (<quote><literal>~</"
 "literal></quote>) lub znak zapytania (<quote><literal>?</literal></quote>), "
@@ -19110,7 +18776,6 @@ msgstr ""
 "pakiety które go spełniają, (zapoznaj się z rozdziałem <link "
 "linkend='secSearchPatterns'><quote>Search Patterns</quote></link> w "
 "podręczniku &aptitude;)."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:691
@@ -19121,17 +18786,10 @@ msgid ""
 "version</quote> (the version that <quote><literal>aptitude install</"
 "literal></quote> would download) is displayed."
 msgstr ""
-<<<<<<< HEAD
-"JeÅli poziom szczegÃ³ÅowoÅci jest ustawiony na 1 lub wyÅ¼ej (tzn. wpisano "
-"przynajmniej jedno <literal>-v</literal> w wierszu poleceÅ), wyÅwietlane sÄ "
-"informacje o wszystkich wersjach pakietÃ³w. WÂ przeciwnym wypadku, wyÅwietlana "
-"jest informacja o <quote>wersji kandydujÄcej</quote> (wersji ktÃ³rÄ pobraÅoby "
-=======
 "Jeśli poziom szczegółowości jest ustawiony na 1 lub wyżej (tzn. wpisano "
 "przynajmniej jedno <literal>-v</literal> w wierszu poleceń), wyświetlane są "
 "informacje o wszystkich wersjach pakietów. W przeciwnym wypadku, wyświetlana "
 "jest informacja o <quote>wersji kandydującej</quote> (wersji którą pobrałoby "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "polecenie <quote><literal>aptitude install</literal></quote>)."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -19146,16 +18804,6 @@ msgid ""
 "literal>.  If either of these is present, then only the version you request "
 "will be displayed, regardless of the verbosity level."
 msgstr ""
-<<<<<<< HEAD
-"MoÅ¼na wyÅwietliÄ informacje o rÃ³Å¼nych wersjach pakietÃ³w, przez dodanie do "
-"nazwy pakietu <literal>=<replaceable>wersja</replaceable></literal>; aby "
-"wyÅwietliÄ wersjÄ z okreÅlonego archiwum, do nazwy pakietu naleÅ¼y dopisaÄ "
-"<literal>/<replaceable>archiwum</replaceable></literal> lub <literal>/"
-"<replaceable>wydanie</replaceable></literal>, np. <literal>/unstable</"
-"literal> lub <literal>/sid</literal>. JeÅli uÅ¼yto jednej z tych opcji, "
-"zostanie wyÅwietlona tylko Å¼Ädana wersja, bez wzglÄdu na poziom "
-"szczegÃ³ÅowoÅci."
-=======
 "Można wyświetlić informacje o różnych wersjach pakietów, przez dodanie do "
 "nazwy pakietu <literal>=<replaceable>wersja</replaceable></literal>; aby "
 "wyświetlić wersję z określonego archiwum, do nazwy pakietu należy dopisać "
@@ -19164,7 +18812,6 @@ msgstr ""
 "literal> lub <literal>/sid</literal>. Jeśli użyto jednej z tych opcji, "
 "zostanie wyświetlona tylko żądana wersja, bez względu na poziom "
 "szczegółowości."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:715
@@ -19174,18 +18821,10 @@ msgid ""
 "verbosity level is 2 or greater, the select version or versions will be "
 "displayed once for each archive in which they are found."
 msgstr ""
-<<<<<<< HEAD
-"JeÅli ustawiono poziom szczegÃ³ÅowoÅci 1 lub wyÅ¼szy, wyÅwietlane sÄ pola "
-"architektury pakietu, skompresowanego rozmiaru, nazwy pliku i sumy kontrolnej "
-"md5. Przy "
-"poziomie 2 lub wyÅ¼szym, wyÅwietlana jest wybrana wersja/wersje dla kaÅ¼dego "
-"archiwum, w ktÃ³rym siÄ ona znajduje."
-=======
 "Jeśli ustawiono poziom szczegółowości 1 lub wyższy, wyświetlane są pola "
 "architektury pakietu, skompresowanego rozmiaru, nazwy pliku i sumy "
 "kontrolnej md5. Przy poziomie 2 lub wyższym, wyświetlana jest wybrana wersja/"
 "wersje dla każdego archiwum, w którym się ona znajduje."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:725
@@ -19195,30 +18834,13 @@ msgstr "<literal>versions</literal>"
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:729
 msgid "Displays the versions of the packages listed on the command-line."
-<<<<<<< HEAD
-msgstr "WyÅwietla wersje pakietÃ³w podanych w wierszu poleceÅ."
-=======
 msgstr "Wyświetla wersje pakietów podanych w wierszu poleceń."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><screen>
 #: en/manpage.xml:733
 #, no-wrap
 msgid ""
 "$ aptitude versions wesnoth\n"
-<<<<<<< HEAD
-"p   1:1.4.5-1                                                             "
-"100\n"
-"p   1:1.6.5-1                                    unstable                 "
-"500\n"
-"p   1:1.7.14-1                                   experimental             1"
-msgstr ""
-"$ aptitude versions wesnoth\n"
-"p   1:1.4.5-1                                                             "
-"100\n"
-"p   1:1.6.5-1                                    unstable                 "
-"500\n"
-=======
 "p   1:1.4.5-1                                                             100\n"
 "p   1:1.6.5-1                                    unstable                 500\n"
 "p   1:1.7.14-1                                   experimental             1"
@@ -19226,7 +18848,6 @@ msgstr ""
 "$ aptitude versions wesnoth\n"
 "p   1:1.4.5-1                                                             100\n"
 "p   1:1.6.5-1                                    unstable                 500\n"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "p   1:1.7.14-1                                   experimental             1"
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -19240,15 +18861,6 @@ msgid ""
 "releases from which the version is available, and the pin priority of the "
 "version."
 msgstr ""
-<<<<<<< HEAD
-"KaÅ¼da wersja jest wyÅwietlana w osobnym wierszu. Trzy znaku po lewej stronie "
-"oznaczajÄ obecny status, planowanÄ akcjÄ (jeÅli istnieje) i czy pakiet "
-"zostaÅ zainstalowany automatyczne; aby dowiedzieÄ siÄ wiÄcej o ich "
-"znaczeniach, przejdÅº do <link linkend='cmdlineSearch'>informacji o "
-"poleceniu <literal>aptitude search</literal></link>. Na prawo od wersji "
-"wyÅwietlone sÄ informacje o wydaniu z ktÃ³rego dana wersja jest dostÄpna oraz "
-"jej priorytet przypiÄÄ (ang. pin priority)."
-=======
 "Każda wersja jest wyświetlana w osobnym wierszu. Trzy znaku po lewej stronie "
 "oznaczają obecny status, planowaną akcję (jeśli istnieje) i czy pakiet "
 "został zainstalowany automatyczne; aby dowiedzieć się więcej o ich "
@@ -19256,7 +18868,6 @@ msgstr ""
 "<literal>aptitude search</literal></link>. Na prawo od wersji wyświetlone są "
 "informacje o wydaniu z którego dana wersja jest dostępna oraz jej priorytet "
 "przypięć (ang. pin priority)."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:751
@@ -19271,17 +18882,6 @@ msgid ""
 "installed on the system and nothing else, not even other versions of the "
 "same packages."
 msgstr ""
-<<<<<<< HEAD
-"JeÅli nazwa pakietu zawiera znak tyldy (<quote><literal>~</literal></quote>) "
-"lub znak zapytania (<quote><literal>?</literal></quote>), bÄdzie ona "
-"traktowana jako wzorzec wyszukiwania i zostanÄ wyÅwietlone wszystkie <"
-"emphasis>wersje</emphasis> "
-"ktÃ³re go speÅniajÄ (zapoznaj siÄ z rozdziaÅem <link "
-"linkend='secSearchPatterns'><quote>Search Patterns</quote></link> w "
-"podrÄczniku &aptitude;), np. <literal>aptitude versions '~i'</literal> "
-"wyÅwietli wszystkie wersje, ktÃ³re sÄ obecnie zainstalowane i tylko tyle, bez "
-"innych wersji tych samych pakietÃ³w."
-=======
 "Jeśli nazwa pakietu zawiera znak tyldy (<quote><literal>~</literal></quote>) "
 "lub znak zapytania (<quote><literal>?</literal></quote>), będzie ona "
 "traktowana jako wzorzec wyszukiwania i zostaną wyświetlone wszystkie "
@@ -19290,7 +18890,6 @@ msgstr ""
 "podręczniku &aptitude;), np. <literal>aptitude versions '~i'</literal> "
 "wyświetli wszystkie wersje, które są obecnie zainstalowane i tylko tyle, bez "
 "innych wersji tych samych pakietów."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><screen>
 #: en/manpage.xml:764
@@ -19298,30 +18897,16 @@ msgstr ""
 msgid ""
 "$ aptitude versions '~nexim4-daemon-light'\n"
 "Package exim4-daemon-light:\n"
-<<<<<<< HEAD
-"i   4.71-3                                                                "
-"100\n"
-"p   4.71-4                                       unstable                 "
-"500\n"
-=======
 "i   4.71-3                                                                100\n"
 "p   4.71-4                                       unstable                 500\n"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "\n"
 "Package exim4-daemon-light-dbg:\n"
 "p   4.71-4                                       unstable                 500"
 msgstr ""
 "$ aptitude versions '~nexim4-daemon-light'\n"
 "Package exim4-daemon-light:\n"
-<<<<<<< HEAD
-"i   4.71-3                                                                "
-"100\n"
-"p   4.71-4                                       unstable                 "
-"500\n"
-=======
 "i   4.71-3                                                                100\n"
 "p   4.71-4                                       unstable                 500\n"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "\n"
 "Package exim4-daemon-light-dbg:\n"
 "p   4.71-4                                       unstable                 500"
@@ -19336,40 +18921,18 @@ msgid ""
 "&aptitude; will display a single list of all the versions that were found "
 "and automatically include the package name in each output line:"
 msgstr ""
-<<<<<<< HEAD
-"JeÅli wejÅcie jest wzorcem wyszukiwania lub jeÅli wyÅwietli siÄ wiÄcej niÅ¼ "
-"jedna wersja pakietu, &aptitude; automatycznie pogrupuje wyjÅcie wg "
-"pakietÃ³w, jak wyÅ¼ej. MoÅ¼na to wyÅÄczyÄ opcjÄ <literal><link "
-"linkend='cmdlineGroupBy'>--group-by</link>=none</literal>; &aptitude; "
-"wyÅwietli wtedy pojedynczÄ listÄ wszystkich znalezionych wersji i "
-"automatycznie doÅÄczy nazwÄ pakietu w kaÅ¼dym wierszu:"
-=======
 "Jeśli wejście jest wzorcem wyszukiwania lub jeśli wyświetli się więcej niż "
 "jedna wersja pakietu, &aptitude; automatycznie pogrupuje wyjście wg "
 "pakietów, jak wyżej. Można to wyłączyć opcją <literal><link "
 "linkend='cmdlineGroupBy'>--group-by</link>=none</literal>; &aptitude; "
 "wyświetli wtedy pojedynczą listę wszystkich znalezionych wersji i "
 "automatycznie dołączy nazwę pakietu w każdym wierszu:"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><screen>
 #: en/manpage.xml:783
 #, no-wrap
 msgid ""
 "$ aptitude versions --group-by=none '~nexim4-daemon-light'\n"
-<<<<<<< HEAD
-"i   exim4-daemon-light 4.71-3                                             "
-"100\n"
-"p   exim4-daemon-light 4.71-4                    unstable                 "
-"500\n"
-"p   exim4-daemon-light-dbg 4.71-4                unstable                 500"
-msgstr ""
-"$ aptitude versions --group-by=none '~nexim4-daemon-light'\n"
-"i   exim4-daemon-light 4.71-3                                             "
-"100\n"
-"p   exim4-daemon-light 4.71-4                    unstable                 "
-"500\n"
-=======
 "i   exim4-daemon-light 4.71-3                                             100\n"
 "p   exim4-daemon-light 4.71-4                    unstable                 500\n"
 "p   exim4-daemon-light-dbg 4.71-4                unstable                 500"
@@ -19377,7 +18940,6 @@ msgstr ""
 "$ aptitude versions --group-by=none '~nexim4-daemon-light'\n"
 "i   exim4-daemon-light 4.71-3                                             100\n"
 "p   exim4-daemon-light 4.71-4                    unstable                 500\n"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "p   exim4-daemon-light-dbg 4.71-4                unstable                 500"
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -19387,11 +18949,7 @@ msgid ""
 "linkend='cmdlineShowPackageNames'>--show-package-names</link>=never</"
 "literal>:"
 msgstr ""
-<<<<<<< HEAD
-"Aby wyÅÄczyÄ wyÅwietlanie nazw pakietÃ³w, wpisz <literal><link "
-=======
 "Aby wyłączyć wyświetlanie nazw pakietów, wpisz <literal><link "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "linkend='cmdlineShowPackageNames'>--show-package-names</link>=never</"
 "literal>:"
 
@@ -19399,22 +18957,6 @@ msgstr ""
 #: en/manpage.xml:793
 #, no-wrap
 msgid ""
-<<<<<<< HEAD
-"$ aptitude versions --show-package-names=never --group-by=none "
-"'~nexim4-daemon-light'\n"
-"i   4.71-3                                                                "
-"100\n"
-"p   4.71-4                                       unstable                 "
-"500\n"
-"p   4.71-4                                       unstable                 500"
-msgstr ""
-"$ aptitude versions --show-package-names=never --group-by=none "
-"'~nexim4-daemon-light'\n"
-"i   4.71-3                                                                "
-"100\n"
-"p   4.71-4                                       unstable                 "
-"500\n"
-=======
 "$ aptitude versions --show-package-names=never --group-by=none '~nexim4-daemon-light'\n"
 "i   4.71-3                                                                100\n"
 "p   4.71-4                                       unstable                 500\n"
@@ -19423,7 +18965,6 @@ msgstr ""
 "$ aptitude versions --show-package-names=never --group-by=none '~nexim4-daemon-light'\n"
 "i   4.71-3                                                                100\n"
 "p   4.71-4                                       unstable                 500\n"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "p   4.71-4                                       unstable                 500"
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -19438,19 +18979,11 @@ msgid ""
 "linkend='cmdlineOptionDisableColumns'><literal>--disable-columns</literal></"
 "link>."
 msgstr ""
-<<<<<<< HEAD
-"OprÃ³cz powyÅ¼szych opcji, wyÅwietlanie informacji o kaÅ¼dej wersji moÅ¼na "
-"kontrolowaÄ opcjÄ <link linkend='cmdlineOptionFormat'><literal>-F</literal></"
-"link>. KolejnoÅÄ w ktÃ³rych wyÅwietlane sÄ wersje moÅ¼na zmieniÄ opcjÄ <link "
-"linkend='cmdlineOptionSort'><literal>--sort</literal></link>. Aby zapobiec "
-"formatowaniu wyniku przez &aptitude; w kolumny, naleÅ¼y uÅ¼yÄ <link "
-=======
 "Oprócz powyższych opcji, wyświetlanie informacji o każdej wersji można "
 "kontrolować opcją <link linkend='cmdlineOptionFormat'><literal>-F</literal></"
 "link>. Kolejność w których wyświetlane są wersje można zmienić opcją <link "
 "linkend='cmdlineOptionSort'><literal>--sort</literal></link>. Aby zapobiec "
 "formatowaniu wyniku przez &aptitude; w kolumny, należy użyć <link "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "linkend='cmdlineOptionDisableColumns'><literal>--disable-columns</literal></"
 "link>."
 
@@ -19470,15 +19003,6 @@ msgid ""
 "linkend='secSearchPatterns'>Search Patterns</link></quote> in the &aptitude; "
 "reference manual)."
 msgstr ""
-<<<<<<< HEAD
-"Dodaje znacznik uÅ¼ytkownika lub usuwa go z wybranej grupy pakietÃ³w. JeÅli "
-"nazwa pakietu zawiera znak tyldy(<quote><literal>~</literal></quote>) lub "
-"znak zapytania (<quote><literal>?</literal></quote>), bÄdzie traktowana "
-"jako wzorzec wyszukiwania i znacznik bÄdzie dodany lub usuniÄty z wszystkich "
-"pakietÃ³w ktÃ³re go speÅniajÄ (zapoznaj siÄ z rozdziaÅem <link "
-"linkend='secSearchPatterns'><quote>Search Patterns</quote></link> w "
-"podrÄczniku &aptitude;)."
-=======
 "Dodaje znacznik użytkownika lub usuwa go z wybranej grupy pakietów. Jeśli "
 "nazwa pakietu zawiera znak tyldy(<quote><literal>~</literal></quote>) lub "
 "znak zapytania (<quote><literal>?</literal></quote>), będzie traktowana jako "
@@ -19486,7 +19010,6 @@ msgstr ""
 "pakietów które go spełniają (zapoznaj się z rozdziałem <link "
 "linkend='secSearchPatterns'><quote>Search Patterns</quote></link> w "
 "podręczniku &aptitude;)."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:831
@@ -19496,19 +19019,11 @@ msgid ""
 "replaceable>)</literal></link> search term, which will select all the "
 "packages that have a user tag matching <replaceable>tag</replaceable>."
 msgstr ""
-<<<<<<< HEAD
-"Znaczniki uÅ¼ytkownika sÄ okreÅlonymi ciÄgami znakÃ³w, powiÄzanych z pakietem. "
-"MogÄ zostaÄ uÅ¼yte z poleceniem wyszukiwawczym <link "
-"linkend='searchUserTag'><literal>?user-tag(<replaceable>znacznik</"
-"replaceable>)</literal></link>, ktÃ³re wybierze wszystkie pakiety majÄce "
-"pasujÄcy znacznik uÅ¼ytkownika <replaceable>znacznik</replaceable>."
-=======
 "Znaczniki użytkownika są określonymi ciągami znaków, powiązanych z pakietem. "
 "Mogą zostać użyte z poleceniem wyszukiwawczym <link "
 "linkend='searchUserTag'><literal>?user-tag(<replaceable>znacznik</"
 "replaceable>)</literal></link>, które wybierze wszystkie pakiety mające "
 "pasujący znacznik użytkownika <replaceable>znacznik</replaceable>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:841
@@ -19521,11 +19036,7 @@ msgid ""
 "Explains the reason that a particular package should or cannot be installed "
 "on the system."
 msgstr ""
-<<<<<<< HEAD
-"WyjaÅnia powÃ³d, dla ktÃ³rego dany pakiet powinien lub nie moÅ¼e byÄ "
-=======
 "Wyjaśnia powód, dla którego dany pakiet powinien lub nie może być "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "zainstalowany w systemie."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -19536,17 +19047,10 @@ msgid ""
 "package, along with a note indicating the installed state of each package in "
 "the dependency chain:"
 msgstr ""
-<<<<<<< HEAD
-"To polecenie szuka pakietÃ³w, ktÃ³re sÄ wymagane przez podany pakiet lub "
-"konfliktujÄ z nim. WyÅwietla sekwencjÄ zaleÅ¼noÅci dotyczÄcych pakietu "
-"docelowego, ÅÄcznie z informacjÄ o stanie zainstalowania kaÅ¼dego pakietu w "
-"ÅaÅcuchu zaleÅ¼noÅci:"
-=======
 "To polecenie szuka pakietów, które są wymagane przez podany pakiet lub "
 "konfliktują z nim. Wyświetla sekwencję zależności dotyczących pakietu "
 "docelowego, łącznie z informacją o stanie zainstalowania każdego pakietu w "
 "łańcuchu zależności:"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><screen>
 #: en/manpage.xml:857
@@ -19574,21 +19078,12 @@ msgid ""
 "<systemitem>kdepim</systemitem> package; if a stronger dependency were "
 "available, &aptitude; would have displayed it."
 msgstr ""
-<<<<<<< HEAD
-"Polecenie <literal>why</literal> znajduje ÅaÅcuch zaleÅ¼noÅci, ktÃ³ry stoi za "
-"instalacjÄ danego pakietu, jak na powyÅ¼szym przykÅadzie. ProszÄ zauwaÅ¼yÄ, Å¼e "
-"pokazane przez &aptitude; zaleÅ¼noÅci sÄ, w tym przypadku, jedynie sugestiÄ. "
-"Wynika to z faktu, Å¼e Å¼aden z aktualnie zainstalowanych pakietÃ³w nie jest "
-"wymagany ani polecany przez pakiet <systemitem>kdepim</systemitem>; gdyby "
-"byÅa dostÄpna silniejsza zaleÅ¼noÅÄ, &aptitude; wyÅwietliÅoby jÄ."
-=======
 "Polecenie <literal>why</literal> znajduje łańcuch zależności, który stoi za "
 "instalacją danego pakietu, jak na powyższym przykładzie. Proszę zauważyć, że "
 "pokazane przez &aptitude; zależności są, w tym przypadku, jedynie sugestią. "
 "Wynika to z faktu, że żaden z aktualnie zainstalowanych pakietów nie jest "
 "wymagany ani polecany przez pakiet <systemitem>kdepim</systemitem>; gdyby "
 "była dostępna silniejsza zależność, &aptitude; wyświetliłoby ją."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:875
@@ -19596,13 +19091,8 @@ msgid ""
 "In contrast, <literal>why-not</literal> finds a dependency chain leading to "
 "a conflict with the target package:"
 msgstr ""
-<<<<<<< HEAD
-"Dla odmiany, polecenie <literal>why-not</literal> znajduje ÅaÅcuch "
-"zaleÅ¼noÅci, bÄdÄcy przyczynÄ konfliktu z danym pakietem:"
-=======
 "Dla odmiany, polecenie <literal>why-not</literal> znajduje łańcuch "
 "zależności, będący przyczyną konfliktu z danym pakietem:"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><screen>
 #: en/manpage.xml:880
@@ -19631,17 +19121,6 @@ msgid ""
 "linkend='secSearchPatterns'>Search Patterns</link></quote> in the &aptitude; "
 "reference manual)."
 msgstr ""
-<<<<<<< HEAD
-"JeÅli podano przynajmniej jeden <replaceable>wzorzec</replaceable>, "
-"&aptitude; "
-"zacznie wyszukiwanie od tych wzorcÃ³w; pierwszy pakiet w wyÅwietlonym "
-"ÅaÅcuchu bÄdzie pakietem pasujÄcym do wzorca uÅ¼ytego w zapytaniu. Wzorce sÄ "
-"nazwami pakietÃ³w, o ile nie zawierajÄ znaku tyldy (<quote><literal>~</"
-"literal></quote>) lub znaku zapytania (<quote><literal>?</literal></quote>), "
-"kiedy sÄ traktowane jako wzorce wyszukiwania (zapoznaj siÄ z rozdziaÅem <link "
-"linkend='secSearchPatterns'><quote>Search Patterns</quote></link> w "
-"podrÄczniku &aptitude;)."
-=======
 "Jeśli podano przynajmniej jeden <replaceable>wzorzec</replaceable>, "
 "&aptitude; zacznie wyszukiwanie od tych wzorców; pierwszy pakiet w "
 "wyświetlonym łańcuchu będzie pakietem pasującym do wzorca użytego w "
@@ -19650,7 +19129,6 @@ msgstr ""
 "</literal></quote>), kiedy są traktowane jako wzorce wyszukiwania (zapoznaj "
 "się z rozdziałem <link linkend='secSearchPatterns'><quote>Search Patterns</"
 "quote></link> w podręczniku &aptitude;)."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:901
@@ -19659,15 +19137,9 @@ msgid ""
 "chains beginning at manually installed packages.  This effectively shows the "
 "packages that have caused or would cause a given package to be installed."
 msgstr ""
-<<<<<<< HEAD
-"JeÅli nie podano Å¼adnego wzorca, &aptitude; bÄdzie rozpoczynaÄ wyszukiwanie "
-"od pakietÃ³w zainstalowanych rÄcznie. Pokazuje to pakiety, ktÃ³re spowodowaÅy "
-"lub mogÄ spowodowaÄ zainstalowanie danego pakietu."
-=======
 "Jeśli nie podano żadnego wzorca, &aptitude; będzie rozpoczynać wyszukiwanie "
 "od pakietów zainstalowanych ręcznie. Pokazuje to pakiety, które spowodowały "
 "lub mogą spowodować zainstalowanie danego pakietu."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><note><para>
 #: en/manpage.xml:909
@@ -19678,17 +19150,10 @@ msgid ""
 "not D</literal></quote> will not produce the answer <quote>A depends on B, B "
 "conflicts with C, and D depends on C</quote>."
 msgstr ""
-<<<<<<< HEAD
-"<literal>aptitude why</literal> nie przeprowadza peÅnej analizy zaleÅ¼noÅci; "
-"wyÅwietla jedynie bezpoÅrednie relacje pomiÄdzy pakietami, np. jeÅli A "
-"wymaga B, C wymaga D, a B i C sÄ w konflikcie, <quote><literal>aptitude why-"
-"not D</literal></quote> nie wyÅwietli odpowiedzi <quote>A wymaga B, B jest w "
-=======
 "<literal>aptitude why</literal> nie przeprowadza pełnej analizy zależności; "
 "wyświetla jedynie bezpośrednie relacje pomiędzy pakietami, np. jeśli A "
 "wymaga B, C wymaga D, a B i C są w konflikcie, <quote><literal>aptitude why-"
 "not D</literal></quote> nie wyświetli odpowiedzi <quote>A wymaga B, B jest w "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "konflikcie z C, a D wymaga C</quote>."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -19702,15 +19167,6 @@ msgid ""
 "the shortest dependency chain meeting those criteria.  These rules are "
 "progressively weakened until a match is found."
 msgstr ""
-<<<<<<< HEAD
-"&aptitude; wyÅwietla domyÅlnie jedynie <quote>najbardziej zainstalowane, "
-"najmocniejsze, najÅciÅlejsze, najkrÃ³tsze</quote> ÅaÅcuchy zaleÅ¼noÅci. Szuka "
-"wiÄc tylko pakietÃ³w zainstalowanych lub majÄcych zostaÄ zainstalowane; szuka "
-"najmocniejszych moÅ¼liwych, pasujÄcych zaleÅ¼noÅci; szuka ÅaÅcuchÃ³w bez "
-"zaleÅ¼noÅci typu Lub i UdostÄpnia; szuka najkrÃ³tszych ÅaÅcuchÃ³w zaleÅ¼noÅci "
-"speÅniajÄcych powyÅ¼sze kryteria. Te zasady sÄ stopniowo osÅabiane, dopÃ³ki "
-"nie zostanie znaleziony odpowiedni ÅaÅcuch."
-=======
 "&aptitude; wyświetla domyślnie jedynie <quote>najbardziej zainstalowane, "
 "najmocniejsze, najściślejsze, najkrótsze</quote> łańcuchy zależności. Szuka "
 "więc tylko pakietów zainstalowanych lub mających zostać zainstalowane; szuka "
@@ -19718,7 +19174,6 @@ msgstr ""
 "zależności typu Lub i Udostępnia; szuka najkrótszych łańcuchów zależności "
 "spełniających powyższe kryteria. Te zasady są stopniowo osłabiane, dopóki "
 "nie zostanie znaleziony odpowiedni łańcuch."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:933
@@ -19728,19 +19183,11 @@ msgid ""
 "relevance.  If the verbosity level is 2 or more, a truly excessive amount of "
 "debugging information will be printed to standard output."
 msgstr ""
-<<<<<<< HEAD
-"JeÅli poziom szczegÃ³ÅowoÅci wynosi 1 lub wiÄcej, to wyÅwietlane sÄ "
-"<emphasis>wszystkie</emphasis> rozwiÄzania, jakie znalazÅo &aptitude;, "
-"posortowane w odwrotnej kolejnoÅci wg trafnoÅci. JeÅli poziom szczegÃ³ÅowoÅci "
-"jest ustawiony na 2 lub wiÄcej, na standardowe wyjÅcie wyÅwietlana jest, w "
-"istocie, nadmierna iloÅÄ informacji do debugowania."
-=======
 "Jeśli poziom szczegółowości wynosi 1 lub więcej, to wyświetlane są "
 "<emphasis>wszystkie</emphasis> rozwiązania, jakie znalazło &aptitude;, "
 "posortowane w odwrotnej kolejności wg trafności. Jeśli poziom szczegółowości "
 "jest ustawiony na 2 lub więcej, na standardowe wyjście wyświetlana jest, w "
 "istocie, nadmierna ilość informacji do debugowania."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:942
@@ -19748,13 +19195,8 @@ msgid ""
 "This command returns 0 if successful, 1 if no explanation could be "
 "constructed, and -1 if an error occurred."
 msgstr ""
-<<<<<<< HEAD
-"Polecenie zwraca 0 jeÅli zakoÅczy siÄ powodzeniem, 1 jeÅli nie znalazÅo "
-"Å¼adnych rozwiÄzaÅ i -1 w przypadku bÅÄdu."
-=======
 "Polecenie zwraca 0 jeśli zakończy się powodzeniem, 1 jeśli nie znalazło "
 "żadnych rozwiązań i -1 w przypadku błędu."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:949
@@ -19769,11 +19211,7 @@ msgid ""
 "filename>)."
 msgstr ""
 "Usuwa wszystkie uprzednio pobrane pliki <literal>.deb</literal> z katalogu "
-<<<<<<< HEAD
-"pamiÄci podrÄcznej pakietÃ³w (zwykle <filename>/var/cache/apt/archives</"
-=======
 "pamięci podręcznej pakietów (zwykle <filename>/var/cache/apt/archives</"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "filename>)."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
@@ -19788,15 +19226,9 @@ msgid ""
 "you to prevent a cache from growing out of control over time without "
 "completely emptying it."
 msgstr ""
-<<<<<<< HEAD
-"Usuwa wszystkie pakiety, ktÃ³re nie mogÄ byÄ dÅuÅ¼ej pobrane. Pozwala to na "
-"zapobiegniÄcie stopniowemu, nadmiernemu rozrostowi pamiÄci podrÄcznej, bez "
-"potrzeby jej caÅkowitego oprÃ³Å¼niania."
-=======
 "Usuwa wszystkie pakiety, które nie mogą być dłużej pobrane. Pozwala to na "
 "zapobiegnięcie stopniowemu, nadmiernemu rozrostowi pamięci podręcznej, bez "
 "potrzeby jej całkowitego opróżniania."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:973
@@ -19809,13 +19241,8 @@ msgid ""
 "Downloads and displays the Debian changelog for each of the given source or "
 "binary packages."
 msgstr ""
-<<<<<<< HEAD
-"Pobiera i wyÅwietla dziennik zmian Debiana do kaÅ¼dego z podanych pakietÃ³w "
-"binarnych lub ÅºrÃ³dÅowych."
-=======
 "Pobiera i wyświetla dziennik zmian Debiana do każdego z podanych pakietów "
 "binarnych lub źródłowych."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:982
@@ -19829,19 +19256,11 @@ msgid ""
 "<replaceable>release</replaceable></literal> to the package name (for "
 "instance, <literal>/unstable</literal> or <literal>/sid</literal>)."
 msgstr ""
-<<<<<<< HEAD
-"DomyÅlnie pobierany jest dziennik zmian dla wersji pakietu, ktÃ³ra byÅaby "
-"zainstalowana poleceniem <quote><literal>aptitude install</literal></quote>. "
-"MoÅ¼na wybraÄ okreÅlonÄ wersjÄ pakietu, dodajÄc "
-"<literal>=<replaceable>wersja</replaceable></literal> do jego nazwy; moÅ¼na "
-"wybraÄ wersjÄ z okreÅlonego archiwum lub wydania, dodajÄc "
-=======
 "Domyślnie pobierany jest dziennik zmian dla wersji pakietu, która byłaby "
 "zainstalowana poleceniem <quote><literal>aptitude install</literal></quote>. "
 "Można wybrać określoną wersję pakietu, dodając "
 "<literal>=<replaceable>wersja</replaceable></literal> do jego nazwy; można "
 "wybrać wersję z określonego archiwum lub wydania, dodając "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "odpowiednio<quote><literal>/<replaceable>archiwum</replaceable></literal></"
 "quote> lub <literal>/<replaceable>wydanie</replaceable></literal> (np. "
 "<literal>/unstable</literal> lub <literal>/sid</literal>)."
@@ -19862,14 +19281,6 @@ msgid ""
 "linkend='secSearchPatterns'>Search Patterns</link></quote> in the &aptitude; "
 "reference manual)."
 msgstr ""
-<<<<<<< HEAD
-"Pobiera plik <literal>.deb</literal> okreÅlonego pakietu do bieÅ¼Äcego "
-"katalogu. JeÅli nazwa zawiera znak tyldy (<quote><literal>~</literal></"
-"quote>) lub znak zapytania (<quote><literal>?</literal></quote>), bÄdzie ona "
-"traktowana jako wzorzec wyszukiwania i zostanÄ pobrane wszystkie pasujÄce "
-"pakiety (zapoznaj siÄ z rozdziaÅem <link linkend='secSearchPatterns'><quote>"
-"Search Patterns</quote></link> w podrÄczniku &aptitude;)."
-=======
 "Pobiera plik <literal>.deb</literal> określonego pakietu do bieżącego "
 "katalogu. Jeśli nazwa zawiera znak tyldy (<quote><literal>~</literal></"
 "quote>) lub znak zapytania (<quote><literal>?</literal></quote>), będzie ona "
@@ -19877,7 +19288,6 @@ msgstr ""
 "pakiety (zapoznaj się z rozdziałem <link "
 "linkend='secSearchPatterns'><quote>Search Patterns</quote></link> w "
 "podręczniku &aptitude;)."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1014
@@ -19891,16 +19301,6 @@ msgid ""
 "<replaceable>release</replaceable></literal> to the package name (for "
 "instance: <literal>/unstable</literal> or <literal>/sid</literal>)."
 msgstr ""
-<<<<<<< HEAD
-"DomyÅlnie pobierana jest wersja, ktÃ³ra byÅaby zainstalowana poleceniem "
-"<quote><literal>aptitude install</literal></quote>. MoÅ¼na wybraÄ okreÅlonÄ "
-"wersjÄ pakietu, dodajÄc <literal>=<replaceable>wersja</replaceable></"
-"literal> do jego nazwy; moÅ¼na wybraÄ wersjÄ z okreÅlonego archiwum lub "
-"wydania, dodajÄc odpowiednio <literal>/<replaceable>archiwum</"
-"replaceable></literal> lub <literal>/<replaceable>wydanie</"
-"replaceable></literal> (np. <literal>/unstable</literal> lub <literal>/sid</"
-"literal>)."
-=======
 "Domyślnie pobierana jest wersja, która byłaby zainstalowana poleceniem "
 "<quote><literal>aptitude install</literal></quote>. Można wybrać określoną "
 "wersję pakietu, dodając <literal>=<replaceable>wersja</replaceable></"
@@ -19908,7 +19308,6 @@ msgstr ""
 "wydania, dodając odpowiednio <literal>/<replaceable>archiwum</replaceable></"
 "literal> lub <literal>/<replaceable>wydanie</replaceable></literal> (np. "
 "<literal>/unstable</literal> lub <literal>/sid</literal>)."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:1030
@@ -19928,16 +19327,6 @@ msgid ""
 "package database files in the output directory will be overwritten."
 msgstr ""
 "Kopiuje katalog konfiguracji programu &apt; (<literal>/etc/apt</literal>) i "
-<<<<<<< HEAD
-"podzbiÃ³r "
-"bazy danych pakietu do podanego katalogu. JeÅli nie podano pakietu, "
-"kopiowana jest caÅa baza danych; w przeciwnym wypadku kopiowane sÄ tylko "
-"wpisy odnoszÄce siÄ do nazwy pakietu. KaÅ¼da nazwa moÅ¼e byÄ wzorcem "
-"wyszukiwania, co spowoduje wybranie wszystkich pasujÄcych do niego pakietÃ³w "
-"(zapoznaj siÄ z rozdziaÅem <quote><link linkend='secSearchPatterns'>Search "
-"Patterns</link></quote> w podrÄczniku &aptitude;). Wszystkie, juÅ¼ "
-"istniejÄce w podanym katalogu, pliki baz danych pakietÃ³w zostanÄ nadpisane."
-=======
 "podzbiór bazy danych pakietu do podanego katalogu. Jeśli nie podano pakietu, "
 "kopiowana jest cała baza danych; w przeciwnym wypadku kopiowane są tylko "
 "wpisy odnoszące się do nazwy pakietu. Każda nazwa może być wzorcem "
@@ -19945,7 +19334,6 @@ msgstr ""
 "(zapoznaj się z rozdziałem <quote><link linkend='secSearchPatterns'>Search "
 "Patterns</link></quote> w podręczniku &aptitude;). Wszystkie, już istniejące "
 "w podanym katalogu, pliki baz danych pakietów zostaną nadpisane."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1049
@@ -19953,13 +19341,8 @@ msgid ""
 "Dependencies in binary package stanzas will be rewritten to remove "
 "references to packages not in the selected set."
 msgstr ""
-<<<<<<< HEAD
-"ZaleÅ¼noÅci w pakietach binarnych zostanÄ przepisane, aby usunÄÄ odniesienia "
-"do pakietÃ³w, ktÃ³re nie znalazÅy siÄ w wybranym zbiorze."
-=======
 "Zależności w pakietach binarnych zostaną przepisane, aby usunąć odniesienia "
 "do pakietów, które nie znalazły się w wybranym zbiorze."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:1056
@@ -19969,11 +19352,7 @@ msgstr "<literal>help</literal>"
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1060
 msgid "Displays a brief summary of the available commands and options."
-<<<<<<< HEAD
-msgstr "WyÅwietla krÃ³tkie podsumowanie dostÄpnych poleceÅ i opcji."
-=======
 msgstr "Wyświetla krótkie podsumowanie dostępnych poleceń i opcji."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><title>
 #: en/manpage.xml:1069 en/manpage.xml:2551 en/manpage.xml:2730
@@ -19988,17 +19367,10 @@ msgid ""
 "commands, some options don't apply to particular commands and will be "
 "ignored by those commands."
 msgstr ""
-<<<<<<< HEAD
-"PoniÅ¼sze opcje mogÄ byÄ uÅ¼yte do zmodyfikowania zachowania akcji opisanych "
-"powyÅ¼ej. ProszÄ zauwaÅ¼yÄ, Å¼e choÄ we wszystkich poleceniach sÄ akceptowane "
-"wszystkie opcje, to niektÃ³re z nich nie majÄ zastosowania w konkretnych "
-"poleceniach i sÄ w takich przypadkach ignorowane."
-=======
 "Poniższe opcje mogą być użyte do zmodyfikowania zachowania akcji opisanych "
 "powyżej. Proszę zauważyć, że choć we wszystkich poleceniach są akceptowane "
 "wszystkie opcje, to niektóre z nich nie mają zastosowania w konkretnych "
 "poleceniach i są w takich przypadkach ignorowane."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:1082
@@ -20024,13 +19396,8 @@ msgstr ""
 "<literal>install</literal>, <literal>keep-all</literal>, <literal>markauto</"
 "literal>, <literal>unmarkauto</literal>, <literal>purge</literal>, "
 "<literal>reinstall</literal>, <literal>remove</literal>, <literal>unhold</"
-<<<<<<< HEAD
-"literal>, i <literal>unmarkauto</literal>: dodaje znacznik uÅ¼ytkownika "
-"<replaceable>znacznik</replaceable> do wszystkich pakietÃ³w ktÃ³re sÄ "
-=======
 "literal>, i <literal>unmarkauto</literal>: dodaje znacznik użytkownika "
 "<replaceable>znacznik</replaceable> do wszystkich pakietów które są "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "instalowane, usuwane lub uaktualniane z tym poleceniem, jak w poleceniu "
 "<link linkend='cmdlineAddOrRemoveUserTags'><literal>add-user-tag</literal></"
 "link>."
@@ -20065,21 +19432,12 @@ msgstr ""
 "<literal>install</literal>, <literal>keep-all</literal>, <literal>markauto</"
 "literal>, <literal>unmarkauto</literal>, <literal>purge</literal>, "
 "<literal>reinstall</literal>, <literal>remove</literal>, <literal>unhold</"
-<<<<<<< HEAD
-"literal> i <literal>unmarkauto</literal>: dodaje znacznik uÅ¼ytkownika "
-"<replaceable>znacznik</replaceable> do wszystkich pakietÃ³w pasujÄcych do "
-"<replaceable>wzorca</replaceable>, jak w poleceniu <link "
-"linkend='cmdlineAddOrRemoveUserTags'><literal>add-user-tag</literal></link>. "
-"Wzorzec jest wzorcem wyszukiwania opisanym w rozdziale <quote><link "
-"linkend='secSearchPatterns'>Search Patterns</link></quote> w podrÄczniku "
-=======
 "literal> i <literal>unmarkauto</literal>: dodaje znacznik użytkownika "
 "<replaceable>znacznik</replaceable> do wszystkich pakietów pasujących do "
 "<replaceable>wzorca</replaceable>, jak w poleceniu <link "
 "linkend='cmdlineAddOrRemoveUserTags'><literal>add-user-tag</literal></link>. "
 "Wzorzec jest wzorcem wyszukiwania opisanym w rozdziale <quote><link "
 "linkend='secSearchPatterns'>Search Patterns</link></quote> w podręczniku "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "&aptitude;."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -20090,15 +19448,9 @@ msgid ""
 "installs</literal> to all the packages installed by the <link "
 "linkend='manpageSafeUpgrade'><literal>safe-upgrade</literal></link> command."
 msgstr ""
-<<<<<<< HEAD
-"PrzykÅadowo <literal>aptitude safe-upgrade --add-user-tag-to \"nowo-"
-"zainstalowane,?action(install)\"</literal> doda znacznik <literal>nowo-"
-"zainstalowane</literal> do wszystkich pakietÃ³w zainstalowanych poleceniem "
-=======
 "Przykładowo <literal>aptitude safe-upgrade --add-user-tag-to \"nowo-"
 "zainstalowane,?action(install)\"</literal> doda znacznik <literal>nowo-"
 "zainstalowane</literal> do wszystkich pakietów zainstalowanych poleceniem "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "<link linkend='manpageSafeUpgrade'><literal>safe-upgrade</literal></link>."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
@@ -20119,18 +19471,6 @@ msgid ""
 "Resolver-No-New-Upgrades'><literal>Aptitude::Safe-Resolver::No-New-Upgrades</"
 "literal></link>."
 msgstr ""
-<<<<<<< HEAD
-"JeÅli uÅ¼ywane jest bezpieczne rozwiÄzywanie zaleÅ¼noÅci (tzn. uÅ¼yto opcji "
-"<link linkend='cmdlineSafeResolver'><literal>--safe-resolver</literal></"
-"link>, akcjÄ byÅo <link linkend='manpageSafeUpgrade'><literal>safe-"
-"upgrade</literal></link> lub <link linkend='configAlways-Use-Safe-Resolver'><"
-"literal>Aptitude::"
-"Always-Use-Safe-Resolver</literal></link> jest ustawione na <literal>true</"
-"literal>), pozwala na takie rozwiÄzywanie zaleÅ¼noÅci, aby umoÅ¼liwiÄ "
-"uaktualnianie pakietÃ³w, niezaleÅ¼nie od wartoÅci <link linkend='configSafe-"
-"Resolver-No-New-Upgrades'><literal>Aptitude::Safe-Resolver::No-New-Upgrades</"
-"literal></link>."
-=======
 "Jeśli używane jest bezpieczne rozwiązywanie zależności (tzn. użyto opcji "
 "<link linkend='cmdlineSafeResolver'><literal>--safe-resolver</literal></"
 "link>, akcją było <link linkend='manpageSafeUpgrade'><literal>safe-upgrade</"
@@ -20140,7 +19480,6 @@ msgstr ""
 "zależności, aby umożliwić uaktualnianie pakietów, niezależnie od wartości "
 "<link linkend='configSafe-Resolver-No-New-Upgrades'><literal>Aptitude::Safe-"
 "Resolver::No-New-Upgrades</literal></link>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:1157
@@ -20162,19 +19501,6 @@ msgid ""
 "Installs'><literal>Aptitude::Safe-Resolver::No-New-Installs</literal></link>."
 msgstr ""
 "Pozwala poleceniu <link linkend='manpageSafeUpgrade'><literal>safe-upgrade</"
-<<<<<<< HEAD
-"literal></link> na instalowanie nowych pakietÃ³w; jeÅli uÅ¼ywane jest "
-"bezpieczne rozwiÄzywanie zaleÅ¼noÅci (tzn. uÅ¼yto opcji <link "
-"linkend='cmdlineSafeResolver'><literal>--safe-resolver</literal></link>, "
-"akcjÄ byÅo <link linkend='manpageSafeUpgrade'><literal>safe-upgrade</literal>"
-"</link> lub "
-"<link linkend='configAlways-Use-Safe-Resolver'><literal>Aptitude::Always-Use-"
-"Safe-Resolver</literal></link> jest ustawione na <literal>true</literal>), "
-"pozwala na takie rozwiÄzywanie zaleÅ¼noÅci, aby umoÅ¼liwiÄ instalowanie nowych "
-"pakietÃ³w. Opcja dziaÅa niezaleÅ¼nie od wartoÅci <link linkend='configSafe-"
-"Resolver-No-New-Installs'><literal>Aptitude::Safe-Resolver::No-New-Installs</"
-"literal></link>."
-=======
 "literal></link> na instalowanie nowych pakietów; jeśli używane jest "
 "bezpieczne rozwiązywanie zależności (tzn. użyto opcji <link "
 "linkend='cmdlineSafeResolver'><literal>--safe-resolver</literal></link>, "
@@ -20185,7 +19511,6 @@ msgstr ""
 "zależności, aby umożliwić instalowanie nowych pakietów. Opcja działa "
 "niezależnie od wartości <link linkend='configSafe-Resolver-No-New-"
 "Installs'><literal>Aptitude::Safe-Resolver::No-New-Installs</literal></link>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:1179
@@ -20199,15 +19524,9 @@ msgid ""
 "use this if you know what you are doing, as it could easily compromise your "
 "system's security."
 msgstr ""
-<<<<<<< HEAD
-"Instaluje pakiety z niezaufanych ÅºrÃ³deÅ bez pytania. Powinno siÄ uÅ¼ywaÄ tej "
-"opcji tylko jeÅli wie siÄ co siÄ robi, jako Å¼e moÅ¼na w ten sposÃ³b Åatwo "
-"naruszyÄ bezpieczeÅstwo systemu."
-=======
 "Instaluje pakiety z niezaufanych źródeł bez pytania. Powinno się używać tej "
 "opcji tylko jeśli wie się co się robi, jako że można w ten sposób łatwo "
 "naruszyć bezpieczeństwo systemu."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:1191
@@ -20226,21 +19545,12 @@ msgid ""
 "be ignored."
 msgstr ""
 "Opcja nakazuje poleceniom <literal>aptitude search</literal> i "
-<<<<<<< HEAD
-"<literal>aptitude version</literal> wyÅwietlaÄ wyniki bez specjalnego "
-"formatowania. W szczegÃ³lnoÅci: zwykle &aptitude; dodaje biaÅe znaki lub "
-"ucina wyniki, prÃ³bujÄc wpasowaÄ wyniki wyszukiwania w <quote>kolumny</"
-"quote>. Z tÄ flagÄ, kaÅ¼dy wiersz bÄdzie wypisywany przez zastÄpienie znakÃ³w "
-"modyfikacji formatu przez odpowiedni tekst; szerokoÅÄ kolumn "
-"zostanie zignorowana."
-=======
 "<literal>aptitude version</literal> wyświetlać wyniki bez specjalnego "
 "formatowania. W szczególności: zwykle &aptitude; dodaje białe znaki lub "
 "ucina wyniki, próbując wpasować wyniki wyszukiwania w <quote>kolumny</"
 "quote>. Z tą flagą, każdy wiersz będzie wypisywany przez zastąpienie znaków "
 "modyfikacji formatu przez odpowiedni tekst; szerokość kolumn zostanie "
 "zignorowana."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1206
@@ -20249,11 +19559,7 @@ msgid ""
 "search -F '%p %V' --disable-columns libedataserver</literal></quote> might "
 "be:"
 msgstr ""
-<<<<<<< HEAD
-"Dla przykÅadu, oto kilka pierwszych linii bÄdÄcych wynikiem polecenia "
-=======
 "Dla przykładu, oto kilka pierwszych linii będących wynikiem polecenia "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "<quote><literal>aptitude search -F '%p %V' --disable-columns libedataserver</"
 "literal></quote>:"
 
@@ -20282,15 +19588,9 @@ msgid ""
 "useful in combination with a custom display format set using the command-"
 "line option <link linkend='cmdlineOptionFormat'><literal>-F</literal></link>."
 msgstr ""
-<<<<<<< HEAD
-"Jak w powyÅ¼szym przykÅadzie, <literal>--disable-columns</literal> jest czÄsto "
-"uÅ¼ywane w poÅÄczeniu z okreÅlonym formatem wyÅwietlania, ustawionego opcjÄ "
-"<link linkend='cmdlineOptionFormat'><literal>-F</literal></link>."
-=======
 "Jak w powyższym przykładzie, <literal>--disable-columns</literal> jest "
 "często używane w połączeniu z określonym formatem wyświetlania, ustawionego "
 "opcją <link linkend='cmdlineOptionFormat'><literal>-F</literal></link>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1225
@@ -20316,15 +19616,9 @@ msgid ""
 "literal></link>, etc), show brief explanations of automatic installations "
 "and removals."
 msgstr ""
-<<<<<<< HEAD
-"Do komend ktÃ³re zainstalujÄ lub usunÄ pakiety (<literal>install</literal>, "
-"<link linkend='manpageFullUpgrade'><literal>full-upgrade</literal></link> "
-"itd.), pokazuje krÃ³tkie wytÅumaczenie automatycznych instalacji lub usuniÄÄ."
-=======
 "Do komend które zainstalują lub usuną pakiety (<literal>install</literal>, "
 "<link linkend='manpageFullUpgrade'><literal>full-upgrade</literal></link> "
 "itd.), pokazuje krótkie wytłumaczenie automatycznych instalacji lub usunięć."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1245
@@ -20349,15 +19643,9 @@ msgid ""
 "remove anything.  By default, the package cache is stored in <filename>/var/"
 "cache/apt/archives</filename>."
 msgstr ""
-<<<<<<< HEAD
-"Pobiera pakiety do pamiÄci podrÄcznej pakietÃ³w jeÅli zachodzi taka potrzeba, "
-"ale niczego nie instaluje, ani nie usuwa. DomyÅlnie pamiÄÄ podrÄczna "
-"pakietÃ³w jest przechowywana w <filename>/var/cache/apt/archives</filename>."
-=======
 "Pobiera pakiety do pamięci podręcznej pakietów jeśli zachodzi taka potrzeba, "
 "ale niczego nie instaluje, ani nie usuwa. Domyślnie pamięć podręczna "
 "pakietów jest przechowywana w <filename>/var/cache/apt/archives</filename>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1262
@@ -20391,16 +19679,6 @@ msgid ""
 "displayed</link></quote> in the &aptitude; reference manual for more "
 "information)."
 msgstr ""
-<<<<<<< HEAD
-"OkreÅla format, ktÃ³ry powinien byÄ uÅ¼yty do wyÅwietlenia wyniku poleceÅ "
-"<literal>search</literal> i <literal>version</literal>. Dla przykÅadu, "
-"wpisanie <quote><literal>%p %V %v</literal></quote> dla <replaceable>format</"
-"replaceable>u wyÅwietli kolejno: nazwÄ pakietu, aktualnie zainstalowanÄ "
-"wersjÄ i dostÄpne wersje (zapoznaj siÄ z rozdziaÅem <quote><link "
-"linkend='secDisplayFormat'>Customizing how packages are "
-"displayed</link></quote> w podrÄczniku &aptitude; aby uzyskaÄ wiÄcej "
-"informacji)."
-=======
 "Określa format, który powinien być użyty do wyświetlenia wyniku poleceń "
 "<literal>search</literal> i <literal>version</literal>. Dla przykładu, "
 "wpisanie <quote><literal>%p %V %v</literal></quote> dla <replaceable>format</"
@@ -20408,7 +19686,6 @@ msgstr ""
 "wersję i dostępne wersje (zapoznaj się z rozdziałem <quote><link "
 "linkend='secDisplayFormat'>Customizing how packages are displayed</link></"
 "quote> w podręczniku &aptitude; aby uzyskać więcej informacji)."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1285
@@ -20418,11 +19695,7 @@ msgid ""
 "link> is often useful in combination with <literal>-F</literal>."
 msgstr ""
 "Opcja <link linkend='cmdlineOptionDisableColumns'><literal>--disable-"
-<<<<<<< HEAD
-"columns</literal></link> czÄsto jest uÅ¼yteczna w poÅÄczeniu z <literal>-F</"
-=======
 "columns</literal></link> często jest użyteczna w połączeniu z <literal>-F</"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "literal>."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -20452,13 +19725,8 @@ msgid ""
 "Try hard to fix the dependencies of broken packages, even if it means "
 "ignoring the actions requested on the command line."
 msgstr ""
-<<<<<<< HEAD
-"WymuÅ naprawienie popsutych zaleÅ¼noÅci pakietÃ³w, nawet jeÅli spowoduje to "
-"zignorowanie akcji podanej w wierszu poleceÅ."
-=======
 "Wymuś naprawienie popsutych zależności pakietów, nawet jeśli spowoduje to "
 "zignorowanie akcji podanej w wierszu poleceń."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1309
@@ -20486,15 +19754,6 @@ msgid ""
 "fulfill dependencies.  It can resolve more situations than the safe "
 "algorithm, but its solutions are more likely to be undesirable."
 msgstr ""
-<<<<<<< HEAD
-"JeÅli pojawiajÄ siÄ problemy z zaleÅ¼noÅciami, uÅ¼yj domyÅlnie <quote>peÅnego</"
-"quote> mechanizmu rozwiÄzywania zaleÅ¼noÅci, aby je rozwiÄzaÄ. W "
-"przeciwieÅstwie do <quote>bezpiecznego</quote> mechanizmu, wÅÄczanego opcjÄ "
-"<link linkend='cmdlineSafeResolver'><literal>--safe-resolver</literal></"
-"link>, peÅny usunie pakiety aby speÅniÄ zaleÅ¼noÅci. MoÅ¼e on rozwiÄzaÄ wiÄcej "
-"sytuacji niÅ¼ algorytm bezpieczny, ale jest bardziej prawdopodobne, Å¼e "
-"rozwiÄzania te bÄdÄ nieodpowiednie."
-=======
 "Jeśli pojawiają się problemy z zależnościami, użyj domyślnie <quote>pełnego</"
 "quote> mechanizmu rozwiązywania zależności, aby je rozwiązać. W "
 "przeciwieństwie do <quote>bezpiecznego</quote> mechanizmu, włączanego opcją "
@@ -20502,7 +19761,6 @@ msgstr ""
 "link>, pełny usunie pakiety aby spełnić zależności. Może on rozwiązać więcej "
 "sytuacji niż algorytm bezpieczny, ale jest bardziej prawdopodobne, że "
 "rozwiązania te będą nieodpowiednie."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1330
@@ -20514,21 +19772,12 @@ msgid ""
 "never uses the full resolver and does not accept the <literal>--full-"
 "resolver</literal> option."
 msgstr ""
-<<<<<<< HEAD
-"Ta opcja moÅ¼e byÄ uÅ¼yta, aby wymusiÄ uÅ¼ycie peÅnego mechanizmu "
-"rozwiÄzywania zaleÅ¼noÅci, nawet gdy <link linkend='configAlways-Use-Safe-"
-"Resolver'><literal>Aptitude::Always-Use-Safe-Resolver</literal></link> jest "
-"ustawiona na true. Polecenie <link "
-"linkend='manpageSafeUpgrade'><literal>safe-upgrade</literal></link> nigdy "
-"nie uÅ¼ywa peÅnego rozwiÄzywania zaleÅ¼noÅci i nie akceptuje opcji <literal>--"
-=======
 "Ta opcja może być użyta, aby wymusić użycie pełnego mechanizmu rozwiązywania "
 "zależności, nawet gdy <link linkend='configAlways-Use-Safe-"
 "Resolver'><literal>Aptitude::Always-Use-Safe-Resolver</literal></link> jest "
 "ustawiona na true. Polecenie <link "
 "linkend='manpageSafeUpgrade'><literal>safe-upgrade</literal></link> nigdy "
 "nie używa pełnego rozwiązywania zależności i nie akceptuje opcji <literal>--"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "full-resolver</literal>."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
@@ -20545,11 +19794,7 @@ msgid ""
 msgstr ""
 "Kontroluje, jak pogrupowany jest wynik polecenia <link "
 "linkend='cmdlineVersions'><literal>versions</literal></link>. Rozpoznawane "
-<<<<<<< HEAD
-"sÄ nastÄpujÄce wartoÅci:"
-=======
 "są następujące wartości:"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: en/manpage.xml:1357
@@ -20559,17 +19804,10 @@ msgid ""
 "literal></quote>, etc).  If a package occurs in several archives, it will be "
 "displayed in each of them."
 msgstr ""
-<<<<<<< HEAD
-"<literal>archive</literal> - grupuje pakiety wg wystÄpowania w archiwach "
-"(<quote><literal>stable</literal></quote>, <quote><literal>unstable</"
-"literal></quote>, itd.), jeÅli pakiet pojawia siÄ w kilku archiwach, bÄdzie "
-"wyÅwietlony w kaÅ¼dym z nich;"
-=======
 "<literal>archive</literal> - grupuje pakiety wg występowania w archiwach "
 "(<quote><literal>stable</literal></quote>, <quote><literal>unstable</"
 "literal></quote>, itd.), jeśli pakiet pojawia się w kilku archiwach, będzie "
 "wyświetlony w każdym z nich;"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: en/manpage.xml:1368
@@ -20577,13 +19815,8 @@ msgid ""
 "<literal>auto</literal> to group versions by their package unless there is "
 "exactly one argument and it is not a search pattern."
 msgstr ""
-<<<<<<< HEAD
-"<literal>auto</literal> - grupuje wersje wg pakietÃ³w, chyba Å¼e podano "
-"dokÅadnie jeden argument i nie jest to wzorzec wyszukiwania;"
-=======
 "<literal>auto</literal> - grupuje wersje wg pakietów, chyba że podano "
 "dokładnie jeden argument i nie jest to wzorzec wyszukiwania;"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: en/manpage.xml:1376
@@ -20591,33 +19824,20 @@ msgid ""
 "<literal>none</literal> to display all the versions in a single list without "
 "any grouping."
 msgstr ""
-<<<<<<< HEAD
-"<literal>none</literal> - wyÅwietla wszystkie wersje w jednej liÅcie, nie "
-"dokonujÄc Å¼adnego grupowania;"
-=======
 "<literal>none</literal> - wyświetla wszystkie wersje w jednej liście, nie "
 "dokonując żadnego grupowania;"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: en/manpage.xml:1383
 msgid "<literal>package</literal> to group versions by their package."
-<<<<<<< HEAD
-msgstr "<literal>package</literal> - grupuje wersje wg pakietÃ³w;"
-=======
 msgstr "<literal>package</literal> - grupuje wersje wg pakietów;"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: en/manpage.xml:1390
 msgid ""
 "<literal>source-package</literal> to group versions by their source package."
 msgstr ""
-<<<<<<< HEAD
-"<literal>source-package</literal> - grupuje wersje wg ich pakietu ÅºrÃ³dÅowego;"
-=======
 "<literal>source-package</literal> - grupuje wersje wg ich pakietu źródłowego;"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: en/manpage.xml:1397
@@ -20625,13 +19845,8 @@ msgid ""
 "<literal>source-version</literal> to group versions by their source package "
 "and source version."
 msgstr ""
-<<<<<<< HEAD
-"<literal>source-version</literal> - grupuje wersje wg ich pakietÃ³w "
-"ÅºrÃ³dÅowych i ich wersji;"
-=======
 "<literal>source-version</literal> - grupuje wersje wg ich pakietów "
 "źródłowych i ich wersji;"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1404
@@ -20654,11 +19869,7 @@ msgstr "<literal>-h</literal>, <literal>--help</literal>"
 msgid ""
 "Display a brief help message.  Identical to the <literal>help</literal> "
 "action."
-<<<<<<< HEAD
-msgstr "WyÅwietla zwiÄzÅÄ pomoc. Identyczne z akcjÄ <literal>help</literal>."
-=======
 msgstr "Wyświetla zwięzłą pomoc. Identyczne z akcją <literal>help</literal>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:1425
@@ -20674,19 +19885,11 @@ msgid ""
 "standard output instead.  If this option appears multiple times, the last "
 "occurrence is the one that will take effect."
 msgstr ""
-<<<<<<< HEAD
-"JeÅli <replaceable>plik</replaceable> jest niepustym ciÄgiem znakÃ³w, jest do "
-"niego zapisywany dziennik, wyÅÄczajÄc sytuacjÄ gdy jako <replaceable>plik</"
-"replaceable> podano <quote><literal>-</literal></quote> - wtedy informacje "
-"wypisywane sÄ na standardowe wyjÅcie. JeÅli opcja pojawia siÄ kilka razy, "
-"brane jest pod uwagÄ jej ostatnie wystÄpienie."
-=======
 "Jeśli <replaceable>plik</replaceable> jest niepustym ciągiem znaków, jest do "
 "niego zapisywany dziennik, wyłączając sytuację gdy jako <replaceable>plik</"
 "replaceable> podano <quote><literal>-</literal></quote> - wtedy informacje "
 "wypisywane są na standardowe wyjście. Jeśli opcja pojawia się kilka razy, "
 "brane jest pod uwagę jej ostatnie wystąpienie."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1440
@@ -20698,21 +19901,12 @@ msgid ""
 "linkend='cmdlineOptionLogLevel'><literal>--log-level</literal></link> to get "
 "more control over what gets logged."
 msgstr ""
-<<<<<<< HEAD
-"Nie ma to wpÅywu na dziennik instalacji, prowadzony przez &aptitude; "
-"(<filename>/var/log/aptitude</filename>); dziennik zapisywany przy uÅ¼yciu tej "
-"opcji zawiera wewnÄtrzne zdarzenia programu, bÅÄdy i komunikaty debugowania. "
-"Zobacz rÃ³wnieÅ¼ opcjÄ wiersza poleceÅ <link "
-"linkend='cmdlineOptionLogLevel'><literal>--log-level</literal></link>, aby "
-"zyskaÄ wiÄkszÄ kontrolÄ nad tym, co jest wypisywane."
-=======
 "Nie ma to wpływu na dziennik instalacji, prowadzony przez &aptitude; "
 "(<filename>/var/log/aptitude</filename>); dziennik zapisywany przy użyciu "
 "tej opcji zawiera wewnętrzne zdarzenia programu, błędy i komunikaty "
 "debugowania. Zobacz również opcję wiersza poleceń <link "
 "linkend='cmdlineOptionLogLevel'><literal>--log-level</literal></link>, aby "
 "zyskać większą kontrolę nad tym, co jest wypisywane."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1451
@@ -20751,19 +19945,6 @@ msgid ""
 "literal>."
 msgstr ""
 "<literal>--log-level=<replaceable>poziom</replaceable></literal> powoduje, "
-<<<<<<< HEAD
-"Å¼e &aptitude; zapisuje w dzienniku jedynie komunikaty o poziomie "
-"<replaceable>poziom</replaceable> lub wyÅ¼szym. Dla przykÅadu, ustawienie "
-"poziomu dziennika na <literal>error</literal>, spowoduje wyÅwietlanie "
-"wyÅÄcznie "
-"komunikatÃ³w <literal>error</literal> i <literal>fatal</literal>; wszystkie "
-"pozostaÅe bÄdÄ ukryte. PrawidÅowe poziomy dziennika to (w kolejnoÅci "
-"malejÄcej): "
-"<literal>off</literal>, <literal>fatal</literal>, <literal>error</literal>, "
-"<literal>warn</literal>, <literal>info</literal>, <literal>debug</literal>, "
-"i <literal>trace</literal>. DomyÅlnym poziomem dziennika jest <literal>warn</"
-"literal>."
-=======
 "że &aptitude; zapisuje w dzienniku jedynie komunikaty o poziomie "
 "<replaceable>poziom</replaceable> lub wyższym. Dla przykładu, ustawienie "
 "poziomu dziennika na <literal>error</literal>, spowoduje wyświetlanie "
@@ -20773,7 +19954,6 @@ msgstr ""
 "<literal>error</literal>, <literal>warn</literal>, <literal>info</literal>, "
 "<literal>debug</literal>, i <literal>trace</literal>. Domyślnym poziomem "
 "dziennika jest <literal>warn</literal>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1479
@@ -20784,15 +19964,9 @@ msgid ""
 "replaceable> or higher."
 msgstr ""
 "<literal>--log-level=<replaceable>kategoria</replaceable>:"
-<<<<<<< HEAD
-"<replaceable>poziom</replaceable></literal> wyÅwietli wiadomoÅci w kategorii "
-"<replaceable>kategoria</replaceable>, tylko jeÅli ich poziom wyniesie "
-"<replaceable>poziom</replaceable> lub wyÅ¼ej."
-=======
 "<replaceable>poziom</replaceable></literal> wyświetli wiadomości w kategorii "
 "<replaceable>kategoria</replaceable>, tylko jeśli ich poziom wyniesie "
 "<replaceable>poziom</replaceable> lub wyżej."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1486
@@ -20807,19 +19981,6 @@ msgid ""
 "set the level of the same category two or more times, the last setting is "
 "the one that will take effect."
 msgstr ""
-<<<<<<< HEAD
-"<literal>--log-level</literal> moÅ¼e pojawiaÄ siÄ w wierszu poleceÅ "
-"wielokrotnie, pod uwagÄ bÄdzie wÃ³wczas brane najbardziej szczegÃ³Åowe "
-"ustawienie. Tak wiÄc "
-"po podaniu <literal>--log-level=aptitude.resolver:fatal</literal> i "
-"<literal>--log-level=aptitude.resolver.hints.match:trace</literal>, "
-"komunikaty z <literal>aptitude.resolver.hints.parse</literal> bÄdÄ "
-"wyÅwietlane tylko jeÅli ich poziom wyniesie <literal>fatal</literal>, ale "
-"pokazywane bÄdÄ wszystkie "
-"wiadomoÅci z <literal>aptitude.resolver.hints.match</literal>. JeÅli ustawi "
-"siÄ poziom dla tej samej kategorii dwa lub wiÄcej "
-"razy, stosowane bÄdzie ostatnie z ustawieÅ."
-=======
 "<literal>--log-level</literal> może pojawiać się w wierszu poleceń "
 "wielokrotnie, pod uwagę będzie wówczas brane najbardziej szczegółowe "
 "ustawienie. Tak więc po podaniu <literal>--log-level=aptitude.resolver:"
@@ -20829,7 +19990,6 @@ msgstr ""
 "pokazywane będą wszystkie wiadomości z <literal>aptitude.resolver.hints."
 "match</literal>. Jeśli ustawi się poziom dla tej samej kategorii dwa lub "
 "więcej razy, stosowane będzie ostatnie z ustawień."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1502
@@ -20841,21 +20001,12 @@ msgid ""
 "linkend='cmdlineOptionLogLevel'><literal>--log-file</literal></link> to "
 "change where log messages go."
 msgstr ""
-<<<<<<< HEAD
-"Nie ma to wpÅywu na dziennik instalacji, prowadzony przez &aptitude; "
-"(<filename>/var/log/aptitude</filename>); dziennik zapisywany przy uÅ¼yciu tej "
-"opcji zawiera wewnÄtrzne zdarzenia programu, bÅÄdy i komunikaty debugowania. "
-"Zobacz opcjÄ wiersza poleceÅ <link "
-"linkend='cmdlineOptionLogLevel'><literal>--log-file</literal></link>, aby "
-"zmieniÄ miejsce gdzie pojawia siÄ dziennik."
-=======
 "Nie ma to wpływu na dziennik instalacji, prowadzony przez &aptitude; "
 "(<filename>/var/log/aptitude</filename>); dziennik zapisywany przy użyciu "
 "tej opcji zawiera wewnętrzne zdarzenia programu, błędy i komunikaty "
 "debugowania. Zobacz opcję wiersza poleceń <link "
 "linkend='cmdlineOptionLogLevel'><literal>--log-file</literal></link>, aby "
 "zmienić miejsce gdzie pojawia się dziennik."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1513
@@ -20881,15 +20032,9 @@ msgid ""
 "the command-line options <literal>--log-level=aptitude.resolver.search:trace "
 "--log-level=aptitude.resolver.search.tiers:info</literal>."
 msgstr ""
-<<<<<<< HEAD
-"Ustawia domyÅlny poziom dziennikÃ³w zwiÄzanych z mechanizmem rozwiÄzywania "
-"zaleÅ¼noÅci, aby jego efekty byÅy odpowiedniejsze do przetwarzania "
-"zautomatyzowanymi narzÄdziami. Jest to odpowiednik opcji wiersza poleceÅ "
-=======
 "Ustawia domyślny poziom dzienników związanych z mechanizmem rozwiązywania "
 "zależności, aby jego efekty były odpowiedniejsze do przetwarzania "
 "zautomatyzowanymi narzędziami. Jest to odpowiednik opcji wiersza poleceń "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "<literal>--log-level=aptitude.resolver.search:trace --log-level=aptitude."
 "resolver.search.tiers:info</literal>."
 
@@ -20912,21 +20057,12 @@ msgid ""
 "Safe-Resolver::No-New-Installs</literal></link>."
 msgstr ""
 "Zabrania poleceniu <link linkend='manpageSafeUpgrade'><literal>safe-upgrade</"
-<<<<<<< HEAD
-"literal></link> instalowania nowych pakietÃ³w; jeÅli uÅ¼ywany jest bezpieczny "
-"mechanizm rozwiÄzywania zaleÅ¼noÅci (tzn. uÅ¼yto opcji <link "
-"linkend='cmdlineSafeResolver'><literal>--safe-resolver</literal></link> lub "
-"<link linkend='configAlways-Use-Safe-Resolver'><literal>Aptitude::Always-Use-"
-"Safe-Resolver</literal></link> jest ustawiona na <literal>true</literal>), "
-"zabrania mu instalowaÄ nowe pakiety. Opcja dziaÅa niezaleÅ¼nie od wartoÅci "
-=======
 "literal></link> instalowania nowych pakietów; jeśli używany jest bezpieczny "
 "mechanizm rozwiązywania zależności (tzn. użyto opcji <link "
 "linkend='cmdlineSafeResolver'><literal>--safe-resolver</literal></link> lub "
 "<link linkend='configAlways-Use-Safe-Resolver'><literal>Aptitude::Always-Use-"
 "Safe-Resolver</literal></link> jest ustawiona na <literal>true</literal>), "
 "zabrania mu instalować nowe pakiety. Opcja działa niezależnie od wartości "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "<link\n"
 "\t    linkend='configSafe-Resolver-No-New-Installs'><literal>Aptitude::Safe-"
 "Resolver::No-New-Installs</literal></link>."
@@ -20935,11 +20071,7 @@ msgstr ""
 #: en/manpage.xml:1557
 msgid ""
 "This mimics the historical behavior of <command>apt-get upgrade</command>."
-<<<<<<< HEAD
-msgstr "NaÅladuje to dawne zachowanie <command>apt-get upgrade</command>."
-=======
 msgstr "Naśladuje to dawne zachowanie <command>apt-get upgrade</command>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:1564
@@ -20958,16 +20090,6 @@ msgid ""
 "New-Upgrades'><literal>Aptitude::Safe-Resolver::No-New-Upgrades</literal></"
 "link>."
 msgstr ""
-<<<<<<< HEAD
-"JeÅli uÅ¼ywane jest bezpieczne rozwiÄzywanie zaleÅ¼noÅci (tzn. uÅ¼yto opcji "
-"<link linkend='cmdlineSafeResolver'><literal>--safe-resolver</literal></"
-"link> lub <link linkend='configAlways-Use-Safe-Resolver'><literal>Aptitude::"
-"Always-Use-Safe-Resolver</literal></link> jest ustawione na <literal>true</"
-"literal>), zabrania takiego rozwiÄzywania zaleÅ¼noÅci, ktÃ³re umoÅ¼liwiaÅoby"
-"uaktualnianie pakietÃ³w, niezaleÅ¼nie od wartoÅci <link linkend='configSafe-"
-"Resolver-No-New-Upgrades'><literal>Aptitude::Safe-Resolver::No-New-Upgrades</"
-"literal></link>."
-=======
 "Jeśli używane jest bezpieczne rozwiązywanie zależności (tzn. użyto opcji "
 "<link linkend='cmdlineSafeResolver'><literal>--safe-resolver</literal></"
 "link> lub <link linkend='configAlways-Use-Safe-Resolver'><literal>Aptitude::"
@@ -20976,7 +20098,6 @@ msgstr ""
 "umożliwiałobyuaktualnianie pakietów, niezależnie od wartości <link "
 "linkend='configSafe-Resolver-No-New-Upgrades'><literal>Aptitude::Safe-"
 "Resolver::No-New-Upgrades</literal></link>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:1581
@@ -20991,13 +20112,8 @@ msgid ""
 "linkend='cmdlineOptionShowResolverActions'><literal>--show-resolver-actions</"
 "literal></link>."
 msgstr ""
-<<<<<<< HEAD
-"Nie wyÅwietla dziaÅaÅ <quote>bezpiecznego</quote> mechanizmu rozwiÄzywania "
-"zaleÅ¼noÅci, nadpisujÄc wszystkie opcje konfiguracyjne lub wczeÅniejsze <link "
-=======
 "Nie wyświetla działań <quote>bezpiecznego</quote> mechanizmu rozwiązywania "
 "zależności, nadpisując wszystkie opcje konfiguracyjne lub wcześniejsze <link "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "linkend='cmdlineOptionShowResolverActions'><literal>--show-resolver-actions</"
 "literal></link>."
 
@@ -21007,13 +20123,8 @@ msgid ""
 "<literal>-O</literal> <replaceable>order</replaceable>, <literal>--sort</"
 "literal> <replaceable>order</replaceable>"
 msgstr ""
-<<<<<<< HEAD
-"<literal>-O</literal> <replaceable>kolejnoÅÄ</replaceable>, <literal>--sort</"
-"literal> <replaceable>kolejnoÅÄ</replaceable>"
-=======
 "<literal>-O</literal> <replaceable>kolejność</replaceable>, <literal>--sort</"
 "literal> <replaceable>kolejność</replaceable>"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1598
@@ -21027,16 +20138,6 @@ msgid ""
 "linkend='secSortingPolicy'>Customizing how packages are sorted</link></"
 "quote> in the &aptitude; reference manual for more information)."
 msgstr ""
-<<<<<<< HEAD
-"OkreÅla kolejnoÅÄ wyÅwietlania wyniku poleceÅ <link "
-"linkend='cmdlineSearch'><literal>search</literal></link> i <link "
-"linkend='cmdlineVersions'><literal>versions</literal></link>. PrzykÅadowo, "
-"wpisanie <quote><literal>installsize</literal></quote> jako "
-"<replaceable>kolejnoÅci</replaceable> pokaÅ¼e pakiety w kolejnoÅci "
-"odzwierciedlajÄcej ich rozmiar po zainstalowaniu (zapoznaj siÄ z rozdziaÅem "
-"<quote><link linkend='secSortingPolicy'>Customizing how packages are sorted<"
-"/link></quote> w podrÄczniku &aptitude;."
-=======
 "Określa kolejność wyświetlania wyniku poleceń <link "
 "linkend='cmdlineSearch'><literal>search</literal></link> i <link "
 "linkend='cmdlineVersions'><literal>versions</literal></link>. Przykładowo, "
@@ -21045,16 +20146,11 @@ msgstr ""
 "odzwierciedlającej ich rozmiar po zainstalowaniu (zapoznaj się z rozdziałem "
 "<quote><link linkend='secSortingPolicy'>Customizing how packages are sorted</"
 "link></quote> w podręczniku &aptitude;."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1605
 msgid "The default sort order is <literal>name,version</literal>."
-<<<<<<< HEAD
-msgstr "DomyÅlnÄ kolejnoÅciÄ sortowania jest <literal>name,version</literal>."
-=======
 msgstr "Domyślną kolejnością sortowania jest <literal>name,version</literal>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:1611
@@ -21063,11 +20159,7 @@ msgid ""
 "literal><replaceable>value</replaceable>"
 msgstr ""
 "<literal>-o</literal> <replaceable>klucz</replaceable><literal>=</"
-<<<<<<< HEAD
-"literal><replaceable>wartoÅÄ</replaceable>"
-=======
 "literal><replaceable>wartość</replaceable>"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1615
@@ -21079,21 +20171,12 @@ msgid ""
 "linkend='secConfigFile'>Configuration file reference</link></quote> in the "
 "&aptitude; reference manual."
 msgstr ""
-<<<<<<< HEAD
-"Ustaw bezpoÅrednio opcjÄ konfiguracyjnÄ np. uÅ¼yj <literal>-o Aptitude::Log=/"
-"tmp/my-log</literal> aby zapisaÄ dziennik dziaÅaÅ &aptitude; do <filename>/"
-"tmp/my-log</filename>.  Aby uzyskaÄ wiÄcej informacji o opcjach pliku "
-"konfiguracyjnego, zapoznaj siÄ z rozdziaÅem <quote><link "
-"linkend='secConfigFile'>Configuration file reference</link></quote> w "
-"podrÄczniku &aptitude;."
-=======
 "Ustaw bezpośrednio opcję konfiguracyjną np. użyj <literal>-o Aptitude::Log=/"
 "tmp/my-log</literal> aby zapisać dziennik działań &aptitude; do <filename>/"
 "tmp/my-log</filename>.  Aby uzyskać więcej informacji o opcjach pliku "
 "konfiguracyjnego, zapoznaj się z rozdziałem <quote><link "
 "linkend='secConfigFile'>Configuration file reference</link></quote> w "
 "podręczniku &aptitude;."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:1628
@@ -21106,15 +20189,9 @@ msgid ""
 "Always display a prompt before downloading, installing or removing packages, "
 "even when no actions other than those explicitly requested will be performed."
 msgstr ""
-<<<<<<< HEAD
-"Zawsze wyÅwietlaj pytanie o potwierdzenie przed pobieraniem, instalowaniem i "
-"usuwaniem pakietÃ³w, nawet jeÅli nie zostanie wykonana Å¼adna inna akcja, niÅ¼ "
-"ÅciÅle odpowiadajÄca Å¼Ädaniu uÅ¼ytkownika."
-=======
 "Zawsze wyświetlaj pytanie o potwierdzenie przed pobieraniem, instalowaniem i "
 "usuwaniem pakietów, nawet jeśli nie zostanie wykonana żadna inna akcja, niż "
 "ściśle odpowiadająca żądaniu użytkownika."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1638
@@ -21146,17 +20223,6 @@ msgid ""
 "<emphasis>THIS OPTION CAN CAUSE DATA LOSS! DO NOT USE IT UNLESS YOU KNOW "
 "WHAT YOU ARE DOING!</emphasis>"
 msgstr ""
-<<<<<<< HEAD
-"JeÅli <literal><link linkend='configDelete-Unused'>Aptitude::Delete-Unused</"
-"link></literal> jest ustawione na <quote><literal>true</literal></quote> "
-"(tak jest domyÅlnie), to oprÃ³cz usuwania pakietÃ³w niewymaganych przez Å¼aden "
-"inny, zainstalowany pakiet, &aptitude; bÄdzie rÃ³wnieÅ¼ usuwaÅo jego pliki "
-"konfiguracyjne i - prawdopodobnie - inne waÅ¼ne dane. Aby uzyskaÄ wiÄcej "
-"informacji, ktÃ³re pakiety sÄ uwaÅ¼ane za <quote>nieuÅ¼ywane</quote>, zapoznaj "
-"siÄ z rozdziaÅem <quote><link linkend='secAutoInstall'>Managing Automatically "
-"Installed Packages</link></quote> w podrÄczniku &aptitude;. "
-"<emphasis>TAÂ OPCJA MOÅ»E SPOWODOWAÄ UTRATÄ DANYCH!  NIE UÅ»YWAJ JEJ, CHYBA Å»E "
-=======
 "Jeśli <literal><link linkend='configDelete-Unused'>Aptitude::Delete-Unused</"
 "link></literal> jest ustawione na <quote><literal>true</literal></quote> "
 "(tak jest domyślnie), to oprócz usuwania pakietów niewymaganych przez żaden "
@@ -21166,7 +20232,6 @@ msgstr ""
 "się z rozdziałem <quote><link linkend='secAutoInstall'>Managing "
 "Automatically Installed Packages</link></quote> w podręczniku &aptitude;. "
 "<emphasis>TA OPCJA MOŻE SPOWODOWAĆ UTRATĘ DANYCH!  NIE UŻYWAJ JEJ, CHYBA ŻE "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "WIESZ CO ROBISZ!</emphasis>"
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -21195,18 +20260,10 @@ msgid ""
 "but unlike &apt-get;, &aptitude; does not enable <literal>-y</literal> when "
 "<literal>-q</literal> is supplied more than once."
 msgstr ""
-<<<<<<< HEAD
-"WyÅÄcza wszystkie przyrostowe wskaÅºniki postÄpu, czyniÄc wyjÅcie dajÄcym siÄ "
-"zapisaÄ do pliku. Opcja moÅ¼e byÄ podana wiele razy aby stopniowo uciszaÄ "
-"program, ale w "
-"odrÃ³Å¼nieniu od &apt-get;, &aptitude; nie wÅÄcza <literal>-y</literal>, gdy "
-"<literal>-q</literal> zastosowano wiÄcej niÅ¼ jeden raz."
-=======
 "Wyłącza wszystkie przyrostowe wskaźniki postępu, czyniąc wyjście dającym się "
 "zapisać do pliku. Opcja może być podana wiele razy aby stopniowo uciszać "
 "program, ale w odróżnieniu od &apt-get;, &aptitude; nie włącza <literal>-y</"
 "literal>, gdy <literal>-q</literal> zastosowano więcej niż jeden raz."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1686
@@ -21217,19 +20274,11 @@ msgid ""
 "if <literal>-q</literal> had been passed exactly <replaceable>n</"
 "replaceable> times."
 msgstr ""
-<<<<<<< HEAD
-"Opcjonalny parametr <literal>=<replaceable>n</replaceable></literal> moÅ¼e "
-"byÄ uÅ¼yty, aby ustawiÄ bezpoÅrednio liczbÄ odpowiadajÄcÄ za uciszenie (np. "
-"aby nadpisaÄ ustawienie w <filename>/etc/apt/apt.conf</filename>); powoduje "
-"ona, Å¼e program zachowuje siÄ tak, jak gdyby podano opcjÄ <literal>-q</"
-"literal> dokÅadnie <replaceable>n</replaceable> razy."
-=======
 "Opcjonalny parametr <literal>=<replaceable>n</replaceable></literal> może "
 "być użyty, aby ustawić bezpośrednio liczbę odpowiadającą za uciszenie (np. "
 "aby nadpisać ustawienie w <filename>/etc/apt/apt.conf</filename>); powoduje "
 "ona, że program zachowuje się tak, jak gdyby podano opcję <literal>-q</"
 "literal> dokładnie <replaceable>n</replaceable> razy."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:1697
@@ -21244,17 +20293,10 @@ msgid ""
 "conf</filename> and <filename>~/.aptitude/config</filename>).  Packages "
 "previously installed due to recommendations will not be removed."
 msgstr ""
-<<<<<<< HEAD
-"<emphasis>Nie</emphasis> traktuje pakietÃ³w polecanych jako zaleÅ¼noÅci, "
-"podczas instalowania nowych pakietÃ³w (nadpisuje ustawienie w <filename>/etc/"
-"apt/apt.conf</filename> i <filename>~/.aptitude/config</filename>). Pakiety "
-"zainstalowane uprzednio w zwiÄzku z zaleÅ¼noÅciÄ polecania nie bÄdÄ usuniÄte."
-=======
 "<emphasis>Nie</emphasis> traktuje pakietów polecanych jako zależności, "
 "podczas instalowania nowych pakietów (nadpisuje ustawienie w <filename>/etc/"
 "apt/apt.conf</filename> i <filename>~/.aptitude/config</filename>). Pakiety "
 "zainstalowane uprzednio w związku z zależnością polecania nie będą usunięte."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1708
@@ -21281,13 +20323,8 @@ msgid ""
 "overrides settings in <filename>/etc/apt/apt.conf</filename> and "
 "<filename>~/.aptitude/config</filename>)."
 msgstr ""
-<<<<<<< HEAD
-"Traktuje polecane pakiety jako zaleÅ¼noÅci, podczas instalowania nowych "
-"pakietÃ³w (nadpisuje ustawienie w <filename>/etc/apt/apt.conf</filename> i "
-=======
 "Traktuje polecane pakiety jako zależności, podczas instalowania nowych "
 "pakietów (nadpisuje ustawienie w <filename>/etc/apt/apt.conf</filename> i "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "<filename>~/.aptitude/config</filename>)."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -21326,20 +20363,11 @@ msgstr ""
 "<literal>install</literal>, <literal>keep-all</literal>, <literal>markauto</"
 "literal>, <literal>unmarkauto</literal>, <literal>purge</literal>, "
 "<literal>reinstall</literal>, <literal>remove</literal>, <literal>unhold</"
-<<<<<<< HEAD
-"literal>, i <literal>unmarkauto</literal>: usuwa znacznik uÅ¼ytkownika "
-"<replaceable>znacznik</replaceable> ze wszystkich pakietÃ³w bÄdÄcych "
-"zainstalowanymi, usuniÄtymi lub uaktualnianymi tÄ komendÄ (podobnie jak w "
-"przypadku polecenia "
-"<link linkend='cmdlineAddOrRemoveUserTags'><literal>add-user-tag</literal></"
-"link>)."
-=======
 "literal>, i <literal>unmarkauto</literal>: usuwa znacznik użytkownika "
 "<replaceable>znacznik</replaceable> ze wszystkich pakietów będących "
 "zainstalowanymi, usuniętymi lub uaktualnianymi tą komendą (podobnie jak w "
 "przypadku polecenia <link linkend='cmdlineAddOrRemoveUserTags'><literal>add-"
 "user-tag</literal></link>)."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:1752
@@ -21371,17 +20399,6 @@ msgstr ""
 "<literal>install</literal>, <literal>keep-all</literal>, <literal>markauto</"
 "literal>, <literal>unmarkauto</literal>, <literal>purge</literal>, "
 "<literal>reinstall</literal>, <literal>remove</literal>, <literal>unhold</"
-<<<<<<< HEAD
-"literal>, i <literal>unmarkauto</literal>: usuwa znacznik uÅ¼ytkownika "
-"<replaceable>znacznik</replaceable> ze wszystkich pakietÃ³w pasujÄcych do "
-"wzorca <replaceable>wzorzec</replaceable> (podobnie jak w przypadku polecenia "
-"<link "
-"linkend='cmdlineAddOrRemoveUserTags'><literal>remove-user-tag</literal></"
-"link>). Wzorzec jest wzorcem wyszukiwania, jak opisano w rozdziale <quote><"
-"link "
-"linkend='secSearchPatterns'>Search Patterns</link></quote> podrÄcznika "
-"&aptitude;."
-=======
 "literal>, i <literal>unmarkauto</literal>: usuwa znacznik użytkownika "
 "<replaceable>znacznik</replaceable> ze wszystkich pakietów pasujących do "
 "wzorca <replaceable>wzorzec</replaceable> (podobnie jak w przypadku "
@@ -21389,7 +20406,6 @@ msgstr ""
 "tag</literal></link>). Wzorzec jest wzorcem wyszukiwania, jak opisano w "
 "rozdziale <quote><link linkend='secSearchPatterns'>Search Patterns</link></"
 "quote> podręcznika &aptitude;."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1776
@@ -21400,17 +20416,10 @@ msgid ""
 "linkend='manpageSafeUpgrade'><literal>safe-upgrade</literal></link> command "
 "is able to upgrade."
 msgstr ""
-<<<<<<< HEAD
-"Dla przykÅadu, <literal>aptitude safe-upgrade --remove-user-tag-from \"nie-"
-"uaktualnione,?action(upgrade)\"</literal> usunie wszystkie znaczniki "
-"<literal>nie-uaktualnione</literal> ze wszystkich pakietÃ³w, ktÃ³re jest w "
-"stanie uaktualniÄ polecenie <link linkend='manpageSafeUpgrade'><literal>safe-"
-=======
 "Dla przykładu, <literal>aptitude safe-upgrade --remove-user-tag-from \"nie-"
 "uaktualnione,?action(upgrade)\"</literal> usunie wszystkie znaczniki "
 "<literal>nie-uaktualnione</literal> ze wszystkich pakietów, które jest w "
 "stanie uaktualnić polecenie <link linkend='manpageSafeUpgrade'><literal>safe-"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "upgrade</literal></link>."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
@@ -21426,17 +20435,10 @@ msgid ""
 "In the visual interface, always open the cache in read-only mode regardless "
 "of whether you are &root;."
 msgstr ""
-<<<<<<< HEAD
-"W trybie wiersza poleceÅ, wypisuje wszystkie akcje ktÃ³re byÅyby normalnie "
-"wykonane, ale nie wykonuje ich. Nie wymaga uprawnieÅ uÅ¼ytkownika &root;. W "
-"interfejsie wizualnym zawsze otwiera pamiÄÄ podrÄcznÄ w trybie tylko do "
-"odczytu, niezaleÅ¼nie czy uÅ¼ytkownik jest &root;em."
-=======
 "W trybie wiersza poleceń, wypisuje wszystkie akcje które byłyby normalnie "
 "wykonane, ale nie wykonuje ich. Nie wymaga uprawnień użytkownika &root;. W "
 "interfejsie wizualnym zawsze otwiera pamięć podręczną w trybie tylko do "
 "odczytu, niezależnie czy użytkownik jest &root;em."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1800
@@ -21465,17 +20467,6 @@ msgid ""
 "literal>.  Because <literal>safe-upgrade</literal> always uses the safe "
 "resolver, it does not accept the <literal>--safe-resolver</literal> flag."
 msgstr ""
-<<<<<<< HEAD
-"JeÅli wystÄpiÅy problemy z zaleÅ¼noÅciami pakietÃ³w, uÅ¼ywa do ich rozwiÄzania "
-"algorytmu <quote>bezpiecznego</quote>. PrÃ³buje on uszanowaÄ jak najwiÄcej "
-"wyborÃ³w uÅ¼ytkownika; nigdy nie usuwa pakietu, ani nie instaluje innej wersji "
-"pakietu, niÅ¼ domyÅlna wersja kandydujÄca. Jest to ten sam algorytm, ktÃ³ry "
-"uÅ¼ywa polecenie <link linkend='manpageSafeUpgrade'><literal>safe-upgrade</"
-"literal></link>; w szczegÃ³lnoÅci <literal>aptitude --safe-resolver full-"
-"upgrade</literal> jest odpowiednikiem <literal>aptitude safe-upgrade</"
-"literal>. PoniewaÅ¼ <literal>safe-upgrade</literal> zawsze uÅ¼ywa bezpiecznego "
-"mechanizmu rozwiÄzywania zaleÅ¼noÅci, nie akceptuje ono opcji <literal>--safe-"
-=======
 "Jeśli wystąpiły problemy z zależnościami pakietów, używa do ich rozwiązania "
 "algorytmu <quote>bezpiecznego</quote>. Próbuje on uszanować jak najwięcej "
 "wyborów użytkownika; nigdy nie usuwa pakietu, ani nie instaluje innej wersji "
@@ -21485,7 +20476,6 @@ msgstr ""
 "upgrade</literal> jest odpowiednikiem <literal>aptitude safe-upgrade</"
 "literal>. Ponieważ <literal>safe-upgrade</literal> zawsze używa bezpiecznego "
 "mechanizmu rozwiązywania zależności, nie akceptuje ono opcji <literal>--safe-"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "resolver</literal>."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -21514,19 +20504,11 @@ msgid ""
 "linkend='secUsingVisual'>visual mode</link>, then exiting the program "
 "normally."
 msgstr ""
-<<<<<<< HEAD
-"Do poleceÅ modyfikujÄcych stan pakietÃ³w: zapisuje operacje do wykonania w "
-"przyszÅoÅci, ale nie przeprowadza ich. MoÅ¼na wykonaÄ zaplanowane operacje "
-"przez uruchomienie <literal>aptitude install</literal> bez Å¼adnych "
-"argumentÃ³w. Jest to odpowiednik wykonania odpowiednich zaznaczeÅ w <link "
-"linkend='secUsingVisual'>trybie wizualnym</link>, a nastÄpnie normalnym "
-=======
 "Do poleceń modyfikujących stan pakietów: zapisuje operacje do wykonania w "
 "przyszłości, ale nie przeprowadza ich. Można wykonać zaplanowane operacje "
 "przez uruchomienie <literal>aptitude install</literal> bez żadnych "
 "argumentów. Jest to odpowiednik wykonania odpowiednich zaznaczeń w <link "
 "linkend='secUsingVisual'>trybie wizualnym</link>, a następnie normalnym "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "opuszczeniu programu."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -21536,13 +20518,8 @@ msgid ""
 "will schedule the <literal>evolution</literal> package for later "
 "installation."
 msgstr ""
-<<<<<<< HEAD
-"Na przykÅad <literal>aptitude --schedule-only install evolution</literal> "
-"zaplanuje przyszÅÄ instalacjÄ pakietu <literal>evolution</literal>."
-=======
 "Na przykład <literal>aptitude --schedule-only install evolution</literal> "
 "zaplanuje przyszłą instalację pakietu <literal>evolution</literal>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:1859
@@ -21558,13 +20535,8 @@ msgid ""
 "allowed:"
 msgstr ""
 "Kontroluje, kiedy polecenie <link "
-<<<<<<< HEAD
-"linkend='cmdlineVersions'><literal>versions</literal></link> wyÅwietla nazwy "
-"pakietÃ³w. Dozwolone sÄ nastÄpujÄce ustawienia:"
-=======
 "linkend='cmdlineVersions'><literal>versions</literal></link> wyświetla nazwy "
 "pakietów. Dozwolone są następujące ustawienia:"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: en/manpage.xml:1872
@@ -21572,11 +20544,7 @@ msgid ""
 "<literal>always</literal>: display package names every time that "
 "<literal>aptitude versions</literal> runs."
 msgstr ""
-<<<<<<< HEAD
-"<literal>always</literal> - wyÅwietla nazwy pakietÃ³w za kaÅ¼dym uruchomieniem "
-=======
 "<literal>always</literal> - wyświetla nazwy pakietów za każdym uruchomieniem "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "polecenia <literal>aptitude versions</literal>;"
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
@@ -21586,17 +20554,10 @@ msgid ""
 "versions</literal> runs if the output is not grouped by package, and either "
 "there is a pattern-matching argument or there is more than one argument."
 msgstr ""
-<<<<<<< HEAD
-"<literal>auto</literal> - wyÅwietla nazwy pakietÃ³w, gdy uruchomiono "
-"<literal>aptitude versions</literal>, a wyniki nie zostaÅy pogrupowane wg "
-"pakietÃ³w i: albo istnieje pasujÄcy do wzorca argument, albo podano wiÄcej niÅ¼ "
-"jeden argument;"
-=======
 "<literal>auto</literal> - wyświetla nazwy pakietów, gdy uruchomiono "
 "<literal>aptitude versions</literal>, a wyniki nie zostały pogrupowane wg "
 "pakietów i: albo istnieje pasujący do wzorca argument, albo podano więcej "
 "niż jeden argument;"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: en/manpage.xml:1889
@@ -21604,11 +20565,7 @@ msgid ""
 "<literal>never</literal>: never display package names in the output of "
 "<literal>aptitude versions</literal>."
 msgstr ""
-<<<<<<< HEAD
-"<literal>never</literal> - nigdy nie wyÅwietla nazw pakietÃ³w w wyniku "
-=======
 "<literal>never</literal> - nigdy nie wyświetla nazw pakietów w wyniku "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "polecenia <literal>aptitude versions</literal>."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -21633,14 +20590,9 @@ msgid ""
 "Display the actions performed by the <quote>safe</quote> resolver and by "
 "<link linkend='manpageSafeUpgrade'><literal>safe-upgrade</literal></link>."
 msgstr ""
-<<<<<<< HEAD
-"Nie wyÅwietla dziaÅaÅ <quote>bezpiecznego</quote> mechanizmu rozwiÄzywania "
-"zaleÅ¼noÅci i <link linkend='manpageSafeUpgrade'><literal>safe-upgrade</literal></link>."
-=======
 "Nie wyświetla działań <quote>bezpiecznego</quote> mechanizmu rozwiązywania "
 "zależności i <link linkend='manpageSafeUpgrade'><literal>safe-upgrade</"
 "literal></link>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1913
@@ -21654,19 +20606,11 @@ msgid ""
 "Actions'><literal>Aptitude::Safe-Resolver::Show-Resolver-Actions</literal></"
 "link>."
 msgstr ""
-<<<<<<< HEAD
-"Podczas wykonywania poleceÅ <link linkend='manpageSafeUpgrade'><literal>safe-"
-"upgrade</literal></link>, lub gdy podano opcjÄ <link "
-"linkend='cmdlineSafeResolver'>--safe-resolver</link>, &aptitude; bÄdzie "
-"wyÅwietlaÄ podsumowanie akcji wykonywanych przez mechanizm rozwiÄzywania "
-"zaleÅ¼noÅci, przed wyÅwietlaniem podglÄdu instalacji. Jest to odpowiednik "
-=======
 "Podczas wykonywania poleceń <link linkend='manpageSafeUpgrade'><literal>safe-"
 "upgrade</literal></link>, lub gdy podano opcję <link "
 "linkend='cmdlineSafeResolver'>--safe-resolver</link>, &aptitude; będzie "
 "wyświetlać podsumowanie akcji wykonywanych przez mechanizm rozwiązywania "
 "zależności, przed wyświetlaniem podglądu instalacji. Jest to odpowiednik "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "opcji konfiguracyjnej <link linkend='configSafe-Resolver-Show-Resolver-"
 "Actions'><literal>Aptitude::Safe-Resolver::Show-Resolver-Actions</literal></"
 "link>."
@@ -21692,31 +20636,18 @@ msgid ""
 "reasons for the target package to be installed."
 msgstr ""
 "Zmienia zachowanie polecenia <quote><literal>aptitude why</literal></quote>, "
-<<<<<<< HEAD
-"aby wyÅwietliÄ podsumowania kaÅ¼dego ÅaÅcucha zaleÅ¼noÅci, zamiast "
-"wyÅwietlania ich w dÅugiej formie. JeÅli uÅ¼yto tej opcji i "
-"<replaceable>TRYB</replaceable>EM nie jest <quote><literal>no-summary</"
-"literal></quote>, ÅaÅcuchy zawierajÄce zaleÅ¼noÅci Sugeruje nie bÄdÄ "
-"wyÅwietlane; moÅ¼na poÅÄczyÄ <literal>--show-summary</literal> z <literal>-v</"
-"literal>, aby zobaczyÄ podsumowanie wszystkich powodÃ³w, dla ktÃ³rych ma byÄ "
-=======
 "aby wyświetlić podsumowania każdego łańcucha zależności, zamiast "
 "wyświetlania ich w długiej formie. Jeśli użyto tej opcji i "
 "<replaceable>TRYB</replaceable>EM nie jest <quote><literal>no-summary</"
 "literal></quote>, łańcuchy zawierające zależności Sugeruje nie będą "
 "wyświetlane; można połączyć <literal>--show-summary</literal> z <literal>-v</"
 "literal>, aby zobaczyć podsumowanie wszystkich powodów, dla których ma być "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "zainstalowany dany pakiet."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1943
 msgid "<replaceable>MODE</replaceable> can be any one of the following:"
-<<<<<<< HEAD
-msgstr "<replaceable>TRYB</replaceable> moÅ¼e byÄ jednym z nastÄpujÄcych:"
-=======
 msgstr "<replaceable>TRYB</replaceable> może być jednym z następujących:"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><orderedlist><listitem><para>
 #: en/manpage.xml:1950
@@ -21724,13 +20655,8 @@ msgid ""
 "<literal>no-summary</literal>: don't show a summary (the default behavior if "
 "<literal>--show-summary</literal> is not present)."
 msgstr ""
-<<<<<<< HEAD
-"<literal>no-summary</literal> - nie wyÅwietla podsumowania (domyÅlne "
-"zachowanie, jeÅli nie uÅ¼yto opcji <literal>--show-summary</literal>);"
-=======
 "<literal>no-summary</literal> - nie wyświetla podsumowania (domyślne "
 "zachowanie, jeśli nie użyto opcji <literal>--show-summary</literal>);"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><orderedlist><listitem><para>
 #: en/manpage.xml:1958
@@ -21739,13 +20665,8 @@ msgid ""
 "This is the default value of <replaceable>MODE</replaceable> if it is not "
 "present."
 msgstr ""
-<<<<<<< HEAD
-"<literal>first-package</literal> - wyÅwietla pierwszy pakiet w kaÅ¼dym "
-"ÅaÅcuchu (jest to domyÅlne zachowanie jeÅli nie podano <replaceable>TRYBU</"
-=======
 "<literal>first-package</literal> - wyświetla pierwszy pakiet w każdym "
 "łańcuchu (jest to domyślne zachowanie jeśli nie podano <replaceable>TRYBU</"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "replaceable>);"
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><orderedlist><listitem><para>
@@ -21754,13 +20675,8 @@ msgid ""
 "<literal>first-package-and-type</literal>: display the first package in each "
 "chain, along with the strength of the weakest dependency in the chain."
 msgstr ""
-<<<<<<< HEAD
-"<literal>first-package-and-type</literal>: wyÅwietla pierwszy pakiet w "
-"kaÅ¼dym ÅaÅcuchu, ÅÄcznie z siÅÄ najsÅabszej zaleÅ¼noÅci w ÅaÅcuchu;"
-=======
 "<literal>first-package-and-type</literal>: wyświetla pierwszy pakiet w "
 "każdym łańcuchu, łącznie z siłą najsłabszej zależności w łańcuchu;"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><orderedlist><listitem><para>
 #: en/manpage.xml:1974
@@ -21768,13 +20684,8 @@ msgid ""
 "<literal>all-packages</literal>: briefly display each chain of dependencies "
 "leading to the target package."
 msgstr ""
-<<<<<<< HEAD
-"<literal>all-packages</literal>: zwiÄÅºle wyÅwietla kaÅ¼dy ÅaÅcuch zaleÅ¼noÅci "
-"dotyczÄcy danego pakietu;"
-=======
 "<literal>all-packages</literal>: zwięźle wyświetla każdy łańcuch zależności "
 "dotyczący danego pakietu;"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><orderedlist><listitem><para>
 #: en/manpage.xml:1981
@@ -21783,15 +20694,9 @@ msgid ""
 "chain of dependencies leading to the target package, including the target "
 "version of each dependency."
 msgstr ""
-<<<<<<< HEAD
-"<literal>all-packages-with-dep-versions</literal> - zwiÄÅºle wyÅwietla kaÅ¼dy "
-"ÅaÅcuch zaleÅ¼noÅci dotyczÄcy danego pakietu, ÅÄcznie z wersjÄ docelowÄ "
-"kaÅ¼dej zaleÅ¼noÅci."
-=======
 "<literal>all-packages-with-dep-versions</literal> - zwięźle wyświetla każdy "
 "łańcuch zależności dotyczący danego pakietu, łącznie z wersją docelową "
 "każdej zależności."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:1990
@@ -21802,26 +20707,16 @@ msgid ""
 "the command-line, it will override <link linkend='configCmdLine-Show-"
 "Summary'><literal>Aptitude::CmdLine::Show-Summary</literal></link>."
 msgstr ""
-<<<<<<< HEAD
-"Opcja jest zwiÄzana z wpisem konfiguracyjnym <link linkend='configCmdLine-"
-"Show-Summary'><literal>Aptitude::CmdLine::Show-Summary</literal></link>; "
-"jeÅli podano opcjÄ <literal>--show-summary</literal> w wierszu poleceÅ, "
-=======
 "Opcja jest związana z wpisem konfiguracyjnym <link linkend='configCmdLine-"
 "Show-Summary'><literal>Aptitude::CmdLine::Show-Summary</literal></link>; "
 "jeśli podano opcję <literal>--show-summary</literal> w wierszu poleceń, "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "nadpisze ona <link linkend='configCmdLine-Show-Summary'><literal>Aptitude::"
 "CmdLine::Show-Summary</literal></link>."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><example><title>
 #: en/manpage.xml:1998
 msgid "Usage of <literal>--show-summary</literal>"
-<<<<<<< HEAD
-msgstr "uÅ¼ycie opcji <literal>--show-summary</literal>"
-=======
 msgstr "użycie opcji <literal>--show-summary</literal>"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><example><para>
 #: en/manpage.xml:2001
@@ -21829,13 +20724,8 @@ msgid ""
 "<literal>--show-summary</literal> used with <literal>-v</literal> to display "
 "all the reasons a package is installed:"
 msgstr ""
-<<<<<<< HEAD
-"<literal>--show-summary</literal> uÅ¼yte z <literal>-v</literal> aby "
-"wyÅwietliÄ wszystkie powody zainstalowania pakietu:"
-=======
 "<literal>--show-summary</literal> użyte z <literal>-v</literal> aby "
 "wyświetlić wszystkie powody zainstalowania pakietu:"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><example><screen>
 #: en/manpage.xml:2006
@@ -21867,22 +20757,10 @@ msgid ""
 "\n"
 "$ aptitude -v --show-summary=all-packages why foomatic-db\n"
 "Packages requiring foomatic-db:\n"
-<<<<<<< HEAD
-"  cupsys-driver-gutenprint D: cups-driver-gutenprint D: cups R: "
-"foomatic-filters R: foomatic-db-engine D: foomatic-db\n"
-"  foomatic-filters-ppds D: foomatic-filters R: foomatic-db-engine D: "
-"foomatic-db\n"
-"  kde D: kdeadmin R: system-config-printer-kde D: system-config-printer R: "
-"hal-cups-utils D: cups R: foomatic-filters R: foomatic-db-engine D: "
-"foomatic-db\n"
-"  wine D: libwine-print D: cups-bsd R: cups R: foomatic-filters R: "
-"foomatic-db-engine D: foomatic-db\n"
-=======
 "  cupsys-driver-gutenprint D: cups-driver-gutenprint D: cups R: foomatic-filters R: foomatic-db-engine D: foomatic-db\n"
 "  foomatic-filters-ppds D: foomatic-filters R: foomatic-db-engine D: foomatic-db\n"
 "  kde D: kdeadmin R: system-config-printer-kde D: system-config-printer R: hal-cups-utils D: cups R: foomatic-filters R: foomatic-db-engine D: foomatic-db\n"
 "  wine D: libwine-print D: cups-bsd R: cups R: foomatic-filters R: foomatic-db-engine D: foomatic-db\n"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "  foomatic-db-engine D: foomatic-db\n"
 "  foomatic-db-gutenprint D: foomatic-db\n"
 "  foomatic-db-hpijs D: foomatic-db\n"
@@ -21891,24 +20769,6 @@ msgid ""
 "\n"
 "$ aptitude -v --show-summary=all-packages-with-dep-versions why foomatic-db\n"
 "Packages requiring foomatic-db:\n"
-<<<<<<< HEAD
-"  cupsys-driver-gutenprint D: cups-driver-gutenprint (>= 5.0.2-4) D: cups (>= "
-"1.3.0) R: foomatic-filters (>= 4.0) R: foomatic-db-engine (>= 4.0) D: "
-"foomatic-db (>= 20090301)\n"
-"  foomatic-filters-ppds D: foomatic-filters R: foomatic-db-engine (>= 4.0) D: "
-"foomatic-db (>= 20090301)\n"
-"  kde D: kdeadmin (>= 4:3.5.5) R: system-config-printer-kde (>= 4:4.2.2-1) D: "
-"system-config-printer (>= 1.0.0) R: hal-cups-utils D: cups R: "
-"foomatic-filters (>= 4.0) R: foomatic-db-engine (>= 4.0) D: foomatic-db (>= "
-"20090301)\n"
-"  wine D: libwine-print (= 1.1.15-1) D: cups-bsd R: cups R: foomatic-filters "
-"(>= 4.0) R: foomatic-db-engine (>= 4.0) D: foomatic-db (>= 20090301)\n"
-"  foomatic-db-engine D: foomatic-db\n"
-"  foomatic-db-gutenprint D: foomatic-db\n"
-"  foomatic-db-hpijs D: foomatic-db\n"
-"  foomatic-gui D: python-foomatic (>= 0.7.9.2) D: foomatic-db-engine D: "
-"foomatic-db (>= 20090301)\n"
-=======
 "  cupsys-driver-gutenprint D: cups-driver-gutenprint (>= 5.0.2-4) D: cups (>= 1.3.0) R: foomatic-filters (>= 4.0) R: foomatic-db-engine (>= 4.0) D: foomatic-db (>= 20090301)\n"
 "  foomatic-filters-ppds D: foomatic-filters R: foomatic-db-engine (>= 4.0) D: foomatic-db (>= 20090301)\n"
 "  kde D: kdeadmin (>= 4:3.5.5) R: system-config-printer-kde (>= 4:4.2.2-1) D: system-config-printer (>= 1.0.0) R: hal-cups-utils D: cups R: foomatic-filters (>= 4.0) R: foomatic-db-engine (>= 4.0) D: foomatic-db (>= 20090301)\n"
@@ -21917,7 +20777,6 @@ msgid ""
 "  foomatic-db-gutenprint D: foomatic-db\n"
 "  foomatic-db-hpijs D: foomatic-db\n"
 "  foomatic-gui D: python-foomatic (>= 0.7.9.2) D: foomatic-db-engine D: foomatic-db (>= 20090301)\n"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "  printconf D: foomatic-db\n"
 "\t    "
 msgstr ""
@@ -21947,22 +20806,10 @@ msgstr ""
 "\n"
 "$ aptitude -v --show-summary=all-packages why foomatic-db\n"
 "Packages requiring foomatic-db:\n"
-<<<<<<< HEAD
-"  cupsys-driver-gutenprint W: cups-driver-gutenprint W: cups P: "
-"foomatic-filters P: foomatic-db-engine W: foomatic-db\n"
-"  foomatic-filters-ppds W: foomatic-filters P: foomatic-db-engine W: "
-"foomatic-db\n"
-"  kde W: kdeadmin P: system-config-printer-kde W: system-config-printer P: "
-"hal-cups-utils W: cups P: foomatic-filters P: foomatic-db-engine W: "
-"foomatic-db\n"
-"  wine W: libwine-print W: cups-bsd P: cups P: foomatic-filters P: "
-"foomatic-db-engine W: foomatic-db\n"
-=======
 "  cupsys-driver-gutenprint W: cups-driver-gutenprint W: cups P: foomatic-filters P: foomatic-db-engine W: foomatic-db\n"
 "  foomatic-filters-ppds W: foomatic-filters P: foomatic-db-engine W: foomatic-db\n"
 "  kde W: kdeadmin P: system-config-printer-kde W: system-config-printer P: hal-cups-utils W: cups P: foomatic-filters P: foomatic-db-engine W: foomatic-db\n"
 "  wine W: libwine-print W: cups-bsd P: cups P: foomatic-filters P: foomatic-db-engine W: foomatic-db\n"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "  foomatic-db-engine W: foomatic-db\n"
 "  foomatic-db-gutenprint W: foomatic-db\n"
 "  foomatic-db-hpijs W: foomatic-db\n"
@@ -21971,32 +20818,6 @@ msgstr ""
 "\n"
 "$ aptitude -v --show-summary=all-packages-with-dep-versions why foomatic-db\n"
 "Packages requiring foomatic-db:\n"
-<<<<<<< HEAD
-"  cupsys-driver-gutenprint W: cups-driver-gutenprint (>= 5.0.2-4) W: cups (>= "
-"1.3.0) P: foomatic-filters (>= 4.0) P: foomatic-db-engine (>= 4.0) W: "
-"foomatic-db (>= 20090301)\n"
-"  foomatic-filters-ppds W: foomatic-filters P: foomatic-db-engine (>= 4.0) W: "
-"foomatic-db (>= 20090301)\n"
-"  kde W: kdeadmin (>= 4:3.5.5) P: system-config-printer-kde (>= 4:4.2.2-1) W: "
-"system-config-printer (>= 1.0.0) P: hal-cups-utils W: cups P: "
-"foomatic-filters (>= 4.0) P: foomatic-db-engine (>= 4.0) W: foomatic-db (>= "
-"20090301)\n"
-"  wine W: libwine-print (= 1.1.15-1) W: cups-bsd P: cups P: foomatic-filters "
-"(>= 4.0) P: foomatic-db-engine (>= 4.0) W: foomatic-db (>= 20090301)\n"
-"  foomatic-db-engine W: foomatic-db\n"
-"  foomatic-db-gutenprint W: foomatic-db\n"
-"  foomatic-db-hpijs W: foomatic-db\n"
-"  foomatic-gui W: python-foomatic (>= 0.7.9.2) W: foomatic-db-engine W: "
-"foomatic-db (>= 20090301)\n"
-"  printconf W: foomatic-db\n"
-"\t    "
-
-#. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
-#: en/manpage.xml:2006 en/manpage.xml:2150 en/manpage.xml:2165
-msgid "<placeholder type=\"screen\" id=\"0\"/>"
-msgstr ""
-
-=======
 "  cupsys-driver-gutenprint W: cups-driver-gutenprint (>= 5.0.2-4) W: cups (>= 1.3.0) P: foomatic-filters (>= 4.0) P: foomatic-db-engine (>= 4.0) W: foomatic-db (>= 20090301)\n"
 "  foomatic-filters-ppds W: foomatic-filters P: foomatic-db-engine (>= 4.0) W: foomatic-db (>= 20090301)\n"
 "  kde W: kdeadmin (>= 4:3.5.5) P: system-config-printer-kde (>= 4:4.2.2-1) W: system-config-printer (>= 1.0.0) P: hal-cups-utils W: cups P: foomatic-filters (>= 4.0) P: foomatic-db-engine (>= 4.0) W: foomatic-db (>= 20090301)\n"
@@ -22008,16 +20829,11 @@ msgstr ""
 "  printconf W: foomatic-db\n"
 "\t    "
 
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><example><para>
 #: en/manpage.xml:2056
 msgid "<literal>--show-summary</literal> used to list a chain on one line:"
 msgstr ""
-<<<<<<< HEAD
-"<literal>--show-summary</literal> uÅ¼yte do wypisania ÅaÅcucha w jednej linii"
-=======
 "<literal>--show-summary</literal> użyte do wypisania łańcucha w jednej linii"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><example><screen>
 #: en/manpage.xml:2059
@@ -22059,16 +20875,6 @@ msgid ""
 "<citerefentry><refentrytitle>apt_preferences</refentrytitle><manvolnum>5</"
 "manvolnum></citerefentry>."
 msgstr ""
-<<<<<<< HEAD
-"Ustawia wydanie z ktÃ³rego powinny zostaÄ zainstalowane pakiety. Na przykÅad "
-"<quote><literal>aptitude -t experimental ...</literal></quote> zainstaluje "
-"pakiety z dystrybucji eksperymentalnej, chyba Å¼e uÅ¼ytkownik okreÅli inaczej. "
-"Dla akcji wiersza poleceÅ <quote>changelog</quote>, <quote>download</quote> "
-"i <quote>show</quote>, jest to odpowiednik dodania <literal>/"
-"<replaceable>wydanie</replaceable></literal> do kaÅ¼dego pakietu podanego w "
-"wierszu poleceÅ; w innych poleceniach zmienia to domyÅlnÄ wersjÄ kandydujÄcÄ "
-"pakietÃ³w, zgodnie z reguÅami opisanymi w "
-=======
 "Ustawia wydanie z którego powinny zostać zainstalowane pakiety. Na przykład "
 "<quote><literal>aptitude -t experimental ...</literal></quote> zainstaluje "
 "pakiety z dystrybucji eksperymentalnej, chyba że użytkownik określi inaczej. "
@@ -22077,7 +20883,6 @@ msgstr ""
 "<replaceable>wydanie</replaceable></literal> do każdego pakietu podanego w "
 "wierszu poleceń; w innych poleceniach zmienia to domyślną wersję kandydującą "
 "pakietów, zgodnie z regułami opisanymi w "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "<citerefentry><refentrytitle>apt_preferences</refentrytitle><manvolnum>5</"
 "manvolnum></citerefentry>."
 
@@ -22098,11 +20903,7 @@ msgstr "<literal>-V</literal>, <literal>--show-versions</literal>"
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:2093
 msgid "Show which versions of packages will be installed."
-<<<<<<< HEAD
-msgstr "Pokazuje, ktÃ³re wersje pakietÃ³w bÄdÄ zainstalowane."
-=======
 msgstr "Pokazuje, które wersje pakietów będą zainstalowane."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:2097
@@ -22127,17 +20928,10 @@ msgid ""
 "extra information.  This may be supplied multiple times to get more and more "
 "information."
 msgstr ""
-<<<<<<< HEAD
-"Powoduje, Å¼e niektÃ³re polecenia (np. <literal>show</literal>) wyÅwietlajÄ "
-"dodatkowe informacje. Opcja moÅ¼e byÄ podana kilkukrotnie, aby uzyskiwaÄ "
-"coraz wiÄcej informacji (od tÅumacza: ilekroÄ w podrÄczniku jest mowa o "
-"poziomie szczegÃ³ÅowoÅci, tyczy siÄ to tej opcji)."
-=======
 "Powoduje, że niektóre polecenia (np. <literal>show</literal>) wyświetlają "
 "dodatkowe informacje. Opcja może być podana kilkukrotnie, aby uzyskiwać "
 "coraz więcej informacji (od tłumacza: ilekroć w podręczniku jest mowa o "
 "poziomie szczegółowości, tyczy się to tej opcji)."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:2111
@@ -22159,11 +20953,7 @@ msgid ""
 "Display the version of &aptitude; and some information about how it was "
 "compiled."
 msgstr ""
-<<<<<<< HEAD
-"WyÅwietla wersjÄ &aptitude; i kilka informacji na temat sposobu kompilacji "
-=======
 "Wyświetla wersję &aptitude; i kilka informacji na temat sposobu kompilacji "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "programu."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
@@ -22178,15 +20968,9 @@ msgid ""
 "displaying the usual prompt, start up the visual interface and display its "
 "preview screen."
 msgstr ""
-<<<<<<< HEAD
-"Podczas instalowania lub usuwania pakietÃ³w z wiersza poleceÅ, zamiast "
-"wyÅwietlania zwykÅego potwierdzenia instalacji, uruchamia interfejs wizualny "
-"i wyÅwietla jego ekran podglÄdu."
-=======
 "Podczas instalowania lub usuwania pakietów z wiersza poleceń, zamiast "
 "wyświetlania zwykłego potwierdzenia instalacji, uruchamia interfejs wizualny "
 "i wyświetla jego ekran podglądu."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:2141
@@ -22200,13 +20984,8 @@ msgid ""
 "which manually installed package requires each automatically installed "
 "package.  For instance:"
 msgstr ""
-<<<<<<< HEAD
-"W podglÄdzie wyÅwietlanym przed instalacjÄ lub usuwaniem pakietÃ³w pokazuje, "
-"ktÃ³re pakiety zainstalowane rÄcznie wymagajÄ poszczegÃ³lnych pakietÃ³w "
-=======
 "W podglądzie wyświetlanym przed instalacją lub usuwaniem pakietów pokazuje, "
 "które pakiety zainstalowane ręcznie wymagają poszczególnych pakietów "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "instalowanych automatycznie np.:"
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para><screen>
@@ -22222,11 +21001,7 @@ msgid ""
 msgstr ""
 "$ aptitude --show-why install mediawiki\n"
 "...\n"
-<<<<<<< HEAD
-"NastÄpujÄce NOWE pakiety zostanÄ zainstalowane:\n"
-=======
 "Następujące NOWE pakiety zostaną zainstalowane:\n"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "  libapache2-mod-php5{a} (for mediawiki)  mediawiki  php5{a} (for mediawiki)\n"
 "  php5-cli{a} (for mediawiki)  php5-common{a} (for mediawiki)\n"
 "  php5-mysql{a} (for mediawiki)"
@@ -22239,17 +21014,10 @@ msgid ""
 "literal></link>, this displays the entire chain of dependencies that lead "
 "each package to be installed.  For instance:"
 msgstr ""
-<<<<<<< HEAD
-"Gdy opcja jest ÅÄczona z <literal>-v</literal> lub niezerowÄ wartoÅciÄ <link "
-"linkend='configCmdLine-Verbose'><literal>Aptitude::CmdLine::Verbose</"
-"literal></link>, wyÅwietla caÅy ÅaÅcuch zaleÅ¼noÅci, bÄdÄcy powodem "
-"instalacji kaÅ¼dego pakietu np.:"
-=======
 "Gdy opcja jest łączona z <literal>-v</literal> lub niezerową wartością <link "
 "linkend='configCmdLine-Verbose'><literal>Aptitude::CmdLine::Verbose</"
 "literal></link>, wyświetla cały łańcuch zależności, będący powodem "
 "instalacji każdego pakietu np.:"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para><screen>
 #: en/manpage.xml:2165
@@ -22262,15 +21030,9 @@ msgid ""
 "  libdb4.4-dev{a} (libdb4.2-dev C: libdb-dev P&lt;- libdb-dev)"
 msgstr ""
 "$ aptitude -v --show-why install libdb4.2-dev\n"
-<<<<<<< HEAD
-"NastÄpujÄce NOWE pakiety zostanÄ zainstalowane:\n"
-"  libdb4.2{a} (libdb4.2-dev W: libdb4.2)  libdb4.2-dev\n"
-"NastÄpujÄce pakiety zostanÄ USUNIÄTE:\n"
-=======
 "Następujące NOWE pakiety zostaną zainstalowane:\n"
 "  libdb4.2{a} (libdb4.2-dev W: libdb4.2)  libdb4.2-dev\n"
 "Następujące pakiety zostaną USUNIĘTE:\n"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "  libdb4.4-dev{a} (libdb4.2-dev K: libdb-dev P&lt;- libdb-dev)"
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -22281,15 +21043,9 @@ msgid ""
 "with <systemitem>libdb-dev</systemitem>, which is provided by "
 "<systemitem>libdb-dev</systemitem>."
 msgstr ""
-<<<<<<< HEAD
-"Opcja opisuje rÃ³wnieÅ¼ powÃ³d usuwania pakietÃ³w, jak pokazano powyÅ¼ej. W tym "
-"przykÅadzie <systemitem>libdb4.2-dev</systemitem> jest w konflikcie z "
-"<systemitem>libdb-dev</systemitem>, ktÃ³ry dostarcza <systemitem>libdb-dev</"
-=======
 "Opcja opisuje również powód usuwania pakietów, jak pokazano powyżej. W tym "
 "przykładzie <systemitem>libdb4.2-dev</systemitem> jest w konflikcie z "
 "<systemitem>libdb-dev</systemitem>, który dostarcza <systemitem>libdb-dev</"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "systemitem>."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -22300,15 +21056,9 @@ msgid ""
 "literal> and displays the same information that is computed by "
 "<literal>aptitude why</literal> and <literal>aptitude why-not</literal>."
 msgstr ""
-<<<<<<< HEAD
-"Ten argument jest zwiÄzany z opcjÄ konfiguracyjnÄ <literal><link "
-"linkend='configCmdLine-Show-Why'>Aptitude::CmdLine::Show-Why</link></"
-"literal> i wyÅwietla te same instalacje, co polecenia <literal>aptitude why</"
-=======
 "Ten argument jest związany z opcją konfiguracyjną <literal><link "
 "linkend='configCmdLine-Show-Why'>Aptitude::CmdLine::Show-Why</link></"
 "literal> i wyświetla te same instalacje, co polecenia <literal>aptitude why</"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "literal> i <literal>aptitude why-not</literal>."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
@@ -22317,13 +21067,8 @@ msgid ""
 "<literal>-w</literal> <replaceable>width</replaceable>, <literal>--width</"
 "literal> <replaceable>width</replaceable>"
 msgstr ""
-<<<<<<< HEAD
-"<literal>-w</literal> <replaceable>szerokoÅÄ</replaceable>, <literal>--"
-"width</literal> <replaceable>szerokoÅÄ</replaceable>"
-=======
 "<literal>-w</literal> <replaceable>szerokość</replaceable>, <literal>--"
 "width</literal> <replaceable>szerokość</replaceable>"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:2195
@@ -22331,13 +21076,8 @@ msgid ""
 "Specify the display width which should be used for output from the "
 "<literal>search</literal> command (by default, the terminal width is used)."
 msgstr ""
-<<<<<<< HEAD
-"Ustal szerokoÅÄ ekranu, ktÃ³ra powinna byÄ uÅ¼yta do wyÅwietlania polecenia "
-"<literal>search</literal> (domyÅlnie uÅ¼ywana jest szerokoÅÄ terminala)."
-=======
 "Ustal szerokość ekranu, która powinna być użyta do wyświetlania polecenia "
 "<literal>search</literal> (domyślnie używana jest szerokość terminala)."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:2201
@@ -22364,20 +21104,11 @@ msgid ""
 "quote> actions, such as removing essential packages, will still be "
 "displayed.  This option overrides <literal>-P</literal>."
 msgstr ""
-<<<<<<< HEAD
-"Kiedy wyÅwietlane sÄ pytania tak/nie, przyjmuje Å¼e uÅ¼ytkownik wpisaÅ "
-"<quote>tak</quote>. W szczegÃ³lnoÅci, nie wyÅwietla pytania pojawiajÄcego siÄ "
-"przy instalacji, uaktualnianiu i usuwaniu pakietÃ³w. Program wciÄÅ¼ pyta o "
-"dziaÅania <quote>niebezpieczne</quote>, takie jak usuwanie pakietÃ³w istotnych "
-"(ang. "
-"essential). Ta opcja nadpisuje <literal>-P</literal>."
-=======
 "Kiedy wyświetlane są pytania tak/nie, przyjmuje że użytkownik wpisał "
 "<quote>tak</quote>. W szczególności, nie wyświetla pytania pojawiającego się "
 "przy instalacji, uaktualnianiu i usuwaniu pakietów. Program wciąż pyta o "
 "działania <quote>niebezpieczne</quote>, takie jak usuwanie pakietów "
 "istotnych (ang. essential). Ta opcja nadpisuje <literal>-P</literal>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
 #: en/manpage.xml:2220
@@ -22401,11 +21132,7 @@ msgid ""
 "Show how much disk space will be used or freed by the individual packages "
 "being installed, upgraded, or removed."
 msgstr ""
-<<<<<<< HEAD
-"Pokazuje jak duÅ¼o miejsca na dysku uÅ¼yje lub zwolni kaÅ¼dy instalowany, "
-=======
 "Pokazuje jak dużo miejsca na dysku użyje lub zwolni każdy instalowany, "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "uaktualniany lub usuwany pakiet."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>
@@ -22425,13 +21152,8 @@ msgid ""
 "The following options apply to the visual mode of the program, but are "
 "primarily for internal use; you generally won't need to use them yourself."
 msgstr ""
-<<<<<<< HEAD
-"PoniÅ¼sze opcje dotyczÄ trybu wizualnego, ale sÄ przeznaczone gÅÃ³wnie do "
-"uÅ¼ycia wewnÄtrznego; uÅ¼ytkownik zwykle nie ma potrzeby korzystania z nich."
-=======
 "Poniższe opcje dotyczą trybu wizualnego, ale są przeznaczone głównie do "
 "użycia wewnętrznego; użytkownik zwykle nie ma potrzeby korzystania z nich."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:2250
@@ -22450,13 +21172,8 @@ msgid ""
 msgstr ""
 "Usuwa stare, pobrane pliki, podczas uruchomienia programu (jest to "
 "odpowiednik uruchomienia programu i natychmiastowego wybrania "
-<<<<<<< HEAD
-"<menuchoice><guimenu>Akcje</guimenu><guimenuitem>UsuÅ nieaktualne pliki</"
-"guimenuitem></menuchoice>). Nie moÅ¼na uÅ¼yÄ tej opcji ÅÄcznie z "
-=======
 "<menuchoice><guimenu>Akcje</guimenu><guimenuitem>Usuń nieaktualne pliki</"
 "guimenuitem></menuchoice>). Nie można użyć tej opcji łącznie z "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "<quote><literal>--autoclean-on-startup</literal></quote>, <quote><literal>-"
 "i</literal></quote> lub <quote><literal>-u</literal></quote>."
 
@@ -22475,17 +21192,10 @@ msgid ""
 "quote>, <quote><literal>-i</literal></quote>, or <quote><literal>-u</"
 "literal></quote> at the same time."
 msgstr ""
-<<<<<<< HEAD
-"CzyÅci archiwum pakietÃ³w podczas uruchomienia programu (jest to odpowiednik "
-"uruchomienia programu i natychmiastowego wybrania "
-"<menuchoice><guimenu>Akcje</guimenu><guimenuitem>WyczyÅÄ archiwum pakietÃ³w</"
-"guimenuitem></menuchoice>).  Nie moÅ¼na uÅ¼yÄ tej opcji ÅÄcznie z "
-=======
 "Czyści archiwum pakietów podczas uruchomienia programu (jest to odpowiednik "
 "uruchomienia programu i natychmiastowego wybrania "
 "<menuchoice><guimenu>Akcje</guimenu><guimenuitem>Wyczyść archiwum pakietów</"
 "guimenuitem></menuchoice>).  Nie można użyć tej opcji łącznie z "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "<quote><literal>--autoclean-on-startup</literal></quote>, <quote><literal>-"
 "i</literal></quote> lub <quote><literal>-u</literal></quote>."
 
@@ -22503,15 +21213,9 @@ msgid ""
 "literal></quote>, <quote><literal>--clean-on-startup</literal></quote>, or "
 "<quote><literal>-u</literal></quote> at the same time."
 msgstr ""
-<<<<<<< HEAD
-"WyÅwietla podglÄd pobieranych pakietÃ³w podczas uruchamiania programu "
-"(odpowiednik uruchomienia programu i natychmiastowego wciÅniÄcia "
-"<quote><keycap>g</keycap></quote>). Nie moÅ¼na uÅ¼yÄ tej opcji ÅÄcznie z "
-=======
 "Wyświetla podgląd pobieranych pakietów podczas uruchamiania programu "
 "(odpowiednik uruchomienia programu i natychmiastowego wciśnięcia "
 "<quote><keycap>g</keycap></quote>). Nie można użyć tej opcji łącznie z "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "<quote><literal>--autoclean-on-startup</literal></quote>, <quote><literal>--"
 "clean-on-startup</literal></quote> lub <quote><literal>-u</literal></quote>."
 
@@ -22526,11 +21230,7 @@ msgid ""
 "Loads the extended state information from <replaceable>fname</replaceable> "
 "instead of the standard state file."
 msgstr ""
-<<<<<<< HEAD
-"Åaduje rozszerzone informacje o stanie z pliku <replaceable>nazwa-pliku</"
-=======
 "Ładuje rozszerzone informacje o stanie z pliku <replaceable>nazwa-pliku</"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "replaceable>, zamiast ze standardowego pliku stanu."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
@@ -22546,24 +21246,15 @@ msgid ""
 "quote>, <quote><literal>--clean-on-startup</literal></quote>, or "
 "<quote><literal>-i</literal></quote> at the same time."
 msgstr ""
-<<<<<<< HEAD
-"Rozpoczyna uaktualnianie listy pakietÃ³w zaraz po starcie programu. Nie moÅ¼na "
-"uÅ¼yÄ tej opcji ÅÄcznie z <quote><literal>--autoclean-on-startup</literal></"
-=======
 "Rozpoczyna uaktualnianie listy pakietów zaraz po starcie programu. Nie można "
 "użyć tej opcji łącznie z <quote><literal>--autoclean-on-startup</literal></"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "quote>, <quote><literal>--clean-on-startup</literal></quote> lub "
 "<quote><literal>-i</literal></quote>."
 
 #. type: Content of: <refentry><refsect1><title>
 #: en/manpage.xml:2329
 msgid "Environment"
-<<<<<<< HEAD
-msgstr "Årodowisko"
-=======
 msgstr "Środowisko"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:2333
@@ -22579,21 +21270,12 @@ msgid ""
 "<citerefentry><refentrytitle>getpwuid</refentrytitle><manvolnum>2</"
 "manvolnum></citerefentry> and place its configuration file there."
 msgstr ""
-<<<<<<< HEAD
-"JeÅli <filename>$HOME/.aptitude</filename> istnieje, &aptitude; bÄdzie "
-"przechowywaÄ swÃ³j plik "
-"konfiguracyjny w <filename>$HOME/.aptitude/config</filename>. W przeciwnym "
-"wypadku, wyszuka katalog domowy bieÅ¼Äcego uÅ¼ytkownika przy uÅ¼yciu "
-"<citerefentry><refentrytitle>getpwuid</refentrytitle><manvolnum>2</"
-"manvolnum></citerefentry> i utworzy w nim swÃ³j plik konfiguracyjny."
-=======
 "Jeśli <filename>$HOME/.aptitude</filename> istnieje, &aptitude; będzie "
 "przechowywać swój plik konfiguracyjny w <filename>$HOME/.aptitude/config</"
 "filename>. W przeciwnym wypadku, wyszuka katalog domowy bieżącego "
 "użytkownika przy użyciu <citerefentry><refentrytitle>getpwuid</"
 "refentrytitle><manvolnum>2</manvolnum></citerefentry> i utworzy w nim swój "
 "plik konfiguracyjny."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:2347
@@ -22607,17 +21289,10 @@ msgid ""
 "changelogs when <quote><literal>aptitude changelog</literal></quote> is "
 "invoked.  If not set, it defaults to <literal>more</literal>."
 msgstr ""
-<<<<<<< HEAD
-"JeÅli ta zmienna Årodowiskowa jest ustawiona, &aptitude; uÅ¼yje jej do "
-"wyÅwietlenia dziennikÃ³w zmian po przywoÅaniu polecenia "
-"<quote><literal>aptitude changelog</literal></quote>. JeÅli nie jest "
-"ustawiona, domyÅlnym ustawieniem jest program <literal>more</literal>."
-=======
 "Jeśli ta zmienna środowiskowa jest ustawiona, &aptitude; użyje jej do "
 "wyświetlenia dzienników zmian po przywołaniu polecenia "
 "<quote><literal>aptitude changelog</literal></quote>. Jeśli nie jest "
 "ustawiona, domyślnym ustawieniem jest program <literal>more</literal>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:2360
@@ -22631,15 +21306,9 @@ msgid ""
 "files in <literal>TMP</literal> if that variable is set.  Otherwise, it will "
 "store them in <filename>/tmp</filename>."
 msgstr ""
-<<<<<<< HEAD
-"JeÅli <literal>TMPDIR</literal> nie jest ustawiony, &aptitude; przechowa "
-"swoje pliki tymczasowe w <literal>TMP</literal>, jeÅli ta zmienna zostaÅa "
-"ustawiona. JeÅli nie, przechowa je w katalogu <filename>/tmp</filename>."
-=======
 "Jeśli <literal>TMPDIR</literal> nie jest ustawiony, &aptitude; przechowa "
 "swoje pliki tymczasowe w <literal>TMP</literal>, jeśli ta zmienna została "
 "ustawiona. Jeśli nie, przechowa je w katalogu <filename>/tmp</filename>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #: en/manpage.xml:2373
@@ -22654,17 +21323,10 @@ msgid ""
 "<literal>TMP</literal> will be used; if <literal>TMP</literal> is also "
 "unset, then &aptitude; will use <filename>/tmp</filename>."
 msgstr ""
-<<<<<<< HEAD
-"&aptitude; przechowa swoje pliki tymczasowe w katalogu okreÅlonym przez tÄ "
-"zmiennÄ ÅrodowiskowÄ. JeÅli <literal>TMPDIR</literal> nie jest ustawiony, "
-"uÅ¼yje <literal>TMP</literal>; jeÅli <literal>TMP</literal> rÃ³wnieÅ¼ nie jest "
-"ustawiony, &aptitude; uÅ¼yje <filename>/tmp</filename>."
-=======
 "&aptitude; przechowa swoje pliki tymczasowe w katalogu określonym przez tą "
 "zmienną środowiskową. Jeśli <literal>TMPDIR</literal> nie jest ustawiony, "
 "użyje <literal>TMP</literal>; jeśli <literal>TMP</literal> również nie jest "
 "ustawiony, &aptitude; użyje <filename>/tmp</filename>."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><title>
 #: en/manpage.xml:2391
@@ -22681,11 +21343,7 @@ msgstr "<filename>/var/lib/aptitude/pkgstates</filename>"
 msgid ""
 "The file in which stored package states and some package flags are stored."
 msgstr ""
-<<<<<<< HEAD
-"Plik w ktÃ³rym przechowywane sÄ informacje o stanach pakietÃ³w i niektÃ³re ich "
-=======
 "Plik w którym przechowywane są informacje o stanach pakietów i niektóre ich "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "flagi."
 
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
@@ -22707,26 +21365,15 @@ msgid ""
 "these files."
 msgstr ""
 "Pliki konfiguracyjne do &aptitude;. <filename>~/.aptitude/config</filename> "
-<<<<<<< HEAD
-"nadpisuje <filename>/etc/apt/apt.conf</filename>. Zapoznaj siÄ z "
-"<citerefentry><refentrytitle>apt.conf</refentrytitle><manvolnum>5</"
-"manvolnum></citerefentry> aby poznaÄ dokumentacjÄ formatu i zawartoÅci tych "
-"plikÃ³w."
-=======
 "nadpisuje <filename>/etc/apt/apt.conf</filename>. Zapoznaj się z "
 "<citerefentry><refentrytitle>apt.conf</refentrytitle><manvolnum>5</"
 "manvolnum></citerefentry> aby poznać dokumentację formatu i zawartości tych "
 "plików."
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><title>
 #: en/manpage.xml:2427 en/manpage.xml:2630 en/manpage.xml:2838
 msgid "See also"
-<<<<<<< HEAD
-msgstr "Zobacz teÅ¼"
-=======
 msgstr "Zobacz też"
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 
 #. type: Content of: <refentry><refsect1><para>
 #: en/manpage.xml:2430
@@ -22740,13 +21387,8 @@ msgstr ""
 "<citerefentry><refentrytitle>apt-get</refentrytitle><manvolnum>8</"
 "manvolnum></citerefentry>, <citerefentry><refentrytitle>apt</"
 "refentrytitle><manvolnum>8</manvolnum></citerefentry>, <filename>/usr/share/"
-<<<<<<< HEAD
-"doc/aptitude/html/<replaceable>jÄzyk</replaceable>/index.html</filename> z "
-"pakietu aptitude-doc-<replaceable>jÄzyk</replaceable> (od tÅumacza:Â niestety "
-=======
 "doc/aptitude/html/<replaceable>język</replaceable>/index.html</filename> z "
 "pakietu aptitude-doc-<replaceable>język</replaceable> (od tłumacza: niestety "
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 "nie ma polskiej wersji tego pakietu)"
 
 #. type: Content of: <refentry><refnamediv><refname>
@@ -22754,11 +21396,7 @@ msgstr ""
 msgid "aptitude-create-state-bundle"
 msgstr ""
 
-<<<<<<< HEAD
-#.  NWalsh's docbook scripts use this to generate the footer:
-=======
 #.  NWalsh's docbook scripts use this to generate the footer: 
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 #. type: Content of: <refentry><refentryinfo>
 #: en/manpage.xml:2455
 msgid ""
@@ -22776,14 +21414,6 @@ msgstr ""
 msgid "<command>aptitude-create-state-bundle</command>"
 msgstr ""
 
-<<<<<<< HEAD
-#. type: Content of: <refentry><refmeta><manvolnum>
-#: en/manpage.xml:2490 en/manpage.xml:2693
-msgid "1"
-msgstr ""
-
-=======
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 #. type: Content of: <refentry><refnamediv><refpurpose>
 #: en/manpage.xml:2495
 msgid "bundle the current aptitude state"
@@ -22812,14 +21442,6 @@ msgid "<filename><envar>$HOME</envar>/.aptitude</filename>"
 msgstr ""
 
 #. type: Content of: <refentry><refsect1><itemizedlist><listitem><para>
-<<<<<<< HEAD
-#: en/manpage.xml:2524
-msgid "<filename>/var/lib/aptitude</filename>"
-msgstr ""
-
-#. type: Content of: <refentry><refsect1><itemizedlist><listitem><para>
-=======
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 #: en/manpage.xml:2528
 msgid "<filename>/var/lib/apt</filename>"
 msgstr ""
@@ -22934,11 +21556,7 @@ msgstr ""
 msgid "aptitude-run-state-bundle"
 msgstr ""
 
-<<<<<<< HEAD
-#.  NWalsh's docbook scripts use this to generate the footer:
-=======
 #.  NWalsh's docbook scripts use this to generate the footer: 
->>>>>>> 647f2d6f828cb66a0fc0225f197677264b63adbe
 #. type: Content of: <refentry><refentryinfo>
 #: en/manpage.xml:2658
 msgid ""
