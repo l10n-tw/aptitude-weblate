@@ -107,7 +107,7 @@ install-curses: build-curses
 
 	mv debian/aptitude/usr/share/doc/aptitude/html debian/html-docs
 
-binary-arch: install-gtk install-curses
+binary-arch: install-curses
 	dh_testdir -a
 	dh_testroot -a
 	dh_installdocs -a

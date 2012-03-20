@@ -37,27 +37,27 @@ Description: terminal-based package manager (terminal interface only)
  classic terminal-based interface (using curses).  For an experimental
  graphical interface, see the package aptitude-gtk.
 
-Package: aptitude-gtk
-Architecture: any
-Priority: optional
-Depends: aptitude (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
-Recommends: aptitude-doc-en | aptitude-doc, sensible-utils, apt-xapian-index
-Suggests: tasksel, debtags
-Description: terminal-based package manager (GUI and terminal interfaces)
- aptitude is a package manager with a number of useful features,
- including: a mutt-like syntax for matching packages in a flexible
- manner, dselect-like persistence of user actions, the ability to
- retrieve and display the Debian changelog of most packages, and a
- command-line mode similar to that of apt-get.
- .
- aptitude is also Y2K-compliant, non-fattening, naturally cleansing,
- and housebroken.
- .
- This package contains an EXPERIMENTAL version of aptitude that
- includes a GTK+-based graphical interface.  It is INCOMPLETE and may
- not work properly.  If you do not need a GUI or prefer a more stable
- interface, you can instead use the version of aptitude found in the
- package "aptitude".
+# Package: aptitude-gtk
+# Architecture: any
+# Priority: optional
+# Depends: aptitude (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+# Recommends: aptitude-doc-en | aptitude-doc, sensible-utils, apt-xapian-index
+# Suggests: tasksel, debtags
+# Description: terminal-based package manager (GUI and terminal interfaces)
+#  aptitude is a package manager with a number of useful features,
+#  including: a mutt-like syntax for matching packages in a flexible
+#  manner, dselect-like persistence of user actions, the ability to
+#  retrieve and display the Debian changelog of most packages, and a
+#  command-line mode similar to that of apt-get.
+#  .
+#  aptitude is also Y2K-compliant, non-fattening, naturally cleansing,
+#  and housebroken.
+#  .
+#  This package contains an EXPERIMENTAL version of aptitude that
+#  includes a GTK+-based graphical interface.  It is INCOMPLETE and may
+#  not work properly.  If you do not need a GUI or prefer a more stable
+#  interface, you can instead use the version of aptitude found in the
+#  package "aptitude".
 
 Package: aptitude-dbg
 Section: debug
