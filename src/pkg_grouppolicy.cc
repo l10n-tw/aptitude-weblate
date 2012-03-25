@@ -37,17 +37,15 @@
 
 #include <generic/util/util.h>
 
-#include <map>
-#include <set>
-
-#include <ctype.h>
-
 #include <apt-pkg/configuration.h>
 #include <apt-pkg/pkgsystem.h>
 #include <apt-pkg/version.h>
 
 #include <sigc++/functors/mem_fun.h>
 #include <sigc++/trackable.h>
+
+#include <map>
+#include <set>
 
 using namespace std;
 
@@ -127,7 +125,10 @@ class pkg_grouppolicy_section:public pkg_grouppolicy
 
   // The descriptions are in the cw::style used by package descriptions.
   static std::map<string, wstring> section_descriptions;
-  static void init_section_descriptions();
+  // The available top sections (i.e. main, contrib, non-free) in order.
+  static std::vector<string> top_sections;
+  static void init_section_data();
+
 public:
   pkg_grouppolicy_section(pkg_grouppolicy_section_factory::split_mode_type _split_mode,
 			  bool _passthrough,
@@ -137,7 +138,7 @@ public:
     :pkg_grouppolicy(_sig, _desc_sig), chain(_chain),
      split_mode(_split_mode), passthrough(_passthrough)
   {
-    init_section_descriptions();
+    init_section_data();
   }
 
   virtual void add_package(const pkgCache::PkgIterator &pkg, pkg_subtree *root);
@@ -157,6 +158,7 @@ pkg_grouppolicy *pkg_grouppolicy_section_factory::instantiate(pkg_signal *_sig,
 }
 
 std::map<string, wstring> pkg_grouppolicy_section::section_descriptions;
+std::vector<string> pkg_grouppolicy_section::top_sections;
 
 namespace
 {
@@ -219,7 +221,7 @@ namespace
   }
 }
 
-void pkg_grouppolicy_section::init_section_descriptions()
+void pkg_grouppolicy_section::init_section_data()
 {
   static bool already_done=false;
 
@@ -241,6 +243,9 @@ void pkg_grouppolicy_section::init_section_descriptions()
 	  section_descriptions[Curr->Tag] = cw::util::transcode(final_desc, "UTF-8");
 	}
     }
+
+  // Read in the list of Top-Sections; do not use a cached value.
+  top_sections = aptitude::apt::get_top_sections(false);
 
   already_done = true;
 }
@@ -282,7 +287,7 @@ void pkg_grouppolicy_section::add_package(const pkgCache::PkgIterator &pkg,
       if(split_mode == pkg_grouppolicy_section_factory::split_topdir)
 	section = (first_split != section.npos
 		   ? section.substr(0,first_split)
-		   : _("main"));
+		   : top_sections[0]);
       else if((split_mode == pkg_grouppolicy_section_factory::split_subdir ||
 	       split_mode == pkg_grouppolicy_section_factory::split_subdirs) &&
 	      first_split != section.npos)
@@ -345,7 +350,7 @@ void pkg_grouppolicy_section::add_package(const pkgCache::PkgIterator &pkg,
 	  if(found == sections.end())
 	    {
 	      string section_tail = section;
-	      pkg_subtree *newtree;
+	      pkg_subtree *newtree = 0;
 
 	      // Look up the description of the section based on the
 	      // last component of its name, and create a new subtree
@@ -354,18 +359,54 @@ void pkg_grouppolicy_section::add_package(const pkgCache::PkgIterator &pkg,
 	      if(last_split != section.npos)
 		section_tail = section.substr(last_split+1);
 
+	      // mafm: bug#181997, added complexity to allow that top-sections
+	      // appear "in natural order" (main, contrib, non-free) instead of
+	      // sorted alphabetically (contrib, main, non-free)
+	      bool use_order = false;
+	      int order = -1;
+
+	      // get the order of the top-section (the lower the number,
+	      // the higher the priority)
+	      for(size_t i = 0; i < top_sections.size(); ++i)
+	      	{
+	      	  if(section == top_sections[i])
+	      	    {
+	      	      order = i;
+	      	      use_order = true;
+	      	      break;
+	      	    }
+	      	}
+
+	      // decide which [short] descriptions to use
+	      wstring shortdesc;
+	      wstring desc;
 	      if(section_descriptions.find(section_tail) != section_descriptions.end())
 		{
-		  wstring desc = section_descriptions[section_tail];
+		  desc = section_descriptions[section_tail];
 		  if(desc.find(L'\n') != desc.npos)
-		    newtree = new pkg_subtree(cw::util::transcode(section) + L" - " + wstring(desc, 0, desc.find('\n')), desc, get_desc_sig());
+		    shortdesc = cw::util::transcode(section) + L" - " + wstring(desc, 0, desc.find('\n'));
 		  else
-		    newtree = new pkg_subtree(cw::util::transcode(section) + desc,
-					      L"", get_desc_sig());
+		    {
+		      shortdesc = cw::util::transcode(section) + desc;
+		      desc = L"";
+		    }
 		}
 	      else
-		newtree = new pkg_subtree(cw::util::transcode(section),
-					  L"", get_desc_sig());
+	        {
+		  shortdesc = cw::util::transcode(section);
+		  desc = L"";
+	        }
+
+	      // do create tree with desired descriptions, ordered or not
+	      if(use_order)
+		newtree = new pkg_subtree_with_order(shortdesc,
+						     desc,
+						     get_desc_sig(),
+						     order);
+	      else
+		newtree = new pkg_subtree(shortdesc,
+					  desc,
+					  get_desc_sig());
 
 	      // Generate a new sub-grouping-policy, and insert it
 	      // into the map with the new tree.
@@ -660,7 +701,7 @@ class pkg_grouppolicy_firstchar:public pkg_grouppolicy
 {
   pkg_grouppolicy_factory *chain;
 
-  typedef map<char, pair<pkg_grouppolicy *, pkg_subtree *> > childmap;
+  typedef map<string, pair<pkg_grouppolicy *, pkg_subtree *> > childmap;
   // Store the child group policies and their associated subtrees.
   childmap children;
 public:
@@ -680,22 +721,23 @@ public:
   {
     eassert(pkg.Name());
 
-    char firstchar=toupper(pkg.Name()[0]);
+    string treename;
+    if(strncmp(pkg.Name(), "lib", 3) == 0)
+      treename = string(pkg.Name(), 4);
+    else
+      treename = pkg.Name()[0];
 
-    childmap::iterator found=children.find(firstchar);
+    childmap::iterator found=children.find(treename);
     if(found!=children.end())
       found->second.first->add_package(pkg, found->second.second);
     else
       {
-	string treename;
-	treename+=firstchar;
-
 	pkg_subtree *newtree=new pkg_subtree(cw::util::transcode(treename),
 					     L"", get_desc_sig());
 	pkg_grouppolicy *newchild=chain->instantiate(get_sig(),
 						     get_desc_sig());
-	children[firstchar].first=newchild;
-	children[firstchar].second=newtree;
+	children[treename].first=newchild;
+	children[treename].second=newtree;
 	root->add_child(newtree);
 	newtree->set_num_packages_parent(root);
 

@@ -29,6 +29,7 @@
 #include <boost/shared_ptr.hpp>
 
 #include <utility>
+#include <vector>
 
 /** \brief Central repository for apt structures
  *
@@ -307,25 +308,102 @@ struct location_compare
 bool is_interesting_dep(const pkgCache::DepIterator &d,
 			pkgDepCache *cache);
 
-/** Sort packages by name. */
+/** \return an int representing an architecture's position within the
+ *          system's prefered order.  Smaller values indicate greater
+ *          preference.
+ *
+ *  The order is defined by APT::Architectures with "all" considered
+ *  to be of preference `-1`.
+ *
+ *  \param a the architecture of interest.
+ */
+int get_arch_order(const char *a);
+
+/** Sort architectures by order of preference. */
+struct arch_lt
+{
+public:
+  bool operator()(const char *a1,
+                  const char *a2) const
+  {
+    if(a1 == a2)
+      return false;
+    return get_arch_order(a1) < get_arch_order(a2);
+  }
+};
+
+/** Sort packages by their full name (incl. architecture). */
 struct pkg_name_lt
 {
+  struct arch_lt alt;
 public:
   bool operator()(const pkgCache::PkgIterator &p1,
 		  const pkgCache::PkgIterator &p2) const
   {
-    return strcmp(p1.Name(), p2.Name()) < 0;
+    const int order = strcmp(p1.Name(), p2.Name());
+    if(order == 0)
+      return alt(p1.Arch(), p2.Arch());
+    return order < 0;
+  }
+};
+
+/** Compare two packages by memory location (useful for inserting into
+ *  maps when the particular order is uninteresting).
+ *
+ *  It is safe to use < and not std::less here because the pointers
+ *  share an array in the package cache.
+ */
+struct pkg_ptr_lt
+{
+public:
+  bool operator()(const pkgCache::PkgIterator &p1,
+                  const pkgCache::PkgIterator &p2) const
+  {
+    return &*p1 < &*p2;
   }
 };
 
 /** Sort versions by package name. */
 struct ver_name_lt
 {
+  pkg_name_lt plt;
 public:
   bool operator()(const pkgCache::VerIterator &v1,
 		  const pkgCache::VerIterator &v2) const
   {
-    return strcmp(v1.ParentPkg().Name(), v2.ParentPkg().Name()) < 0;
+    return plt(v1.ParentPkg(), v2.ParentPkg());
+  }
+};
+
+/** Compare two versions by memory location (useful for inserting into
+ *  maps when the particular order is uninteresting).
+ *
+ *  It is safe to use < and not std::less here because the pointers
+ *  share an array in the package cache.
+ */
+struct ver_ptr_lt
+{
+public:
+  bool operator()(const pkgCache::VerIterator &v1,
+		  const pkgCache::VerIterator &v2) const
+  {
+    return &*v1 < &*v2;
+  }
+};
+
+/** Sort dependency types in the order:
+ *    Obsoletes, Replaces, Suggests, Breaks, Conflicts, Recommends,
+ *    Depends, PreDepends.
+ */
+int get_deptype_order(const pkgCache::Dep::DepType t);
+
+struct deptype_lt
+{
+public:
+  bool operator()(const pkgCache::Dep::DepType t1,
+                  const pkgCache::Dep::DepType t2) const
+  {
+    return get_deptype_order(t1) < get_deptype_order(t2);
   }
 };
 
@@ -350,6 +428,11 @@ inline bool is_conflict(pkgCache::Dep::DepType type)
   return is_conflict(static_cast<unsigned char>(type));
 }
 
+// TODO: This belongs upstream.
+/** \return a string describing the multi-arch type.
+ */
+const char *multiarch_type(unsigned char type);
+
 namespace aptitude
 {
   namespace apt
@@ -361,6 +444,23 @@ namespace aptitude
      *  version aren't considered; should they be?
      */
     bool is_full_replacement(const pkgCache::DepIterator &dep);
+
+    /** \return an ordered vector of the Top Sections
+     *
+     *  From the configuration item Aptitude::Sections::Top-Sections
+     *  or a builtin list of defaults.
+     */
+    const std::vector<std::string> get_top_sections(const bool cached=true);
+
+    /** \return \b true if the given package is for the native
+     *  architecture.
+     */
+    bool is_native_arch(const pkgCache::VerIterator &ver);
+
+    inline bool is_foreign_arch(const pkgCache::VerIterator &ver)
+    {
+      return !is_native_arch(ver) && (strcmp(ver.Arch(), "all") != 0);
+    }
   }
 }
 

@@ -120,9 +120,20 @@ int pkg_sortpolicy_wrapper::compare(cw::treeitem *item1,
     return 0; // punt!
 }
 
-// The old by-name sorting
+// TODO: Make these compare functions a simple less-than.  Only a
+// couple of places rely on these being able to do 3-way compare.
+// By-name sorting could then reuse pkg_name_lt.
+
+// by-name sorting (including architecture)
 PKG_SORTPOLICY_SUBCLASS(pkg_sortpolicy_name,
-			return strcmp(pkg1.Name(), pkg2.Name()););
+                        int cmp = strcmp(pkg1.Name(), pkg2.Name());
+                        if(cmp == 0)
+                          {
+                            cmp = get_arch_order(pkg1.Arch()) - get_arch_order(pkg2.Arch());
+                            if(cmp == 0)
+                              cmp = strcmp(pkg1.Arch(), pkg2.Arch());
+                          }
+                        return cmp;);
 
 // installed-size-sorting, treats virtual packages as 0-size
 PKG_SORTPOLICY_SUBCLASS(pkg_sortpolicy_installed_size,
@@ -145,10 +156,10 @@ PKG_SORTPOLICY_SUBCLASS(pkg_sortpolicy_priority,
 			int pri2=ver2.end()?0:ver2->Priority;
 			if(pri1<pri2)
 			  return -1;
-			  else if(pri1==pri2)
-			return 0;
-			  else // if(pri1>pri2)
-			return 1;);
+			else if(pri1==pri2)
+			  return 0;
+			else // if(pri1>pri2)
+			  return 1;);
 
 // Sort by version number
 PKG_SORTPOLICY_SUBCLASS(pkg_sortpolicy_ver,

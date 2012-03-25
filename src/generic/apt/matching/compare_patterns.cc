@@ -98,6 +98,9 @@ namespace aptitude
 	    return compare_patterns(p1->get_any_version_pattern(),
 				    p2->get_any_version_pattern());
 
+	  case pattern::architecture:
+	    return p1->get_architecture_architecture().compare(p2->get_architecture_architecture());
+
 	  case pattern::automatic:
 	    return 0;
 
@@ -179,6 +182,9 @@ namespace aptitude
 				      p2->get_for_pattern());
 	    }
 
+	  case pattern::foreign_architecture:
+	    return 0;
+
 	  case pattern::garbage:
 	    return 0;
 
@@ -191,6 +197,10 @@ namespace aptitude
 	  case pattern::maintainer:
 	    return compare_regex_info(p1->get_maintainer_regex_info(),
 				      p2->get_maintainer_regex_info());
+
+	  case pattern::multiarch:
+	    return compare_int(p1->get_multiarch_multiarch_type(),
+			       p2->get_multiarch_multiarch_type());
 
 	  case pattern::name:
 	    return compare_regex_info(p1->get_name_regex_info(),
@@ -208,6 +218,9 @@ namespace aptitude
 	      return compare_patterns(p1->get_narrow_pattern(),
 				      p2->get_narrow_pattern());
 	    }
+
+	  case pattern::native_architecture:
+	    return 0;
 
 	  case pattern::new_tp:
 	    return 0;

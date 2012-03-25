@@ -107,6 +107,7 @@ namespace
       term_type_all,
       term_type_and,
       term_type_any,
+      term_type_architecture,
       term_type_archive,
       term_type_automatic,
       term_type_bind,
@@ -120,6 +121,7 @@ namespace
       term_type_garbage,
       term_type_installed,
       term_type_maintainer,
+      term_type_multiarch,
       term_type_name,
       term_type_narrow,
       term_type_new,
@@ -160,6 +162,7 @@ namespace
     { "all-versions", term_type_all },
     { "and", term_type_and },
     { "any-version", term_type_any },
+    { "architecture", term_type_architecture },
     { "archive", term_type_archive },
     { "automatic", term_type_automatic },
     { "bind", term_type_bind },
@@ -174,6 +177,7 @@ namespace
     { "garbage", term_type_garbage },
     { "installed", term_type_installed },
     { "maintainer", term_type_maintainer },
+    { "multiarch", term_type_multiarch },
     { "name", term_type_name },
     /* ForTranslators: Opposite of widen. Search for "widen" in this file for details. */
     { "narrow", term_type_narrow },
@@ -310,6 +314,20 @@ namespace
     else
       throw MatchingException(ssprintf(_("Unknown action type: %s"),
 				       s.c_str()));
+  }
+
+  pattern::multiarch_type parse_multiarch(const std::string &s)
+  {
+    if(!strcasecmp(s.c_str(), "none"))
+      return pattern::multiarch_none;
+    else if(!strcasecmp(s.c_str(), "foreign"))
+      return pattern::multiarch_foreign;
+    else if(!strcasecmp(s.c_str(), "same"))
+      return pattern::multiarch_same;
+    else if(!strcasecmp(s.c_str(), "allowed"))
+      return pattern::multiarch_allowed;
+    else
+      throw MatchingException(ssprintf(_("Unknown multiarch type: %s"), s.c_str()));
   }
 }
 
@@ -741,6 +759,38 @@ ref_ptr<pattern> maybe_bind(const string &bound_variable,
 			      term);
 }
 
+/** \brief Return a ?version term giving consideration
+ *  to the special values CURRENT, CANDIDATE, TARGET.
+ */
+ref_ptr<pattern> parse_version(const string &version)
+{
+  if(version == "CURRENT")
+    return pattern::make_current_version();
+  else if(version == "TARGET")
+    return pattern::make_install_version();
+  else if(version == "CANDIDATE")
+    return pattern::make_candidate_version();
+  else
+    return pattern::make_version(version);
+}
+
+/** \brief Return an ?architecture term giving consideration
+ *  to the special values native and foreign.
+ *
+ *  Specifying an arch of "native" will return packages from both the
+ *  native arch and also arch "all".  This is the same behaviour
+ *  as libapt-pkg when using, e.g., FindPkg.
+ */
+ref_ptr<pattern> parse_architecture(const string &arch)
+{
+  if(arch == "native")
+    return pattern::make_native_architecture();
+  else if(arch == "foreign")
+    return pattern::make_foreign_architecture();
+  else
+    return pattern::make_architecture(arch);
+}
+
 // NB: "partial" is passed in because ?for terms can have trailing strings.
 ref_ptr<pattern> parse_term_args(const string &term_name,
 				 string::const_iterator &start,
@@ -889,6 +939,8 @@ ref_ptr<pattern> parse_term_args(const string &term_name,
 					 "widen"));
       else
 	return pattern::make_any_version(parse_term_args(start, end, terminators, false, name_context));
+    case term_type_architecture:
+      return parse_architecture(parse_string_match_args(start, end));
     case term_type_archive:
       return pattern::make_archive(parse_string_match_args(start, end));
     case term_type_automatic:
@@ -938,6 +990,11 @@ ref_ptr<pattern> parse_term_args(const string &term_name,
       return pattern::make_installed();
     case term_type_maintainer:
       return pattern::make_maintainer(parse_string_match_args(start, end));
+    case term_type_multiarch:
+      {
+	std::string s(parse_string_match_args(start, end));
+	return pattern::make_multiarch(parse_multiarch(s));
+      }
     case term_type_name:
       return pattern::make_name(parse_string_match_args(start, end));
     case term_type_narrow:
@@ -977,17 +1034,7 @@ ref_ptr<pattern> parse_term_args(const string &term_name,
     case term_type_user_tag:
       return pattern::make_user_tag(parse_string_match_args(start, end));
     case term_type_version:
-      {
-	const std::string version = parse_string_match_args(start, end);
-	if(version == "CURRENT")
-	  return pattern::make_current_version();
-	else if(version == "TARGET")
-	  return pattern::make_install_version();
-	else if(version == "CANDIDATE")
-	  return pattern::make_candidate_version();
-	else
-	  return pattern::make_version(version);
-      }
+      return parse_version(parse_string_match_args(start, end));
     case term_type_widen:
       return pattern::make_widen(parse_term_args(start, end, terminators, true, name_context));
     case term_type_virtual:
@@ -1311,12 +1358,14 @@ ref_ptr<pattern> parse_atom(string::const_iterator &start,
 		      return pattern::make_origin(substr);
 		    case 'p':
 		      return pattern::make_priority(parse_priority(substr));
+		    case 'r':
+		      return parse_architecture(substr);
 		    case 's':
 		      return pattern::make_section(substr);
 		    case 't':
 		      return pattern::make_task(substr);
 		    case 'V':
-		      return pattern::make_version(substr);
+		      return parse_version(substr);
 		    default:
 		      throw MatchingException(ssprintf(_("Unknown pattern type: %c"), search_flag));
 		    }
@@ -1327,7 +1376,13 @@ ref_ptr<pattern> parse_atom(string::const_iterator &start,
 	{
 	  std::string s = parse_substr(start, end, terminators, true);
 
-	  return pattern::make_name(s);
+	  const size_t found = s.rfind(':');
+	  if(found == std::string::npos)
+	    return pattern::make_name(s);
+	  const std::string arch = s.substr(found + 1);
+	  const std::string name = s.substr(0, found);
+	  return pattern::make_and(pattern::make_exact_name(name),
+				   parse_architecture(arch));
 	}
     }
 

@@ -416,6 +416,10 @@ cw::fragment *version_file_fragment(const pkgCache::VerIterator &ver,
 			      (state.Flags & pkgCache::Flag::Auto)
 			      ? _("yes") : _("no")));
 
+  const string multiarch(multiarch_type(ver->MultiArch));
+  if(!multiarch.empty())
+    fragments.push_back(cw::fragf("%s%s%n", _("Multi-Arch: "), multiarch.c_str()));
+
   fragments.push_back(cw::fragf("%s%s%n", _("Version: "), ver.VerStr()));
   fragments.push_back(cw::fragf("%s%s%n", _("Priority: "),
 				const_cast<pkgCache::VerIterator &>(ver).PriorityType() ? const_cast<pkgCache::VerIterator &>(ver).PriorityType() : _("N/A")));
@@ -423,13 +427,13 @@ cw::fragment *version_file_fragment(const pkgCache::VerIterator &ver,
 			    ver.Section()?ver.Section():_("N/A")));
   fragments.push_back(cw::fragf("%s%s%n", _("Maintainer: "),
 			    rec.Maintainer().c_str()));
+  fragments.push_back(cw::fragf("%s%s%n", _("Architecture: "),
+				const_cast<pkgCache::VerIterator &>(ver).Arch()));
 
   fragments.push_back(cw::fragf("%s%s%n", _("Uncompressed Size: "),
 			    SizeToStr(ver->InstalledSize).c_str()));
   if(verbose>0)
     {
-      fragments.push_back(cw::fragf("%s%s%n", _("Architecture: "),
-				ver.Arch()?ver.Arch():_("N/A")));
       fragments.push_back(cw::fragf("%s%s%n", _("Compressed Size: "),
 				SizeToStr(ver->Size).c_str()));
       fragments.push_back(cw::fragf("%s%s%n", _("Filename: "),

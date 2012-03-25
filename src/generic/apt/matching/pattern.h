@@ -238,6 +238,13 @@ namespace aptitude
 	   *  Fields: pattern.
 	   */
 	  any_version,
+          /** \brief ?architecture(PATTERN)
+           *
+           *  Matches packages by their architecture.
+           *
+           *  Fields: regex_info.
+           */
+          architecture,
 	  /** \brief ?automatic
 	   *
 	   *  Matches packages that were automatically installed.
@@ -333,6 +340,11 @@ namespace aptitude
 	   *  Fields: variable_name, pattern.
 	   */
 	  for_tp,
+          /** \brief ?architecture(foreign)
+           *
+           *  Matches packages of foreign architectures.
+           */
+          foreign_architecture,
 	  /** \brief ?garbage
 	   *
 	   *  Matches packages that are not required by any manually
@@ -356,6 +368,13 @@ namespace aptitude
 	   *  Fields: regex_info.
 	   */
 	  maintainer,
+	  /** \brief ?multiarch(MULTIARCH)
+	   *
+	   *  Matches packages by their Multi-Arch field.
+	   *
+	   *  Fields: multiarch_type.
+	   */
+	  multiarch,
 	  /** \brief ?name(PATTERN)
 	   *
 	   *  Matches packages by their name.
@@ -370,6 +389,11 @@ namespace aptitude
 	   *  Fields: filter, pattern
 	   */
 	  narrow,
+          /** \brief ?architecture(native)
+           *
+           *  Matches packages of the native architecture.
+           */
+          native_architecture,
 	  /** \brief ?new
 	   *
 	   *  Matches packages that are "new".
@@ -618,6 +642,19 @@ namespace aptitude
 	  action_keep
 	};
 
+      /** \brief The Multi-Arch capabilities that can be matched against. */
+      enum multiarch_type
+	{
+	  /** \brief Match packages that have no Multi-Arch capability. */
+	  multiarch_none,
+	  /** \brief Match packages that are Multi-Arch: foreign. */
+	  multiarch_foreign,
+	  /** \brief Match packages that are Multi-Arch: same. */
+	  multiarch_same,
+	  /** \brief Match packages that are Multi-Arch: allowed. */
+	  multiarch_allowed
+	};
+
     private:
 
       // The type of this node.
@@ -652,6 +689,9 @@ namespace aptitude
 
 	// The priority, if applicable.
 	pkgCache::State::VerPriority priority;
+
+	// The multiarch type being selected, if applicable.
+	multiarch_type multiarch;
       } info;
 
       // Disallow copy-construction.
@@ -756,6 +796,14 @@ namespace aptitude
 	info.action = action_type;
       }
 
+      // Allocate a pattern that has multi-arch info.
+      pattern(type _tp,
+	      multiarch_type multiarch_type)
+	: tp(_tp)
+      {
+	info.multiarch = multiarch_type;
+      }
+
     public:
 
       /** \name archive term constructor and accessors. */
@@ -849,6 +897,29 @@ namespace aptitude
 	eassert(tp == any_version && sub_patterns.size() == 1);
 
 	return sub_patterns.front();
+      }
+
+      // @}
+
+      /** \name architecture term constructor and accessors. */
+
+      // @{
+
+      /** \brief Create an ?architecture term.
+       *
+       *  \param arch  The architecture to match.
+       */
+      static cwidget::util::ref_ptr<pattern>
+      make_architecture(const std::string &arch)
+      {
+        return new pattern(architecture, arch);
+      }
+
+      const std::string &get_architecture_architecture() const
+      {
+        eassert(tp == architecture);
+
+        return string_info;
       }
 
       // @}
@@ -1219,6 +1290,20 @@ namespace aptitude
 
       // @}
 
+      /** \name foreign_architecture term constructor */
+
+      // @{
+
+      /** \brief Create an ?architecture(foreign) term. */
+
+      static cwidget::util::ref_ptr<pattern>
+      make_foreign_architecture()
+      {
+	return new pattern(foreign_architecture);
+      }
+
+      // @}
+
       /** \name garbage term constructor. */
 
       // @{
@@ -1281,6 +1366,32 @@ namespace aptitude
 
       // @}
 
+      /** \name multiarch term constructor and accessors. */
+
+      // @{
+
+      /** \brief Create a ?multiarch term.
+       *
+       *  \param ma  The multiarch type to match.
+       */
+      static cwidget::util::ref_ptr<pattern>
+      make_multiarch(const multiarch_type ma)
+      {
+	return new pattern(multiarch, ma);
+      }
+
+      /** \brief Retrieve the information associated with a ?multiarch
+       *  term.
+       */
+      const multiarch_type get_multiarch_multiarch_type() const
+      {
+	eassert(tp == multiarch);
+
+	return info.multiarch;
+      }
+
+      // @}
+
       /** \name name term constructor and accessors */
 
       // @{
@@ -1336,6 +1447,20 @@ namespace aptitude
 	eassert(tp == narrow && sub_patterns.size() == 2);
 
 	return sub_patterns[1];
+      }
+
+      // @}
+
+      /** \name native_architecture term constructor */
+
+      // @{
+
+      /** \brief Create an ?architecture(native) term. */
+
+      static cwidget::util::ref_ptr<pattern>
+      make_native_architecture()
+      {
+	return new pattern(native_architecture);
       }
 
       // @}

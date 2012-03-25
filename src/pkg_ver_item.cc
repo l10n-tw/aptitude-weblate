@@ -75,7 +75,7 @@ cw::column_disposition pkg_ver_columnizer::setup_column(const pkgCache::VerItera
       if(ver.end())
 	return cw::column_disposition("", 0);
       else if(show_pkg_name)
-	return cw::column_disposition(string(ver.ParentPkg().Name())+" "+ver.VerStr(), basex);
+	return cw::column_disposition(string(ver.ParentPkg().FullName(true))+" "+ver.VerStr(), basex);
       else
 	return cw::column_disposition(ver.VerStr(), basex);
 
@@ -672,19 +672,11 @@ void pkg_ver_item::forbid_version(undo_group *undo)
 
 void pkg_ver_item::show_information()
 {
-  cw::widget_ref w=make_info_screen(version.ParentPkg(), version);
-
-  char buf[512];
-  snprintf(buf, 512, _("Information about %s"), version.ParentPkg().Name());
-  string menulabel(buf);
-  snprintf(buf, 512, _("%s info"), version.ParentPkg().Name());
-  string tablabel(buf);
-
-  insert_main_widget(w, menulabel, "", tablabel);
+  show_info_screen(version.ParentPkg(), version);
 }
 
 pkg_ver_screen::pkg_ver_screen(const pkgCache::PkgIterator &pkg)
-  :apt_info_tree(pkg.Name(), "")
+  :apt_info_tree(pkg.FullName(true), "")
 {
   set_root(setup_new_root(pkg, pkg.VersionList()),true);
   //set_header(_("Available versions of ")+string(pkg.Name()));
@@ -704,26 +696,12 @@ bool pkg_ver_item::dispatch_key(const cw::config::key &k, cw::tree *owner)
 {
   if(bindings->key_matches(k, "Dependencies"))
     {
-      char buf[512];
-      snprintf(buf, 512, _("Dependencies of %s"), version.ParentPkg().Name());
-      string menulabel(buf);
-      snprintf(buf, 512, _("%s deps"), version.ParentPkg().Name());
-      string tablabel(buf);
-
-      cw::widget_ref w=make_dep_screen(version.ParentPkg(), version);
-      insert_main_widget(w, menulabel, "", tablabel);
+      show_dep_screen(version.ParentPkg(), version);
       return true;
     }
   else if(bindings->key_matches(k, "ReverseDependencies"))
     {
-      char buf[512];
-      snprintf(buf, 512, _("Packages depending on %s"), version.ParentPkg().Name());
-      string menulabel(buf);
-      snprintf(buf, 512, _("%s reverse deps"), version.ParentPkg().Name());
-      string tablabel(buf);
-
-      cw::widget_ref w=make_dep_screen(version.ParentPkg(), version, true);
-      insert_main_widget(w, menulabel, "", tablabel);
+      show_dep_screen(version.ParentPkg(), version, true);
       return true;
     }
   else if(bindings->key_matches(k, "InfoScreen"))
@@ -769,14 +747,9 @@ bool pkg_ver_item::dispatch_key(const cw::config::key &k, cw::tree *owner)
 
       printf(_("Reporting a bug in %s:\n"), version.ParentPkg().Name());
 
-
-
-
-      system(cmd.c_str());
+      if(system(cmd.c_str()) != 0) { /* ignore */ }
 
       sigaction(SIGCONT, &oldact, NULL);
-
-
 
       cw::toplevel::resume();
 

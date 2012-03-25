@@ -88,11 +88,11 @@ bool do_log(const string &log,
       i != changed_packages.end(); ++i)
     {
       if(i->second == pkg_upgrade)
-	fprintf(f, _("[UPGRADE] %s %s -> %s\n"), i->first.Name(),
+	fprintf(f, _("[UPGRADE] %s %s -> %s\n"), i->first.FullName(false).c_str(),
 		i->first.CurrentVer().VerStr(),
 		(*apt_cache_file)[i->first].CandidateVerIter(*apt_cache_file).VerStr());
       else if(i->second == pkg_downgrade)
-	fprintf(f, _("[DOWNGRADE] %s %s -> %s\n"), i->first.Name(),
+	fprintf(f, _("[DOWNGRADE] %s %s -> %s\n"), i->first.FullName(false).c_str(),
 		i->first.CurrentVer().VerStr(),
 		(*apt_cache_file)[i->first].CandidateVerIter(*apt_cache_file).VerStr());
       else
@@ -139,7 +139,7 @@ bool do_log(const string &log,
 		break;
 	      }
 
-	    fprintf(f, _("[%s] %s\n"), tag, i->first.Name());
+	    fprintf(f, _("[%s] %s\n"), tag, i->first.FullName(false).c_str());
 	  }
     }
   fprintf(f, _("===============================================================================\n\nLog complete.\n"));
@@ -154,6 +154,7 @@ bool do_log(const string &log,
 
 struct log_sorter
 {
+  pkg_name_lt plt;
 public:
   inline bool operator()(const logitem &a, const logitem &b)
   {
@@ -161,7 +162,8 @@ public:
       return true;
     else if(a.second>b.second)
       return false;
-    else return strcmp(a.first.Name(), b.first.Name())<0;
+    else
+      return plt(a.first, b.first);
   }
 };
 

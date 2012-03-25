@@ -871,12 +871,15 @@ namespace aptitude
 		  // The rest correspond directly to find_pkg_state() return values.
 		case pattern::action_reinstall:
 		  matches = find_pkg_state(pkg, cache) == pkg_reinstall;
+		  break;
 
 		case pattern::action_upgrade:
 		  matches = find_pkg_state(pkg, cache) == pkg_upgrade;
+		  break;
 
 		case pattern::action_downgrade:
 		  matches = find_pkg_state(pkg, cache) == pkg_downgrade;
+		  break;
 
 		case pattern::action_keep:
 		  matches = cache[pkg].Keep();
@@ -892,6 +895,19 @@ namespace aptitude
 		return NULL;
 	    }
 
+	    break;
+
+	  case pattern::architecture:
+	    if(!target.get_has_version())
+	      return NULL;
+
+	    {
+	      pkgCache::VerIterator ver(target.get_version_iterator(cache));
+              if(p->get_architecture_architecture() == ver.Arch())
+                return match::make_atomic(p);
+              else
+                return NULL;
+	    }
 	    break;
 
 	  case pattern::automatic:
@@ -1142,6 +1158,14 @@ namespace aptitude
 	    return NULL;
 	    break;
 
+	  case pattern::foreign_architecture:
+	    if(target.get_has_version() &&
+	       aptitude::apt::is_foreign_arch(target.get_version_iterator(cache)))
+	      return match::make_atomic(p);
+	    else
+	      return NULL;
+	    break;
+
 	  case pattern::garbage:
 	    if(!target.get_has_version())
 	      return NULL;
@@ -1182,11 +1206,51 @@ namespace aptitude
 	      }
 	    break;
 
+	  case pattern::multiarch:
+	    if(!target.get_has_version())
+	      return NULL;
+	    else
+	      {
+		bool matches = false;
+                const pattern::multiarch_type type = p->get_multiarch_multiarch_type();
+
+                switch(target.get_ver()->MultiArch)
+                  {
+                  case pkgCache::Version::Foreign:
+                  case pkgCache::Version::AllForeign:
+                    matches = (type == pattern::multiarch_foreign);
+                    break;
+                  case pkgCache::Version::Same:
+                    matches = (type == pattern::multiarch_same);
+                    break;
+                  case pkgCache::Version::Allowed:
+                  case pkgCache::Version::AllAllowed:
+                    matches = (type == pattern::multiarch_allowed);
+                    break;
+                  default:
+                    matches = (type == pattern::multiarch_none);
+                  }
+
+		if(matches)
+		  return match::make_atomic(p);
+		else
+		  return NULL;
+	      }
+	    break;
+
 	  case pattern::name:
 	    return evaluate_regexp(p,
 				   p->get_name_regex_info(),
 				   target.get_package_iterator(cache).Name(),
 				   debug);
+	    break;
+
+	  case pattern::native_architecture:
+	    if(target.get_has_version() &&
+	       aptitude::apt::is_native_arch(target.get_version_iterator(cache)))
+	      return match::make_atomic(p);
+	    else
+	      return NULL;
 	    break;
 
 	  case pattern::new_tp:
@@ -2013,6 +2077,7 @@ namespace aptitude
 
 	  case pattern::archive:
 	  case pattern::action:
+	  case pattern::architecture:
 	  case pattern::automatic:
 	  case pattern::bind:
 	  case pattern::broken:
@@ -2026,11 +2091,14 @@ namespace aptitude
 	  case pattern::equal:
 	  case pattern::exact_name:
 	  case pattern::false_tp:
+	  case pattern::foreign_architecture:
 	  case pattern::garbage:
 	  case pattern::install_version:
 	  case pattern::installed:
 	  case pattern::maintainer:
+	  case pattern::multiarch:
 	  case pattern::name:
+	  case pattern::native_architecture:
 	  case pattern::new_tp:
 	  case pattern::obsolete:
 	  case pattern::origin:
@@ -2223,6 +2291,7 @@ namespace aptitude
 
 	  case pattern::archive:
 	  case pattern::action:
+	  case pattern::architecture:
 	  case pattern::automatic:
 	  case pattern::bind:
 	  case pattern::broken:
@@ -2235,11 +2304,14 @@ namespace aptitude
 	  case pattern::essential:
 	  case pattern::equal:
 	  case pattern::false_tp:
+	  case pattern::foreign_architecture:
 	  case pattern::garbage:
 	  case pattern::install_version:
 	  case pattern::installed:
 	  case pattern::maintainer:
+	  case pattern::multiarch:
 	  case pattern::name:
+	  case pattern::native_architecture:
 	  case pattern::new_tp:
 	  case pattern::obsolete:
 	  case pattern::origin:
@@ -2345,6 +2417,7 @@ namespace aptitude
 
 	  case pattern::archive:
 	  case pattern::action:
+	  case pattern::architecture:
 	  case pattern::automatic:
 	  case pattern::bind:
 	  case pattern::broken:
@@ -2357,11 +2430,14 @@ namespace aptitude
 	  case pattern::essential:
 	  case pattern::equal:
 	  case pattern::false_tp:
+	  case pattern::foreign_architecture:
 	  case pattern::garbage:
 	  case pattern::install_version:
 	  case pattern::installed:
 	  case pattern::maintainer:
+	  case pattern::multiarch:
 	  case pattern::name:
+	  case pattern::native_architecture:
 	  case pattern::new_tp:
 	  case pattern::obsolete:
 	  case pattern::origin:
@@ -2540,6 +2616,7 @@ namespace aptitude
 	    // Various non-Xapian patterns, along with ?term.
 	  case pattern::archive:
 	  case pattern::action:
+	  case pattern::architecture:
 	  case pattern::automatic:
 	  case pattern::bind:
 	  case pattern::broken:
@@ -2553,11 +2630,14 @@ namespace aptitude
 	  case pattern::equal:
 	  case pattern::exact_name:
 	  case pattern::false_tp:
+	  case pattern::foreign_architecture:
 	  case pattern::garbage:
 	  case pattern::install_version:
 	  case pattern::installed:
 	  case pattern::maintainer:
+	  case pattern::multiarch:
 	  case pattern::name:
+	  case pattern::native_architecture:
 	  case pattern::new_tp:
 	  case pattern::obsolete:
 	  case pattern::origin:
@@ -2828,6 +2908,7 @@ namespace aptitude
 
 	  case pattern::archive:
 	  case pattern::action:
+	  case pattern::architecture:
 	  case pattern::automatic:
 	  case pattern::bind:
 	  case pattern::broken:
@@ -2840,11 +2921,14 @@ namespace aptitude
 	  case pattern::essential:
 	  case pattern::equal:
 	  case pattern::false_tp:
+	  case pattern::foreign_architecture:
 	  case pattern::garbage:
 	  case pattern::install_version:
 	  case pattern::installed:
 	  case pattern::maintainer:
+	  case pattern::multiarch:
 	  case pattern::name:
+	  case pattern::native_architecture:
 	  case pattern::new_tp:
 	  case pattern::obsolete:
 	  case pattern::origin:
