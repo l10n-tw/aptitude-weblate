@@ -1,21 +1,12 @@
-After a period of aptitude development being almost stopped, it has been resumed
-by the end of 2011 by Daniel Hartwig <mandyke@gmail.com> and Manuel A. Fernandez
-Montecelo <manuel.montezelo@gmail.com>.
+The upstream Git repository for aptitude is at:
 
-Christian PERRIER <bubulle@debian.org> and Axel Beckert <abe@debian.org> made
-this possible by requesting to give us access to the development repository and
-other resources, and by counselling, testing and sponsoring of packages.
+  git://git.debian.org/git/aptitude/aptitude.git
 
-The first released version with the renewed team happened with the changelog
-entry:
-
-  aptitude (0.6.5-1) unstable; urgency=low
-
-  [...]
-
-   -- Daniel Hartwig <mandyke@gmail.com>  Tue, 07 Feb 2012 09:14:11 +0800
-
-
-The development of aptitude is hosted on:
+and can be browsed online at:
 
   http://anonscm.debian.org/gitweb/?p=aptitude/aptitude.git
+
+Development occurs on the master branch.  The Debian packaging is
+maintained using git-buildpackage.
+
+ -- Daniel Hartwig <mandyke@gmail.com>, Sun, 25 Mar 2012 21:12:06 +0800
