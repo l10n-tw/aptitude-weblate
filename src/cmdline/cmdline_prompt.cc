@@ -74,11 +74,6 @@ struct fetchinfo
   }
 };
 
-static bool pkg_byname_compare(const pkgCache::PkgIterator &a, const pkgCache::PkgIterator &b)
-{
-  return strcmp(a.Name(), b.Name())<0;
-}
-
 static bool get_fetchinfo(fetchinfo &f)
 {
   download_signal_log m;
@@ -123,7 +118,7 @@ static string reason_string_list(set<reason> &reasons)
       string dep_type = const_cast<pkgCache::DepIterator &>(why->dep).DepType();
       s += cw::util::transcode(cw::util::transcode(dep_type).substr(0, 1));
       s+=": ";
-      s+=why->pkg.Name();
+      s+=why->pkg.FullName(true);
     }
   if(!first)
     s+=")";
@@ -137,6 +132,8 @@ namespace
   // action.
   struct compare_first_action
   {
+    pkg_name_lt base;
+  public:
     typedef aptitude::why::action action;
     bool operator()(const std::vector<action> &reason1,
 		    const std::vector<action> &reason2)
@@ -146,8 +143,8 @@ namespace
       else if(reason2.empty())
 	return false;
       else
-	return strcmp(reason1.front().get_dep().ParentPkg().Name(),
-		      reason2.front().get_dep().ParentPkg().Name());
+	return base(reason1.front().get_dep().ParentPkg(),
+                    reason2.front().get_dep().ParentPkg());
     }
   };
 
@@ -261,13 +258,13 @@ static void cmdline_show_instinfo(pkgvector &items,
 				  bool showwhy,
                                   const shared_ptr<terminal_metrics> &term_metrics)
 {
-  sort(items.begin(), items.end(), pkg_byname_compare);
+  sort(items.begin(), items.end(), pkg_name_lt());
   strvector output;
 
   for(pkgvector::iterator i=items.begin(); i!=items.end(); ++i)
     {
       std::string tags;
-      string s=i->Name();
+      string s=i->FullName(true);
 
       pkgDepCache::StateCache &state=(*apt_cache_file)[*i];
       //aptitudeDepCache::aptitude_state &extstate=(*apt_cache_file)->get_ext_state(*i);

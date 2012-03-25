@@ -252,6 +252,12 @@ namespace aptitude
 				   variable_name_stack);
 	    break;
 
+	  case pattern::architecture:
+	    out << "?architecture(";
+	    serialize_string(p->get_architecture_architecture(), out);
+	    out.put(')');
+	    break;
+
 	  case pattern::automatic:
 	    out << "?automatic";
 	    break;
@@ -352,6 +358,10 @@ namespace aptitude
 	    variable_name_stack.pop_back();
 	    break;
 
+	  case pattern::foreign_architecture:
+	    out << "?architecture(foreign)";
+	    break;
+
 	  case pattern::garbage:
 	    out << "?garbage";
 	    break;
@@ -370,6 +380,32 @@ namespace aptitude
 				  out);
 	    break;
 
+	  case pattern::multiarch:
+	    out << "?multiarch(";
+	    switch(p->get_multiarch_multiarch_type())
+	      {
+	      case pattern::multiarch_none:
+		out << "none";
+		break;
+
+	      case pattern::multiarch_foreign:
+		out << "foreign";
+		break;
+
+	      case pattern::multiarch_same:
+		out << "same";
+		break;
+
+	      case pattern::multiarch_allowed:
+		out << "allowed";
+		break;
+
+	      default:
+		throw MatchingException("Internal error: bad multiarch-type flag.");
+	      }
+	    out << ')';
+	    break;
+
 	  case pattern::name:
 	    serialize_regexp_term("name",
 				  p->get_name_regex_info(),
@@ -382,6 +418,10 @@ namespace aptitude
 	    out << ", ";
 	    serialize_pattern(p->get_narrow_pattern(), out, variable_name_stack);
 	    out.put(')');
+	    break;
+
+	  case pattern::native_architecture:
+	    out << "?architecture(native)";
 	    break;
 
 	  case pattern::new_tp:

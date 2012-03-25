@@ -77,79 +77,28 @@ namespace
   {
     if(dep.TargetVer() != NULL)
       return cw::fragf("%s %s %s (%s %s)",
-		   dep.ParentPkg().Name(),
+		   dep.ParentPkg().FullName(true).c_str(),
 		   dep.DepType(),
-		   dep.TargetPkg().Name(),
+		   dep.TargetPkg().FullName(true).c_str(),
 		   dep.CompType(),
 		   dep.TargetVer());
     else
       return cw::fragf("%s %s %s",
-		   dep.ParentPkg().Name(),
+		   dep.ParentPkg().FullName(true).c_str(),
 		   dep.DepType(),
-		   dep.TargetPkg().Name());
+		   dep.TargetPkg().FullName(true).c_str());
   }
 
-  struct compare_pkgs
-  {
-    bool operator()(const pkgCache::PkgIterator &p1,
-		    const pkgCache::PkgIterator &p2)
-    {
-      return p1->ID < p2->ID;
-    }
-  };
-
-  struct compare_dep_levels
-  {
-    static int dep_level_to_int(const pkgCache::Dep::DepType dt)
-    {
-      switch(dt)
-	{
-	case pkgCache::Dep::PreDepends:
-	  return 7;
-
-	case pkgCache::Dep::Depends:
-	  return 6;
-
-	case pkgCache::Dep::Recommends:
-	  return 5;
-
-	case pkgCache::Dep::Conflicts:
-	  return 4;
-
-	case pkgCache::Dep::DpkgBreaks:
-	  return 3;
-
-	case pkgCache::Dep::Suggests:
-	  return 2;
-
-	case pkgCache::Dep::Replaces:
-	  return 1;
-
-	case pkgCache::Dep::Obsoletes:
-	  return 0;
-
-	default:
-	  return -1;
-	}
-    }
-
-    bool operator()(const pkgCache::Dep::DepType dt1,
-		    const pkgCache::Dep::DepType dt2) const
-    {
-      return dep_level_to_int(dt1) < dep_level_to_int(dt2);
-    }
-  };
-
   // Place weaker dependencies first, then order alphabetically.
-  struct compare_pair_by_dep_type
+  struct compare_pair_by_deptype
   {
-    compare_dep_levels dep_type_less_than;
-
+    deptype_lt base;
+  public:
     bool operator()(const std::pair<std::string, pkgCache::Dep::DepType> &p1,
 		    const std::pair<std::string, pkgCache::Dep::DepType> &p2) const
     {
       if(p1.second != p2.second)
-	return dep_type_less_than(p2.second, p1.second);
+	return base(p2.second, p1.second);
       else
 	return p1.first < p2.first;
     }
@@ -269,7 +218,7 @@ namespace aptitude
       else
 	rval += flag3.text;
       rval += L' ';
-      rval += cw::util::transcode(pkg.Name());
+      rval += cw::util::transcode(pkg.FullName(true));
       return cw::text_fragment(rval);
     }
 
@@ -291,7 +240,7 @@ namespace aptitude
 	  return cw::text_fragment(dep_targets(start));
 	}
       else
-	return cw::text_fragment(const_cast<pkgCache::PrvIterator &>(prv).ParentPkg().Name());
+	return cw::text_fragment(const_cast<pkgCache::PrvIterator &>(prv).ParentPkg().FullName(true));
     }
 
     cw::fragment *action::description_fragment() const
@@ -429,17 +378,17 @@ namespace aptitude
     switch(type)
       {
       case InstallType:
-	return cw::fragf(_("Install(%s)"), mpkg.Name());
+	return cw::fragf(_("Install(%s)"), mpkg.FullName(true).c_str());
       case RemoveType:
-	return cw::fragf(_("Remove(%s)"), mpkg.Name());
+	return cw::fragf(_("Remove(%s)"), mpkg.FullName(true).c_str());
       case ProvidesInstall:
 	return cw::fragf(_("Install(%s provides %s)"),
-			 const_cast<pkgCache::PrvIterator &>(prv).OwnerPkg().Name(),
-			 mpkg.Name());
+			 const_cast<pkgCache::PrvIterator &>(prv).OwnerPkg().FullName(true).c_str(),
+			 mpkg.FullName(true).c_str());
       case ProvidesRemove:
 	return cw::fragf(_("Remove(%s provides %s)"),
-			 const_cast<pkgCache::PrvIterator &>(prv).OwnerPkg().Name(),
-			 mpkg.Name());
+			 const_cast<pkgCache::PrvIterator &>(prv).OwnerPkg().FullName(true).c_str(),
+			 mpkg.FullName(true).c_str());
       default:
 	return cw::text_fragment("Internal error: bad target node type.");
       }
@@ -1179,8 +1128,8 @@ namespace aptitude
         {
           if(verbosity > 1)
             std::cout << ssprintf(_("    ++   --> ENQUEUING %s Provides %s\n"),
-                                  const_cast<pkgCache::PrvIterator &>(prv).OwnerPkg().Name(),
-                                  const_cast<pkgCache::PrvIterator &>(prv).ParentPkg().Name());
+                                  const_cast<pkgCache::PrvIterator &>(prv).OwnerPkg().FullName(true).c_str(),
+                                  const_cast<pkgCache::PrvIterator &>(prv).ParentPkg().FullName(true).c_str());
         }
 
         void begin(const search_params &params)
@@ -1242,9 +1191,9 @@ cw::fragment *do_why(const std::vector<cwidget::util::ref_ptr<pattern> > &leaves
       success = false;
 
       if(root_is_removal)
-	return cw::fragf(_("Unable to find a reason to remove %s.\n"), root.Name());
+	return cw::fragf(_("Unable to find a reason to remove %s.\n"), root.FullName(true).c_str());
       else
-	return cw::fragf(_("Unable to find a reason to install %s.\n"), root.Name());
+	return cw::fragf(_("Unable to find a reason to install %s.\n"), root.FullName(true).c_str());
     }
   else if(display_mode == aptitude::why::no_summary)
     return render_reason_columns(solutions, verbosity >= 1);
@@ -1283,7 +1232,7 @@ cw::fragment *do_why(const std::vector<cwidget::util::ref_ptr<pattern> > &leaves
       aptitude::why::summarize_reasons(strong_solutions, display_mode, lines);
 
       std::vector<cw::fragment *> fragments;
-      fragments.push_back(cw::fragf(_("Packages requiring %s:"), root.Name()));
+      fragments.push_back(cw::fragf(_("Packages requiring %s:"), root.FullName(true).c_str()));
       fragments.push_back(cw::newline_fragment());
 
       for(std::vector<std::string>::const_iterator it = lines.begin();
@@ -1551,7 +1500,7 @@ namespace aptitude
       if(mode == show_requiring_packages ||
 	 mode == show_requiring_packages_and_strength)
 	{
-	  compare_dep_levels dep_less_than;
+	  deptype_lt deptype_less_than;
 	  // Maps root names to strongest dependency type.
 	  std::map<std::string, pkgCache::Dep::DepType> roots;
 	  for(std::vector<std::vector<action> >::const_iterator it =
@@ -1571,7 +1520,7 @@ namespace aptitude
 
 	      if(!act.get_dep().end())
 		{
-		  const std::string name(act.get_dep().ParentPkg().Name());
+		  const std::string name(act.get_dep().ParentPkg().FullName(true));
 		  std::map<std::string, pkgCache::Dep::DepType>::iterator found =
 		    roots.find(name);
 
@@ -1586,14 +1535,14 @@ namespace aptitude
 			{
 			  pkgCache::Dep::DepType current_type =
 			    (pkgCache::Dep::DepType)act_it->get_dep()->Type;
-			  if(dep_less_than(type, current_type))
+			  if(deptype_less_than(type, current_type))
 			    type = current_type;
 			}
 		    }
 
 		  if(found == roots.end())
 		    roots.insert(found, std::make_pair(name, type));
-		  else if(dep_less_than(found->second, type))
+		  else if(deptype_less_than(found->second, type))
 		    found->second = type;
 		}
 	    }
@@ -1609,7 +1558,7 @@ namespace aptitude
               // g++ emits a spurious error here.  Don't know why:
 	      std::sort(packages_by_dep_strength.begin(),
 			packages_by_dep_strength.end(),
-			compare_pair_by_dep_type());
+			compare_pair_by_deptype());
 
 	      for(std::vector<std::pair<std::string, pkgCache::Dep::DepType> >::const_iterator it =
 		    packages_by_dep_strength.begin();
@@ -1650,7 +1599,7 @@ namespace aptitude
 
 		      if(first_action)
 			{
-			  entry += const_cast<pkgCache::DepIterator &>(dep).ParentPkg().Name();
+			  entry += const_cast<pkgCache::DepIterator &>(dep).ParentPkg().FullName(true);
 			  entry += " ";
 			}
 
@@ -1658,7 +1607,7 @@ namespace aptitude
 		      entry += cw::util::transcode(cw::util::transcode(dep_type).substr(0, 1));
 		      entry += ": ";
 
-		      entry += const_cast<pkgCache::DepIterator &>(dep).TargetPkg().Name();
+		      entry += const_cast<pkgCache::DepIterator &>(dep).TargetPkg().FullName(true);
 
 		      // Show version information if we were asked for it.
 		      if(mode == show_chain_with_versions && ((dep->CompareOp & ~pkgCache::Dep::Or) != pkgCache::Dep::NoOp))
@@ -1677,13 +1626,13 @@ namespace aptitude
 
 		      if(first_action)
 			{
-			  entry += const_cast<pkgCache::PrvIterator &>(prv).OwnerPkg().Name();
+			  entry += const_cast<pkgCache::PrvIterator &>(prv).OwnerPkg().FullName(true);
 			}
 
 		      entry += cw::util::transcode(cw::util::transcode(_("Provides")).substr(0, 1));
 		      entry += "<- ";
 
-		      entry += const_cast<pkgCache::PrvIterator &>(prv).ParentPkg().Name();
+		      entry += const_cast<pkgCache::PrvIterator &>(prv).ParentPkg().FullName(true);
 		      if(mode == show_chain_with_versions && prv.ProvideVersion() != NULL)
 			{
 			  entry += " (";

@@ -480,7 +480,12 @@ static void do_su_to_root(string args)
       // Read one byte from the FIFO for synchronization
       char tmp;
       int fd = open(fifoname.get_name().c_str(), O_RDONLY);
-      read(fd, &tmp, 1); // Will block until the other process writes.
+      if(read(fd, &tmp, 1) < 0)
+	{
+	  std::string errmsg = ssprintf("aptitude: failed to synchronize with parent process");
+	  perror(errmsg.c_str());
+	  exit(1);
+	}
       close(fd);
 
       // It's ok to use argv0 to generate the command,
@@ -555,7 +560,13 @@ static void do_su_to_root(string args)
       // Ok, wake the other process up.
       char tmp=0;
       int fd=open(fifoname.get_name().c_str(), O_WRONLY);
-      write(fd, &tmp, 1);
+      if(write(fd, &tmp, 1) < 0)
+	{
+	  // If we can't synchronize with it, we'd better kill it.
+	  std::string errmsg = ssprintf("aptitude: failed to synchronize with child process");
+	  perror(errmsg.c_str());
+	  kill(pid, SIGTERM);
+	}
       close(fd);
 
       // Wait for a while so we don't accidentally daemonize ourselves.
@@ -961,6 +972,18 @@ cw::widget_ref make_info_screen(const pkgCache::PkgIterator &pkg,
   return rval;
 }
 
+void show_info_screen(const pkgCache::PkgIterator &pkg,
+		      const pkgCache::VerIterator &ver)
+{
+  cw::widget_ref w = make_info_screen(pkg, ver);
+  const string name = pkg.FullName(true);
+  const string menulabel =
+    ssprintf(_("Information about %s"), name.c_str());
+  const string tablabel =
+    ssprintf(_("%s info"), name.c_str());
+  insert_main_widget(w, menulabel, "", tablabel);
+}
+
 cw::widget_ref make_dep_screen(const pkgCache::PkgIterator &pkg,
 			      const pkgCache::VerIterator &ver,
 			      bool reverse)
@@ -971,12 +994,40 @@ cw::widget_ref make_dep_screen(const pkgCache::PkgIterator &pkg,
   return rval;
 }
 
+void show_dep_screen(const pkgCache::PkgIterator &pkg,
+		     const pkgCache::VerIterator &ver,
+		     bool reverse)
+{
+  cw::widget_ref w = make_dep_screen(pkg, ver, reverse);
+  const string name = pkg.FullName(true);
+  const string menulabel =
+    ssprintf(reverse ? _("Packages depending on %s")
+		     : _("Dependencies of %s"),
+	     name.c_str());
+  const string tablabel =
+    ssprintf(reverse ? _("%s reverse deps")
+		     : _("%s deps"),
+	     name.c_str());
+  insert_main_widget(w, menulabel, "", tablabel);
+}
+
 cw::widget_ref make_ver_screen(const pkgCache::PkgIterator &pkg)
 {
   pkg_ver_screen_ref w = pkg_ver_screen::create(pkg);
   cw::widget_ref rval   = make_default_view(w, w->get_sig(), w->get_desc_sig(), true);
   w->repeat_signal();
   return rval;
+}
+
+void show_ver_screen(const pkgCache::PkgIterator &pkg)
+{
+  cw::widget_ref w = make_ver_screen(pkg);
+  const string name = pkg.FullName(true);
+  const string menulabel =
+    ssprintf(_("Available versions of %s"), name.c_str());
+  const string tablabel =
+    ssprintf(_("%s versions"), name.c_str());
+  insert_main_widget(w, menulabel, "", tablabel);
 }
 
 static void do_help_about()
@@ -1267,7 +1318,7 @@ static void check_package_trust()
 	  i!=untrusted.end(); ++i)
 	frags.push_back(clipbox(cw::fragf(_("  %S*%N %s [version %s]%n"),
 				      "Bullet",
-				      i->ParentPkg().Name(), i->VerStr())));
+					  i->ParentPkg().FullName(true).c_str(), i->VerStr())));
 
       main_stacked->add_visible_widget(cw::dialogs::yesno(cw::sequence_fragment(frags),
 						       cw::util::arg(sigc::ptr_fun(install_or_remove_packages)),
@@ -1521,7 +1572,7 @@ namespace
 		  {
 		    fragments.push_back(cw::fragf("  %S*%N %s%n",
 						  "Bullet",
-						  it->Name()));
+						  it->FullName(true).c_str()));
 		  }
 
 		fragments.push_back(cw::newline_fragment());
@@ -1536,7 +1587,7 @@ namespace
 		  {
 		    fragments.push_back(cw::fragf("  %S*%N %s%n",
 						  "Bullet",
-						  it->Name()));
+						  it->FullName(true).c_str()));
 		  }
 
 		fragments.push_back(cw::newline_fragment());
@@ -1720,6 +1771,18 @@ static void really_do_clean()
     _error->Error(_("Cleaning while a download is in progress is not allowed"));
   else
     {
+      // Lock the archive directory
+      FileFd lock;
+      if (_config->FindB("Debug::NoLocking",false) == false)
+        {
+          lock.Fd(GetLock(_config->FindDir("Dir::Cache::archives") + "lock"));
+          if (_error->PendingError() == true)
+            {
+              _error->Error(_("Unable to lock the download directory"));
+              return;
+            }
+        }
+
       cw::widget_ref msg=cw::center::create(cw::frame::create(cw::label::create(_("Deleting downloaded files"))));
       msg->show_all();
       popup_widget(msg);
@@ -1796,6 +1859,18 @@ static void really_do_autoclean()
     _error->Error(_("Cleaning while a download is in progress is not allowed"));
   else
     {
+      // Lock the archive directory
+      FileFd lock;
+      if (_config->FindB("Debug::NoLocking",false) == false)
+        {
+          lock.Fd(GetLock(_config->FindDir("Dir::Cache::archives") + "lock"));
+          if (_error->PendingError() == true)
+            {
+              _error->Error(_("Unable to lock the download directory"));
+              return;
+            }
+        }
+
       cw::widget_ref msg=cw::center::create(cw::frame::create(cw::label::create(_("Deleting obsolete downloaded files"))));
       msg->show_all();
       popup_widget(msg);

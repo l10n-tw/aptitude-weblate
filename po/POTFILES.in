@@ -73,8 +73,6 @@ src/cmdline/mocks/teletype.h
 src/cmdline/mocks/terminal.cc
 src/cmdline/mocks/terminal.h
 src/cmdline/mocks/transient_message.h
-src/cmdline_parse.cc
-src/cmdline_parse.h
 src/cmdline/terminal.cc
 src/cmdline/terminal.h
 src/cmdline/text_progress.cc

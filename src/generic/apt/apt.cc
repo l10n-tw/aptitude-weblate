@@ -48,6 +48,7 @@
 #include <apt-pkg/pkgcachegen.h>
 #include <apt-pkg/sourcelist.h>
 #include <apt-pkg/version.h>
+#include <apt-pkg/aptconfiguration.h>
 
 #include <fstream>
 
@@ -84,6 +85,8 @@ static Configuration *user_config;
 sigc::signal0<void> cache_closed, cache_reloaded, cache_reload_failed;
 sigc::signal0<void> hier_reloaded;
 sigc::signal0<void> consume_errors;
+
+static string apt_native_arch;
 
 static void reset_interesting_dep_memoization()
 {
@@ -1260,6 +1263,52 @@ std::wstring get_long_description(const pkgCache::VerIterator &ver,
 #endif
 }
 
+const char *multiarch_type(unsigned char type)
+{
+  switch(type)
+    {
+    case pkgCache::Version::Foreign:
+    case pkgCache::Version::AllForeign:
+      return _("foreign");
+    case pkgCache::Version::Same:
+      return _("same");
+    case pkgCache::Version::Allowed:
+    case pkgCache::Version::AllAllowed:
+      return _("allowed");
+    default:
+      return "";
+    }
+}
+
+int get_arch_order(const char *a)
+{
+  static const std::vector<std::string> archs =
+    APT::Configuration::getArchitectures();
+
+  if(strcmp(a, "all") == 0)
+    return -1;
+
+  const std::vector<std::string>::const_iterator it =
+    std::find(archs.begin(), archs.end(), a);
+  return it - archs.begin();
+}
+
+int get_deptype_order(const pkgCache::Dep::DepType t)
+{
+  switch(t)
+    {
+    case pkgCache::Dep::PreDepends: return 7;
+    case pkgCache::Dep::Depends:    return 6;
+    case pkgCache::Dep::Recommends: return 5;
+    case pkgCache::Dep::Conflicts:  return 4;
+    case pkgCache::Dep::DpkgBreaks: return 3;
+    case pkgCache::Dep::Suggests:   return 2;
+    case pkgCache::Dep::Replaces:   return 1;
+    case pkgCache::Dep::Obsoletes:  return 0;
+    default: return -1;
+    }
+}
+
 namespace aptitude
 {
   namespace apt
@@ -1308,6 +1357,35 @@ namespace aptitude
 
 
       return true;
+    }
+
+    const std::vector<std::string> get_top_sections(const bool cached)
+    {
+      static std::vector<std::string> top_sections;
+      const char *defaults[] =
+        {N_("main"),N_("contrib"),N_("non-free"),N_("non-US")};
+
+      if(top_sections.empty() == false)
+        {
+          if(cached == true)
+            return top_sections;
+          else
+            top_sections.clear();
+        }
+
+      top_sections = aptcfg->FindVector(PACKAGE "::Sections::Top-Sections");
+      if(top_sections.empty() == true)
+        top_sections.assign(defaults, defaults + sizeof(defaults)/sizeof(*defaults));
+
+      return top_sections;
+    }
+
+    bool is_native_arch(const pkgCache::VerIterator &ver)
+    {
+      if(apt_native_arch.empty())
+	apt_native_arch = aptcfg->Find("APT::Architecture");
+      const char *arch = ver.Arch();
+      return apt_native_arch == arch || strcmp(arch, "all") == 0;
     }
   }
 }
