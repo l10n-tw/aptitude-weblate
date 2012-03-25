@@ -24,6 +24,10 @@ ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
   MAKEFLAGS += -j$(NUMJOBS)
 endif
 
+ifneq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+  CONFIGURE_OPTS += --disable-tests
+endif
+
 CURSES_BUILD_DIR=build-curses
 GTK_BUILD_DIR=build-gtk
 
@@ -32,10 +36,12 @@ build-stamp-gtk:
 	-rm build-stamp-gtk
 
 	dh_testdir
-	dh_auto_configure -B$(GTK_BUILD_DIR) -- --disable-docs
+	dh_auto_configure -B$(GTK_BUILD_DIR) -- --disable-docs $(CONFIGURE_OPTS)
 	$(MAKE) -C $(GTK_BUILD_DIR)/src
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 	# Run the unit tests, but protect against Boost.Test's flakiness.
 	(cd $(GTK_BUILD_DIR) && $(MAKE) -C tests check || (cd tests && ./cppunit_test))
+endif
 	touch build-stamp-gtk
 
 build-curses: build-stamp-curses
@@ -43,10 +49,12 @@ build-stamp-curses:
 	-rm build-stamp-curses
 
 	dh_testdir
-	dh_auto_configure -B$(CURSES_BUILD_DIR)
+	dh_auto_configure -B$(CURSES_BUILD_DIR) -- $(CONFIGURE_OPTS)
 	$(MAKE) -C $(CURSES_BUILD_DIR)/src
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 	# Run the unit tests, but protect against Boost.Test's flakiness.
 	(cd $(CURSES_BUILD_DIR) && $(MAKE) -C tests check || (cd tests && ./cppunit_test))
+endif
 
 	touch build-stamp-curses
 
