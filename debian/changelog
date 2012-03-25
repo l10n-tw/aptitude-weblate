@@ -2,7 +2,7 @@ aptitude (0.6.6-1) UNRELEASED; urgency=low
 
   * New upstream release.
 
-    - Basic multi-arch support.  See the NEWS file.
+    - Basic multi-arch support.  See NEWS for details.
       (Closes: #659079, #661744)
       (LP: #454941, #845136, #884945, #904486)
 
@@ -70,6 +70,8 @@ aptitude (0.6.6-1) UNRELEASED; urgency=low
     should contact the mailing list:
 
     http://lists.alioth.debian.org/cgi-bin/mailman/listinfo/aptitude-devel
+
+  * Enable build hardening.
 
  -- Daniel Hartwig <mandyke@gmail.com>  Sun, 25 Mar 2012 16:19:12 +0800
 
