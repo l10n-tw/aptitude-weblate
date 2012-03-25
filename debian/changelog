@@ -1,8 +1,77 @@
-aptitude (0.6.5-2) UNRELEASED; urgency=low
+aptitude (0.6.6-1) UNRELEASED; urgency=low
 
-  * Fix Russian translation. Closes: #662624
+  * New upstream release.
 
- -- Christian Perrier <bubulle@debian.org>  Thu, 15 Mar 2012 20:00:21 +0100
+    - Basic multi-arch support.  See the NEWS file.
+      (Closes: #659079, #661744)
+      (LP: #454941, #845136, #884945, #904486)
+
+    - Apply patch from Ubuntu to fix build -D_FORTIFY_SOURCE=2 errors.
+      Thanks to Colin Watson and Michael Vogt (Closes: #497539)
+
+    - Remove GTK+ menu entry for minesweeper. (Closes: #552522)
+
+    - Hack to prevent debug messages dumping to the screen (Closes: #651748)
+
+    - Fix '?action(upgrade)' and others (were finding kept
+      packages instead).  Thanks to 'Rogier' for the patch (Closes: #603862)
+
+    - List update errors are reported. (Closes: #451137)
+
+    - List update now runs APT::Update hooks. (Closes: #476399)
+
+    - Actually silence progress messages with '-q2'.  (Closes: #141719)
+
+    - Fix various locking issues:
+
+      + '[auto]clean' locks /var/cache/apt/archives;
+      + 'update' locks /var/lib/apt/lists; (Closes: #653479)
+
+    - Fix 'priority' cost level in resolver.  The values should
+      have been negated but were not.  Thanks to Modestas Vainius
+      for this one. (Closes: #608786)
+
+    - Fix some help and prompt strings which wrongly included
+      localized names for commands such as 'why'.  (Closes: #486615)
+
+    - Change ordering of top-level sections to match the order
+      in aptitude::Sections::Top-Sections.  The default order
+      is now: main, contrib, non-free.  (Closes: #181997)
+
+    - Improve error messages when parsing grouping policies to
+      use the user-visible names, rather than the internal
+      names.  (Closes: #231595)
+
+    - Change default width of %D, %I, %o, and %Z.  Thanks to
+      Michał Kułach for this one. (Closes: #599209) (LP: #741417)
+
+    - Change default width of %V, %v to 14.  This greatly increases the
+      number of versions which will display completely. (Closes: #624542)
+
+    - 'versions' now groups it's results by 'package:arch' instead of
+      'package'.
+
+    - Cleared up grouping, sorting policy error messages.
+      (Closes: #231595)
+
+    - Minor correction to the user's manual. (Closes: #365485)
+
+    - Translation updates:
+
+      + Brazilian Portuguese (Closes: #483964)
+      + Hungarian (Closes: #592468)
+      + Polish (Closes: #659803)
+      + Russian (Closes: #662624)
+
+  * No longer supplying aptitude-gtk.  It can still be compiled from the
+    source but this was an experimental interface that was never finished.
+
+    Anyone interested in continuing either of the GTK+ or Qt interfaces
+    should contact the mailing list:
+
+    http://lists.alioth.debian.org/cgi-bin/mailman/listinfo/aptitude-devel
+
+ -- Daniel Hartwig <mandyke@gmail.com>  Sun, 25 Mar 2012 16:19:12 +0800
 
 aptitude (0.6.5-1) unstable; urgency=low
 
