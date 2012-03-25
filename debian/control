@@ -14,7 +14,7 @@ Build-Depends: libapt-pkg-dev (>= 0.8.0), debhelper (>= 9),
  pkg-config
 Vcs-Git: git://git.debian.org/git/aptitude/aptitude.git
 Vcs-Browser: http://git.debian.org/?p=aptitude/aptitude.git;a=summary
-Standards-Version: 3.9.2
+Standards-Version: 3.9.3
 Homepage: http://aptitude.alioth.debian.org/
 
 Package: aptitude
