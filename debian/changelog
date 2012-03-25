@@ -73,6 +73,10 @@ aptitude (0.6.6-1) UNRELEASED; urgency=low
 
   * Enable build hardening.
 
+  * Use dh_auto_configure; adds cross build support. (Closes: #465076)
+
+  * Add empty build-arch, build-indep targets. (Closes: #648490)
+
  -- Daniel Hartwig <mandyke@gmail.com>  Sun, 25 Mar 2012 16:19:12 +0800
 
 aptitude (0.6.5-1) unstable; urgency=low

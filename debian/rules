@@ -50,7 +50,7 @@ build-stamp-curses:
 
 	touch build-stamp-curses
 
-build:
+build build-arch build-indep:
 	# As per policy 4.9, do nothing.
 
 clean:
@@ -156,4 +156,4 @@ binary-indep: binary-arch
 	dh_builddeb -i
 
 binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install
+.PHONY: build build-arch build-indep clean binary-indep binary-arch binary install
