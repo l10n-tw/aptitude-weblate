@@ -3,6 +3,10 @@ aptitude (0.6.6-1) unstable; urgency=low
   * New upstream release.
 
     - Basic multi-arch support.  See NEWS for details.
+
+      + add search terms ?architecture and ?multiarch;
+      + add grouping policy 'architecture';
+
       (Closes: #659079, #661744)
       (LP: #454941, #845136, #884945, #904486)
 
@@ -88,7 +92,7 @@ aptitude (0.6.6-1) unstable; urgency=low
 
   * Support DEB_BUILD_OPTIONS=nocheck to disable tests.
 
- -- Daniel Hartwig <mandyke@gmail.com>  Tue, 27 Mar 2012 09:32:42 +0800
+ -- Daniel Hartwig <mandyke@gmail.com>  Tue, 27 Mar 2012 17:02:31 +0800
 
 aptitude (0.6.5-1) unstable; urgency=low
 
