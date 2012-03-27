@@ -255,7 +255,7 @@ namespace aptitude
 	case atomic:
 	  // TODO: do something special based on the type, like we
 	  // used to before the recent changes.
-	  return 0;
+	  return match_string.empty() ? 0 : 1;
 
 	case regexp:
 	  return regexp_matches.size();
@@ -281,6 +281,10 @@ namespace aptitude
       switch(tp)
 	{
 	case atomic:
+	  if(group_num >= (match_string.empty() ? 0 : 1))
+	    throw MatchingException("Can't retrieve match information: the group number is out of bounds.");
+	  return std::string(match_string);
+
 	case dependency:
 	case provides:
 	  throw MatchingException("Can't retrieve match information: the group number is out of bounds.");
@@ -903,8 +907,9 @@ namespace aptitude
 
 	    {
 	      pkgCache::VerIterator ver(target.get_version_iterator(cache));
-              if(p->get_architecture_architecture() == ver.Arch())
-                return match::make_atomic(p);
+              if(p->get_architecture_architecture().empty() == true ||
+		 p->get_architecture_architecture() == ver.Arch())
+                return match::make_atomic(p, ver.Arch());
               else
                 return NULL;
 	    }
@@ -1159,12 +1164,16 @@ namespace aptitude
 	    break;
 
 	  case pattern::foreign_architecture:
-	    if(target.get_has_version() &&
-	       aptitude::apt::is_foreign_arch(target.get_version_iterator(cache)))
-	      return match::make_atomic(p);
-	    else
+	    if(!target.get_has_version())
 	      return NULL;
-	    break;
+
+	    {
+	      pkgCache::VerIterator ver(target.get_version_iterator(cache));
+	      if(aptitude::apt::is_foreign_arch(ver))
+		return match::make_atomic(p, ver.Arch());
+	      else
+		return NULL;
+	    }
 
 	  case pattern::garbage:
 	    if(!target.get_has_version())
@@ -1246,12 +1255,16 @@ namespace aptitude
 	    break;
 
 	  case pattern::native_architecture:
-	    if(target.get_has_version() &&
-	       aptitude::apt::is_native_arch(target.get_version_iterator(cache)))
-	      return match::make_atomic(p);
-	    else
+	    if(!target.get_has_version())
 	      return NULL;
-	    break;
+
+	    {
+	      pkgCache::VerIterator ver(target.get_version_iterator(cache));
+	      if(aptitude::apt::is_native_arch(ver))
+		return match::make_atomic(p, ver.Arch());
+	      else
+		return NULL;
+	    }
 
 	  case pattern::new_tp:
 	    if(!target.get_has_version())
