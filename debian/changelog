@@ -71,13 +71,24 @@ aptitude (0.6.6-1) unstable; urgency=low
 
     http://lists.alioth.debian.org/cgi-bin/mailman/listinfo/aptitude-devel
 
+    - Dropped Build-Depends: needed only for aptitude-gtk.
+
   * Enable build hardening.
 
-  * Use dh_auto_configure; adds cross build support. (Closes: #465076)
+  * Bump debian/compat to level 9, use dh_auto_configure.
+
+    - Adds cross build support. (Closes: #465076)
 
   * Add empty build-arch, build-indep targets. (Closes: #648490)
 
- -- Daniel Hartwig <mandyke@gmail.com>  Sun, 25 Mar 2012 16:19:12 +0800
+  * Extend aptitude-doc-* packages to include a more complete description
+    of the program.
+
+  * Update README.Debian with details of Git repository.
+
+  * Support DEB_BUILD_OPTIONS=nocheck to disable tests.
+
+ -- Daniel Hartwig <mandyke@gmail.com>  Tue, 27 Mar 2012 09:32:42 +0800
 
 aptitude (0.6.5-1) unstable; urgency=low
 
