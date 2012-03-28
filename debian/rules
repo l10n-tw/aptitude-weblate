@@ -5,7 +5,7 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 # Temporary hack to ensure that aptitude builds on s390 and sh4. As of this
 # writing, g++ on s390 miscompiles some of the parsing code unless
@@ -27,6 +27,8 @@ endif
 ifneq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
   CONFIGURE_OPTS += --disable-tests
 endif
+
+export DEB_CXXFLAGS_MAINT_APPEND
 
 CURSES_BUILD_DIR=build-curses
 GTK_BUILD_DIR=build-gtk
