@@ -1,8 +1,45 @@
-aptitude (0.6.6-2) unstable; urgency=low
+aptitude (0.6.7-1) unstable; urgency=low
+
+  * New upstream release.
+
+    - Avoid dpkg and infinite loop in download-only mode
+      (Closes: #629266, LP: #975793)
+
+    - Check for apt_init errors in cmdline_download.cc (Closes: #670379)
+
+    - Downloading/installing now locks /var/cache/apt/archives
+      (Closes: #370381)
+
+    - Actually use aptitude::Logging::Levels (Closes: #654344)
+
+    - No longer use ListUpdate (from libapt-pkg) to update package lists.
+      Instead, restore the previous code and update it to include the
+      semantics from ListUpdate which were missing.
+
+      ListUpdate was too coarse to suit download_update_manager properly
+      even though it more-or-less worked.
+
+    - Do not call debtags on list update.  This was a rather unsightly
+      kludge is better suited as a script for APT::Update::Post-Invoke.
+
+    - Use arch-qualified names in 'Provided by' for virtual packages
+      (LP: #972847)
+
+    - Preview screen ignores Pkg-Display-Limit
+
+      Previously it would apply that limit if UI::Preview-Limit was not
+      set.  This was causing confusion and it is more useful to have these
+      as two clearly distinct settings. (LP: #381507)
+
+    - Include build of gtest when building gmock. (Closes: #670403)
+
+    - New translations:
+
+      + Croatian (Closes: #667934)
 
   * Use export to really enable build hardening, etc.
 
- -- Daniel Hartwig <mandyke@gmail.com>  Wed, 28 Mar 2012 20:13:06 +0800
+ -- Daniel Hartwig <mandyke@gmail.com>  Thu, 03 May 2012 15:57:42 +0800
 
 aptitude (0.6.6-1) unstable; urgency=low
 
