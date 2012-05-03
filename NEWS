@@ -1,3 +1,74 @@
+[5/2/2012]
+Version 0.6.7                               "I said 'Step pause turn
+                                             pause pivot step step'"
+
+- Crashes and serious errors:
+
+  * [cmdline]: Avoid dpkg and infinite loop in download-only mode
+               (Closes: #629266) (LP: #975793)
+
+  * [cmdline]: Check for apt_init errors in cmdline_download.cc
+               (Closes: #670379)
+
+- Minor bugs:
+
+  * [all]: Fix various locking issues:
+
+           - 'install' actions lock /var/cache/apt/archives
+
+             Other tasks which access that directory (such as 'apt-get
+             clean') will now fail if aptitude is downloading or
+             installing packages. (Closes: #370381)
+
+  * [all]: Actually use aptitude::Logging::Levels (Closes: #654344)
+
+- Internal changes:
+
+  * [all]: No longer use ListUpdate (from libapt-pkg) to update package
+           lists.  Instead, restore the previous code and update it to
+           include the semantics from ListUpdate which were missing.
+
+           ListUpdate was too coarse to suit download_update_manager
+           properly even though it more-or-less worked.
+
+  * [all]: Do not call debtags on list update.  This was a rather
+           unsightly kludge is better suited as a script for
+           APT::Update::Post-Invoke.
+
+  * [all]: Destroy download_threads when done with them.  The objects
+           were previously left undestroyed, consuming resources and
+           keeping, e.g., locks open longer than needed.
+
+- Cosmetic and UI bugs:
+
+  * [curses]: Apply patch from Ubuntu: don't mention 'su' in 'Become
+              root'.
+
+  * [cmdline]: Use arch-qualified names in 'Provided by' for virtual
+               packages (LP: #972847)
+
+  * [curses]: Preview screen ignores Pkg-Display-Limit
+
+              Previously it would apply that limit if
+              UI::Preview-Limit was not set.  This was causing
+              confusion and it is more useful to have these as two
+              clearly distinct settings. (LP: #381507)
+
+- Build system changes:
+
+  * [all]: Include build of gtest when building gmock. (Closes: #670403)
+
+  * [all]: Fix check_boost.sh for out-of-tree builds
+
+- Documentation:
+
+  * [doc]: Apply patch from Ubuntu: update Finnish manpage to point to
+           doc package.
+
+- New translations:
+
+  * Croatian (Closes: #667934)
+
 [3/17/2012]
 Version 0.6.6                               "There is not one you,
                                              there are many."

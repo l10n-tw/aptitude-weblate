@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([aptitude], [0.6.6])
+AC_INIT([aptitude], [0.6.7])
 AC_CONFIG_SRCDIR([src/main.cc])
 AM_INIT_AUTOMAKE
 AM_CONFIG_HEADER(config.h)
@@ -7,7 +7,7 @@ AM_CONFIG_HEADER(config.h)
 dnl Use C++
 AC_LANG([C++])
 
-ALL_LINGUAS="ar ast bs ca cs da de dz el es eu fi fr gl hu it ja km ku lt mr nb ne nl nn pl pt pt_BR ro ru sk sv th tl tr uk vi zh_CN zh_TW"
+ALL_LINGUAS="ar ast bs ca cs da de dz el es eu fi fr gl hu hr it ja km ku lt mr nb ne nl nn pl pt pt_BR ro ru sk sv th tl tr uk vi zh_CN zh_TW"
 AM_GNU_GETTEXT([external])
 
 dnl Checks for programs.
@@ -515,10 +515,11 @@ int main(int argc, char **argv)
         dnl Ok, check whether we can link it if we include the gmock
         dnl source code.  Note that it will require both pthreads and
         dnl gtest; no way around that.
-        [LIBS="$OLD_LIBS -lpthread -lgtest"
+        [LIBS="$OLD_LIBS -lpthread"
          OLD_CPPFLAGS="$CPPFLAGS"
-         CPPFLAGS="$CPPFLAGS -I/usr/src/gmock"
+         CPPFLAGS="$CPPFLAGS -I/usr/src/gtest -I/usr/src/gmock"
          AC_LINK_IFELSE([AC_LANG_SOURCE([
+#include <src/gtest-all.cc>
 #include <src/gmock-all.cc>
 
 int main(int argc, char **argv)
