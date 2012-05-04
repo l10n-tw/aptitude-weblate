@@ -40,6 +40,10 @@ aptitude (0.6.7-1) unstable; urgency=low
 
   * Use export to really enable build hardening, etc.
 
+  * debian/control: remove traces of aptitude-gtk:
+    - aptitude: description
+    - aptitude-dbg: build-depends
+
  -- Daniel Hartwig <mandyke@gmail.com>  Thu, 03 May 2012 15:57:42 +0800
 
 aptitude (0.6.6-1) unstable; urgency=low
