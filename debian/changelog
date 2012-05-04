@@ -1,5 +1,8 @@
 aptitude (0.6.7-1) unstable; urgency=low
 
+  * Fix FTBFS in sid: include build of gtest when building gmock
+   (Closes: #670403, #671439)
+
   * New upstream release.
 
     - Avoid dpkg and infinite loop in download-only mode
@@ -30,8 +33,6 @@ aptitude (0.6.7-1) unstable; urgency=low
       Previously it would apply that limit if UI::Preview-Limit was not
       set.  This was causing confusion and it is more useful to have these
       as two clearly distinct settings. (LP: #381507)
-
-    - Include build of gtest when building gmock. (Closes: #670403)
 
     - New translations:
 
