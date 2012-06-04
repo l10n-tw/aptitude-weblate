@@ -1,0 +1,3 @@
+src/generic/apt/pkg_hier.h
+src/generic/apt/pkg_hier.cc
+src/generic/apt/pkg_hier_dump.cc

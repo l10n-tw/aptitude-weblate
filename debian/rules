@@ -3,7 +3,7 @@
 # GNU copyright 1997 to 1999 by Joey Hess.
 
 # Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
+export DH_VERBOSE=1
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
@@ -19,157 +19,41 @@ ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
   DEB_CXXFLAGS_MAINT_APPEND += -fno-inline
 endif
 
-ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
-  NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
-  MAKEFLAGS += -j$(NUMJOBS)
-endif
-
 ifneq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
   CONFIGURE_OPTS += --disable-tests
 endif
 
 export DEB_CXXFLAGS_MAINT_APPEND
 
-CURSES_BUILD_DIR=build-curses
-GTK_BUILD_DIR=build-gtk
+BUILDDIR = build
+export DH_OPTIONS = --builddirectory=$(BUILDDIR) --dbg-package=aptitude-dbg
 
-build-gtk: build-stamp-gtk
-build-stamp-gtk:
-	-rm build-stamp-gtk
+%:
+	dh $@ --parallel
 
-	dh_testdir
-	dh_auto_configure -B$(GTK_BUILD_DIR) -- --disable-docs $(CONFIGURE_OPTS)
-	$(MAKE) -C $(GTK_BUILD_DIR)/src
+override_dh_auto_configure:
+	dh_auto_configure -- \
+	    --htmldir='$${docdir}/html' \
+	    --program-transform='s&aptitude$$&aptitude-curses&' \
+	    $(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),--disable-tests)
+
+override_dh_auto_test:
 ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 	# Run the unit tests, but protect against Boost.Test's flakiness.
-	(cd $(GTK_BUILD_DIR) && $(MAKE) -C tests check || (cd tests && ./cppunit_test))
-endif
-	touch build-stamp-gtk
-
-build-curses: build-stamp-curses
-build-stamp-curses:
-	-rm build-stamp-curses
-
-	dh_testdir
-	dh_auto_configure -B$(CURSES_BUILD_DIR) -- $(CONFIGURE_OPTS)
-	$(MAKE) -C $(CURSES_BUILD_DIR)/src
-ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
-	# Run the unit tests, but protect against Boost.Test's flakiness.
-	(cd $(CURSES_BUILD_DIR) && $(MAKE) -C tests check || (cd tests && ./cppunit_test))
+	(cd $(BUILDDIR) && $(MAKE) -C tests check || (cd tests && ./cppunit_test))
 endif
 
-	touch build-stamp-curses
+override_dh_installdocs:
+	dh_installdocs
 
-build build-arch build-indep:
-	# As per policy 4.9, do nothing.
+	for lc in $(notdir $(wildcard debian/tmp/usr/share/doc/aptitude/html/??)); do \
+	  mkdir -p "debian/aptitude-doc-$$lc/usr/share/doc/aptitude/html"; \
+	  cp -R "debian/tmp/usr/share/doc/aptitude/html/$$lc" \
+	      "debian/aptitude-doc-$$lc/usr/share/doc/aptitude/html/$$lc"; \
+	done
 
-clean:
-	dh_testdir
-	dh_testroot
-	if [ -f build-stamp-gtk ]; then rm build-stamp-gtk; fi
-	if [ -f build-stamp-curses ]; then rm build-stamp-curses; fi
-	if [ -f build-indep-stamp ]; then rm build-indep-stamp; fi
-	rm -fr debian/html-docs
-	if [ -d $(GTK_BUILD_DIR) ]; then rm -r $(GTK_BUILD_DIR); fi
-	if [ -d $(CURSES_BUILD_DIR) ]; then rm -r $(CURSES_BUILD_DIR); fi
-
-	[ ! -f Makefile ] || $(MAKE) distclean
-	[ ! -f doc/Makefile ] || $(MAKE) -C doc distclean
-	[ ! -f src/gtk/Makefile ] || $(MAKE) -C src/gtk distclean
-
-	dh_clean
-
-install-gtk: build-gtk
-	dh_testdir
-	dh_testroot
-	-rm -fr debian/aptitude-gtk
-	dh_installdirs -paptitude-gtk
-
-	$(MAKE) -C $(GTK_BUILD_DIR) install DESTDIR=`pwd`/debian/tmp gnulocaledir=`pwd`/debian/aptitude/usr/share/locale
-	# Extract the bits of the package that we need for both builds. (ew)
-	dh_install -paptitude-gtk
-	cp debian/tmp/usr/bin/aptitude debian/aptitude-gtk/usr/bin/aptitude-gtk
-
-	ln -s ../../aptitude/README debian/aptitude-gtk/usr/share/doc/aptitude-gtk/README
-
-	ln -s ../../aptitude/NEWS debian/aptitude-gtk/usr/share/doc/aptitude-gtk/NEWS
-	ln -s ../common-licenses/GPL debian/aptitude-gtk/usr/share/doc/aptitude-gtk/COPYING
-
-
-install-curses: build-curses
-	dh_testdir
-	dh_testroot
-	-rm -fr debian/aptitude
-	dh_installdirs -paptitude
-	dh_installcron -paptitude
-
-	$(MAKE) -C $(CURSES_BUILD_DIR) install DESTDIR=`pwd`/debian/aptitude gnulocaledir=`pwd`/debian/aptitude/usr/share/locale
-	mv debian/aptitude/usr/bin/aptitude debian/aptitude/usr/bin/aptitude-curses
-	(mandir=debian/aptitude/usr/share/man; \
-	mv $$mandir/man8/aptitude.8 $$mandir/man8/aptitude-curses.8; \
-	for lang in cs de es fi fr gl it ja pl ; do \
-	  mv $$mandir/$$lang/man8/aptitude.8 $$mandir/$$lang/man8/aptitude-curses.8; \
-	done)
-
-	cp debian/aptitude.reportbug debian/aptitude/usr/share/bug/aptitude
-	chmod +x debian/aptitude/usr/share/bug/aptitude
-
-	ln -s ../../aptitude/README debian/aptitude/usr/share/doc/aptitude/README
-
-	ln -s ../../aptitude/NEWS debian/aptitude/usr/share/doc/aptitude/NEWS
-	-rm debian/aptitude/usr/share/aptitude/COPYING
-	ln -s ../common-licenses/GPL debian/aptitude/usr/share/aptitude/COPYING
-
-	cp FAQ debian/aptitude/usr/share/aptitude/FAQ
-
-	mv debian/aptitude/usr/share/doc/aptitude/html debian/html-docs
-
-binary-arch: install-curses
-	dh_testdir -a
-	dh_testroot -a
-	dh_installdocs -a
-	dh_installexamples -a src/generic/apt/pkg_hier.h src/generic/apt/pkg_hier.cc src/generic/apt/pkg_hier_dump.cc
-	dh_installmenu -a
-	dh_installman -a
-	dh_installlogrotate -a
-	dh_installchangelogs -a
-	dh_link -a
-	dh_strip -a --dbg-package=aptitude-dbg
-	dh_compress -a
-	dh_fixperms -a
-	dh_installdeb -a
-	dh_shlibdeps -a
-	dh_gencontrol -a
-	dh_md5sums -a
-	dh_builddeb -a
-
-# Unfortunately, it's not any easier to build arch-dependent files
-# than arch-independent ones :-(.  The problem is that we need to
-# build manpages -- if we could instead just build the manpages and
-# not the full documentation, that would help.
-binary-indep: binary-arch
-	dh_testdir -i
-	dh_testroot -i
-	dh_installdirs -A -i usr/share/doc/aptitude/html
-
-	mv debian/html-docs/cs debian/aptitude-doc-cs/usr/share/doc/aptitude/html/
-	mv debian/html-docs/en debian/aptitude-doc-en/usr/share/doc/aptitude/html/
-	mv debian/html-docs/es debian/aptitude-doc-es/usr/share/doc/aptitude/html/
-	mv debian/html-docs/fi debian/aptitude-doc-fi/usr/share/doc/aptitude/html/
-	mv debian/html-docs/fr debian/aptitude-doc-fr/usr/share/doc/aptitude/html/
-	mv debian/html-docs/it debian/aptitude-doc-it/usr/share/doc/aptitude/html/
-	mv debian/html-docs/ja debian/aptitude-doc-ja/usr/share/doc/aptitude/html/
-
-	dh_installdocs -i
-	dh_installexamples -i
-	dh_installchangelogs ChangeLog -i
-	dh_link -i
-	dh_compress -i
-	dh_fixperms -i
-	dh_installdeb -i
-	dh_gencontrol -i
-	dh_md5sums -i
-	dh_builddeb -i
-
-binary: binary-indep binary-arch
-.PHONY: build build-arch build-indep clean binary-indep binary-arch binary install
+override_dh_installman:
+	dh_installman $(wildcard debian/tmp/usr/share/man/man?/*)
+	for lc in $(notdir $(wildcard debian/tmp/usr/share/man/??)); do \
+	  dh_installman --language=$$lc "debian/tmp/usr/share/man/$$lc/man?/*"; \
+	done
