@@ -2,6 +2,8 @@ aptitude (0.6.8-1) unstable; urgency=low
   
   * Fix build with g++ 4.7
     Thanks Adrian Lang for the patch (Closes: #672335)
+  * New binary package:
+    - aptitude-doc-it: Italian documentation (Closes: #674664)
   * New upstream release.
     - Update to tasks support: task packages, multi-arch, syntax
 

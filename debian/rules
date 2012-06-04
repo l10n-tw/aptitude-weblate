@@ -157,6 +157,7 @@ binary-indep: binary-arch
 	mv debian/html-docs/es debian/aptitude-doc-es/usr/share/doc/aptitude/html/
 	mv debian/html-docs/fi debian/aptitude-doc-fi/usr/share/doc/aptitude/html/
 	mv debian/html-docs/fr debian/aptitude-doc-fr/usr/share/doc/aptitude/html/
+	mv debian/html-docs/it debian/aptitude-doc-it/usr/share/doc/aptitude/html/
 	mv debian/html-docs/ja debian/aptitude-doc-ja/usr/share/doc/aptitude/html/
 
 	dh_installdocs -i
