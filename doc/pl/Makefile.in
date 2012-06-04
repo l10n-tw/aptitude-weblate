@@ -15,7 +15,15 @@
 
 @SET_MAKE@
 
-# automake doesn't play nicely with DocBook :(
+# Standard makefile rules for documentation
+#
+
+# Makefile rules for targets from po4a translations
+#
+
+# Makefile rules for targets from docbook source
+#
+
 VPATH = @srcdir@
 am__make_dryrun = \
   { \
@@ -52,8 +60,11 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/buildlib/doc.mk \
+	$(top_srcdir)/buildlib/docbook.mk \
+	$(top_srcdir)/buildlib/po4a.mk
 subdir = doc/pl
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_boost_base.m4 \
 	$(top_srcdir)/m4/ax_boost_iostreams.m4 \
@@ -82,6 +93,40 @@ am__can_run_installinfo = \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
+am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
+am__vpath_adj = case $$p in \
+    $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
+    *) f=$$p;; \
+  esac;
+am__strip_dir = f=`echo $$p | sed -e 's|^.*/||'`;
+am__install_max = 40
+am__nobase_strip_setup = \
+  srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*|]/\\\\&/g'`
+am__nobase_strip = \
+  for p in $$list; do echo "$$p"; done | sed -e "s|$$srcdirstrip/||"
+am__nobase_list = $(am__nobase_strip_setup); \
+  for p in $$list; do echo "$$p $$p"; done | \
+  sed "s| $$srcdirstrip/| |;"' / .*\//!s/ .*/ ./; s,\( .*\)/[^/]*$$,\1,' | \
+  $(AWK) 'BEGIN { files["."] = "" } { files[$$2] = files[$$2] " " $$1; \
+    if (++n[$$2] == $(am__install_max)) \
+      { print $$2, files[$$2]; n[$$2] = 0; files[$$2] = "" } } \
+    END { for (dir in files) print dir, files[dir] }'
+am__base_list = \
+  sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
+  sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
+am__uninstall_files_from_dir = { \
+  test -z "$$files" \
+    || { test ! -d "$$dir" && test ! -f "$$dir" && test ! -r "$$dir"; } \
+    || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
+         $(am__cd) "$$dir" && rm -f $$files; }; \
+  }
+man8dir = $(mandir)/man8
+am__installdirs = "$(DESTDIR)$(man8dir)" "$(DESTDIR)$(htmldir)" \
+	"$(DESTDIR)$(imagesdir)" "$(DESTDIR)$(pdfdir)" \
+	"$(DESTDIR)$(pkgdatadir)"
+NROFF = nroff
+MANS = $(man_MANS)
+DATA = $(html_DATA) $(images_DATA) $(pdf_DATA) $(pkgdata_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 AM_RECURSIVE_TARGETS = $(RECURSIVE_TARGETS:-recursive=) \
@@ -145,6 +190,7 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
+FOP = @FOP@
 GLIBMM_CFLAGS = @GLIBMM_CFLAGS@
 GLIBMM_LIBS = @GLIBMM_LIBS@
 GMSGFMT = @GMSGFMT@
@@ -195,6 +241,7 @@ QtCore_LIBS = @QtCore_LIBS@
 QtGui_CFLAGS = @QtGui_CFLAGS@
 QtGui_LIBS = @QtGui_LIBS@
 RANLIB = @RANLIB@
+RSVG_CONVERT = @RSVG_CONVERT@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 SIGC_CFLAGS = @SIGC_CFLAGS@
@@ -210,6 +257,7 @@ VERSION = @VERSION@
 VTE_CFLAGS = @VTE_CFLAGS@
 VTE_LIBS = @VTE_LIBS@
 XGETTEXT = @XGETTEXT@
+XSLTPROC = @XSLTPROC@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -230,9 +278,7 @@ build_vendor = @build_vendor@
 builddir = @builddir@
 datadir = @datadir@
 datarootdir = @datarootdir@
-
-# Put documentation in /usr/share/doc/aptitude (by default)
-docdir = $(datadir)/doc/$(PACKAGE)
+docdir = @docdir@
 dvidir = @dvidir@
 ept_CFLAGS = @ept_CFLAGS@
 ept_LIBS = @ept_LIBS@
@@ -242,7 +288,7 @@ host_alias = @host_alias@
 host_cpu = @host_cpu@
 host_os = @host_os@
 host_vendor = @host_vendor@
-htmldir = $(docdir)/html/$(LANGCODE)
+htmldir = @htmldir@/${LC}
 includedir = @includedir@
 infodir = @infodir@
 install_sh = @install_sh@
@@ -250,7 +296,7 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-mandir = @mandir@
+mandir = $(if $(findstring en,$(LC)),@mandir@,@mandir@/${LC})
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
 pdfdir = @pdfdir@
@@ -265,25 +311,51 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-
-# no full manual yet
 SUBDIRS = 
-#SUBDIRS=images
 EXTRA_DIST = fixman
-LANGCODE = pl
-MANPAGE = aptitude.$(LANGCODE).8
-# How much of the manual should actually at least be translated.
-PERCENT_TRANSLATED = 0
-MANPAGE_PERCENT_TRANSLATED = 0
-README = README.$(LANGCODE)
-XMLSOURCES = aptitude.xml manpage.xml $(srcdir)/../aptitude-common.xsl
-localemandir = $(mandir)/$(LANGCODE)
-HTML2TEXT = $(srcdir)/../html-to-text
-IMAGES = $(wildcard $(srcdir)/images/*.png)
+LC = pl
+PO4A_TRANSLATED = aptitude.xml manpage.xml
+HTML2TEXT = $(top_srcdir)/doc/html-to-text
+imagesdir = ${htmldir}/images
+
+#man_MANS =
+#notrans_man_MANS =
+html_DATA = 
+images_DATA = 
+pkgdata_DATA = $(README)
+pdf_DATA = $(aptitude.pdf)
+PO4A_IMAGES := $(filter images/%,$(PO4A_TRANSLATED))
+PO4AFLAGS = --srcdir=$(top_srcdir)/doc --destdir=$(top_builddir)/doc \
+	$(top_srcdir)/doc/po4a/po4a.cfg
+
+DOCBOOK_MANS = aptitude.8
+DOCBOOK_TARGETS = docbook-man
+dbiftargets = $(if $(findstring $(1),$(DOCBOOK_TARGETS)),$(2))
+DOCBOOK_INSTALL_CANDIDATES = docbook-html
+DOCBOOK_INSTALL_TARGETS = $(filter $(DOCBOOK_INSTALL_CANDIDATES),$(DOCBOOK_TARGETS))
+dbinstall = @list='$(1)'; test -n "$(2)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(2)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(2)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(2)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(2)" || exit $$?; \
+	done
+
+dbuninstall = @list='$(1)'; test -n "$(2)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(2)'; $(am__uninstall_files_from_dir)
+
+man_MANS = aptitude.8
 all: all-recursive
 
 .SUFFIXES:
-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
+$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/buildlib/doc.mk $(top_srcdir)/buildlib/po4a.mk $(top_srcdir)/buildlib/docbook.mk $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -304,6 +376,7 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)'; \
 	    cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe);; \
 	esac;
+$(top_srcdir)/buildlib/doc.mk $(top_srcdir)/buildlib/po4a.mk $(top_srcdir)/buildlib/docbook.mk:
 
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
@@ -313,6 +386,133 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+install-man8: $(man_MANS)
+	@$(NORMAL_INSTALL)
+	@list1=''; \
+	list2='$(man_MANS)'; \
+	test -n "$(man8dir)" \
+	  && test -n "`echo $$list1$$list2`" \
+	  || exit 0; \
+	echo " $(MKDIR_P) '$(DESTDIR)$(man8dir)'"; \
+	$(MKDIR_P) "$(DESTDIR)$(man8dir)" || exit 1; \
+	{ for i in $$list1; do echo "$$i"; done;  \
+	if test -n "$$list2"; then \
+	  for i in $$list2; do echo "$$i"; done \
+	    | sed -n '/\.8[a-z]*$$/p'; \
+	fi; \
+	} | while read p; do \
+	  if test -f $$p; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; echo "$$p"; \
+	done | \
+	sed -e 'n;s,.*/,,;p;h;s,.*\.,,;s,^[^8][0-9a-z]*$$,8,;x' \
+	      -e 's,\.[0-9a-z]*$$,,;$(transform);G;s,\n,.,' | \
+	sed 'N;N;s,\n, ,g' | { \
+	list=; while read file base inst; do \
+	  if test "$$base" = "$$inst"; then list="$$list $$file"; else \
+	    echo " $(INSTALL_DATA) '$$file' '$(DESTDIR)$(man8dir)/$$inst'"; \
+	    $(INSTALL_DATA) "$$file" "$(DESTDIR)$(man8dir)/$$inst" || exit $$?; \
+	  fi; \
+	done; \
+	for i in $$list; do echo "$$i"; done | $(am__base_list) | \
+	while read files; do \
+	  test -z "$$files" || { \
+	    echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(man8dir)'"; \
+	    $(INSTALL_DATA) $$files "$(DESTDIR)$(man8dir)" || exit $$?; }; \
+	done; }
+
+uninstall-man8:
+	@$(NORMAL_UNINSTALL)
+	@list=''; test -n "$(man8dir)" || exit 0; \
+	files=`{ for i in $$list; do echo "$$i"; done; \
+	l2='$(man_MANS)'; for i in $$l2; do echo "$$i"; done | \
+	  sed -n '/\.8[a-z]*$$/p'; \
+	} | sed -e 's,.*/,,;h;s,.*\.,,;s,^[^8][0-9a-z]*$$,8,;x' \
+	      -e 's,\.[0-9a-z]*$$,,;$(transform);G;s,\n,.,'`; \
+	dir='$(DESTDIR)$(man8dir)'; $(am__uninstall_files_from_dir)
+install-htmlDATA: $(html_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(html_DATA)'; test -n "$(htmldir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(htmldir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(htmldir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(htmldir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(htmldir)" || exit $$?; \
+	done
+
+uninstall-htmlDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(html_DATA)'; test -n "$(htmldir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(htmldir)'; $(am__uninstall_files_from_dir)
+install-imagesDATA: $(images_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(images_DATA)'; test -n "$(imagesdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(imagesdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(imagesdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(imagesdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(imagesdir)" || exit $$?; \
+	done
+
+uninstall-imagesDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(images_DATA)'; test -n "$(imagesdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(imagesdir)'; $(am__uninstall_files_from_dir)
+install-pdfDATA: $(pdf_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(pdf_DATA)'; test -n "$(pdfdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(pdfdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(pdfdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(pdfdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(pdfdir)" || exit $$?; \
+	done
+
+uninstall-pdfDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(pdf_DATA)'; test -n "$(pdfdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(pdfdir)'; $(am__uninstall_files_from_dir)
+install-pkgdataDATA: $(pkgdata_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(pkgdata_DATA)'; test -n "$(pkgdatadir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(pkgdatadir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(pkgdatadir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(pkgdatadir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(pkgdatadir)" || exit $$?; \
+	done
+
+uninstall-pkgdataDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(pkgdata_DATA)'; test -n "$(pkgdatadir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(pkgdatadir)'; $(am__uninstall_files_from_dir)
 
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run `make' without going through this Makefile.
@@ -450,6 +650,19 @@ distclean-tags:
 	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
 
 distdir: $(DISTFILES)
+	@list='$(MANS)'; if test -n "$$list"; then \
+	  list=`for p in $$list; do \
+	    if test -f $$p; then d=; else d="$(srcdir)/"; fi; \
+	    if test -f "$$d$$p"; then echo "$$d$$p"; else :; fi; done`; \
+	  if test -n "$$list" && \
+	    grep 'ab help2man is required to generate this page' $$list >/dev/null; then \
+	    echo "error: found man pages containing the \`missing help2man' replacement text:" >&2; \
+	    grep -l 'ab help2man is required to generate this page' $$list | sed 's/^/         /' >&2; \
+	    echo "       to fix them, install help2man, remove and regenerate the man pages;" >&2; \
+	    echo "       typically \`make maintainer-clean' will remove them" >&2; \
+	    exit 1; \
+	  else :; fi; \
+	else :; fi
 	@srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
 	list='$(DISTFILES)'; \
@@ -506,9 +719,12 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-recursive
-all-am: Makefile all-local
+all-am: Makefile $(MANS) $(DATA) all-local
 installdirs: installdirs-recursive
 installdirs-am:
+	for dir in "$(DESTDIR)$(man8dir)" "$(DESTDIR)$(htmldir)" "$(DESTDIR)$(imagesdir)" "$(DESTDIR)$(pdfdir)" "$(DESTDIR)$(pkgdatadir)"; do \
+	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
+	done
 install: install-recursive
 install-exec: install-exec-recursive
 install-data: install-data-recursive
@@ -559,7 +775,8 @@ info: info-recursive
 
 info-am:
 
-install-data-am:
+install-data-am: install-htmlDATA install-imagesDATA install-man \
+	install-pdfDATA install-pkgdataDATA
 	@$(NORMAL_INSTALL)
 	$(MAKE) $(AM_MAKEFLAGS) install-data-hook
 install-dvi: install-dvi-recursive
@@ -576,7 +793,7 @@ install-info: install-info-recursive
 
 install-info-am:
 
-install-man:
+install-man: install-man8
 
 install-pdf: install-pdf-recursive
 
@@ -604,10 +821,15 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am:
+uninstall-am: uninstall-htmlDATA uninstall-imagesDATA uninstall-man \
+	uninstall-pdfDATA uninstall-pkgdataDATA
+	@$(NORMAL_INSTALL)
+	$(MAKE) $(AM_MAKEFLAGS) uninstall-hook
+uninstall-man: uninstall-man8
 
 .MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) ctags-recursive \
-	install-am install-data-am install-strip tags-recursive
+	install-am install-data-am install-strip tags-recursive \
+	uninstall-am
 
 .PHONY: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) CTAGS GTAGS \
 	all all-am all-local check check-am clean clean-generic \
@@ -615,68 +837,163 @@ uninstall-am:
 	distclean-tags distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am \
 	install-data-hook install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installdirs installdirs-am maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
-	pdf-am ps ps-am tags tags-recursive uninstall uninstall-am
+	install-exec-am install-html install-html-am install-htmlDATA \
+	install-imagesDATA install-info install-info-am install-man \
+	install-man8 install-pdf install-pdf-am install-pdfDATA \
+	install-pkgdataDATA install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs installdirs-am \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-generic pdf pdf-am ps ps-am tags tags-recursive \
+	uninstall uninstall-am uninstall-hook uninstall-htmlDATA \
+	uninstall-imagesDATA uninstall-man uninstall-man8 \
+	uninstall-pdfDATA uninstall-pkgdataDATA
 
 
-all-local: doc-stamp
+PO4A_TRANSLATED ?= $(shell cat $(top_srcdir)/doc/po4a/TRANSLATED)
 
-clean-local:
-	-rm -fr output-html/ output-txt/ output-man/
-	-rm -f doc-stamp doc-css-stamp doc-html-stamp doc-txt-stamp doc-man-stamp
-	-rm -fr $(MANPAGE) aptitude.8 $(README) *.tmp
-	-rm -fr aptitude.xml manpage.xml
+clean-local: clean-po4a
 
-install-data-hook:
-	$(mkinstalldirs) $(DESTDIR)$(localemandir)/man8
-	$(INSTALL_DATA) $(MANPAGE) $(DESTDIR)$(localemandir)/man8/aptitude.8
+clean-po4a:
+	-rm -fr $(PO4A_TRANSLATED) $(PO4A_IMAGES)
+	-rm -fr $(addprefix "$(srcdir)/",$(PO4A_IMAGES))
 
-# $(mkinstalldirs) $(htmldir)/images
-# $(INSTALL_DATA) output-html/*.html output-html/*.css $(htmldir)
-# $(INSTALL_DATA) output-html/images/* $(htmldir)/images
-# $(INSTALL_DATA) $(srcdir)/$(README) $(DESTDIR)$(pkgdatadir)/$(README)
+vpath %.po $(top_srcdir)/doc/po4a/po
 
-#doc-stamp: doc-html-stamp doc-css-stamp $(README) $(MANPAGE)
-doc-stamp: $(MANPAGE)
-	touch doc-stamp
+@HAVE_PO4A_TRUE@$(PO4A_TRANSLATED): $(LC).po $(top_srcdir)/doc/en/$@
+@HAVE_PO4A_TRUE@	$(PO4A) --translate-only=$(LC)/$@ $(PO4AFLAGS)
 
-aptitude.xml: $(srcdir)/../en/aptitude.xml $(srcdir)/../po4a/po/$(LANGCODE).po $(srcdir)/../po4a/add_$(LANGCODE)/addendum.1.$(LANGCODE)
-	po4a-translate -k $(PERCENT_TRANSLATED) -M utf-8 -f docbook -m $(srcdir)/../en/aptitude.xml -p $(srcdir)/../po4a/po/$(LANGCODE).po -l aptitude.xml
+DOCBOOK_IMAGES ?= $(patsubst %.svg,%.png,$(IMAGES))
 
-manpage.xml: $(srcdir)/../en/manpage.xml $(srcdir)/../po4a/po/$(LANGCODE).po $(srcdir)/../po4a/add_$(LANGCODE)/addendum.1.$(LANGCODE)
-	po4a-translate -k $(MANPAGE_PERCENT_TRANSLATED) -M utf-8 -f docbook -m $(srcdir)/../en/manpage.xml -p $(srcdir)/../po4a/po/$(LANGCODE).po -l manpage.xml
+DOCBOOK_XML ?= aptitude.xml manpage.xml
+DOCBOOK_HTML_XSL ?= aptitude-html.xsl aptitude-common.xsl
 
-$(MANPAGE): $(XMLSOURCES) $(srcdir)/../aptitude-man.xsl
-	-rm -fr output-man $(MANPAGE)
-	xsltproc -o output-man/aptitude.8 $(srcdir)/../aptitude-man.xsl aptitude.xml
-	mv output-man/aptitude.8 $(MANPAGE)
-	/bin/bash $(srcdir)/fixman
+DOCBOOK_HTML ?= $(wildcard output-html/*.html) $(wildcard output-html/*.css)
+DOCBOOK_HTML_IMAGES ?= $(wildcard output-html/images/*.png) $(wildcard output-html/images/*.gif)
+DOCBOOK_MANS ?= aptitude.8 aptitude-create-state-bundle.1 aptitude-run-state-bundle.1
 
-$(README): $(XMLSOURCES)  $(srcdir)/../aptitude-txt.xsl
-	-rm -fr output-txt
-	xsltproc -o output-txt/index.html $(srcdir)/../aptitude-txt.xsl aptitude.xml
-	$(HTML2TEXT) output-txt/index.html > $(README)
+docbook-stamp: $(DOCBOOK_TARGETS)
+	touch docbook-stamp
 
-doc-css-stamp: doc-html-stamp $(srcdir)/../aptitude.css
-	rm -f output-html/aptitude.css
-	cp $(srcdir)/../aptitude.css output-html/
-	touch doc-css-stamp
+docbook-man: docbook-man-stamp
+docbook-html: docbook-html-stamp docbook-css-stamp docbook-html-images-stamp
+docbook-readme: docbook-readme-stamp
+docbook-pdf: docbook-pdf-stamp
 
-doc-html-stamp: $(XMLSOURCES) $(srcdir)/../aptitude-html.xsl $(IMAGES)
-	-rm -fr output-html/
+.PHONY: docbook-man docbook-html docbook-readme docbook-pdf
+.PHONY: clean-local clean-docbookclean-docbook-readme
+.PHONY: clean-docbook-man clean-docbook-fo clean-docbook-pdf
+.PHONY: clean-docbook-html clean-docbook-css clean-docbook-html-images
+.PHONY: install-data-docbook uninstall-docbook
+.PHONY: install-docbook-html uninstall-docbook-html
 
-	xsltproc -o output-html/ $(srcdir)/../aptitude-html.xsl aptitude.xml
+vpath %.xsl $(top_srcdir)/doc
+vpath %.css $(top_srcdir)/doc
 
+install-data-hook: install-data-docbook
+install-data-docbook: $(addprefix install-, $(DOCBOOK_INSTALL_TARGETS))
+
+uninstall-hook: uninstall-docbook
+uninstall-docbook: $(addprefix uninstall-, $(DOCBOOK_INSTALL_TARGETS))
+
+#man_MANS += $(filter aptitude.8,$(DOCBOOK_MANS))
+#notrans_man_MANS += $(filter-out aptitude.8,$(DOCBOOK_MANS))
+
+install-docbook-html: docbook-html
+	@$(NORMAL_INSTALL)
+	$(call dbinstall,$(DOCBOOK_HTML),$(htmldir))
+	$(call dbinstall,$(DOCBOOK_HTML_IMAGES),$(imagesdir))
+uninstall-docbook-html:
+	@$(NORMAL_UNINSTALL)
+	$(call dbuninstall,$(DOCBOOK_HTML),$(htmldir))
+	$(call dbuninstall,$(DOCBOOK_HTML_IMAGES),$(imagesdir))
+
+clean-local: clean-docbook
+clean-docbook: $(addprefix clean-,$(DOCBOOK_TARGETS))
+	-rm -f docbook-stamp
+clean-docbook-man:
+	-rm -fr output-man/ docbook-man-stamp $(DOCBOOK_MANS)
+clean-docbook-html: clean-docbook-css clean-docbook-html-images
+	-rm -fr output-html/ docbook-html-stamp
+clean-docbook-css:
+	-rm -f output-html/aptitude.css docbook-css-stamp
+clean-docbook-html-images:
+	-rm -fr output-html/images/ docbook-html-images-stamp
+clean-docbook-readme:
+	-rm -fr output-readme/ docbook-readme-stamp $(README)
+clean-docbook-fo:
+	-rm -fr output-fo/ docbook-fo-stamp
+clean-docbook-pdf: clean-docbook-fo
+	-rm -fr docbook-pdf-stamp $(aptitude.pdf)
+
+docbook-css-stamp: aptitude.css docbook-html-stamp
+	-rm -f output-html/aptitude.css
+	cp $< output-html/
+	touch docbook-css-stamp
+
+docbook-html-images-stamp: $(DOCBOOK_IMAGES) docbook-html-stamp
 	mkdir output-html/images/
-	ln -f $(srcdir)/images/*.png output-html/images/
-	for x in caution important note tip warning; do ln -s /usr/share/xml/docbook/stylesheet/nwalsh/images/$$x.png output-html/images/; done
-	for x in home next prev up; do ln -s /usr/share/xml/docbook/stylesheet/nwalsh/images/$$x.gif output-html/images/; done
+	cp -f $(filter-out docbook-html-stamp,$^) output-html/images/
+	for x in caution important note tip warning; do \
+	  ln -s /usr/share/xml/docbook/stylesheet/nwalsh/images/$$x.png \
+	      output-html/images/; \
+	done
+	for x in home next prev up; do \
+	  ln -s /usr/share/xml/docbook/stylesheet/nwalsh/images/$$x.gif \
+	      output-html/images/; \
+	done
+	touch docbook-html-images-stamp
 
-	touch doc-html-stamp
+$(DOCBOOK_MANS): $(findstring docbook-man,$(DOCBOOK_TARGETS))
+$(README): $(findstring docbook-readme,$(DOCBOOK_TARGETS))
+$(aptitude.pdf): $(findstring docbook-pdf,$(DOCBOOK_TARGETS)
+
+@HAVE_RSVG_CONVERT_TRUE@images/%.png: images/%.svg
+@HAVE_RSVG_CONVERT_TRUE@	$(RSVG_CONVERT) -x 1.5 -y 1.5 -f png -o $@ $<
+
+@HAVE_XSLTPROC_TRUE@docbook-man-stamp: $(DOCBOOK_XML) aptitude-man.xsl aptitude-common.xsl
+@HAVE_XSLTPROC_TRUE@	-rm -fr output-man/
+@HAVE_XSLTPROC_TRUE@	$(XSLTPROC) -o output-man/aptitude.8 $(firstword $(filter %.xsl,$^)) $<
+@HAVE_XSLTPROC_TRUE@	ln -f $(addprefix output-man/,$(DOCBOOK_MANS)) .
+@HAVE_XSLTPROC_TRUE@	@if [ -x "$(srcdir)/fixman" ]; then \
+@HAVE_XSLTPROC_TRUE@	  for i in $(DOCBOOK_MANS); do \
+@HAVE_XSLTPROC_TRUE@	    echo "$(srcdir)/fixman $$i"; \
+@HAVE_XSLTPROC_TRUE@	    . $(srcdir)/fixman $$i; \
+@HAVE_XSLTPROC_TRUE@          done; \
+@HAVE_XSLTPROC_TRUE@        fi
+@HAVE_XSLTPROC_TRUE@	touch docbook-man-stamp
+
+@HAVE_XSLTPROC_TRUE@docbook-html-stamp: $(DOCBOOK_XML) $(DOCBOOK_HTML_XSL)
+@HAVE_XSLTPROC_TRUE@	-rm -fr output-html/
+@HAVE_XSLTPROC_TRUE@	$(XSLTPROC) -o output-html/ $(firstword $(filter %.xsl,$^)) $<
+@HAVE_XSLTPROC_TRUE@	touch docbook-html-stamp
+
+@HAVE_XSLTPROC_TRUE@docbook-readme-stamp: $(DOCBOOK_XML) aptitude-txt.xsl aptitude-common.xsl
+@HAVE_XSLTPROC_TRUE@	-rm -fr output-readme/ $(README)
+@HAVE_XSLTPROC_TRUE@	$(XSLTPROC) -o output-readme/index.html $(firstword $(filter %.xsl,$^)) $<
+@HAVE_XSLTPROC_TRUE@	@echo "$(HTML2TEXT) output-readme/index.html $(README_encoding) > $(README)"; \
+@HAVE_XSLTPROC_TRUE@	$(HTML2TEXT) output-readme/index.html $(README_encoding) > $(README) \
+@HAVE_XSLTPROC_TRUE@	    || (rm -f $(README); exit 1)
+@HAVE_XSLTPROC_TRUE@	touch docbook-readme-stamp
+
+@HAVE_XSLTPROC_TRUE@docbook-fo-stamp: $(DOCBOOK_XML) aptitude-fo.xsl aptitude-common.xsl $(IMAGES)
+@HAVE_XSLTPROC_TRUE@	-rm -fr output-fo/
+@HAVE_XSLTPROC_TRUE@	$(XSLTPROC) -o output-fo/aptitude.fo $(firstword $(filter %.xsl,$^)) $<
+
+@HAVE_XSLTPROC_TRUE@	mkdir output-fo/images/
+@HAVE_XSLTPROC_TRUE@	ln -f $(srcdir)/images/*.png output-fo/images/
+@HAVE_XSLTPROC_TRUE@	for x in caution important note tip warning; do \
+@HAVE_XSLTPROC_TRUE@	  ln -s /usr/share/xml/docbook/stylesheet/nwalsh/images/$$x.png \
+@HAVE_XSLTPROC_TRUE@	      output-html/images/; \
+@HAVE_XSLTPROC_TRUE@	done
+
+@HAVE_XSLTPROC_TRUE@	touch docbook-fo-stamp
+
+@HAVE_FOP_TRUE@docbook-pdf-stamp: docbook-fo-stamp
+@HAVE_FOP_TRUE@	$(FOP) output-fo/aptitude.fo -pdf $(aptitude.pdf)
+@HAVE_FOP_TRUE@	touch docbook-pdf-stamp
+
+all-local: docbook-stamp
+#notrans_man_MANS = aptitude-create-state-bundle.1 aptitude-run-state-bundle.1
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

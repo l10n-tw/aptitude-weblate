@@ -103,6 +103,7 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
+FOP = @FOP@
 GLIBMM_CFLAGS = @GLIBMM_CFLAGS@
 GLIBMM_LIBS = @GLIBMM_LIBS@
 GMSGFMT = @GMSGFMT@
@@ -153,6 +154,7 @@ QtCore_LIBS = @QtCore_LIBS@
 QtGui_CFLAGS = @QtGui_CFLAGS@
 QtGui_LIBS = @QtGui_LIBS@
 RANLIB = @RANLIB@
+RSVG_CONVERT = @RSVG_CONVERT@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 SIGC_CFLAGS = @SIGC_CFLAGS@
@@ -168,6 +170,7 @@ VERSION = @VERSION@
 VTE_CFLAGS = @VTE_CFLAGS@
 VTE_LIBS = @VTE_LIBS@
 XGETTEXT = @XGETTEXT@
+XSLTPROC = @XSLTPROC@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -228,7 +231,7 @@ EXTRA_DIST = become-root-snapshot.png broken-snapshot.png \
 	limit-snapshot.png menu-snapshot.png mine-snapshot2.png \
 	mine-snapshot3.png mine-snapshot4.png mine-snapshot5.png \
 	mine-snapshot.png preview-snapshot.png search-snapshot.png \
-	search-tier-diagram.svg solution-explanation-snapshot.png \
+	solution-explanation-snapshot.png \
 	solution-reject-and-approve-snapshot.png \
 	solution-screen-snapshot2.png solution-screen-snapshot3.png \
 	solution-screen-snapshot4.png solution-screen-snapshot5.png \

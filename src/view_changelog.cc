@@ -269,7 +269,7 @@ static void do_view_changelog(temp::name n,
 			      string curverstr)
 {
   string menulabel =
-    ssprintf(_("ChangeLog of %s"), pkgname.c_str());
+    ssprintf(_("Changelog of %s"), pkgname.c_str());
   string tablabel = ssprintf(_("%s changes"), pkgname.c_str());
   string desclabel = _("View the list of changes made to this Debian package.");
 
@@ -373,8 +373,8 @@ public:
   }
 
   void partial_download(const temp::name &name,
-			unsigned long currentSize,
-			unsigned long totalSize)
+			unsigned long long currentSize,
+			unsigned long long totalSize)
   {
     cwidget::util::ref_ptr<refcounted_progress> p = download_progress->get_progress();
 
