@@ -1,14 +1,22 @@
-SUBDIRS=cs de en es fi fr ja pl po4a
+SUBDIRS=cs de en es fi fr it ja pl po4a
 
-EXTRA_DIST=aptitude-common.xsl aptitude-html.xsl aptitude-man.xsl aptitude-txt.xsl aptitude.css fixup-text html-to-text
+EXTRA_DIST=aptitude-common.xsl aptitude-html.xsl aptitude-man.xsl aptitude-txt.xsl aptitude.css html-to-text xx/Makefile.am
 
-if USE_PO4A
+PO4AFLAGS = --srcdir=$(top_srcdir)/doc --destdir=$(top_builddir)/doc \
+	--package-name='$(PACKAGE)' --package-version='$(PACKAGE_VERSION)' \
+	--msgid-bugs-address='$(PACKAGE_BUGREPORT)' \
+	$(top_srcdir)/doc/po4a/po4a.cfg
 
-dist distdir: po4a-dist
+if HAVE_PO4A
 
-update-po: po4a-dist
+dist: update-po
 
-po4a-dist:
-	-@cd $(srcdir) && po4a -M utf-8 -k 0 po4a/po4a.cfg
+update-po:
+	$(PO4A) --no-backups --force --no-translations $(PO4AFLAGS)
+
+po4a:
+	$(PO4A) --no-backups $(PO4AFLAGS)
 
 endif
+
+.PHONY: update-po

@@ -143,6 +143,7 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
+FOP = @FOP@
 GLIBMM_CFLAGS = @GLIBMM_CFLAGS@
 GLIBMM_LIBS = @GLIBMM_LIBS@
 GMSGFMT = @GMSGFMT@
@@ -193,6 +194,7 @@ QtCore_LIBS = @QtCore_LIBS@
 QtGui_CFLAGS = @QtGui_CFLAGS@
 QtGui_LIBS = @QtGui_LIBS@
 RANLIB = @RANLIB@
+RSVG_CONVERT = @RSVG_CONVERT@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 SIGC_CFLAGS = @SIGC_CFLAGS@
@@ -208,6 +210,7 @@ VERSION = @VERSION@
 VTE_CFLAGS = @VTE_CFLAGS@
 VTE_LIBS = @VTE_LIBS@
 XGETTEXT = @XGETTEXT@
+XSLTPROC = @XSLTPROC@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -261,8 +264,13 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SUBDIRS = cs de en es fi fr ja pl po4a
-EXTRA_DIST = aptitude-common.xsl aptitude-html.xsl aptitude-man.xsl aptitude-txt.xsl aptitude.css fixup-text html-to-text
+SUBDIRS = cs de en es fi fr it ja pl po4a
+EXTRA_DIST = aptitude-common.xsl aptitude-html.xsl aptitude-man.xsl aptitude-txt.xsl aptitude.css html-to-text xx/Makefile.am
+PO4AFLAGS = --srcdir=$(top_srcdir)/doc --destdir=$(top_builddir)/doc \
+	--package-name='$(PACKAGE)' --package-version='$(PACKAGE_VERSION)' \
+	--msgid-bugs-address='$(PACKAGE_BUGREPORT)' \
+	$(top_srcdir)/doc/po4a/po4a.cfg
+
 all: all-recursive
 
 .SUFFIXES:
@@ -605,12 +613,15 @@ uninstall-am:
 	tags-recursive uninstall uninstall-am
 
 
-@USE_PO4A_TRUE@dist distdir: po4a-dist
+@HAVE_PO4A_TRUE@dist: update-po
 
-@USE_PO4A_TRUE@update-po: po4a-dist
+@HAVE_PO4A_TRUE@update-po:
+@HAVE_PO4A_TRUE@	$(PO4A) --no-backups --force --no-translations $(PO4AFLAGS)
 
-@USE_PO4A_TRUE@po4a-dist:
-@USE_PO4A_TRUE@	-@cd $(srcdir) && po4a -M utf-8 -k 0 po4a/po4a.cfg
+@HAVE_PO4A_TRUE@po4a:
+@HAVE_PO4A_TRUE@	$(PO4A) --no-backups $(PO4AFLAGS)
+
+.PHONY: update-po
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

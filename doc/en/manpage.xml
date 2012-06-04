@@ -51,12 +51,12 @@
   </refentryinfo>
 
   <refmeta>
-    <refentrytitle>&aptitude;</refentrytitle>
+    <refentrytitle>aptitude</refentrytitle>
     <manvolnum>8</manvolnum>
   </refmeta>
 
   <refnamediv>
-    <refname>&aptitude;</refname>
+    <refname>aptitude</refname>
     <refpurpose>high-level interface to the package manager</refpurpose>
   </refnamediv>
 
@@ -1191,7 +1191,8 @@ i A texlive-latex-extra Conflicts textopo</screen>
 
 	<listitem>
 	  <para>
-	    This option causes <literal>aptitude search</literal> and <literal>aptitude version</literal> to
+	    This option causes <literal>aptitude search</literal> and
+	    <literal>aptitude versions</literal> to
 	    output their results without any special formatting.  In
 	    particular: normally &aptitude; will add whitespace or
 	    truncate search results in an attempt to fit its results
@@ -1273,7 +1274,7 @@ libdbix-fulltextsearch-perl 0.73-10</screen>
 	  <para>
 	    Specify the format which should be used to display
 	    output from the <literal>search</literal> and
-            <literal>version</literal> commands.
+            <literal>versions</literal> commands.
 	    For instance, passing <quote><literal>%p %V %v</literal></quote>
 	    for <replaceable>format</replaceable> will display a package's name,
 	    followed by its currently installed version and its
@@ -2451,7 +2452,7 @@ The following packages will be REMOVED:
     <title>aptitude-create-state-bundle</title>
 
      <!-- NWalsh's docbook scripts use this to generate the footer: -->
-    <productname><command>aptitude-create-state-bundle</command></productname>
+    <productname>aptitude-create-state-bundle</productname>
     <productnumber>&VERSION;</productnumber>
 
     <legalnotice>
@@ -2485,7 +2486,7 @@ The following packages will be REMOVED:
   </refentryinfo>
 
   <refmeta>
-    <refentrytitle><command>aptitude-create-state-bundle</command></refentrytitle>
+    <refentrytitle>aptitude-create-state-bundle</refentrytitle>
     <manvolnum>1</manvolnum>
   </refmeta>
 
@@ -2654,7 +2655,7 @@ The following packages will be REMOVED:
     <title>aptitude-run-state-bundle</title>
 
      <!-- NWalsh's docbook scripts use this to generate the footer: -->
-    <productname><command>aptitude-run-state-bundle</command></productname>
+    <productname>aptitude-run-state-bundle</productname>
     <productnumber>&VERSION;</productnumber>
 
     <legalnotice>
@@ -2688,7 +2689,7 @@ The following packages will be REMOVED:
   </refentryinfo>
 
   <refmeta>
-    <refentrytitle><command>aptitude-run-state-bundle</command></refentrytitle>
+    <refentrytitle>aptitude-run-state-bundle</refentrytitle>
     <manvolnum>1</manvolnum>
   </refmeta>
 

@@ -1097,7 +1097,8 @@ static void do_help_help()
       return;
     }
 
-  std::string filename = ssprintf(HELPDIR "/%s", _("help.txt"));
+  // ForTranslators: You can translate help.txt and set the filename here.
+  std::string filename = ssprintf(HELPDIR "/%s", P_("Localized file|help.txt"));
 
   const char *encoding = P_("Encoding of help.txt|UTF-8");
 
@@ -1120,7 +1121,8 @@ static void do_help_help()
 static void do_help_readme()
 {
   // Look up the translation of README.
-  std::string readme_file = ssprintf(HELPDIR "/%s", _("README"));
+  // ForTranslators: You can translate README and set the filename here.
+  std::string readme_file = ssprintf(HELPDIR "/%s", P_("Localized file|README"));
   const char *encoding    = P_("Encoding of README|ISO_8859-1");
 
   // Deal with missing localized docs.
@@ -1214,7 +1216,7 @@ namespace
     
     if(rval != pkgPackageManager::Incomplete)
       {
-	cerr << _("Press return to continue.\n");
+	cerr << _("Press Return to continue.") << endl;
 	int c = getchar();
 
 	while(c != '\n'  && c != EOF)
@@ -1405,6 +1407,9 @@ static void do_show_preview()
 
 static void do_keep_all()
 {
+  if(apt_cache_file == NULL)
+    return;
+
   auto_ptr<undo_group> undo(new apt_undo_group);
 
   aptitudeDepCache::action_group group(*apt_cache_file, undo.get());
@@ -1415,6 +1420,8 @@ static void do_keep_all()
 
   if(!undo.get()->empty())
     apt_undos->add_item(undo.release());
+
+  package_states_changed();
 }
 
 static void fixer_dialog_done()
@@ -2306,7 +2313,7 @@ static void do_dump_resolver()
   static cw::editline::history_list history;
 
   if(resman != NULL && resman->resolver_exists())
-    prompt_string(_("File to which the resolver state should be dumped: "),
+    prompt_string(_("File to write resolver state to: "),
 		  "",
 		  cw::util::arg(sigc::ptr_fun(handle_dump_resolver_response)),
 		  NULL,
