@@ -1,3 +1,49 @@
+aptitude (0.6.8-1) unstable; urgency=low
+  
+  * Fix build with g++ 4.7
+    Thanks Adrian Lang for the patch (Closes: #672335)
+  * New upstream release.
+    - Update to tasks support: task packages, multi-arch, syntax
+
+      Task packages (introduced with tasksel 3.0) are
+      meta-packages which define the dependencies of tasks.  The
+      packages themselves have always worked but the 'tasks'
+      grouping policy and '?task' search term did not support
+      them.  This update corrects for this.
+
+      As a result of this change to tasksel all Debian tasks now
+      function exactly like meta-packages. (Closes: #382631)
+
+      The syntax for installing tasks from the command line has
+      been updated.  It now supports specifying an arch and
+      requires the same syntax as apt-utils ('^' must be the last
+      part of the name).  Examples:
+
+        # aptitude install gnome-desktop^
+        # aptitude install ssh-server^:armel
+
+      This avoids ambiguity that may arise when a task and
+      package have the same name.
+    - Changelog downloading is restored
+      (Closes: #669569, LP: #824708)
+    - Exit with non-zero status when a package run is
+      aborted. (Closes: #293008)
+    - Restore candidate version on undo, keep
+      (Closes: #529403)
+    - Adjust default widths of localized columns:
+      broken_count, downloadsize (Closes: #674045)
+    - Update package views after 'Cancel pending actions'
+      (Closes: #595753)
+    - Fix minor errors in documentation. Thanks to Beatrice Torracca
+      (Closes: #674675)
+    - Fix groff warning in manpage (Closes: #675085)
+    - Translation updates:
+      + French (Closes: #673827, LP: #642840)
+      + German (Closes: #672467, #668875)
+      + Simplified Chinese
+
+ -- Daniel Hartwig <mandyke@gmail.com>  Mon, 04 Jun 2012 10:10:12 +0800
+
 aptitude (0.6.7-1) unstable; urgency=low
 
   * Fix FTBFS in sid: include build of gtest when building gmock
