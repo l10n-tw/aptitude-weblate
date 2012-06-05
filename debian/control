@@ -19,7 +19,7 @@ Homepage: http://aptitude.alioth.debian.org/
 
 Package: aptitude
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: aptitude-common (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
 Recommends: aptitude-doc-en | aptitude-doc, sensible-utils, apt-xapian-index, libparse-debianchangelog-perl
 Suggests: tasksel, debtags
 Conflicts: ia32-apt-get (<< 22)
@@ -32,6 +32,20 @@ Description: terminal-based package manager
  .
  aptitude is also Y2K-compliant, non-fattening, naturally cleansing,
  and housebroken.
+
+Package: aptitude-common
+Architecture: all
+Depends: ${misc:Depends}
+Recommends: aptitude
+Description: terminal-based package manager
+ aptitude is a package manager with a number of useful features,
+ including: a mutt-like syntax for matching packages in a flexible
+ manner, dselect-like persistence of user actions, the ability to
+ retrieve and display the Debian changelog of most packages, and a
+ command-line mode similar to that of apt-get.
+ .
+ This package contains the data files and translations used by
+ aptitude.
 
 Package: aptitude-dbg
 Section: debug

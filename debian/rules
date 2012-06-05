@@ -25,11 +25,10 @@ endif
 
 export DEB_CXXFLAGS_MAINT_APPEND
 
-BUILDDIR = build
-export DH_OPTIONS = --builddirectory=$(BUILDDIR) --dbg-package=aptitude-dbg
+BUILDDIR=build
 
 %:
-	dh $@ --parallel
+	dh $@ --parallel --builddirectory=$(BUILDDIR) --dbg-package=aptitude-dbg
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
@@ -44,7 +43,7 @@ ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 endif
 
 override_dh_installdocs:
-	dh_installdocs
+	dh_installdocs --link-doc=aptitude
 
 	for lc in $(notdir $(wildcard debian/tmp/usr/share/doc/aptitude/html/??)); do \
 	  mkdir -p "debian/aptitude-doc-$$lc/usr/share/doc/aptitude/html"; \
@@ -53,7 +52,28 @@ override_dh_installdocs:
 	done
 
 override_dh_installman:
-	dh_installman $(wildcard debian/tmp/usr/share/man/man?/*)
-	for lc in $(notdir $(wildcard debian/tmp/usr/share/man/??)); do \
-	  dh_installman --language=$$lc "debian/tmp/usr/share/man/$$lc/man?/*"; \
+	dh_installman -paptitude debian/tmp/usr/share/man/man8/aptitude-curses.8
+	dh_installman -paptitude-common debian/tmp/usr/share/man/man1/aptitude-*-state-bundle.1
+	ln -f debian/tmp/usr/share/man/gl/man8/aptitude.8 \
+	    debian/tmp/usr/share/man/gl/man8/aptitude-curses.8
+	@for ll in $(notdir $(wildcard debian/tmp/usr/share/man/??)); do \
+	  mans=`find debian/tmp/usr/share/man/$$ll -name aptitude-curses.8`; \
+	  if [ "x$$mans" != "x" ]; then \
+	    echo "dh_installman -paptitude --language=$$ll $$mans"; \
+	    dh_installman -paptitude --language=$$ll $$mans; \
+	  fi; \
+	  mans=`find debian/tmp/usr/share/man/$$ll -name aptitude-*-state-bundle.1`; \
+	  if [ "x$$mans" != "x" ]; then \
+	    echo "dh_installman -paptitude-common --language=$$ll $$mans"; \
+	    dh_installman -paptitude-common --language=$$ll $$mans; \
+	  fi; \
 	done
+	dh_installman --remaining-packages
+
+override_dh_installcron:
+	dh_installcron -paptitude-common --name=aptitude
+	dh_installcron --remaining-packages
+
+override_dh_installlogrotate:
+	dh_installlogrotate -paptitude-common --name=aptitude
+	dh_installlogrotate --remaining-packages
