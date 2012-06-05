@@ -2,8 +2,9 @@ aptitude (0.6.8-1) unstable; urgency=low
   
   * Fix build with g++ 4.7
     Thanks Adrian Lang for the patch (Closes: #672335)
-  * New binary package:
+  * New binary packages:
     - aptitude-doc-it: Italian documentation (Closes: #674664)
+    - aptitude-common: data files and translations
   * debian/rules:
     - use dh (debhelper command sequencer)
   * New upstream release.
