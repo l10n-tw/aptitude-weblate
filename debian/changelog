@@ -7,6 +7,8 @@ aptitude (0.6.8-1) unstable; urgency=low
     - aptitude-common: data files and translations
   * debian/rules:
     - use dh (debhelper command sequencer)
+  * Require libapt-pkg 0.9.3 to avoid "Method http has died
+    unexpectedly" (Closes: #669322)
   * New upstream release.
     - Update to tasks support: task packages, multi-arch, syntax
 
