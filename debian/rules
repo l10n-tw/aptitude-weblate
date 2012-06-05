@@ -19,10 +19,6 @@ ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
   DEB_CXXFLAGS_MAINT_APPEND += -fno-inline
 endif
 
-ifneq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
-  CONFIGURE_OPTS += --disable-tests
-endif
-
 export DEB_CXXFLAGS_MAINT_APPEND
 
 BUILDDIR=build
@@ -45,10 +41,13 @@ endif
 override_dh_installdocs:
 	dh_installdocs --link-doc=aptitude
 
-	for lc in $(notdir $(wildcard debian/tmp/usr/share/doc/aptitude/html/??)); do \
-	  mkdir -p "debian/aptitude-doc-$$lc/usr/share/doc/aptitude/html"; \
-	  cp -R "debian/tmp/usr/share/doc/aptitude/html/$$lc" \
-	      "debian/aptitude-doc-$$lc/usr/share/doc/aptitude/html/$$lc"; \
+	@pkgs=`dh_listpackages | grep ^aptitude-doc`; \
+	for pkg in $$pkgs; do \
+	  echo "  installing html for $$pkg"; \
+	  ll=`echo $$pkg | sed -e 's/^aptitude-doc-//'`; \
+	  mkdir -p "debian/$$pkg/usr/share/doc/aptitude/html"; \
+	  cp -Rf "debian/tmp/usr/share/doc/aptitude/html/$$ll" \
+	      "debian/$$pkg/usr/share/doc/aptitude/html/$$ll"; \
 	done
 
 override_dh_installman:
