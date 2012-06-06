@@ -9,6 +9,8 @@ aptitude (0.6.8-1) unstable; urgency=low
     - use dh (debhelper command sequencer)
   * Require libapt-pkg 0.9.3 to avoid "Method http has died
     unexpectedly" (Closes: #669322)
+  * Removed preinst script, the one transition it handled is
+    over ten years old.
   * New upstream release.
     - Update to tasks support: task packages, multi-arch, syntax
 
