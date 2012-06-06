@@ -39,7 +39,7 @@ Depends: ${misc:Depends}
 Recommends: aptitude
 Replaces: aptitude (<< 0.6.8-1)
 Breaks: aptitude (<< 0.6.8-1)
-Description: terminal-based package manager
+Description: architecture indepedent files for the aptitude package manager
  aptitude is a package manager with a number of useful features,
  including: a mutt-like syntax for matching packages in a flexible
  manner, dselect-like persistence of user actions, the ability to
