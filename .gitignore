@@ -140,4 +140,5 @@ tests/interactive_set_test
 
 # Things related to the Debian build:
 .pc/
-build/
+build-arch/
+build-indep/

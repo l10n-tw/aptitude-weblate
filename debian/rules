@@ -21,7 +21,7 @@ endif
 
 export DEB_CXXFLAGS_MAINT_APPEND
 
-BUILDDIR=build
+BUILDDIR=build-arch
 
 %:
 	dh $@ --parallel --builddirectory=$(BUILDDIR) --dbg-package=aptitude-dbg
