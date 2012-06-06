@@ -1,3 +1,0 @@
-?package(aptitude-gtk):needs="X11" section="Applications/System/Package Management" \
-  title="Aptitude Package Manager (GTK)" command="/usr/bin/aptitude-gtk" \
-  hints="apt"
