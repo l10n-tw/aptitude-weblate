@@ -9,3 +9,7 @@ debian/tmp/usr/share/aptitude/FAQ
 debian/tmp/usr/share/aptitude/README*
 debian/tmp/usr/share/aptitude/NEWS
 debian/tmp/usr/share/locale/
+
+debian/README.Debian TODO usr/share/doc/aptitude
+src/generic/apt/README.hier usr/share/doc/aptitude
+src/generic/apt/pkg_hier* usr/share/doc/aptitude/examples

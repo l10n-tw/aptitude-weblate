@@ -39,7 +39,8 @@ ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 endif
 
 override_dh_installdocs:
-	dh_installdocs --link-doc=aptitude
+	dh_installdocs -paptitude -XREADME.Debian
+	dh_installdocs --remaining-packages
 
 	@pkgs=`dh_listpackages | grep ^aptitude-doc`; \
 	for pkg in $$pkgs; do \
