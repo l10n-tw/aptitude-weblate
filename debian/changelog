@@ -1,3 +1,9 @@
+aptitude (0.6.8.1-2) unstable; urgency=low
+
+  * Use xz compression for all binaries. (Closes: #687294)
+
+ -- Daniel Hartwig <mandyke@gmail.com>  Tue, 25 Sep 2012 08:51:07 +0800
+
 aptitude (0.6.8.1-1) unstable; urgency=low
 
   * Multi-arch update for the problem resolver:

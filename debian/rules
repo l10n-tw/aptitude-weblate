@@ -69,3 +69,6 @@ override_dh_installman:
 	  fi; \
 	done
 	dh_installman --remaining-packages
+
+override_dh_builddeb:
+	dh_builddeb -- -Zxz
