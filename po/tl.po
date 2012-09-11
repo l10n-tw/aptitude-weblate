@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-06-03 11:30+0800\n"
+"POT-Creation-Date: 2012-08-28 11:08+0800\n"
 "PO-Revision-Date: 2012-05-23 11:47+0800\n"
 "Last-Translator: Ryan Escarez <rescarez@gmail.com>\n"
 "Language-Team: Tagalog <debian-tl@banwa.upm.edu.ph>\n"
@@ -1192,7 +1192,7 @@ msgid "No packages to show -- enter the package names on the line after 'i'.\n"
 msgstr "Walang paketeng ipapakita - ibigay ang mga pakete pagkatapos ng 'i'.\n"
 
 #: src/cmdline/cmdline_prompt.cc:777 src/cmdline/cmdline_prompt.cc:792
-#: src/pkg_item.cc:410 src/ui.cc:1219
+#: src/pkg_item.cc:411 src/ui.cc:1219
 msgid "Press Return to continue."
 msgstr "Pindutin ang Enter upang tumuloy."
 
@@ -2748,12 +2748,17 @@ msgstr ""
 msgid "Conflicting types for the cost component %s."
 msgstr ""
 
-#: src/generic/apt/aptitude_resolver_universe.cc:828
+#: src/generic/apt/aptitude_resolver_universe.cc:838
 #, c-format
 msgid ""
 "Invalid safety level \"%s\" (not \"discard\", \"maximum\", \"minimum\", or "
 "an integer)."
 msgstr ""
+
+#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
+#, fuzzy, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "Walang mga pakete na nagtulad sa pattern \"%s\"."
 
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
@@ -2811,6 +2816,17 @@ msgstr ""
 #, fuzzy
 msgid "Couldn't rebuild package cache"
 msgstr "Hindi mabasa ang pinagmulang listahan ng mga pakete"
+
+#: src/generic/apt/dpkg.cc:102
+#, fuzzy, c-format
+#| msgid "Couldn't find a changelog for %s"
+msgid "Couldn't chroot into %s for %s"
+msgstr "Hindi mahanap ang changelog ng %s"
+
+#: src/generic/apt/dpkg.cc:124
+#, c-format
+msgid "Waited for %s but it wasn't there"
+msgstr ""
 
 #: src/generic/apt/dump_packages.cc:539 src/generic/apt/dump_packages.cc:629
 #, fuzzy, c-format
@@ -6415,7 +6431,7 @@ msgstr "Pakete na naka-depende sa %s"
 msgid "Versions of %s"
 msgstr "Bersyon"
 
-#: src/pkg_item.cc:87
+#: src/pkg_item.cc:88
 #, fuzzy, c-format
 msgid ""
 "%s is an essential package!%n%nAre you sure you want to remove it?%nType "
@@ -6426,12 +6442,12 @@ msgstr ""
 "Ikaw ba'y sigurado na aalisin ito?\n"
 "Makinilyahin '%s' kung ukaw ay sigurado."
 
-#: src/pkg_item.cc:372 src/pkg_ver_item.cc:748
+#: src/pkg_item.cc:373 src/pkg_ver_item.cc:748
 #, c-format
 msgid "Reporting a bug in %s:\n"
 msgstr "Mag-ulat ng bug sa %s:\n"
 
-#: src/pkg_item.cc:392
+#: src/pkg_item.cc:393
 #, fuzzy
 msgid ""
 "You are not root and I cannot find any way to become root.  To reconfigure "
@@ -6443,12 +6459,12 @@ msgstr ""
 "instal ang menu pakete, ang login na pakete,\n"
 "o patakbuhin ang aptitude bilang root."
 
-#: src/pkg_item.cc:400
+#: src/pkg_item.cc:401
 #, c-format
 msgid "Reconfiguring %s\n"
 msgstr "Reconfiguring %s\n"
 
-#: src/pkg_item.cc:427 src/pkg_view.cc:673
+#: src/pkg_item.cc:428 src/pkg_view.cc:673
 #, fuzzy
 msgid "Hierarchy Editor"
 msgstr "Hierarchy editor"
@@ -6463,11 +6479,6 @@ msgstr[1] ""
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "Lahat ng pakete"
-
-#: src/pkg_tree.cc:282
-#, fuzzy, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "Walang mga pakete na nagtulad sa pattern \"%s\"."
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude_lt\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-06-03 11:30+0800\n"
+"POT-Creation-Date: 2012-08-28 11:08+0800\n"
 "PO-Revision-Date: 2012-06-03 12:27+0800\n"
 "Last-Translator: Darius Žitkevičius <skystis@gmail.com>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -1272,7 +1272,7 @@ msgid "No packages to show -- enter the package names on the line after 'i'.\n"
 msgstr "Nėra rodomų paketų -- įveskite paketų vardus eilutėje po „i“.\n"
 
 #: src/cmdline/cmdline_prompt.cc:777 src/cmdline/cmdline_prompt.cc:792
-#: src/pkg_item.cc:410 src/ui.cc:1219
+#: src/pkg_item.cc:411 src/ui.cc:1219
 msgid "Press Return to continue."
 msgstr "Norėdami tęsti spauskite ENTER."
 
@@ -2847,12 +2847,17 @@ msgstr ""
 msgid "Conflicting types for the cost component %s."
 msgstr ""
 
-#: src/generic/apt/aptitude_resolver_universe.cc:828
+#: src/generic/apt/aptitude_resolver_universe.cc:838
 #, c-format
 msgid ""
 "Invalid safety level \"%s\" (not \"discard\", \"maximum\", \"minimum\", or "
 "an integer)."
 msgstr ""
+
+#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "Nei vienas paketas neatitiko derinio „%ls“."
 
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
@@ -2906,6 +2911,17 @@ msgstr ""
 #: src/generic/apt/download_update_manager.cc:178
 msgid "Couldn't rebuild package cache"
 msgstr "Negaliu pergeneruoti paketu krepšio"
+
+#: src/generic/apt/dpkg.cc:102
+#, fuzzy, c-format
+#| msgid "Couldn't find a changelog for %s"
+msgid "Couldn't chroot into %s for %s"
+msgstr "Nerandu pakeitimų sąrašo bylos paketui %s"
+
+#: src/generic/apt/dpkg.cc:124
+#, c-format
+msgid "Waited for %s but it wasn't there"
+msgstr ""
 
 #: src/generic/apt/dump_packages.cc:539 src/generic/apt/dump_packages.cc:629
 #, c-format
@@ -6477,7 +6493,7 @@ msgstr "Paketai, kuriems reikia %s"
 msgid "Versions of %s"
 msgstr "%s versija"
 
-#: src/pkg_item.cc:87
+#: src/pkg_item.cc:88
 #, c-format
 msgid ""
 "%s is an essential package!%n%nAre you sure you want to remove it?%nType "
@@ -6486,12 +6502,12 @@ msgstr ""
 "%s yra esminis paketas!%n%nAr Jūs tikrai norite jį pašalinti?%nJei Jūs "
 "tikras įveskite: „%s“."
 
-#: src/pkg_item.cc:372 src/pkg_ver_item.cc:748
+#: src/pkg_item.cc:373 src/pkg_ver_item.cc:748
 #, c-format
 msgid "Reporting a bug in %s:\n"
 msgstr "Pranešame apie klaidas pakete %s:\n"
 
-#: src/pkg_item.cc:392
+#: src/pkg_item.cc:393
 msgid ""
 "You are not root and I cannot find any way to become root.  To reconfigure "
 "this package, install the menu package, the login package, or run aptitude "
@@ -6501,12 +6517,12 @@ msgstr ""
 "paketą perkonfigūruoti įdiekite paketus „menu“ ir „login“ arba paleiskite "
 "aptitude turėdami root teises."
 
-#: src/pkg_item.cc:400
+#: src/pkg_item.cc:401
 #, c-format
 msgid "Reconfiguring %s\n"
 msgstr "Perkonfigūruojamas paketas %s\n"
 
-#: src/pkg_item.cc:427 src/pkg_view.cc:673
+#: src/pkg_item.cc:428 src/pkg_view.cc:673
 msgid "Hierarchy Editor"
 msgstr "Hierarchijos redaktorius"
 
@@ -6521,11 +6537,6 @@ msgstr[2] "Šioje grupėje yra %d paketų."
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "Visi paketai"
-
-#: src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "Nei vienas paketas neatitiko derinio „%ls“."
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "

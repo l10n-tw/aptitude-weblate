@@ -111,6 +111,8 @@ src/generic/apt/aptitude_resolver_universe.cc
 src/generic/apt/aptitude_resolver_universe.h
 src/generic/apt/apt_undo_group.cc
 src/generic/apt/apt_undo_group.h
+src/generic/apt/cacheset.cc
+src/generic/apt/cacheset.h
 src/generic/apt/changelog_parse.cc
 src/generic/apt/changelog_parse.h
 src/generic/apt/config_signal.cc
@@ -127,6 +129,8 @@ src/generic/apt/download_signal_log.cc
 src/generic/apt/download_signal_log.h
 src/generic/apt/download_update_manager.cc
 src/generic/apt/download_update_manager.h
+src/generic/apt/dpkg.cc
+src/generic/apt/dpkg.h
 src/generic/apt/dump_packages.cc
 src/generic/apt/dump_packages.h
 src/generic/apt/globals.cc

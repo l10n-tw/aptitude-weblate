@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-06-03 11:30+0800\n"
+"POT-Creation-Date: 2012-08-28 11:08+0800\n"
 "PO-Revision-Date: 2012-06-03 12:26+0800\n"
 "Last-Translator: Tomislav Krznar <tomislav.krznar@gmail.com>\n"
 "Language-Team: Hrvatski <lokalizacija@linux.hr>\n"
@@ -1284,7 +1284,7 @@ msgid "No packages to show -- enter the package names on the line after 'i'.\n"
 msgstr "Nema paketa za prikaz -- unesite imena paketa u redak nakon 'i'.\n"
 
 #: src/cmdline/cmdline_prompt.cc:777 src/cmdline/cmdline_prompt.cc:792
-#: src/pkg_item.cc:410 src/ui.cc:1219
+#: src/pkg_item.cc:411 src/ui.cc:1219
 msgid "Press Return to continue."
 msgstr "Pritisnite Return za nastavak."
 
@@ -2883,7 +2883,7 @@ msgstr ""
 msgid "Conflicting types for the cost component %s."
 msgstr "Sukobljene vrste za cjenovnu komponentu %s."
 
-#: src/generic/apt/aptitude_resolver_universe.cc:828
+#: src/generic/apt/aptitude_resolver_universe.cc:838
 #, c-format
 msgid ""
 "Invalid safety level \"%s\" (not \"discard\", \"maximum\", \"minimum\", or "
@@ -2891,6 +2891,11 @@ msgid ""
 msgstr ""
 "Neispravna razina sigurnosti \"%s\" (nije \"discard\", \"maximum\", \"minimum"
 "\" ili cijeli broj)."
+
+#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "Nijedan paket ne odgovara uzorku \"%ls\"."
 
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
@@ -2947,6 +2952,17 @@ msgstr ""
 #| msgid "Couldn't read list of package sources"
 msgid "Couldn't rebuild package cache"
 msgstr "Ne mogu čitati popis izvora paketa"
+
+#: src/generic/apt/dpkg.cc:102
+#, fuzzy, c-format
+#| msgid "Couldn't find a changelog for %s"
+msgid "Couldn't chroot into %s for %s"
+msgstr "Ne mogu pronaći popis promjena za %s"
+
+#: src/generic/apt/dpkg.cc:124
+#, c-format
+msgid "Waited for %s but it wasn't there"
+msgstr ""
 
 #: src/generic/apt/dump_packages.cc:539 src/generic/apt/dump_packages.cc:629
 #, c-format
@@ -6490,7 +6506,7 @@ msgstr "Paketi koji ovise o %s"
 msgid "Versions of %s"
 msgstr "Inačice %s"
 
-#: src/pkg_item.cc:87
+#: src/pkg_item.cc:88
 #, c-format
 msgid ""
 "%s is an essential package!%n%nAre you sure you want to remove it?%nType "
@@ -6499,12 +6515,12 @@ msgstr ""
 "%s je esencijalni paket!%n%nJeste li sigurni da ga želite ukloniti?%nUpišite "
 "'%s' ako jeste."
 
-#: src/pkg_item.cc:372 src/pkg_ver_item.cc:748
+#: src/pkg_item.cc:373 src/pkg_ver_item.cc:748
 #, c-format
 msgid "Reporting a bug in %s:\n"
 msgstr "Prijavljujem grešku u %s:\n"
 
-#: src/pkg_item.cc:392
+#: src/pkg_item.cc:393
 msgid ""
 "You are not root and I cannot find any way to become root.  To reconfigure "
 "this package, install the menu package, the login package, or run aptitude "
@@ -6514,12 +6530,12 @@ msgstr ""
 "konfiguracije ovog paketa instalirajte pakete menu i login ili pokrenite "
 "aptitude kao root."
 
-#: src/pkg_item.cc:400
+#: src/pkg_item.cc:401
 #, c-format
 msgid "Reconfiguring %s\n"
 msgstr "Ponovo konfiguriram %s\n"
 
-#: src/pkg_item.cc:427 src/pkg_view.cc:673
+#: src/pkg_item.cc:428 src/pkg_view.cc:673
 msgid "Hierarchy Editor"
 msgstr "Uređivač hijerarhije"
 
@@ -6534,11 +6550,6 @@ msgstr[2] "Ova grupa sadrži %d paketa."
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "Svi paketi"
-
-#: src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "Nijedan paket ne odgovara uzorku \"%ls\"."
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "

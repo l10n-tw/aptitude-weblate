@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude_po_ne\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-06-03 11:30+0800\n"
+"POT-Creation-Date: 2012-08-28 11:08+0800\n"
 "PO-Revision-Date: 2012-06-03 12:27+0800\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -1178,7 +1178,7 @@ msgid "No packages to show -- enter the package names on the line after 'i'.\n"
 msgstr "देखाउन कुनै प्याकेजहरू छैन -- 'i' पछि रेखामा प्याकेज नाम प्रविष्ट गर्नुहोस् ।\n"
 
 #: src/cmdline/cmdline_prompt.cc:777 src/cmdline/cmdline_prompt.cc:792
-#: src/pkg_item.cc:410 src/ui.cc:1219
+#: src/pkg_item.cc:411 src/ui.cc:1219
 msgid "Press Return to continue."
 msgstr "निरन्तरता दिन 'फर्कनुहोस्' थिच्नुहोस् ।"
 
@@ -2727,12 +2727,17 @@ msgstr ""
 msgid "Conflicting types for the cost component %s."
 msgstr ""
 
-#: src/generic/apt/aptitude_resolver_universe.cc:828
+#: src/generic/apt/aptitude_resolver_universe.cc:838
 #, c-format
 msgid ""
 "Invalid safety level \"%s\" (not \"discard\", \"maximum\", \"minimum\", or "
 "an integer)."
 msgstr ""
+
+#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "बान्की \"%ls\" संग कुनै प्याकेजहरू मेल खाएन ।"
 
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
@@ -2784,6 +2789,17 @@ msgstr ""
 #: src/generic/apt/download_update_manager.cc:178
 msgid "Couldn't rebuild package cache"
 msgstr "प्याकेज क्यास पुन:निर्माण गर्न सकिएन"
+
+#: src/generic/apt/dpkg.cc:102
+#, fuzzy, c-format
+#| msgid "Couldn't find a changelog for %s"
+msgid "Couldn't chroot into %s for %s"
+msgstr "%s को लागि परिवर्तन लग फेला पार्न सकिदैन"
+
+#: src/generic/apt/dpkg.cc:124
+#, c-format
+msgid "Waited for %s but it wasn't there"
+msgstr ""
 
 #: src/generic/apt/dump_packages.cc:539 src/generic/apt/dump_packages.cc:629
 #, fuzzy, c-format
@@ -6314,7 +6330,7 @@ msgstr "%s मा भर पर्ने प्याकेजहरू"
 msgid "Versions of %s"
 msgstr "संस्करणहरू"
 
-#: src/pkg_item.cc:87
+#: src/pkg_item.cc:88
 #, c-format
 msgid ""
 "%s is an essential package!%n%nAre you sure you want to remove it?%nType "
@@ -6323,12 +6339,12 @@ msgstr ""
 "%s एउटा आवश्यक प्याकेज हो!%n%nके तपाईँ यसलाई हटाउन निश्चिन्त हुनुहुन्छ ?%n यदि हुनुहुन्छ भने "
 "'%s' टाइप गर्नुहोस् ।"
 
-#: src/pkg_item.cc:372 src/pkg_ver_item.cc:748
+#: src/pkg_item.cc:373 src/pkg_ver_item.cc:748
 #, c-format
 msgid "Reporting a bug in %s:\n"
 msgstr "%s मा बग प्रतिवेदन गर्नुहोस्:\n"
 
-#: src/pkg_item.cc:392
+#: src/pkg_item.cc:393
 msgid ""
 "You are not root and I cannot find any way to become root.  To reconfigure "
 "this package, install the menu package, the login package, or run aptitude "
@@ -6337,12 +6353,12 @@ msgstr ""
 "तपाईँ मूल होइन र मैले मूल हुने कुनै बाटो फेला पारिन । यो प्याकेजलाई पुन:कनफिगर गर्न,मूलको "
 "रुपमा मेनु प्याकेज, लगइन प्याकेज, वा सञ्चालित झुकाव स्थापना गर्नुहोस् । "
 
-#: src/pkg_item.cc:400
+#: src/pkg_item.cc:401
 #, c-format
 msgid "Reconfiguring %s\n"
 msgstr "%s पुन:कनफिगर गरिदैछ\n"
 
-#: src/pkg_item.cc:427 src/pkg_view.cc:673
+#: src/pkg_item.cc:428 src/pkg_view.cc:673
 msgid "Hierarchy Editor"
 msgstr "सोपानक्रम सम्पादक"
 
@@ -6356,11 +6372,6 @@ msgstr[1] ""
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "सबै प्याकेजहरू"
-
-#: src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "बान्की \"%ls\" संग कुनै प्याकेजहरू मेल खाएन ।"
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "

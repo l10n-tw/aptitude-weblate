@@ -43,7 +43,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude 0.4.11.10\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-06-03 11:30+0800\n"
+"POT-Creation-Date: 2012-08-28 11:08+0800\n"
 "PO-Revision-Date: 2012-06-03 12:26+0800\n"
 "Last-Translator: Danilo Piazzalunga <danilopiazza@gmail.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
@@ -1341,7 +1341,7 @@ msgstr ""
 "Nessun pacchetto da mostrare; specificare i nomi dei pacchetti dopo «i».\n"
 
 #: src/cmdline/cmdline_prompt.cc:777 src/cmdline/cmdline_prompt.cc:792
-#: src/pkg_item.cc:410 src/ui.cc:1219
+#: src/pkg_item.cc:411 src/ui.cc:1219
 msgid "Press Return to continue."
 msgstr "Premere Invio per continuare."
 
@@ -2926,12 +2926,17 @@ msgstr ""
 msgid "Conflicting types for the cost component %s."
 msgstr ""
 
-#: src/generic/apt/aptitude_resolver_universe.cc:828
+#: src/generic/apt/aptitude_resolver_universe.cc:838
 #, c-format
 msgid ""
 "Invalid safety level \"%s\" (not \"discard\", \"maximum\", \"minimum\", or "
 "an integer)."
 msgstr ""
+
+#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "Nessun pacchetto corrisponde al modello «%ls»."
 
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
@@ -2989,6 +2994,17 @@ msgstr ""
 #: src/generic/apt/download_update_manager.cc:178
 msgid "Couldn't rebuild package cache"
 msgstr "Impossibile ricostruire la cache dei pacchetti"
+
+#: src/generic/apt/dpkg.cc:102
+#, fuzzy, c-format
+#| msgid "Couldn't find a changelog for %s"
+msgid "Couldn't chroot into %s for %s"
+msgstr "Impossibile trovare il changelog di «%s»"
+
+#: src/generic/apt/dpkg.cc:124
+#, c-format
+msgid "Waited for %s but it wasn't there"
+msgstr ""
 
 #: src/generic/apt/dump_packages.cc:539 src/generic/apt/dump_packages.cc:629
 #, c-format
@@ -6577,7 +6593,7 @@ msgstr "Pacchetti che dipendono da %s"
 msgid "Versions of %s"
 msgstr "Versioni di %s"
 
-#: src/pkg_item.cc:87
+#: src/pkg_item.cc:88
 #, c-format
 msgid ""
 "%s is an essential package!%n%nAre you sure you want to remove it?%nType "
@@ -6586,12 +6602,12 @@ msgstr ""
 "%s è un pacchetto essenziale.%n%nSe si è certi di volerlo rimuovere, inserire"
 "%n«%s»."
 
-#: src/pkg_item.cc:372 src/pkg_ver_item.cc:748
+#: src/pkg_item.cc:373 src/pkg_ver_item.cc:748
 #, c-format
 msgid "Reporting a bug in %s:\n"
 msgstr "Segnalazione di un bug in %s:\n"
 
-#: src/pkg_item.cc:392
+#: src/pkg_item.cc:393
 msgid ""
 "You are not root and I cannot find any way to become root.  To reconfigure "
 "this package, install the menu package, the login package, or run aptitude "
@@ -6601,12 +6617,12 @@ msgstr ""
 "modo per diventare root. Per riconfigurare questo pacchetto, installare il "
 "pacchetto «menu», il pacchetto «login», oppure eseguire Aptitude come root."
 
-#: src/pkg_item.cc:400
+#: src/pkg_item.cc:401
 #, c-format
 msgid "Reconfiguring %s\n"
 msgstr "Riconfigurazione di %s\n"
 
-#: src/pkg_item.cc:427 src/pkg_view.cc:673
+#: src/pkg_item.cc:428 src/pkg_view.cc:673
 msgid "Hierarchy Editor"
 msgstr "Editor della gerarchia"
 
@@ -6620,11 +6636,6 @@ msgstr[1] "Questo gruppo contiene %d pacchetti."
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "Tutti i pacchetti"
-
-#: src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "Nessun pacchetto corrisponde al modello «%ls»."
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "
