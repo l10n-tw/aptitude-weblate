@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-06-03 11:30+0800\n"
+"POT-Creation-Date: 2012-08-28 11:08+0800\n"
 "PO-Revision-Date: 2012-02-23 16:55+0800\n"
 "Last-Translator: Asho Yeh <ashoyeh@gmail.com>\n"
 "Language-Team: Chinese/Traditional <zh-l10n@linux.org.tw>\n"
@@ -1214,7 +1214,7 @@ msgid "No packages to show -- enter the package names on the line after 'i'.\n"
 msgstr "無顯示套件 -- 請在 'i' 之後輸入套件名稱。\n"
 
 #: src/cmdline/cmdline_prompt.cc:777 src/cmdline/cmdline_prompt.cc:792
-#: src/pkg_item.cc:410 src/ui.cc:1219
+#: src/pkg_item.cc:411 src/ui.cc:1219
 msgid "Press Return to continue."
 msgstr "按 Return 繼續。"
 
@@ -2745,12 +2745,17 @@ msgstr ""
 msgid "Conflicting types for the cost component %s."
 msgstr ""
 
-#: src/generic/apt/aptitude_resolver_universe.cc:828
+#: src/generic/apt/aptitude_resolver_universe.cc:838
 #, c-format
 msgid ""
 "Invalid safety level \"%s\" (not \"discard\", \"maximum\", \"minimum\", or "
 "an integer)."
 msgstr ""
+
+#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "沒有套件吻合樣式 \"%ls\"。"
 
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
@@ -2802,6 +2807,17 @@ msgstr ""
 #: src/generic/apt/download_update_manager.cc:178
 msgid "Couldn't rebuild package cache"
 msgstr "無法重建套件快取"
+
+#: src/generic/apt/dpkg.cc:102
+#, fuzzy, c-format
+#| msgid "Couldn't find a changelog for %s"
+msgid "Couldn't chroot into %s for %s"
+msgstr "無法找到 %s 的更改紀錄"
+
+#: src/generic/apt/dpkg.cc:124
+#, c-format
+msgid "Waited for %s but it wasn't there"
+msgstr ""
 
 #: src/generic/apt/dump_packages.cc:539 src/generic/apt/dump_packages.cc:629
 #, c-format
@@ -6290,7 +6306,7 @@ msgstr "依賴於 %s 的套件"
 msgid "Versions of %s"
 msgstr "%s 的版本號碼"
 
-#: src/pkg_item.cc:87
+#: src/pkg_item.cc:88
 #, c-format
 msgid ""
 "%s is an essential package!%n%nAre you sure you want to remove it?%nType "
@@ -6298,12 +6314,12 @@ msgid ""
 msgstr ""
 "%s 是一個核心套件！%n%n 您確定您要移除它嗎？%n 如果您確定的話輸入“%s”。"
 
-#: src/pkg_item.cc:372 src/pkg_ver_item.cc:748
+#: src/pkg_item.cc:373 src/pkg_ver_item.cc:748
 #, c-format
 msgid "Reporting a bug in %s:\n"
 msgstr "回報 %s 的臭蟲:\n"
 
-#: src/pkg_item.cc:392
+#: src/pkg_item.cc:393
 msgid ""
 "You are not root and I cannot find any way to become root.  To reconfigure "
 "this package, install the menu package, the login package, or run aptitude "
@@ -6312,12 +6328,12 @@ msgstr ""
 "您不是 root，而且我沒有發現任何方法來變成 root。要重新設定這個套件，請安裝 "
 "menu 套件，login 套件，或者以 root 身份執行 aptitude 。"
 
-#: src/pkg_item.cc:400
+#: src/pkg_item.cc:401
 #, c-format
 msgid "Reconfiguring %s\n"
 msgstr "重新設定 %s\n"
 
-#: src/pkg_item.cc:427 src/pkg_view.cc:673
+#: src/pkg_item.cc:428 src/pkg_view.cc:673
 msgid "Hierarchy Editor"
 msgstr "層次編輯器"
 
@@ -6330,11 +6346,6 @@ msgstr[0] "該群組包含 %d 個套件。"
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "全部包"
-
-#: src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "沒有套件吻合樣式 \"%ls\"。"
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "

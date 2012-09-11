@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude_po_km\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-06-03 11:30+0800\n"
+"POT-Creation-Date: 2012-08-28 11:08+0800\n"
 "PO-Revision-Date: 2012-06-03 12:26+0800\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -1173,7 +1173,7 @@ msgid "No packages to show -- enter the package names on the line after 'i'.\n"
 msgstr "មិន​មាន​កញ្ចប់​ដើម្បី​បង្ហាញ​ឡើយ -- សូមបញ្ចូល​ឈ្មោះ​កញ្ចប់ នៅ​បន្ទាប់​ពី 'i' ។\n"
 
 #: src/cmdline/cmdline_prompt.cc:777 src/cmdline/cmdline_prompt.cc:792
-#: src/pkg_item.cc:410 src/ui.cc:1219
+#: src/pkg_item.cc:411 src/ui.cc:1219
 msgid "Press Return to continue."
 msgstr "ចុចគ្រាប់ចុច បញ្ចូល ដើម្បី​បន្ត ។"
 
@@ -2710,12 +2710,17 @@ msgstr ""
 msgid "Conflicting types for the cost component %s."
 msgstr ""
 
-#: src/generic/apt/aptitude_resolver_universe.cc:828
+#: src/generic/apt/aptitude_resolver_universe.cc:838
 #, c-format
 msgid ""
 "Invalid safety level \"%s\" (not \"discard\", \"maximum\", \"minimum\", or "
 "an integer)."
 msgstr ""
+
+#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "មិន​មាន​កញ្ចប់​ណា​ដូច​លំនាំ \"%ls\" ឡើយ ។"
 
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
@@ -2768,6 +2773,17 @@ msgstr ""
 #: src/generic/apt/download_update_manager.cc:178
 msgid "Couldn't rebuild package cache"
 msgstr "មិន​អាច​បង្កើត​ឃ្លាំង​សម្ងាត់​កញ្ចប់​ឡើងវិញ​បាន​ឡើយ"
+
+#: src/generic/apt/dpkg.cc:102
+#, fuzzy, c-format
+#| msgid "Couldn't find a changelog for %s"
+msgid "Couldn't chroot into %s for %s"
+msgstr "មិនអាចរក​ឃើញកំណត់​ហេតុ​ការផ្លាស់ប្ដូរ​សម្រាប់ %s"
+
+#: src/generic/apt/dpkg.cc:124
+#, c-format
+msgid "Waited for %s but it wasn't there"
+msgstr ""
 
 #: src/generic/apt/dump_packages.cc:539 src/generic/apt/dump_packages.cc:629
 #, fuzzy, c-format
@@ -6285,19 +6301,19 @@ msgstr "កញ្ចប់​ដែល​អាស្រ័យ​លើ​%s"
 msgid "Versions of %s"
 msgstr "កំណែ"
 
-#: src/pkg_item.cc:87
+#: src/pkg_item.cc:88
 #, c-format
 msgid ""
 "%s is an essential package!%n%nAre you sure you want to remove it?%nType "
 "'%s' if you are."
 msgstr "%s គឺ​ជា​កញ្ចប់​ចាំបាច់ !%n%nតើ​អ្នក​ពិត​ជា​ចង់​យក​វា​ចេញ​ឬ ?%nវាយ '%s' បើ​អ្នក​ប្រាកដ ។"
 
-#: src/pkg_item.cc:372 src/pkg_ver_item.cc:748
+#: src/pkg_item.cc:373 src/pkg_ver_item.cc:748
 #, c-format
 msgid "Reporting a bug in %s:\n"
 msgstr "កំពុង​រាយ​ការណ៍​កំហុស​ក្នុង​ %s ៖\n"
 
-#: src/pkg_item.cc:392
+#: src/pkg_item.cc:393
 msgid ""
 "You are not root and I cannot find any way to become root.  To reconfigure "
 "this package, install the menu package, the login package, or run aptitude "
@@ -6306,12 +6322,12 @@ msgstr ""
 "អ្នក​មិន​មែន​ជា root ឡើយ ហើយ​ខ្ញុំ​ក៏​រក​មិន​ឃើញ​វិធី​ណា​ដែល​អាច​ក្លាយ​ជា root បាន​ដែរ ។ ដើម្បី​កំណត់​"
 "រចនាសម្ព័ន្ធ​កញ្ចប់​នេះ​ឡើង​វិញ សូម​ដំឡើង​កញ្ចប់​ម៉ឺនុយ, កញ្ចប់​ចូល ឬ រត់ aptitude ជា root ។"
 
-#: src/pkg_item.cc:400
+#: src/pkg_item.cc:401
 #, c-format
 msgid "Reconfiguring %s\n"
 msgstr "កំពុង​កំណត់​រចនាសម្ព័ន្ធ​ %s ម្ដង​ទៀត\n"
 
-#: src/pkg_item.cc:427 src/pkg_view.cc:673
+#: src/pkg_item.cc:428 src/pkg_view.cc:673
 msgid "Hierarchy Editor"
 msgstr "កម្មវិធី​និពន្ធ​ឋានានុក្រម"
 
@@ -6325,11 +6341,6 @@ msgstr[1] ""
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "កញ្ចប់​ទាំង​អស់"
-
-#: src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "មិន​មាន​កញ្ចប់​ណា​ដូច​លំនាំ \"%ls\" ឡើយ ។"
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "

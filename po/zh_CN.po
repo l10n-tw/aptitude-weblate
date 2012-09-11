@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-06-03 11:30+0800\n"
+"POT-Creation-Date: 2012-08-28 11:08+0800\n"
 "PO-Revision-Date: 2012-06-03 12:32+0800\n"
 "Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
@@ -1212,7 +1212,7 @@ msgid "No packages to show -- enter the package names on the line after 'i'.\n"
 msgstr "无可显示的软件包 -- 请在“i”之后的那一行输入软件包名称。\n"
 
 #: src/cmdline/cmdline_prompt.cc:777 src/cmdline/cmdline_prompt.cc:792
-#: src/pkg_item.cc:410 src/ui.cc:1219
+#: src/pkg_item.cc:411 src/ui.cc:1219
 msgid "Press Return to continue."
 msgstr "按回车继续。"
 
@@ -2750,13 +2750,18 @@ msgstr "无效的线索 %s：动作 \"%s\" 应该为 \"approve\"、\"reject\" �
 msgid "Conflicting types for the cost component %s."
 msgstr ""
 
-#: src/generic/apt/aptitude_resolver_universe.cc:828
+#: src/generic/apt/aptitude_resolver_universe.cc:838
 #, c-format
 msgid ""
 "Invalid safety level \"%s\" (not \"discard\", \"maximum\", \"minimum\", or "
 "an integer)."
 msgstr ""
 "无效的安全级别 %s (不是 discard、minimum、maximum、minimum 或一个整数)。"
+
+#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "没有软件包匹配模式“%ls”。"
 
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
@@ -2808,6 +2813,17 @@ msgstr ""
 #: src/generic/apt/download_update_manager.cc:178
 msgid "Couldn't rebuild package cache"
 msgstr "无法重建软件包缓存"
+
+#: src/generic/apt/dpkg.cc:102
+#, fuzzy, c-format
+#| msgid "Couldn't find a changelog for %s"
+msgid "Couldn't chroot into %s for %s"
+msgstr "无法找到 %s 的变更日志"
+
+#: src/generic/apt/dpkg.cc:124
+#, c-format
+msgid "Waited for %s but it wasn't there"
+msgstr ""
 
 #: src/generic/apt/dump_packages.cc:539 src/generic/apt/dump_packages.cc:629
 #, c-format
@@ -6217,7 +6233,7 @@ msgstr "依赖于 %s 的软件包"
 msgid "Versions of %s"
 msgstr "%s 的版本号"
 
-#: src/pkg_item.cc:87
+#: src/pkg_item.cc:88
 #, c-format
 msgid ""
 "%s is an essential package!%n%nAre you sure you want to remove it?%nType "
@@ -6225,12 +6241,12 @@ msgid ""
 msgstr ""
 "%s 是一个基本软件包！%n%n 您确定您要卸载它吗？%n 如果您确定的话输入“%s”。"
 
-#: src/pkg_item.cc:372 src/pkg_ver_item.cc:748
+#: src/pkg_item.cc:373 src/pkg_ver_item.cc:748
 #, c-format
 msgid "Reporting a bug in %s:\n"
 msgstr "报告 %s 中的错误\n"
 
-#: src/pkg_item.cc:392
+#: src/pkg_item.cc:393
 msgid ""
 "You are not root and I cannot find any way to become root.  To reconfigure "
 "this package, install the menu package, the login package, or run aptitude "
@@ -6239,12 +6255,12 @@ msgstr ""
 "您不是 root，而且我没有发现任何方法来变成 root。要重新配置这个软件包，请安装 "
 "menu 软件包，login 软件包，或者以 root 身份运行 aptitude 。"
 
-#: src/pkg_item.cc:400
+#: src/pkg_item.cc:401
 #, c-format
 msgid "Reconfiguring %s\n"
 msgstr "重新配置 %s \n"
 
-#: src/pkg_item.cc:427 src/pkg_view.cc:673
+#: src/pkg_item.cc:428 src/pkg_view.cc:673
 msgid "Hierarchy Editor"
 msgstr "层次编辑器"
 
@@ -6257,11 +6273,6 @@ msgstr[0] "此组包含 %d 个软件包。"
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "全部包"
-
-#: src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "没有软件包匹配模式“%ls”。"
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "
