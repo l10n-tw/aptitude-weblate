@@ -1,3 +1,16 @@
+aptitude (0.6.8.1-1) unstable; urgency=low
+
+  * Multi-arch update for the problem resolver:
+    - handle conflicts without removing all foreign-arch
+      packages (Closes: #672340) (LP: #831768)
+    - correctly recognise dependencies solved by Multi-Arch:
+      foreign packages (LP: #968412)
+  * [curses]: Use dpkg package names when calling dpkg
+              (Closes: #680333)
+  * Add (temporary) helpers for interacting with dpkg.
+
+ -- Daniel Hartwig <mandyke@gmail.com>  Tue, 28 Aug 2012 11:39:01 +0800
+
 aptitude (0.6.8-1) unstable; urgency=low
   
   * Fix build with g++ 4.7
