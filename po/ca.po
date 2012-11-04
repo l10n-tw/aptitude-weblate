@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude 0.4.11.9\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-08-28 11:08+0800\n"
+"POT-Creation-Date: 2012-11-04 19:55+0800\n"
 "PO-Revision-Date: 2012-06-03 12:21+0800\n"
 "Last-Translator: Jordi Mallach <jordi@debian.org>\n"
 "Language-Team: Catalan <debian-l10n-catalan@lists.debian.org>\n"
@@ -313,9 +313,8 @@ msgstr "URL a utilitzar per baixar els registres de canvis"
 
 #: src/apt_options.cc:294
 msgid ""
-"This option controls the template that's used to download changelogs from "
-"the Debian Web site.  You should only need to change this if the changelogs "
-"move to a different URL."
+"This option controls the server used to download changelogs.  You should "
+"only need to change this if the changelogs move to a different URL."
 msgstr ""
 
 #: src/apt_options.cc:300
@@ -769,19 +768,19 @@ msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr ""
 "No es pot executar el sensible-pager, és un sistema Debian en funcionament?"
 
-#: src/cmdline/cmdline_changelog.cc:341
+#: src/cmdline/cmdline_changelog.cc:333
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr ""
 "%s no és un paquet de Debian oficial, no es pot mostrar el seu registre de "
 "modificacions."
 
-#: src/cmdline/cmdline_changelog.cc:425
+#: src/cmdline/cmdline_changelog.cc:394
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "No s'ha pogut trobar un registre de modificacions de %s"
 
-#: src/cmdline/cmdline_changelog.cc:429
+#: src/cmdline/cmdline_changelog.cc:398
 #, fuzzy, c-format
 #| msgid "Couldn't find a changelog for %s"
 msgid "Couldn't run pager %s"
@@ -859,12 +858,12 @@ msgstr "baixa: heu d'especificar un mínim d'un paquet a baixar\n"
 msgid "Couldn't read source list"
 msgstr "No s'ha pogut llegir la llista de fonts"
 
-#: src/cmdline/cmdline_download.cc:97
+#: src/cmdline/cmdline_download.cc:90
 #, c-format
 msgid "Can't find a package named \"%s\""
 msgstr "No es pot trobar un paquet anomenat \"%s\""
 
-#: src/cmdline/cmdline_download.cc:141
+#: src/cmdline/cmdline_download.cc:134
 #, c-format
 msgid ""
 "No downloadable files for %s version %s; perhaps it is a local or obsolete "
@@ -2137,12 +2136,12 @@ msgstr "Descripció: "
 msgid "Homepage: "
 msgstr ""
 
-#: src/cmdline/cmdline_show.cc:582
+#: src/cmdline/cmdline_show.cc:575
 #, c-format
 msgid "Unable to locate package %s"
 msgstr "No s'ha pogut ubicar el paquet %s"
 
-#: src/cmdline/cmdline_show.cc:603
+#: src/cmdline/cmdline_show.cc:596
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "No s'ha pogut analitzar el patró %s"
@@ -2788,11 +2787,6 @@ msgid ""
 "an integer)."
 msgstr ""
 
-#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "No hi ha cap paquet que coincideixi amb el patró \"%ls\"."
-
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
 "The package cache is not available; unable to download and install packages."
@@ -2989,13 +2983,13 @@ msgstr ""
 "\n"
 "Enregistrament complet.\n"
 
-#: src/generic/apt/matching/match.cc:3093
-#: src/generic/apt/matching/match.cc:3210
+#: src/generic/apt/matching/match.cc:3095
+#: src/generic/apt/matching/match.cc:3212
 msgid "Accessing index"
 msgstr ""
 
-#: src/generic/apt/matching/match.cc:3103
-#: src/generic/apt/matching/match.cc:3217
+#: src/generic/apt/matching/match.cc:3105
+#: src/generic/apt/matching/match.cc:3219
 #, fuzzy
 #| msgid "Downloading packages"
 msgid "Filtering packages"
@@ -3110,19 +3104,19 @@ msgstr ""
 "Els fitxer d'índex del paquet contenen error. Sene nom de fitxer: camp pel "
 "paquet %s."
 
-#: src/generic/apt/pkg_changelog.cc:441 src/generic/apt/pkg_changelog.cc:589
+#: src/generic/apt/pkg_changelog.cc:442 src/generic/apt/pkg_changelog.cc:596
 #: src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "El registre de canvis de %s"
 
-#: src/generic/apt/pkg_changelog.cc:565 src/generic/apt/pkg_changelog.cc:570
+#: src/generic/apt/pkg_changelog.cc:572 src/generic/apt/pkg_changelog.cc:577
 #, fuzzy, c-format
 #| msgid "URL to use to download changelogs"
 msgid "Failed to download changelogs: %s"
 msgstr "URL a utilitzar per baixar els registres de canvis"
 
-#: src/generic/apt/pkg_changelog.cc:575
+#: src/generic/apt/pkg_changelog.cc:582
 #, fuzzy
 #| msgid "URL to use to download changelogs"
 msgid "Failed to download changelogs: unexpected exception."
@@ -6709,6 +6703,11 @@ msgstr[1] "Aquest grup conté %d paquets."
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "Tots els paquets"
+
+#: src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "No hi ha cap paquet que coincideixi amb el patró \"%ls\"."
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "

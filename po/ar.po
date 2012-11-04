@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude_po\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-08-28 11:08+0800\n"
+"POT-Creation-Date: 2012-11-04 19:55+0800\n"
 "PO-Revision-Date: 2012-06-03 13:13+0800\n"
 "Last-Translator: Ossama M. Khayat <okhayat@yahoo.com>\n"
 "Language-Team: Arabic <support@arabeyes.org>\n"
@@ -315,9 +315,8 @@ msgstr "عنوان URL لاستخدامه عند تنزيل سجلّات الت�
 
 #: src/apt_options.cc:294
 msgid ""
-"This option controls the template that's used to download changelogs from "
-"the Debian Web site.  You should only need to change this if the changelogs "
-"move to a different URL."
+"This option controls the server used to download changelogs.  You should "
+"only need to change this if the changelogs move to a different URL."
 msgstr ""
 
 #: src/apt_options.cc:300
@@ -769,17 +768,17 @@ msgstr "سجل تغييرات %s"
 msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr "لا يمكن تشغيل أي مصفّح، هل هذا نظام ديبيان عامل؟"
 
-#: src/cmdline/cmdline_changelog.cc:341
+#: src/cmdline/cmdline_changelog.cc:333
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr "الحزمة %s ليست حزمة دبيان رسميّة، لذا لا يمكن عرض سجل تغييرها."
 
-#: src/cmdline/cmdline_changelog.cc:425
+#: src/cmdline/cmdline_changelog.cc:394
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "تعذر العثور على سجل تغيير لـ%s"
 
-#: src/cmdline/cmdline_changelog.cc:429
+#: src/cmdline/cmdline_changelog.cc:398
 #, fuzzy, c-format
 #| msgid "Couldn't find a changelog for %s"
 msgid "Couldn't run pager %s"
@@ -854,12 +853,12 @@ msgstr "التنزيل: يجب تحديد حزمة واحدة على الأقل 
 msgid "Couldn't read source list"
 msgstr "تعذرت قراءة لائحة المصادر"
 
-#: src/cmdline/cmdline_download.cc:97
+#: src/cmdline/cmdline_download.cc:90
 #, c-format
 msgid "Can't find a package named \"%s\""
 msgstr "تعذر العثور على أيّة حزمة بالاسم \"%s\""
 
-#: src/cmdline/cmdline_download.cc:141
+#: src/cmdline/cmdline_download.cc:134
 #, c-format
 msgid ""
 "No downloadable files for %s version %s; perhaps it is a local or obsolete "
@@ -2114,12 +2113,12 @@ msgstr "الوصف: "
 msgid "Homepage: "
 msgstr ""
 
-#: src/cmdline/cmdline_show.cc:582
+#: src/cmdline/cmdline_show.cc:575
 #, c-format
 msgid "Unable to locate package %s"
 msgstr "تعذر العثور على الحزمة %s"
 
-#: src/cmdline/cmdline_show.cc:603
+#: src/cmdline/cmdline_show.cc:596
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "تعذر إعراب الصيغة %s"
@@ -2769,11 +2768,6 @@ msgid ""
 "an integer)."
 msgstr ""
 
-#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "لم تطابق أية حزم الصيغة \"%ls\"."
-
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
 "The package cache is not available; unable to download and install packages."
@@ -2962,13 +2956,13 @@ msgstr ""
 "\n"
 "اكتمل التسجيل.\n"
 
-#: src/generic/apt/matching/match.cc:3093
-#: src/generic/apt/matching/match.cc:3210
+#: src/generic/apt/matching/match.cc:3095
+#: src/generic/apt/matching/match.cc:3212
 msgid "Accessing index"
 msgstr ""
 
-#: src/generic/apt/matching/match.cc:3103
-#: src/generic/apt/matching/match.cc:3217
+#: src/generic/apt/matching/match.cc:3105
+#: src/generic/apt/matching/match.cc:3219
 #, fuzzy
 #| msgid "Downloading packages"
 msgid "Filtering packages"
@@ -3080,19 +3074,19 @@ msgid ""
 "The package index files are corrupted. No Filename: field for package %s."
 msgstr "ملفات فهرس الحزمة فاسدة. لا اسم ملف: الحقل للحزمة %s."
 
-#: src/generic/apt/pkg_changelog.cc:441 src/generic/apt/pkg_changelog.cc:589
+#: src/generic/apt/pkg_changelog.cc:442 src/generic/apt/pkg_changelog.cc:596
 #: src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "سجل تغييرات %s"
 
-#: src/generic/apt/pkg_changelog.cc:565 src/generic/apt/pkg_changelog.cc:570
+#: src/generic/apt/pkg_changelog.cc:572 src/generic/apt/pkg_changelog.cc:577
 #, fuzzy, c-format
 #| msgid "URL to use to download changelogs"
 msgid "Failed to download changelogs: %s"
 msgstr "عنوان URL لاستخدامه عند تنزيل سجلّات التغيير"
 
-#: src/generic/apt/pkg_changelog.cc:575
+#: src/generic/apt/pkg_changelog.cc:582
 #, fuzzy
 #| msgid "URL to use to download changelogs"
 msgid "Failed to download changelogs: unexpected exception."
@@ -6660,6 +6654,11 @@ msgstr[3] ""
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "كل الحزم"
+
+#: src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "لم تطابق أية حزم الصيغة \"%ls\"."
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "

@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude 0.4.11\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-08-28 11:08+0800\n"
-"PO-Revision-Date: 2012-06-03 12:28+0800\n"
+"POT-Creation-Date: 2012-11-04 19:55+0800\n"
+"PO-Revision-Date: 2012-06-08 15:38+0200\n"
 "Last-Translator: Michał Kułach <michal.kulach@gmail.com>\n"
 "Language-Team: Polish <debian-l10n-polish@lists.debian.org>\n"
 "Language: pl\n"
@@ -377,10 +377,14 @@ msgid "URL to use to download changelogs"
 msgstr "URL pobierania dzienników zmian"
 
 #: src/apt_options.cc:294
+#, fuzzy
+#| msgid ""
+#| "This option controls the template that's used to download changelogs from "
+#| "the Debian Web site.  You should only need to change this if the "
+#| "changelogs move to a different URL."
 msgid ""
-"This option controls the template that's used to download changelogs from "
-"the Debian Web site.  You should only need to change this if the changelogs "
-"move to a different URL."
+"This option controls the server used to download changelogs.  You should "
+"only need to change this if the changelogs move to a different URL."
 msgstr ""
 "Ta opcja określa wzór adresu używanego do pobierania dzienników zmian ze "
 "strony Debiana. Powinno używać się tej opcji tylko jeśli dzienniki zmian "
@@ -885,22 +889,22 @@ msgstr "Pobieranie dziennika zmian nie powiodło się: %s"
 msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr "Nie można uruchomić programu sensible-pager. Czyżby to nie był Debian?"
 
-#: src/cmdline/cmdline_changelog.cc:341
+#: src/cmdline/cmdline_changelog.cc:333
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr ""
 "%s nie jest oficjalnym pakietem Debiana. Nie można wyświetlić dziennika "
 "zmian."
 
-#: src/cmdline/cmdline_changelog.cc:425
+#: src/cmdline/cmdline_changelog.cc:394
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "Nie znaleziono dziennika zmian pakietu %s"
 
-#: src/cmdline/cmdline_changelog.cc:429
-#, fuzzy, c-format
+#: src/cmdline/cmdline_changelog.cc:398
+#, c-format
 msgid "Couldn't run pager %s"
-msgstr "Nie znaleziono dziennika zmian pakietu %s"
+msgstr "Nie można uruchomić programu przeglądającego %s"
 
 #: src/cmdline/cmdline_clean.cc:60
 #, c-format
@@ -914,9 +918,8 @@ msgstr "Usuwanie %s* %spartial/*\n"
 
 #: src/cmdline/cmdline_clean.cc:76 src/cmdline/cmdline_clean.cc:146
 #: src/ui.cc:1787 src/ui.cc:1875
-#, fuzzy
 msgid "Unable to lock the download directory"
-msgstr "Nie można ustalić katalogu domowego!"
+msgstr "Nie udało się zablokować katalogu pobierania"
 
 #: src/cmdline/cmdline_clean.cc:106
 #, c-format
@@ -971,12 +974,12 @@ msgstr "download: należy podać przynajmniej jeden pakiet do pobrania\n"
 msgid "Couldn't read source list"
 msgstr "Nie można odczytać listy źródeł"
 
-#: src/cmdline/cmdline_download.cc:97
+#: src/cmdline/cmdline_download.cc:90
 #, c-format
 msgid "Can't find a package named \"%s\""
 msgstr "Nie znaleziono pakietu \"%s\""
 
-#: src/cmdline/cmdline_download.cc:141
+#: src/cmdline/cmdline_download.cc:134
 #, c-format
 msgid ""
 "No downloadable files for %s version %s; perhaps it is a local or obsolete "
@@ -2177,7 +2180,7 @@ msgstr "nie"
 
 #: src/cmdline/cmdline_show.cc:421 src/pkg_info_screen.cc:125
 msgid "Multi-Arch: "
-msgstr ""
+msgstr "Wieloarchitekturowość: "
 
 #: src/cmdline/cmdline_show.cc:423 src/gtk/entitysummary.cc:361
 #: src/gtk/previewtab.cc:230
@@ -2276,12 +2279,12 @@ msgstr "Opis: "
 msgid "Homepage: "
 msgstr "Strona internetowa: "
 
-#: src/cmdline/cmdline_show.cc:582
+#: src/cmdline/cmdline_show.cc:575
 #, c-format
 msgid "Unable to locate package %s"
 msgstr "Nie można znaleźć pakietu %s"
 
-#: src/cmdline/cmdline_show.cc:603
+#: src/cmdline/cmdline_show.cc:596
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "Nie można przetworzyć wzorca %s"
@@ -2352,9 +2355,9 @@ msgid "You cannot specify both an archive and a version for a package\n"
 msgstr "Nie można podawać jednocześnie archiwum i wersji pakietu\n"
 
 #: src/cmdline/cmdline_util.cc:273
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn't find task '%s'"
-msgstr "Nie znaleziono dziennika zmian pakietu %s"
+msgstr "Nie udało się odnaleźć zadania \"%s\""
 
 #: src/cmdline/cmdline_util.cc:361
 #, c-format
@@ -2830,16 +2833,15 @@ msgstr ""
 
 #: src/generic/apt/apt.cc:1272
 msgid "foreign"
-msgstr ""
+msgstr "obca"
 
 #: src/generic/apt/apt.cc:1274
 msgid "same"
-msgstr ""
+msgstr "taka sama"
 
 #: src/generic/apt/apt.cc:1277
-#, fuzzy
 msgid "allowed"
-msgstr "dopuść_wybory"
+msgstr "dozwolona"
 
 #: src/generic/apt/apt.cc:1366
 msgid "main"
@@ -2847,15 +2849,15 @@ msgstr "main"
 
 #: src/generic/apt/apt.cc:1366
 msgid "contrib"
-msgstr ""
+msgstr "contrib"
 
 #: src/generic/apt/apt.cc:1366
 msgid "non-free"
-msgstr ""
+msgstr "non-free"
 
 #: src/generic/apt/apt.cc:1366
 msgid "non-US"
-msgstr ""
+msgstr "non-US"
 
 #: src/generic/apt/aptitude_resolver.cc:441
 #, c-format
@@ -2932,11 +2934,6 @@ msgstr ""
 "Nieprawidłowy poziom bezpieczeństwa \"%s\" (nie \"discard\", \"maximum\", "
 "\"minimum\" lub liczba całkowita)."
 
-#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "Nie znaleziono pakietów pasujących do wzorca \"%ls\"."
-
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
 "The package cache is not available; unable to download and install packages."
@@ -2956,7 +2953,7 @@ msgstr "Nie udało się pobrać %s: %s"
 
 #: src/generic/apt/download_install_manager.cc:129
 msgid "Some files failed to download"
-msgstr ""
+msgstr "Nie udało się pobrać niektórych plików"
 
 #: src/generic/apt/download_install_manager.cc:140
 msgid "Unable to correct for unavailable packages"
@@ -2986,6 +2983,8 @@ msgid ""
 "Some index files failed to download. They have been ignored, or old ones "
 "used instead."
 msgstr ""
+"Nie udało się pobrać niektórych plików indeksu, zostały one zignorowane lub "
+"użyto ich starszej wersji."
 
 #: src/generic/apt/download_update_manager.cc:178
 msgid "Couldn't rebuild package cache"
@@ -3127,13 +3126,13 @@ msgstr ""
 "\n"
 "Dziennik zakończony.\n"
 
-#: src/generic/apt/matching/match.cc:3093
-#: src/generic/apt/matching/match.cc:3210
+#: src/generic/apt/matching/match.cc:3095
+#: src/generic/apt/matching/match.cc:3212
 msgid "Accessing index"
 msgstr "Uzyskiwanie dostępu do indeksu"
 
-#: src/generic/apt/matching/match.cc:3103
-#: src/generic/apt/matching/match.cc:3217
+#: src/generic/apt/matching/match.cc:3105
+#: src/generic/apt/matching/match.cc:3219
 msgid "Filtering packages"
 msgstr "Filtrowanie pakietów"
 
@@ -3143,9 +3142,9 @@ msgid "Unknown action type: %s"
 msgstr "Nieznana akcja: %s"
 
 #: src/generic/apt/matching/parse.cc:330
-#, fuzzy, c-format
+#, c-format
 msgid "Unknown multiarch type: %s"
-msgstr "Nieznana akcja: %s"
+msgstr "Nieznany typ wieloarchitekturowości: %s"
 
 #: src/generic/apt/matching/parse.cc:370
 #, c-format
@@ -3244,18 +3243,18 @@ msgid ""
 msgstr ""
 "Pliki indeksu pakietów są uszkodzone. Brak pola \"Filename:\" pakietu %s."
 
-#: src/generic/apt/pkg_changelog.cc:441 src/generic/apt/pkg_changelog.cc:589
+#: src/generic/apt/pkg_changelog.cc:442 src/generic/apt/pkg_changelog.cc:596
 #: src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "Dziennik zmian pakietu %s"
 
-#: src/generic/apt/pkg_changelog.cc:565 src/generic/apt/pkg_changelog.cc:570
+#: src/generic/apt/pkg_changelog.cc:572 src/generic/apt/pkg_changelog.cc:577
 #, c-format
 msgid "Failed to download changelogs: %s"
 msgstr "Nie udało się pobrać dzienników zmian: %s"
 
-#: src/generic/apt/pkg_changelog.cc:575
+#: src/generic/apt/pkg_changelog.cc:582
 msgid "Failed to download changelogs: unexpected exception."
 msgstr "Nie udało się pobrać dzienników zmian: nieoczekiwany wyjątek."
 
@@ -3329,7 +3328,7 @@ msgstr "Opis dla %s jest niedostępny."
 #: src/generic/apt/tasks.cc:123
 #, c-format
 msgid "Unhandled packages method in task %s: %s"
-msgstr ""
+msgstr "Nieobsługiwana metoda pakietów w zadaniu %s: %s"
 
 #: src/generic/apt/tasks.cc:484
 msgid "Reading task descriptions"
@@ -3508,14 +3507,9 @@ msgid "Reload the package cache"
 msgstr "Ponownie odczytuje archiwum pakietów"
 
 #: src/gtk/aptitude.glade:118 src/gtk/aptitude.glade:2372 src/ui.cc:2389
-#, fuzzy
-#| msgid ""
-#| "Run 'su' to become root; this will restart the program, but your settings "
-#| "will be preserved"
 msgid "Restart the program as root; your settings will be preserved"
 msgstr ""
-"Użycie \"su\" do uzyskania uprawnień administratora. Program zostanie "
-"zrestartowany, ale ustawienia będą zachowane"
+"Program zostanie uruchomiony ponownie jako root; ustawienia będą zachowane"
 
 #: src/gtk/aptitude.glade:127 src/gtk/aptitude.glade:2382 src/ui.cc:2392
 msgid "Exit the program"
@@ -5214,9 +5208,8 @@ msgid "Terminal policy '%s' should be the last policy in the list"
 msgstr "Metoda \"%s\" powinna być ostatnia na liście"
 
 #: src/load_grouppolicy.cc:385
-#, fuzzy
 msgid "Unmatched '(' in grouping policy"
-msgstr "Niesparowany nawias \"(\" w definicji metody grupowania \"pattern\""
+msgstr "Niesparowany nawias \"(\" w definicji metody grupowania"
 
 #: src/load_grouppolicy.cc:413
 #, c-format
@@ -5233,17 +5226,17 @@ msgstr ""
 
 #: src/load_grouppolicy.cc:428 src/load_grouppolicy.cc:544
 #: src/load_grouppolicy.cc:621
-#, fuzzy, c-format
+#, c-format
 msgid "Too many arguments to '%s' grouping policy"
-msgstr "Zbyt wiele parametrów przy grupowaniu według źródła"
+msgstr "Zbyt wiele parametrów przy grupowaniu \"%s\""
 
 #: src/load_grouppolicy.cc:441 src/load_grouppolicy.cc:521
 #: src/load_grouppolicy.cc:532 src/load_grouppolicy.cc:555
 #: src/load_grouppolicy.cc:566 src/load_grouppolicy.cc:577
 #: src/load_grouppolicy.cc:608 src/load_grouppolicy.cc:766
-#, fuzzy, c-format
+#, c-format
 msgid "Grouping policy '%s' takes no arguments"
-msgstr "Przy grupowaniu zadań nie używa się żadnych parametrów"
+msgstr "Grupowanie \"%s\" nie przyjmuje argumentów"
 
 #: src/load_grouppolicy.cc:460 src/load_grouppolicy.cc:636
 #, c-format
@@ -5262,9 +5255,9 @@ msgstr ""
 "\""
 
 #: src/load_grouppolicy.cc:644
-#, fuzzy, c-format
+#, c-format
 msgid "Missing arguments to '%s' grouping policy"
-msgstr "Zbyt wiele parametrów przy grupowaniu według źródła"
+msgstr "Brakuje parametrów przy grupowaniu \"%s\""
 
 #: src/load_grouppolicy.cc:667
 #, c-format
@@ -5283,9 +5276,9 @@ msgstr ""
 "Oczekiwano \"{\", \")\" lub \",\" poprzedzanego przez '||', otrzymano '%s'"
 
 #: src/load_grouppolicy.cc:750
-#, fuzzy, c-format
+#, c-format
 msgid "Unmatched '(' in '%s' grouping policy"
-msgstr "Niesparowany nawias \"(\" w definicji metody grupowania \"pattern\""
+msgstr "Niesparowany nawias \"(\" w definicji metody grupowania \"%s\""
 
 #: src/load_pkgview.cc:64
 msgid "Couldn't parse layout: No column format specified for static item"
@@ -5321,9 +5314,9 @@ msgstr "Nieznany rodzaj wyrównania \"%s\""
 
 #: src/load_sortpolicy.cc:51 src/load_sortpolicy.cc:64
 #: src/load_sortpolicy.cc:77 src/load_sortpolicy.cc:90
-#, fuzzy, c-format
+#, c-format
 msgid "Sorting policy '%s' takes no arguments"
-msgstr "Przy sortowaniu według nazwy nie używa się żadnych parametrów"
+msgstr "Przy sortowaniu \"%s\" nie używa się żadnych parametrów"
 
 #: src/load_sortpolicy.cc:148
 msgid "Invalid zero-length sorting policy name"
@@ -6162,7 +6155,7 @@ msgstr "Nazwa pliku do zapisania:"
 
 #: src/mine/cmine.cc:672
 msgid "mine-help.txt"
-msgstr "mine-help.txt"
+msgstr "mine-help-pl.txt"
 
 #: src/mine/cmine.cc:674
 msgid "Encoding of mine-help.txt|UTF-8"
@@ -6170,7 +6163,7 @@ msgstr "Kodowanie mine-help.txt|UTF-8"
 
 #: src/pkg_columnizer.cc:86
 msgid "30 8 8 1 1 40 14 14 11 10 35 9 10 2 1 1 10 9 12 30 17 15"
-msgstr "30 7 7 1 1 40 14 14 18 10 35 9 10 2 1 1 12 8 14 32 20 15"
+msgstr "30 7 7 1 1 40 14 14 18 10 35 9 10 2 1 1 12 8 15 25 20 15"
 
 #: src/pkg_columnizer.cc:89 src/ui.cc:2782
 msgid "Package"
@@ -6362,12 +6355,12 @@ msgstr "Problemów: %ld"
 #: src/pkg_columnizer.cc:409
 #, c-format
 msgid "Will use %sB of disk space"
-msgstr "Zostanie zajęte %sB na dysku"
+msgstr "Zostanie zajęte: %sB"
 
 #: src/pkg_columnizer.cc:417
 #, c-format
 msgid "Will free %sB of disk space"
-msgstr "Zwolni się %sB na dysku"
+msgstr "Zwolni się: %sB"
 
 #: src/pkg_columnizer.cc:431
 #, c-format
@@ -6626,6 +6619,11 @@ msgstr[2] "Ta grupa zawiera %d pakietów."
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "Wszystkie pakiety"
+
+#: src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "Nie znaleziono pakietów pasujących do wzorca \"%ls\"."
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "
@@ -7731,7 +7729,7 @@ msgstr "P^ierwsze rozwiązanie"
 
 #: src/ui.cc:2473
 msgid "Select the first solution to the dependency problems."
-msgstr "Wybiera pierwsze rozwiązanie problemów z zależnościami"
+msgstr "Wybiera pierwsze rozwiązanie problemów z zależnościami."
 
 #: src/ui.cc:2476
 msgid "^Last Solution"
@@ -7799,7 +7797,7 @@ msgstr "Nowe wyszukiwanie wstecz"
 
 #: src/ui.cc:2518
 msgid "Find ^Again"
-msgstr "Znajdź ^kolejny"
+msgstr "Znaj^dź kolejny"
 
 #: src/ui.cc:2519
 msgid "Repeat the last search"
@@ -7933,7 +7931,7 @@ msgstr "Pozwala na przeglądanie pakietów według etykiet Debtags"
 
 #: src/ui.cc:2607
 msgid "New Categorical ^Browser"
-msgstr "Nowa przeglądarka ^kategorii"
+msgstr "Nowa przeglądarka ka^tegorii"
 
 #: src/ui.cc:2609
 msgid "Browse packages by category"
@@ -7977,7 +7975,7 @@ msgstr "Wyświetla najważniejsze zmiany w kolejnych wersjach "
 
 #: src/ui.cc:2636
 msgid "^License"
-msgstr "^Licencja"
+msgstr "Li^cencja"
 
 #: src/ui.cc:2780
 msgid "Actions"
@@ -8001,7 +7999,7 @@ msgid ""
 "%ls: Menu  %ls: Help  %ls: Quit  %ls: Update  %ls: Download/Install/Remove "
 "Pkgs"
 msgstr ""
-"%ls: Menu  %ls: Pomoc  %ls: Zakończ  %ls: Uaktualnij  %ls: Pobierz/instaluj/"
+"%ls: menu  %ls: pomoc  %ls: zakończ  %ls: uaktualnij  %ls: pobierz/instaluj/"
 "usuń"
 
 #: src/ui.cc:3211

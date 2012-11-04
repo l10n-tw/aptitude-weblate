@@ -43,7 +43,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude 0.4.11.10\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-08-28 11:08+0800\n"
+"POT-Creation-Date: 2012-11-04 19:55+0800\n"
 "PO-Revision-Date: 2012-06-03 12:26+0800\n"
 "Last-Translator: Danilo Piazzalunga <danilopiazza@gmail.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
@@ -408,10 +408,14 @@ msgid "URL to use to download changelogs"
 msgstr "URL da usare per scaricare i changelog"
 
 #: src/apt_options.cc:294
+#, fuzzy
+#| msgid ""
+#| "This option controls the template that's used to download changelogs from "
+#| "the Debian Web site.  You should only need to change this if the "
+#| "changelogs move to a different URL."
 msgid ""
-"This option controls the template that's used to download changelogs from "
-"the Debian Web site.  You should only need to change this if the changelogs "
-"move to a different URL."
+"This option controls the server used to download changelogs.  You should "
+"only need to change this if the changelogs move to a different URL."
 msgstr ""
 "Questa opzione controlla il modello usato per scaricare i changelog dal sito "
 "web di Debian. Si dovrebbe aver bisogno di modificare questa impostazione "
@@ -912,18 +916,18 @@ msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr ""
 "Impossibile eseguire sensible-pager. Questo è un sistema Debian funzionante?"
 
-#: src/cmdline/cmdline_changelog.cc:341
+#: src/cmdline/cmdline_changelog.cc:333
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr ""
 "%s non è un pacchetto Debian ufficiale: impossibile mostrarne il changelog."
 
-#: src/cmdline/cmdline_changelog.cc:425
+#: src/cmdline/cmdline_changelog.cc:394
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "Impossibile trovare il changelog di «%s»"
 
-#: src/cmdline/cmdline_changelog.cc:429
+#: src/cmdline/cmdline_changelog.cc:398
 #, fuzzy, c-format
 msgid "Couldn't run pager %s"
 msgstr "Impossibile trovare il changelog di «%s»"
@@ -998,12 +1002,12 @@ msgstr "download: si deve specificare almeno un pacchetto da scaricare\n"
 msgid "Couldn't read source list"
 msgstr "Impossibile leggere l'elenco delle sorgenti"
 
-#: src/cmdline/cmdline_download.cc:97
+#: src/cmdline/cmdline_download.cc:90
 #, c-format
 msgid "Can't find a package named \"%s\""
 msgstr "Impossibile trovare il pacchetto di nome «%s»"
 
-#: src/cmdline/cmdline_download.cc:141
+#: src/cmdline/cmdline_download.cc:134
 #, c-format
 msgid ""
 "No downloadable files for %s version %s; perhaps it is a local or obsolete "
@@ -2285,12 +2289,12 @@ msgstr "Descrizione: "
 msgid "Homepage: "
 msgstr "Homepage: "
 
-#: src/cmdline/cmdline_show.cc:582
+#: src/cmdline/cmdline_show.cc:575
 #, c-format
 msgid "Unable to locate package %s"
 msgstr "Impossibile trovare il pacchetto %s"
 
-#: src/cmdline/cmdline_show.cc:603
+#: src/cmdline/cmdline_show.cc:596
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "Impossibile analizzare il modello %s"
@@ -2933,11 +2937,6 @@ msgid ""
 "an integer)."
 msgstr ""
 
-#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "Nessun pacchetto corrisponde al modello «%ls»."
-
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
 "The package cache is not available; unable to download and install packages."
@@ -3131,13 +3130,13 @@ msgstr ""
 "\n"
 "Registrazione completata.\n"
 
-#: src/generic/apt/matching/match.cc:3093
-#: src/generic/apt/matching/match.cc:3210
+#: src/generic/apt/matching/match.cc:3095
+#: src/generic/apt/matching/match.cc:3212
 msgid "Accessing index"
 msgstr ""
 
-#: src/generic/apt/matching/match.cc:3103
-#: src/generic/apt/matching/match.cc:3217
+#: src/generic/apt/matching/match.cc:3105
+#: src/generic/apt/matching/match.cc:3219
 #, fuzzy
 msgid "Filtering packages"
 msgstr "Scaricamento dei pacchetti"
@@ -3251,18 +3250,18 @@ msgstr ""
 "I file dell'indice dei pacchetti sono danneggiati: manca il campo "
 "«Filename:» per il pacchetto %s."
 
-#: src/generic/apt/pkg_changelog.cc:441 src/generic/apt/pkg_changelog.cc:589
+#: src/generic/apt/pkg_changelog.cc:442 src/generic/apt/pkg_changelog.cc:596
 #: src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "Changelog di %s"
 
-#: src/generic/apt/pkg_changelog.cc:565 src/generic/apt/pkg_changelog.cc:570
+#: src/generic/apt/pkg_changelog.cc:572 src/generic/apt/pkg_changelog.cc:577
 #, fuzzy, c-format
 msgid "Failed to download changelogs: %s"
 msgstr "URL da usare per scaricare i changelog"
 
-#: src/generic/apt/pkg_changelog.cc:575
+#: src/generic/apt/pkg_changelog.cc:582
 #, fuzzy
 msgid "Failed to download changelogs: unexpected exception."
 msgstr "URL da usare per scaricare i changelog"
@@ -6636,6 +6635,11 @@ msgstr[1] "Questo gruppo contiene %d pacchetti."
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "Tutti i pacchetti"
+
+#: src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "Nessun pacchetto corrisponde al modello «%ls»."
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "

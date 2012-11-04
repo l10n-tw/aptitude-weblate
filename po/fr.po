@@ -4,14 +4,14 @@
 #
 # Martin Quinson <mquinson@ens-lyon.fr>, 2001.
 # Jean-Luc Coulon (f5ibh) <jean-luc.coulon@wanadoo.fr>, 2004, 2005, 2006, 2007, 2008.
-# Christian Perrier <bubulle@debian.org>, 2004, 2006, 2008, 2009.
+# Christian Perrier <bubulle@debian.org>, 2004, 2006, 2008, 2009, 2012.
 # Jean-Baka Domelevo Entfellner <domelevo@gmail.com>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-08-28 11:08+0800\n"
-"PO-Revision-Date: 2012-06-03 12:25+0800\n"
+"POT-Creation-Date: 2012-11-04 19:55+0800\n"
+"PO-Revision-Date: 2012-07-30 09:23+0100\n"
 "Last-Translator: Jean-Baka Domelevo Entfellner <domelevo@gmail.com>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
 "Language: fr\n"
@@ -378,10 +378,14 @@ msgid "URL to use to download changelogs"
 msgstr "URL d'où télécharger les journaux des modifications"
 
 #: src/apt_options.cc:294
+#, fuzzy
+#| msgid ""
+#| "This option controls the template that's used to download changelogs from "
+#| "the Debian Web site.  You should only need to change this if the "
+#| "changelogs move to a different URL."
 msgid ""
-"This option controls the template that's used to download changelogs from "
-"the Debian Web site.  You should only need to change this if the changelogs "
-"move to a different URL."
+"This option controls the server used to download changelogs.  You should "
+"only need to change this if the changelogs move to a different URL."
 msgstr ""
 "Cette option contrôle le patron utilisé pour télécharger les journaux des "
 "modifications depuis le site web de Debian. Vous ne devriez avoir besoin de "
@@ -894,20 +898,20 @@ msgstr ""
 "Impossible d'exécuter « sensible-pager ». Ce système est-il un système "
 "Debian complet ?"
 
-#: src/cmdline/cmdline_changelog.cc:341
+#: src/cmdline/cmdline_changelog.cc:333
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr ""
 "%s n'est pas un paquet Debian officiel : il n'est pas possible d'afficher le "
 "suivi des modifications (« changelog »)."
 
-#: src/cmdline/cmdline_changelog.cc:425
+#: src/cmdline/cmdline_changelog.cc:394
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr ""
 "Impossible de trouver le journal des modifications (« changelog ») pour %s"
 
-#: src/cmdline/cmdline_changelog.cc:429
+#: src/cmdline/cmdline_changelog.cc:398
 #, c-format
 msgid "Couldn't run pager %s"
 msgstr "Impossible d'exécuter l'outil de mise en page %s"
@@ -980,12 +984,12 @@ msgstr "download : vous devez indiquer au moins un paquet à télécharger\n"
 msgid "Couldn't read source list"
 msgstr "Impossible de lire la liste des sources"
 
-#: src/cmdline/cmdline_download.cc:97
+#: src/cmdline/cmdline_download.cc:90
 #, c-format
 msgid "Can't find a package named \"%s\""
 msgstr "Impossible de trouver un paquet appelé « %s »"
 
-#: src/cmdline/cmdline_download.cc:141
+#: src/cmdline/cmdline_download.cc:134
 #, c-format
 msgid ""
 "No downloadable files for %s version %s; perhaps it is a local or obsolete "
@@ -2307,14 +2311,14 @@ msgstr "Description : "
 #: src/cmdline/cmdline_show.cc:481 src/pkg_info_screen.cc:107
 #: src/pkg_view.cc:259
 msgid "Homepage: "
-msgstr "Site : "
+msgstr "Site : "
 
-#: src/cmdline/cmdline_show.cc:582
+#: src/cmdline/cmdline_show.cc:575
 #, c-format
 msgid "Unable to locate package %s"
 msgstr "Paquet %s introuvable"
 
-#: src/cmdline/cmdline_show.cc:603
+#: src/cmdline/cmdline_show.cc:596
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "Analyse du motif %s impossible"
@@ -2351,7 +2355,7 @@ msgstr "Suppression de l'étiquette utilisateur « %s » du paquet « %s ».
 #, c-format
 msgid "%s: too few arguments; expected at least a tag name and a package.\n"
 msgstr ""
-"%s : pas assez de paramètres. Au moins un nom d'étiquette et un nom de "
+"%s : pas assez de paramètres. Au moins un nom d'étiquette et un nom de "
 "paquet sont nécessaires.\n"
 
 #: src/cmdline/cmdline_util.cc:167
@@ -2388,10 +2392,9 @@ msgstr ""
 "paquet\n"
 
 #: src/cmdline/cmdline_util.cc:273
-#, fuzzy, c-format
-#| msgid "Couldn't run pager %s"
+#, c-format
 msgid "Couldn't find task '%s'"
-msgstr "Impossible d'exécuter l'outil de mise en page %s"
+msgstr "Tâche « %s » introuvable."
 
 #: src/cmdline/cmdline_util.cc:361
 #, c-format
@@ -2977,11 +2980,6 @@ msgstr ""
 "Niveau de sûreté « %s » invalide (n'est ni « rejeter », ni « maximum »,  ni "
 "« minimum » ni un entier)."
 
-#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "Aucun paquet ne correspond au motif « %ls »."
-
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
 "The package cache is not available; unable to download and install packages."
@@ -3002,7 +3000,7 @@ msgstr "impossible de récupérer %s : %s"
 
 #: src/generic/apt/download_install_manager.cc:129
 msgid "Some files failed to download"
-msgstr ""
+msgstr "Échec du téléchargement pour certains fichiers."
 
 #: src/generic/apt/download_install_manager.cc:140
 msgid "Unable to correct for unavailable packages"
@@ -3033,6 +3031,8 @@ msgid ""
 "Some index files failed to download. They have been ignored, or old ones "
 "used instead."
 msgstr ""
+"Échec du téléchargement pour certains fichiers d'index. Soit ils ont été "
+"ignorés, soit les anciens fichiers ont été utilisés à la place."
 
 #: src/generic/apt/download_update_manager.cc:178
 msgid "Couldn't rebuild package cache"
@@ -3176,13 +3176,13 @@ msgstr ""
 "\n"
 "Enregistrement terminé.\n"
 
-#: src/generic/apt/matching/match.cc:3093
-#: src/generic/apt/matching/match.cc:3210
+#: src/generic/apt/matching/match.cc:3095
+#: src/generic/apt/matching/match.cc:3212
 msgid "Accessing index"
 msgstr "Accès à l'index"
 
-#: src/generic/apt/matching/match.cc:3103
-#: src/generic/apt/matching/match.cc:3217
+#: src/generic/apt/matching/match.cc:3105
+#: src/generic/apt/matching/match.cc:3219
 msgid "Filtering packages"
 msgstr "Filtrage des paquets"
 
@@ -3295,18 +3295,18 @@ msgstr ""
 "Les fichiers d'index des paquets sont corrompus. Pas de champ « Filename » "
 "pour le paquet %s."
 
-#: src/generic/apt/pkg_changelog.cc:441 src/generic/apt/pkg_changelog.cc:589
+#: src/generic/apt/pkg_changelog.cc:442 src/generic/apt/pkg_changelog.cc:596
 #: src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "Journal des modifications de %s"
 
-#: src/generic/apt/pkg_changelog.cc:565 src/generic/apt/pkg_changelog.cc:570
+#: src/generic/apt/pkg_changelog.cc:572 src/generic/apt/pkg_changelog.cc:577
 #, c-format
 msgid "Failed to download changelogs: %s"
 msgstr "Échec de téléchargement des journaux de modifications : %s"
 
-#: src/generic/apt/pkg_changelog.cc:575
+#: src/generic/apt/pkg_changelog.cc:582
 msgid "Failed to download changelogs: unexpected exception."
 msgstr ""
 "Échec de téléchargement des journaux de modifications : exception inattendue."
@@ -3387,7 +3387,7 @@ msgstr "Pas de description disponible pour %s."
 #: src/generic/apt/tasks.cc:123
 #, c-format
 msgid "Unhandled packages method in task %s: %s"
-msgstr ""
+msgstr "Méthode de paquetage non prise en charge pour la tâche %s : %s"
 
 #: src/generic/apt/tasks.cc:484
 msgid "Reading task descriptions"
@@ -3567,14 +3567,10 @@ msgid "Reload the package cache"
 msgstr "Recharger le cache des paquets"
 
 #: src/gtk/aptitude.glade:118 src/gtk/aptitude.glade:2372 src/ui.cc:2389
-#, fuzzy
-#| msgid ""
-#| "Run 'su' to become root; this will restart the program, but your settings "
-#| "will be preserved"
 msgid "Restart the program as root; your settings will be preserved"
 msgstr ""
-"Utilisez la commande « su » pour devenir administrateur. Cela relancera le "
-"programme mais vos préférences seront conservées"
+"Relancez le programme avec les droits du superutilisateur. Vos préférences "
+"seront conservées."
 
 #: src/gtk/aptitude.glade:127 src/gtk/aptitude.glade:2382 src/ui.cc:2392
 msgid "Exit the program"
@@ -5981,7 +5977,7 @@ msgid ""
 "Only one of --auto-clean-on-startup, --clean-on-startup, -i, and -u may be "
 "specified\n"
 msgstr ""
-"Seule une des options --auto-clean-on-startup, --clean-on-startup, -u et -i  "
+"Seule une des options --auto-clean-on-startup, --clean-on-startup, -i et -u  "
 "peut être indiquée à la fois\n"
 
 #: src/main.cc:1088
@@ -6700,6 +6696,11 @@ msgstr[1] "Ce groupe contient %d paquets."
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "Tous les paquets"
+
+#: src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "Aucun paquet ne correspond au motif « %ls »."
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "

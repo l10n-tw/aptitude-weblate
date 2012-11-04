@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-08-28 11:08+0800\n"
+"POT-Creation-Date: 2012-11-04 19:55+0800\n"
 "PO-Revision-Date: 2012-05-23 11:47+0800\n"
 "Last-Translator: Ryan Escarez <rescarez@gmail.com>\n"
 "Language-Team: Tagalog <debian-tl@banwa.upm.edu.ph>\n"
@@ -322,9 +322,8 @@ msgstr "URL na gamitin upang kunin ang mga changelog"
 
 #: src/apt_options.cc:294
 msgid ""
-"This option controls the template that's used to download changelogs from "
-"the Debian Web site.  You should only need to change this if the changelogs "
-"move to a different URL."
+"This option controls the server used to download changelogs.  You should "
+"only need to change this if the changelogs move to a different URL."
 msgstr ""
 
 #: src/apt_options.cc:300
@@ -774,18 +773,18 @@ msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr ""
 "Hindi mapatakbo ng sensible-pager, ito ba'y umaandar na sistemang Debian?"
 
-#: src/cmdline/cmdline_changelog.cc:341
+#: src/cmdline/cmdline_changelog.cc:333
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr ""
 "Hindi opisyal na pakete ng Debian ang %s, hindi maipakita ang changelog nito."
 
-#: src/cmdline/cmdline_changelog.cc:425
+#: src/cmdline/cmdline_changelog.cc:394
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "Hindi mahanap ang changelog ng %s"
 
-#: src/cmdline/cmdline_changelog.cc:429
+#: src/cmdline/cmdline_changelog.cc:398
 #, fuzzy, c-format
 msgid "Couldn't run pager %s"
 msgstr "Hindi mahanap ang changelog ng %s"
@@ -858,12 +857,12 @@ msgstr ""
 msgid "Couldn't read source list"
 msgstr "Hindi mabasa ang talaan ng pagkukunan (source list)"
 
-#: src/cmdline/cmdline_download.cc:97
+#: src/cmdline/cmdline_download.cc:90
 #, c-format
 msgid "Can't find a package named \"%s\""
 msgstr "Hindi mahanap ang paketeng nagngangalang \"%s\""
 
-#: src/cmdline/cmdline_download.cc:141
+#: src/cmdline/cmdline_download.cc:134
 #, c-format
 msgid ""
 "No downloadable files for %s version %s; perhaps it is a local or obsolete "
@@ -2115,12 +2114,12 @@ msgstr "Diskripyson: "
 msgid "Homepage: "
 msgstr ""
 
-#: src/cmdline/cmdline_show.cc:582
+#: src/cmdline/cmdline_show.cc:575
 #, fuzzy, c-format
 msgid "Unable to locate package %s"
 msgstr "Hindi ma-buksan ang %s para sulatan"
 
-#: src/cmdline/cmdline_show.cc:603
+#: src/cmdline/cmdline_show.cc:596
 #, fuzzy, c-format
 msgid "Unable to parse pattern %s"
 msgstr "Hindi ma-buksan ang %s para sulatan"
@@ -2755,11 +2754,6 @@ msgid ""
 "an integer)."
 msgstr ""
 
-#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
-#, fuzzy, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "Walang mga pakete na nagtulad sa pattern \"%s\"."
-
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
 "The package cache is not available; unable to download and install packages."
@@ -2954,13 +2948,13 @@ msgstr ""
 "\n"
 "Log ay tapos na.\n"
 
-#: src/generic/apt/matching/match.cc:3093
-#: src/generic/apt/matching/match.cc:3210
+#: src/generic/apt/matching/match.cc:3095
+#: src/generic/apt/matching/match.cc:3212
 msgid "Accessing index"
 msgstr ""
 
-#: src/generic/apt/matching/match.cc:3103
-#: src/generic/apt/matching/match.cc:3217
+#: src/generic/apt/matching/match.cc:3105
+#: src/generic/apt/matching/match.cc:3219
 #, fuzzy
 msgid "Filtering packages"
 msgstr "Kinukuha ang mga pakete"
@@ -3071,18 +3065,18 @@ msgid ""
 msgstr ""
 "Ang pakete index files ay sira. Walang Filename: field para sa pakete %s."
 
-#: src/generic/apt/pkg_changelog.cc:441 src/generic/apt/pkg_changelog.cc:589
+#: src/generic/apt/pkg_changelog.cc:442 src/generic/apt/pkg_changelog.cc:596
 #: src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "Changelog ng %s"
 
-#: src/generic/apt/pkg_changelog.cc:565 src/generic/apt/pkg_changelog.cc:570
+#: src/generic/apt/pkg_changelog.cc:572 src/generic/apt/pkg_changelog.cc:577
 #, fuzzy, c-format
 msgid "Failed to download changelogs: %s"
 msgstr "URL na gamitin upang kunin ang mga changelog"
 
-#: src/generic/apt/pkg_changelog.cc:575
+#: src/generic/apt/pkg_changelog.cc:582
 #, fuzzy
 msgid "Failed to download changelogs: unexpected exception."
 msgstr "URL na gamitin upang kunin ang mga changelog"
@@ -6479,6 +6473,11 @@ msgstr[1] ""
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "Lahat ng pakete"
+
+#: src/pkg_tree.cc:282
+#, fuzzy, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "Walang mga pakete na nagtulad sa pattern \"%s\"."
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "

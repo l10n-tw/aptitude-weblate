@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-08-28 11:08+0800\n"
+"POT-Creation-Date: 2012-11-04 19:55+0800\n"
 "PO-Revision-Date: 2012-05-23 10:14+0800\n"
 "Last-Translator: Eddy Petrișor <eddy.petrisor@gmail.com>\n"
 "Language-Team: Romanian <debian-l10n-romanian@lists.debian.org>\n"
@@ -378,10 +378,14 @@ msgid "URL to use to download changelogs"
 msgstr "URL de folosit la descărcarea jurnalelor de modificări"
 
 #: src/apt_options.cc:294
+#, fuzzy
+#| msgid ""
+#| "This option controls the template that's used to download changelogs from "
+#| "the Debian Web site.  You should only need to change this if the "
+#| "changelogs move to a different URL."
 msgid ""
-"This option controls the template that's used to download changelogs from "
-"the Debian Web site.  You should only need to change this if the changelogs "
-"move to a different URL."
+"This option controls the server used to download changelogs.  You should "
+"only need to change this if the changelogs move to a different URL."
 msgstr ""
 "Această opțiune controlează șablonul utilizat atunci când se descarcă "
 "jurnalele de modificări de pe situl Debian. Va trebui să schimbați aceasta "
@@ -891,19 +895,19 @@ msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr ""
 "Nu se poate executa sensible-pager, acesta este un sistem Debian funcțional?"
 
-#: src/cmdline/cmdline_changelog.cc:341
+#: src/cmdline/cmdline_changelog.cc:333
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr ""
 "%s nu este un pachet Debian oficial, nu se poate afișa jurnalul său de "
 "modificări."
 
-#: src/cmdline/cmdline_changelog.cc:425
+#: src/cmdline/cmdline_changelog.cc:394
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "Nu s-a putut găsi un jurnal de modificări pentru %s"
 
-#: src/cmdline/cmdline_changelog.cc:429
+#: src/cmdline/cmdline_changelog.cc:398
 #, fuzzy, c-format
 msgid "Couldn't run pager %s"
 msgstr "Nu s-a putut găsi un jurnal de modificări pentru %s"
@@ -978,12 +982,12 @@ msgstr "descărcare: trebuie specificat cel puțin un pachet pentru descărcare\
 msgid "Couldn't read source list"
 msgstr "Nu s-a putut citi lista de surse"
 
-#: src/cmdline/cmdline_download.cc:97
+#: src/cmdline/cmdline_download.cc:90
 #, c-format
 msgid "Can't find a package named \"%s\""
 msgstr "Nu s-a găsit pachetul numit „%s”"
 
-#: src/cmdline/cmdline_download.cc:141
+#: src/cmdline/cmdline_download.cc:134
 #, c-format
 msgid ""
 "No downloadable files for %s version %s; perhaps it is a local or obsolete "
@@ -2277,12 +2281,12 @@ msgstr "Descriere: "
 msgid "Homepage: "
 msgstr "Pagina de internet: "
 
-#: src/cmdline/cmdline_show.cc:582
+#: src/cmdline/cmdline_show.cc:575
 #, c-format
 msgid "Unable to locate package %s"
 msgstr "Nu s-a putut localiza pachetul %s"
 
-#: src/cmdline/cmdline_show.cc:603
+#: src/cmdline/cmdline_show.cc:596
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "Nu se poate analiza modelul %s"
@@ -2925,11 +2929,6 @@ msgid ""
 "an integer)."
 msgstr ""
 
-#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "Nici un pachet nu îndeplinește modelul \"%ls\"."
-
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
 "The package cache is not available; unable to download and install packages."
@@ -3122,13 +3121,13 @@ msgstr ""
 "\n"
 "Înregistrare completă.\n"
 
-#: src/generic/apt/matching/match.cc:3093
-#: src/generic/apt/matching/match.cc:3210
+#: src/generic/apt/matching/match.cc:3095
+#: src/generic/apt/matching/match.cc:3212
 msgid "Accessing index"
 msgstr ""
 
-#: src/generic/apt/matching/match.cc:3103
-#: src/generic/apt/matching/match.cc:3217
+#: src/generic/apt/matching/match.cc:3105
+#: src/generic/apt/matching/match.cc:3219
 #, fuzzy
 msgid "Filtering packages"
 msgstr "Se descarcă pachetele"
@@ -3242,18 +3241,18 @@ msgstr ""
 "Fișierul de indecși ai pachetelor este deteriorat. Nu există câmpul 'Nume "
 "fișier' pentru pachetul %s."
 
-#: src/generic/apt/pkg_changelog.cc:441 src/generic/apt/pkg_changelog.cc:589
+#: src/generic/apt/pkg_changelog.cc:442 src/generic/apt/pkg_changelog.cc:596
 #: src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "Jurnal de modificări al lui %s"
 
-#: src/generic/apt/pkg_changelog.cc:565 src/generic/apt/pkg_changelog.cc:570
+#: src/generic/apt/pkg_changelog.cc:572 src/generic/apt/pkg_changelog.cc:577
 #, fuzzy, c-format
 msgid "Failed to download changelogs: %s"
 msgstr "URL de folosit la descărcarea jurnalelor de modificări"
 
-#: src/generic/apt/pkg_changelog.cc:575
+#: src/generic/apt/pkg_changelog.cc:582
 #, fuzzy
 msgid "Failed to download changelogs: unexpected exception."
 msgstr "URL de folosit la descărcarea jurnalelor de modificări"
@@ -6635,6 +6634,11 @@ msgstr[2] "Acest grup conține %d de pachete."
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "Toate pachetele"
+
+#: src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "Nici un pachet nu îndeplinește modelul \"%ls\"."
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "

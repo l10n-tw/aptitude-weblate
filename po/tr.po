@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-08-28 11:08+0800\n"
+"POT-Creation-Date: 2012-11-04 19:55+0800\n"
 "PO-Revision-Date: 2012-02-23 16:54+0800\n"
 "Last-Translator: Erçin EKER <ercin.eker@linux.org.tr>\n"
 "Language-Team: Turkish <debian-l10n-turkish@lists.debian.org>\n"
@@ -314,9 +314,8 @@ msgstr "Değişim günlüklerini indirmek için kullanılacak URL(adres)"
 
 #: src/apt_options.cc:294
 msgid ""
-"This option controls the template that's used to download changelogs from "
-"the Debian Web site.  You should only need to change this if the changelogs "
-"move to a different URL."
+"This option controls the server used to download changelogs.  You should "
+"only need to change this if the changelogs move to a different URL."
 msgstr ""
 
 #: src/apt_options.cc:300
@@ -756,17 +755,17 @@ msgstr "%s için değişim günlüğü"
 msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr "Sensible-pager çalıştırılamıyor, bu çalışan bir Debian sistemi mi?"
 
-#: src/cmdline/cmdline_changelog.cc:341
+#: src/cmdline/cmdline_changelog.cc:333
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr "%s resmi bir Debian paketi değil, değişiklik güncesi gösterilemiyor."
 
-#: src/cmdline/cmdline_changelog.cc:425
+#: src/cmdline/cmdline_changelog.cc:394
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "%s için değişiklik güncesi bulunamıyor"
 
-#: src/cmdline/cmdline_changelog.cc:429
+#: src/cmdline/cmdline_changelog.cc:398
 #, fuzzy, c-format
 msgid "Couldn't run pager %s"
 msgstr "%s için değişiklik güncesi bulunamıyor"
@@ -838,12 +837,12 @@ msgstr "indirme: indirmek için en az bir paket belirtmelisiniz\n"
 msgid "Couldn't read source list"
 msgstr "Kaynak listesi okunamıyor"
 
-#: src/cmdline/cmdline_download.cc:97
+#: src/cmdline/cmdline_download.cc:90
 #, c-format
 msgid "Can't find a package named \"%s\""
 msgstr "\"%s\" adında bir paket bulunamıyor"
 
-#: src/cmdline/cmdline_download.cc:141
+#: src/cmdline/cmdline_download.cc:134
 #, c-format
 msgid ""
 "No downloadable files for %s version %s; perhaps it is a local or obsolete "
@@ -2098,12 +2097,12 @@ msgstr "Tanım: "
 msgid "Homepage: "
 msgstr ""
 
-#: src/cmdline/cmdline_show.cc:582
+#: src/cmdline/cmdline_show.cc:575
 #, c-format
 msgid "Unable to locate package %s"
 msgstr "%s paketi konumlandırılamıyor"
 
-#: src/cmdline/cmdline_show.cc:603
+#: src/cmdline/cmdline_show.cc:596
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "%s kalıbı ayrıştırılamıyor"
@@ -2729,11 +2728,6 @@ msgid ""
 "an integer)."
 msgstr ""
 
-#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "\"%ls\" kalıbına uygun paket yok."
-
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
 "The package cache is not available; unable to download and install packages."
@@ -2921,13 +2915,13 @@ msgstr ""
 "\n"
 "Günlük tamamlandı.\n"
 
-#: src/generic/apt/matching/match.cc:3093
-#: src/generic/apt/matching/match.cc:3210
+#: src/generic/apt/matching/match.cc:3095
+#: src/generic/apt/matching/match.cc:3212
 msgid "Accessing index"
 msgstr ""
 
-#: src/generic/apt/matching/match.cc:3103
-#: src/generic/apt/matching/match.cc:3217
+#: src/generic/apt/matching/match.cc:3105
+#: src/generic/apt/matching/match.cc:3219
 #, fuzzy
 msgid "Filtering packages"
 msgstr "Paketler indiriliyor"
@@ -3038,18 +3032,18 @@ msgstr ""
 "Paket indeks dosyaları bozulmuş. %s paketi için hiç bir \"Filename:\" alanı "
 "bulunamadı"
 
-#: src/generic/apt/pkg_changelog.cc:441 src/generic/apt/pkg_changelog.cc:589
+#: src/generic/apt/pkg_changelog.cc:442 src/generic/apt/pkg_changelog.cc:596
 #: src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "%s için değişim günlüğü"
 
-#: src/generic/apt/pkg_changelog.cc:565 src/generic/apt/pkg_changelog.cc:570
+#: src/generic/apt/pkg_changelog.cc:572 src/generic/apt/pkg_changelog.cc:577
 #, fuzzy, c-format
 msgid "Failed to download changelogs: %s"
 msgstr "Değişim günlüklerini indirmek için kullanılacak URL(adres)"
 
-#: src/generic/apt/pkg_changelog.cc:575
+#: src/generic/apt/pkg_changelog.cc:582
 #, fuzzy
 msgid "Failed to download changelogs: unexpected exception."
 msgstr "Değişim günlüklerini indirmek için kullanılacak URL(adres)"
@@ -6372,6 +6366,11 @@ msgstr[0] ""
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "Tüm Paketler"
+
+#: src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "\"%ls\" kalıbına uygun paket yok."
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "

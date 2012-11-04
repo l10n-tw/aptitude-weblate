@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-08-28 11:08+0800\n"
+"POT-Creation-Date: 2012-11-04 19:55+0800\n"
 "PO-Revision-Date: 2012-06-03 13:17+0800\n"
 "Last-Translator: Tshewang Norbu <bumthap2006@hotmail.com>\n"
 "Language-Team: Dzongkha <pgeyleg@dit.gov.bt>\n"
@@ -321,9 +321,8 @@ msgstr "བསྒྱུར་བཅོས་ལོགསི་ ཚུ་ཕབ�
 
 #: src/apt_options.cc:294
 msgid ""
-"This option controls the template that's used to download changelogs from "
-"the Debian Web site.  You should only need to change this if the changelogs "
-"move to a different URL."
+"This option controls the server used to download changelogs.  You should "
+"only need to change this if the changelogs move to a different URL."
 msgstr ""
 
 #: src/apt_options.cc:300
@@ -778,18 +777,18 @@ msgstr ""
 "དྲན་ཤེས་ཅན་གྱི་ཤོག་ལེབ་པ་དེ་ ལག་ལེན་འཐབ་མ་ཚུགས། འ་ནི་འདི་ལཱ་གཡོག་འབད་ནིའི་ཌེ་བེ་ཡན་རིམ་ལུགས་ཨིན་"
 "ན?"
 
-#: src/cmdline/cmdline_changelog.cc:341
+#: src/cmdline/cmdline_changelog.cc:333
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr ""
 "%s དེ་གཞུང་འབྲེལ་གྱི་ཌེ་བི་ཡཱན་ཐུམ་སྒྲིལ་ཅིག་མེནམ་ལས་ དེ་གི་བསྒྱུར་བཅོས་དྲན་དེབ་བཀྲམ་སྟོན་འབད་མི་ཚུགས།"
 
-#: src/cmdline/cmdline_changelog.cc:425
+#: src/cmdline/cmdline_changelog.cc:394
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "%s གི་དོན་ལུ་ བསྒྱུར་བཅོས་དྲན་དེབ་ཐོབ་མ་ཚུགས།"
 
-#: src/cmdline/cmdline_changelog.cc:429
+#: src/cmdline/cmdline_changelog.cc:398
 #, fuzzy, c-format
 #| msgid "Couldn't find a changelog for %s"
 msgid "Couldn't run pager %s"
@@ -864,12 +863,12 @@ msgstr ""
 msgid "Couldn't read source list"
 msgstr "འབྱུང་ཁུངས་ཀྱི་ཐོ་ཡིག་ལྷག་མ་ཚུགས།"
 
-#: src/cmdline/cmdline_download.cc:97
+#: src/cmdline/cmdline_download.cc:90
 #, c-format
 msgid "Can't find a package named \"%s\""
 msgstr "\"%s\"ཟེར་མིང་བཏགས་ཡོད་མི་ཐུམ་སྒྲིལ་དེ་ཐོབ་མ་ཚུགས།"
 
-#: src/cmdline/cmdline_download.cc:141
+#: src/cmdline/cmdline_download.cc:134
 #, c-format
 msgid ""
 "No downloadable files for %s version %s; perhaps it is a local or obsolete "
@@ -2148,12 +2147,12 @@ msgstr "འགྲེལ་བཤད: "
 msgid "Homepage: "
 msgstr ""
 
-#: src/cmdline/cmdline_show.cc:582
+#: src/cmdline/cmdline_show.cc:575
 #, c-format
 msgid "Unable to locate package %s"
 msgstr "ཐུམ་སྒྲིལ་%sདེ་ག་ཡོད་འཚོལ་མ་ཚུགས།"
 
-#: src/cmdline/cmdline_show.cc:603
+#: src/cmdline/cmdline_show.cc:596
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "དཔེ་གཞི་%s་དེ་མིང་དཔྱད་འབད་མ་ཚུགས།"
@@ -2808,11 +2807,6 @@ msgid ""
 "an integer)."
 msgstr ""
 
-#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "ཐུམ་སྒྲིལ་ག་ཡང་དཔེ་གཞི་ \"%ls\"དེ་དང་མཐུན་སྒྲིག་མིན་འདུག"
-
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
 "The package cache is not available; unable to download and install packages."
@@ -3004,13 +2998,13 @@ msgstr ""
 "\n"
 "མཇུག་མ་བསྡུ་མི་བསྡམ་བཞག.\n"
 
-#: src/generic/apt/matching/match.cc:3093
-#: src/generic/apt/matching/match.cc:3210
+#: src/generic/apt/matching/match.cc:3095
+#: src/generic/apt/matching/match.cc:3212
 msgid "Accessing index"
 msgstr ""
 
-#: src/generic/apt/matching/match.cc:3103
-#: src/generic/apt/matching/match.cc:3217
+#: src/generic/apt/matching/match.cc:3105
+#: src/generic/apt/matching/match.cc:3219
 #, fuzzy
 #| msgid "Downloading packages"
 msgid "Filtering packages"
@@ -3125,19 +3119,19 @@ msgid ""
 msgstr ""
 "ཐུམ་སྒྲིལ་ཟུར་ཐོའི་ཡིག་སྣོད་ཚུ་ངན་ཅན་ལུ་གྱུར་སོང་ནུག ཡིག་སྣོད་མིང་མེད: ཐུམ་སྒྲིལ་%s དེ་གི་དོན་ལུ་ས་སྒོ།"
 
-#: src/generic/apt/pkg_changelog.cc:441 src/generic/apt/pkg_changelog.cc:589
+#: src/generic/apt/pkg_changelog.cc:442 src/generic/apt/pkg_changelog.cc:596
 #: src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "%sགི་བསྒྱུར་བཅོས་དྲན་དེབ།"
 
-#: src/generic/apt/pkg_changelog.cc:565 src/generic/apt/pkg_changelog.cc:570
+#: src/generic/apt/pkg_changelog.cc:572 src/generic/apt/pkg_changelog.cc:577
 #, fuzzy, c-format
 #| msgid "URL to use to download changelogs"
 msgid "Failed to download changelogs: %s"
 msgstr "བསྒྱུར་བཅོས་ལོགསི་ ཚུ་ཕབ་ལེན་འབད་ནིའི་དོན་ལུ་ལག་ལེན་འཐབ་་ནི་གི་ཡུ་ཨཱར་ཨེལ།"
 
-#: src/generic/apt/pkg_changelog.cc:575
+#: src/generic/apt/pkg_changelog.cc:582
 #, fuzzy
 #| msgid "URL to use to download changelogs"
 msgid "Failed to download changelogs: unexpected exception."
@@ -6754,6 +6748,11 @@ msgstr[1] ""
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "ཐུམ་སྒྲིལ་ཆ་མཉམ།"
+
+#: src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "ཐུམ་སྒྲིལ་ག་ཡང་དཔེ་གཞི་ \"%ls\"དེ་དང་མཐུན་སྒྲིག་མིན་འདུག"
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "

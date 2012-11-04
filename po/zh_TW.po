@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-08-28 11:08+0800\n"
+"POT-Creation-Date: 2012-11-04 19:55+0800\n"
 "PO-Revision-Date: 2012-02-23 16:55+0800\n"
 "Last-Translator: Asho Yeh <ashoyeh@gmail.com>\n"
 "Language-Team: Chinese/Traditional <zh-l10n@linux.org.tw>\n"
@@ -339,10 +339,14 @@ msgid "URL to use to download changelogs"
 msgstr "用於下載變更日誌的 URL"
 
 #: src/apt_options.cc:294
+#, fuzzy
+#| msgid ""
+#| "This option controls the template that's used to download changelogs from "
+#| "the Debian Web site.  You should only need to change this if the "
+#| "changelogs move to a different URL."
 msgid ""
-"This option controls the template that's used to download changelogs from "
-"the Debian Web site.  You should only need to change this if the changelogs "
-"move to a different URL."
+"This option controls the server used to download changelogs.  You should "
+"only need to change this if the changelogs move to a different URL."
 msgstr ""
 "該選項控制著從 Debian 官網下載更新記錄的樣板格式。如果更新記錄變更網路連結"
 "時，您必須修改該項目。"
@@ -802,17 +806,17 @@ msgstr "%s 的變更日誌"
 msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr "無法執行 sensible-pager, 這是正常的 Debian 系統嗎？"
 
-#: src/cmdline/cmdline_changelog.cc:341
+#: src/cmdline/cmdline_changelog.cc:333
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr "%s 不是官方 Debian 套件，無法顯示更改紀錄"
 
-#: src/cmdline/cmdline_changelog.cc:425
+#: src/cmdline/cmdline_changelog.cc:394
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "無法找到 %s 的更改紀錄"
 
-#: src/cmdline/cmdline_changelog.cc:429
+#: src/cmdline/cmdline_changelog.cc:398
 #, fuzzy, c-format
 msgid "Couldn't run pager %s"
 msgstr "無法找到 %s 的更改紀錄"
@@ -884,12 +888,12 @@ msgstr "downloa: 你必須至少指定一個下載套件\n"
 msgid "Couldn't read source list"
 msgstr "無法讀取源列表檔案"
 
-#: src/cmdline/cmdline_download.cc:97
+#: src/cmdline/cmdline_download.cc:90
 #, c-format
 msgid "Can't find a package named \"%s\""
 msgstr "無法找到任何套件的名稱 \"%s\""
 
-#: src/cmdline/cmdline_download.cc:141
+#: src/cmdline/cmdline_download.cc:134
 #, c-format
 msgid ""
 "No downloadable files for %s version %s; perhaps it is a local or obsolete "
@@ -2129,12 +2133,12 @@ msgstr "描述: "
 msgid "Homepage: "
 msgstr "官網： "
 
-#: src/cmdline/cmdline_show.cc:582
+#: src/cmdline/cmdline_show.cc:575
 #, c-format
 msgid "Unable to locate package %s"
 msgstr "無法定位套件 %s"
 
-#: src/cmdline/cmdline_show.cc:603
+#: src/cmdline/cmdline_show.cc:596
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "無法分析模式 %s"
@@ -2752,11 +2756,6 @@ msgid ""
 "an integer)."
 msgstr ""
 
-#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "沒有套件吻合樣式 \"%ls\"。"
-
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
 "The package cache is not available; unable to download and install packages."
@@ -2943,13 +2942,13 @@ msgstr ""
 "\n"
 "日誌完成。\n"
 
-#: src/generic/apt/matching/match.cc:3093
-#: src/generic/apt/matching/match.cc:3210
+#: src/generic/apt/matching/match.cc:3095
+#: src/generic/apt/matching/match.cc:3212
 msgid "Accessing index"
 msgstr ""
 
-#: src/generic/apt/matching/match.cc:3103
-#: src/generic/apt/matching/match.cc:3217
+#: src/generic/apt/matching/match.cc:3105
+#: src/generic/apt/matching/match.cc:3219
 #, fuzzy
 msgid "Filtering packages"
 msgstr "下載套件中"
@@ -3058,18 +3057,18 @@ msgid ""
 "The package index files are corrupted. No Filename: field for package %s."
 msgstr "套件索引列表是損壞的。無套件 %s 的檔名: 欄位。"
 
-#: src/generic/apt/pkg_changelog.cc:441 src/generic/apt/pkg_changelog.cc:589
+#: src/generic/apt/pkg_changelog.cc:442 src/generic/apt/pkg_changelog.cc:596
 #: src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "%s 的變更日誌"
 
-#: src/generic/apt/pkg_changelog.cc:565 src/generic/apt/pkg_changelog.cc:570
+#: src/generic/apt/pkg_changelog.cc:572 src/generic/apt/pkg_changelog.cc:577
 #, fuzzy, c-format
 msgid "Failed to download changelogs: %s"
 msgstr "用於下載變更日誌的 URL"
 
-#: src/generic/apt/pkg_changelog.cc:575
+#: src/generic/apt/pkg_changelog.cc:582
 #, fuzzy
 msgid "Failed to download changelogs: unexpected exception."
 msgstr "用於下載變更日誌的 URL"
@@ -6346,6 +6345,11 @@ msgstr[0] "該群組包含 %d 個套件。"
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "全部包"
+
+#: src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "沒有套件吻合樣式 \"%ls\"。"
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "

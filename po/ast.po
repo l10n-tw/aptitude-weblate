@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude 0.4.11.11\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-08-28 11:08+0800\n"
+"POT-Creation-Date: 2012-11-04 19:55+0800\n"
 "PO-Revision-Date: 2012-02-12 15:29+0800\n"
 "Last-Translator: Marcos Alvarez Costales <marcos.alvarez.costales@gmail."
 "com>\n"
@@ -365,10 +365,14 @@ msgid "URL to use to download changelogs"
 msgstr "URL pa usar la baxada de rexistros de cambéu"
 
 #: src/apt_options.cc:294
+#, fuzzy
+#| msgid ""
+#| "This option controls the template that's used to download changelogs from "
+#| "the Debian Web site.  You should only need to change this if the "
+#| "changelogs move to a different URL."
 msgid ""
-"This option controls the template that's used to download changelogs from "
-"the Debian Web site.  You should only need to change this if the changelogs "
-"move to a different URL."
+"This option controls the server used to download changelogs.  You should "
+"only need to change this if the changelogs move to a different URL."
 msgstr ""
 "Esta opción controla la pantilla usada pa baxar rexistros de cambéu dende'l "
 "sitiu Web de Debian. Sólo necesites camudar esto si los rexistros de cambéu "
@@ -866,19 +870,19 @@ msgstr ""
 "Nun puede executase sensible-pager, ¿ye ésti un sistema Debian que furrula "
 "bien?"
 
-#: src/cmdline/cmdline_changelog.cc:341
+#: src/cmdline/cmdline_changelog.cc:333
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr ""
 "%s nun ye un paquete oficial de Debian, nun puede visualizase'l so rexistru "
 "de cambeos."
 
-#: src/cmdline/cmdline_changelog.cc:425
+#: src/cmdline/cmdline_changelog.cc:394
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "Nun puede atopase rexistru de cambéu pa %s"
 
-#: src/cmdline/cmdline_changelog.cc:429
+#: src/cmdline/cmdline_changelog.cc:398
 #, fuzzy, c-format
 #| msgid "Couldn't find a changelog for %s"
 msgid "Couldn't run pager %s"
@@ -955,12 +959,12 @@ msgstr "baxar: Tienes qu'especificar al menos un paquete pa baxar\n"
 msgid "Couldn't read source list"
 msgstr "Nun puede lleese llista de fontes"
 
-#: src/cmdline/cmdline_download.cc:97
+#: src/cmdline/cmdline_download.cc:90
 #, c-format
 msgid "Can't find a package named \"%s\""
 msgstr "Nun puede atopase un paquete nomáu \"%s\""
 
-#: src/cmdline/cmdline_download.cc:141
+#: src/cmdline/cmdline_download.cc:134
 #, c-format
 msgid ""
 "No downloadable files for %s version %s; perhaps it is a local or obsolete "
@@ -2254,12 +2258,12 @@ msgstr "Descripción: "
 msgid "Homepage: "
 msgstr "Páxina d'aniciu: "
 
-#: src/cmdline/cmdline_show.cc:582
+#: src/cmdline/cmdline_show.cc:575
 #, c-format
 msgid "Unable to locate package %s"
 msgstr "Nun puede llocalizase paquete %s"
 
-#: src/cmdline/cmdline_show.cc:603
+#: src/cmdline/cmdline_show.cc:596
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "Nun puede interpretase'l patrón %s"
@@ -2915,11 +2919,6 @@ msgstr ""
 "Nivel de gueta nun válidu \"%s\" (non \"conflict\", \"minimum\", o un "
 "enteru)."
 
-#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "Nengún paquete concasa col patrón \"%ls\"."
-
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
 "The package cache is not available; unable to download and install packages."
@@ -3112,13 +3111,13 @@ msgstr ""
 "\n"
 "Rexistru completu.\n"
 
-#: src/generic/apt/matching/match.cc:3093
-#: src/generic/apt/matching/match.cc:3210
+#: src/generic/apt/matching/match.cc:3095
+#: src/generic/apt/matching/match.cc:3212
 msgid "Accessing index"
 msgstr ""
 
-#: src/generic/apt/matching/match.cc:3103
-#: src/generic/apt/matching/match.cc:3217
+#: src/generic/apt/matching/match.cc:3105
+#: src/generic/apt/matching/match.cc:3219
 #, fuzzy
 #| msgid "Downloading packages"
 msgid "Filtering packages"
@@ -3234,19 +3233,19 @@ msgstr ""
 "Los ficheros colos índices de paquetes tan dañaos. Ensin Filename: campu pal "
 "paquete %s."
 
-#: src/generic/apt/pkg_changelog.cc:441 src/generic/apt/pkg_changelog.cc:589
+#: src/generic/apt/pkg_changelog.cc:442 src/generic/apt/pkg_changelog.cc:596
 #: src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "Rexistru de cambeos de %s"
 
-#: src/generic/apt/pkg_changelog.cc:565 src/generic/apt/pkg_changelog.cc:570
+#: src/generic/apt/pkg_changelog.cc:572 src/generic/apt/pkg_changelog.cc:577
 #, fuzzy, c-format
 #| msgid "Failed to download the changelog: %s"
 msgid "Failed to download changelogs: %s"
 msgstr "Falló al descargar el cambéu de rexistru: %s"
 
-#: src/generic/apt/pkg_changelog.cc:575
+#: src/generic/apt/pkg_changelog.cc:582
 #, fuzzy
 #| msgid "Failed to download the changelog: %s"
 msgid "Failed to download changelogs: unexpected exception."
@@ -6653,6 +6652,11 @@ msgstr[1] "Esti grupu contién %d paquetes."
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "Tolos Paquetes"
+
+#: src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "Nengún paquete concasa col patrón \"%ls\"."
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "
