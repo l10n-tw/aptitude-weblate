@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([aptitude], [0.6.8.1], [aptitude-devel@lists.alioth.debian.org])
+AC_INIT([aptitude], [0.6.8.2], [aptitude-devel@lists.alioth.debian.org])
 AC_CONFIG_SRCDIR([src/main.cc])
 AM_INIT_AUTOMAKE([dist-xz no-dist-gzip -Wno-portability])
 AM_CONFIG_HEADER(config.h)
@@ -46,6 +46,10 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <apt-pkg/depcache.h>]],
 AC_CHECK_MEMBER([struct pkgCache::Version.MultiArch], [],
                 [AC_MSG_ERROR([need libapt-pkg 0.8 or later])],
                 [[#include <apt-pkg/pkgcache.h>]])
+
+AC_CHECK_TYPE([APT::CacheFilter::PackageArchitectureMatchesSpecification], [],
+              [AC_MSG_ERROR([need libapt-pkg 0.9.7 or later])],
+              [[#include <apt-pkg/cachefilter.h>]])
 
 AC_CHECK_LIB(pthread, main,
 	HAVE_LIBPTHREAD=1

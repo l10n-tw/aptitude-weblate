@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude_po_ne\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-08-28 11:08+0800\n"
+"POT-Creation-Date: 2012-11-04 19:55+0800\n"
 "PO-Revision-Date: 2012-06-03 12:27+0800\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -318,9 +318,8 @@ msgstr "परिवर्तन लगहरू डाउनलोड गर्
 
 #: src/apt_options.cc:294
 msgid ""
-"This option controls the template that's used to download changelogs from "
-"the Debian Web site.  You should only need to change this if the changelogs "
-"move to a different URL."
+"This option controls the server used to download changelogs.  You should "
+"only need to change this if the changelogs move to a different URL."
 msgstr ""
 
 #: src/apt_options.cc:300
@@ -761,17 +760,17 @@ msgstr "%s को लग परिवर्तन गर्नुहोस्"
 msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr "संवेदनशिल-पेजर कार्यन्वयन गर्न सक्दैन, के यो कार्य डेवियन प्रणाली हो ?"
 
-#: src/cmdline/cmdline_changelog.cc:341
+#: src/cmdline/cmdline_changelog.cc:333
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr "%s एउटा कार्यलय डेवियन प्याकेज होइन, यसको परिवर्तन लग प्रदर्शन गर्न सकिदैन ।"
 
-#: src/cmdline/cmdline_changelog.cc:425
+#: src/cmdline/cmdline_changelog.cc:394
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "%s को लागि परिवर्तन लग फेला पार्न सकिदैन"
 
-#: src/cmdline/cmdline_changelog.cc:429
+#: src/cmdline/cmdline_changelog.cc:398
 #, fuzzy, c-format
 msgid "Couldn't run pager %s"
 msgstr "%s को लागि परिवर्तन लग फेला पार्न सकिदैन"
@@ -843,12 +842,12 @@ msgstr "डाउनलोड: तपाईँले डाउनलोड ग�
 msgid "Couldn't read source list"
 msgstr "स्रोत सूचि पढ्न सकिदैन"
 
-#: src/cmdline/cmdline_download.cc:97
+#: src/cmdline/cmdline_download.cc:90
 #, c-format
 msgid "Can't find a package named \"%s\""
 msgstr "\"%s\" नामकरण गरिएको प्याकेज फेला पार्न सकिएन"
 
-#: src/cmdline/cmdline_download.cc:141
+#: src/cmdline/cmdline_download.cc:134
 #, c-format
 msgid ""
 "No downloadable files for %s version %s; perhaps it is a local or obsolete "
@@ -2098,12 +2097,12 @@ msgstr "वर्णन:"
 msgid "Homepage: "
 msgstr ""
 
-#: src/cmdline/cmdline_show.cc:582
+#: src/cmdline/cmdline_show.cc:575
 #, c-format
 msgid "Unable to locate package %s"
 msgstr "प्याकेज %s स्थानिय गर्न असक्षम भयो "
 
-#: src/cmdline/cmdline_show.cc:603
+#: src/cmdline/cmdline_show.cc:596
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "बान्की %s पद वर्णन गर्न असक्षम भयो"
@@ -2734,11 +2733,6 @@ msgid ""
 "an integer)."
 msgstr ""
 
-#: src/generic/apt/cacheset.cc:49 src/pkg_tree.cc:282
-#, c-format
-msgid "No packages matched the pattern \"%ls\"."
-msgstr "बान्की \"%ls\" संग कुनै प्याकेजहरू मेल खाएन ।"
-
 #: src/generic/apt/download_install_manager.cc:60
 msgid ""
 "The package cache is not available; unable to download and install packages."
@@ -2926,13 +2920,13 @@ msgstr ""
 "\n"
 "लग समप्त भयो ।\n"
 
-#: src/generic/apt/matching/match.cc:3093
-#: src/generic/apt/matching/match.cc:3210
+#: src/generic/apt/matching/match.cc:3095
+#: src/generic/apt/matching/match.cc:3212
 msgid "Accessing index"
 msgstr ""
 
-#: src/generic/apt/matching/match.cc:3103
-#: src/generic/apt/matching/match.cc:3217
+#: src/generic/apt/matching/match.cc:3105
+#: src/generic/apt/matching/match.cc:3219
 #, fuzzy
 msgid "Filtering packages"
 msgstr "प्याकेजहरू डाउनलोड गर्दै"
@@ -3041,18 +3035,18 @@ msgid ""
 "The package index files are corrupted. No Filename: field for package %s."
 msgstr "प्याकेज अनुक्रमणिका फाइलहरू दूषित भयो । फाइलनाम छैन: प्याकेज %s को लागि फाँट ।"
 
-#: src/generic/apt/pkg_changelog.cc:441 src/generic/apt/pkg_changelog.cc:589
+#: src/generic/apt/pkg_changelog.cc:442 src/generic/apt/pkg_changelog.cc:596
 #: src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "%s को लग परिवर्तन गर्नुहोस्"
 
-#: src/generic/apt/pkg_changelog.cc:565 src/generic/apt/pkg_changelog.cc:570
+#: src/generic/apt/pkg_changelog.cc:572 src/generic/apt/pkg_changelog.cc:577
 #, fuzzy, c-format
 msgid "Failed to download changelogs: %s"
 msgstr "परिवर्तन लगहरू डाउनलोड गर्न URL प्रयोग गर्नुहोस्"
 
-#: src/generic/apt/pkg_changelog.cc:575
+#: src/generic/apt/pkg_changelog.cc:582
 #, fuzzy
 msgid "Failed to download changelogs: unexpected exception."
 msgstr "परिवर्तन लगहरू डाउनलोड गर्न URL प्रयोग गर्नुहोस्"
@@ -6372,6 +6366,11 @@ msgstr[1] ""
 #: src/pkg_tree.cc:178
 msgid "All Packages"
 msgstr "सबै प्याकेजहरू"
+
+#: src/pkg_tree.cc:282
+#, c-format
+msgid "No packages matched the pattern \"%ls\"."
+msgstr "बान्की \"%ls\" संग कुनै प्याकेजहरू मेल खाएन ।"
 
 #: src/pkg_tree.cc:301
 msgid "Enter the new package tree limit: "
