@@ -1,4 +1,4 @@
-aptitude (0.6.8.2-1) UNRELEASED; urgency=low
+aptitude (0.6.8.2-1) unstable; urgency=low
 
   * [all]: Support for matching architectures using specification
            strings and wildcards (for example, "linux-any").  See
@@ -30,7 +30,7 @@ aptitude (0.6.8.2-1) UNRELEASED; urgency=low
   * debian/control: Bump Build-Depends on libapt-pkg-dev to (>= 0.9.7) for
     architecture specification string support.
 
- --
+ -- Daniel Hartwig <mandyke@gmail.com>  Mon, 05 Nov 2012 09:52:12 +0800
 
 aptitude (0.6.8.1-2) unstable; urgency=low
 
