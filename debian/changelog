@@ -1,3 +1,10 @@
+aptitude (0.6.8.3-2) UNRELEASED; urgency=low
+
+  * Fix lintian warning vcs-field-not-canonical
+    + Explicitly specify branch for packaging
+
+ -- Axel Beckert <abe@debian.org>  Sun, 19 Jan 2014 20:48:49 +0100
+
 aptitude (0.6.8.3-1) unstable; urgency=medium
 
   * New upstream release

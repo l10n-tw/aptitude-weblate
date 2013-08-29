@@ -11,8 +11,8 @@ Build-Depends: libapt-pkg-dev (>= 0.9.7), debhelper (>= 9),
  libboost-python-dev, libboost-iostreams-dev, libboost-test-dev,
  libgtest-dev, google-mock, libsqlite3-dev, dpkg-dev (>= 1.16.1),
  pkg-config
-Vcs-Git: git://git.debian.org/git/aptitude/aptitude.git
-Vcs-Browser: http://git.debian.org/?p=aptitude/aptitude.git;a=summary
+Vcs-Git: git://anonscm.debian.org/aptitude/aptitude.git -b debian-sid
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=aptitude/aptitude.git
 Standards-Version: 3.9.5
 Homepage: http://aptitude.alioth.debian.org/
 
