@@ -3,7 +3,6 @@ Section: admin
 Priority: important
 Maintainer: Aptitude Development Team <aptitude-devel@lists.alioth.debian.org>
 Uploaders: Daniel Burrows <dburrows@debian.org>, Daniel Hartwig <mandyke@gmail.com>
-DM-Upload-Allowed: yes
 Build-Depends: libapt-pkg-dev (>= 0.9.7), debhelper (>= 9),
  libsigc++-2.0-dev, libcppunit-dev, libcwidget-dev (>= 0.5.6.1-2),
  libncursesw5-dev, gettext, g++ (>= 4:3.2.2-0), docbook-xsl,
@@ -14,7 +13,7 @@ Build-Depends: libapt-pkg-dev (>= 0.9.7), debhelper (>= 9),
  pkg-config
 Vcs-Git: git://git.debian.org/git/aptitude/aptitude.git
 Vcs-Browser: http://git.debian.org/?p=aptitude/aptitude.git;a=summary
-Standards-Version: 3.9.3
+Standards-Version: 3.9.5
 Homepage: http://aptitude.alioth.debian.org/
 
 Package: aptitude

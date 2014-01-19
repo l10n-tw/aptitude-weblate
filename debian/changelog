@@ -1,3 +1,10 @@
+aptitude (0.6.8.3-1) UNRELEASED; urgency=medium
+
+  * Bump Standards-Version to 3.9.5
+    - Drop obsolete field in debian/control: DM-Upload-Allowed
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 19 Jan 2014 00:38:37 +0000
+
 aptitude (0.6.8.2-1) unstable; urgency=low
 
   * [all]: Support for matching architectures using specification
