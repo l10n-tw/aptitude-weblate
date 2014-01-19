@@ -190,7 +190,6 @@ src/generic/problemresolver/sanity_check_universe.h
 src/generic/problemresolver/search_graph.h
 src/generic/problemresolver/solution.h
 src/generic/problemresolver/test.cc
-src/generic/util/browser.h
 src/generic/util/compare3.h
 src/generic/util/dense_setset.h
 src/generic/util/dirent_safe.h

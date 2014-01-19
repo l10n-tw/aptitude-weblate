@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([aptitude], [0.6.8.2], [aptitude-devel@lists.alioth.debian.org])
+AC_INIT([aptitude], [0.6.8.3], [aptitude-devel@lists.alioth.debian.org])
 AC_CONFIG_SRCDIR([src/main.cc])
 AM_INIT_AUTOMAKE([dist-xz no-dist-gzip -Wno-portability])
 AM_CONFIG_HEADER(config.h)
@@ -494,6 +494,61 @@ AC_SUBST(BOOST_UNIT_TEST_LIBS)
 
 ##### End Boost.Test check #####
 
+dnl Boost 1.53 introduced indirection to the return type of
+dnl make_shared that interferes with befriending it.  This is strange
+dnl as the effective return type does not change, so maybe I missed
+dnl another way to support this.
+
+AC_MSG_CHECKING([the return type of boost::make_shared])
+boost_make_shared_return_type=no
+AC_COMPILE_IFELSE([AC_LANG_SOURCE([
+#include <boost/make_shared.hpp>
+#include <boost/shared_ptr.hpp>
+class Foo
+{
+  template< typename T, typename A >
+  friend boost::shared_ptr< T >
+    boost::make_shared(const A &);
+  private:
+  Foo(int a) {}
+};
+
+int main(int argc, char *argv[])
+{
+  boost::shared_ptr< Foo > x = boost::make_shared< Foo >(1);
+}
+                  ])],
+                  [AC_DEFINE([BOOST_MAKE_SHARED_SHARED_PTR], [1],
+                             [Define if boost::make_shared returns shared_pointer directly.])
+                   boost_make_shared_return_type="boost::shared_ptr< T >"])
+if test "$boost_make_shared_return_type" = "no"; then
+  AC_COMPILE_IFELSE([AC_LANG_SOURCE([
+#include <boost/make_shared.hpp>
+#include <boost/shared_ptr.hpp>
+class Foo
+{
+  template< typename T, typename A >
+  friend typename boost::detail::sp_if_not_array< T >::type
+    boost::make_shared(const A &);
+  private:
+  Foo(int a) {}
+};
+
+int main(int argc, char *argv[])
+{
+  boost::shared_ptr< Foo > x = boost::make_shared< Foo >(1);
+}
+                  ])],
+                  [AC_DEFINE([BOOST_MAKE_SHARED_SP_IF_NOT_ARRAY_TYPE], [1],
+                             [Define if boost::make_shared returns sp_if_not_array::type.])
+                   boost_make_shared_return_type="typename boost::detail::sp_if_not_array< T >::type"])
+fi
+if test "$boost_make_shared_return_type" = "no"; then
+  AC_MSG_FAILURE([unknown])
+else
+  AC_MSG_RESULT([$boost_make_shared_return_type])
+fi
+
 ##### Check for Google Mock #####
 
 dnl Google Mock's developers do not support prebuilt libraries (e.g.,
@@ -957,12 +1012,15 @@ AC_CONFIG_FILES([
 	doc/ja/Makefile
 	doc/ja/images/Makefile
 	doc/pl/Makefile
+	doc/ru/Makefile
+	doc/ru/images/Makefile
 	doc/po4a/Makefile
 	doc/po4a/po/Makefile
 	doc/po4a/add_de/Makefile
 	doc/po4a/add_es/Makefile
 	doc/po4a/add_fr/Makefile
 	doc/po4a/add_pl/Makefile
+	doc/po4a/add_ru/Makefile
 	m4/Makefile
 	po/Makefile.in
 	src/Makefile
