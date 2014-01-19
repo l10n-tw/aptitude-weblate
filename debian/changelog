@@ -1,10 +1,29 @@
 aptitude (0.6.8.3-1) UNRELEASED; urgency=medium
 
+  * Acknowledge NMUs (patches had been cherry picked from VCS)
   * Bump Standards-Version to 3.9.5
     - Drop obsolete field in debian/control: DM-Upload-Allowed
   * Add myself as uploader
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 19 Jan 2014 00:38:37 +0000
+
+aptitude (0.6.8.2-1.2) unstable; urgency=low
+
+  * cherrypick from git:
+    + fix FTBFS with Boost 1.53. Closes: #710208
+    + support again Boost < 1.53
+
+ -- Andreas Barth <aba@ayous.org>  Sat, 24 Aug 2013 13:32:28 +0000
+
+aptitude (0.6.8.2-1.1) unstable; urgency=low
+
+  * cherrypick from git:
+    + 794b91 fix FTBFS with g++-4.8
+    + c142a7 task_list is not extern
+  * re-upload to unstable to have again a working package on mips*.
+    Closes: #708812, #714186
+
+ -- Andreas Barth <aba@ayous.org>  Fri, 16 Aug 2013 13:19:40 +0000
 
 aptitude (0.6.8.2-1) unstable; urgency=low
 
