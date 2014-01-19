@@ -10,6 +10,12 @@
    fold function. */
 #undef BOOST_FUSION_FOLD_STATE_BEFORE_VALUE
 
+/* Define if boost::make_shared returns shared_pointer directly. */
+#undef BOOST_MAKE_SHARED_SHARED_PTR
+
+/* Define if boost::make_shared returns sp_if_not_array::type. */
+#undef BOOST_MAKE_SHARED_SP_IF_NOT_ARRAY_TYPE
+
 /* Define to disable the use of a .glade file found relative to the current
    working directory. */
 #undef DISABLE_PRIVATE_GLADE_FILE

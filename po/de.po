@@ -4,29 +4,34 @@
 # Copyright (c) 2004 Sebastian Kapfer <sebastian_kapfer@gmx.net>
 # Copyright (c) 2004 Dennis Stampfer <seppy@debian.org>
 # Copyright (c) 2006, 2008 Jens Seidel <jensseidel@users.sf.net>
-# Copyright (c) 2010, 2012, Holger Wansing <linux@wansing-online.de>
+# Copyright (c) 2010-2013 Holger Wansing <linux@wansing-online.de>
+# Copyright (c) 2013 Benjamin Weis <benjamin.weis@gmx.com>
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: aptitude 0.6.6-1\n"
+"Project-Id-Version: aptitude 0.6.8.2-1.2\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2012-11-04 19:55+0800\n"
-"PO-Revision-Date: 2012-06-03 12:22+0800\n"
-"Last-Translator: Holger Wansing <linux@wansing-online.de>\n"
+"POT-Creation-Date: 2014-01-19 13:28+0000\n"
+"PO-Revision-Date: 2013-11-11 21:37+0100\n"
+"Last-Translator: Benjamin Weis <benjamin.weis@gmx.com>\n"
 "Language-Team: Debian German <debian-l10n-german@lists.debian.org>\n"
-"Language: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n!=1;\n"
 
+#. ForTranslators: These strings describing config items
+#. should be the same width.
 #: src/apt_config_treeitems.cc:99 src/apt_config_treeitems.cc:210
-#: src/apt_config_treeitems.cc:394
-msgid "%BOption:%b  "
-msgstr "%BOption:%b  "
-
-#: src/apt_config_treeitems.cc:101 src/apt_config_treeitems.cc:212
 #: src/apt_config_treeitems.cc:396
+msgid "%BOption:%b  "
+msgstr "%BOption:%b   "
+
+#. ForTranslators: These strings describing config items
+#. should be the same width.
+#: src/apt_config_treeitems.cc:101 src/apt_config_treeitems.cc:212
+#: src/apt_config_treeitems.cc:400
 msgid "%BDefault:%b "
 msgstr "%BStandard:%b "
 
@@ -38,19 +43,23 @@ msgstr "Wahr"
 msgid "False"
 msgstr "Falsch"
 
+#. ForTranslators: These strings describing config items
+#. should be the same width.
 #: src/apt_config_treeitems.cc:103 src/apt_config_treeitems.cc:214
-#: src/apt_config_treeitems.cc:398
+#: src/apt_config_treeitems.cc:404
 msgid "%BValue:%b   "
-msgstr "%BWert:%b    "
+msgstr "%BWert:%b     "
 
 #: src/apt_config_treeitems.cc:280
 #, c-format
 msgid "Editing \"%ls\": "
 msgstr "Bearbeiten von »%ls«: "
 
-#: src/apt_config_treeitems.cc:402
+#. ForTranslators: These strings describing config items
+#. should be the same width.
+#: src/apt_config_treeitems.cc:410
 msgid "%BChoice:%b  "
-msgstr "%BWahl:%b  "
+msgstr "%BWahl:%b     "
 
 #: src/apt_options.cc:160
 msgid "Display some available commands at the top of the screen"
@@ -369,21 +378,16 @@ msgstr ""
 
 #: src/apt_options.cc:293
 msgid "URL to use to download changelogs"
-msgstr "URL für Änderungsprotokolle (Changelog)"
+msgstr "URL zum Herunterladen von Änderungsprotokollen (Changelogs)"
 
 #: src/apt_options.cc:294
-#, fuzzy
-#| msgid ""
-#| "This option controls the template that's used to download changelogs from "
-#| "the Debian Web site.  You should only need to change this if the "
-#| "changelogs move to a different URL."
 msgid ""
 "This option controls the server used to download changelogs.  You should "
 "only need to change this if the changelogs move to a different URL."
 msgstr ""
-"Diese Option steuert die Vorlage, die zum Herunterladen von "
-"Änderungsprotokollen von der Debian-Website verwendet wird. Sie müssen dies "
-"nur ändern, falls sich die URL der Änderungsprotokolle ändert."
+"Diese Option steuert den Server, der zum Herunterladen von "
+"Änderungsprotokollen benutzt wird. Sie müssen dies nur ändern, falls sich "
+"die URL der Änderungsprotokolle ändert."
 
 #: src/apt_options.cc:300
 msgid "Display a preview of what will be done before doing it"
@@ -2383,10 +2387,9 @@ msgstr ""
 "Sie können nicht sowohl Archiv als auch Version eines Pakets angeben.\n"
 
 #: src/cmdline/cmdline_util.cc:273
-#, fuzzy, c-format
-#| msgid "Couldn't run pager %s"
+#, c-format
 msgid "Couldn't find task '%s'"
-msgstr "Pager »%s« konnte nicht gestartet werden."
+msgstr "Task »%s« konnte nicht gefunden werden."
 
 #: src/cmdline/cmdline_util.cc:361
 #, c-format
@@ -2672,7 +2675,7 @@ msgstr "[Treffer]"
 
 #: src/download_item.cc:110 src/download_list.cc:384
 msgid "[Downloaded]"
-msgstr "[Geladen]"
+msgstr "[Heruntergeladen]"
 
 #: src/download_list.cc:82
 #, c-format
@@ -2963,7 +2966,7 @@ msgstr ""
 msgid "Conflicting types for the cost component %s."
 msgstr "Konflikt der Typen für die »Cost«-Komponente %s."
 
-#: src/generic/apt/aptitude_resolver_universe.cc:838
+#: src/generic/apt/aptitude_resolver_universe.cc:837
 #, c-format
 msgid ""
 "Invalid safety level \"%s\" (not \"discard\", \"maximum\", \"minimum\", or "
@@ -2993,7 +2996,7 @@ msgstr "Herunterladen von %s fehlgeschlagen: %s"
 
 #: src/generic/apt/download_install_manager.cc:129
 msgid "Some files failed to download"
-msgstr ""
+msgstr "Einige Dateien konnten nicht heruntergeladen werden."
 
 # CHECKME
 #: src/generic/apt/download_install_manager.cc:140
@@ -3027,21 +3030,22 @@ msgid ""
 "Some index files failed to download. They have been ignored, or old ones "
 "used instead."
 msgstr ""
+"Einige Indexdateien konnten nicht heruntergeladen werden. Sie wurden "
+"ignoriert oder alte an ihrer Stelle benutzt."
 
 #: src/generic/apt/download_update_manager.cc:178
 msgid "Couldn't rebuild package cache"
 msgstr "Paket-Zwischenspeicher konnte nicht neu erzeugt werden"
 
 #: src/generic/apt/dpkg.cc:102
-#, fuzzy, c-format
-#| msgid "Couldn't find a changelog for %s"
+#, c-format
 msgid "Couldn't chroot into %s for %s"
-msgstr "Änderungsprotokoll für »%s« konnte nicht gefunden werden."
+msgstr "Chroot in %s für %s konnte nicht durchgeführt werden."
 
 #: src/generic/apt/dpkg.cc:124
 #, c-format
 msgid "Waited for %s but it wasn't there"
-msgstr ""
+msgstr "Warten auf %s, existierte aber nicht."
 
 #: src/generic/apt/dump_packages.cc:539 src/generic/apt/dump_packages.cc:629
 #, c-format
@@ -3373,7 +3377,7 @@ msgstr "Keine Beschreibung für %s verfügbar."
 #: src/generic/apt/tasks.cc:123
 #, c-format
 msgid "Unhandled packages method in task %s: %s"
-msgstr ""
+msgstr "Methode für unbehandelte Pakete in Task %s: %s"
 
 #: src/generic/apt/tasks.cc:484
 msgid "Reading task descriptions"
@@ -3556,14 +3560,9 @@ msgid "Reload the package cache"
 msgstr "Paket-Zwischenspeicher neu laden"
 
 #: src/gtk/aptitude.glade:118 src/gtk/aptitude.glade:2372 src/ui.cc:2389
-#, fuzzy
-#| msgid ""
-#| "Run 'su' to become root; this will restart the program, but your settings "
-#| "will be preserved"
 msgid "Restart the program as root; your settings will be preserved"
 msgstr ""
-"»su« ausführen, um root zu werden. Dies wird das Programm neu starten, aber "
-"Ihre Einstellungen werden erhalten bleiben."
+"Starten Sie das Programm als root; Ihre Einstellungen bleiben erhalten."
 
 #: src/gtk/aptitude.glade:127 src/gtk/aptitude.glade:2382 src/ui.cc:2392
 msgid "Exit the program"
@@ -3904,8 +3903,8 @@ msgid ""
 "No new changelog entries; this is likely due to a binary-only upload of this "
 "package."
 msgstr ""
-"Keine neuen Einträge im Änderungsprotokoll; dies wurde wahrscheinlich "
-"verursacht durch einen Binary-only-Upload dieses Pakets."
+"Keine neuen Einträge im Änderungsprotokoll; dies wurde wahrscheinlich durch "
+"einen Binary-only-Upload dieses Pakets verursacht."
 
 #: src/gtk/changelog.cc:390
 #, c-format
@@ -6335,7 +6334,7 @@ msgid "<none>"
 msgstr "<keine>"
 
 #: src/pkg_columnizer.cc:238 src/pkg_grouppolicy.cc:269
-#: src/pkg_grouppolicy.cc:1815 src/qt/package.cc:234
+#: src/pkg_grouppolicy.cc:1813 src/qt/package.cc:234
 #: src/qt/widgets/packages_tab.cc:73
 msgid "virtual"
 msgstr "virtuell"
@@ -6364,7 +6363,7 @@ msgstr "Trigger erwartet"
 msgid "triggers-pending"
 msgstr "Trigger aktiv"
 
-#: src/pkg_columnizer.cc:266 src/pkg_columnizer.cc:546 src/pkg_ver_item.cc:237
+#: src/pkg_columnizer.cc:266 src/pkg_columnizer.cc:551 src/pkg_ver_item.cc:237
 msgid "ERROR"
 msgstr "FEHLER"
 
@@ -6457,20 +6456,20 @@ msgstr "DL-Größe: %sB"
 
 #  Panic
 #. ForTranslators: Hostname
-#: src/pkg_columnizer.cc:498
+#: src/pkg_columnizer.cc:499
 msgid "HN too long"
 msgstr "HN zu lang"
 
-#: src/pkg_columnizer.cc:671 src/pkg_columnizer.cc:680
+#: src/pkg_columnizer.cc:676 src/pkg_columnizer.cc:685
 #, c-format
 msgid "Unable to transcode package display format after \"%ls\""
 msgstr "Paketanzeigeformat nach »%ls« kann nicht konvertiert werden."
 
-#: src/pkg_columnizer.cc:687
+#: src/pkg_columnizer.cc:692
 msgid "Internal error: Default column string is unparsable"
 msgstr "Interner Fehler: Standard-Spalten-Zeichenkette nicht interpretierbar"
 
-#: src/pkg_grouppolicy.cc:264 src/pkg_grouppolicy.cc:1127
+#: src/pkg_grouppolicy.cc:264 src/pkg_grouppolicy.cc:1125
 msgid "Tasks"
 msgstr "Tasks"
 
@@ -6603,7 +6602,7 @@ msgstr "Hardware-Unterstützung"
 msgid "Unrecognized tasks"
 msgstr "Nicht erkannte Tasks"
 
-#: src/pkg_grouppolicy.cc:1128
+#: src/pkg_grouppolicy.cc:1126
 msgid ""
 "\n"
 " Tasks are groups of packages which provide an easy way to select a "
@@ -6613,26 +6612,26 @@ msgstr ""
 " »Tasks« sind Gruppen von Paketen, die eine einfache Vorauswahl von Paketen "
 "für einen bestimmten Zweck gestatten."
 
-#: src/pkg_grouppolicy.cc:1257
+#: src/pkg_grouppolicy.cc:1255
 #, c-format
 msgid "Bad number in format string: %ls"
 msgstr "Falsche Nummer in Formatierungs-Zeichenkette: %ls"
 
-#: src/pkg_grouppolicy.cc:1266
+#: src/pkg_grouppolicy.cc:1264
 #, c-format
 msgid "Match indices must be 1 or greater, not \"%s\""
 msgstr "Trefferindizes müssen eins oder größer sein, nicht »%s«"
 
-#: src/pkg_grouppolicy.cc:1284
+#: src/pkg_grouppolicy.cc:1282
 #, c-format
 msgid "Match index %ls is too large; available groups are (%s)"
 msgstr "Trefferindex %ls ist zu groß; verfügbare Gruppen sind (%s)"
 
-#: src/pkg_grouppolicy.cc:1560
+#: src/pkg_grouppolicy.cc:1558
 msgid "TAGLESS PACKAGES"
 msgstr "PAKETE OHNE MARKIERUNG"
 
-#: src/pkg_grouppolicy.cc:1561
+#: src/pkg_grouppolicy.cc:1559
 msgid ""
 "\n"
 " These packages have not yet been classified in debtags, or the debtags "
@@ -6643,7 +6642,7 @@ msgstr ""
 "Datenbank ist nicht vorhanden (die Installation von debtags könnte dieses "
 "Problem beheben)."
 
-#: src/pkg_grouppolicy.cc:1601
+#: src/pkg_grouppolicy.cc:1599
 msgid "MISSING TAG"
 msgstr "FEHLENDE MARKIERUNG"
 
