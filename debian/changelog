@@ -1,4 +1,20 @@
-aptitude (0.6.8.3-1) UNRELEASED; urgency=medium
+aptitude (0.6.8.3-1) unstable; urgency=medium
+
+  * New upstream release
+    - Fix FTBFS with g++-4.8 by removing unused typedefs (Closes: #701243)
+    - Support Boost 1.53 (Closes: #710208)
+    - Avoid segfault with some status line formats (Closes: #714186)
+    - Update support for automake and similar tools (autogen.sh), now
+      version 1.14
+    - Translation updates:
+      - Russian translation of documentation.  Thanks to Lev Lamberov and
+        the Russian localization team.
+      - German, by Benjamin Weis and Holger Wansing (Closes: #729329)
+      - Japanese (Closes: #728115)
+      - Russian by Yuri Kozlov (Closes: #725280)
+      - Asturian by Inigo Varela (Closes: #698512)
+      - Danish by Morten Bo Johansen (Closes: #700885)
+      - French by David Prévot (Closes: #693323)
 
   * Acknowledge NMUs (patches had been cherry picked from VCS)
   * Bump Standards-Version to 3.9.5
