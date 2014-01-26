@@ -1,11 +1,11 @@
-aptitude (0.6.8.3-2) UNRELEASED; urgency=low
+aptitude (0.6.8.4-1) UNRELEASED; urgency=low
+
+  [ Manuel A. Fernandez Montecelo ]
+  * New upstream release
 
   [ Axel Beckert ]
   * Fix lintian warning vcs-field-not-canonical
     + Explicitly specify branch for packaging
-
-  [ Manuel A. Fernandez Montecelo ]
-  * Create package for Russian translation of documentation
 
  -- Axel Beckert <abe@debian.org>  Sun, 19 Jan 2014 20:48:49 +0100
 
