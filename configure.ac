@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([aptitude], [0.6.8.3], [aptitude-devel@lists.alioth.debian.org])
+AC_INIT([aptitude], [0.6.8.4], [aptitude-devel@lists.alioth.debian.org])
 AC_CONFIG_SRCDIR([src/main.cc])
 AM_INIT_AUTOMAKE([dist-xz no-dist-gzip -Wno-portability])
 AM_CONFIG_HEADER(config.h)
@@ -908,7 +908,7 @@ AC_ARG_ENABLE(reload-cache,
 	fi
 	)
 
-AC_ARG_ENABLE(package-state-loc,
+AC_ARG_WITH(package-state-loc,
 	AS_HELP_STRING([--with-package-state-loc], [use the given location for storing state (default /var/lib/aptitude)]),
 	if test x$enableval = xyes
 	then
@@ -918,7 +918,7 @@ AC_ARG_ENABLE(package-state-loc,
 	fi,
 	STATEDIR="/var/lib/aptitude")
 
-AC_ARG_ENABLE(lock-loc,
+AC_ARG_WITH(lock-loc,
 	AS_HELP_STRING([--with-lock-loc], [use the given location for storing state (default /var/lock/aptitude)]),
 	if test x$enableval = xyes
 	then

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2014-01-19 13:28+0000\n"
+"POT-Creation-Date: 2014-01-26 12:44+0000\n"
 "PO-Revision-Date: 2012-06-03 12:27+0800\n"
 "Last-Translator: Priti Patil <prithisd@gmail.com>\n"
 "Language-Team: <janabhaaratii@cdacmumbai.in>\n"
@@ -764,17 +764,17 @@ msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr ""
 "समंजस (जाणता)-पेजर कार्यान्वित करू शकत नाही, ही काम करणारी डेवियन-पध्दती आहे का?"
 
-#: src/cmdline/cmdline_changelog.cc:333
+#: src/cmdline/cmdline_changelog.cc:334
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr "%s हे औपचारिक डेवियन पॅकेज नाही, त्यातील बदलनोंद प्रदर्शित करता येत नाही"
 
-#: src/cmdline/cmdline_changelog.cc:394
+#: src/cmdline/cmdline_changelog.cc:395
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "%sसाठी बदलनोंद मिळू शकत नाही"
 
-#: src/cmdline/cmdline_changelog.cc:398
+#: src/cmdline/cmdline_changelog.cc:399
 #, fuzzy, c-format
 msgid "Couldn't run pager %s"
 msgstr "%sसाठी बदलनोंद मिळू शकत नाही"
@@ -790,7 +790,7 @@ msgid "Del %s* %spartial/*\n"
 msgstr "%s*% spartial/*खोडा\n"
 
 #: src/cmdline/cmdline_clean.cc:76 src/cmdline/cmdline_clean.cc:146
-#: src/ui.cc:1787 src/ui.cc:1875
+#: src/ui.cc:1788 src/ui.cc:1876
 #, fuzzy
 msgid "Unable to lock the download directory"
 msgstr ""
@@ -1029,17 +1029,17 @@ msgstr "पुढील पॅकेजेसचा दर्जा उंचा
 msgid "The following partially installed packages will be configured:"
 msgstr "पुढील पॅकेजेसचा दर्जा उंचावण्यात येईलः "
 
-#: src/cmdline/cmdline_prompt.cc:459 src/ui.cc:1574
+#: src/cmdline/cmdline_prompt.cc:459 src/ui.cc:1575
 #, c-format
 msgid "The following ESSENTIAL packages will be REMOVED!\n"
 msgstr "पुढील अत्यावश्यक पॅकेजेस काढून टाकण्यात येतील!\n"
 
-#: src/cmdline/cmdline_prompt.cc:468 src/ui.cc:1589
+#: src/cmdline/cmdline_prompt.cc:468 src/ui.cc:1590
 #, c-format
 msgid "The following ESSENTIAL packages will be BROKEN by this action:\n"
 msgstr "ह्या कृतीने पुढील अत्यावश्यक पॅकेजेस भंगतीलः\n"
 
-#: src/cmdline/cmdline_prompt.cc:478 src/ui.cc:1602
+#: src/cmdline/cmdline_prompt.cc:478 src/ui.cc:1603
 #, c-format
 msgid ""
 "WARNING: Performing this action will probably cause your system to break!\n"
@@ -1052,7 +1052,7 @@ msgstr ""
 msgid "I am aware that this is a very bad idea"
 msgstr "ही अत्यंत वाईट कल्पना आहे, याची मला जाणीव आहे."
 
-#: src/cmdline/cmdline_prompt.cc:484 src/ui.cc:1603
+#: src/cmdline/cmdline_prompt.cc:484 src/ui.cc:1604
 #, c-format
 msgid "To continue, type the phrase \"%s\":\n"
 msgstr "काम पुढे सुरू ठेवण्यासाठी,\"%s\" टाइप कराः\n"
@@ -1185,7 +1185,7 @@ msgid "No packages to show -- enter the package names on the line after 'i'.\n"
 msgstr "दाखवण्यासाठी पॅकेजेस नाहीत—- रेषेवर 'i'नंतर पॅकेजची नावे लिहा.\n"
 
 #: src/cmdline/cmdline_prompt.cc:777 src/cmdline/cmdline_prompt.cc:792
-#: src/pkg_item.cc:411 src/ui.cc:1219
+#: src/pkg_item.cc:411 src/ui.cc:1220
 msgid "Press Return to continue."
 msgstr "पुढे सुरु ठेवण्यासाठी रिटर्न (पुन्हा परत येणे)दाबा."
 
@@ -1758,7 +1758,7 @@ msgstr ""
 msgid "The following commands are available:"
 msgstr "पुढील आज्ञा उपलब्ध आहेत."
 
-#: src/cmdline/cmdline_resolver.cc:999 src/ui.cc:2316
+#: src/cmdline/cmdline_resolver.cc:999 src/ui.cc:2317
 msgid "File to write resolver state to: "
 msgstr "   ला उत्तरे देणारी स्थिती लिहिण्यासाठी फाइलः"
 
@@ -2116,7 +2116,7 @@ msgstr "पॅकेजेस उतरवून घेईल / संस्थ�
 msgid "Internal Error, Ordering didn't finish"
 msgstr "अंतर्गत त्रुटी, मागणी संपली नाही"
 
-#: src/cmdline/cmdline_update.cc:44 src/ui.cc:1711 src/ui.cc:1880
+#: src/cmdline/cmdline_update.cc:44 src/ui.cc:1712 src/ui.cc:1881
 msgid "Deleting obsolete downloaded files"
 msgstr "डाउनलोड केलेल्या फाईल्स मिटवत आहे"
 
@@ -2763,8 +2763,8 @@ msgid "Unable to correct for unavailable packages"
 msgstr "अनुपलब्ध पॅकेजेससाठी योग्य ते करण्यात असमर्थ"
 
 #: src/generic/apt/download_install_manager.cc:175
-msgid "A package failed to install.  Trying to recover:"
-msgstr "पॅकेज संस्थापित होण्यात अयशस्वी झाले, सावरुन नीट करण्याचा प्रयत्नात आहे."
+msgid "Failed to perform requested operation on package.  Trying to recover:"
+msgstr ""
 
 #: src/generic/apt/download_install_manager.cc:219
 msgid ""
@@ -3269,39 +3269,39 @@ msgstr ""
 msgid "_File"
 msgstr "बंद करा"
 
-#: src/gtk/aptitude.glade:28 src/gtk/aptitude.glade:2274 src/ui.cc:2347
+#: src/gtk/aptitude.glade:28 src/gtk/aptitude.glade:2274 src/ui.cc:2348
 msgid "Perform all pending installs and removals"
 msgstr "राहीलेली संस्थापने आणि काढून टाकणे पूर्ण करा"
 
-#: src/gtk/aptitude.glade:38 src/gtk/aptitude.glade:2285 src/ui.cc:2350
+#: src/gtk/aptitude.glade:38 src/gtk/aptitude.glade:2285 src/ui.cc:2351
 msgid "Check for new versions of packages"
 msgstr "पॅकेजेसच्या नवीन आवृत्तींसाठी परिक्षण करा"
 
-#: src/gtk/aptitude.glade:53 src/gtk/aptitude.glade:2301 src/ui.cc:2355
+#: src/gtk/aptitude.glade:53 src/gtk/aptitude.glade:2301 src/ui.cc:2356
 msgid "Mark all upgradable packages which are not held for upgrade"
 msgstr "पुढिल आवृत्तीत न करणारी , पुढिल आवृत्तीत पॅकेजेस चिन्हांकित करा."
 
-#: src/gtk/aptitude.glade:63 src/gtk/aptitude.glade:2312 src/ui.cc:2360
+#: src/gtk/aptitude.glade:63 src/gtk/aptitude.glade:2312 src/ui.cc:2361
 msgid "Forget which packages are \"new\""
 msgstr "कोणती पॅकेजेस नवीन आहेत ते विसरा"
 
-#: src/gtk/aptitude.glade:72 src/gtk/aptitude.glade:2322 src/ui.cc:2364
+#: src/gtk/aptitude.glade:72 src/gtk/aptitude.glade:2322 src/ui.cc:2365
 msgid "Cancel all pending installations, removals, holds, and upgrades."
 msgstr "राहिलेली सगळी संस्थापने काढून टाकणे थांबवलेले सुधारित आवृत्तीत रद्द करा."
 
-#: src/gtk/aptitude.glade:81 src/gtk/aptitude.glade:2332 src/ui.cc:2368
+#: src/gtk/aptitude.glade:81 src/gtk/aptitude.glade:2332 src/ui.cc:2369
 msgid "Delete package files which were previously downloaded"
 msgstr "आधिच डाऊनलोड केलेल्या पॅकेज फाईल्स काढून टाका."
 
-#: src/gtk/aptitude.glade:90 src/gtk/aptitude.glade:2342 src/ui.cc:2372
+#: src/gtk/aptitude.glade:90 src/gtk/aptitude.glade:2342 src/ui.cc:2373
 msgid "Delete package files which can no longer be downloaded"
 msgstr "डाउनलोड करता न येण्यासारखी पॅकेजेस काढून टाका"
 
-#: src/gtk/aptitude.glade:104 src/gtk/aptitude.glade:2357 src/ui.cc:2379
+#: src/gtk/aptitude.glade:104 src/gtk/aptitude.glade:2357 src/ui.cc:2380
 msgid "Reload the package cache"
 msgstr "पॅकेजचा अस्थाई स्मृतीकोष पुनः स्थापित करा."
 
-#: src/gtk/aptitude.glade:118 src/gtk/aptitude.glade:2372 src/ui.cc:2389
+#: src/gtk/aptitude.glade:118 src/gtk/aptitude.glade:2372 src/ui.cc:2390
 #, fuzzy
 #| msgid ""
 #| "Run 'su' to become root; this will restart the program, but your settings "
@@ -3310,7 +3310,7 @@ msgid "Restart the program as root; your settings will be preserved"
 msgstr ""
 "मूळापर्यंत पोहोचण्यासाठी 'सू' चालवा. यामुळे तुमची रचना जतन राहून आज्ञावली पुन्हा सुरु होईल."
 
-#: src/gtk/aptitude.glade:127 src/gtk/aptitude.glade:2382 src/ui.cc:2392
+#: src/gtk/aptitude.glade:127 src/gtk/aptitude.glade:2382 src/ui.cc:2393
 msgid "Exit the program"
 msgstr "आज्ञावलीतून बाहेर पडा"
 
@@ -3318,7 +3318,7 @@ msgstr "आज्ञावलीतून बाहेर पडा"
 msgid "E_dit"
 msgstr ""
 
-#: src/gtk/aptitude.glade:148 src/gtk/aptitude.glade:2404 src/ui.cc:2399
+#: src/gtk/aptitude.glade:148 src/gtk/aptitude.glade:2404 src/ui.cc:2400
 msgid "Undo the last package operation or group of operations"
 msgstr "क्रियांचा समुह किंवा मागची पॅकेज क्रिया यांचा बदल रद्द करा"
 
@@ -3362,18 +3362,18 @@ msgid "Update"
 msgstr "सुधारणांची यादी करा"
 
 #: src/gtk/aptitude.glade:347 src/gtk/aptitude.glade:2606 src/gtk/gui.cc:1323
-#: src/qt/tabs_manager.cc:241 src/ui.cc:854 src/ui.cc:856 src/ui.cc:901
-#: src/ui.cc:903 src/ui.cc:929 src/ui.cc:931 src/ui.cc:952 src/ui.cc:954
+#: src/qt/tabs_manager.cc:241 src/ui.cc:855 src/ui.cc:857 src/ui.cc:902
+#: src/ui.cc:904 src/ui.cc:930 src/ui.cc:932 src/ui.cc:953 src/ui.cc:955
 msgid "Packages"
 msgstr "पॅकेजेस"
 
 #: src/gtk/aptitude.glade:358 src/gtk/aptitude.glade:2617 src/gtk/gui.cc:1033
-#: src/gtk/previewtab.cc:118 src/qt/tabs_manager.cc:220 src/ui.cc:1395
+#: src/gtk/previewtab.cc:118 src/qt/tabs_manager.cc:220 src/ui.cc:1396
 msgid "Preview"
 msgstr "पुन्हा बघा"
 
 #: src/gtk/aptitude.glade:369 src/gtk/aptitude.glade:2628 src/gtk/gui.cc:1028
-#: src/qt/tabs_manager.cc:263 src/ui.cc:2783
+#: src/qt/tabs_manager.cc:263 src/ui.cc:2788
 msgid "Resolver"
 msgstr "रिझाॅल्वर"
 
@@ -3630,7 +3630,7 @@ msgstr "मिळाले"
 msgid "Finalize and apply your changes to the system."
 msgstr ""
 
-#: src/gtk/areas.cc:84 src/ui.cc:713 src/ui.cc:715
+#: src/gtk/areas.cc:84 src/ui.cc:714 src/ui.cc:716
 #, fuzzy
 msgid "Preferences"
 msgstr "पूर्वावलंबित आहे"
@@ -4133,7 +4133,7 @@ msgstr "पॅकेज यादीला गाळणी फिल्टर �
 msgid "Download already running."
 msgstr "डाउनलोडिंग (उतरवून घेत आहे)"
 
-#: src/gtk/gui.cc:300 src/gtk/gui.cc:948 src/ui.cc:1526 src/ui.cc:1765
+#: src/gtk/gui.cc:300 src/gtk/gui.cc:948 src/ui.cc:1527 src/ui.cc:1766
 msgid "A package-list update or install run is already taking place."
 msgstr "पॅकेज यादी सुधारीत आवृत्ती किंवा संस्थापित चालवा आधिच सुरु आहे."
 
@@ -4194,7 +4194,7 @@ msgstr "तुटलेली पॅकेजेस नाहीत"
 msgid "Asking whether to replace the configuration file %s"
 msgstr "%sच्या बदली नवीन संरचना फाइल टाकण्यात असमर्थ"
 
-#: src/gtk/gui.cc:962 src/ui.cc:1266
+#: src/gtk/gui.cc:962 src/ui.cc:1267
 msgid "Downloading packages"
 msgstr "पॅकेजेस डाउनलोड करत आहे"
 
@@ -4335,7 +4335,7 @@ msgstr "नाही"
 
 #: src/gtk/packageinformation.cc:104 src/gtk/packageinformation.cc:106
 #: src/pkg_columnizer.cc:354 src/pkg_columnizer.cc:375
-#: src/pkg_columnizer.cc:382 src/pkg_grouppolicy.cc:275
+#: src/pkg_columnizer.cc:382 src/pkg_grouppolicy.cc:270
 #: src/pkg_info_screen.cc:134 src/pkg_info_screen.cc:135
 #: src/pkg_ver_item.cc:345 src/pkg_ver_item.cc:379 src/qt/package.cc:224
 #: src/qt/version.cc:114
@@ -5082,19 +5082,20 @@ msgstr "अज्ञात अलाइनमेंट प्रकार '%s'"
 
 #: src/load_sortpolicy.cc:51 src/load_sortpolicy.cc:64
 #: src/load_sortpolicy.cc:77 src/load_sortpolicy.cc:90
+#: src/load_sortpolicy.cc:104
 #, fuzzy, c-format
 msgid "Sorting policy '%s' takes no arguments"
 msgstr "नावानुसार वर्गवारी धोरणे विवाद विधाने घेत नाहीत"
 
-#: src/load_sortpolicy.cc:148
+#: src/load_sortpolicy.cc:164
 msgid "Invalid zero-length sorting policy name"
 msgstr "अवैध शून्य-लांबी वर्गवारी धोरण नाव."
 
-#: src/load_sortpolicy.cc:166
+#: src/load_sortpolicy.cc:182
 msgid "Unmatched '(' in sorting policy description"
 msgstr "न जुळणारे '('वर्गवारी धोरण वर्णनात"
 
-#: src/load_sortpolicy.cc:193
+#: src/load_sortpolicy.cc:209
 #, c-format
 msgid "Invalid sorting policy type '%s'"
 msgstr "अवैध वर्गवारी धोरण प्रकार '%s'"
@@ -5699,16 +5700,16 @@ msgid ""
 "%s\n"
 msgstr "उलट माग काढा%s"
 
-#: src/menu_text_layout.cc:43 src/menu_tree.cc:227 src/ui.cc:259
+#: src/menu_text_layout.cc:43 src/menu_tree.cc:232 src/ui.cc:260
 #: src/view_changelog.cc:168
 msgid "Search for: "
 msgstr "ह्यासाठी शोधाः"
 
-#: src/menu_text_layout.cc:75 src/menu_tree.cc:244 src/view_changelog.cc:180
+#: src/menu_text_layout.cc:75 src/menu_tree.cc:249 src/view_changelog.cc:180
 msgid "Search backwards for: "
 msgstr "ह्यासाठी पाठीमागे शोध घ्या"
 
-#: src/mine/cmine.cc:115 src/mine/cmine.cc:154 src/ui.cc:1770
+#: src/mine/cmine.cc:115 src/mine/cmine.cc:154 src/ui.cc:1771
 msgid "Minesweeper"
 msgstr "खाणशोधक"
 
@@ -5776,7 +5777,7 @@ msgstr "बोर्डाची रुंदी ः"
 msgid "Number of mines: "
 msgstr "खाणींची संख्या ः"
 
-#: src/mine/cmine.cc:302 src/mine/cmine.cc:367 src/ui.cc:292 src/ui.cc:364
+#: src/mine/cmine.cc:302 src/mine/cmine.cc:367 src/ui.cc:293 src/ui.cc:365
 msgid "Ok"
 msgstr "ठीक आहे."
 
@@ -5921,7 +5922,7 @@ msgstr " mine -help.txt|UTF-8 चे कोडसंकेत तयार क�
 msgid "30 8 8 1 1 40 14 14 11 10 35 9 10 2 1 1 10 9 12 30 17 15"
 msgstr "30 6 6 1 1 40 14 14 11 10 35 9 10 2 1 1 10 12 30 15 15"
 
-#: src/pkg_columnizer.cc:89 src/ui.cc:2782
+#: src/pkg_columnizer.cc:89 src/ui.cc:2787
 msgid "Package"
 msgstr "पॅकेज"
 
@@ -6002,7 +6003,7 @@ msgstr "लागू नाही"
 msgid "<none>"
 msgstr "काहीही नाही"
 
-#: src/pkg_columnizer.cc:238 src/pkg_grouppolicy.cc:269
+#: src/pkg_columnizer.cc:238 src/pkg_grouppolicy.cc:264
 #: src/pkg_grouppolicy.cc:1813 src/qt/package.cc:234
 #: src/qt/widgets/packages_tab.cc:73
 msgid "virtual"
@@ -6137,7 +6138,7 @@ msgstr "      नंतर पॅकेज प्रदर्शित करण
 msgid "Internal error: Default column string is unparsable"
 msgstr "अंतर्गत त्रुटीः मूलभूत स्तंभ अक्षरसंच लहान परस्परसंबंधात विभागता येण्यासारखा नाही"
 
-#: src/pkg_grouppolicy.cc:264 src/pkg_grouppolicy.cc:1125
+#: src/pkg_grouppolicy.cc:275 src/pkg_grouppolicy.cc:1125
 msgid "Tasks"
 msgstr "कामे"
 
@@ -6842,24 +6843,24 @@ msgstr ""
 #. ForTranslators: This string is a confirmation message, which users
 #. (especially CJK users) should be able to input without input
 #. methods.  Please include nothing but ASCII characters.
-#: src/ui.cc:210
+#: src/ui.cc:211
 msgid "Yes, I am aware this is a very bad idea"
 msgstr "होय,ही अत्यंत वाईट कल्पना आहे, याची मला जाणिव आहे."
 
-#: src/ui.cc:237
+#: src/ui.cc:238
 #, fuzzy
 msgid "Er, there aren't any errors, this shouldn't have happened.."
 msgstr "Er, असं व्हायला नको होतं... येथे कुठल्याच त्रुटी आढळल्या नाहीत. "
 
-#: src/ui.cc:243
+#: src/ui.cc:244
 msgid "E:"
 msgstr "ईः"
 
-#: src/ui.cc:245
+#: src/ui.cc:246
 msgid "W:"
 msgstr "डब्लू"
 
-#: src/ui.cc:341
+#: src/ui.cc:342
 msgid ""
 "WARNING: the package cache is opened in read-only mode!  This change and all "
 "subsequent changes will not be saved unless you stop all other running apt-"
@@ -6869,111 +6870,111 @@ msgstr ""
 "सर्व बदल तुम्ही जोपर्यंत एपीटी असणारी आज्ञावली चालवणे थांबवत नाही आणि 'बिकम रुट' यांची "
 "निवड क्रिया मेन्यू मधून करत नाही तोपर्यंत संग्रहीत होणार नाही."
 
-#: src/ui.cc:347
+#: src/ui.cc:348
 msgid "Never display this message again."
 msgstr "हा संदेश पुन्हा कधीही दाखवू नका."
 
-#: src/ui.cc:393
+#: src/ui.cc:394
 msgid ""
 "You may not modify the state of any package while a download is underway."
 msgstr "डाऊनलोड होत असताना तुम्ही कुठलेही पॅकेज ची स्थिती बदलू शकत नाही."
 
-#: src/ui.cc:424
+#: src/ui.cc:425
 msgid "You already are root!"
 msgstr "तुम्ही आधिच रुट मध्ये आहात"
 
-#: src/ui.cc:439
+#: src/ui.cc:440
 msgid "Invalid Get-Root-Command; it should start with su: or sudo:"
 msgstr ""
 
-#: src/ui.cc:446
+#: src/ui.cc:447
 #, c-format
 msgid "Invalid Get-Root-Command; it should start with su: or sudo:, not %s:"
 msgstr ""
 
-#: src/ui.cc:475
+#: src/ui.cc:476
 #, fuzzy, c-format
 msgid "Unable to fork: %s"
 msgstr " %LS ला उघडण्यात असमर्थ"
 
-#: src/ui.cc:579
+#: src/ui.cc:580
 msgid ""
 "Subprocess exited with an error -- did you type your password correctly?"
 msgstr "उपक्रिया त्रुटीमुळे बाहेर पडली--- तुम्ही तुमचा पासवर्ड लिहिला होता का?"
 
-#: src/ui.cc:618
+#: src/ui.cc:619
 msgid "Loading cache"
 msgstr "अस्थाई  स्मृतिकोष दाखल करीत आहे."
 
-#: src/ui.cc:660
+#: src/ui.cc:661
 msgid "Really quit Aptitude?"
 msgstr "अॅप्टीट्युड मधुन खरच बाहेर पडायचं आहे का?"
 
-#: src/ui.cc:714 src/ui.cc:2545
+#: src/ui.cc:715 src/ui.cc:2550
 msgid "Change the behavior of aptitude"
 msgstr ""
 
-#: src/ui.cc:750
+#: src/ui.cc:751
 msgid "Really discard your personal settings and reload the defaults?"
 msgstr "खरचं तुमची रचना काढून टाकून मुलभूत दाखल करायचे का?"
 
-#: src/ui.cc:855 src/ui.cc:902 src/ui.cc:930 src/ui.cc:953
+#: src/ui.cc:856 src/ui.cc:903 src/ui.cc:931 src/ui.cc:954
 msgid "View available packages and choose actions to perform"
 msgstr "उपलब्ध असणारी पॅकेजेस दाखवा आणि कृती निवडा"
 
-#: src/ui.cc:884
+#: src/ui.cc:885
 msgid "Recommended Packages"
 msgstr "रेकमेंडेड पॅकेजेस"
 
-#: src/ui.cc:885
+#: src/ui.cc:886
 msgid "View packages that it is recommended that you install"
 msgstr "तुम्ही संस्थापित करा अशी रेकमंड केलेली पॅकेजेस दाखवा."
 
-#: src/ui.cc:886
+#: src/ui.cc:887
 msgid "Recommendations"
 msgstr "रेकमंडेशन्स्"
 
-#: src/ui.cc:981
+#: src/ui.cc:982
 #, c-format
 msgid "Information about %s"
 msgstr "%s विषयी माहीती"
 
-#: src/ui.cc:983
+#: src/ui.cc:984
 #, c-format
 msgid "%s info"
 msgstr "%s ची माहीती "
 
-#: src/ui.cc:1004
+#: src/ui.cc:1005
 #, c-format
 msgid "Packages depending on %s"
 msgstr "%sवर अवलंबून असणारी पॅकेजेस"
 
-#: src/ui.cc:1005
+#: src/ui.cc:1006
 #, c-format
 msgid "Dependencies of %s"
 msgstr "%s ची परावलंबित्वे "
 
-#: src/ui.cc:1008
+#: src/ui.cc:1009
 #, c-format
 msgid "%s reverse deps"
 msgstr "%s उलटी/ पुनः डेप्स््"
 
-#: src/ui.cc:1009
+#: src/ui.cc:1010
 #, c-format
 msgid "%s deps"
 msgstr "%sडेप्स्् "
 
-#: src/ui.cc:1027
+#: src/ui.cc:1028
 #, c-format
 msgid "Available versions of %s"
 msgstr "%s च्या उपलब्ध आवृत्त्या "
 
-#: src/ui.cc:1029
+#: src/ui.cc:1030
 #, c-format
 msgid "%s versions"
 msgstr "%sआवृत्त्या"
 
-#: src/ui.cc:1035
+#: src/ui.cc:1036
 #, fuzzy
 msgid ""
 "Aptitude %s%n%nCopyright 2000-2008 Daniel Burrows.%n%naptitude comes with "
@@ -6986,85 +6987,85 @@ msgstr ""
 "आणी विशिष्ठ अटींसापेक्ष आपण त्याचे पुनर्वितरण करू शकता; विस्तृत माहितीकरिता 'परवाना' "
 "पहा."
 
-#: src/ui.cc:1085 src/ui.cc:1087
+#: src/ui.cc:1086 src/ui.cc:1088
 #, fuzzy
 msgid "License"
 msgstr "^परवाना"
 
-#: src/ui.cc:1086 src/ui.cc:2637
+#: src/ui.cc:1087 src/ui.cc:2642
 #, fuzzy
 msgid "View the terms under which you may copy and distribute aptitude"
 msgstr "ज्यांच्या खाली आज्ञावलीची नक्कल बनवता येईल असे शब्द दाखवा."
 
 #. ForTranslators: You can translate help.txt and set the filename here.
-#: src/ui.cc:1101
+#: src/ui.cc:1102
 msgid "Localized file|help.txt"
 msgstr "help.txt"
 
-#: src/ui.cc:1103
+#: src/ui.cc:1104
 msgid "Encoding of help.txt|UTF-8"
 msgstr ""
 
-#: src/ui.cc:1114
+#: src/ui.cc:1115
 msgid "Online Help"
 msgstr ""
 
-#: src/ui.cc:1115
+#: src/ui.cc:1116
 msgid "View a brief introduction to aptitude"
 msgstr ""
 
-#: src/ui.cc:1116 src/ui.cc:2787
+#: src/ui.cc:1117 src/ui.cc:2792
 msgid "Help"
 msgstr "मदत"
 
 #. ForTranslators: You can translate README and set the filename here.
-#: src/ui.cc:1125
+#: src/ui.cc:1126
 msgid "Localized file|README"
 msgstr ""
 
-#: src/ui.cc:1126
+#: src/ui.cc:1127
 msgid "Encoding of README|ISO_8859-1"
 msgstr ""
 
-#: src/ui.cc:1137
+#: src/ui.cc:1138
 msgid "User's Manual"
 msgstr "उपयोजन पुस्तिका"
 
-#: src/ui.cc:1138
+#: src/ui.cc:1139
 msgid "Read the full user's manual of aptitude"
 msgstr "अॅप्टीट्युडची संपूर्ण उपयोजन पुस्तिका वाचा"
 
-#: src/ui.cc:1139
+#: src/ui.cc:1140
 msgid "Manual"
 msgstr "पुस्तिका"
 
-#: src/ui.cc:1146 src/ui.cc:1148
+#: src/ui.cc:1147 src/ui.cc:1149
 #, fuzzy
 msgid "FAQ"
 msgstr "एफ ए क्यू"
 
-#: src/ui.cc:1147 src/ui.cc:2629
+#: src/ui.cc:1148 src/ui.cc:2634
 msgid "View a list of frequently asked questions"
 msgstr "नेहमी विचारल्या जाणाऱ्या प्रश्नांची यादी दाखवा."
 
-#: src/ui.cc:1156 src/ui.cc:1158
+#: src/ui.cc:1157 src/ui.cc:1159
 #, fuzzy
 msgid "News"
 msgstr "बातम्या"
 
-#: src/ui.cc:1157
+#: src/ui.cc:1158
 #, fuzzy, c-format
 msgid "View the important changes made in each version of %s"
 msgstr "प्रत्येक आवृत्तीत केलेले महत्त्वाचे बदल दाखवा."
 
-#: src/ui.cc:1164
+#: src/ui.cc:1165
 #, fuzzy, c-format
 msgid ""
 "Unable to remove the old temporary directory; you should remove %s by hand."
 msgstr ""
 "जुनी तात्पुरती संचयिका काढून टाकण्यास असमर्थ, तुम्ही %S तुमच्या हाताने काढून टाकली पाहीजे."
 
-#: src/ui.cc:1169
+#: src/ui.cc:1170
 #, fuzzy, c-format
 msgid ""
 "Will not remove %s; you should examine the files in it and remove them by "
@@ -7073,7 +7074,7 @@ msgstr ""
 " %S  काढून टाकणार नाही, तुम्ही आधी त्यात असणाऱ्या फाईल्स चे परिक्षण केलं पाहीजे आणि मग "
 "त्यांना काढून टाका"
 
-#: src/ui.cc:1195
+#: src/ui.cc:1196
 #, c-format
 msgid ""
 "It appears that a previous version of aptitude left files behind in %s.  "
@@ -7086,15 +7087,15 @@ msgstr ""
 "माहीती काढून टाकायची आहे का? जर तुम्ही निवड केली \"नाही\" ही सूचना तुम्हाला पुन्हा "
 "दिसणार नाही."
 
-#: src/ui.cc:1267
+#: src/ui.cc:1268
 msgid "View the progress of the package download"
 msgstr "पॅकेज डाउनलोड होण्याची प्रगती बघा."
 
-#: src/ui.cc:1268
+#: src/ui.cc:1269
 msgid "Package Download"
 msgstr "पॅकेजेस डाउनलोड "
 
-#: src/ui.cc:1315
+#: src/ui.cc:1316
 msgid ""
 "%BWARNING%b: untrusted versions of the following packages will be installed!"
 "%n%nUntrusted packages could %Bcompromise your system's security%b.  You "
@@ -7105,35 +7106,35 @@ msgstr ""
 "पॅकेजेस  ही %b काॅॅॅंप्रोमाईज तुमच्या प्रणालीची सिक्यूरिटी जर तुम्हाला तूम्ही काय करीत आहात "
 "याबद्दस खात्री असेल तरच संरचना करा %n%."
 
-#: src/ui.cc:1321
+#: src/ui.cc:1322
 msgid "  %S*%N %s [version %s]%n"
 msgstr "%S*%N %s [आवृत्ती version %s]%n"
 
-#: src/ui.cc:1327
+#: src/ui.cc:1328
 msgid "Really Continue"
 msgstr "खरचं  पुढे जायचं"
 
-#: src/ui.cc:1329
+#: src/ui.cc:1330
 msgid "Abort Installation"
 msgstr "संस्थापनेत व्यत्यय "
 
-#: src/ui.cc:1393
+#: src/ui.cc:1394
 msgid "Preview of package installation"
 msgstr "पॅकेज संस्थापने पुन्हा बघा"
 
-#: src/ui.cc:1394
+#: src/ui.cc:1395
 msgid "View and/or adjust the actions that will be performed"
 msgstr "होणाऱ््या क्रिया बघा आणि  किंवा अनुकुल करा"
 
-#: src/ui.cc:1456
+#: src/ui.cc:1457
 msgid "Some packages were broken and have been fixed:"
 msgstr "काही पॅकेजेस तुटली होती पण ती जोडली आहेत"
 
-#: src/ui.cc:1464
+#: src/ui.cc:1465
 msgid "No solution to these dependency problems exists!"
 msgstr "अवलंबित्व प्रश्नावर एकही उत्तर अस्तित्वात नाही."
 
-#: src/ui.cc:1470
+#: src/ui.cc:1471
 #, fuzzy, c-format
 msgid ""
 "Ran out of time while trying to resolve dependencies (press \"%s\" to try "
@@ -7142,7 +7143,7 @@ msgstr ""
 "अवलंबित्वांना संपवण्याचा प्रयत्न वेळेपेक्षा जास्त काळ लागला ( \"%S\" प्रयत्न करण्यासाठी "
 "दाबा)"
 
-#: src/ui.cc:1516
+#: src/ui.cc:1517
 msgid ""
 "Installing/removing packages requires administrative privileges, which you "
 "currently do not have.  Would you like to change to the root account?"
@@ -7150,19 +7151,19 @@ msgstr ""
 "पॅकेजेस संरचित करणे काढून टाकणे याला प्रबंधन परवाणगी असावी लागते, जी आत्ता तुम्हाला प्राप्त "
 "नाही.तूम्हाला रुट अकाऊंट बदलायचा आहे का?"
 
-#: src/ui.cc:1519 src/ui.cc:1758 src/ui.cc:1819 src/ui.cc:1914
+#: src/ui.cc:1520 src/ui.cc:1759 src/ui.cc:1820 src/ui.cc:1915
 msgid "Become root"
 msgstr "रुट व्हा"
 
-#: src/ui.cc:1521 src/ui.cc:1760 src/ui.cc:1821 src/ui.cc:1916
+#: src/ui.cc:1522 src/ui.cc:1761 src/ui.cc:1822 src/ui.cc:1917
 msgid "Don't become root"
 msgstr "कट होउ नका"
 
-#: src/ui.cc:1642
+#: src/ui.cc:1643
 msgid "No packages are scheduled to be installed, removed, or upgraded."
 msgstr "कुठलीही पॅकेजेस संस्थापित करण्यासाठी ठरविलेलं नाही"
 
-#: src/ui.cc:1648
+#: src/ui.cc:1649
 msgid ""
 "No packages will be installed, removed or upgraded.  Some packages could be "
 "upgraded, but you have not chosen to upgrade them.  Type \"U\" to prepare an "
@@ -7172,19 +7173,19 @@ msgstr ""
 "आवृत्तीत केली जातील पण, तुम्ही ती तसे करण्यास निवडली नाहीत. पुढील आवृत्तीत करण्यासाठी "
 "लिहा \"U\""
 
-#: src/ui.cc:1728
+#: src/ui.cc:1729
 msgid "Updating package lists"
 msgstr "पॅकेज याद्या अपडेट करत आहे."
 
-#: src/ui.cc:1729
+#: src/ui.cc:1730
 msgid "View the progress of the package list update"
 msgstr "पॅकेज याद्या सुधारित आवृत्तीची प्रगती बघा."
 
-#: src/ui.cc:1730
+#: src/ui.cc:1731
 msgid "List Update"
 msgstr "सुधारणांची यादी करा"
 
-#: src/ui.cc:1755
+#: src/ui.cc:1756
 msgid ""
 "Updating the package lists requires administrative privileges, which you "
 "currently do not have.  Would you like to change to the root account?"
@@ -7192,23 +7193,23 @@ msgstr ""
 "पॅकेज यादी सुधारित करण्यासाठी प्रबंधन परवाणगी असणे आवश्यक आहे, जी तुम्हाला आत्ता प्राप्त "
 "नाही.  तुम्हाला रुट अकाऊंट बदलायचा आहे का?"
 
-#: src/ui.cc:1770 src/ui.cc:2384
+#: src/ui.cc:1771 src/ui.cc:2385
 msgid "Waste time trying to find mines"
 msgstr "माईन्स्् शोधण्यात वेळ व्यर्थ गेला ."
 
-#: src/ui.cc:1777 src/ui.cc:1865
+#: src/ui.cc:1778 src/ui.cc:1866
 msgid "Cleaning while a download is in progress is not allowed"
 msgstr "डाऊनलोड होत असताना सफाई करणे परवाणगी प्राप्त नाही."
 
-#: src/ui.cc:1792
+#: src/ui.cc:1793
 msgid "Deleting downloaded files"
 msgstr "डाउनलोडेड फाईल्स मिटवत आहे."
 
-#: src/ui.cc:1806
+#: src/ui.cc:1807
 msgid "Downloaded package files have been deleted"
 msgstr "डाउनलोडेड पॅकेज फाईल्स मिटवण्यात आल्या आहेत."
 
-#: src/ui.cc:1816
+#: src/ui.cc:1817
 #, fuzzy
 msgid ""
 "Cleaning the package cache requires administrative privileges, which you "
@@ -7217,18 +7218,18 @@ msgstr ""
 "पॅकेज यादी सुधारित करण्यासाठी प्रबंधन परवाणगी असणे आवश्यक आहे, जी तुम्हाला आत्ता प्राप्त "
 "नाही.  तुम्हाला रुट अकाऊंट बदलायचा आहे का?"
 
-#: src/ui.cc:1862
+#: src/ui.cc:1863
 msgid "The apt cache file is not available; cannot auto-clean."
 msgstr "ए पी टी अस्थाई स्मृतीकोष फाईल उपलब्ध नाही, आपोआप स्वच्छता करता येत नाही"
 
-#: src/ui.cc:1900
+#: src/ui.cc:1901
 #, fuzzy, c-format
 msgid ""
 "Obsolete downloaded package files have been deleted, freeing %sB of disk "
 "space."
 msgstr "कालबाह्य डाऊनलोड पॅकेज फाईल्स काढून टाकल्या %SB डिस्क जागा रिकामी झाली."
 
-#: src/ui.cc:1911
+#: src/ui.cc:1912
 #, fuzzy
 msgid ""
 "Deleting obsolete files requires administrative privileges, which you "
@@ -7237,133 +7238,145 @@ msgstr ""
 "पॅकेज यादी सुधारित करण्यासाठी प्रबंधन परवाणगी असणे आवश्यक आहे, जी तुम्हाला आत्ता प्राप्त "
 "नाही.  तुम्हाला रुट अकाऊंट बदलायचा आहे का?"
 
-#: src/ui.cc:2013
+#: src/ui.cc:2014
 msgid "No more solutions."
 msgstr "आणखी उत्तरे नाहीत"
 
-#: src/ui.cc:2221
+#: src/ui.cc:2222
 msgid "Unable to find a solution to apply."
 msgstr "अप्लाय करण्यासाठी उत्तर शोधण्यास असमर्थ"
 
-#: src/ui.cc:2227
+#: src/ui.cc:2228
 msgid "Ran out of time while trying to find a solution."
 msgstr "उत्तर शोधण्याचा प्रयत्न करताना वेळ निघुन गेली."
 
-#: src/ui.cc:2287 src/ui.cc:2289
+#: src/ui.cc:2288 src/ui.cc:2290
 msgid "Resolve Dependencies"
 msgstr "डिपेंडंसीज  अवलंबित्वे"
 
-#: src/ui.cc:2288
+#: src/ui.cc:2289
 msgid "Search for solutions to unsatisfied dependencies"
 msgstr "अपूर्ण अवलंबित्वंची उत्तरे शोधा"
 
-#: src/ui.cc:2300
+#: src/ui.cc:2301
 #, c-format
 msgid "Unable to open %ls"
 msgstr " %LS ला उघडण्यात असमर्थ"
 
-#: src/ui.cc:2306
+#: src/ui.cc:2307
 msgid "Error while dumping resolver state"
 msgstr "रिझाॅल्वर स्थिती पाठवत असताना त्रुटी"
 
-#: src/ui.cc:2346
+#: src/ui.cc:2347
 msgid "^Install/remove packages"
 msgstr "पॅकेजेस संस्थापन काढून टाका"
 
-#: src/ui.cc:2349
+#: src/ui.cc:2350
 msgid "^Update package list"
 msgstr "पॅकेज यादी सुधारित आवृत्ती करा"
 
-#: src/ui.cc:2354
+#: src/ui.cc:2355
 msgid "Mark Up^gradable"
 msgstr "अप ग्रेडे्बल चिन्हांकीत करा"
 
-#: src/ui.cc:2359
+#: src/ui.cc:2360
 msgid "^Forget new packages"
 msgstr "नवीन पॅकेजेस विसरा"
 
-#: src/ui.cc:2363
+#: src/ui.cc:2364
 msgid "Canc^el pending actions"
 msgstr "कॅन्सल राहीलेल्या क्रिया"
 
-#: src/ui.cc:2367
+#: src/ui.cc:2368
 msgid "^Clean package cache"
 msgstr "स्वच्छ पॅकेज अस्थाई स्मृतीकोष."
 
-#: src/ui.cc:2371
+#: src/ui.cc:2372
 msgid "Clean ^obsolete files"
 msgstr "सफाई कालबाह्य फाईल्स"
 
-#: src/ui.cc:2378
+#: src/ui.cc:2379
 msgid "^Reload package cache"
 msgstr "पुनःदाखल होणारी पॅकेज अस्थाई स्मृतीकोष"
 
-#: src/ui.cc:2383
+#: src/ui.cc:2384
 msgid "^Play Minesweeper"
 msgstr "माईनस्विपर खेळा."
 
-#: src/ui.cc:2388
+#: src/ui.cc:2389
 msgid "^Become root"
 msgstr "रुट व्हा"
 
-#: src/ui.cc:2391
+#: src/ui.cc:2392
 msgid "^Quit"
 msgstr "बाहेर पडा"
 
-#: src/ui.cc:2398 src/ui.cc:2781
+#: src/ui.cc:2399 src/ui.cc:2786
 msgid "Undo"
 msgstr "बदल रद्द करा"
 
-#: src/ui.cc:2407
+#: src/ui.cc:2408
 msgid "^Install"
 msgstr "संस्थापना"
 
-#: src/ui.cc:2408
+#: src/ui.cc:2409
 msgid "Flag the currently selected package for installation or upgrade"
 msgstr "आत्ता निवड केलेल्या पॅकेजला संस्थापनेसाठी किंवा पुढिल आवृत्तीत होण्यासाठी सुचित करा."
 
-#: src/ui.cc:2411
+#: src/ui.cc:2412
+#, fuzzy
+#| msgid "Reinstall"
+msgid "R^einstall"
+msgstr "पुर्नसंस्थापित करा"
+
+#: src/ui.cc:2413
+#, fuzzy
+#| msgid "Flag the currently selected package for installation or upgrade"
+msgid "Flag the currently selected package for reinstallation"
+msgstr "आत्ता निवड केलेल्या पॅकेजला संस्थापनेसाठी किंवा पुढिल आवृत्तीत होण्यासाठी सुचित करा."
+
+#: src/ui.cc:2416
 msgid "^Remove"
 msgstr "काढून टाका"
 
-#: src/ui.cc:2412
+#: src/ui.cc:2417
 msgid "Flag the currently selected package for removal"
 msgstr "आत्ता निवड केलेल्या पॅकेजला काढून टाकण्यासाठी सूचित करा."
 
-#: src/ui.cc:2415
+#: src/ui.cc:2420
 msgid "^Purge"
 msgstr "^स्वच्छ करा"
 
-#: src/ui.cc:2416
+#: src/ui.cc:2421
 msgid ""
 "Flag the currently selected package and its configuration files for removal"
 msgstr ""
 "  आत्ता निवड केलेल्या पॅकेजला आणि त्याच्या संरचित फाईल्स ना काढून टाकण्यासाठी सूचित करा."
 
-#: src/ui.cc:2419
+#: src/ui.cc:2424
 msgid "^Keep"
 msgstr " ठेवा."
 
-#: src/ui.cc:2420
+#: src/ui.cc:2425
 msgid "Cancel any action on the selected package"
 msgstr " निवडलेल्या पॅकेजवरिल कुठलिही क्रिया रद्द करा. "
 
-#: src/ui.cc:2423
+#: src/ui.cc:2428
 msgid "^Hold"
 msgstr "तात्पुरते थांबवा."
 
-#: src/ui.cc:2424
+#: src/ui.cc:2429
 msgid ""
 "Cancel any action on the selected package, and protect it from future "
 "upgrades"
 msgstr ""
 "निवडलेल्या पॅकेजवरिल कुठलिही क्रिया रद्द करा आणि भविष्यात असं होण्यापासून त्याला वाचवा."
 
-#: src/ui.cc:2427
+#: src/ui.cc:2432
 msgid "Mark ^Auto"
 msgstr "^ ला आपोआप म्हणून चिन्हांकीत करा."
 
-#: src/ui.cc:2428
+#: src/ui.cc:2433
 msgid ""
 "Mark the selected package as having been automatically installed; it will "
 "automatically be removed if no other packages depend on it"
@@ -7371,11 +7384,11 @@ msgstr ""
 "निवड केलेल्या पॅकेजला आपोआप संरचित केलेले म्हणून चिन्हांकित करा.ह्या वर दुसरे कोणतेही पॅकेज "
 "अवलंबून नसेल तर ते आपोआप काढून टाकले जाईल."
 
-#: src/ui.cc:2431
+#: src/ui.cc:2436
 msgid "Mark ^Manual"
 msgstr "^मदत चिन्हांकीत"
 
-#: src/ui.cc:2432
+#: src/ui.cc:2437
 msgid ""
 "Mark the selected package as having been manually installed; it will not be "
 "removed unless you manually remove it"
@@ -7383,11 +7396,11 @@ msgstr ""
 " निवड केलेल्या पॅकेजला स्वतः संरचित केलेले म्हणून चिन्हांकित करातूम्ही स्वतः काढून टाकत नाही "
 "तोपर्यंत ते काढून टाकले जाणार नाही."
 
-#: src/ui.cc:2435
+#: src/ui.cc:2440
 msgid "^Forbid Version"
 msgstr "फाॅरबीड आवृृत्ती"
 
-#: src/ui.cc:2436
+#: src/ui.cc:2441
 msgid ""
 "Forbid the candidate version of the selected package from being installed; "
 "newer versions of the package will be installed as usual"
@@ -7395,336 +7408,336 @@ msgstr ""
 "निवड केलेल्या पॅकेजची कॅंडीडेट आवृत्ती संरचित केलेले म्हणून फाॅरबीड करा,पॅकेजची नवीन आवृत्ती "
 "नेहमीप्रमाणे संरचित होईल. "
 
-#: src/ui.cc:2440
+#: src/ui.cc:2445
 msgid "I^nformation"
 msgstr "आय माहिती"
 
-#: src/ui.cc:2441
+#: src/ui.cc:2446
 msgid "Display more information about the selected package"
 msgstr "निवडलेल्या पॅकेजबद्दल अधिक माहिती दाखवा."
 
-#: src/ui.cc:2444
+#: src/ui.cc:2449
 msgid "C^ycle Package Information"
 msgstr ""
 
-#: src/ui.cc:2445
+#: src/ui.cc:2450
 msgid ""
 "Cycle through the modes of the package information area: it can show the "
 "package's long description, a summary of its dependency status, or an "
 "analysis of why the package is required."
 msgstr ""
 
-#: src/ui.cc:2448
+#: src/ui.cc:2453
 msgid "^Changelog"
 msgstr "चेंजलाॅग"
 
-#: src/ui.cc:2449
+#: src/ui.cc:2454
 msgid "Display the Debian changelog of the selected package"
 msgstr "निवडलेल्या पॅकेजचे डेबियन चेंजलाॅग दाखवा."
 
-#: src/ui.cc:2456
+#: src/ui.cc:2461
 msgid "^Examine Solution"
 msgstr "उत्तराचे परिक्षण"
 
-#: src/ui.cc:2457
+#: src/ui.cc:2462
 msgid "Examine the currently selected solution to the dependency problems."
 msgstr "डिपेंडन्सी प्रश्नावर आत्ता निवडलेल्या उत्तराचे परिक्षण करा."
 
-#: src/ui.cc:2460
+#: src/ui.cc:2465
 msgid "Apply ^Solution"
 msgstr "उत्तर वापरा लावा."
 
-#: src/ui.cc:2461
+#: src/ui.cc:2466
 msgid "Perform the actions contained in the currently selected solution."
 msgstr "आत्ता निवडलेल्या उत्तरावर क्रिया करण्यास सुरुवात करा."
 
-#: src/ui.cc:2464
+#: src/ui.cc:2469
 msgid "^Next Solution"
 msgstr "पुढील उत्तर"
 
-#: src/ui.cc:2465
+#: src/ui.cc:2470
 msgid "Select the next solution to the dependency problems."
 msgstr "डिपेंडन्सी प्रश्नाला पुढील उत्तर निवडा."
 
-#: src/ui.cc:2468
+#: src/ui.cc:2473
 msgid "^Previous Solution"
 msgstr "मागील उत्तर"
 
-#: src/ui.cc:2469
+#: src/ui.cc:2474
 msgid "Select the previous solution to the dependency problems."
 msgstr "डिपेंडन्सी प्रश्नाला मागील उत्तर निवडा."
 
-#: src/ui.cc:2472
+#: src/ui.cc:2477
 msgid "^First Solution"
 msgstr "पहिले उत्तर"
 
-#: src/ui.cc:2473
+#: src/ui.cc:2478
 msgid "Select the first solution to the dependency problems."
 msgstr "डिपेंडन्सी प्रश्नाला पहिले उत्तर निवडा."
 
-#: src/ui.cc:2476
+#: src/ui.cc:2481
 msgid "^Last Solution"
 msgstr "शेवटचे उत्तर"
 
-#: src/ui.cc:2477
+#: src/ui.cc:2482
 msgid ""
 "Select the last solution to the dependency problems that has been generated "
 "so far."
 msgstr "तयार झालेल्या डिपेंडन्सी प्रश्नाला शेवटचे उत्तर निवडा."
 
-#: src/ui.cc:2483
+#: src/ui.cc:2488
 msgid "Toggle ^Rejected"
 msgstr "टाॅगल परतवले नापसंत"
 
-#: src/ui.cc:2484
+#: src/ui.cc:2489
 msgid "Toggle whether the currently selected action is rejected."
 msgstr "नुकतीच निवडलेली क्रिया असंमत केली आहे का ते टाॅगल करा."
 
-#: src/ui.cc:2488
+#: src/ui.cc:2493
 msgid "Toggle ^Approved"
 msgstr "टाॅगल संमत"
 
-#: src/ui.cc:2489
+#: src/ui.cc:2494
 msgid "Toggle whether the currently selected action is approved."
 msgstr "टाॅगल, आत्ताच निवडलेली क्रिया संमत झाली का?"
 
-#: src/ui.cc:2493
+#: src/ui.cc:2498
 msgid "^View Target"
 msgstr "लक्ष्य दाखवा."
 
-#: src/ui.cc:2494
+#: src/ui.cc:2499
 msgid "View the package which will be affected by the selected action"
 msgstr "निवडलेल्या क्रियेने परिणाम केलेली पॅकेजेस दाखवा."
 
-#: src/ui.cc:2500
+#: src/ui.cc:2505
 msgid "Reject Breaking ^Holds"
 msgstr ""
 
-#: src/ui.cc:2502
+#: src/ui.cc:2507
 msgid ""
 "Reject all actions that would change the state of held packages or install "
 "forbidden versions"
 msgstr ""
 
-#: src/ui.cc:2510
+#: src/ui.cc:2515
 msgid "^Find"
 msgstr "शोधा"
 
-#: src/ui.cc:2511
+#: src/ui.cc:2516
 msgid "Search forwards"
 msgstr "पुढे बघा."
 
-#: src/ui.cc:2514
+#: src/ui.cc:2519
 msgid "^Find Backwards"
 msgstr "मागे शोधा."
 
-#: src/ui.cc:2515
+#: src/ui.cc:2520
 msgid "Search backwards"
 msgstr "मागे बघा"
 
-#: src/ui.cc:2518
+#: src/ui.cc:2523
 msgid "Find ^Again"
 msgstr "बघा पुन्हा"
 
-#: src/ui.cc:2519
+#: src/ui.cc:2524
 msgid "Repeat the last search"
 msgstr "मागचा शोध पुन्हा दाखवा."
 
-#: src/ui.cc:2522
+#: src/ui.cc:2527
 #, fuzzy
 msgid "Find Again ^Backwards"
 msgstr "मागे शोधा."
 
-#: src/ui.cc:2523
+#: src/ui.cc:2528
 #, fuzzy
 msgid "Repeat the last search in the opposite direction"
 msgstr "मागचा शोध पुन्हा दाखवा."
 
-#: src/ui.cc:2527
+#: src/ui.cc:2532
 msgid "^Limit Display"
 msgstr "दृष्य सिमीत करा."
 
-#: src/ui.cc:2528
+#: src/ui.cc:2533
 msgid "Apply a filter to the package list"
 msgstr "पॅकेज यादीला गाळणी फिल्टर वापरा."
 
-#: src/ui.cc:2531
+#: src/ui.cc:2536
 msgid "^Un-Limit Display"
 msgstr "दृष्य असिमीत"
 
-#: src/ui.cc:2532
+#: src/ui.cc:2537
 msgid "Remove the filter from the package list"
 msgstr "पॅकेज यादीमधून गाळणी फिल्टर काढून टाका."
 
-#: src/ui.cc:2536
+#: src/ui.cc:2541
 msgid "Find ^Broken"
 msgstr "शोधा तुटके."
 
-#: src/ui.cc:2537
+#: src/ui.cc:2542
 msgid "Find the next package with unsatisfied dependencies"
 msgstr "असमाधानी डिपेंडन्सीजसह पुढील पॅकेज शोधा."
 
-#: src/ui.cc:2544
+#: src/ui.cc:2549
 #, fuzzy
 msgid "^Preferences"
 msgstr "पूर्वावलंबित आहे"
 
-#: src/ui.cc:2549
+#: src/ui.cc:2554
 msgid "^UI options"
 msgstr "यू आय पर्याय"
 
-#: src/ui.cc:2550
+#: src/ui.cc:2555
 msgid "Change the settings which affect the user interface"
 msgstr "मानवी   वर परिणाम होण्यासाठी    सेटींग (मांडणी) बदला."
 
-#: src/ui.cc:2553
+#: src/ui.cc:2558
 msgid "^Dependency handling"
 msgstr "डिपेंडन्सी हाताळणे"
 
-#: src/ui.cc:2554
+#: src/ui.cc:2559
 msgid "Change the settings which affect how package dependencies are handled"
 msgstr "पॅकेज डिपेंडन्सीज कसे हाताळावे यासाठी सेटींग (मांडणी) बदलता येतात."
 
-#: src/ui.cc:2557
+#: src/ui.cc:2562
 msgid "^Miscellaneous"
 msgstr "^संकीर्ण"
 
-#: src/ui.cc:2558
+#: src/ui.cc:2563
 msgid "Change miscellaneous program settings"
 msgstr "इतर आज्ञावली मांडणी बदला."
 
-#: src/ui.cc:2564
+#: src/ui.cc:2569
 msgid "^Revert options"
 msgstr "पुनः पर्याय"
 
-#: src/ui.cc:2565
+#: src/ui.cc:2570
 msgid "Reset all settings to the system defaults"
 msgstr "मुलभूत प्रणालीमध्ये मांडणीची पुर्नमांडणी करा."
 
-#: src/ui.cc:2576
+#: src/ui.cc:2581
 msgid "^Next"
 msgstr "पुढे"
 
-#: src/ui.cc:2577
+#: src/ui.cc:2582
 msgid "View next display"
 msgstr "पुढील दृष्य दाखवा."
 
-#: src/ui.cc:2580
+#: src/ui.cc:2585
 msgid "^Prev"
 msgstr "मागील"
 
-#: src/ui.cc:2581
+#: src/ui.cc:2586
 msgid "View previous display"
 msgstr "मागील दृष्य दाखवा."
 
-#: src/ui.cc:2584
+#: src/ui.cc:2589
 msgid "^Close"
 msgstr "बंद करा"
 
-#: src/ui.cc:2585
+#: src/ui.cc:2590
 msgid "Close this display"
 msgstr "हे दृष्य बंद करा"
 
-#: src/ui.cc:2590
+#: src/ui.cc:2595
 msgid "New Package ^View"
 msgstr "नवीन पॅकेज दृष्य"
 
-#: src/ui.cc:2591
+#: src/ui.cc:2596
 msgid "Create a new default package view"
 msgstr "नवीन मुलभूत पॅकेज दृष्य तयार करा"
 
-#: src/ui.cc:2594
+#: src/ui.cc:2599
 msgid "Audit ^Recommendations"
 msgstr "आॅडिट ^शिफारसी"
 
-#: src/ui.cc:2595
+#: src/ui.cc:2600
 msgid ""
 "View packages which it is recommended that you install, but which are not "
 "currently installed."
 msgstr "तूम्हाला सांगितलेली व तुम्ही संरचित केलेली , पण आत्ता संरचित न केलेली पॅकेजेस दाखवा."
 
-#: src/ui.cc:2598
+#: src/ui.cc:2603
 msgid "New ^Flat Package List"
 msgstr "नवीन सरळ पॅकेज यादी"
 
-#: src/ui.cc:2599
+#: src/ui.cc:2604
 msgid "View all the packages on the system in a single uncategorized list"
 msgstr "प्रणालीत असणाऱ्या सगळ्या पॅकेजेस एका अवर्गीकृत यादीमध्ये दाखवा."
 
-#: src/ui.cc:2602
+#: src/ui.cc:2607
 msgid "New ^Debtags Browser"
 msgstr "नवीन डेबटॅग्ज्् ब्राऊझर"
 
-#: src/ui.cc:2604
+#: src/ui.cc:2609
 msgid "Browse packages using Debtags data"
 msgstr "डेबटॅग्ज्् डेटा वापरुन पॅकेजेस ब्राउझ करा वाचा"
 
-#: src/ui.cc:2607
+#: src/ui.cc:2612
 msgid "New Categorical ^Browser"
 msgstr "नवीन वर्गीकृत ब्राऊझर"
 
-#: src/ui.cc:2609
+#: src/ui.cc:2614
 msgid "Browse packages by category"
 msgstr "पॅकेजेस वर्गवार वाचा वर्गीकृत करा"
 
-#: src/ui.cc:2617
+#: src/ui.cc:2622
 msgid "^About"
 msgstr "बद्दल"
 
-#: src/ui.cc:2618
+#: src/ui.cc:2623
 msgid "View information about this program"
 msgstr "ह्या आज्ञावली प्रोग्राम बद्दलची माहीती दाखवा."
 
-#: src/ui.cc:2621
+#: src/ui.cc:2626
 msgid "^Help"
 msgstr "मदत"
 
-#: src/ui.cc:2622
+#: src/ui.cc:2627
 msgid "View the on-line help"
 msgstr "आॅन लाईन मदत दाखवा."
 
-#: src/ui.cc:2624
+#: src/ui.cc:2629
 msgid "User's ^Manual"
 msgstr "उपयोजक पुस्तिका"
 
-#: src/ui.cc:2625
+#: src/ui.cc:2630
 msgid "View the detailed program manual"
 msgstr "आज्ञावली पुस्तिका दाखवा."
 
-#: src/ui.cc:2628
+#: src/ui.cc:2633
 msgid "^FAQ"
 msgstr "एफ ए क्यू"
 
-#: src/ui.cc:2632
+#: src/ui.cc:2637
 msgid "^News"
 msgstr "बातम्या"
 
-#: src/ui.cc:2633
+#: src/ui.cc:2638
 #, fuzzy
 msgid "View the important changes made in each version of "
 msgstr "प्रत्येक आवृत्तीत केलेले महत्त्वाचे बदल दाखवा."
 
-#: src/ui.cc:2636
+#: src/ui.cc:2641
 msgid "^License"
 msgstr "^परवाना"
 
-#: src/ui.cc:2780
+#: src/ui.cc:2785
 msgid "Actions"
 msgstr "क्रिया"
 
-#: src/ui.cc:2784
+#: src/ui.cc:2789
 msgid "Search"
 msgstr "शोध"
 
-#: src/ui.cc:2785
+#: src/ui.cc:2790
 msgid "Options"
 msgstr "पर्याय"
 
-#: src/ui.cc:2786
+#: src/ui.cc:2791
 msgid "Views"
 msgstr "दृष्ये"
 
-#: src/ui.cc:2852
+#: src/ui.cc:2857
 #, c-format
 msgid ""
 "%ls: Menu  %ls: Help  %ls: Quit  %ls: Update  %ls: Download/Install/Remove "
@@ -7733,11 +7746,11 @@ msgstr ""
 "%ls: मेनु  %ls: मदत  %ls: बाहेर  %ls: पुढील आवृत्तीत  %ls: डाउनलोड / संस्थापन / काढुन "
 "टाकणे  पॅकेजेस"
 
-#: src/ui.cc:3211
+#: src/ui.cc:3216
 msgid "yes_key"
 msgstr "हो की कळं"
 
-#: src/ui.cc:3212
+#: src/ui.cc:3217
 msgid "no_key"
 msgstr "नाही की"
 
@@ -7768,6 +7781,9 @@ msgstr "चेंजलाॅग डाऊनलोड होत आहे."
 #: src/view_changelog.cc:415
 msgid "You can only view changelogs of official Debian packages."
 msgstr "तुम्ही फक्त डेबियन पॅकेजेसचे चेंजलाॅग्ज बघू शकाल."
+
+#~ msgid "A package failed to install.  Trying to recover:"
+#~ msgstr "पॅकेज संस्थापित होण्यात अयशस्वी झाले, सावरुन नीट करण्याचा प्रयत्नात आहे."
 
 #~ msgid "Err "
 #~ msgstr "Err"
