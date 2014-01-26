@@ -85,7 +85,7 @@ DIST_COMMON = INSTALL NEWS README AUTHORS ChangeLog \
 	$(srcdir)/config.h.in mkinstalldirs $(srcdir)/Doxyfile.in \
 	ABOUT-NLS $(dist_bin_SCRIPTS) $(dist_check_SCRIPTS) \
 	test-driver COPYING TODO compile config.guess config.rpath \
-	config.sub depcomp install-sh missing
+	config.sub install-sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_boost_base.m4 \
 	$(top_srcdir)/m4/ax_boost_iostreams.m4 \
