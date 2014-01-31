@@ -18,6 +18,7 @@ Homepage: http://aptitude.alioth.debian.org/
 
 Package: aptitude
 Architecture: any
+Multi-Arch: foreign
 Depends: aptitude-common (= ${source:Version}), ${shlibs:Depends}, ${misc:Depends}
 Recommends: aptitude-doc-en | aptitude-doc, sensible-utils, apt-xapian-index, libparse-debianchangelog-perl
 Suggests: tasksel, debtags
@@ -34,6 +35,7 @@ Description: terminal-based package manager
 
 Package: aptitude-common
 Architecture: all
+Multi-Arch: foreign
 Depends: ${misc:Depends}
 Recommends: aptitude
 Replaces: aptitude (<< 0.6.8-1)
@@ -52,6 +54,7 @@ Package: aptitude-dbg
 Section: debug
 Priority: extra
 Architecture: any
+Multi-Arch: same
 Depends: aptitude (= ${binary:Version}), ${misc:Depends}
 Recommends: libcwidget3-dbg
 Description: Debug symbols for the aptitude package manager
@@ -70,6 +73,7 @@ Package: aptitude-doc-cs
 Section: doc
 Priority: optional
 Architecture: all
+Multi-Arch: foreign
 Provides: aptitude-doc
 Depends: ${misc:Depends}
 Suggests: aptitude
@@ -87,6 +91,7 @@ Package: aptitude-doc-en
 Section: doc
 Priority: optional
 Architecture: all
+Multi-Arch: foreign
 Provides: aptitude-doc
 Depends: ${misc:Depends}
 Suggests: aptitude
@@ -104,6 +109,7 @@ Package: aptitude-doc-es
 Section: doc
 Priority: optional
 Architecture: all
+Multi-Arch: foreign
 Provides: aptitude-doc
 Depends: ${misc:Depends}
 Suggests: aptitude
@@ -121,6 +127,7 @@ Package: aptitude-doc-fi
 Section: doc
 Priority: optional
 Architecture: all
+Multi-Arch: foreign
 Provides: aptitude-doc
 Depends: ${misc:Depends}
 Suggests: aptitude
@@ -138,6 +145,7 @@ Package: aptitude-doc-fr
 Section: doc
 Priority: optional
 Architecture: all
+Multi-Arch: foreign
 Provides: aptitude-doc
 Depends: ${misc:Depends}
 Suggests: aptitude
@@ -155,6 +163,7 @@ Package: aptitude-doc-it
 Section: doc
 Priority: optional
 Architecture: all
+Multi-Arch: foreign
 Provides: aptitude-doc
 Depends: ${misc:Depends}
 Suggests: aptitude
@@ -172,6 +181,7 @@ Package: aptitude-doc-ja
 Section: doc
 Priority: optional
 Architecture: all
+Multi-Arch: foreign
 Provides: aptitude-doc
 Depends: ${misc:Depends}
 Suggests: aptitude
@@ -191,6 +201,7 @@ Description: Japanese manual for aptitude, a terminal-based package manager
 # Section: doc
 # Priority: optional
 # Architecture: all
+# Multi-Arch: foreign
 # Provides: aptitude-doc
 # Depends: ${misc:Depends}
 # Suggests: aptitude

@@ -1,3 +1,10 @@
+aptitude (0.6.8.4-2) UNRELEASED; urgency=low
+
+  * Make aptitude installable on non-native architectures
+    Thanks to Rogier for noting this (Closes: #697278)
+
+ --
+
 aptitude (0.6.8.4-1) unstable; urgency=low
 
   [ Manuel A. Fernandez Montecelo ]
