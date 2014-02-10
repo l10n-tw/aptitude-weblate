@@ -1,4 +1,4 @@
-aptitude (0.6.10-1) UNRELEASED; urgency=low
+aptitude (0.6.10-1) unstable; urgency=low
 
   Note that 0.6.9 was an experimental release.  Most of the changes it
   contained are temporarily reverted, but they will return.
@@ -18,7 +18,7 @@ aptitude (0.6.10-1) UNRELEASED; urgency=low
   * Russian translation of documentation (aptitude-doc-ru).  Thanks to Lev
     Lamberov and the Russian localization team.
 
- --
+ -- Daniel Hartwig <mandyke@gmail.com>  Mon, 10 Feb 2014 14:23:24 +0800
 
 aptitude (0.6.8.4-1) unstable; urgency=low
 
