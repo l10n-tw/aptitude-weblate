@@ -194,22 +194,20 @@ Description: Japanese manual for aptitude, a terminal-based package manager
  This package contains the Japanese version of the aptitude user's
  manual in HTML format.
 
-# mafm 20140126: disabled at the moment to avoid going through FTP NEW queue
-#
-# Package: aptitude-doc-ru
-# Section: doc
-# Priority: optional
-# Architecture: all
-# Multi-Arch: foreign
-# Provides: aptitude-doc
-# Depends: ${misc:Depends}
-# Suggests: aptitude
-# Description: Russian manual for aptitude, a terminal-based package manager
-#  aptitude is a package manager with a number of useful features,
-#  including: a mutt-like syntax for matching packages in a flexible
-#  manner, dselect-like persistence of user actions, the ability to
-#  retrieve and display the Debian changelog of most packages, and a
-#  command-line mode similar to that of apt-get.
-#  .
-#  This package contains the Russian version of the aptitude user's
-#  manual in HTML format.
+Package: aptitude-doc-ru
+Section: doc
+Priority: optional
+Architecture: all
+Multi-Arch: foreign
+Provides: aptitude-doc
+Depends: ${misc:Depends}
+Suggests: aptitude
+Description: Russian manual for aptitude, a terminal-based package manager
+ aptitude is a package manager with a number of useful features,
+ including: a mutt-like syntax for matching packages in a flexible
+ manner, dselect-like persistence of user actions, the ability to
+ retrieve and display the Debian changelog of most packages, and a
+ command-line mode similar to that of apt-get.
+ .
+ This package contains the Russian version of the aptitude user's
+ manual in HTML format.

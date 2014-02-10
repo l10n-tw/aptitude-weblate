@@ -15,6 +15,8 @@ aptitude (0.6.10-1) UNRELEASED; urgency=low
   * Make aptitude installable on non-native architectures
     Thanks to Rogier for noting this (Closes: #697278)
   * Remove ancient Conflicts: ia32-apt-get
+  * Russian translation of documentation (aptitude-doc-ru).  Thanks to Lev
+    Lamberov and the Russian localization team.
 
  --
 
