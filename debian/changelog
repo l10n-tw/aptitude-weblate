@@ -1,5 +1,17 @@
-aptitude (0.6.8.4-2) UNRELEASED; urgency=low
+aptitude (0.6.10-1) UNRELEASED; urgency=low
 
+  Note that 0.6.9 was an experimental release.  Most of the changes it
+  contained are temporarily reverted, but they will return.
+
+  * New upstream release.
+    - New sort policy 'installsizechange' (Closes: #676075)
+    - Fix segfault with "aptitude changelog PKG" when PKG is a source
+      package with no corresponding binary package (Closes: #723821)
+    - Use new URL to fetch changelogs (metadata.ftp-master.d.o)
+      (Closes: #708345)
+    - Fix incorrect results with some sorting policies (Closes: #720750)
+    - Update manual to refer to canonical git repository.
+    - Improve and explain some translation messages (Closes: #537858)
   * Make aptitude installable on non-native architectures
     Thanks to Rogier for noting this (Closes: #697278)
   * Remove ancient Conflicts: ia32-apt-get
