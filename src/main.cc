@@ -74,7 +74,6 @@
 #include <cmdline/cmdline_user_tag.h>
 #include <cmdline/cmdline_versions.h>
 #include <cmdline/cmdline_why.h>
-#include <cmdline/terminal.h>
 
 #include <sigc++/functors/ptr_fun.h>
 
@@ -388,25 +387,25 @@ namespace
     {
       using namespace logging;
 
-      // ForTranslators: This is a log level that the user can pass on
+      // TRANSLATORS: This is a log level that the user can pass on
       // the command-line or set in the configuration file.
       add_level(N_("trace"), TRACE_LEVEL);
-      // ForTranslators: This is a log level that the user can pass on
+      // TRANSLATORS: This is a log level that the user can pass on
       // the command-line or set in the configuration file.
       add_level(N_("debug"), DEBUG_LEVEL);
-      // ForTranslators: This is a log level that the user can pass on
+      // TRANSLATORS: This is a log level that the user can pass on
       // the command-line or set in the configuration file.
       add_level(N_("info"), INFO_LEVEL);
-      // ForTranslators: This is a log level that the user can pass on
+      // TRANSLATORS: This is a log level that the user can pass on
       // the command-line or set in the configuration file.
       add_level(N_("warn"), WARN_LEVEL);
-      // ForTranslators: This is a log level that the user can pass on
+      // TRANSLATORS: This is a log level that the user can pass on
       // the command-line or set in the configuration file.
       add_level(N_("error"), ERROR_LEVEL);
-      // ForTranslators: This is a log level that the user can pass on
+      // TRANSLATORS: This is a log level that the user can pass on
       // the command-line or set in the configuration file.
       add_level(N_("fatal"), FATAL_LEVEL);
-      // ForTranslators: This is a log level that the user can pass on
+      // TRANSLATORS: This is a log level that the user can pass on
       // the command-line or set in the configuration file.
       add_level(N_("off"), OFF_LEVEL);
 
@@ -474,7 +473,7 @@ namespace
 
     if(!level)
       {
-	// ForTranslators: both the translated and the untranslated
+	// TRANSLATORS: both the translated and the untranslated
 	// log level names are accepted here.
 	_error->Error(_("Unknown log level name \"%s\" (expected \"trace\", \"debug\", \"info\", \"warn\", \"error\", \"fatal\", or \"off\")."),
 		      level_name.c_str());
@@ -485,6 +484,20 @@ namespace
 
     if(!targetLogger)
       {
+	/* TRANSLATORS: following paragraph copied from src/generic/util/logging.h
+	 *
+         *  A category consists of one or more nonempty components
+         *  separated by ".", such as "aptitude.util.logging", with
+         *  the exception that the root logger is indicated by the
+         *  empty string ("").
+         *
+	 * A list of the used ones in src/loggers.h
+	 *
+	 * So 'logger' here is the name of the 'category', 'component' or
+	 * 'module', in the case that users want to configure different logging
+	 * levels for different categories (e.g. level 'warn' for
+	 * 'aptitude.changelog', debug for 'aptitude.why'), etc.
+         */
 	_error->Error(_("Invalid logger name \"%s\"."),
 		      logger_name.c_str());
 	return;
@@ -1034,9 +1047,11 @@ int main(int argc, char *argv[])
     why_display_mode = aptitude::why::show_chain_with_versions;
   else
     {
-      // ForTranslators: "why" here is the aptitude command name and
-      // should not be translated.
-      _error->Error(_("Invalid \"why\" summary mode \"%s\": expected \"no-summary\", \"first-package\", \"first-package-and-type\", \"all-packages\", or \"all-packages-with-dep-versions\"."),
+      // TRANSLATORS: "why" here is the aptitude command name and should not
+      // be translated.  Both the translated and the untranslated log level
+      // names are accepted here.
+      _error->Error(_("Invalid \"why\" summary mode \"%s\": expected "
+		      "\"no-summary\", \"first-package\", \"first-package-and-type\", \"all-packages\", or \"all-packages-with-dep-versions\"."),
 		    show_why_summary_mode.c_str());
       why_display_mode = aptitude::why::no_summary;
     }

@@ -393,7 +393,7 @@ MAINTAINERCLEANFILES = Makefile.in
 @BUILD_QT_TRUE@MAYBE_QT = qt
 @BUILD_QT_TRUE@MAYBE_LIBQT = qt/libqt.a
 SUBDIRS = generic $(MAYBE_GTK) $(MAYBE_QT) cmdline mine
-INCLUDES = -I$(top_builddir) -I$(srcdir) -I$(top_srcdir) -I$(top_srcdir)/src
+AM_CPPFLAGS = -I$(top_builddir) -I$(srcdir) -I$(top_srcdir) -I$(top_srcdir)/src
 LDADD = @LIBINTL@ $(MAYBE_LIBGTK) $(MAYBE_LIBQT) cmdline/libcmdline.a mine/libcmine.a \
 	generic/apt/libgeneric-apt.a generic/util/libgeneric-util.a \
 	generic/apt/matching/libgeneric-matching.a \

@@ -311,20 +311,14 @@ namespace aptitude
      */
     class package_results_eq
     {
-      pkg_sortpolicy *s;
     public:
-      package_results_eq(pkg_sortpolicy *_s):s(_s) {}
+      package_results_eq() {}
 
       template<typename T, typename U>
       bool operator()(const std::pair<pkgCache::PkgIterator, T> &a,
                       const std::pair<pkgCache::PkgIterator, U> &b)
       {
-        pkgCache::VerIterator av =
-          (*apt_cache_file)[a.first].CandidateVerIter(*apt_cache_file);
-        pkgCache::VerIterator bv =
-          (*apt_cache_file)[b.first].CandidateVerIter(*apt_cache_file);
-
-        return s->compare(a.first, av, b.first, bv) == 0;
+        return a.first == b.first;
       }
     };
 
@@ -394,16 +388,6 @@ namespace aptitude
       }
     };
 
-
-    /** \brief Custom hash on packages. */
-    class hash_pkgiterator
-    {
-    public:
-      std::size_t operator()(const pkgCache::PkgIterator &pkg) const
-      {
-        return pkg->ID;
-      }
-    };
 
     /// \brief A helper object to generate columns from the result of
     /// a search.

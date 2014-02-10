@@ -7,7 +7,7 @@
   <!ENTITY dselect '<command>dselect</command>'>
   <!ENTITY apt-get '<command>apt-get</command>'>
   <!ENTITY root '<systemitem class="username">root</systemitem>'>
-  <!ENTITY VERSION '0.6.8.4'>
+  <!ENTITY VERSION '0.6.10'>
 
   <!-- Shortcuts for menu commands: -->
 
@@ -528,7 +528,7 @@
 	    source code using Git.  Install Git (available
 	    from <ulink url='http://git-scm.com/'/>) and
             execute the command <command>git clone
-            git://git.debian.org/git/aptitude/aptitude.git</command>
+            git://anonscm.debian.org/aptitude/aptitude.git</command>
 	    to retrieve the most recent source code.
 	  </para>
 
@@ -7942,6 +7942,19 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 		<para>
 		  Sorts packages by the estimated amount of size they
 		  require when installed.
+		</para>
+	      </listitem>
+	    </varlistentry>
+
+	    <varlistentry>
+	      <term><literal>installsizechange</literal></term>
+
+	      <listitem>
+		<para>
+		  Sorts packages by the change in the installed size (estimated
+		  amount of size required when installed), comparing the current
+		  version (if installed) and the candidate version to be
+		  installed, upgraded or removed.
 		</para>
 	      </listitem>
 	    </varlistentry>
