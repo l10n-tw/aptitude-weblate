@@ -34,9 +34,6 @@
  * 
  *  \file pkg_sortpolicy.h
  */
-
-class pkg_tree_node;
-
 class pkg_sortpolicy
 {
   pkg_sortpolicy *chain;
@@ -63,6 +60,7 @@ public:
 pkg_sortpolicy *pkg_sortpolicy_name(pkg_sortpolicy *chain, bool reversed);
 pkg_sortpolicy *pkg_sortpolicy_ver(pkg_sortpolicy *chain, bool reversed);
 pkg_sortpolicy *pkg_sortpolicy_installed_size(pkg_sortpolicy *chain, bool reversed);
+pkg_sortpolicy *pkg_sortpolicy_installed_size_change(pkg_sortpolicy *chain, bool reversed);
 pkg_sortpolicy *pkg_sortpolicy_debsize(pkg_sortpolicy *chain, bool reversed);
 pkg_sortpolicy *pkg_sortpolicy_priority(pkg_sortpolicy *chain, bool reversed);
 

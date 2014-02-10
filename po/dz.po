@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2014-01-26 12:44+0000\n"
+"POT-Creation-Date: 2014-02-10 13:31+0800\n"
 "PO-Revision-Date: 2012-06-03 13:17+0800\n"
 "Last-Translator: Tshewang Norbu <bumthap2006@hotmail.com>\n"
 "Language-Team: Dzongkha <pgeyleg@dit.gov.bt>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Country: Bhutan\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#. ForTranslators: These strings describing config items
+#. TRANSLATORS: These strings describing config items
 #. should be the same width.
 #: src/apt_config_treeitems.cc:99 src/apt_config_treeitems.cc:210
 #: src/apt_config_treeitems.cc:396
@@ -28,7 +28,7 @@ msgstr ""
 msgid "%BOption:%b  "
 msgstr "གདམ་ཁ་ཚུ།"
 
-#. ForTranslators: These strings describing config items
+#. TRANSLATORS: These strings describing config items
 #. should be the same width.
 #: src/apt_config_treeitems.cc:101 src/apt_config_treeitems.cc:212
 #: src/apt_config_treeitems.cc:400
@@ -44,7 +44,7 @@ msgstr ""
 msgid "False"
 msgstr "ཁ་བསྡམས།"
 
-#. ForTranslators: These strings describing config items
+#. TRANSLATORS: These strings describing config items
 #. should be the same width.
 #: src/apt_config_treeitems.cc:103 src/apt_config_treeitems.cc:214
 #: src/apt_config_treeitems.cc:404
@@ -56,7 +56,7 @@ msgstr ""
 msgid "Editing \"%ls\": "
 msgstr ""
 
-#. ForTranslators: These strings describing config items
+#. TRANSLATORS: These strings describing config items
 #. should be the same width.
 #: src/apt_config_treeitems.cc:410
 msgid "%BChoice:%b  "
@@ -591,7 +591,7 @@ msgid_plural "%d downgrades"
 msgstr[0] "%d མར་ཕབ་འབད།"
 msgstr[1] "%d མར་ཕབ་འབདཝ་ཨིན།"
 
-#. ForTranslators: %F is replaced with a comma separated list such as
+#. TRANSLATORS: %F is replaced with a comma separated list such as
 #. "n1 installs, n2 removals", ...
 #.
 #: src/broken_indicator.cc:430
@@ -759,44 +759,50 @@ msgstr ""
 msgid "Bad action character '%c'\n"
 msgstr "ཡིག་འབྲུའིི་བྱ་བ་བྱང་ཉེས།'%c'\n"
 
-#: src/cmdline/cmdline_changelog.cc:136
+#: src/cmdline/cmdline_changelog.cc:133
 #: src/cmdline/cmdline_download_progress_display.cc:131
 msgid "Get:"
 msgstr "ལེན:"
 
-#. ForTranslators: this stands for "error" and should be the
+#. TRANSLATORS: this stands for "error" and should be the
 #. same width as the translation of "Ign".
-#: src/cmdline/cmdline_changelog.cc:146
+#: src/cmdline/cmdline_changelog.cc:143
 #: src/cmdline/cmdline_download_progress_display.cc:185
 #, fuzzy
 #| msgid "Err "
 msgid "Err"
 msgstr "ཨི་ཨཱར་ཨཱར།"
 
-#: src/cmdline/cmdline_changelog.cc:179
+#: src/cmdline/cmdline_changelog.cc:176
 #, fuzzy, c-format
 #| msgid "ChangeLog of %s"
 msgid "Changelog download failed: %s"
 msgstr "%sགི་བསྒྱུར་བཅོས་དྲན་དེབ།"
 
-#: src/cmdline/cmdline_changelog.cc:283
+#: src/cmdline/cmdline_changelog.cc:197 src/generic/apt/pkg_changelog.cc:442
+#: src/generic/apt/pkg_changelog.cc:596 src/view_changelog.cc:272
+#, c-format
+msgid "Changelog of %s"
+msgstr "%sགི་བསྒྱུར་བཅོས་དྲན་དེབ།"
+
+#: src/cmdline/cmdline_changelog.cc:295
 msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr ""
 "དྲན་ཤེས་ཅན་གྱི་ཤོག་ལེབ་པ་དེ་ ལག་ལེན་འཐབ་མ་ཚུགས། འ་ནི་འདི་ལཱ་གཡོག་འབད་ནིའི་ཌེ་བེ་ཡན་རིམ་ལུགས་ཨིན་"
 "ན?"
 
-#: src/cmdline/cmdline_changelog.cc:334
+#: src/cmdline/cmdline_changelog.cc:346
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr ""
 "%s དེ་གཞུང་འབྲེལ་གྱི་ཌེ་བི་ཡཱན་ཐུམ་སྒྲིལ་ཅིག་མེནམ་ལས་ དེ་གི་བསྒྱུར་བཅོས་དྲན་དེབ་བཀྲམ་སྟོན་འབད་མི་ཚུགས།"
 
-#: src/cmdline/cmdline_changelog.cc:395
+#: src/cmdline/cmdline_changelog.cc:407
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "%s གི་དོན་ལུ་ བསྒྱུར་བཅོས་དྲན་དེབ་ཐོབ་མ་ཚུགས།"
 
-#: src/cmdline/cmdline_changelog.cc:399
+#: src/cmdline/cmdline_changelog.cc:411
 #, fuzzy, c-format
 #| msgid "Couldn't find a changelog for %s"
 msgid "Couldn't run pager %s"
@@ -855,7 +861,7 @@ msgid ""
 msgstr "རྟེན་འབྲེལ་ཚུ་མོས་མཐུན་འབད་མ་ཚུགས།"
 
 #: src/cmdline/cmdline_do_action.cc:385 src/cmdline/cmdline_simulate.cc:60
-#: src/main.cc:1223
+#: src/main.cc:1238
 #, c-format
 msgid "Abort.\n"
 msgstr "བར་བཤོལ།\n"
@@ -891,7 +897,7 @@ msgstr ""
 msgid "Hit"
 msgstr "ཨེབ་ནི།"
 
-#. ForTranslators: this stands for "ignored" and should be
+#. TRANSLATORS: this stands for "ignored" and should be
 #. the same width as the translation of "Err".
 #: src/cmdline/cmdline_download_progress_display.cc:181
 #, fuzzy
@@ -994,7 +1000,7 @@ msgstr "འདི་ག་ཅི་སྨོ? འདི་སྦུལ་གྱ�
 msgid "Done"
 msgstr "ཅི་མེད།"
 
-#. ForTranslators: the string replacing "DONE"
+#. TRANSLATORS: the string replacing "DONE"
 #. be truncated or padded to 4 characters.
 #: src/cmdline/cmdline_progress_display.cc:173
 msgid "DONE"
@@ -1115,7 +1121,7 @@ msgstr ""
 "*** ཉེན་བརྡ་ ***   བློ་གཏད་འགལ་བ་འདི་ཚུ་སྣང་མེད་བཞག་དོ་ ག་ཅི་སྦེ་ཟེར་བ་ཅིན་\n"
 "           Apt::Get::སྣང་མེད་བློ་གཏད་ཆོག་མི་དེ 'true'!\n"
 
-#. ForTranslators: This string is a confirmation message, which
+#. TRANSLATORS: This string is a confirmation message, which
 #. users (especially CJK users) should be able to input without
 #. input methods.  Please include nothing but ASCII characters.
 #. The text preceding the pipe character (|) will be ignored and
@@ -1124,7 +1130,7 @@ msgstr ""
 msgid "Go ahead and ignore the warning|Yes"
 msgstr ""
 
-#. ForTranslators: This string is a confirmation message, which
+#. TRANSLATORS: This string is a confirmation message, which
 #. users (especially CJK users) should be able to input without
 #. input methods.  Please include nothing but ASCII characters.
 #. The text preceding the pipe character (|) will be ignored and
@@ -1706,7 +1712,7 @@ msgstr "རྩིས་ཞིབ་འོས་སྦྱོར།(^R)"
 msgid "Action \"%s\""
 msgstr "བྱ་བ་ཚུ་སྟོན།"
 
-#. ForTranslators: the substitution is
+#. TRANSLATORS: the substitution is
 #. replaced in English with something
 #. like "Pkg1 depends upon Pkg2".
 #: src/cmdline/cmdline_resolver.cc:589
@@ -1723,7 +1729,7 @@ msgid ""
 "This action is currently approved; it will be selected whenever possible."
 msgstr ""
 
-#. ForTranslators: the "r" here is
+#. TRANSLATORS: the "r" here is
 #. for "reject", but should not be
 #. translated since the commands in
 #. aptitude's internal command-line
@@ -1733,7 +1739,7 @@ msgstr ""
 msgid "Enter \"r %s\" to allow this action to appear in new solutions."
 msgstr ""
 
-#. ForTranslators: the "r" here is
+#. TRANSLATORS: the "r" here is
 #. for "reject", but should not be
 #. translated since the commands in
 #. aptitude's internal command-line
@@ -1743,7 +1749,7 @@ msgstr ""
 msgid "Enter \"r %s\" to prevent this action from appearing in new solutions."
 msgstr ""
 
-#. ForTranslators: the "a" here is
+#. TRANSLATORS: the "a" here is
 #. for "approve", but should not be
 #. translated since the commands in
 #. aptitude's internal command-line
@@ -1755,7 +1761,7 @@ msgid ""
 "possible."
 msgstr ""
 
-#. ForTranslators: the "a" here is
+#. TRANSLATORS: the "a" here is
 #. for "approve", but should not be
 #. translated since the commands in
 #. aptitude's internal command-line
@@ -1863,12 +1869,12 @@ msgstr "རྟེན་འབྲེལ་མོས་མཐུན་འབད་
 msgid "Unable to resolve dependencies for the upgrade: %s"
 msgstr "རྟེན་འབྲེལ་ཚུ་མོས་མཐུན་འབད་མ་ཚུགས།"
 
-#: src/cmdline/cmdline_search.cc:198 src/cmdline/cmdline_versions.cc:567
+#: src/cmdline/cmdline_search.cc:199 src/cmdline/cmdline_versions.cc:567
 #, c-format
 msgid "iconv of %s failed.\n"
 msgstr "%s གི་ངོས་དཔར་ཝི་འཐུས་ཤོར་བྱུང་ཡོདཔ།\n"
 
-#: src/cmdline/cmdline_search.cc:215
+#: src/cmdline/cmdline_search.cc:216
 #, c-format
 msgid "search: You must provide at least one search term\n"
 msgstr "འཚོལ་ཞིབ་འབད: ཁྱོད་ཀྱིས་ཉུང་ཤོས་རང་འཚོལ་ཞིབ་ཀྱི་ལམ་ལུགས་གཅིག་བྱིན་དགོ\n"
@@ -2318,7 +2324,7 @@ msgstr ""
 msgid "--group-by|source-version"
 msgstr ""
 
-#. ForTranslators: --group-by is the argument name and shouldn't
+#. TRANSLATORS: --group-by is the argument name and shouldn't
 #. be translated.
 #: src/cmdline/cmdline_versions.cc:528
 #, c-format
@@ -2492,7 +2498,7 @@ msgstr ""
 msgid "Unexpected end-of-file on standard input"
 msgstr "ཨིན་པུཊི་ཚད་ལྡན་གུར་རེ་འདུན་མེད་པའི་ཡིག་སྣོད་ཀྱི་-མཇུག"
 
-#. ForTranslators: the text between [] should be
+#. TRANSLATORS: the text between [] should be
 #. exactly 4 character cells wide; "ERR" is short
 #. for "ERROR".
 #: src/cmdline/text_progress.cc:96
@@ -2687,7 +2693,7 @@ msgstr ""
 "བརླག་སྟོར་ཞུགས་ཡོད་མི་ཡིག་སྣོད་འདི་ཚུ་ནོར་བཅོས་འབད་ནིའི་དོན་ལུ་ ཁྱོད་ཀྱིས་ཐུམ་སྒྲིལ་ཐོ་ཡིག་ཚུ་དུས་མཐུན་བཟོ་"
 "དགོཔ་འོང་།"
 
-#. ForTranslators: Set this string to the name of a configuration
+#. TRANSLATORS: Set this string to the name of a configuration
 #. file in $pkgdatadir/aptitude that overrides defaults for your
 #. language.  This is particularly intended for overriding entries
 #. in the Aptitude::Sections::Descriptions tree.
@@ -2796,7 +2802,7 @@ msgstr ""
 msgid "Invalid hint \"%s\": trailing junk after the version."
 msgstr ""
 
-#: src/generic/apt/aptitude_resolver.cc:680
+#: src/generic/apt/aptitude_resolver.cc:682
 #, c-format
 msgid ""
 "Invalid hint \"%s\": the action \"%s\" should be \"approve\", \"reject\", or "
@@ -2895,7 +2901,7 @@ msgstr "ཐུམ་སྒྲིལ་%sདེ་ག་ཡོད་འཚོལ�
 msgid "Unable to open %s to log actions"
 msgstr "བྱ་བ་ཚུ་བསྡམ་བཞག་ནིའི་དོན་ལུ་%sདེ་ཁ་ཕྱེ་མ་ཚུགས།"
 
-#. ForTranslators: This is a date and time format.  See strftime(3).
+#. TRANSLATORS: This is a date and time format.  See strftime(3).
 #: src/generic/apt/log.cc:66
 msgid "%a, %b %e %Y %T %z"
 msgstr ""
@@ -3063,7 +3069,7 @@ msgstr "མ་ཤེས་པའི་གཞན་བརྟེན་གྱི་
 msgid "Unknown term type: \"%s\"."
 msgstr "མ་ཤེས་པའི་དཔེ་གཞི་གྱི་དབྱེ་བ: %c"
 
-#. ForTranslators: Question marks ("?") are used as prefix for function names.
+#. TRANSLATORS: Question marks ("?") are used as prefix for function names.
 #. Leave the question marks attached to the string placeholders.
 #: src/generic/apt/matching/parse.cc:928 src/generic/apt/matching/parse.cc:937
 #, c-format
@@ -3126,12 +3132,6 @@ msgid ""
 "The package index files are corrupted. No Filename: field for package %s."
 msgstr ""
 "ཐུམ་སྒྲིལ་ཟུར་ཐོའི་ཡིག་སྣོད་ཚུ་ངན་ཅན་ལུ་གྱུར་སོང་ནུག ཡིག་སྣོད་མིང་མེད: ཐུམ་སྒྲིལ་%s དེ་གི་དོན་ལུ་ས་སྒོ།"
-
-#: src/generic/apt/pkg_changelog.cc:442 src/generic/apt/pkg_changelog.cc:596
-#: src/view_changelog.cc:272
-#, c-format
-msgid "Changelog of %s"
-msgstr "%sགི་བསྒྱུར་བཅོས་དྲན་དེབ།"
 
 #: src/generic/apt/pkg_changelog.cc:572 src/generic/apt/pkg_changelog.cc:577
 #, fuzzy, c-format
@@ -3307,7 +3307,7 @@ msgstr "རེ་བ་ཡོད་མི་','ཡང་ན་ '(',ཐོབ་�
 msgid "anything"
 msgstr ""
 
-#. ForTranslators: this is used to generate an error
+#. TRANSLATORS: this is used to generate an error
 #. message; a brief description of what we expected to see
 #. is inserted into it.
 #: src/generic/util/parsers.h:1941 src/generic/util/parsers.h:2034
@@ -3501,10 +3501,6 @@ msgstr "གཞི་བཙུགས་འབད་ཡོདཔ།"
 msgid "Edit Columns..."
 msgstr ""
 
-#: src/gtk/aptitude.glade:597
-msgid "Dummy label (will be replaced at runtime)."
-msgstr ""
-
 #: src/gtk/aptitude.glade:625
 #, fuzzy
 #| msgid "Remove the filter from the package list"
@@ -3678,12 +3674,6 @@ msgstr "ཡར་བསྐྱེད།"
 #| msgid "Source Package: "
 msgid "Selected Package"
 msgstr "ཐུམ་སྒྲིལ་གྱི་འབྱུང་ཁུངས:"
-
-#: src/gtk/aptitude.glade:1631
-msgid ""
-"Label explaining the upgrade.  This text will not appear in the program at "
-"runtime."
-msgstr ""
 
 #: src/gtk/aptitude.glade:1643
 #, fuzzy
@@ -4439,7 +4429,7 @@ msgstr "%s བསྒྱུར་བཅོས།"
 msgid "Apply changes"
 msgstr "%s བསྒྱུར་བཅོས།"
 
-#. ForTranslators: any numbers in this
+#. TRANSLATORS: any numbers in this
 #. string will be displayed in a larger
 #. font.
 #: src/gtk/gui.cc:1192
@@ -4451,7 +4441,7 @@ msgid_plural "%d packages to install"
 msgstr[0] "%d གཞི་བཙུགས་འབད་ནི།"
 msgstr[1] "%d གཞི་བཙུགས་འབད་ནི།"
 
-#. ForTranslators: any numbers in this
+#. TRANSLATORS: any numbers in this
 #. string will be displayed in a larger
 #. font.
 #: src/gtk/gui.cc:1207
@@ -5184,10 +5174,12 @@ msgstr ""
 #: src/gtk/resolver.cc:2079
 #, fuzzy, c-format
 #| msgid "No more solutions."
-msgid "%u solutions."
-msgstr "ཐབས་ཤེས་དེ་ལས་ལྷག་སྟེ་མེད།"
+msgid "%u solution."
+msgid_plural "%u solutions."
+msgstr[0] "ཐབས་ཤེས་དེ་ལས་ལྷག་སྟེ་མེད།"
+msgstr[1] "ཐབས་ཤེས་དེ་ལས་ལྷག་སྟེ་མེད།"
 
-#: src/gtk/resolver.cc:2109
+#: src/gtk/resolver.cc:2111
 #, fuzzy, c-format
 #| msgid "Could not open file \"%s\""
 msgid "Solution %s of %s."
@@ -5376,58 +5368,58 @@ msgstr "མ་ཤེས་པའི་ཕྲང་སྒྲིག་གི་ད
 
 #: src/load_sortpolicy.cc:51 src/load_sortpolicy.cc:64
 #: src/load_sortpolicy.cc:77 src/load_sortpolicy.cc:90
-#: src/load_sortpolicy.cc:104
+#: src/load_sortpolicy.cc:103 src/load_sortpolicy.cc:117
 #, fuzzy, c-format
 #| msgid "By-name sorting policies take no arguments"
 msgid "Sorting policy '%s' takes no arguments"
 msgstr "མིང་དབྱེ་སེལ་་འབད་ནི་སྲིད་བྱུས་དེ་གིས་ སྒྲུབ་རྟགས་ཚུ་མི་འབག"
 
-#: src/load_sortpolicy.cc:164
+#: src/load_sortpolicy.cc:178
 msgid "Invalid zero-length sorting policy name"
 msgstr "ནུས་མེད་ཀླད་ཀོར་འབད་མི་རིངཚད་དབྱེ་སེལ་འབད་ནིའི་སྲིད་བྱུའི་མིང་།"
 
-#: src/load_sortpolicy.cc:182
+#: src/load_sortpolicy.cc:196
 msgid "Unmatched '(' in sorting policy description"
 msgstr "སྲིད་བྱུས་འགྲལ་བཤད་དབྱེ་སེལ་འབད་ནི་ལུ་ '(' མཐུན་སྒྲིག་མིན་འདུག"
 
-#: src/load_sortpolicy.cc:209
+#: src/load_sortpolicy.cc:223
 #, c-format
 msgid "Invalid sorting policy type '%s'"
 msgstr "ནུས་མེད་དབྱེ་སེལ་འབད་ནིའི་སྲིད་བྱུའི་དབྱེ་བ་'%s'"
 
-#: src/main.cc:134
+#: src/main.cc:133
 #, c-format
 msgid "Can't decode multibyte string after \"%ls\""
 msgstr "\"%ls\"གི་ཤུལ་ལས་ བཱའིཊི་སྣ་མང་གི་ཡིག་རྒྱུན་ ཌི་ཀོཌི་འབད་མི་ཚུགས།"
 
-#: src/main.cc:143
+#: src/main.cc:142
 #, c-format
 msgid "Can't decode wide-character string after \"%s\""
 msgstr " \"%s\"དེ་གི་ཤུལ་ལས་ རྒྱ་ཅན-ཡིག་འབྲུའི་ཡིག་རྒྱུན་ཌི་ཀོཌི་འབད་མ་ཚུགས།"
 
-#: src/main.cc:151
+#: src/main.cc:150
 #, c-format
 msgid "%s %s compiled at %s %s\n"
 msgstr "%s %s དེ་%s %sགུར་ཕྱོགས་སྒྲིག་འབད་བཞག་ནུག།\n"
 
-#: src/main.cc:154
+#: src/main.cc:153
 #, c-format
 msgid "Compiler: g++ %s\n"
 msgstr "ཕྱོགས་སྒྲིག་པ: g++ %s\n"
 
-#: src/main.cc:156
+#: src/main.cc:155
 #, fuzzy
 #| msgid "Compiler: g++ %s\n"
 msgid "Compiled against:\n"
 msgstr "ཕྱོགས་སྒྲིག་པ: g++ %s\n"
 
-#: src/main.cc:157
+#: src/main.cc:156
 #, fuzzy, c-format
 #| msgid "Keep %F at version %s (%s)"
 msgid "  apt version %d.%d.%d\n"
 msgstr "%Fདེ་ཐོན་རིམ་%s (%s)གུར་བཞག"
 
-#: src/main.cc:160
+#: src/main.cc:159
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -5437,7 +5429,7 @@ msgstr ""
 "\n"
 "NCurses version: %s\n"
 
-#: src/main.cc:162
+#: src/main.cc:161
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -5447,56 +5439,56 @@ msgstr ""
 "\n"
 "NCurses version: %s\n"
 
-#: src/main.cc:164
+#: src/main.cc:163
 #, fuzzy, c-format
 #| msgid "libsigc++ version: %s\n"
 msgid "  libsigc++ version: %s\n"
 msgstr "libsigc++ཐོན་རིམ་: %s\n"
 
-#: src/main.cc:166
+#: src/main.cc:165
 #, c-format
 msgid "  Ept support enabled.\n"
 msgstr ""
 
-#: src/main.cc:168
+#: src/main.cc:167
 #, c-format
 msgid "  Ept support disabled.\n"
 msgstr ""
 
-#: src/main.cc:171
+#: src/main.cc:170
 #, fuzzy, c-format
 #| msgid "Keep %F at version %s (%s)"
 msgid "  Gtk+ version %d.%d.%d\n"
 msgstr "%Fདེ་ཐོན་རིམ་%s (%s)གུར་བཞག"
 
-#: src/main.cc:173
+#: src/main.cc:172
 #, fuzzy, c-format
 #| msgid "Keep %F at version %s (%s)"
 msgid "  Gtk-- version %d.%d.%d\n"
 msgstr "%Fདེ་ཐོན་རིམ་%s (%s)གུར་བཞག"
 
-#: src/main.cc:176
+#: src/main.cc:175
 #, c-format
 msgid "  Gtk+ support disabled.\n"
 msgstr ""
 
-#: src/main.cc:179
+#: src/main.cc:178
 #, fuzzy, c-format
 #| msgid "%s %s compiled at %s %s\n"
 msgid "  Compiled with Qt %s\n"
 msgstr "%s %s དེ་%s %sགུར་ཕྱོགས་སྒྲིག་འབད་བཞག་ནུག།\n"
 
-#: src/main.cc:180
+#: src/main.cc:179
 #, c-format
 msgid "  Running on Qt %s\n"
 msgstr ""
 
-#: src/main.cc:182
+#: src/main.cc:181
 #, c-format
 msgid "  Qt support disabled.\n"
 msgstr ""
 
-#: src/main.cc:184
+#: src/main.cc:183
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -5508,7 +5500,7 @@ msgstr ""
 "\n"
 "Curses version: %s\n"
 
-#: src/main.cc:185
+#: src/main.cc:184
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -5518,13 +5510,13 @@ msgstr ""
 "\n"
 "NCurses version: %s\n"
 
-#: src/main.cc:186
+#: src/main.cc:185
 #, fuzzy, c-format
 #| msgid "libsigc++ version: %s\n"
 msgid "  cwidget version: %s\n"
 msgstr "libsigc++ཐོན་རིམ་: %s\n"
 
-#: src/main.cc:187
+#: src/main.cc:186
 #, fuzzy, c-format
 #| msgid ""
 #| "\n"
@@ -5534,17 +5526,17 @@ msgstr ""
 "\n"
 "Curses version: %s\n"
 
-#: src/main.cc:193
+#: src/main.cc:192
 #, c-format
 msgid "Usage: aptitude [-S fname] [-u|-i]"
 msgstr "ལགལེན་: གོམས་འདྲིས་ [-S fname] [-u|-i]"
 
-#: src/main.cc:195
+#: src/main.cc:194
 #, c-format
 msgid "       aptitude [options] <action> ..."
 msgstr "aptitude [གདམ་ཁ་ཚུ་] <བྱ་བ་> ..."
 
-#: src/main.cc:197
+#: src/main.cc:196
 #, c-format
 msgid ""
 "  Actions (if none is specified, aptitude will enter interactive mode):\n"
@@ -5554,37 +5546,37 @@ msgstr ""
 "འོང་།):\n"
 "\n"
 
-#: src/main.cc:198
+#: src/main.cc:197
 #, fuzzy, c-format
 #| msgid " install      - Install/upgrade packages\n"
 msgid " install      - Install/upgrade packages.\n"
 msgstr "གཞི་བཙུགས་འབད།  -ཐུམ་སྒྲིལ་ཚུ་གཞི་བཙུགས་དང་ ཡར་བསྐྱེད་འབད།\n"
 
-#: src/main.cc:199
+#: src/main.cc:198
 #, fuzzy, c-format
 #| msgid " remove       - Remove packages\n"
 msgid " remove       - Remove packages.\n"
 msgstr "རྩ་བསྐྲད་གཏང་།  - ཐུམ་སྒྲིལ་ཚུ་རྩ་བསྐྲད་གཏང་།\n"
 
-#: src/main.cc:200
+#: src/main.cc:199
 #, fuzzy, c-format
 #| msgid " purge        - Remove packages and their configuration files\n"
 msgid " purge        - Remove packages and their configuration files.\n"
 msgstr "ཕྱིར་བསྐྲད་གཏང་།  ་-  ཐུམ་སྒྲིལ་ཚུ་དང་དེ་ཚུ་གི་རིམ་སྒྲིག་ཡིག་སྣོད་ཚུ་རྩ་བསྐྲད་གཏང་།\n"
 
-#: src/main.cc:201
+#: src/main.cc:200
 #, fuzzy, c-format
 #| msgid " hold         - Place packages on hold\n"
 msgid " hold         - Place packages on hold.\n"
 msgstr "འཆང་།    - འཆང་ནིའི་གུར་ཐུམ་སྒྲིལ་ཚུ་བཞག\n"
 
-#: src/main.cc:202
+#: src/main.cc:201
 #, fuzzy, c-format
 #| msgid " unhold       - Cancel a hold command for a package\n"
 msgid " unhold       - Cancel a hold command for a package.\n"
 msgstr "འཆང་མི་དགོ   -  ཐུམ་སྒྲིལ་ཅིག་གི་དོན་ལུ་ འཆང་ནིའི་བརྡ་བཀོད་ཆ་མེད་གཏང་།\n"
 
-#: src/main.cc:203
+#: src/main.cc:202
 #, fuzzy, c-format
 #| msgid ""
 #| " markauto     - Mark packages as having been automatically installed\n"
@@ -5592,14 +5584,14 @@ msgid " markauto     - Mark packages as having been automatically installed.\n"
 msgstr ""
 "རང་བཞིན་རྟགས་བཀལ-  ཐུམ་སྒྲིལ་ཚུ་རང་བཞིན་གྱིས་ཐོག་ལས་གཞི་བཙུགས་འབད་ཡོད་མི་བཟུམ་སྦེ་རྟགས་བཀལ།\n"
 
-#: src/main.cc:204
+#: src/main.cc:203
 #, fuzzy, c-format
 #| msgid " unmarkauto   - Mark packages as having been manually installed\n"
 msgid " unmarkauto   - Mark packages as having been manually installed.\n"
 msgstr ""
 "རང་བཞིན་རྟགས་མ་བཀལ-  ཐུམ་སྒྲིལ་ཚུ་ རང་བཞིན་གྱིས་ཐོག་ལས་རྟགས་བཀལ་ཡོད་མི་བཟུམ་སྦེ་རྟགས་བཀལ།\n"
 
-#: src/main.cc:205
+#: src/main.cc:204
 #, c-format
 msgid ""
 " forbid-version - Forbid aptitude from upgrading to a specific package "
@@ -5608,19 +5600,19 @@ msgstr ""
 "ཐོན་རིམ་བཀག་དམ་འབད-  གོམས་འདྲིས་དེ་ ཡར་བསྐྱེད་འབད་ནི་ལས་གསལ་བཀོད་འབད་ཡོད་པའི་ཐུམ་སྒྲིལ་ཐོན་རིམ་"
 "ཚུན་ བཀག་དམ་འབད།\n"
 
-#: src/main.cc:206
+#: src/main.cc:205
 #, fuzzy, c-format
 #| msgid " update       - Download lists of new/upgradable packages\n"
 msgid " update       - Download lists of new/upgradable packages.\n"
 msgstr "དུས་མཐུན་བཟོ -    གསརཔ་/ཡར་བསྐྱེད་འབད་བཏུབ་པའི་ཐུམ་སྒྲིལ་ཐོ་ཡིག་ཅིག་ཕབ་་ལེན་འབད།\n"
 
-#: src/main.cc:207
+#: src/main.cc:206
 #, fuzzy, c-format
 #| msgid " safe-upgrade - Perform a safe upgrade\n"
 msgid " safe-upgrade - Perform a safe upgrade.\n"
 msgstr "ཉེན་སྲུང་ཡར་བསྐྱེད་- ཉེན་སྲུང་ལྡན་པའི་ཡར་བསྐྱེད་འབད།\n"
 
-#: src/main.cc:208
+#: src/main.cc:207
 #, fuzzy, c-format
 #| msgid ""
 #| " full-upgrade - Perform an upgrade, possibly installing and removing "
@@ -5630,60 +5622,60 @@ msgid ""
 "packages.\n"
 msgstr "ཆ་ཚང་-ཡར་བསྐྱེད་-ཐུམ་སྒྲིལ་ཚུ་གཞི་བཙུགས་དང་རྩ་བསྐྲད་གཏང་པའི་ཐོག་ལས་ ཡར་བསྐྱེད་འབད།\n"
 
-#: src/main.cc:209
+#: src/main.cc:208
 #, c-format
 msgid " build-dep    - Install the build-dependencies of packages.\n"
 msgstr ""
 
-#: src/main.cc:210
+#: src/main.cc:209
 #, fuzzy, c-format
 #| msgid " forget-new   - Forget what packages are \"new\"\n"
 msgid " forget-new   - Forget what packages are \"new\".\n"
 msgstr "བརྗེད་ནི་ - གསརཔ་ -  ཐུམ་སྒྲིལ་ག་ཅི་ཚུ་\"new\" ཨིན་ན་བརྗེད་དགོ\n"
 
-#: src/main.cc:211
+#: src/main.cc:210
 #, fuzzy, c-format
 #| msgid " search       - Search for a package by name and/or expression\n"
 msgid " search       - Search for a package by name and/or expression.\n"
 msgstr "འཛོལ་ཞིབ་འབད་-   ཐུམ་སྒྲིལ་ཚུ་གི་དོན་ལུ་མིང་/ཡང་ན་གསལ་བརྗོད་ཀྱིས་འཛོལ་ཞིབ་འབད།\n"
 
-#: src/main.cc:212
+#: src/main.cc:211
 #, fuzzy, c-format
 #| msgid " show         - Display detailed information about a package\n"
 msgid " show         - Display detailed information about a package.\n"
 msgstr "སྟོན་ -  ཐུམ་སྒྲིལ་ཅིག་གི་སྐོར་ལས་རྒྱས་ཤིང་རྒྱསཔ་སྦེ་ཡོད་མི་བརྡ་དོན་ཚུ་བཀྲམ་སྟོན་འབད།\n"
 
-#: src/main.cc:213
+#: src/main.cc:212
 #, fuzzy, c-format
 #| msgid " show         - Display detailed information about a package\n"
 msgid " versions     - Displays the versions of specified packages.\n"
 msgstr "སྟོན་ -  ཐུམ་སྒྲིལ་ཅིག་གི་སྐོར་ལས་རྒྱས་ཤིང་རྒྱསཔ་སྦེ་ཡོད་མི་བརྡ་དོན་ཚུ་བཀྲམ་སྟོན་འབད།\n"
 
-#: src/main.cc:214
+#: src/main.cc:213
 #, fuzzy, c-format
 #| msgid " clean        - Erase downloaded package files\n"
 msgid " clean        - Erase downloaded package files.\n"
 msgstr "སེལ -  ཕབ་ལེན་འབད་ཡོད་པའི་ཐུམ་སྒྲིལ་ཡིག་སྣོད་ཚུ་ཀྲེག་གཏང་།\n"
 
-#: src/main.cc:215
+#: src/main.cc:214
 #, fuzzy, c-format
 #| msgid " autoclean    - Erase old downloaded package files\n"
 msgid " autoclean    - Erase old downloaded package files.\n"
 msgstr "རང་བཞིན་གྱིས་སེལ་ནི་ -  ཕབ་ལེན་འབད་ཡོད་པའི་ཐུམ་སྒྲིལ་ཡིཡག་སྣོད་་རྙིངམ་ཚུ་ཀྲེག་གཏང་།\n"
 
-#: src/main.cc:216
+#: src/main.cc:215
 #, fuzzy, c-format
 #| msgid " changelog    - View a package's changelog\n"
 msgid " changelog    - View a package's changelog.\n"
 msgstr "བསྒྱུར་བཅོས་དྲན་དེབ -  ཐུམ་སྒྲིལ་གྱི་བསྒྱུར་བཅོས་དྲན་དེབ་ཅིག་སྟོན།\n"
 
-#: src/main.cc:217
+#: src/main.cc:216
 #, fuzzy, c-format
 #| msgid " download     - Download the .deb file for a package\n"
 msgid " download     - Download the .deb file for a package.\n"
 msgstr "ཕབ་ལེན་འབད-  ཐུམ་སྒྲིལ་ཅིག་གི་དོན་ལུ་ཌེབ་ཡིག་སྣོད་དེ་ཕབ་ལེན་འབད།\n"
 
-#: src/main.cc:218
+#: src/main.cc:217
 #, fuzzy, c-format
 #| msgid ""
 #| " reinstall    - Download and (possibly) reinstall a currently installed "
@@ -5695,7 +5687,7 @@ msgstr ""
 "བསྐྱར་བཙུགས་འབད -  འཕྲལ་ཁམས་གཞི་བཙུགས་འབད་ཡོད་མི་ཐུམ་སྒརིལ་དེ་ཕབ་ལེན་འབད་དེ་སླར་གཞི་བཙུགས་"
 "འབད།\n"
 
-#: src/main.cc:219
+#: src/main.cc:218
 #, c-format
 msgid ""
 " why          - Show the manually installed packages that require a package, "
@@ -5703,7 +5695,7 @@ msgid ""
 "                why one or more packages would require the given package.\n"
 msgstr ""
 
-#: src/main.cc:221
+#: src/main.cc:220
 #, c-format
 msgid ""
 " why-not      - Show the manually installed packages that lead to a "
@@ -5712,58 +5704,58 @@ msgid ""
 "                lead to a conflict with the given package if installed.\n"
 msgstr ""
 
-#: src/main.cc:225
+#: src/main.cc:224
 #, c-format
 msgid "  Options:\n"
 msgstr "གདམ་ཁ་ཚུ་:\n"
 
-#: src/main.cc:226
+#: src/main.cc:225
 #, fuzzy, c-format
 #| msgid " -h             This help text\n"
 msgid " -h             This help text.\n"
 msgstr "  -h    འདི་གྲོགས་རམ་ཚིག་ཡིག་ཨིན།\n"
 
-#: src/main.cc:228
+#: src/main.cc:227
 #, c-format
 msgid ""
 " --gui          Use the GTK GUI even if disabled in the configuration.\n"
 msgstr ""
 
-#: src/main.cc:230
+#: src/main.cc:229
 #, c-format
 msgid " --no-gui       Do not use the GTK GUI even if available.\n"
 msgstr ""
 
-#: src/main.cc:232
+#: src/main.cc:231
 #, fuzzy, c-format
 #| msgid " -h             This help text\n"
 msgid " --qt           Use the Qt GUI.\n"
 msgstr "  -h    འདི་གྲོགས་རམ་ཚིག་ཡིག་ཨིན།\n"
 
-#: src/main.cc:233
+#: src/main.cc:232
 #, c-format
 msgid ""
 " --no-qt        Do not use the Qt GUI even if enabled in the configuration.\n"
 msgstr ""
 
-#: src/main.cc:235
+#: src/main.cc:234
 #, c-format
 msgid " -s             Simulate actions, but do not actually perform them.\n"
 msgstr "  -s       བྱ་བ་ཚུ་རྫུས་མ་བཟོ་ དེ་འབདཝ་ད་ དེ་ཚུ་ངོ་མ་སྦེ་ལག་ལེན་འཐབ།\n"
 
-#: src/main.cc:236
+#: src/main.cc:235
 #, c-format
 msgid ""
 " -d             Only download packages, do not install or remove anything.\n"
 msgstr " -d་ ཐུམ་སྒྲིལ་ཚུ་ཕབ་ལེན་འབད་ནི་མ་གཏོགས་ ག་ནི་ཡང་གཞི་བཙུགས་དང་རྩ་བསྐྲད་མ་གཏང་།\n"
 
-#: src/main.cc:237
+#: src/main.cc:236
 #, fuzzy, c-format
 #| msgid " -P             Always prompt for confirmation or actions\n"
 msgid " -P             Always prompt for confirmation of actions.\n"
 msgstr " -P      ཨ་རྟག་རང་ ངེས་དཔྱད་འབད་ནི་དང་བྱ་བ་ཚུ་གི་དོན་ལུ་ནུས་སྤེལ་འབད།\n"
 
-#: src/main.cc:238
+#: src/main.cc:237
 #, fuzzy, c-format
 #| msgid ""
 #| " -y             Assume that the answer to simple yes/no questions is "
@@ -5772,7 +5764,7 @@ msgid ""
 " -y             Assume that the answer to simple yes/no questions is 'yes'.\n"
 msgstr " -y      བཏུབ་/མི་བཏུབ་ཀྱི་དྲི་བའི་ལན་དེ་ 'yes' ཨིན་ཟེར་མནོ་རུང་བཏུབ།\n"
 
-#: src/main.cc:239
+#: src/main.cc:238
 #, fuzzy, c-format
 #| msgid ""
 #| " -F format      Specify a format for displaying search results; see the "
@@ -5784,7 +5776,7 @@ msgstr ""
 " -F format    འཚོལ་ཞིབ་འབད་ཡོད་པའི་གྲུབ་འབྲས་ཚུ་བཀྲམ་སྟོན་འབད་ནིའི་དོན་ལུ་ རྩ་སྒྲིག་ཅིག་གསལ་བཀོད་"
 "འབད། ལག་དེབ་ལུ་བལྟ།\n"
 
-#: src/main.cc:240
+#: src/main.cc:239
 #, fuzzy, c-format
 #| msgid ""
 #| " -O order       Specify how search results should be sorted; see the "
@@ -5796,7 +5788,7 @@ msgstr ""
 " -O order  འཚོལ་ཞིབ་འབད་ཡོད་པའི་གྲུབ་འབྲས་ཚུ་ག་དེ་སྦེ་གསོག་འཇོག་འབད་ནི་ཨིན་ན་གསལ་བཀོད་འབད། "
 "ལག་དེབ་ལུ་བལྟ།\n"
 
-#: src/main.cc:241
+#: src/main.cc:240
 #, fuzzy, c-format
 #| msgid ""
 #| " -w width       Specify the display width for formatting search results\n"
@@ -5805,29 +5797,29 @@ msgid ""
 msgstr ""
 " -w width འཚོལ་ཞིབ་གྲུབ་འབྲས་རྩ་སྒྲིག་འབད་ནིའི་དོན་ལུ་ བཀྲམ་སྟོན་གྱི་རྒྱ་ཚད་དེ་གསལ་བཀོད་འབད།\n"
 
-#: src/main.cc:242
+#: src/main.cc:241
 #, c-format
 msgid " -f             Aggressively try to fix broken packages.\n"
 msgstr ""
 " -f    ཐུམ་སྒྲིལ་ཆག་འགྱོ་ཡོད་མི་ཚུ་ བཙན་ཤུགས་ཅན་གྱི་ཐོག་ལས་ཚུད་སྒྲིག་འབད་ནི་ལུ་འབད་རྩོལ་བསྐྱེད།\n"
 
-#: src/main.cc:243
+#: src/main.cc:242
 #, c-format
 msgid " -V             Show which versions of packages are to be installed.\n"
 msgstr "-V   ཐུམ་སྒྲིལ་ཚུ་གི་ཐོན་རིམ་ག་འདི་གཞི་བཙུགས་འབད་ནི་ཨིན་ན་སྟོན།\n"
 
-#: src/main.cc:244
+#: src/main.cc:243
 #, c-format
 msgid ""
 " -D             Show the dependencies of automatically changed packages.\n"
 msgstr " -D  རང་བཞིན་གྱིས་བསྒྱུར་བཅོས་འགྱོ་ཡོད་མི་ཐུམ་སྒྲིལ་ཚུ་གི་བརྟེན་འབྲེལ་དེ་སྟོན།\n"
 
-#: src/main.cc:245
+#: src/main.cc:244
 #, c-format
 msgid " -Z             Show the change in installed size of each package.\n"
 msgstr " -Z   ཐུམ་སྒྲིལ་རེ་རེ་བཞིན་གྱི་གཞི་བཙུགས་འབད་ཡོད་པའི་ཚད་ནང་གི་བསྒྱུར་བཅོས་སྟོན།\n"
 
-#: src/main.cc:246
+#: src/main.cc:245
 #, fuzzy, c-format
 #| msgid ""
 #| " -v             Display extra information. (may be supplied multiple "
@@ -5837,7 +5829,7 @@ msgid ""
 "times).\n"
 msgstr " -v  བརྡ་དོན་ཐེབས་བཀྲམསྟོན་འབད།(ཐེངས་ལེ་ཤ་ཅིག་བཀྲམ་སྤེལ་འབད་འབདཝ་འོང་།)\n"
 
-#: src/main.cc:247
+#: src/main.cc:246
 #, fuzzy, c-format
 #| msgid ""
 #| " -t [release]   Set the release from which packages should be installed\n"
@@ -5847,7 +5839,7 @@ msgstr ""
 " -t[གསར་བཏོན་འབད་ནི་] གསར་སྟོན་དེ་ ཐུམ་སྒྲིལ་ག་འདི་གཞི་བཙུགས་འབད་དགོཔ་ཨིན་ན་གི་ནང་ལས་ གཞི་སྒྲིག་"
 "འབད།\n"
 
-#: src/main.cc:248
+#: src/main.cc:247
 #, fuzzy, c-format
 #| msgid ""
 #| " -q             In command-line mode, suppress the incremental progress "
@@ -5858,13 +5850,13 @@ msgid ""
 msgstr ""
 "-q   བརྡ་བཀོད་-གྲལ་ཐིག་གི་ཐབས་ལམ་ནང་ལུ་ ཡར་འཕར་ཡར་འཕེལ་གྱི་བརྡ་སྟོན་པ་དེ་མར་མནོན་འབད།\n"
 
-#: src/main.cc:250
+#: src/main.cc:249
 #, fuzzy, c-format
 #| msgid " -o key=val     Directly set the configuration option named 'key'\n"
 msgid " -o key=val     Directly set the configuration option named 'key'.\n"
 msgstr " -o key=val   རིམ་སྒྲིག་གདམ་ཁའི་མིང་'key'ཟེར་མི་དེ་ཐད་ཀར་དུ་གཞི་སྒྲིག་འབད།'\n"
 
-#: src/main.cc:251
+#: src/main.cc:250
 #, fuzzy, c-format
 #| msgid ""
 #| " --with(out)-recommends\tSpecify whether or not to treat recommends as\n"
@@ -5876,166 +5868,181 @@ msgstr ""
 " --with(out)-recommends\tའོས་སྦྱོར་ཚུ་སྒྲིང་སྒྲིང་ཡོད་པའི་བརྟེན་འབྲེལ་་བཟུམ་སྦེ་\n"
 "              བརྩིའཇོག་འབད་དགོ་དང་མི་དགོ་གསལ་བཀོད་འབད།\n"
 
-#: src/main.cc:253
+#: src/main.cc:252
 #, c-format
 msgid " -S fname       Read the aptitude extended status info from fname.\n"
 msgstr "-S fname ཨེཕི་མིང་ནང་ལས་ གོམས་འདྲིས་བརྒྱ་བསྐྱེད་འབད་ཡོད་པའི་གནས་ཚད་བརྡ་དོན་དེ་ལྷག།\n"
 
-#: src/main.cc:254
+#: src/main.cc:253
 #, c-format
 msgid " -u             Download new package lists on startup.\n"
 msgstr " -u      འགོ་བཙུགས་གུར་ ཐུམ་སྒྲིལ་གྱི་ཐོ་ཡིག་གསརཔ་ཚུ་ཕབ་ལེན་འབད།\n"
 
-#: src/main.cc:255 src/main.cc:257
+#: src/main.cc:254 src/main.cc:256
 #, c-format
 msgid "                  (terminal interface only)\n"
 msgstr ""
 
-#: src/main.cc:256
+#: src/main.cc:255
 #, c-format
 msgid " -i             Perform an install run on startup.\n"
 msgstr " -i       འགོ་བཙུགས་གུར་གཞི་བཙུགས་གཡོག་བཀོལ་དེ་ལག་ལེན་འཐབ།\n"
 
-#: src/main.cc:259
+#: src/main.cc:258
 #, c-format
 msgid "                  This aptitude does not have Super Cow Powers.\n"
 msgstr "                 གོམས་འདྲིས་འདི་ལུ་ཡང་དག་པའི་ཀཱའུ་ནུས་ཤུགས་དེ་མེད།.\n"
 
-#. ForTranslators: This is a log level that the user can pass on
+#. TRANSLATORS: This is a log level that the user can pass on
 #. the command-line or set in the configuration file.
-#: src/main.cc:393
+#: src/main.cc:392
 #, fuzzy
 #| msgid "replaces"
 msgid "trace"
 msgstr "ཚབ་བཙུགསཔ་ཨིན།"
 
-#. ForTranslators: This is a log level that the user can pass on
+#. TRANSLATORS: This is a log level that the user can pass on
 #. the command-line or set in the configuration file.
-#: src/main.cc:396
+#: src/main.cc:395
 msgid "debug"
 msgstr ""
 
-#. ForTranslators: This is a log level that the user can pass on
+#. TRANSLATORS: This is a log level that the user can pass on
 #. the command-line or set in the configuration file.
-#: src/main.cc:399
+#: src/main.cc:398
 #, fuzzy
 #| msgid "no"
 msgid "info"
 msgstr "མེན།"
 
-#. ForTranslators: This is a log level that the user can pass on
+#. TRANSLATORS: This is a log level that the user can pass on
 #. the command-line or set in the configuration file.
-#: src/main.cc:402
+#: src/main.cc:401
 msgid "warn"
 msgstr ""
 
-#. ForTranslators: This is a log level that the user can pass on
+#. TRANSLATORS: This is a log level that the user can pass on
 #. the command-line or set in the configuration file.
-#: src/main.cc:405
+#: src/main.cc:404
 #, fuzzy
 #| msgid "Err "
 msgid "error"
 msgstr "ཨི་ཨཱར་ཨཱར།"
 
-#. ForTranslators: This is a log level that the user can pass on
+#. TRANSLATORS: This is a log level that the user can pass on
 #. the command-line or set in the configuration file.
-#: src/main.cc:408
+#: src/main.cc:407
 #, fuzzy
 msgid "fatal"
 msgstr "ཁ་བསྡམས།"
 
-#. ForTranslators: This is a log level that the user can pass on
+#. TRANSLATORS: This is a log level that the user can pass on
 #. the command-line or set in the configuration file.
-#: src/main.cc:411
+#: src/main.cc:410
 msgid "off"
 msgstr ""
 
-#. ForTranslators: both the translated and the untranslated
+#. TRANSLATORS: both the translated and the untranslated
 #. log level names are accepted here.
-#: src/main.cc:479
+#: src/main.cc:478
 #, c-format
 msgid ""
 "Unknown log level name \"%s\" (expected \"trace\", \"debug\", \"info\", "
 "\"warn\", \"error\", \"fatal\", or \"off\")."
 msgstr ""
 
-#: src/main.cc:488
+#. TRANSLATORS: following paragraph copied from src/generic/util/logging.h
+#. *
+#. *  A category consists of one or more nonempty components
+#. *  separated by ".", such as "aptitude.util.logging", with
+#. *  the exception that the root logger is indicated by the
+#. *  empty string ("").
+#. *
+#. * A list of the used ones in src/loggers.h
+#. *
+#. * So 'logger' here is the name of the 'category', 'component' or
+#. * 'module', in the case that users want to configure different logging
+#. * levels for different categories (e.g. level 'warn' for
+#. * 'aptitude.changelog', debug for 'aptitude.why'), etc.
+#.
+#: src/main.cc:501
 #, fuzzy, c-format
 #| msgid "Invalid operation %s"
 msgid "Invalid logger name \"%s\"."
 msgstr "ནུས་མེད་བཀོལ་སྤྱོད་ %s"
 
-#: src/main.cc:765
+#: src/main.cc:778
 #, c-format
 msgid "Expected a number after -q=\n"
 msgstr "-q= དེ་གི་ཤུལ་ལས་ཨང་ཡིག་ཅིག་རེ་བ་བསྐྱེད་ཅི།\n"
 
-#: src/main.cc:774
+#: src/main.cc:787
 #, c-format
 msgid "Expected a number after -q=, got %s\n"
 msgstr "-q=, got %sདེ་གི་ཤུལ་ལས་ཨང་ཡིག་ཅིག་རེ་བ་བསྐྱེད་ཅི།\n"
 
-#: src/main.cc:798
+#: src/main.cc:811
 #, fuzzy, c-format
 #| msgid "-o requires an argument of the form key=value, got %s"
 msgid "-o requires an argument of the form key=value, got %s\n"
 msgstr "-o དེ་ལུ་རྣམ་པའི་ལྡེ་མིིིག་=གནས་གོང་གི་སྒྲུབ་རྟགས་དེ་དགོས་མཁོ་ཡོདཔ་ཨིན། %s་ ཐོབ་ཅི།"
 
-#: src/main.cc:888
+#: src/main.cc:901
 #, c-format
 msgid "No comma following tag name \"%s\".\n"
 msgstr ""
 
-#: src/main.cc:980 src/main.cc:990
+#: src/main.cc:993 src/main.cc:1003
 msgid "WEIRDNESS: unknown option code received\n"
 msgstr "WEIRDNESS:མ་ཤེས་པའི་གདམ་ཁའི་ཨང་རྟགས་ཐོབ་ཡོདཔ།\n"
 
-#: src/main.cc:1008
+#: src/main.cc:1021
 msgid "--show-package-names|never"
 msgstr ""
 
-#: src/main.cc:1011
+#: src/main.cc:1024
 msgid "--show-package-names|auto"
 msgstr ""
 
-#: src/main.cc:1014
+#: src/main.cc:1027
 msgid "--show-package-names|always"
 msgstr ""
 
-#: src/main.cc:1019
+#: src/main.cc:1032
 #, c-format
 msgid ""
 "Invalid package names display mode \"%s\" (should be \"never\", \"auto\", or "
 "\"always\")."
 msgstr ""
 
-#: src/main.cc:1025
+#: src/main.cc:1038
 msgid "no-summary"
 msgstr ""
 
-#: src/main.cc:1027
+#: src/main.cc:1040
 #, fuzzy
 #| msgid "Package"
 msgid "first-package"
 msgstr "ཐུམ་སྒྲིལ།"
 
-#: src/main.cc:1029
+#: src/main.cc:1042
 msgid "first-package-and-type"
 msgstr ""
 
-#: src/main.cc:1031
+#: src/main.cc:1044
 #, fuzzy
 #| msgid "All Packages"
 msgid "all-packages"
 msgstr "ཐུམ་སྒྲིལ་ཆ་མཉམ།"
 
-#: src/main.cc:1033
+#: src/main.cc:1046
 msgid "all-packages-with-dep-versions"
 msgstr ""
 
-#. ForTranslators: "why" here is the aptitude command name and
-#. should not be translated.
-#: src/main.cc:1039
+#. TRANSLATORS: "why" here is the aptitude command name and should not
+#. be translated.  Both the translated and the untranslated log level
+#. names are accepted here.
+#: src/main.cc:1053
 #, c-format
 msgid ""
 "Invalid \"why\" summary mode \"%s\": expected \"no-summary\", \"first-package"
@@ -6043,7 +6050,7 @@ msgid ""
 "versions\"."
 msgstr ""
 
-#: src/main.cc:1079
+#: src/main.cc:1094
 #, fuzzy
 #| msgid "Only one of -u and -i may be specified\n"
 msgid ""
@@ -6051,7 +6058,7 @@ msgid ""
 "specified\n"
 msgstr "-uདང་ -i གི་ནང་གཅིག་རྐྱངམ་ཅིག་གསལ་བཀོད་འབད་འོང་ག་མི་ཤེས།\n"
 
-#: src/main.cc:1088
+#: src/main.cc:1103
 #, fuzzy
 #| msgid ""
 #| "-u and -i may not be specified in command-line mode (eg, with 'install')"
@@ -6062,23 +6069,23 @@ msgstr ""
 "-u དང་ -i དེ་བརྡ་བཀོད་-གྲལ་ཐིག་ཐབས་ལམ་ནང་ལུ་གསལ་བཀོད་མི་འབད་འོང་།(དཔེ་འབད་བ་ཅིན་, 'གཞི་"
 "བཙུགས'དང་གཅིག་ཁར།)"
 
-#: src/main.cc:1105
+#: src/main.cc:1120
 #, fuzzy
 #| msgid "-u and -i may not be specified with a command"
 msgid "-u, -i, and --clean-on-startup may not be specified with a command"
 msgstr "-u དང་ -i དེ་བརྡ་བཀོད་དང་གཅིག་ཁར་གསལ་བཀོད་མི་འབད་འོང་།"
 
-#: src/main.cc:1216
+#: src/main.cc:1231
 #, c-format
 msgid "Unknown command \"%s\"\n"
 msgstr "མ་ཤེས་པའི་བརྡ་བཀོད་\"%s\"\n"
 
-#: src/main.cc:1228 src/main.cc:1313
+#: src/main.cc:1243 src/main.cc:1328
 #, c-format
 msgid "Uncaught exception: %s\n"
 msgstr "མ་འཛིན་པའི་དང་ལེན: %s\n"
 
-#: src/main.cc:1232 src/main.cc:1317
+#: src/main.cc:1247 src/main.cc:1332
 #, fuzzy, c-format
 #| msgid ""
 #| "Backtrace:\n"
@@ -6461,27 +6468,27 @@ msgstr "ཡར་བསྐྱེད།"
 msgid "none"
 msgstr "ཅི་མེད།"
 
-#. ForTranslators: Imp = Important
+#. TRANSLATORS: Imp = Important
 #: src/pkg_columnizer.cc:362 src/pkg_ver_item.cc:354
 msgid "Imp"
 msgstr "ཨའི་ཨེམ་པི།"
 
-#. ForTranslators: Req = Required
+#. TRANSLATORS: Req = Required
 #: src/pkg_columnizer.cc:364 src/pkg_ver_item.cc:357
 msgid "Req"
 msgstr "ཨའར་ཀེཡུ།"
 
-#. ForTranslators: Std = Standard
+#. TRANSLATORS: Std = Standard
 #: src/pkg_columnizer.cc:366 src/pkg_ver_item.cc:360
 msgid "Std"
 msgstr "ཨེསི་ཊི་ཌི།"
 
-#. ForTranslators: Opt = Optional
+#. TRANSLATORS: Opt = Optional
 #: src/pkg_columnizer.cc:368 src/pkg_ver_item.cc:363
 msgid "Opt"
 msgstr "ཨོ་པི་ཊི།"
 
-#. ForTranslators: Xtr = Extra
+#. TRANSLATORS: Xtr = Extra
 #: src/pkg_columnizer.cc:370 src/pkg_ver_item.cc:366
 msgid "Xtr"
 msgstr "ཨེགསི་ཊི་ཨཱར།"
@@ -6510,7 +6517,7 @@ msgstr "ཌིཀསི་བར་སྟོང་གི་%sB དེ་རང�
 msgid "DL Size: %sB"
 msgstr "དི་ཨེལ་ཚད: %sB"
 
-#. ForTranslators: Hostname
+#. TRANSLATORS: Hostname
 #: src/pkg_columnizer.cc:499
 msgid "HN too long"
 msgstr "ཨེཆ་ཨེན་ གནམ་མེད་ས་མེད་རིངམོ་འདུག"
@@ -7257,7 +7264,7 @@ msgstr ""
 "མི་དེ་གིས་ ཁྱོད་རའི་རིམ་ལུགས་ལུ་གནོད་སྐྱོན་དང་ ཡང་ན ཚད་འཛིན་འབད་ནིའི་དོན་ལུ་ངན་སེམས་ཅན་གྱི་ངོ་རྐྱང་"
 "ཆོགཔ་ཨིན།"
 
-#. ForTranslators: This string is a confirmation message, which users
+#. TRANSLATORS: This string is a confirmation message, which users
 #. (especially CJK users) should be able to input without input
 #. methods.  Please include nothing but ASCII characters.
 #: src/ui.cc:211
@@ -7423,7 +7430,7 @@ msgstr "ཆོག་ཐམ།(^L)"
 msgid "View the terms under which you may copy and distribute aptitude"
 msgstr "ཁྱོད་ཀྱིས་ལས་རིམ་འདྲ་བཤུས་བརྐྱབ་ཆོག་པའི་ལམ་ལུགས་དེ་སྟོན།"
 
-#. ForTranslators: You can translate help.txt and set the filename here.
+#. TRANSLATORS: You can translate help.txt and set the filename here.
 #: src/ui.cc:1102
 msgid "Localized file|help.txt"
 msgstr ""
@@ -7444,7 +7451,7 @@ msgstr ""
 msgid "Help"
 msgstr "གྲོགས་རམ།"
 
-#. ForTranslators: You can translate README and set the filename here.
+#. TRANSLATORS: You can translate README and set the filename here.
 #: src/ui.cc:1126
 msgid "Localized file|README"
 msgstr ""

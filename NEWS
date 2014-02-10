@@ -1,3 +1,40 @@
+[2014-02-10] Version 0.6.10
+
+Note that 0.6.9 was an experimental release.  Most of the changes it
+contained are temporarily reverted, but they will return.
+
+- New features:
+
+  * New sort policy 'installsizechange', for sorting by change in installed size
+    of each package when the desired actions are applied (Closes: #676075)
+
+- Bug fixes:
+
+  * Fix segfault and show the correct changelog when executing "aptitude
+    changelog <source-package-name>", and no binary packages in that source
+    package match the source package name (Closes: #723821)
+
+  * Use new URL to grab changelogs, redirections were set up so it is not
+    currently a problem, but the new location seems to be the canonical place
+    for metadata (Closes: #708345)
+
+  * Fix incorrect results with some sorting policies (Closes: #720750)
+
+- Internal changes:
+
+  * Change INCLUDES to AM_CPPFLAGS in automake files to avoid warning:
+    "'INCLUDES' is the old name for 'AM_CPPFLAGS' (or '*_CPPFLAGS')"
+
+- Documentation:
+
+  * Update manual to refer to canonical git repository.
+
+- Translation updates:
+
+  * Improve and explain some translation messages, thanks helix84@centrum.sk
+    (Closes: #537858).
+
+
 [2014-01-26] Version 0.6.8.4
 
 - New features:

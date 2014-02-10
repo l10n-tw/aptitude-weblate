@@ -133,8 +133,9 @@ namespace
 
     std::sort(output.begin(), output.end(),
               aptitude::cmdline::package_results_lt(sort_policy));
+
     output.erase(std::unique(output.begin(), output.end(),
-                             aptitude::cmdline::package_results_eq(sort_policy)),
+                             aptitude::cmdline::package_results_eq()),
                  output.end());
 
     for(results_list::const_iterator it = output.begin(); it != output.end(); ++it)
