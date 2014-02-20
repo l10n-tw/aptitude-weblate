@@ -1,3 +1,15 @@
+aptitude (0.6.10-2) experimental; urgency=medium
+
+  [ Daniel Hartwig ]
+  * Make aptitude installable on non-native architectures
+    Thanks to Rogier for noting this (Closes: #697278)
+
+  [ Manuel A. Fernandez Montecelo ]
+  * Enable Russian translation of documentation (binary package
+    aptitude-doc-ru)
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 20 Feb 2014 17:47:07 +0000
+
 aptitude (0.6.10-1) unstable; urgency=medium
 
   [ Daniel Hartwig ]
