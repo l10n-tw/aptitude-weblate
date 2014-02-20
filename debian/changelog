@@ -1,8 +1,12 @@
-aptitude (0.6.10-1) unstable; urgency=low
+aptitude (0.6.10-1) unstable; urgency=medium
 
+  [ Daniel Hartwig ]
   Note that 0.6.9 was an experimental release.  Most of the changes it
   contained are temporarily reverted, but they will return.
 
+  * Remove ancient Conflicts: ia32-apt-get
+
+  [ Manuel A. Fernandez Montecelo ]
   * New upstream release.
     - New sort policy 'installsizechange' (Closes: #676075)
     - Fix segfault with "aptitude changelog PKG" when PKG is a source
@@ -12,13 +16,8 @@ aptitude (0.6.10-1) unstable; urgency=low
     - Fix incorrect results with some sorting policies (Closes: #720750)
     - Update manual to refer to canonical git repository.
     - Improve and explain some translation messages (Closes: #537858)
-  * Make aptitude installable on non-native architectures
-    Thanks to Rogier for noting this (Closes: #697278)
-  * Remove ancient Conflicts: ia32-apt-get
-  * Russian translation of documentation (aptitude-doc-ru).  Thanks to Lev
-    Lamberov and the Russian localization team.
 
- -- Daniel Hartwig <mandyke@gmail.com>  Mon, 10 Feb 2014 14:23:24 +0800
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 20 Feb 2014 17:36:57 +0000
 
 aptitude (0.6.8.4-1) unstable; urgency=low
 
