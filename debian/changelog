@@ -12,6 +12,8 @@ aptitude (0.6.11-1) unstable; urgency=medium
   * debian/control:
     - New Build-Depends on libxapian-dev, replacing libept-dev.
     - Correct typo in description of aptitude-common. (Closes: #746960)
+  * debian/changelog:
+    - Remove non-ASCII punctuation. (Closes: #745680)
 
  --
 
@@ -1407,11 +1409,11 @@ aptitude (0.4.7-1) unstable; urgency=low
 aptitude (0.4.6.1-1.1) unstable; urgency=low
 
   * Non-maintainer upload.
-  * Removed “*.gmo” removal from the “distclean” target in po/Makefile.in.in
+  * Removed "*.gmo" removal from the "distclean" target in po/Makefile.in.in
     to fix package content change on double-build (Closes: #441696).
-  * Moved the menu entry from the “Apps/System” section to the
-    “Applications/System/Administration” one.
-  * No longer ignore “make distclean” errors, per lintian.
+  * Moved the menu entry from the "Apps/System" section to the
+    "Applications/System/Administration" one.
+  * No longer ignore "make distclean" errors, per lintian.
 
  -- Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>  Sun, 30 Sep 2007 00:14:43 +0200
 
