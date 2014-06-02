@@ -1,3 +1,19 @@
+aptitude (0.6.11-1) unstable; urgency=medium
+
+  * Includes fix for FTBFS with gcc-4.9.
+  * New upstream release:
+    - Load package tags from APT if debtags database is not available.
+      (Closes: #501732)
+    - Remove -Werror from default compiler flags. (Closes: #746824)
+    - No longer use libept. (Closes: #504153, #677551)
+  * Translation updates:
+    - Italian (Closes: #741875)
+    - Portuguese (Closes: #748141)
+  * debian/control:
+    - New Build-Depends on libxapian-dev, replacing libept-dev.
+
+ --
+
 aptitude (0.6.10-2) experimental; urgency=medium
 
   [ Daniel Hartwig ]
