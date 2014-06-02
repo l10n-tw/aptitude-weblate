@@ -12,6 +12,7 @@ aptitude (0.6.11-1) unstable; urgency=medium
   * debian/control:
     - New Build-Depends on libxapian-dev, replacing libept-dev.
     - Correct typo in description of aptitude-common. (Closes: #746960)
+    - Drop apt-xapian-index to Suggests.
   * debian/changelog:
     - Remove non-ASCII punctuation. (Closes: #745680)
 
