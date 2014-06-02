@@ -146,8 +146,7 @@ am_cppunit_test_OBJECTS = cppunit_test_main.$(OBJEXT) \
 	test_misc.$(OBJEXT) test_parsers.$(OBJEXT) \
 	test_promotion_set.$(OBJEXT) test_resolver.$(OBJEXT) \
 	test_resolver_costs.$(OBJEXT) test_resolver_hints.$(OBJEXT) \
-	test_setset.$(OBJEXT) test_tags.$(OBJEXT) test_temp.$(OBJEXT) \
-	test_wtree.$(OBJEXT)
+	test_setset.$(OBJEXT) test_temp.$(OBJEXT) test_wtree.$(OBJEXT)
 cppunit_test_OBJECTS = $(am_cppunit_test_OBJECTS)
 cppunit_test_LDADD = $(LDADD)
 cppunit_test_DEPENDENCIES = $(top_builddir)/src/loggers.o \
@@ -567,6 +566,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 VTE_CFLAGS = @VTE_CFLAGS@
 VTE_LIBS = @VTE_LIBS@
+XAPIAN_CONFIG = @XAPIAN_CONFIG@
 XGETTEXT = @XGETTEXT@
 XSLTPROC = @XSLTPROC@
 abs_builddir = @abs_builddir@
@@ -591,8 +591,6 @@ datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
-ept_CFLAGS = @ept_CFLAGS@
-ept_LIBS = @ept_LIBS@
 exec_prefix = @exec_prefix@
 host = @host@
 host_alias = @host_alias@
@@ -671,7 +669,6 @@ cppunit_test_SOURCES = \
 	test_resolver_costs.cc \
 	test_resolver_hints.cc \
 	test_setset.cc \
-	test_tags.cc \
 	test_temp.cc \
 	test_wtree.cc
 
@@ -797,7 +794,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_search_input_controller.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_setset.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_sqlite.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_tags.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_teletype_mock.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_temp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_terminal_mock.Po@am__quote@

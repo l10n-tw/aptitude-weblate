@@ -1,6 +1,7 @@
 // Random utility functions that have nothing to do with apt. -*-c++-*-
 //
 //   Copyright (C) 2005, 2007, 2009-2010 Daniel Burrows
+//   Copyright (C) 2014 Daniel Hartwig
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -25,6 +26,7 @@
 #include <vector>
 
 #include <stdarg.h>
+#include <sys/types.h>
 
 /** \file util.h
  */
@@ -58,6 +60,14 @@ void splitws(const std::string &s, std::vector<std::string> &output,
  *  \param output the output vector onto which to push the words of s.
  */
 void splitws(const std::string &s, std::vector<std::string> &output);
+
+/** \return \b true if the string is NULL or empty.
+ */
+bool strempty(const char *s);
+
+/** \return \b true if the string is NULL or empty.
+ */
+bool wcsempty(const wchar_t *s);
 
 // Printf for std::string.
 #ifdef __GNUG__
@@ -108,6 +118,14 @@ namespace aptitude
      *  \return \b true if successful, \b false otherwise.
      */
     bool recursive_remdir(const std::string &dirname);
+
+    /** Make a directory and all of its parents.
+     *
+     *  \param dirname  the directory to make.
+     *  \return \b true if the directory finally exists, \b false
+     *  otherwise.
+     */
+    bool mkdir_parents(const std::string &dirname, mode_t mode);
   }
 }
 
