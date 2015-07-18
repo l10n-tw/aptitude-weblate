@@ -1,3 +1,9 @@
+aptitude (0.6.11-2) UNRELEASED; urgency=medium
+
+  * Apply wrap-and-sort.
+
+ -- Axel Beckert <abe@debian.org>  Sun, 19 Jul 2015 00:56:03 +0200
+
 aptitude (0.6.11-1) unstable; urgency=medium
 
   * Includes fix for FTBFS with gcc-4.9.
