@@ -6,6 +6,7 @@ aptitude (0.6.11-2) UNRELEASED; urgency=medium
   * Declare compliance with Debian Policy 3.9.6. (No changes needed.)
   * Move to be installed documentation from debian/aptitude-common.install
     to debian/aptitude-common.docs.
+  * Drop README.Debian from this list, it's installed automatically.
 
  -- Axel Beckert <abe@debian.org>  Sun, 19 Jul 2015 00:56:03 +0200
 
