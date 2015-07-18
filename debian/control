@@ -31,7 +31,7 @@ Build-Depends: debhelper (>= 9),
                po4a,
                xsltproc
 Vcs-Git: git://anonscm.debian.org/aptitude/aptitude.git -b debian-sid
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=aptitude/aptitude.git
+Vcs-Browser: https://anonscm.debian.org/cgit/aptitude/aptitude.git
 Standards-Version: 3.9.5
 Homepage: http://aptitude.alioth.debian.org/
 

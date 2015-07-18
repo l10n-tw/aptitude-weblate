@@ -2,6 +2,7 @@ aptitude (0.6.11-2) UNRELEASED; urgency=medium
 
   * Apply wrap-and-sort.
   * No more install documentation related to the categorical browser.
+  * Update Vcs-Browser header to use cgit and HTTPS.
 
  -- Axel Beckert <abe@debian.org>  Sun, 19 Jul 2015 00:56:03 +0200
 
