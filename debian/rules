@@ -58,12 +58,12 @@ override_dh_installman:
 	    debian/tmp/usr/share/man/gl/man8/aptitude-curses.8
 	@for ll in $(notdir $(wildcard debian/tmp/usr/share/man/??)); do \
 	  mans=`find debian/tmp/usr/share/man/$$ll -name aptitude-curses.8`; \
-	  if [ "x$$mans" != "x" ]; then \
+	  if [ "$$mans" != "" ]; then \
 	    echo "dh_installman -paptitude --language=$$ll $$mans"; \
 	    dh_installman -paptitude --language=$$ll $$mans; \
 	  fi; \
 	  mans=`find debian/tmp/usr/share/man/$$ll -name aptitude-*-state-bundle.1`; \
-	  if [ "x$$mans" != "x" ]; then \
+	  if [ "$$mans" != "" ]; then \
 	    echo "dh_installman -paptitude-common --language=$$ll $$mans"; \
 	    dh_installman -paptitude-common --language=$$ll $$mans; \
 	  fi; \
