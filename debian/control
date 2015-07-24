@@ -4,7 +4,8 @@ Priority: important
 Maintainer: Aptitude Development Team <aptitude-devel@lists.alioth.debian.org>
 Uploaders: Daniel Burrows <dburrows@debian.org>,
            Daniel Hartwig <mandyke@gmail.com>,
-           Manuel A. Fernandez Montecelo <mafm@debian.org>
+           Manuel A. Fernandez Montecelo <mafm@debian.org>,
+           Axel Beckert <abe@debian.org>
 Build-Depends: debhelper (>= 9),
                docbook-xml,
                docbook-xsl,

@@ -7,6 +7,7 @@ aptitude (0.6.11-2) UNRELEASED; urgency=medium
   * debian/rules:
     + Remove override_dh_builddeb: xz compression is default nowadays.
     + Remove obsolete x from [ "x$var" != "x" ] comparisons.
+  * Add myself to Uploaders.
 
  -- Axel Beckert <abe@debian.org>  Sun, 19 Jul 2015 00:56:03 +0200
 
