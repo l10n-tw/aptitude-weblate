@@ -1,5 +1,8 @@
 MAINTAINERCLEANFILES = Makefile.in
 
+# Make "but option 'subdir-objects' is disabled" go away
+AUTOMAKE_OPTIONS=subdir-objects
+
 BOOST_TEST_LDFLAGS = @BOOST_UNIT_TEST_LIBS@
 AM_CPPFLAGS = -I$(top_builddir) -I$(top_srcdir) -I$(top_srcdir)/src -I$(srcdir) \
               -DBOOST_TEST_DYN_LINK -DSRCDIR=\"$(srcdir)\"
@@ -37,7 +40,11 @@ if BUILD_LOCAL_GMOCK
 noinst_LIBRARIES = libgmock.a
 
 GMOCK_LDFLAGS = $(builddir)/libgmock.a
-nodist_libgmock_a_SOURCES = /usr/src/gtest/src/gtest-all.cc /usr/src/gmock/src/gmock-all.cc
+# Copied/linked in configure.ac from /usr/src/gtest/src/gtest-all.cc
+# /usr/src/gmock/src/gmock-all.cc to this directory -- otherwise, automake (with
+# subdir-objects option recently added) tried to build in /usr/src/gtest/ and
+# /gmock/, and then failed to link
+nodist_libgmock_a_SOURCES = gtest-all.cc gmock-all.cc
 libgmock_a_CPPFLAGS = -I/usr/src/gtest -I/usr/src/gmock
 else
 GMOCK_LDFLAGS = -lgmock -lgtest
@@ -61,7 +68,6 @@ cppunit_test_SOURCES = \
 	test_resolver_costs.cc \
 	test_resolver_hints.cc \
 	test_setset.cc \
-	test_tags.cc \
 	test_temp.cc \
 	test_wtree.cc
 

@@ -1,6 +1,7 @@
 // tags.h                                            -*-c++-*-
 //
 //   Copyright (C) 2005, 2007, 2010 Daniel Burrows
+//   Copyright (C) 2014 Daniel Hartwig
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -25,238 +26,35 @@
 #include <config.h>
 #endif
 
-// If ept is unavailable, we use our own (broken!) code to build an
-// in-memory database of package tags.  Otherwise, this code just
-// handles initializing it, destroying it, and extracting information
-// from it.  Note that this means that all callers have to be
-// conditionalized on HAVE_EPT: the "tag" class this used to return is
-// broken wrt hierarchies and just using ept is simpler.
-
-#ifndef HAVE_EPT
-
 #include <set>
 #include <string>
 
 #include <apt-pkg/pkgcache.h>
 
-/** \brief A parser for tags.
+/** \brief Interface for Package tags.
  * 
  *  \file tags.h
  */
 
 class OpProgress;
 
-class tag
-{
-  std::string s;
-
-  int cmp(const tag &other) const;
-public:
-  class const_iterator
-  {
-    std::string::const_iterator start, finish, limit;
-
-    friend class tag;
-  public:
-    const_iterator(const std::string::const_iterator &_start,
-		   const std::string::const_iterator &_finish,
-		   const std::string::const_iterator &_limit)
-      :start(_start), finish(_finish), limit(_limit)
-    {
-    }
-
-    const_iterator &operator++();
-
-    const_iterator &operator=(const const_iterator &other)
-    {
-      start = other.start;
-      finish = other.finish;
-      limit = other.limit;
-
-      return *this;
-    }
-
-    bool operator==(const const_iterator &other) const
-    {
-      return start == other.start && finish == other.finish && limit == other.limit;
-    }
-
-    bool operator!=(const const_iterator &other) const
-    {
-      return start != other.start || finish != other.finish || limit != other.limit;
-    }
-
-    std::string operator*() const
-    {
-      return std::string(start, finish);
-    }
-  };
-
-  tag(std::string::const_iterator _start,
-      std::string::const_iterator _finish);
-
-  tag &operator=(const tag &other)
-  {
-    s = other.s;
-
-    return *this;
-  }
-
-  bool operator<(const tag &other) const
-  {
-    return cmp(other) < 0;
-  }
-
-  bool operator<=(const tag &other) const
-  {
-    return cmp(other) <= 0;
-  }
-
-  bool operator==(const tag &other) const
-  {
-    return cmp(other) == 0;
-  }
-
-  bool operator!=(const tag &other) const
-  {
-    return cmp(other) != 0;
-  }
-
-  bool operator>(const tag &other) const
-  {
-    return cmp(other) > 0;
-  }
-
-  bool operator>=(const tag &other) const
-  {
-    return cmp(other) >= 0;
-  }
-
-  const_iterator begin() const;
-  const_iterator end() const
-  {
-    return const_iterator(s.end(), s.end(), s.end());
-  }
-
-  std::string str() const
-  {
-    return s;
-  }
-};
-
-class tag_list
-{
-  // The string to parse.
-  std::string s;
-public:
-  class const_iterator
-  {
-    std::string::const_iterator start, finish, limit;
-  public:
-    const_iterator(const std::string::const_iterator &_start,
-		   const std::string::const_iterator &_finish,
-		   const std::string::const_iterator &_limit)
-      :start(_start), finish(_finish), limit(_limit)
-    {
-    }
-
-    const_iterator operator=(const const_iterator &other)
-    {
-      start = other.start;
-      finish = other.finish;
-      limit = other.limit;
-
-      return *this;
-    }
-
-    bool operator==(const const_iterator &other)
-    {
-      return other.start == start && other.finish == finish && other.limit == limit;
-    }
-
-    bool operator!=(const const_iterator &other)
-    {
-      return other.start != start || other.finish != finish || other.limit != limit;
-    }
-
-    const_iterator &operator++();
-
-    tag operator*()
-    {
-      return tag(start, finish);
-    }
-  };
-
-  tag_list(const char *start, const char *finish)
-    :s(start, finish)
-  {
-  }
-
-  tag_list &operator=(const tag_list &other)
-  {
-    s=other.s;
-
-    return *this;
-  }
-
-  const_iterator begin() const;
-  const_iterator end() const
-  {
-    return const_iterator(s.end(), s.end(), s.end());
-  }
-};
-
-// Grab the tags for the given package:
-const std::set<tag> *get_tags(const pkgCache::PkgIterator &pkg);
-
-// Load tags for all packages (call before get_tags)
-void load_tags(OpProgress &progress);
-
-
-
-// Interface to the tag vocabulary file; tag vocabularies are assumed
-// to not change over time.
-std::string facet_description(const std::string &facet);
-
-// Here "Tag" is a fully qualified tag name.
-std::string tag_description(const std::string &tag);
-
-#else // HAVE_EPT
-
-#include <apt-pkg/pkgcache.h>
-
-#include <ept/debtags/debtags.h>
-
-#include <set>
-
 namespace aptitude
 {
   namespace apt
   {
-#ifdef HAVE_EPT_DEBTAGS_TAG
-    typedef ept::debtags::Tag tag;
+    typedef std::string tag;
+    typedef std::set<tag> tag_set;
+
     inline std::string get_fullname(const tag &t)
     {
-      return t.fullname();
+      return static_cast<std::string>(t);
     }
-#else
-#ifdef EPT_DEBTAGS_GETTAGSOFITEM_RETURNS_STRINGS
-    typedef std::string tag;
-    inline std::string get_fullname(const std::string &t)
-    {
-      return t;
-    }
-#else
-    // Probably means a new version of libept does something the
-    // configure checks can't recognize.
-#error "Don't know how to represent a debtags tag."
-#endif
-#endif
-
-    const std::set<tag> get_tags(const pkgCache::PkgIterator &pkg);
 
     /** \brief Initialize the cache of debtags information. */
-    void load_tags();
+    void load_tags(OpProgress *progress);
+
+    /** \brief Get the tags for the given package. */
+    const tag_set get_tags(const pkgCache::PkgIterator &pkg);
 
     /** \brief Get the name of the facet corresponding to a tag. */
     std::string get_facet_name(const tag &t);
@@ -283,7 +81,5 @@ namespace aptitude
     std::string get_facet_long_description(const tag &t);
   }
 }
-
-#endif // HAVE_EPT
 
 #endif

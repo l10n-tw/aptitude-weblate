@@ -32,6 +32,7 @@
 #include <generic/apt/config_signal.h>
 #include <generic/apt/download_queue.h>
 #include <generic/apt/pkg_changelog.h>
+#include <generic/util/util.h>
 
 // System includes:
 #include <cwidget/generic/util/ssprintf.h>
@@ -58,7 +59,6 @@ using namespace std;
 using aptitude::cmdline::create_terminal;
 using aptitude::cmdline::terminal_io;
 using aptitude::cmdline::terminal_metrics;
-using boost::shared_ptr;
 
 namespace
 {
@@ -72,12 +72,12 @@ namespace
   {
     std::string description;
     bool quiet;
-    shared_ptr<terminal_metrics> term_metrics;
+    boost::shared_ptr<terminal_metrics> term_metrics;
 
   public:
     single_download_progress(const std::string &_description,
 			     bool _quiet,
-                             const shared_ptr<terminal_metrics> &_term_metrics)
+                             const boost::shared_ptr<terminal_metrics> &_term_metrics)
       : description(_description),
         quiet(_quiet),
         term_metrics(_term_metrics)
@@ -152,7 +152,7 @@ namespace
   public:
     changelog_download_callbacks(temp::name &_out_changelog_file,
 				 const std::string &short_description,
-                                 const shared_ptr<terminal_metrics> &term_metrics)
+                                 const boost::shared_ptr<terminal_metrics> &term_metrics)
       : single_download_progress(short_description,
 				 aptcfg->FindI("Quiet", 0) > 0,
                                  term_metrics),
@@ -192,7 +192,7 @@ namespace
    */
   void get_changelog(const boost::shared_ptr<aptitude::apt::changelog_info>& info,
 		     temp::name &out_changelog_file,
-		     const shared_ptr<terminal_metrics> &term_metrics)
+		     const boost::shared_ptr<terminal_metrics> &term_metrics)
   {
     const std::string short_description = cwidget::util::ssprintf(_("Changelog of %s"), info->get_display_name().c_str());
 
@@ -216,7 +216,7 @@ namespace
    */
   void get_changelog(const pkgCache::VerIterator &ver,
 		     temp::name &out_changelog_file,
-                     const shared_ptr<terminal_metrics> &term_metrics)
+                     const boost::shared_ptr<terminal_metrics> &term_metrics)
   {
     boost::shared_ptr<aptitude::apt::changelog_info> info =
       aptitude::apt::changelog_info::create(ver);
@@ -243,7 +243,7 @@ namespace
 				 const std::string &section,
 				 const std::string &name,
 				 temp::name &out_changelog_file,
-                                 const shared_ptr<terminal_metrics> &term_metrics)
+                                 const boost::shared_ptr<terminal_metrics> &term_metrics)
   {
     boost::shared_ptr<aptitude::apt::changelog_info> info =
       aptitude::apt::changelog_info::create(srcpkg, ver, section, name);
@@ -259,7 +259,7 @@ namespace
  */
 temp::name changelog_by_version(const std::string &pkg,
 				const std::string &ver,
-                                const shared_ptr<terminal_metrics> &term_metrics)
+                                const boost::shared_ptr<terminal_metrics> &term_metrics)
 {
   // Try forcing the particular version that was
   // selected, using various sections.  FIXME: relies
@@ -286,7 +286,7 @@ temp::name changelog_by_version(const std::string &pkg,
 }
 
 void do_cmdline_changelog(const vector<string> &packages,
-                          const shared_ptr<terminal_metrics> &term_metrics)
+                          const boost::shared_ptr<terminal_metrics> &term_metrics)
 {
   const char *pager="/usr/bin/sensible-pager";
 
@@ -296,7 +296,7 @@ void do_cmdline_changelog(const vector<string> &packages,
 
       pager=getenv("PAGER");
 
-      if(pager==NULL)
+      if(strempty(pager)==true)
 	pager="more";
     }
 
@@ -417,7 +417,7 @@ void do_cmdline_changelog(const vector<string> &packages,
 // TODO: fetch them all in one go.
 int cmdline_changelog(int argc, char *argv[])
 {
-  shared_ptr<terminal_io> term = create_terminal();
+  boost::shared_ptr<terminal_io> term = create_terminal();
 
   _error->DumpErrors();
 

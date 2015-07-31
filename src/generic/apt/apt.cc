@@ -27,7 +27,6 @@
 #include "aptitude_resolver_universe.h"
 #include "config_signal.h"
 #include "download_queue.h"
-#include "pkg_hier.h"
 #include "resolver_manager.h"
 #include "rev_dep_iterator.h"
 #include "tags.h"
@@ -49,6 +48,7 @@
 #include <apt-pkg/sourcelist.h>
 #include <apt-pkg/version.h>
 #include <apt-pkg/aptconfiguration.h>
+#include <apt-pkg/fileutl.h>
 
 #include <fstream>
 
@@ -68,8 +68,6 @@ static interesting_state *cached_deps_interesting = NULL;
 // Memoization of surrounding_or.  To save space, the low bit of each
 // pointer in the following table is set to 1 when a result is cached:
 static pkgCache::Dependency **cached_surrounding_or = NULL;
-
-pkg_hier *user_pkg_hier=NULL;
 
 string *pendingerr=NULL;
 bool erroriswarning=false;
@@ -98,24 +96,6 @@ static void reset_surrounding_or_memoization()
 {
   delete[] cached_surrounding_or;
   cached_surrounding_or = NULL;
-}
-
-static void reload_user_pkg_hier()
-{
-  delete user_pkg_hier;
-  user_pkg_hier=new pkg_hier;
-
-  user_pkg_hier->input_file(PKGDATADIR "/function_groups");
-
-  string cfgloc(get_homedir());
-  if(!cfgloc.empty())
-    {
-      string user_hier=cfgloc+string("/.aptitude/function_pkgs");
-      if(access(user_hier.c_str(), R_OK)==0)
-	user_pkg_hier->input_file(user_hier);
-      else
-	user_pkg_hier->input_file(PKGDATADIR "/function_pkgs");
-    }
 }
 
 bool get_apt_knows_about_rootdir()
@@ -160,7 +140,7 @@ void apt_preinit(const char *rootdir)
   theme_config=new Configuration;
   user_config=new Configuration;
 
-  if(rootdir != NULL)
+  if(strempty(rootdir) == false)
     {
       _config->Set("RootDir", rootdir);
       theme_config->Set("RootDir", rootdir);
@@ -195,7 +175,7 @@ void apt_preinit(const char *rootdir)
 
   string cfgloc;
 
-  if(HOME != NULL && *HOME != '\0' &&
+  if(strempty(HOME) == false &&
      access((string(HOME) + "/.aptitude").c_str(), R_OK | X_OK) == 0)
     cfgloc = string(HOME) + "/.aptitude/config";
   else
@@ -248,7 +228,7 @@ void apt_dumpcfg(const char *root)
   string cfgloc;
 
   const char *HOME = getenv("HOME");
-  if(HOME != NULL && *HOME != '\0')
+  if(strempty(HOME) == false)
     {
       string tmp(HOME);
       tmp += "/.aptitude";
@@ -486,18 +466,7 @@ void apt_load_cache(OpProgress *progress_bar, bool do_initselections,
   LOG_TRACE(logger, "Loading task information.");
   aptitude::apt::load_tasks(*progress_bar);
   LOG_TRACE(logger, "Loading tags.");
-#ifndef HAVE_EPT
-  load_tags(*progress_bar);
-#else
-  aptitude::apt::load_tags();
-#endif
-
-  if(user_pkg_hier)
-    {
-      LOG_TRACE(logger, "Loading user-defined package hierarchy information.");
-      reload_user_pkg_hier();
-      hier_reloaded();
-    }
+  aptitude::apt::load_tags(progress_bar);
 
   LOG_TRACE(logger, "Initializing global dependency resolver manager.");
   resman = new resolver_manager(new_file, imm::map<aptitude_resolver_package, aptitude_resolver_version>());
@@ -507,7 +476,7 @@ void apt_load_cache(OpProgress *progress_bar, bool do_initselections,
   // ~/.aptitude/cache; it has 512Kb of in-memory cache and 10MB of
   // on-disk cache.
   const char *HOME = getenv("HOME");
-  if(HOME != NULL)
+  if(strempty(HOME) == false)
     {
       std::string download_cache_file_name = string(HOME) + "/.aptitude/cache";
       const int download_cache_memory_size =
@@ -568,9 +537,6 @@ void apt_shutdown()
   delete apt_undos;
   apt_undos = NULL;
 
-  delete user_pkg_hier;
-  user_pkg_hier = NULL;
-
   delete pendingerr;
   pendingerr = NULL;
 
@@ -582,14 +548,6 @@ void apt_shutdown()
   cache_reload_failed.clear();
   hier_reloaded.clear();
   consume_errors.clear();
-}
-
-pkg_hier *get_user_pkg_hier()
-{
-  if(!user_pkg_hier)
-    reload_user_pkg_hier();
-
-  return user_pkg_hier;
 }
 
 pkg_action_state find_pkg_state(pkgCache::PkgIterator pkg,

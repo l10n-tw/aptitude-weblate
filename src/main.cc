@@ -161,11 +161,6 @@ static void show_version()
   printf(_("  NCurses version %s\n"), NCURSES_VERSION);
 #endif
   printf(_("  libsigc++ version: %s\n"), SIGC_VERSION);
-#ifdef HAVE_EPT
-  printf(_("  Ept support enabled.\n"));
-#else
-  printf(_("  Ept support disabled.\n"));
-#endif
 #ifdef HAVE_GTK
   printf(_("  Gtk+ version %d.%d.%d\n"),
 	 GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION);
@@ -359,16 +354,6 @@ const char *argv0;
 
 namespace
 {
-  bool strncase_eq_with_translation(const std::string &s1, const char *s2)
-  {
-    if(strcasecmp(s1.c_str(), s2) == 0)
-      return true;
-    else if(strcasecmp(s1.c_str(), _(s2)) == 0)
-      return true;
-    else
-      return false;
-  }
-
   class log_level_map
   {
     std::map<std::string, log_level> levels;

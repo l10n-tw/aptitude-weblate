@@ -91,8 +91,6 @@ src/download_list.cc
 src/download_list.h
 src/download_thread.cc
 src/download_thread.h
-src/edit_pkg_hier.cc
-src/edit_pkg_hier.h
 src/generic/apt/aptcache.cc
 src/generic/apt/aptcache.h
 src/generic/apt/apt.cc
@@ -154,9 +152,6 @@ src/generic/apt/pkg_acqfile.cc
 src/generic/apt/pkg_acqfile.h
 src/generic/apt/pkg_changelog.cc
 src/generic/apt/pkg_changelog.h
-src/generic/apt/pkg_hier.cc
-src/generic/apt/pkg_hier_dump.cc
-src/generic/apt/pkg_hier.h
 src/generic/apt/resolver_manager.cc
 src/generic/apt/resolver_manager.h
 src/generic/apt/rev_dep_iterator.h
@@ -190,7 +185,6 @@ src/generic/problemresolver/sanity_check_universe.h
 src/generic/problemresolver/search_graph.h
 src/generic/problemresolver/solution.h
 src/generic/problemresolver/test.cc
-src/generic/util/browser.h
 src/generic/util/compare3.h
 src/generic/util/dense_setset.h
 src/generic/util/dirent_safe.h

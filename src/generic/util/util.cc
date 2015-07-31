@@ -1,6 +1,7 @@
 // util.cc
 //
 //   Copyright (C) 2005, 2007, 2009-2010 Daniel Burrows
+//   Copyright (C) 2014 Daniel Hartwig
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -35,6 +36,8 @@
 #include <unistd.h>
 
 #include <apt-pkg/error.h>
+#include <apt-pkg/fileutl.h>
+#include <apt-pkg/strutl.h>
 
 #include <cwidget/generic/util/eassert.h>
 
@@ -96,6 +99,16 @@ void splitws(const string &s, vector<string> &output, int start, int length)
 void splitws(const string &s, vector<string> &output)
 {
   return splitws(s, output, 0, s.size());
+}
+
+bool strempty(const char *s)
+{
+  return s == NULL || strcmp(s, "") == 0;
+}
+
+bool wcsempty(const wchar_t *s)
+{
+  return s == NULL || wcscmp(s, L"") == 0;
 }
 
 string ssprintf(const char *format, ...)
@@ -405,6 +418,31 @@ namespace aptitude
 	}
 
       return rval;
+    }
+
+    // From apt-pkg/contrib/fileutl.cc (CreateDirectory).
+    bool mkdir_parents(const std::string &dirname, mode_t mode)
+    {
+      if(dirname.empty() == true)
+        return false;
+
+      const vector<string> dirs = VectorizeString(dirname, '/');
+      string progress = "";
+      for(vector<string>::const_iterator d = dirs.begin();
+          d != dirs.end();
+          ++d)
+        {
+          if(d->empty() == true)
+            continue;
+
+          progress.append("/").append(*d);
+          if(DirectoryExists(progress) == true)
+            continue;
+
+          if(mkdir(progress.c_str(), mode) != 0)
+            return false;
+        }
+      return true;
     }
   }
 }

@@ -31,7 +31,6 @@
 #include <generic/apt/config_signal.h>
 #include <generic/apt/matching/match.h>
 #include <generic/apt/matching/pattern.h>
-#include <generic/apt/pkg_hier.h>
 #include <generic/apt/tags.h>
 #include <generic/apt/tasks.h>
 
@@ -264,8 +263,7 @@ void pkg_grouppolicy_section::add_package(const pkgCache::PkgIterator &pkg,
       section=_("virtual");
       may_passthrough = true;
     }
-  else if(!pkg.VersionList().Section() ||
-	  (*pkg.VersionList().Section()) == '\0')
+  else if(strempty(pkg.VersionList().Section()) == true)
     {
       section=_("Unknown");
       may_passthrough = true;
@@ -802,7 +800,7 @@ public:
       }
 
     // Some packages don't have a reasonable priority
-    if(!pstr)
+    if(strempty(pstr)==true)
       {
 	pstr=_("unknown");
 	priority=0;
@@ -847,164 +845,6 @@ pkg_grouppolicy *pkg_grouppolicy_priority_factory::instantiate(pkg_signal *sig,
 							       desc_signal *desc_sig)
 {
   return new pkg_grouppolicy_priority(chain, sig, desc_sig);
-}
-
-/*****************************************************************************/
-
-// This class generates a pkg_subtree from a hierarchy
-class pkg_hier_grouper:public pkg_hier::hierarchy_realizer, public sigc::trackable
-{
-  pkg_subtree *uncategorized;
-  pkg_grouppolicy *uncategorized_policy;
-
-  pkg_grouppolicy_factory *chain;
-
-  pkg_signal *sig;
-  desc_signal *desc_sig;
-
-  pkg_subtree *root;
-
-  typedef pair<pkg_grouppolicy *, pkg_subtree *> nodedata;
-
-  // This tracks the grouping policies we have created so that we can
-  // destroy them.
-  vector<nodedata *> data_out_there;
-
-  void handle_reload()
-  {
-    for(vector<nodedata *>::iterator i=data_out_there.begin();
-     	i!=data_out_there.end();
-     	++i)
-      {
-     	delete (*i)->first;
-     	delete *i;
-      }
-    data_out_there.clear();
-
-    uncategorized=NULL;
-    uncategorized_policy=NULL;
-
-    root=NULL;
-
-    reset_groupinfo();
-  }
-public:
-  pkg_hier_grouper(pkg_hier *_hier,
-		   pkg_grouppolicy_factory *_chain,
-		   pkg_signal *_sig,
-		   desc_signal *_desc_sig)
-    :hierarchy_realizer(_hier), uncategorized(NULL),
-     uncategorized_policy(NULL), chain(_chain), sig(_sig), desc_sig(_desc_sig),
-     root(NULL)
-  {
-    hier_reloaded.connect(sigc::mem_fun(*this, &pkg_hier_grouper::handle_reload));
-  }
-
-  ~pkg_hier_grouper()
-  {
-    delete uncategorized_policy;
-    for(vector<nodedata *>::iterator i=data_out_there.begin();
-     	i!=data_out_there.end();
-     	++i)
-      {
-     	delete (*i)->first;
-     	delete *i;
-      }
-  }
-
-  // HACK: the root has to be set each time
-  void set_root(pkg_subtree *_root)
-  {
-    root=_root;
-  }
-
-  void realize_item(pkg_hier::item *item, void *parent_data)
-  {
-    pkgCache::PkgIterator pkg=(*apt_cache_file)->FindPkg(item->name);
-    nodedata *data=(nodedata *) parent_data;
-
-    if(data)
-      data->first->add_package(pkg, data->second);
-    else
-      {
-	if(!uncategorized)
-	  {
-	    uncategorized=new pkg_subtree(W_("UNCATEGORIZED"), L"", desc_sig);
-	    uncategorized_policy=chain->instantiate(sig, desc_sig);
-	    root->add_child(uncategorized);
-	    uncategorized->set_num_packages_parent(root);
-	  }
-
-	uncategorized_policy->add_package(pkg, uncategorized);
-      }
-  }
-
-  void *realize_group(pkg_hier::group *group, void *parent_data)
-  {
-    nodedata *data=(nodedata *) parent_data;
-
-    pkg_subtree *newtree=new pkg_subtree(cw::util::transcode(group->description),
-					 L"", desc_sig);
-    pkg_grouppolicy *newpolicy=chain->instantiate(sig, desc_sig);
-
-    nodedata *rval=new nodedata(newpolicy, newtree);
-    data_out_there.push_back(rval);
-
-    if(data)
-      {
-	data->second->add_child(newtree);
-	newtree->set_num_packages_parent(data->second);
-      }
-    else
-      {
-	root->add_child(newtree);
-	newtree->set_num_packages_parent(root);
-      }
-
-    return rval;
-  }
-};
-
-class pkg_grouppolicy_hier:public pkg_grouppolicy
-{
-  pkg_hier *hier;
-  pkg_hier_grouper grouper;
-
-public:
-  pkg_grouppolicy_hier(pkg_hier *_hier, pkg_grouppolicy_factory *_chain,
-		       pkg_signal *_sig, desc_signal *_desc_sig)
-    :pkg_grouppolicy(_sig, _desc_sig), hier(_hier),
-     grouper(_hier, _chain, _sig, _desc_sig)
-  {
-  }
-
-  void add_package(const pkgCache::PkgIterator &pkg, pkg_subtree *root)
-  {
-    // HACK:
-    grouper.set_root(root);
-
-    if(!hier->realize_item_up(pkg.Name(), &grouper))
-      {
-	pkg_hier::item tmp;
-	tmp.name=pkg.Name();
-
-	// MORE HACK
-	grouper.realize_item(&tmp, NULL);
-      }
-  }
-};
-
-pkg_grouppolicy *pkg_grouppolicy_hier_factory::instantiate(pkg_signal *sig,
-							   desc_signal *desc_sig)
-{
-  return new pkg_grouppolicy_hier(hier, chain, sig, desc_sig);
-}
-
-pkg_grouppolicy_hier_factory::~pkg_grouppolicy_hier_factory()
-{
-  if(del_hier)
-    delete hier;
-  delete chain;
 }
 
 /****************************************************************************/
@@ -1245,10 +1085,10 @@ private:
 		    ++i;
 		  }
 
-		wchar_t *endptr = NULL;
+		wchar_t *endptr;
 		unsigned long val = wcstoul(tocvt.c_str(), &endptr, 0);
 
-		if(endptr && (*endptr) != L'\0')
+		if(*endptr != L'\0')
 		  {
 		    wchar_t buf[512];
 
@@ -1397,29 +1237,21 @@ public:
   virtual void add_package(const pkgCache::PkgIterator &pkg,
 			   pkg_subtree *root)
   {
-#ifdef HAVE_EPT
     using aptitude::apt::get_facet_name;
     using aptitude::apt::get_tag_long_description;
     using aptitude::apt::get_tag_name;
     using aptitude::apt::get_tag_short_description;
     using aptitude::apt::get_tags;
-    using aptitude::apt::tag;
-#endif
+    using aptitude::apt::tag_set;
 
-#ifdef HAVE_EPT
-    const set<tag> realTags(get_tags(pkg));
-    const set<tag> * const tags(&realTags);
-#else
-    const set<tag> * const tags(get_tags(pkg));
-#endif
+    const tag_set tags(get_tags(pkg));
 
-    if(tags != NULL)
+    if(tags.empty() == true)
       return;
 
-    for(set<tag>::const_iterator ti = tags->begin();
-	ti != tags->end(); ++ti)
+    for(tag_set::const_iterator ti = tags.begin();
+	ti != tags.end(); ++ti)
       {
-#ifdef HAVE_EPT
         const std::string thisfacet = get_facet_name(*ti);
 
 	// Don't create items for tags that aren't in our facet.
@@ -1430,23 +1262,6 @@ public:
 	// call it?
 	std::string tagname = get_tag_name(*ti);
 
-#else // HAVE_EPT
-	tag::const_iterator j = ti->begin();
-	if(j == ti->end())
-	  continue;
-
-	string thisfacet = *j;
-
-	if(thisfacet != match_facet)
-	  continue;
-
-	++j;
-	if(j == ti->end())
-	  continue;
-
-	string tagname = *j;
-#endif // HAVE_EPT
-
 	childmap::const_iterator found =
 	  children.find(tagname);
 
@@ -1455,13 +1270,8 @@ public:
 
 	if(found == children.end())
 	  {
-#ifdef HAVE_EPT
 	    const std::string desc = get_tag_long_description(*ti);
 	    const std::string shortdesc = get_tag_short_description(*ti);
-#else // HAVE_EPT
-	    string desc = tag_description(ti->str());
-	    string shortdesc(desc, 0, desc.find('\n'));
-#endif
 
 	    subtree = new pkg_subtree(swsprintf(L"%s - %s",
 						tagname.c_str(),
@@ -1536,20 +1346,13 @@ public:
   virtual void add_package(const pkgCache::PkgIterator &pkg,
 			   pkg_subtree *root)
   {
-#ifdef HAVE_EPT
     using aptitude::apt::get_tags;
-    using aptitude::apt::tag;
-#endif
+    using aptitude::apt::tag_set;
 
-#ifdef HAVE_EPT
-    const set<tag> realTags(get_tags(pkg));
-    const set<tag> * const tags(&realTags);
-#else
-    const set<tag> * const tags(get_tags(pkg));
-#endif
+    const tag_set tags(get_tags(pkg));
 
     // Put all untagged, non-virtual packages into a separate list.
-    if((tags == NULL || tags->empty()) && !pkg.VersionList().end())
+    if(tags.empty() == true && !pkg.VersionList().end())
       {
 	if(untagged_tree == NULL)
 	  {
@@ -1567,13 +1370,12 @@ public:
 	untagged_policy->add_package(pkg, untagged_tree);
       }
 
-    if(tags == NULL)
+    if(tags.empty() == true)
       return;
 
-    for(set<tag>::const_iterator ti = tags->begin();
-	ti != tags->end(); ++ti)
+    for(tag_set::const_iterator ti = tags.begin();
+	ti != tags.end(); ++ti)
       {
-#ifdef HAVE_EPT
         using aptitude::apt::get_facet_long_description;
         using aptitude::apt::get_facet_name;
         using aptitude::apt::get_facet_short_description;
@@ -1581,25 +1383,8 @@ public:
         using aptitude::apt::get_tag_name;
         using aptitude::apt::get_tag_short_description;
 
-	std::string thisfacet(get_facet_name(*ti));
-	std::string thistag(get_tag_name(*ti));
-#else // HAVE_EPT
-	tag::const_iterator j = ti->begin();
-
-	eassert(j != ti->end());
-
-	string thisfacet = *j;
-
-	if(j != ti->end())
-	  ++j;
-
-	string thistag;
-
-	if(j == ti->end())
-	  thistag = _("MISSING TAG");
-	else
-	  thistag = *j;
-#endif
+	const std::string thisfacet(get_facet_name(*ti));
+	const std::string thistag(get_tag_name(*ti));
 
 	facetmap::const_iterator facetfound =
 	  children.find(thisfacet);
@@ -1609,13 +1394,8 @@ public:
 
 	if(facetfound == children.end())
 	  {
-#ifdef HAVE_EPT
-	    string desc(get_facet_long_description(*ti));
-	    string shortdesc(get_facet_short_description(*ti));
-#else // HAVE_EPT
-	    string desc = get_facet_description(*ti);
-	    string shortdesc(desc, 0, desc.find('\n'));
-#endif
+	    const string desc(get_facet_long_description(*ti));
+	    const string shortdesc(get_facet_short_description(*ti));
 
 	    if(!shortdesc.empty())
 	      tagtree = new pkg_subtree(swsprintf(L"%s - %s",
@@ -1647,13 +1427,8 @@ public:
 
 	if(tagfound == tagchildren->end())
 	  {
-#ifdef HAVE_EPT
-	    string desc(get_tag_long_description(*ti));
-	    string shortdesc(get_tag_short_description(*ti));
-#else // HAVE_EPT
-	    string desc = tag_description(ti->str());
-	    string shortdesc(desc, 0, desc.find('\n'));
-#endif
+	    const string desc(get_tag_long_description(*ti));
+	    const string shortdesc(get_tag_short_description(*ti));
 
 	    if(!shortdesc.empty())
 	      subtree = new pkg_subtree(swsprintf(L"%s - %s",
