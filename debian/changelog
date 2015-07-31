@@ -1,5 +1,41 @@
-aptitude (0.6.11-2) UNRELEASED; urgency=medium
+aptitude (0.7-1) UNRELEASED; urgency=medium
 
+  [ Manuel A. Fernandez Montecelo ]
+  * New upstream release.
+    - Changes in the versioning scheme and changelog (to follow loosely
+      the Semantic Version specification)
+    - Feature removal: The content-wise outdated and
+      not-multiarch-compatible categorical browser has been removed. The
+      Debtags browser has replaced most of its functionality already. Local
+      package groups are no more available, though.  The removal discussion
+      has taken place in #686646. (Closes: #686124, #686142, #686646) as
+      well as (LP: #1082198).
+    - Changes to allow to compile with C++11 compatibilty mode (prompted by
+      changes in the toolchain in Debian) (Closes: #777778)
+    - Fix reported installed size change when installing/deinstalling
+      packages which are bigger than 2 GiB (int type size 32 bits).  Thanks
+      Benny Baumann and Jason Rhinelander for the report and info, and Sven
+      Joachim for the patch.  (Closes: #759769)
+    - Changes in automake files to be able to use current automake
+      versions.
+    - Documentation:
+      - Previously missing trigger-related package states are now
+        documented. (Closes: #770073, #771305, #771704)
+      - Minesweeper: Fixed save/load keybindings in help.
+        (Closes: #736934)
+    - Translation updates:
+      - Czech by Miroslav Kure (Closes: #758226)
+      - Russian by Yuri Kozlov (Closes: #760812)
+      - German man page translation by Mario Blättermann and
+        Jens Seidel <jensseidel@users.sf.net> (Closes: #762340)
+      - Catalan by Orestes Mas (Closes: #771618)
+      - French documentation translation by Cédric Boutillier
+        (Closes: #773807)
+      - Italian documentation translation by Beatrice Torracca
+        (Closes: #776706)
+      - Dutch by Frans Spiesschaert (Closes: #778425)
+
+  [ Axel Beckert ]
   * Apply wrap-and-sort.
   * No more install documentation related to the categorical browser.
   * Update Vcs-Browser header to use cgit and HTTPS.
