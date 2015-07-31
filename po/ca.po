@@ -611,7 +611,7 @@ msgstr ""
 "Nota: \"%s\", que proveeix el paquet virtual\n"
 "      \"%s\", ja s'ha instal·lat.\n"
 
-#: src/cmdline/cmdline_action.cc:257
+#: src/cmdline/cmdline_action.cc:256
 #, c-format
 msgid ""
 "Note: \"%s\", providing the virtual package\n"
@@ -770,25 +770,25 @@ msgstr "Err"
 msgid "Changelog download failed: %s"
 msgstr "Ha fallat la descàrrega del registre de canvis: %s"
 
-#: src/cmdline/cmdline_changelog.cc:198 src/generic/apt/pkg_changelog.cc:442
+#: src/cmdline/cmdline_changelog.cc:197 src/generic/apt/pkg_changelog.cc:442
 #: src/generic/apt/pkg_changelog.cc:596 src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "El registre de canvis de %s"
 
-#: src/cmdline/cmdline_changelog.cc:296
+#: src/cmdline/cmdline_changelog.cc:295
 msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr ""
 "No es pot executar el sensible-pager, és un sistema Debian en funcionament?"
 
-#: src/cmdline/cmdline_changelog.cc:347
+#: src/cmdline/cmdline_changelog.cc:346
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr ""
 "%s no és un paquet de Debian oficial, no es pot mostrar el seu registre de "
 "modificacions."
 
-#: src/cmdline/cmdline_changelog.cc:408
+#: src/cmdline/cmdline_changelog.cc:407
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "No s'ha pogut trobar un registre de modificacions de %s"

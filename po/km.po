@@ -602,7 +602,7 @@ msgstr ""
 "ចំណាំ ៖ \"%s\" ដែល​ផ្ដល់​កញ្ចប់​និម្មិត\n"
 "      \"%s\", ត្រូវ​បាន​ដំឡើង​រួច​ហើយ ។\n"
 
-#: src/cmdline/cmdline_action.cc:257
+#: src/cmdline/cmdline_action.cc:256
 #, c-format
 msgid ""
 "Note: \"%s\", providing the virtual package\n"
@@ -752,34 +752,34 @@ msgstr "យក​ ៖"
 msgid "Err"
 msgstr "Err "
 
-#: src/cmdline/cmdline_changelog.cc:177
+#: src/cmdline/cmdline_changelog.cc:176
 #, fuzzy, c-format
 msgid "Changelog download failed: %s"
 msgstr "កំណត់ហេតុ​ការ​ផ្លាស់ប្ដូរ​របស់ %s"
 
-#: src/cmdline/cmdline_changelog.cc:198 src/generic/apt/pkg_changelog.cc:442
+#: src/cmdline/cmdline_changelog.cc:197 src/generic/apt/pkg_changelog.cc:442
 #: src/generic/apt/pkg_changelog.cc:596 src/view_changelog.cc:272
 #, fuzzy, c-format
 msgid "Changelog of %s"
 msgstr "កំណត់ហេតុ​ការ​ផ្លាស់ប្ដូរ​របស់ %s"
 
-#: src/cmdline/cmdline_changelog.cc:296
+#: src/cmdline/cmdline_changelog.cc:295
 msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr ""
 "មិន​អាច​ប្រតិបត្តិ sensible-pager បាន​ឡើយ ។ តើ​នេះ​គឺ​ជា​ប្រព័ន្ធ​ដេបៀន ដែល​កំពុង​តែ​ដំណើរការ​ឬ ?"
 
-#: src/cmdline/cmdline_changelog.cc:347
+#: src/cmdline/cmdline_changelog.cc:346
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr ""
 "%s ​មិន​មែន​ជាកញ្ចប់​ដេបៀន​ផ្លូវការ​ឡើយ ដូច្នេះ​មិន​អាច​បង្ហាញ​កំណត់ហេតុ​ការ​ផ្លាស់ប្ដូរ​របស់​វា​បាន​ឡើយ ។"
 
-#: src/cmdline/cmdline_changelog.cc:408
+#: src/cmdline/cmdline_changelog.cc:407
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "មិនអាចរក​ឃើញកំណត់​ហេតុ​ការផ្លាស់ប្ដូរ​សម្រាប់ %s"
 
-#: src/cmdline/cmdline_changelog.cc:412
+#: src/cmdline/cmdline_changelog.cc:411
 #, fuzzy, c-format
 msgid "Couldn't run pager %s"
 msgstr "មិនអាចរក​ឃើញកំណត់​ហេតុ​ការផ្លាស់ប្ដូរ​សម្រាប់ %s"

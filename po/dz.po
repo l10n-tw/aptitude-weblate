@@ -620,7 +620,7 @@ msgstr ""
 "དྲན་འཛིན:\"%s\", བར་ཅུ་ཡལ་ཐུམ་སྒྲིལ་དེ་བྱིན་དོ།\n"
 "      \"%s\",ཧེ་མ་ལས་གཞི་བཙུགས་འབད་དེ་ཡོད།.\n"
 
-#: src/cmdline/cmdline_action.cc:257
+#: src/cmdline/cmdline_action.cc:256
 #, c-format
 msgid ""
 "Note: \"%s\", providing the virtual package\n"
@@ -773,36 +773,36 @@ msgstr "ལེན:"
 msgid "Err"
 msgstr "ཨི་ཨཱར་ཨཱར།"
 
-#: src/cmdline/cmdline_changelog.cc:177
+#: src/cmdline/cmdline_changelog.cc:176
 #, fuzzy, c-format
 #| msgid "ChangeLog of %s"
 msgid "Changelog download failed: %s"
 msgstr "%sགི་བསྒྱུར་བཅོས་དྲན་དེབ།"
 
-#: src/cmdline/cmdline_changelog.cc:198 src/generic/apt/pkg_changelog.cc:442
+#: src/cmdline/cmdline_changelog.cc:197 src/generic/apt/pkg_changelog.cc:442
 #: src/generic/apt/pkg_changelog.cc:596 src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "%sགི་བསྒྱུར་བཅོས་དྲན་དེབ།"
 
-#: src/cmdline/cmdline_changelog.cc:296
+#: src/cmdline/cmdline_changelog.cc:295
 msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr ""
 "དྲན་ཤེས་ཅན་གྱི་ཤོག་ལེབ་པ་དེ་ ལག་ལེན་འཐབ་མ་ཚུགས། འ་ནི་འདི་ལཱ་གཡོག་འབད་ནིའི་ཌེ་བེ་ཡན་རིམ་ལུགས་ཨིན་"
 "ན?"
 
-#: src/cmdline/cmdline_changelog.cc:347
+#: src/cmdline/cmdline_changelog.cc:346
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr ""
 "%s དེ་གཞུང་འབྲེལ་གྱི་ཌེ་བི་ཡཱན་ཐུམ་སྒྲིལ་ཅིག་མེནམ་ལས་ དེ་གི་བསྒྱུར་བཅོས་དྲན་དེབ་བཀྲམ་སྟོན་འབད་མི་ཚུགས།"
 
-#: src/cmdline/cmdline_changelog.cc:408
+#: src/cmdline/cmdline_changelog.cc:407
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "%s གི་དོན་ལུ་ བསྒྱུར་བཅོས་དྲན་དེབ་ཐོབ་མ་ཚུགས།"
 
-#: src/cmdline/cmdline_changelog.cc:412
+#: src/cmdline/cmdline_changelog.cc:411
 #, fuzzy, c-format
 #| msgid "Couldn't find a changelog for %s"
 msgid "Couldn't run pager %s"

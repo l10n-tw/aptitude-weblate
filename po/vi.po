@@ -704,7 +704,7 @@ msgstr ""
 "Ghi chú : « %s », nếu gói ảo « %s »\n"
 "      đã được cài đặt.\n"
 
-#: src/cmdline/cmdline_action.cc:257
+#: src/cmdline/cmdline_action.cc:256
 #, c-format
 msgid ""
 "Note: \"%s\", providing the virtual package\n"
@@ -856,36 +856,36 @@ msgstr "Lấy:"
 msgid "Err"
 msgstr "Lỗi "
 
-#: src/cmdline/cmdline_changelog.cc:177
+#: src/cmdline/cmdline_changelog.cc:176
 #, fuzzy, c-format
 msgid "Changelog download failed: %s"
 msgstr "Bản ghi đổi của %s"
 
-#: src/cmdline/cmdline_changelog.cc:198 src/generic/apt/pkg_changelog.cc:442
+#: src/cmdline/cmdline_changelog.cc:197 src/generic/apt/pkg_changelog.cc:442
 #: src/generic/apt/pkg_changelog.cc:596 src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "Bản ghi đổi của %s"
 
-#: src/cmdline/cmdline_changelog.cc:296
+#: src/cmdline/cmdline_changelog.cc:295
 msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr ""
 "Không thể thực hiện tiến trình « sensible-pager »: đây là hệ thống Debian "
 "hoạt động phải không?"
 
-#: src/cmdline/cmdline_changelog.cc:347
+#: src/cmdline/cmdline_changelog.cc:346
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr ""
 "%s không phải là gói Debian chính thức nên không thể hiển thị bản ghi các "
 "thay đổi (ChangeLog) của nó."
 
-#: src/cmdline/cmdline_changelog.cc:408
+#: src/cmdline/cmdline_changelog.cc:407
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "Không tìm thấy bản ghi các thay đổi cho « %s »"
 
-#: src/cmdline/cmdline_changelog.cc:412
+#: src/cmdline/cmdline_changelog.cc:411
 #, fuzzy, c-format
 msgid "Couldn't run pager %s"
 msgstr "Không tìm thấy bản ghi các thay đổi cho « %s »"

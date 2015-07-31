@@ -759,7 +759,7 @@ msgstr ""
 "Nota: «%s», che fornisce il pacchetto virtuale\n"
 "      «%s», è già installato.\n"
 
-#: src/cmdline/cmdline_action.cc:257
+#: src/cmdline/cmdline_action.cc:256
 #, c-format
 msgid ""
 "Note: \"%s\", providing the virtual package\n"
@@ -914,34 +914,34 @@ msgstr "Get:"
 msgid "Err"
 msgstr "Err "
 
-#: src/cmdline/cmdline_changelog.cc:177
+#: src/cmdline/cmdline_changelog.cc:176
 #, fuzzy, c-format
 msgid "Changelog download failed: %s"
 msgstr "ChangeLog di %s"
 
-#: src/cmdline/cmdline_changelog.cc:198 src/generic/apt/pkg_changelog.cc:442
+#: src/cmdline/cmdline_changelog.cc:197 src/generic/apt/pkg_changelog.cc:442
 #: src/generic/apt/pkg_changelog.cc:596 src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "Changelog di %s"
 
-#: src/cmdline/cmdline_changelog.cc:296
+#: src/cmdline/cmdline_changelog.cc:295
 msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr ""
 "Impossibile eseguire sensible-pager. Questo è un sistema Debian funzionante?"
 
-#: src/cmdline/cmdline_changelog.cc:347
+#: src/cmdline/cmdline_changelog.cc:346
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr ""
 "%s non è un pacchetto Debian ufficiale: impossibile mostrarne il changelog."
 
-#: src/cmdline/cmdline_changelog.cc:408
+#: src/cmdline/cmdline_changelog.cc:407
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "Impossibile trovare il changelog di «%s»"
 
-#: src/cmdline/cmdline_changelog.cc:412
+#: src/cmdline/cmdline_changelog.cc:411
 #, fuzzy, c-format
 msgid "Couldn't run pager %s"
 msgstr "Impossibile trovare il changelog di «%s»"

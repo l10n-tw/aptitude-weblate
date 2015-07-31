@@ -713,7 +713,7 @@ msgstr ""
 "Nota: \"%s\", proporciona'l paquete virtual\n"
 "      \"%s\", yá ta instaláu.\n"
 
-#: src/cmdline/cmdline_action.cc:257
+#: src/cmdline/cmdline_action.cc:256
 #, c-format
 msgid ""
 "Note: \"%s\", providing the virtual package\n"
@@ -865,36 +865,36 @@ msgstr "Bax:"
 msgid "Err"
 msgstr "Err"
 
-#: src/cmdline/cmdline_changelog.cc:177
+#: src/cmdline/cmdline_changelog.cc:176
 #, c-format
 msgid "Changelog download failed: %s"
 msgstr "Descarga de la llista de cambeos fallida: %s"
 
-#: src/cmdline/cmdline_changelog.cc:198 src/generic/apt/pkg_changelog.cc:442
+#: src/cmdline/cmdline_changelog.cc:197 src/generic/apt/pkg_changelog.cc:442
 #: src/generic/apt/pkg_changelog.cc:596 src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "Rexistru de cambeos de %s"
 
-#: src/cmdline/cmdline_changelog.cc:296
+#: src/cmdline/cmdline_changelog.cc:295
 msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr ""
 "Nun pue executase sensible-pager, ¿ye ésti un sistema Debian que furrula "
 "bien?"
 
-#: src/cmdline/cmdline_changelog.cc:347
+#: src/cmdline/cmdline_changelog.cc:346
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr ""
 "%s nun ye un paquete oficial de Debian, nun pue visualizase'l so rexistru de "
 "cambeos."
 
-#: src/cmdline/cmdline_changelog.cc:408
+#: src/cmdline/cmdline_changelog.cc:407
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "Nun pue atopase'l rexistru de cambéu pa %s"
 
-#: src/cmdline/cmdline_changelog.cc:412
+#: src/cmdline/cmdline_changelog.cc:411
 #, c-format
 msgid "Couldn't run pager %s"
 msgstr "Nun pue executase'l paxinador %s"

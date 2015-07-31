@@ -719,7 +719,7 @@ msgstr ""
 "Napomena: \"%s\" koji pruža usluge virtualnog paketa\n"
 "          \"%s\" već je instaliran.\n"
 
-#: src/cmdline/cmdline_action.cc:257
+#: src/cmdline/cmdline_action.cc:256
 #, c-format
 msgid ""
 "Note: \"%s\", providing the virtual package\n"
@@ -869,32 +869,32 @@ msgstr "Dohvati:"
 msgid "Err"
 msgstr "Greška"
 
-#: src/cmdline/cmdline_changelog.cc:177
+#: src/cmdline/cmdline_changelog.cc:176
 #, c-format
 msgid "Changelog download failed: %s"
 msgstr "Preuzimanje popisa promjena nije uspjelo: %s"
 
-#: src/cmdline/cmdline_changelog.cc:198 src/generic/apt/pkg_changelog.cc:442
+#: src/cmdline/cmdline_changelog.cc:197 src/generic/apt/pkg_changelog.cc:442
 #: src/generic/apt/pkg_changelog.cc:596 src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "Popis promjena za %s"
 
-#: src/cmdline/cmdline_changelog.cc:296
+#: src/cmdline/cmdline_changelog.cc:295
 msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr "Ne mogu izvršiti sensible-pager, je li ovo Debian sustav?"
 
-#: src/cmdline/cmdline_changelog.cc:347
+#: src/cmdline/cmdline_changelog.cc:346
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr "%s nije službeni Debian paket, ne mogu prikazati popis promjena."
 
-#: src/cmdline/cmdline_changelog.cc:408
+#: src/cmdline/cmdline_changelog.cc:407
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "Ne mogu pronaći popis promjena za %s"
 
-#: src/cmdline/cmdline_changelog.cc:412
+#: src/cmdline/cmdline_changelog.cc:411
 #, c-format
 msgid "Couldn't run pager %s"
 msgstr "Ne mogu pokrenuti preglednik %s"

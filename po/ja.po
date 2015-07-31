@@ -891,7 +891,7 @@ msgstr ""
 "注意: 仮想パッケージ \"%2$s\" を提供する\n"
 "      \"%1$s\" は既にインストールされています。\n"
 
-#: src/cmdline/cmdline_action.cc:257
+#: src/cmdline/cmdline_action.cc:256
 #, c-format
 msgid ""
 "Note: \"%s\", providing the virtual package\n"
@@ -1042,34 +1042,34 @@ msgstr "取得:"
 msgid "Err"
 msgstr "エラー "
 
-#: src/cmdline/cmdline_changelog.cc:177
+#: src/cmdline/cmdline_changelog.cc:176
 #, c-format
 msgid "Changelog download failed: %s"
 msgstr "変更履歴のダウンロードに失敗しました: %s"
 
-#: src/cmdline/cmdline_changelog.cc:198 src/generic/apt/pkg_changelog.cc:442
+#: src/cmdline/cmdline_changelog.cc:197 src/generic/apt/pkg_changelog.cc:442
 #: src/generic/apt/pkg_changelog.cc:596 src/view_changelog.cc:272
 #, c-format
 msgid "Changelog of %s"
 msgstr "%s の変更履歴"
 
-#: src/cmdline/cmdline_changelog.cc:296
+#: src/cmdline/cmdline_changelog.cc:295
 msgid "Can't execute sensible-pager, is this a working Debian system?"
 msgstr ""
 "sensible-pager が実行できません。これは正常に機能している Debian システムです"
 "か?"
 
-#: src/cmdline/cmdline_changelog.cc:347
+#: src/cmdline/cmdline_changelog.cc:346
 #, c-format
 msgid "%s is not an official Debian package, cannot display its changelog."
 msgstr "%s は公式の Debian パッケージではないので、変更履歴を表示できません。"
 
-#: src/cmdline/cmdline_changelog.cc:408
+#: src/cmdline/cmdline_changelog.cc:407
 #, c-format
 msgid "Couldn't find a changelog for %s"
 msgstr "%s の変更履歴が見つかりません"
 
-#: src/cmdline/cmdline_changelog.cc:412
+#: src/cmdline/cmdline_changelog.cc:411
 #, c-format
 msgid "Couldn't run pager %s"
 msgstr "ページャー %s を実行できません"
