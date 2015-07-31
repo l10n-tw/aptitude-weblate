@@ -19,15 +19,14 @@ TLDEFAULTS = $(wildcard $(srcdir)/aptitude-defaults.??) $(wildcard $(srcdir)/apt
 EXTRA_DIST = config.rpath  ChangeLog.SVN Doxyfile.in aclocal.m4 \
 	FAQ README.BOOST README.CWIDGET README.i18n README.INTERFACES README.NAMING \
 	README.SMART-POINTERS README.THREADS aptitude-hackers-guide.txt \
-	function_groups function_pkgs aptitude-defaults \
-	section-descriptions \
+	aptitude-defaults section-descriptions \
 	$(TLDEFAULTS) \
 	$(TLMANPAGES) $(TLHELPTXTS)
 
 pkgdatadir=$(datadir)/$(PACKAGE)
 
 pkgdata_DATA = $(TLHELPTXTS) COPYING NEWS FAQ \
-	function_groups function_pkgs aptitude-defaults section-descriptions \
+	aptitude-defaults section-descriptions \
 	$(TLDEFAULTS)
 
 dist_check_SCRIPTS = check_boost.sh
@@ -47,5 +46,8 @@ install-data-local:
 #rm -fr $(DESTDIR)$(STATEDIR)
 # Is -r a good idea here?
 
+update-po:
+	$(MAKE) -C po  update-po
+	$(MAKE) -C doc update-po
 
 ACLOCAL_AMFLAGS = -I m4

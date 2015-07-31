@@ -1,4 +1,109 @@
-[06/02/2014]
+[2015-07-25]
+Version 0.7
+
+- Changes in the versioning scheme and changelog:
+
+  * From now on Aptitude's version numbers follow loosely the Semantic
+    Version specification (http://semver.org/), with a few exceptions:
+
+    * The leading zero is kept for now. The first digit after "0." is
+      currently considered being the major version.
+
+    * Trailing zeros may be omitted, i.e. 0.7 is the same as 0.7.0.0
+      with 7 being the major version.
+
+  * Dates in the NEWS file are now consistently written in an
+    unambiguous and more international way.
+
+- Feature removals:
+
+  * The content-wise outdated and not-multiarch-compatible categorical
+    browser has been removed. The Debtags browser has replaced most of
+    its functionality already. Local package groups are no more
+    available, though.  (Closes: #686124 and its duplicates as well as
+    #686142 and #686646 as well as LP: #1082198)
+
+    The removal discussion has taken place in #686646.
+
+- Bug fixes:
+
+  * Fix reported installed size change when installing/deinstalling packages
+    which are bigger than 2 GiB (int type size 32 bits).  Thanks Benny Baumann
+    and Jason Rhinelander for the report and info, and Sven Joachim for the
+    patch.  (Closes: #759769)
+
+- Internal changes:
+
+  * Use automake option subdir-objects to be able to use current
+    automake versions.
+
+    * Copy in configure.ac from /usr/src/gtest/src/gtest-all.cc and
+      /usr/src/gmock/src/gmock-all.cc to subdir tests/ -- otherwise, automake
+      (with subdir-objects option recently added) tried to build in
+      /usr/src/gtest/ and ../gmock/, and then failed to link
+
+  * Remove forward declaration of STL templated classes and containers
+    (basic_string, pair, vector...), use regular includes instead.  Due to
+    internal changes of GCC-5 or libsdtc++ related with C++11 compatibility
+    (std::string and std::list had to change), the code failed to compile, and
+    there is not enough justification to "forward-include" in this case (it has
+    to be done copying declarations by hand, it's prone to errors when things
+    are updated in the backstage and not very elegant).
+
+  * Changes to allow to compile with C++11 compatibilty mode (prompted by
+    changes in the toolchain in Debian):
+
+    * Convert all instances of boost::make_shared and boost::shared_ptr to be
+      explicitly prefixed by boost::, otherwise they clash with the new C++11
+      std::shared_ptr.
+
+    * Convert some instances of boost::shared_ptr and boost::make_shared to the
+      corresponding versions now in the standard library.  The reason for this
+      is that it failed to compile straight away with the version in unstable
+      (boost-1.55) in some sections of the code (e.g. problemresolver, sqlite,
+      file_cache), and because since it is now part of the standard, there is
+      little reason to use Boost for that.  The rest of cases not covered in
+      this version shall be converted later on.
+
+    * Several other minor changes to allow to compile with C++11.
+
+  * Remove duplicated method in sqlite.* files (below).  There is another method
+    with the same signature but with "const std::string&", and "const char*"
+    implicitly converts to use that one if there is not one available of the
+    same type.
+
+      std::shared_ptr<statement> statement::prepare(db &parent, const char *sql)
+
+  * Add top-level update-po target for not needing to remember in
+    which directories the update-po target needs to be called.
+
+- Documentation:
+
+  * Previously missing trigger-related package states are now
+    documented. (Closes: #770073, #771305, #771704)
+
+  * Minesweeper: Fixed save/load keybindings in help. (Closes: #736934)
+
+- Translation updates:
+
+  * Czech by Miroslav Kure (Closes: #758226)
+
+  * Russian by Yuri Kozlov (Closes: #760812)
+
+  * German man page translation by Mario Blättermann and
+    Jens Seidel <jensseidel@users.sf.net> (Closes: #762340)
+
+  * Catalan by Orestes Mas (Closes: #771618)
+
+  * French documentation translation by Cédric Boutillier (Closes:
+    #773807)
+
+  * Italian documentation translation by Beatrice Torracca (Closes:
+    #776706)
+
+  * Dutch by Frans Spiesschaert (Closes: #778425)
+
+[2014-06-02]
 Version 0.6.11
 
 - Bug fixes:
@@ -28,7 +133,8 @@ Version 0.6.11
 
   * Portuguese (Closes: #748141)
 
-[02/10/2014]
+
+[2014-02-10]
 Version 0.6.10
 
 Note that 0.6.9 was an experimental release.  Most of the changes it
@@ -65,7 +171,8 @@ contained are temporarily reverted, but they will return.
   * Improve and explain some translation messages, thanks helix84@centrum.sk
     (Closes: #537858).
 
-[01/26/2014]
+
+[2014-01-26]
 Version 0.6.8.4
 
 - New features:
@@ -100,7 +207,7 @@ Version 0.6.8.4
     (Closes: #727815)
   * Fix error in Spanish translation, thanks Manolo Díaz (Closes: #716669)
 
-[01/19/2014]
+[2014-01-19]
 Version 0.6.8.3
 
 - Bug fixes:
@@ -161,7 +268,7 @@ Version 0.6.8.3
   * French by David Prévot (Closes: #693323)
     * Fixed error close to line 3048 due to mismatch in parameters
 
-[9/7/2012]
+[2012-09-07]
 Version 0.6.8.2                             "Say 'what' again"
 
 - New features:
@@ -204,7 +311,7 @@ Version 0.6.8.2                             "Say 'what' again"
   * Russian (Closes: #686016)
   * Spanish (Closes: #686752)
 
-[8/25/2012]
+[2012-08-25]
 Version 0.6.8.1                             "Don hat"
 
 - Crashes and serious errors:
@@ -224,7 +331,7 @@ Version 0.6.8.1                             "Don hat"
 
   * Add (temporary) helpers for interacting with dpkg.
 
-[5/11/2012]
+[2012-05-11]
 Version 0.6.8                               "Never need a reason,
                                              never need a rhyme"
 
@@ -315,7 +422,7 @@ earlier releases.
   * German (Closes: #672467, #668875)
   * Simplified Chinese
 
-[5/2/2012]
+[2012-05-02]
 Version 0.6.7                               "I said 'Step pause turn
                                              pause pivot step step'"
 
@@ -386,7 +493,7 @@ Version 0.6.7                               "I said 'Step pause turn
 
   * Croatian (Closes: #667934)
 
-[3/17/2012]
+[2012-03-17]
 Version 0.6.6                               "There is not one you,
                                              there are many."
 
@@ -551,7 +658,7 @@ resolve any problems.
   * Polish (Closes: #659803)
   * Russian (Closes: #662624)
 
-[2/6/2012]
+[2012-02-06]
 Version 0.6.5                               "Splat!"
 
 - Removed features:
@@ -663,7 +770,7 @@ Version 0.6.5                               "Splat!"
   * Slovak (Closes: #559288, #653056)
   * Spanish (Closes: #564445)
 
-[4/2/2011]
+[2011-04-02]
 Version 0.6.4                               "Spring is sprung"
 
 This version of aptitude requires apt 0.8 and will not build against
@@ -746,7 +853,7 @@ earlier releases.
   * [gtk] If the GTK+ frontend isn't built, don't try to build tests
           that require it.
 
-[6/18/2010]
+[2010-06-18]
 Version 0.6.3                               "Sunlight, moonshadow"
 
   This version of aptitude fixes some crashes that occurred when
@@ -827,7 +934,7 @@ Version 0.6.3                               "Sunlight, moonshadow"
 
   * [all] Switch from automake 1.9 to automake 1.11.
 
-[4/21/2010]
+[2010-04-21]
 Version 0.6.2.1                             "I didn't know it was a
                                              real zebra!"
 
@@ -859,7 +966,7 @@ Version 0.6.2.1                             "I didn't know it was a
     indirection), in case I decide to resolve the random crashes it
     causes by switching to some other framework or rolling my own.
 
-[4/18/2010]
+[2010-04-18]
 Version 0.6.2                               "A costly proposition"
 
 - New features:
@@ -951,7 +1058,7 @@ Version 0.6.2                               "A costly proposition"
           use mktemp() to create names in a mode 0700 directory, which
           is about the only way to use it safely.
 
-[1/20/2010]
+[2010-01-20]
 Version 0.6.1.5                             "All around the dependency bush,
                                              the monkey chased the weasel..."
 
@@ -981,7 +1088,7 @@ Version 0.6.1.5                             "All around the dependency bush,
           telling me that the manpage for "aptitude search"
           contradicts the user manual.  (Closes: #566003)
 
-[1/17/2010]
+[2010-01-17]
 Version 0.6.1.4                             "You can't take the sky from me."
 
 - New features:
@@ -1040,7 +1147,7 @@ Version 0.6.1.4                             "You can't take the sky from me."
           underpin a redesign of the main window.  Currently this is
           unused.
 
-[11/19/2009]
+[2009-11-19]
 Version 0.6.1.3                             "Too many cooks put lots of
                                              beans in the soup."
 
@@ -1049,7 +1156,7 @@ Version 0.6.1.3                             "Too many cooks put lots of
   + [doc] Fixed the Makefile for the Spanish translation of the
           documentation so that it honors DESTDIR.
 
-[11/19/2009]
+[2009-11-19]
 Version 0.6.1.2                             "I think I can, I think I can..."
 
 - Crashes and serious erroors:
@@ -1064,7 +1171,7 @@ Version 0.6.1.2                             "I think I can, I think I can..."
   + [test] Wrote an additional unit test verifying that the program's
            temporary directory is really deleted when it exits.
 
-[11/19/2009]
+[2009-11-19]
 Version 0.6.1.1                             "Again with the bug-writing."
 
 - Crashes and serious errors:
@@ -1075,7 +1182,7 @@ Version 0.6.1.1                             "Again with the bug-writing."
   + [all] Fixed the temporary directory code to create directories in
           $TMPDIR rather than ".".
 
-[11/18/2009]
+[2009-11-18]
 Version 0.6.1                               "Instant toll logging."
 
 - New features:
@@ -1154,7 +1261,7 @@ Version 0.6.1                               "Instant toll logging."
   + [gtk] Fix the resolver tab to only show a new solution when the
           user explicitly asked for one.
 
-[10/25/2009]
+[2009-10-25]
 Version 0.6.0.1                             "Who's laughing now?"
 
 - Build system fixes:
@@ -1163,7 +1270,7 @@ Version 0.6.0.1                             "Who's laughing now?"
           Hopefully this means that the unit tests can actually pass
           in the distributed tarfile.
 
-[10/25/2009]
+[2009-10-25]
 Version 0.6.0                               "Stick a fork in it,
 					     it's done."
 - Internal changes:
@@ -1192,7 +1299,7 @@ Version 0.6.0                               "Stick a fork in it,
           Hopefully this will prevent the unnecessary junk that was
           getting into the Debian diff.
 
-[10/12/2009]
+[2009-10-12]
 Version 0.5.9rc4                            "Trust me, you don't want
                                              to know about the spork."
 
@@ -1229,7 +1336,7 @@ Version 0.5.9rc4                            "Trust me, you don't want
   + [gtk] Make "./configure --enable-gtk" enable GTK+ instead of
           disabling it.
 
-[10/8/2009]
+[2009-10-08]
 Version 0.5.9rc3                            "The stars, like little
                                              starry things..."
 
@@ -1304,7 +1411,7 @@ Version 0.5.9rc3                            "The stars, like little
   + Spanish
 
 
-[9/9/2009]
+[2009-09-09]
 Version 0.5.9rc2                            "Over five served."
 
 - Crashes and serious errors:
@@ -1313,7 +1420,7 @@ Version 0.5.9rc2                            "Over five served."
           only actions initiated by apt's greedy resolver are
           affected, rather than all actions.
 
-[9/8/2009]
+[2009-09-08]
 Version 0.5.9rc1                            "The only way to win
                                              is not to play."
 
@@ -1425,7 +1532,7 @@ Version 0.5.9rc1
   + Spanish
 
 
-[7/21/2009]
+[2009-07-21]
 Version 0.5.3.1                             "Sky without end"
 
 - Build system fixes:
@@ -1436,7 +1543,7 @@ Version 0.5.3.1                             "Sky without end"
 
   + Slovak (Closes: #521052)
 
-[7/20/2009]
+[2009-07-20]
 Version 0.5.3                               "The Aardvark Contingency"
 
 This version of aptitude now requires GTK+ 2.16 or greater and GTK--
@@ -1468,7 +1575,7 @@ This version of aptitude now requires GTK+ 2.16 or greater and GTK--
   + Finnish (Closes: #531582)
   + Spanish: added translation of the user's manual.
 
-[4/26/2009]
+[2009-04-26]
 Version 0.5.2.1                             "Albatross!"
 
 - Crashes and serious errors:
@@ -1516,7 +1623,7 @@ Version 0.5.2.1                             "Albatross!"
 
   + French
 
-[4/22/2009]
+[2009-04-22]
 Version 0.5.2                               "Ramparts of the Dawn"
 
 This release merges in the work that was done on the lenny branch of
@@ -1716,7 +1823,7 @@ KNOWN BUGS:
   + Spanish (Closes: #517272)
   + Swedish (Closes: #511238, #514011)
 
-[1/18/2009]
+[2009-01-18]
 Version 0.5.1                               "One step at a time"
 
 - New features:
@@ -1906,7 +2013,7 @@ Version 0.5.1                               "One step at a time"
 
   + Slovak (Closes: #505676)
 
-[11/10/2008]
+[2008-11-10]
 Version 0.5.0                               "Wheee!"
 
 This version introduces the GTK+ frontend.  Thanks are due to Obey
@@ -1941,7 +2048,7 @@ that need improvement, and it is certainly incomplete.
 
   + Documentation for the GTK+ frontend has not yet been written.
 
-[11/19/2008]
+[2008-11-19]
 Version 0.4.11.11                           "And the moon be still as bright"
 
 This is purely a translation release for Debian lenny.
@@ -1957,7 +2064,7 @@ This is purely a translation release for Debian lenny.
   + Spanish (Closes: #501096, #502695, #502696, #502697)
   + Traditional Chinese
 
-[9/5/2008]
+[2008-09-05]
 Version 0.4.11.10                           "Upon the empty winds of time"
 
 - Bug fixes:
@@ -2004,7 +2111,7 @@ Version 0.4.11.10                           "Upon the empty winds of time"
   + Simplified Chinese (Closes: #497550)
   + Ukranian
 
-[8/3/2008]
+[2008-08-03]
 Version 0.4.11.9                            "This message brought to you
                                              courtesy of the Friends of
 					     Poland society."
@@ -2033,7 +2140,7 @@ Version 0.4.11.9                            "This message brought to you
   + Slovak
   + Swedish (Closes: #490782, #490818)
 
-[7/4/2008]
+[2008-07-04]
 Version 0.4.11.8                            "Happy Fireworks Day."
 
 - Bug fixes:
@@ -2044,7 +2151,7 @@ Version 0.4.11.8                            "Happy Fireworks Day."
       to sometimes delete package lists if downloading new copies
       failed.  (Closes: #201842, #479620)
 
-[6/28/2008]
+[2008-06-28]
 Version 0.4.11.7                            "Yes I can"
 
 - Internal changes:
@@ -2058,7 +2165,7 @@ Version 0.4.11.7                            "Yes I can"
   * Portuguese (Closes: #482094)
   * Thai
 
-[6/21/2008]
+[2008-06-21]
 Version 0.4.11.6                            "Take two"
 
 - Internal changes:
@@ -2066,7 +2173,7 @@ Version 0.4.11.6                            "Take two"
   * Fixed several places where the code was a bit sloppy in ways that
     were harmless at the moment but were turned up by -Wall -Werror.
 
-[6/21/2008]
+[2008-06-21]
 Version 0.4.11.5                            "A tisket, a tasket"
 
 - Bug fixes:
@@ -2097,7 +2204,7 @@ Version 0.4.11.5                            "A tisket, a tasket"
   * Clean up various minor and potential bugs turned up by increasing
     the warning level.
 
-[6/7/2008]
+[2008-06-07]
 Version 0.4.11.4                            "Turn down the suck."
 
 - New features:
@@ -2135,7 +2242,7 @@ Version 0.4.11.4                            "Turn down the suck."
 
   * Russian. (Closes: #483943)
 
-[5/26/2008]
+[2008-05-26]
 Version 0.4.11.3                            "Not looking back."
 
 - Crashes and serious errors:
@@ -2208,7 +2315,7 @@ Version 0.4.11.3                            "Not looking back."
   * Simplified Chinese (Closes: #475740)
   * Vietnamese (Closes: #477295)
 
-[4/9/2008]
+[2008-04-09]
 Version 0.4.11.2                            "How far the sky,
                                              how cold the night,
                                              how still the flowing river.
@@ -2285,7 +2392,7 @@ Version 0.4.11.2                            "How far the sky,
 
   * Vietnamese (Closes: #473719)
 
-[3/30/2008]
+[2008-03-30]
 Version 0.4.11.1                            "No, no, fool, I said bring
                                              me the FLUFFY Bunny
                                              Slippers of EXTREME
@@ -2378,7 +2485,7 @@ Version 0.4.11.1                            "No, no, fool, I said bring
 
   * Vietnamese (Closes: #473229)
 
-[3/15/2008]
+[2008-03-15]
 Version 0.4.11                              "When you're tired of
                                              being beat with a stick,
                				     you're tired of Debian."
@@ -2666,7 +2773,7 @@ Version 0.4.11                              "When you're tired of
 
     * Vietnamese
 
-[12/15/2007]
+[2007-12-15]
 Version 0.4.10                              "Oscillating Reindeer"
 
 - New features:
@@ -2786,7 +2893,7 @@ Version 0.4.10                              "Oscillating Reindeer"
 
   * French (Christian Perrier)
 
-[11/17/2007]
+[2007-11-17]
 Version 0.4.9                               "Ow. Ow. Ow. Ow. Ow."
 
 - New features:
@@ -2801,7 +2908,7 @@ Version 0.4.9                               "Ow. Ow. Ow. Ow. Ow."
   * Don't remove *.gmo in distclean.  Apparently this causes trouble
     for translations. (Closes: #451584, #441696)
 
-[11/15/2007]
+[2007-11-15]
 Version 0.4.8                               "The fun never stops!"
 
 This change removes the internal widget set, instead using the cwidget
@@ -2816,7 +2923,7 @@ functionality as the aptitude widget set, imagine that).
       strings; fixes actual display corruption on some platforms and
       potential corruption on all platforms.  (Closes: #448753)
 
-[10/30/2007]
+[2007-10-30]
 Version 0.4.7                               "Where did all these
                                              balloons come from?
                                              And why am I wearing
@@ -2909,13 +3016,13 @@ Version 0.4.7                               "Where did all these
   * Spanish
   * Swedish (Closes: #434643)
 
-[7/25/2007]
+[2007-07-25]
 Version 0.4.6.1
 
 - Minor bugfix to include the new scripts/manpages that didn't get
   distributed with the previous release.
 
-[7/25/2007]
+[2007-07-25]
 Version 0.4.6                               "He who works and works
                                              all day, gets to work
                                              another day."
@@ -2985,7 +3092,7 @@ Version 0.4.6                               "He who works and works
   * French
   * Vietnamese (Closes: #432283)
 
-[7/3/2007]
+[2007-07-03]
 Version 0.4.5.4                             "Oh my God,
                                              THEY KILLED LENNY!
                                              (actually, it was sid,
@@ -3025,7 +3132,7 @@ Version 0.4.5.4                             "Oh my God,
   * Galician (Closes: #429504)
   * Vietnamese (Closes: #429447)
 
-[6/17/2007]
+[2007-06-17]
 Version 0.4.5.3                             "The Long Dark Tea-Time
                                              Of The Code"
 
@@ -3069,7 +3176,7 @@ Version 0.4.5.3                             "The Long Dark Tea-Time
     * Fix compile bugs with g++-4.3. (Closes: #413488)
 
 
-[6/15/2007]
+[2007-06-15]
 Version 0.4.5.2                             "To ook is human,
                                              to meow feline"
 
@@ -3087,7 +3194,7 @@ Version 0.4.5.2                             "To ook is human,
 
   * Fixed a broken cross-reference in the manpage.
 
-[6/15/2007]
+[2007-06-15]
 Version 0.4.5.1                             "Nothing could possibly go
                                              wrAAAAAAAAAAaaaa..."
 
@@ -3108,7 +3215,7 @@ Version 0.4.5.1                             "Nothing could possibly go
   * Portuguese (Closes: #425779)
   * Vietnamese (Closes: #426976)
 
-[5/14/2007]
+[2007-05-14]
 Version 0.4.5                               "Confused Cockroach"
 
 - New features:
@@ -3326,7 +3433,7 @@ Version 0.4.5                               "Confused Cockroach"
 
   * Ukranian (Closes: #415448)
 
-[10/26/2006]
+[2006-10-26]
 Version 0.4.4                           "I shall smite you with my
                                          Ultimate Power of Cuteness!"
 - New features:
@@ -3471,7 +3578,7 @@ Version 0.4.4                           "I shall smite you with my
 
   * Vietnamese (Closes: #388552, #392903, #392924)
 
-[9/3/2006]
+[2006-09-03]
 Version 0.4.3                           "Everyone loves kittens"
 - New features:
 
@@ -3529,7 +3636,7 @@ Version 0.4.3                           "Everyone loves kittens"
 
   * Vietnamese (Closes: #382333, #383586)
 
-[7/31/2006]
+[2006-07-31]
 Version 0.4.2                           "Rock on, Monkeyverse"
 - New features:
 
@@ -3675,7 +3782,7 @@ Version 0.4.2                           "Rock on, Monkeyverse"
 
   * Vietnamese (Closes: #341924, #343850, #375089)
 
-[12/8/2005]
+[2005-12-08]
 Version 0.4.1                           "Divers Alarums"
 - New features:
 
@@ -3784,7 +3891,7 @@ Version 0.4.1                           "Divers Alarums"
 
   * Vietnamese (Closes: #341924)
 
-[11/4/2005]
+[2005-11-04]
 Version 0.4.0                           "Aptitude Below Zero"
 
 - New features:
@@ -3872,7 +3979,7 @@ Version 0.4.0                           "Aptitude Below Zero"
 
     - Russian (Closes: #336261, #336420)
 
-[10/14/2005]
+[2005-10-14]
 Version 0.3.5.1                         "Slantwise Cacophany"
 
 - Bug fixes:
@@ -3886,7 +3993,7 @@ Version 0.3.5.1                         "Slantwise Cacophany"
 
   * Add a Swedish translation of help.txt. (Closes: #333918)
 
-[10/13/2005]
+[2005-10-13]
 Version 0.3.5                           "Yoink"
 
    Upstream aptitude development is now stored in darcs.  See the
@@ -3994,7 +4101,7 @@ Version 0.3.5                           "Yoink"
 
   * Swedish (Closes: #333267)
 
-[9/30/2005]
+[2005-09-30]
 Version 0.3.4                           "Up The Airy Mountain"
 
 - New features:
@@ -4261,7 +4368,7 @@ Version 0.3.4                           "Up The Airy Mountain"
     backtrace for uncaught exceptions, compile with
     --enable-dynamic-backtrace.
 
-[7/4/2005]
+[2005-07-04]
 Version 0.3.3         "Universal Text Format Ate My Package Manager"
 
 - New features:
@@ -4329,7 +4436,7 @@ Version 0.3.3         "Universal Text Format Ate My Package Manager"
   * Adjusted the input polling frequency in the download code; the
     program should feel a bit more responsive while it's downloading.
 
-[5/1/2005]
+[2005-05-01]
 Version 0.3.2         "Eat cold logic, feeble dependency problem!"
 
 - New features:
@@ -4416,7 +4523,7 @@ Version 0.3.2         "Eat cold logic, feeble dependency problem!"
 
   * Correct the documentation of Delete-Unused (merged from stable).
 
-[1/10/2005]           "Ow, my thesis!
+[2005-01-10]          "Ow, my thesis!
                        That's funny, it didn't hurt that time..."
 
 - Bugfixes:
@@ -4451,7 +4558,7 @@ Version 0.3.2         "Eat cold logic, feeble dependency problem!"
     ongoing and has revealed some structural weaknesses in fragments
     that need to be fixed before entrenching them too much.
 
-[12/21/2004]
+[2004-12-21]
 Version 0.3.0         "Let it snow, let it snow, let it snow"
 
   This is the first release of a new development branch, forked from 0.2.15.8.
@@ -4516,7 +4623,7 @@ Version 0.3.0         "Let it snow, let it snow, let it snow"
 
   * Turkish (Closes: #280009)
 
-[3/26/2004]
+[2004-03-26]
 Version 0.2.15.9      "I see you see we all see C see sea"
 - Bugfixes:
   * Correct the English documentation of Aptitude::Delete-Unused;
@@ -4569,7 +4676,7 @@ Version 0.2.15.9      "I see you see we all see C see sea"
 
   * Spanish
 
-[9/28/2004]
+[2004-09-28]
 Version 0.2.15.8      "UTF-what?"
 - Bugfixes:
   * Patch from Konstantinos Margaritis to "fix" the UTF-8 problem with
@@ -4593,7 +4700,7 @@ Version 0.2.15.8      "UTF-what?"
 
   * Russian
 
-[9/17/2004]
+[2004-09-17]
 Version 0.2.15.7      "Kerplop"
 - Bugfixes:
   * Use the candidate version to look for stuff to install; this makes
@@ -4631,7 +4738,7 @@ Version 0.2.15.7      "Kerplop"
 
   * Spanish (Closes: #269311)
 
-[8/6/2004]
+[2004-08-06]
 Version 0.2.15.6      "Brrrrrrr"
 - Bugfixes:
   * When displaying the size change in a single version, use '+'
@@ -4656,7 +4763,7 @@ Version 0.2.15.6      "Brrrrrrr"
 
   * Portuguese (Debian bug #261502)
 
-[7/25/2004]
+[2004-07-25]
 Version 0.2.15.5      "Is it just me, or is it freezing in here?"
 - New features and bugfixes:
 
@@ -4699,7 +4806,7 @@ Version 0.2.15.5      "Is it just me, or is it freezing in here?"
 
   - Portuguese (Debian bug #261425)
 
-[7/15/2004]
+[2004-07-15]
 Version 0.2.15.4      "Flying Space Cucumber"
 - New features:
 
@@ -4732,7 +4839,7 @@ Version 0.2.15.4      "Flying Space Cucumber"
   * The command-line mode now complains loudly in some places where it
     used to fail silently.
 
-[7/13/2004]
+[2004-07-13]
 Version 0.2.15.3      "Release Roulette"
 - New features:
 
@@ -4786,7 +4893,7 @@ Version 0.2.15.3      "Release Roulette"
 
   * Spanish translation update from Rubes Porras (Debian bug #258243).
 
-[7/7/2004]
+[2004-07-07]
 Version 0.2.15.2      "Configure this!"
 - New features:
 
@@ -4825,7 +4932,7 @@ Version 0.2.15.2      "Configure this!"
 
   * Updated Italian translations (Debian bug #257710)
 
-[7/4/2004]
+[2004-07-04]
 Version 0.2.15.1      "Obligatory July 4th reference"
 - Bugfixes:
 
@@ -4835,7 +4942,7 @@ Version 0.2.15.1      "Obligatory July 4th reference"
 
   * Include all the screen-shot images.
 
-[7/1/2004]
+[2004-07-01]
 Version 0.2.15        "Daniel's Adventures in the Land of DocBook"
 
 - New features:
@@ -4970,7 +5077,7 @@ Version 0.2.15        "Daniel's Adventures in the Land of DocBook"
 
   * Traditional Chinese translation added (Debian bug #244359)
 
-[4/03/2004]
+[2004-04-03]
 Version 0.2.14.1      "Spit and polish"
 
 Thanks to Christian Perrier <bubulle@debian.org> for helping to triage
@@ -5062,7 +5169,7 @@ release.
   * Spanish program translation update. (Debian bug #234537)
 
 
-[2/15/2004]
+[2004-02-15]
 Version 0.2.14        "I say a package, and you say ah pahckahge"
 
 - Bugfixes and new features:
@@ -5084,7 +5191,7 @@ Version 0.2.14        "I say a package, and you say ah pahckahge"
   * Fixed the translation of a format string in the Czech translation, which
     was causing segfaults.
 
-[2/13/2004]
+[2004-02-13]
 Version 0.2.13.9999.3 "Sisyphus Boulder Transportation and
                        Delivery Engineers, Incorporated[tm]"
 
@@ -5115,7 +5222,7 @@ Version 0.2.13.9999.3 "Sisyphus Boulder Transportation and
 
   * Spanish translation updates from Ruben Porras.
 
-[2/8/2004]
+[2004-02-08]
 Version 0.2.13.9999.2 "Polar Eclipse"
 
 - Bugfixes and new features:
@@ -5165,7 +5272,7 @@ Version 0.2.13.9999.2 "Polar Eclipse"
   * pt_BR translation updated (Andre Luis Lopes).
   
 
-[2/3/2004]
+[2004-02-03]
 Version 0.2.13.9999 "It goes ZIP when it moves!"
 
 - Bugfixes and new features:
@@ -5230,7 +5337,7 @@ Version 0.2.13.9999 "It goes ZIP when it moves!"
 
   * Added a Czech translation, thanks to Miroslav Kure.
 
-[6/9/2003]
+[2003-06-09]
 Version 0.2.13 "Pop goes the weasel"
 
   * Fixes a number of crashes due to mishandling of memory, spotted
@@ -5251,7 +5358,7 @@ Version 0.2.13 "Pop goes the weasel"
   * Added an option to disable -Werror, needed until Debian's ncurses
     implementation is fixed.
 
-[2/10/2003]
+[2003-02-10]
 Version 0.2.12 "O Ye of Little Faith!"
   * Compiles with g++-3.2.  (Debian bugs #166435, 177092, 177463, 178520, and
     maybe others)
@@ -5322,7 +5429,7 @@ Version 0.2.12 "O Ye of Little Faith!"
 
   * Several minor fixes of bugs, memory leaks, etc.
 
-[4/21/2002]
+[2002-04-21]
 Version 0.2.11.1 "Data updates are my friend"
   * This release has corrections to typos and other data issues; it does
     not change a single line of code.  This should be pushed into woody.
@@ -5337,7 +5444,7 @@ Version 0.2.11.1 "Data updates are my friend"
   * Fixed the dangling reference to SEARCHING in the manpage
   (Debian bug #142651)
 
-[4/06/2002]
+[2002-04-06]
 Version 0.2.11 "Look Ma, No Hands!"
            aka "Hello, JoeyH :)"
 
@@ -5435,7 +5542,7 @@ Version 0.2.11 "Look Ma, No Hands!"
   * Thanks go to joeyh (and others) for sending in a slew of bug reports
   and suggestions.
 
-[3/02/2002]
+[2002-03-02]
 Version 0.2.10 "World Domination Or Bust"
   * aptitude now has support for batch/command-line mode, similar to apt-get.
     This isn't going to make everyone happy just yet, but it should cover
@@ -5480,7 +5587,7 @@ Version 0.2.10 "World Domination Or Bust"
   was replaced by command line options.  I'm not sure how joeyh
   will feel about this fix.  (Debian bug #136478)
 
-[2/17/2002]
+[2002-02-17]
 Version 0.2.9.4 "Black Holes Are Where God Divided By Zero"
   * When calculating the time remaining in a download, aptitude
   was dividing by CurrentCPS.  Unfortunately, CurrentCPS is often
@@ -5492,7 +5599,7 @@ Version 0.2.9.4 "Black Holes Are Where God Divided By Zero"
 
   * Forget-new-on-update actually works. (Debian bug #134226)
 
-[2/10/2002]
+[2002-02-10]
 Version 0.2.9.3 "Curse you, gcc steering committe!"
   * g++-3 #defines _GNU_SOURCE by default, causing compilation to
   die in because it's already defined.  All #define _GNU_SOURCE
@@ -5502,7 +5609,7 @@ Version 0.2.9.3 "Curse you, gcc steering committe!"
   pl.po slightly.
   (Debian bug #114396)
 
-[2/09/2002]
+[2002-02-09]
 Version 0.2.9.2 "Odds 'n Ends"
   * This release is because I accidentally left some uncommitted cruft on
   a computer I wasn't planning to use for a while.  I rediscovered it,
@@ -5519,12 +5626,12 @@ Version 0.2.9.2 "Odds 'n Ends"
   * ~ahold now really does the Right Thing (same for some related stuff)
   (Debian bug #126800)
 
-[2/09/2002]
+[2002-02-09]
 Version 0.2.9.1 "Silence of the LANs"
   * Argh.  I left a bug in 0.2.9; marking a package as auto-installed screwed
   up undo.  Fixed now.
 
-[2/09/2002]
+[2002-02-09]
 Version 0.2.9 "Please Sir, Can I Have Some More?" aka
               "When Changelog Entries Attack" aka
               "Slower Than Cold Molasses"
@@ -5581,7 +5688,7 @@ Version 0.2.9 "Please Sir, Can I Have Some More?" aka
   * Fixed a minor display bug when a package category was longer than the
   width of the screen and the last item in the display.  (Debian bug #123652)
 
-[12/09/2001]
+[2001-12-09]
 Version 0.2.8.1 "Sigh"
   * Incremental search now returns the display to the starting location on
   the empty string and invalid patterns.
@@ -5610,7 +5717,7 @@ Version 0.2.8.1 "Sigh"
   * pt_BR.po updated from patch supplied by
   Andre Luis Lopes <andrelop@ig.com.br>  (Debian bug #122251)
 
-[11/22/2001]
+[2001-11-22]
 Version 0.2.8 "I Like Bunnies"
   * Better documentation for the behavior of "/" when no special search
   terms are used.  (Debian bug #120592)
@@ -5624,7 +5731,7 @@ Version 0.2.8 "I Like Bunnies"
   you can specify conditions such as "packages depending on packages
   maintained by me"
 
-[11/21/2001]
+[2001-11-21]
 Version 0.2.7.999 "This release will self-destruct in 10 seconds"
   * This release is a prerelease to 0.2.8, to test the new incsearch code.
 
@@ -5638,7 +5745,7 @@ Version 0.2.7.999 "This release will self-destruct in 10 seconds"
   * Minor memory leak in search code fixed (it would leak a few bytes
   every time you entered a new search term)
 
-[11/20/2001]
+[2001-11-20]
 Version 0.2.7.3 "Boy I'm glad I'm not a turkey"
   * Categories updated to take into account many new packages in the
   archive.
@@ -5647,7 +5754,7 @@ Version 0.2.7.3 "Boy I'm glad I'm not a turkey"
 
   * Fixed reference to ~a/~A in README (Debian bug #116695)
 
-[11/20/2001]
+[2001-11-20]
 Version 0.2.7.2 "Ludicrous Speed"
   * Rewrote the task loader based on input from Jason Gunthorpe.
     The new version should be significantly faster, especially on
@@ -5661,11 +5768,11 @@ Version 0.2.7.2 "Ludicrous Speed"
   * The "f" key in Minesweeper mode is now documented in the online help.
     (Debian bug #120251)
 
-[10/01/2001]
+[2001-10-01]
 Version 0.2.7.1 "Millenium Hand and Shrimp"
   * Made it compile again using g++-3.
 
-[10/01/2001]
+[2001-10-01]
 Version 0.2.7 "All the zeros and ones"
   * Version number bumped, just because this is not merely a trivial bugfix,
   and the version numbers were getting silly.
@@ -5674,14 +5781,14 @@ Version 0.2.7 "All the zeros and ones"
     I'm not sure what will happen if you have task- packages as well as
     Task headers.  Probably something weird.
 
-[9/22/2001]
+[2001-09-22]
 Version 0.2.6.5 "Twisting arms"
   * Work around a g++ bug on arm by reversing the order of some #includes.
 
   * Reverting options no longer sets options which had been set by the user's
   personal configuration to a blank string.
 
-[9/15/2001]
+[2001-09-15]
 Version 0.2.6.4 "If at first you don't succeed"
   * Loading keybindings works again.  In addition, it works correctly
   in the presence of themes.  (the keybindings defined in the theme can
@@ -5689,7 +5796,7 @@ Version 0.2.6.4 "If at first you don't succeed"
 
   * The list of available keybindings in README has been corrected.
 
-[9/14/2001]
+[2001-09-14]
 Version 0.2.6.3 "More bug-skooshing"
   * When compiled without optimization, aptitude no longer crashes whenever
   a package is unhighlighted.  (I shudder to think why the optimized build
@@ -5698,14 +5805,14 @@ Version 0.2.6.3 "More bug-skooshing"
   * move_forward_level no longer ever "falls off the edge of the world".
   This fixes the segfault reported in #112267.
 
-[9/13/2001]
+[2001-09-13]
 Version 0.2.6.2 "Bug-skooshing"
   * The program no longer crashes when the hierarchy editor is used.
   All known something-completely-doesn't-work type bugs are now fixed.
 
   * Updated the package categorizations.
 
-[9/13/2001]
+[2001-09-13]
 Version 0.2.6.1 "Darkness over Manhatten"
   * Fixes a horrible bug in 0.2.6 which prevented downloads from working.
   (Debian bug #111950)
@@ -5720,7 +5827,7 @@ Version 0.2.6.1 "Darkness over Manhatten"
   * The scrolling behavior of the line-editor should be more friendly.
   (it'll scroll by single characters to a greater extent)
 
-[9/8/2001]
+[2001-09-08]
 Version 0.2.6 "It's against my programming to impersonate a deity"
   * IMPORTANT NOTE: this version will not compile on potato.  If anyone
   cares about this, I can patch the code to not compile themes on
@@ -5815,7 +5922,7 @@ Version 0.2.6 "It's against my programming to impersonate a deity"
 
   * Updated my mailing address in README and AUTHORS to @debian.org.
 
-[8/6/2001]
+[2001-08-06]
 Version 0.2.5.3 "I hate build errors"
   * getopt_long returns an int, not a char.  This caused signedness problems
   on powerpc.
@@ -5827,18 +5934,18 @@ Version 0.2.5.3 "I hate build errors"
   REALLY beats having to download the full log for every file over a phone
   line every time I release a new version.
 
-[7/27/2001]
+[2001-07-27]
 Version 0.2.5.2 "Dashing away with a smoothing iron"
   * Fix an endianess problem that caused crashes on Alpha (among others)
   (Debian bug #106588)
 
-[7/24/2001]
+[2001-07-24]
 Version 0.2.5.1 "Hand me the brown paper bag, nurse!"
   * Using a widget with a history list no longer segfaults the program.
   Lesson of the day: never assume that a change is benign even if it couldn't
   possibly cause any problems!  (Debian bug #106378)
 
-[7/23/2001]
+[2001-07-23]
 Version 0.2.5 "Drop the text editor and back away slowly"
   * Multi-CD installs now work.  (Debian bug #104236)
 
@@ -5871,13 +5978,13 @@ Version 0.2.5 "Drop the text editor and back away slowly"
   * The primary Undo keybinding (ie, the one displayed in the menu) is now
   C-u, not C-_.
 
-[7/19/2001]
+[2001-07-19]
 Version 0.2.4 "C++ standard?  What C++ standard?"
   * aptitude compiles with g++-3.0.  (Debian bug #104723)
   * help-fi.txt is now in CVS (it was in the distribution tar.gz, but never
   got added to CVS.  Go figure)
 
-[7/11/2001]
+[2001-07-11]
 Version 0.2.3 "Curse you, Peter Pan!"
   * Finally, a new version..unfortunately, aptitude 0.2.2 needs two more days
   to get into testing, and I'm going to be gone in a few days.  I want to
@@ -5949,7 +6056,7 @@ Version 0.2.3 "Curse you, Peter Pan!"
   * When aptitude starts for the first time, it will *not* mark every
   package as new.
 
-[6/29/2001]
+[2001-06-29]
 Version 0.2.2 "Finlandia"
   * The Finnish translations have been updated to work with 0.2.0.  This is
   the major change in this release.
@@ -5962,7 +6069,7 @@ Version 0.2.2 "Finlandia"
   itself.  This clutters things up a bit and may be modified or removed in
   a future release.
 
-[6/28/2001]
+[2001-06-28]
 Version 0.2.1 "Another Fine Mess"
   * Options are now automatically saved when you hit "OK".  Let's hope I was
   overly paranoid earlier about the possible consequences of this..
@@ -5983,7 +6090,7 @@ Version 0.2.1 "Another Fine Mess"
   * The ancient bug that caused the root of the tree to be hidden when you
   pressed End has been found and terminated (with extreme prejudice)
 
-[6/25/2001]
+[2001-06-25]
 Version 0.2.0 "Damn The Torpedoes, Full Speed Ahead!"
   * Ok, it took a bit longer than I expected.  Sue me.
 
@@ -6071,7 +6178,7 @@ Changes from version 0.1.9:
 
 Pre-0.2.0 versions:
 ===============================================================================
-[6/18/2001]
+[2001-06-18]
 Version 0.1.9 "Speak Now Or Forever Hold Your Peace."
   * If there are no serious bug reports about this, APTITUDE 0.2 WILL
   BE UPLOADED TO UNSTABLE IN THE NEAR FUTURE!  Therefore, if you know of
@@ -6101,7 +6208,7 @@ Version 0.1.9 "Speak Now Or Forever Hold Your Peace."
 
   * Various potential crashes fixed, I hope.
 
-[6/15/2001]
+[2001-06-15]
 Version 0.1.8 "Making a List and Checking It Twice"
   * Viewing dependencies no longer causes Aptitude to enter an infinite loop
 
@@ -6163,7 +6270,7 @@ Version 0.1.8 "Making a List and Checking It Twice"
 
   * Fixed a crash when using ANDs in matching expressions.
 
-[6/4/2001]
+[2001-06-04]
 Version 0.1.7 "No."
   * Scrollbars should now be fixed in the popup pagers.  (there are still some
   visual artifacts, which I'm tempted to attribute to Curses bugs..)
@@ -6189,7 +6296,7 @@ Version 0.1.7 "No."
   broken" code featured in 0.0.8.7.  With luck, 0.1.8 will have its own
   version of that logic.
 
-[5/3/2001]
+[2001-05-03]
 Version 0.1.6 "Are We There Yet?"
   * Merged with the stable branch through 0.0.8.6
 
@@ -6221,7 +6328,7 @@ Version 0.1.6 "Are We There Yet?"
   * If ~/.aptitude does not exst when the user selects "save options",
   it is now created.
 
-[4/27/2001]
+[2001-04-27]
 Version 0.1.5 "Will Debianize For Food"
   * All changelog entries which are really from 2001 are now listed as being
   from 2001.  However much I wish I could stop the forward march of time, I
@@ -6246,7 +6353,7 @@ Version 0.1.5 "Will Debianize For Food"
   * Exiting now saves the selection info again (there's not yet an
   "exit and discard changes" -- just Ctrl-C :-) )
 
-[4/10/2001]
+[2001-04-10]
 Version 0.1.4 "Once there was an Elephant, who tried to use the Telephant"
   * Merged with stable up through 0.0.8.3.
 
@@ -6266,7 +6373,7 @@ Version 0.1.4 "Once there was an Elephant, who tried to use the Telephant"
   * The status line now displays information about the currently
   selected menu item.
 
-[3/23/2001]
+[2001-03-23]
 Version 0.1.3 "South Blue Quickly"
   * Still a BETA DEVELOPMENT RELEASE.
 
@@ -6284,7 +6391,7 @@ Version 0.1.3 "South Blue Quickly"
 
   * Added sorting policies.  It was harder than it sounds.  See README.
 
-[2/21/2001]
+[2001-02-21]
 Version 0.1.2 "Erlkönig"
   * Still a BETA DEVELOPMENT RELEASE.
 
@@ -6316,7 +6423,7 @@ Version 0.1.2 "Erlkönig"
 
   * Divide-by-zero errors no longer randomly happen while you're downloading.
 
-[1/30/2001]
+[2001-01-30]
 Version 0.1.1 "Fool!  I told you the Electric Rubber Ducky Incident
                was never to be mentioned in my presence again!"
   * Still a BETA DEVELOPMENT RELEASE.
@@ -6342,7 +6449,7 @@ Version 0.1.1 "Fool!  I told you the Electric Rubber Ducky Incident
 
   * Various crashes fixed.
 
-[12/3/2000]
+[2000-12-03]
 Version 0.1.0 "Release without a name"
   * This is a BETA DEVELOPMENT RELEASE.  It is not fully functional yet; please
   use older versions if you need missing features.
@@ -6369,12 +6476,12 @@ Version 0.1.0 "Release without a name"
 ===============================================================================
 Pre-0.1.0 versions begin here:
 
-[6/8/2001]
+[2001-06-08]
 Version 0.0.8.7.1 "D'oh"
   * The limit of the preview screen can once again be modified.  Thanks to
   Michael Politowski for pointing out a simple typo.
 
-[6/4/2001]
+[2001-06-04]
 Version 0.0.8.7 "Home from the Hospital"
   * Displaying information about a particular package version will now use
   the description of THAT version.
@@ -6390,7 +6497,7 @@ Version 0.0.8.7 "Home from the Hospital"
     Note: this is NOT forward-ported to version 0.1.x; this code is different
   enough in that track that I'll have to come up with a solution separately.
 
-[5/3/2001]
+[2001-05-03]
 Version 0.0.8.6 "Groundhog Day"
   * Really don't save extended state info if that info was modified (I thought
   this worked in 0.0.8.4, but, doh, I actually had done it in the unstable
@@ -6399,7 +6506,7 @@ Version 0.0.8.6 "Groundhog Day"
   * Hitting "purge" on a package version now does the expected.
   (Debian buf #96228, reported by the same JP)
 
-[5/1/2001]
+[2001-05-01]
 Version 0.0.8.5 "Bring Me A Shrubbery!"
   * Fixed two bugs relating to translations, reported by the ever-vigilant
   Michal Politowski:
@@ -6409,7 +6516,7 @@ Version 0.0.8.5 "Bring Me A Shrubbery!"
      current state.  (this lets translators distinguish between them, and is
      probably better anyway) (Debian bug #95867)
 
-[4/27/2001]
+[2001-04-27]
 Version 0.0.8.4 "I hate finals"
   * aptitude now only saves its extended state information if that information
   was modified (Debian bug #93135, reported by JP Sugarbroad <taral@taral.net>)
@@ -6425,7 +6532,7 @@ Version 0.0.8.4 "I hate finals"
   updating the package lists while viewing information about a package.  Sorry
   for the overly terse entry.
 
-[4/5/2001]
+[2001-04-05]
 Version 0.0.8.3 "Palindrome"
   * Fix Debian bug #90909, reported by Robert Bihlmeyer <robbe@orcus.priv.at>
     This bug was due to the fact that I inexplicably overrode an important
@@ -6434,12 +6541,12 @@ Version 0.0.8.3 "Palindrome"
   * Added a Galacian manpage and help file.
    Thanks go to Jacobo Tarrio <jtarrio@iname.com>.
 
-[3/23/2001]
+[2001-03-23]
 Version 0.0.8.2 "Midterms suck"
   * Fix compile problems with apts in the 0.3 series.  (this one was actually
   tested with 0.3, so there)
 
-[3/18/2001]
+[2001-03-18]
 Version 0.0.8.1 "Do you know how hard it is to come up with dozens of
                  clever and witty release names?  I bet you don't!  I bet
                  no-one even reads these!  I bet it doesn't matter if I rant
@@ -6452,7 +6559,7 @@ Version 0.0.8.1 "Do you know how hard it is to come up with dozens of
   fact that if a package of that name was eventually uploaded to the
   archive, it wouldn't show up as "new".
 
-[3/16/2001]
+[2001-03-16]
 Version 0.0.8.0 "Roll over, roll over.."
   * Galician translations, thanks to Jacobo Tarrio <jtarrio@iname.com>.
    (is it a sign that your program is popular when people translate it to
@@ -6464,13 +6571,13 @@ Version 0.0.8.0 "Roll over, roll over.."
 
   * Incremented the third digit of the version.  Please don't laugh.
 
-[3/04/2001]
+[2001-03-04]
 Version 0.0.7.19 "Jubjub"
   * help-pl.txt is really installed.
   * Don't print spurious errors when the user enters blank patterns.
   * The "search again" binding now really has two values instead of just one.
 
-[3/03/2001]
+[2001-03-03]
 Version 0.0.7.18 "Jabberwocky"
   * Retroactively corrected NEWS entries which were in '00 but should have been
    in '01.
@@ -6484,13 +6591,13 @@ Version 0.0.7.18 "Jabberwocky"
   * Gave in and made "n" an alternate binding for "search again".
   * Added Polish translation, contributed by Michal Politowski.
 
-[2/24/2001]
+[2001-02-24]
 Version 0.0.7.17 "I will not make a stupid Brown Paper Bag reference here"
   * Fixed a horribly STUPID bug in the APT 0.5 support, involving me misreading
    the prototype of VersioningSystem::CheckDep and passing the arguments
    in reverse order from what it expected!  Oops.
 
-[2/23/2001]
+[2001-02-23]
 Version 0.0.7.16 "Brought to you by the letter F"
   * Added two new translations:
     - Finnish, contributed by Jaakko Kangasharju <ashar@iki.fi>
@@ -6502,7 +6609,7 @@ Version 0.0.7.16 "Brought to you by the letter F"
   * configure.in now hacks around brokenness in some autoconf releases
   that caused C++ code to break.
 
-[2/01/2001]
+[2001-02-01]
 Version 0.0.7.15 "Coda"
   * Fixed a whole slew of bugs that Zack Weinberg <zackw@stanford.edu> was
   unfortunate to run into simultaneously:
@@ -6516,7 +6623,7 @@ Version 0.0.7.15 "Coda"
     - The bindings for vs_tree (Aptitude::UI::Keybindings::Tree) can now also
      be reconfigured from the toplevel, as expected.
 
-[12/18/2000]
+[2000-12-18]
 Version 0.0.7.14 "Grouping therapy"
   * Suggestions and patches from Arto Jantunen <viiru@debian.org>:
     - Tasks are now displayed as a separate "section"
@@ -6526,14 +6633,14 @@ Version 0.0.7.14 "Grouping therapy"
     - the online help explains about the 'f' key.
   * Various bugs, crashes, and bad behavior with APT 0.4 thrashed out.
 
-[12/12/2000]
+[2000-12-12]
 Version 0.0.7.13 "Portage"
   * aptitude should now compile without modifications against APT 0.4.  The
   fancy new features won't be used and will probably never be hooked into this
   branch -- the long-vapoured (but still slowly approaching) rewritten version
   will be where I fiddle with that stuff.
 
-[11/27/2000]
+[2000-11-27]
 Version 0.0.7.12 "Bored in Providence"
   * The long-standing TODO item of allowing a single package to be installed
    without affecting anything else is more-or-less fixed, although I'm not
@@ -6541,12 +6648,12 @@ Version 0.0.7.12 "Bored in Providence"
    unfortunate glitches still..)  Press "I" and read about it in the README
    (although I should clear that documentation up..)
 
-[11/26/2000]
+[2000-11-26]
 Version 0.0.7.11 "My Grandma, what big Segfaults you have!"
   * Fix a long-standing bug that triggered a segfault-on-start in extremely
    unusual circumstances (which is how it avoided me for so long)
 
-[11/26/2000]
+[2000-11-26]
 Version 0.0.7.10 "I didn't do it!  No-one saw me do it!"
   * Errr...the changes in the last version included a hack to make packages
    appear in the right indentation from the left-hand side of the screen.  This
@@ -6555,7 +6662,7 @@ Version 0.0.7.10 "I didn't do it!  No-one saw me do it!"
    a more invasive hack that actually works.  Oh, and I tested it this time.
    Testing things is a good idea..
 
-[11/25/2000]
+[2000-11-25]
 Version 0.0.7.9 "YOW!  I've been LAID OUT by a COLUMN GENERATOR!"
   * The only change in this release is a total rewrite of the column-generation
   code.  It's much less crufty and should allocate space more cleverly on
@@ -6563,7 +6670,7 @@ Version 0.0.7.9 "YOW!  I've been LAID OUT by a COLUMN GENERATOR!"
     The column configuration is slightly different; if you have a custom
   configuration, you might want to check the README.
 
-[11/22/2000]
+[2000-11-22]
 Version 0.0.7.8 "Silence of the Turkeys"
   * Fixed a minor typo in the README reported in the Debian BTS.
   * Similarly, fixed a small interface bug with the package-limit string.
@@ -6572,25 +6679,25 @@ Version 0.0.7.8 "Silence of the Turkeys"
   * Logs of install runs now display (for upgraded packages) the version being
    upgraded from and the version being upgraded to.
 
-[10/27/2000]
+[2000-10-27]
 Version 0.0.7.7 "Pentecost"
   * More translations (es_ES and pt_BR) added.  Thanks to
    Jorge Carrasquilla Soares and Douglas Moura Ferreira for contributing
    these.
 
-[10/15/2000]
+[2000-10-15]
 Version 0.0.7.6 "Package Management for Pern"
   * Debian bug #74788 fixed: threads are eliminated if not available, allowing
    aptitude to compile on the Hurd.  (go Hurders!)
 
-[10/13/2000]
+[2000-10-13]
 Version 0.0.7.5 "Friday the 13th"
   * Fixed the bug reported by Jordi Mallach <jordi@debian.org>, where "x"
    had its view of its arguments backwards.  (this was introduced by the change
    in 0.0.7.2 which altered the messages displayed when saving as an
    unprivileged user)
 
-[10/11/2000]
+[2000-10-11]
 Version 0.0.7.4 "Ich bin ein Berliner!"
   * corrected German translations.  Hopefully .de users won't mind no longer
    being amused by my fractured Deutsch.  Thanks to Sebastian Schaffert
@@ -6602,12 +6709,12 @@ Version 0.0.7.4 "Ich bin ein Berliner!"
    updated the Japanese translation to reflect this.  (the German translation,
    unfortunately, continues to lag behind)
 
-[10/3/2000]
+[2000-10-03]
 Version 0.0.7.3 "If I only had a brain"
   * aptitude now REALLY has a manpage.  (if it doesn't get installed by
    "make dist", it's not in the program..)
 
-[9/23/2000]
+[2000-09-23]
 Version 0.0.7.2
   * "Bug-reports keep fallin' on my head"
 
@@ -6624,7 +6731,7 @@ Version 0.0.7.2
    given the state of my German, a native speaker may want to send me
    a corrected translation.
 
-[8/03/2000]
+[2000-08-03]
 Version 0.0.7.1
   * "Faster than a speeding river of molasses" release.
 
@@ -6647,7 +6754,7 @@ Version 0.0.7.1
 
   * file: URLs (ie, local package repositories) now work.
 
-[4/18/2000]
+[2000-04-18]
 Version 0.0.7
   * The segfault that plagued 0.0.6.9 seems to be gone.  Thanks go to
    Panu Hällfors <panupa@iki.fi> for helping me narrow the problem down.
@@ -6661,7 +6768,7 @@ Version 0.0.7
    based on keybindings, but this should make things somewhat nicer for
    newbies.
 
-[4/9/2000]
+[2000-04-09]
 Version 0.0.6.9
   *  This version introduces undo capabilities.  You can undo any number of
     actions on packages (install, remove, etc--even "forget new")  See the
@@ -6719,11 +6826,11 @@ Version 0.0.6.9
   *  You can now easily toggle the display of column headers at runtime by
     pressing "h".
 
-2/06/2000
+[2000-02-06]
 Version 0.0.6a
   *  Fixed a rather embarassing compile error that got into 0.0.6.
 
-2/06/2000
+[2000-02-06]
 Version 0.0.6
   *  Greatly improved search capabilities.  You can now match on many different
     attributes of a package, and combine search terms into complex expressions.
@@ -6778,7 +6885,7 @@ Version 0.0.6
   *  Internal change: the code to orchestrate downloads moved to
     download.{cc,h}
 
-1/19/2000
+[2000-01-19]
 Version 0.0.5
   *  This release has a lot of bugfixes, column formatting support, and a
     greatly fixed status-line editor.
@@ -6818,7 +6925,7 @@ Version 0.0.5
   *  At the request of omega@anomie.dhis.net, added a status tree for obsolete
     packages.
 
-1/10/2000
+[2000-01-10]
 Version 0.0.4a
   *  "Faster than a speeding bullet" release.  (I really am starting to regret
     trying to come up with clever names for releases. :) )
@@ -6826,7 +6933,7 @@ Version 0.0.4a
   *  Had a sudden flash of inspiration and added the three-line fix needed to
     hack around libncurses5's leaveok() brokenness.
 
-1/10/2000
+[2000-01-10]
 Version 0.0.4
   *  "New Year's Resolution" release.  I actually managed to fix everything
     which I claimed I would, but I've resolved never to promise to fix
@@ -6894,7 +7001,7 @@ Version 0.0.4
 
   *  Included a real CVS commit log (see ChangeLog)
 
-12/20/1999
+[1999-12-20]
 Version 0.0.3
   *  "Merry Christmas and a Happy Armageddon" release.  This'll probably be the
     last Aptitude release before the year 2000.  Assuming that civilization has
@@ -6947,7 +7054,7 @@ Version 0.0.3
 
   *  This is the first release to get a tag in CVS! :)
 
-12/5/1999
+[1999-12-05]
 Version 0.0.2
   * aptitude can now download and install packages!  This means that it's
    now technically possible to use it in place of other package management
@@ -6961,11 +7068,11 @@ Version 0.0.2
   * broken dependencies should be visually flagged
   * Various other bugfixes and tweaks.
 
-11/18/1999
+[1999-11-18]
 Version 0.0.1  --  Very preliminary alpha version released for comment and/or
                    criticism.
 
-10/20/1999
+[1999-10-20]
 Version 0.0.0  --  Added automake support, it requires this file.
                    Nothing else to say, I don't have enough code to make
 		   this file useful yet.

@@ -15,9 +15,7 @@
 #include <sys/time.h>
 
 using aptitude::Loggers;
-using boost::make_shared;
 using boost::optional;
-using boost::shared_ptr;
 using logging::LoggerPtr;
 
 namespace aptitude
@@ -36,7 +34,7 @@ namespace aptitude
         // failing.
         bool wrote_time_error;
 
-        static const double update_interval = 0.7;
+        static constexpr double update_interval = 0.7;
 
         void write_time_error(int errnum);
 
@@ -52,7 +50,7 @@ namespace aptitude
         void reset_timer();
       };
 
-      const double throttle_impl::update_interval;
+      constexpr double throttle_impl::update_interval;
 
       void throttle_impl::write_time_error(int errnum)
       {
@@ -115,9 +113,9 @@ namespace aptitude
     {
     }
 
-    shared_ptr<throttle> create_throttle()
+    boost::shared_ptr<throttle> create_throttle()
     {
-      return make_shared<throttle_impl>();
+      return boost::make_shared<throttle_impl>();
     }
   }
 }

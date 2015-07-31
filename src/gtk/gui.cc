@@ -76,6 +76,7 @@ using aptitude::Loggers;
 
 namespace gui
 {
+  // Ensure help.txt and doc/ is kept in synchronisation with the below states
   // \todo Some of these icon choices suck.
   const entity_state_info not_installed_columns("p", N_("Not installed"), Gtk::StockID());
   const entity_state_info virtual_columns("p", N_("Virtual"), Gtk::StockID());
@@ -86,7 +87,7 @@ namespace gui
   const entity_state_info triggers_awaited_columns("W", N_("Triggers awaited"), Gtk::Stock::DIALOG_WARNING);
   const entity_state_info triggers_pending_columns("T", N_("Triggers pending"), Gtk::Stock::DIALOG_WARNING);
   const entity_state_info installed_columns("i", N_("Installed"), Gtk::Stock::YES);
-  const entity_state_info error_columns("E", "Internal Error (bad state)", Gtk::Stock::DIALOG_ERROR);
+  const entity_state_info error_columns("E", "Internal error (bad state)", Gtk::Stock::DIALOG_ERROR);
 
   const entity_state_info install_columns("i", N_("Install"), Gtk::Stock::ADD);
   const entity_state_info reinstall_columns("r", N_("Reinstall"), Gtk::Stock::ADD);
