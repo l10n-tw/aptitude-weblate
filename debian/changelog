@@ -37,7 +37,7 @@ aptitude (0.7-1) UNRELEASED; urgency=medium
 
   [ Axel Beckert ]
   * Apply wrap-and-sort.
-  * No more install documentation related to the categorical browser.
+  * No more install files related to the categorical browser.
   * Update Vcs-Browser header to use cgit and HTTPS.
   * Declare compliance with Debian Policy 3.9.6. (No changes needed.)
   * debian/rules:
