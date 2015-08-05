@@ -47,6 +47,8 @@ aptitude (0.7-1) UNRELEASED; urgency=medium
   * Cherry-pick 3593bdcb, 2a5a8b25, and 4b24b358 from upstream to cope
     with Boost 1.58 which has been uploaded to unstable during the
     libstdc++6 transition, but after the 0.7 upstream release.
+  * Temporarily bump g++ dependency from 4:3.2.2-0 to 4:5.2 for the
+    gcc-5/libstdc++6 transition.
 
  -- Axel Beckert <abe@debian.org>  Sun, 19 Jul 2015 00:56:03 +0200
 
