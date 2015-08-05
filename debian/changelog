@@ -1,4 +1,4 @@
-aptitude (0.7-1) UNRELEASED; urgency=medium
+aptitude (0.7-1) unstable; urgency=medium
 
   [ Manuel A. Fernandez Montecelo ]
   * New upstream release.
@@ -8,8 +8,8 @@ aptitude (0.7-1) UNRELEASED; urgency=medium
       not-multiarch-compatible categorical browser has been removed. The
       Debtags browser has replaced most of its functionality already. Local
       package groups are no more available, though.  The removal discussion
-      has taken place in #686646. (Closes: #686124, #686142, #686646) as
-      well as (LP: #1082198).
+      has taken place in #686646. (Closes: #686124, #686142, #686646 as
+      well as LP: #1082198).
     - Changes to allow to compile with C++11 compatibilty mode (prompted by
       changes in the toolchain in Debian) (Closes: #777778)
     - Fix reported installed size change when installing/deinstalling
@@ -27,7 +27,7 @@ aptitude (0.7-1) UNRELEASED; urgency=medium
       - Czech by Miroslav Kure (Closes: #758226)
       - Russian by Yuri Kozlov (Closes: #760812)
       - German man page translation by Mario Blättermann and
-        Jens Seidel <jensseidel@users.sf.net> (Closes: #762340)
+        Jens Seidel (Closes: #762340)
       - Catalan by Orestes Mas (Closes: #771618)
       - French documentation translation by Cédric Boutillier
         (Closes: #773807)
@@ -51,7 +51,7 @@ aptitude (0.7-1) UNRELEASED; urgency=medium
     gcc-5/libstdc++6 transition.
   * Add build-dependency on automake.
 
- -- Axel Beckert <abe@debian.org>  Sun, 19 Jul 2015 00:56:03 +0200
+ -- Axel Beckert <abe@debian.org>  Wed, 05 Aug 2015 19:05:18 +0200
 
 aptitude (0.6.11-1) unstable; urgency=medium
 
