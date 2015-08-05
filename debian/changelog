@@ -49,6 +49,7 @@ aptitude (0.7-1) UNRELEASED; urgency=medium
     libstdc++6 transition, but after the 0.7 upstream release.
   * Temporarily bump g++ dependency from 4:3.2.2-0 to 4:5.2 for the
     gcc-5/libstdc++6 transition.
+  * Add build-dependency on automake.
 
  -- Axel Beckert <abe@debian.org>  Sun, 19 Jul 2015 00:56:03 +0200
 
