@@ -1,0 +1,996 @@
+Origin: commit 2a5a8b25fb1553f1799cf5ce076eae9a95d2d7d1
+Author: Manuel A. Fernandez Montecelo <manuel.montezelo@gmail.com>
+Description: Convert more instances of make_shared, etc. to be explicitly prefixed by boost::
+ Convert instances of boost::shared_ptr, make_shared, and weak_ptr to be
+ explicitly prefixed by boost::, otherwise they clash or have problems compiling
+ with the new C++11 std::shared_ptr and analogues (many were not converted in the
+ previous version).
+
+diff --git a/src/generic/util/logging.cc b/src/generic/util/logging.cc
+index e6dad44..6cd5e26 100644
+--- a/src/generic/util/logging.cc
++++ b/src/generic/util/logging.cc
+@@ -32,7 +32,6 @@
+ #include <iostream>
+ 
+ using boost::enable_shared_from_this;
+-using boost::make_shared;
+ using boost::multi_index_container;
+ using boost::multi_index::const_mem_fun;
+ using boost::multi_index::hashed_non_unique;
+@@ -40,7 +39,6 @@ using boost::multi_index::hashed_unique;
+ using boost::multi_index::indexed_by;
+ using boost::multi_index::tag;
+ using boost::optional;
+-using boost::weak_ptr;
+ using cwidget::threads::mutex;
+ 
+ namespace aptitude
+@@ -77,7 +75,7 @@ namespace aptitude
+         // We carry a weak pointer to the parent logging system, so
+         // that we can call back into it even if it's not the global
+         // instance.
+-        const weak_ptr<LoggingSystem::Impl> loggingSystemWeak;
++        const boost::weak_ptr<LoggingSystem::Impl> loggingSystemWeak;
+ 
+         sigc::signal<void, const char *, int, log_level, LoggerPtr, std::string>
+         signal_message_logged;
+@@ -270,11 +268,11 @@ namespace aptitude
+           // destructors ran, which has all sorts of nasty
+           // possibilities.
+           //
+-          // Needs to be a shared_ptr so enable_shared_from_this()
++          // Needs to be a boost::shared_ptr so enable_shared_from_this()
+           // works (which allows loggers to take weak references to
+           // the logging system).
+           static boost::shared_ptr<Impl> *system =
+-            new boost::shared_ptr<Impl>(make_shared<Impl>());
++            new boost::shared_ptr<Impl>(boost::make_shared<Impl>());
+ 
+           return **system;
+         }
+@@ -282,7 +280,7 @@ namespace aptitude
+         /** \brief Create a new logging system. */
+         static boost::shared_ptr<Impl> create()
+         {
+-          return make_shared<Impl>();
++          return boost::make_shared<Impl>();
+         }
+       };
+ 
+@@ -351,7 +349,7 @@ namespace aptitude
+           }
+ 
+         boost::shared_ptr<Logger::Impl> rval =
+-          make_shared<Logger::Impl>(category, parent, shared_from_this());
++          boost::make_shared<Logger::Impl>(category, parent, shared_from_this());
+ 
+         loggers.insert(rval);
+ 
+diff --git a/src/generic/views/mocks/download_progress.cc b/src/generic/views/mocks/download_progress.cc
+index b945ba3..ba5895c 100644
+--- a/src/generic/views/mocks/download_progress.cc
++++ b/src/generic/views/mocks/download_progress.cc
+@@ -21,9 +21,6 @@
+ // Local includes:
+ #include "download_progress.h"
+ 
+-using boost::make_shared;
+-using boost::shared_ptr;
+-
+ namespace aptitude
+ {
+   namespace views
+diff --git a/src/gtk/areas.cc b/src/gtk/areas.cc
+index 725e784..43551ca 100644
+--- a/src/gtk/areas.cc
++++ b/src/gtk/areas.cc
+@@ -11,8 +11,6 @@
+ 
+ #include <gtkmm/stock.h>
+ 
+-using boost::make_shared;
+-using boost::shared_ptr;
+ using gui::toplevel::area_info;
+ using gui::toplevel::area_list;
+ using gui::toplevel::create_area_info;
+@@ -28,20 +26,20 @@ namespace gui
+   {
+     class areas_impl : public areas
+     {
+-      shared_ptr<area_info> upgrade;
+-      shared_ptr<area_info> browse;
+-      shared_ptr<area_info> search;
+-      shared_ptr<area_info> go;
+-      shared_ptr<area_info> preferences;
++      boost::shared_ptr<area_info> upgrade;
++      boost::shared_ptr<area_info> browse;
++      boost::shared_ptr<area_info> search;
++      boost::shared_ptr<area_info> go;
++      boost::shared_ptr<area_info> preferences;
+ 
+-      shared_ptr<area_list> all_areas;
++      boost::shared_ptr<area_list> all_areas;
+ 
+       // Handle the wonky protocol for getting a pixbuf from a stock
+       // ID.
+       static Glib::RefPtr<Gdk::Pixbuf>
+       get_stock_icon(const Gtk::BuiltinStockID &stock)
+       {
+-        shared_ptr<Gtk::Image>
++        boost::shared_ptr<Gtk::Image>
+           img(new Gtk::Image(stock,
+                              Gtk::ICON_SIZE_BUTTON));
+ 
+@@ -49,14 +47,14 @@ namespace gui
+       }
+ 
+       // Support constructing all_areas from the rest of the members.
+-      static shared_ptr<area_list>
+-      make_all_areas(const shared_ptr<area_info> &upgrade,
+-                     const shared_ptr<area_info> &browse,
+-                     const shared_ptr<area_info> &search,
+-                     const shared_ptr<area_info> &go,
+-                     const shared_ptr<area_info> &preferences)
++      static boost::shared_ptr<area_list>
++      make_all_areas(const boost::shared_ptr<area_info> &upgrade,
++                     const boost::shared_ptr<area_info> &browse,
++                     const boost::shared_ptr<area_info> &search,
++                     const boost::shared_ptr<area_info> &go,
++                     const boost::shared_ptr<area_info> &preferences)
+       {
+-        std::vector<shared_ptr<area_info> > all_areas;
++        std::vector<boost::shared_ptr<area_info> > all_areas;
+ 
+         all_areas.push_back(upgrade);
+         all_areas.push_back(browse);
+@@ -98,8 +96,8 @@ namespace gui
+     };
+   }
+ 
+-  shared_ptr<areas> create_areas()
++  boost::shared_ptr<areas> create_areas()
+   {
+-    return make_shared<areas_impl>();
++    return boost::make_shared<areas_impl>();
+   }
+ }
+diff --git a/src/gtk/init.cc b/src/gtk/init.cc
+index b3f4526..fb89635 100644
+--- a/src/gtk/init.cc
++++ b/src/gtk/init.cc
+@@ -46,7 +46,6 @@ using aptitude::util::dynamic_set_union;
+ using aptitude::util::enumerator;
+ using boost::lambda::_1;
+ using boost::lambda::constructor;
+-using boost::shared_ptr;
+ using gui::toplevel::area_info;
+ using gui::toplevel::area_list;
+ using gui::toplevel::create_area_list;
+@@ -73,19 +72,19 @@ namespace gui
+                              "widget \"*.notebook_close_button\" style \"tiny-button-style\"");
+     }
+ 
+-    shared_ptr<view> create_main_view(const shared_ptr<area_list> &areas)
++    boost::shared_ptr<view> create_main_view(const boost::shared_ptr<area_list> &areas)
+     {
+-      shared_ptr<dynamic_set_union<shared_ptr<tab_info> > > all_tabs_set =
+-        dynamic_set_union<shared_ptr<tab_info> >::create();
++      boost::shared_ptr<dynamic_set_union<boost::shared_ptr<tab_info> > > all_tabs_set =
++        dynamic_set_union<boost::shared_ptr<tab_info> >::create();
+ 
+-      for(shared_ptr<enumerator<shared_ptr<area_info> > > e = areas->get_areas();
++      for(boost::shared_ptr<enumerator<boost::shared_ptr<area_info> > > e = areas->get_areas();
+           e->advance(); )
+         all_tabs_set->insert_set(e->get_current()->get_tabs());
+ 
+ 
+-      typedef dynamic_set_transform<shared_ptr<tab_info>,
+-        shared_ptr<tab_display_info> > upcast_set;
+-      shared_ptr<dynamic_set<shared_ptr<tab_display_info> > > all_tabs_view_set =
++      typedef dynamic_set_transform<boost::shared_ptr<tab_info>,
++        boost::shared_ptr<tab_display_info> > upcast_set;
++      boost::shared_ptr<dynamic_set<boost::shared_ptr<tab_display_info> > > all_tabs_view_set =
+         upcast_set::create(all_tabs_set,
+                            constructor<boost::shared_ptr<tab_display_info> >());
+ 
+@@ -158,10 +157,10 @@ namespace gui
+     Glib::signal_idle().connect(sigc::bind_return(sigc::ptr_fun(&do_apt_init),
+ 						  false));
+ 
+-    shared_ptr<areas> all_areas = create_areas();
++    boost::shared_ptr<areas> all_areas = create_areas();
+ 
+-    shared_ptr<view> main_win_view = create_main_view(all_areas->get_areas());
+-    shared_ptr<main_window> main = create_mainwindow(glade, main_win_view, all_areas);
++    boost::shared_ptr<view> main_win_view = create_main_view(all_areas->get_areas());
++    boost::shared_ptr<main_window> main = create_mainwindow(glade, main_win_view, all_areas);
+     main->get_window()->signal_unmap().connect(sigc::ptr_fun(&globals::main_quit));
+     main->get_window()->show();
+ 
+diff --git a/src/gtk/mainwindow.cc b/src/gtk/mainwindow.cc
+index 97e589d..904b34e 100644
+--- a/src/gtk/mainwindow.cc
++++ b/src/gtk/mainwindow.cc
+@@ -32,8 +32,6 @@
+ #include <libglademm.h>
+ 
+ using aptitude::Loggers;
+-using boost::make_shared;
+-using boost::shared_ptr;
+ 
+ namespace gui
+ {
+@@ -57,7 +55,7 @@ namespace gui
+        *
+        *  Must be invoked exactly once.
+        */
+-      void set_view(const shared_ptr<toplevel::view> &view)
++      void set_view(const boost::shared_ptr<toplevel::view> &view)
+       {
+         if(main_bin->get_child() != NULL)
+           LOG_ERROR(logger, "Two views added to the main window, discarding the second one.");
+@@ -73,18 +71,18 @@ namespace gui
+     class main_window_impl : public main_window
+     {
+       Gtk::Window *w;
+-      shared_ptr<areas> all_areas;
++      boost::shared_ptr<areas> all_areas;
+ 
+     public:
+       main_window_impl(window *_w,
+-                       const shared_ptr<areas> &_all_areas)
++                       const boost::shared_ptr<areas> &_all_areas)
+         : w(_w),
+           all_areas(_all_areas)
+       {
+       }
+ 
+       Gtk::Window *get_window() { return w; }
+-      shared_ptr<areas> get_areas() { return all_areas; }
++      boost::shared_ptr<areas> get_areas() { return all_areas; }
+     };
+   }
+ 
+@@ -92,15 +90,15 @@ namespace gui
+   {
+   }
+ 
+-  shared_ptr<main_window>
++  boost::shared_ptr<main_window>
+   create_mainwindow(const Glib::RefPtr<Gnome::Glade::Xml> &glade,
+-                    const shared_ptr<toplevel::view> &view,
+-                    const shared_ptr<areas> &all_areas)
++                    const boost::shared_ptr<toplevel::view> &view,
++                    const boost::shared_ptr<areas> &all_areas)
+   {
+     window *w;
+     glade->get_widget_derived("main_window_2", w);
+     w->set_view(view);
+ 
+-    return make_shared<main_window_impl>(w, all_areas);
++    return boost::make_shared<main_window_impl>(w, all_areas);
+   }
+ }
+diff --git a/src/gtk/toplevel/tabs_notebook.cc b/src/gtk/toplevel/tabs_notebook.cc
+index eeda019..efcc211 100644
+--- a/src/gtk/toplevel/tabs_notebook.cc
++++ b/src/gtk/toplevel/tabs_notebook.cc
+@@ -32,9 +32,6 @@
+ using aptitude::Loggers;
+ using aptitude::util::dynamic_set;
+ using aptitude::util::enumerator;
+-using boost::make_shared;
+-using boost::shared_ptr;
+-using boost::weak_ptr;
+ 
+ namespace gui
+ {
+@@ -42,7 +39,7 @@ namespace gui
+   {
+     namespace
+     {
+-      std::string safe_get_name(const shared_ptr<tab_display_info> &tab)
++      std::string safe_get_name(const boost::shared_ptr<tab_display_info> &tab)
+       {
+         if(tab.get() == NULL)
+           return "(null)";
+@@ -53,7 +50,7 @@ namespace gui
+       // This property is attached to the widget stored in each tab,
+       // to allow it to be traced back to the corresponding
+       // tab_display_info object.
+-      property<weak_ptr<tab_display_info> > tab_property("aptitude-tabs-notebook-tab-info");
++      property<boost::weak_ptr<tab_display_info> > tab_property("aptitude-tabs-notebook-tab-info");
+ 
+       // \note I'd like to find a way to hide the fact that this is a
+       // Notebook; right now a savvy client could use a legal downcast
+@@ -64,13 +61,13 @@ namespace gui
+       // affect layout?  Unsure).
+       class tabs_notebook : public Gtk::Notebook
+       {
+-        shared_ptr<dynamic_set<shared_ptr<tab_display_info> > > tabs;
++        boost::shared_ptr<dynamic_set<boost::shared_ptr<tab_display_info> > > tabs;
+         logging::LoggerPtr logger;
+         // Used to know which page we're switching away from when we
+         // switch.
+-        shared_ptr<tab_display_info> last_active_tab;
++        boost::shared_ptr<tab_display_info> last_active_tab;
+ 
+-        sigc::signal<void, shared_ptr<tab_display_info> > signal_active_tab_changed;
++        sigc::signal<void, boost::shared_ptr<tab_display_info> > signal_active_tab_changed;
+ 
+       public:
+         tabs_notebook();
+@@ -79,24 +76,24 @@ namespace gui
+          *  displayed tab changes.
+          */
+         sigc::connection
+-        connect_active_tab_changed(const sigc::slot<void, shared_ptr<tab_display_info> > &slot);
++        connect_active_tab_changed(const sigc::slot<void, boost::shared_ptr<tab_display_info> > &slot);
+ 
+         /** \brief Set the tabs shown by this tab object.
+          *
+          *  Closes all the tabs currently displayed, then adds the new
+          *  ones.
+          */
+-        void set_tabs(const shared_ptr<dynamic_set<shared_ptr<tab_display_info> > > &tabs);
++        void set_tabs(const boost::shared_ptr<dynamic_set<boost::shared_ptr<tab_display_info> > > &tabs);
+ 
+         /** \brief Get the tab of the currently selected page, or NULL
+          *  if nothing is selected (or if the selected page has no
+          *  tab, but that should be impossible).
+          */
+-        shared_ptr<tab_display_info> get_current_tab();
++        boost::shared_ptr<tab_display_info> get_current_tab();
+ 
+       private:
+-        void handle_inserted(const shared_ptr<tab_display_info> &tab);
+-        void handle_removed(const shared_ptr<tab_display_info> &tab);
++        void handle_inserted(const boost::shared_ptr<tab_display_info> &tab);
++        void handle_removed(const boost::shared_ptr<tab_display_info> &tab);
+         void handle_switch_page(GtkNotebookPage *page,
+                                 guint page_num);
+       };
+@@ -108,7 +105,7 @@ namespace gui
+                                                    &tabs_notebook::handle_switch_page));
+       }
+ 
+-      void tabs_notebook::set_tabs(const shared_ptr<dynamic_set<shared_ptr<tab_display_info> > > &new_tabs)
++      void tabs_notebook::set_tabs(const boost::shared_ptr<dynamic_set<boost::shared_ptr<tab_display_info> > > &new_tabs)
+       {
+         LOG_TRACE(logger, "Attaching to the tabs set at " << new_tabs
+                   << " with " << new_tabs->size() << " initial entries.");
+@@ -123,12 +120,12 @@ namespace gui
+             // it actually causes the tab to be removed from the set, and
+             // that doing so triggers this object's removed() routine.
+ 
+-            std::vector<shared_ptr<tab_display_info> > tabs_copy;
+-            for(shared_ptr<enumerator<shared_ptr<tab_display_info> > > e
++            std::vector<boost::shared_ptr<tab_display_info> > tabs_copy;
++            for(boost::shared_ptr<enumerator<boost::shared_ptr<tab_display_info> > > e
+                   = tabs->enumerate(); e->advance(); )
+               tabs_copy.push_back(e->get_current());
+ 
+-            for(std::vector<shared_ptr<tab_display_info> >::const_iterator it =
++            for(std::vector<boost::shared_ptr<tab_display_info> >::const_iterator it =
+                   tabs_copy.begin(); it != tabs_copy.end(); ++it)
+               (*it)->force_close();
+ 
+@@ -138,10 +135,10 @@ namespace gui
+             // remaining tabs.  Any tabs that are left represent a bug in
+             // the program.
+             tabs_copy.clear();
+-            for(shared_ptr<enumerator<shared_ptr<tab_display_info> > > e
++            for(boost::shared_ptr<enumerator<boost::shared_ptr<tab_display_info> > > e
+                   = tabs->enumerate(); e->advance(); )
+               {
+-                shared_ptr<tab_display_info> tab = e->get_current();
++                boost::shared_ptr<tab_display_info> tab = e->get_current();
+ 
+                 if(tab.get() == NULL)
+                   {
+@@ -166,7 +163,7 @@ namespace gui
+ 
+         // Now inject the new tabs:
+         tabs = new_tabs;
+-        for(shared_ptr<enumerator<shared_ptr<tab_display_info> > > e = tabs->enumerate();
++        for(boost::shared_ptr<enumerator<boost::shared_ptr<tab_display_info> > > e = tabs->enumerate();
+             e->advance(); )
+           handle_inserted(e->get_current());
+ 
+@@ -177,7 +174,7 @@ namespace gui
+                                             &tabs_notebook::handle_removed));
+       }
+ 
+-      void tabs_notebook::handle_inserted(const shared_ptr<tab_display_info> &tab)
++      void tabs_notebook::handle_inserted(const boost::shared_ptr<tab_display_info> &tab)
+       {
+         if(tab.get() == NULL)
+           {
+@@ -197,7 +194,7 @@ namespace gui
+             return;
+           }
+ 
+-        weak_ptr<tab_display_info> tab_weak(tab);
++        boost::weak_ptr<tab_display_info> tab_weak(tab);
+ 
+         // Backlink the widget to its tab, and start listening for
+         // signals on the tab.  Note that the backlink must be weak,
+@@ -207,7 +204,7 @@ namespace gui
+         append_page(*manage(tab->get_widget()));
+       }
+ 
+-      void tabs_notebook::handle_removed(const shared_ptr<tab_display_info> &tab)
++      void tabs_notebook::handle_removed(const boost::shared_ptr<tab_display_info> &tab)
+       {
+         if(tab.get() == NULL)
+           {
+@@ -232,11 +229,11 @@ namespace gui
+           last_active_tab->set_active(true);
+       }
+ 
+-      shared_ptr<tab_display_info> tabs_notebook::get_current_tab()
++      boost::shared_ptr<tab_display_info> tabs_notebook::get_current_tab()
+       {
+         int page = get_current_page();
+         if(page == -1)
+-          return shared_ptr<tab_display_info>();
++          return boost::shared_ptr<tab_display_info>();
+         else
+           {
+             Gtk::Widget * const widget = get_nth_page(page);
+@@ -246,13 +243,13 @@ namespace gui
+                 LOG_ERROR(logger,
+                           "Page " << page <<
+                           " has no associated widget.");
+-                return shared_ptr<tab_display_info>();
++                return boost::shared_ptr<tab_display_info>();
+               }
+             else
+               {
+-                shared_ptr<tab_display_info> rval =
++                boost::shared_ptr<tab_display_info> rval =
+                   tab_property.get_from(widget,
+-                                        weak_ptr<tab_display_info>()).lock();
++                                        boost::weak_ptr<tab_display_info>()).lock();
+ 
+                 if(rval.get() == NULL)
+                   LOG_ERROR(logger,
+@@ -267,7 +264,7 @@ namespace gui
+       void tabs_notebook::handle_switch_page(GtkNotebookPage *page,
+                                              guint page_num)
+       {
+-        shared_ptr<tab_display_info> new_tab = get_current_tab();
++        boost::shared_ptr<tab_display_info> new_tab = get_current_tab();
+         LOG_TRACE(logger, "Switching from "
+                   << safe_get_name(last_active_tab) << "("
+                   << last_active_tab << ") to "
+@@ -283,7 +280,7 @@ namespace gui
+       }
+ 
+       sigc::connection
+-      tabs_notebook::connect_active_tab_changed(const sigc::slot<void, shared_ptr<tab_display_info> > &slot)
++      tabs_notebook::connect_active_tab_changed(const sigc::slot<void, boost::shared_ptr<tab_display_info> > &slot)
+       {
+         return signal_active_tab_changed.connect(slot);
+       }
+@@ -302,20 +299,20 @@ namespace gui
+       }
+ 
+       Gtk::Widget *get_widget() { return notebook; }
+-      shared_ptr<tab_display_info> get_active_tab() { return notebook->get_current_tab(); }
++      boost::shared_ptr<tab_display_info> get_active_tab() { return notebook->get_current_tab(); }
+       sigc::connection
+-      connect_active_tab_changed(const sigc::slot<void, shared_ptr<tab_display_info> > &slot)
++      connect_active_tab_changed(const sigc::slot<void, boost::shared_ptr<tab_display_info> > &slot)
+       {
+         return notebook->connect_active_tab_changed(slot);
+       }
+     };
+ 
+-    shared_ptr<view>
+-    create_tabs_notebook(const shared_ptr<dynamic_set<shared_ptr<tab_display_info> > > &tabs)
++    boost::shared_ptr<view>
++    create_tabs_notebook(const boost::shared_ptr<dynamic_set<boost::shared_ptr<tab_display_info> > > &tabs)
+     {
+       tabs_notebook *rval = new tabs_notebook;
+       rval->set_tabs(tabs);
+-      return make_shared<tabs_notebook_view>(rval);
++      return boost::make_shared<tabs_notebook_view>(rval);
+     }
+   }
+ }
+diff --git a/src/qt/package.cc b/src/qt/package.cc
+index 59b0411..02512d0 100644
+--- a/src/qt/package.cc
++++ b/src/qt/package.cc
+@@ -39,7 +39,6 @@ using aptitude::apt::get_tags;
+ using aptitude::apt::tag;
+ using aptitude::description_element_ref;
+ using aptitude::parse_desc;
+-using boost::make_shared;
+ using cw::util::transcode;
+ 
+ namespace aptitude
+@@ -50,7 +49,7 @@ namespace aptitude
+     {
+       package_ptr package::create(const pkgCache::PkgIterator &pkg)
+       {
+-        return make_shared<package>(pkg);
++	return boost::make_shared<package>(pkg);
+       }
+ 
+       package::package(const pkgCache::PkgIterator &_pkg)
+diff --git a/src/qt/package.h b/src/qt/package.h
+index ba6ece6..75c7e76 100644
+--- a/src/qt/package.h
++++ b/src/qt/package.h
+@@ -48,7 +48,6 @@
+ #endif
+ 
+ using aptitude::apt::tag;
+-using boost::make_shared;
+ using boost::optional;
+ 
+ namespace aptitude
+@@ -70,7 +69,7 @@ namespace aptitude
+        */
+       class package : boost::noncopyable
+       {
+-        friend boost::shared_ptr<package> make_shared<package>(const pkgCache::PkgIterator &);
++        friend boost::shared_ptr<package> boost::make_shared<package>(const pkgCache::PkgIterator &);
+ 
+         const pkgCache::PkgIterator pkg;
+         mutable boost::optional<version_ptr> candidate_ver;
+diff --git a/src/qt/version.cc b/src/qt/version.cc
+index a85d94e..21bb2a0 100644
+--- a/src/qt/version.cc
++++ b/src/qt/version.cc
+@@ -47,7 +47,7 @@ namespace aptitude
+     {
+       version_ptr version::create(const pkgCache::VerIterator &ver)
+       {
+-        return make_shared<version>(ver);
++	return boost::make_shared<version>(ver);
+       }
+ 
+       version::version(const pkgCache::VerIterator &_ver)
+diff --git a/src/qt/version.h b/src/qt/version.h
+index fdafd02..243c321 100644
+--- a/src/qt/version.h
++++ b/src/qt/version.h
+@@ -37,7 +37,6 @@
+ #include <vector>
+ 
+ using aptitude::description_element_ref;
+-using boost::make_shared;
+ using boost::optional;
+ 
+ namespace aptitude
+@@ -58,7 +57,7 @@ namespace aptitude
+        */
+       class version : boost::noncopyable
+       {
+-        friend boost::shared_ptr<version> make_shared<version>(const pkgCache::VerIterator &);
++	friend boost::shared_ptr<version> boost::make_shared<version>(const pkgCache::VerIterator &);
+ 
+         const pkgCache::VerIterator ver;
+ 
+diff --git a/tests/test_cmdline_download_progress_display.cc b/tests/test_cmdline_download_progress_display.cc
+index 8ff1e5f..d5d8d65 100644
+--- a/tests/test_cmdline_download_progress_display.cc
++++ b/tests/test_cmdline_download_progress_display.cc
+@@ -36,9 +36,7 @@
+ 
+ using aptitude::cmdline::create_download_progress_display;
+ using aptitude::views::download_progress;
+-using boost::make_shared;
+ using boost::optional;
+-using boost::shared_ptr;
+ using testing::InSequence;
+ using testing::Mock;
+ using testing::Return;
+@@ -61,11 +59,11 @@ namespace
+   // The test parameter controls whether messages are to be displayed.
+   struct CmdlineDownloadProgressDisplayTest : public TestWithParam<bool>
+   {
+-    shared_ptr<mocks::transient_message> msg;
+-    shared_ptr<mocks::download_status_display> status_display;
+-    shared_ptr<mocks::terminal_input> term_input;
++    boost::shared_ptr<mocks::transient_message> msg;
++    boost::shared_ptr<mocks::download_status_display> status_display;
++    boost::shared_ptr<mocks::terminal_input> term_input;
+ 
+-    shared_ptr<views::download_progress> progress;
++    boost::shared_ptr<views::download_progress> progress;
+ 
+     typedef download_progress::file_progress file_progress;
+     typedef download_progress::status status;
+diff --git a/tests/test_cmdline_download_status_display.cc b/tests/test_cmdline_download_status_display.cc
+index 3938a38..9c4007f 100644
+--- a/tests/test_cmdline_download_status_display.cc
++++ b/tests/test_cmdline_download_status_display.cc
+@@ -36,9 +36,7 @@
+ using aptitude::cmdline::create_cmdline_download_status_display;
+ using aptitude::cmdline::download_status_display;
+ using aptitude::views::download_progress;
+-using boost::make_shared;
+ using boost::optional;
+-using boost::shared_ptr;
+ using testing::Return;
+ using testing::StrEq;
+ using testing::TestWithParam;
+@@ -73,11 +71,11 @@ namespace
+   // verify that suppressing messages actually works.
+   struct CmdlineDownloadStatusDisplayTest : public TestWithParam<bool>
+   {
+-    shared_ptr<mocks::transient_message> msg;
+-    shared_ptr<mocks::terminal_locale> term_locale;
+-    shared_ptr<mocks::terminal_metrics> term_metrics;
++    boost::shared_ptr<mocks::transient_message> msg;
++    boost::shared_ptr<mocks::terminal_locale> term_locale;
++    boost::shared_ptr<mocks::terminal_metrics> term_metrics;
+ 
+-    shared_ptr<download_status_display> status_display;
++    boost::shared_ptr<download_status_display> status_display;
+ 
+     std::wstring widechstr;
+ 
+@@ -102,7 +100,7 @@ namespace
+     file_progress no_progress_out_of_zero_with_mode;
+ 
+     CmdlineDownloadStatusDisplayTest()
+-      : msg(make_shared<mocks::transient_message>()),
++      : msg(boost::make_shared<mocks::transient_message>()),
+         term_locale(mocks::terminal_locale::create_strict()),
+         term_metrics(mocks::terminal_metrics::create_strict()),
+         no_progress(0, 10, false, "no progress", optional<unsigned long>(), ""),
+diff --git a/tests/test_cmdline_progress_display.cc b/tests/test_cmdline_progress_display.cc
+index bc791eb..4cac7c7 100644
+--- a/tests/test_cmdline_progress_display.cc
++++ b/tests/test_cmdline_progress_display.cc
+@@ -36,8 +36,6 @@
+ 
+ using aptitude::cmdline::create_progress_display;
+ using aptitude::util::progress_info;
+-using boost::make_shared;
+-using boost::shared_ptr;
+ using testing::AnyNumber;
+ using testing::AtMost;
+ using testing::Expectation;
+@@ -85,8 +83,8 @@ namespace
+   struct CmdlineProgressDisplayTest
+     : public TestWithParam<CmdlineProgressDisplayParams>
+   {
+-    shared_ptr<mocks::transient_message> msg;
+-    shared_ptr<views::progress> progress;
++    boost::shared_ptr<mocks::transient_message> msg;
++    boost::shared_ptr<views::progress> progress;
+ 
+     bool get_old_style_percentage() const
+     {
+diff --git a/tests/test_cmdline_search_progress.cc b/tests/test_cmdline_search_progress.cc
+index e245e69..eb61a3c 100644
+--- a/tests/test_cmdline_search_progress.cc
++++ b/tests/test_cmdline_search_progress.cc
+@@ -36,8 +36,6 @@
+ 
+ using aptitude::cmdline::create_search_progress;
+ using aptitude::util::progress_info;
+-using boost::make_shared;
+-using boost::shared_ptr;
+ using testing::AnyNumber;
+ using testing::Expectation;
+ using testing::Mock;
+@@ -58,18 +56,18 @@ namespace
+ {
+   struct CmdlineSearchProgressTest : public Test
+   {
+-    const shared_ptr<mocks::progress> progress;
+-    const shared_ptr<mocks::throttle> throttle;
++    const boost::shared_ptr<mocks::progress> progress;
++    const boost::shared_ptr<mocks::throttle> throttle;
+ 
+     /** \brief The search pattern string used to create the search
+      *  progress object.
+      */
+     const std::string search_pattern;
+-    const shared_ptr<views::progress> search_progress;
++    const boost::shared_ptr<views::progress> search_progress;
+ 
+     CmdlineSearchProgressTest()
+-      : progress(make_shared<mocks::progress>()),
+-        throttle(make_shared<mocks::throttle>()),
++      : progress(boost::make_shared<mocks::progress>()),
++        throttle(boost::make_shared<mocks::throttle>()),
+         search_pattern("?name(aptitude)"),
+         search_progress(create_search_progress(search_pattern,
+                                                progress,
+diff --git a/tests/test_dynamic_set.cc b/tests/test_dynamic_set.cc
+index 32a6f4e..8f5ba0f 100644
+--- a/tests/test_dynamic_set.cc
++++ b/tests/test_dynamic_set.cc
+@@ -36,10 +36,8 @@ using aptitude::util::dynamic_set_union;
+ using aptitude::util::enumerator;
+ using aptitude::util::writable_dynamic_set;
+ 
+-using boost::shared_ptr;
+ using boost::unordered_set;
+ using boost::variant;
+-using boost::weak_ptr;
+ 
+ namespace
+ {
+@@ -244,7 +242,7 @@ namespace
+ 
+   struct set_test
+   {
+-    shared_ptr<writable_dynamic_set<int> > valuesPtr;
++    boost::shared_ptr<writable_dynamic_set<int> > valuesPtr;
+     writable_dynamic_set<int> &values;
+     dynamic_set_signals<int> signals, expected_signals;
+ 
+@@ -271,7 +269,7 @@ namespace
+     {
+       std::vector<int> rval;
+ 
+-      for(shared_ptr<enumerator<int> > e = values.enumerate();
++      for(boost::shared_ptr<enumerator<int> > e = values.enumerate();
+           e->advance(); )
+         {
+           rval.push_back(e->get_current());
+@@ -304,7 +302,7 @@ std::vector<T> to_vector(dynamic_set<T> &s)
+   std::vector<T> rval;
+   rval.reserve(s.size());
+ 
+-  for(shared_ptr<enumerator<int> > e = s.enumerate();
++  for(boost::shared_ptr<enumerator<int> > e = s.enumerate();
+       e->advance(); )
+     {
+       rval.push_back(e->get_current());
+@@ -314,7 +312,7 @@ std::vector<T> to_vector(dynamic_set<T> &s)
+ }
+ 
+ template<typename T>
+-std::vector<T> to_vector(const shared_ptr<dynamic_set<T> > &s)
++std::vector<T> to_vector(const boost::shared_ptr<dynamic_set<T> > &s)
+ {
+   return to_vector(*s);
+ }
+@@ -403,8 +401,8 @@ BOOST_FIXTURE_TEST_CASE(dynamicSetEnumeratorKeepsSetAlive, set_test)
+   // to die, so we need one element.
+   values.insert(5);
+ 
+-  weak_ptr<dynamic_set<int> > valuesWeak(valuesPtr);
+-  shared_ptr<enumerator<int> > valuesEnum(values.enumerate());
++  boost::weak_ptr<dynamic_set<int> > valuesWeak(valuesPtr);
++  boost::shared_ptr<enumerator<int> > valuesEnum(values.enumerate());
+ 
+   BOOST_CHECK(!valuesWeak.expired());
+ 
+@@ -525,8 +523,8 @@ BOOST_FIXTURE_TEST_CASE(dynamicSetRemoveTwice, set_test)
+ 
+ struct set_union_test
+ {
+-  shared_ptr<writable_dynamic_set<int> > set1, set2, set3;
+-  shared_ptr<dynamic_set_union<int> > valuesPtr;
++  boost::shared_ptr<writable_dynamic_set<int> > set1, set2, set3;
++  boost::shared_ptr<dynamic_set_union<int> > valuesPtr;
+   dynamic_set_union<int> &values;
+   dynamic_set_signals<int> signals, expected_signals;
+ 
+@@ -565,7 +563,7 @@ struct set_union_test
+   {
+     std::vector<int> rval;
+ 
+-    for(shared_ptr<enumerator<int> > e = values.enumerate();
++    for(boost::shared_ptr<enumerator<int> > e = values.enumerate();
+         e->advance(); )
+       {
+         rval.push_back(e->get_current());
+@@ -617,7 +615,7 @@ BOOST_FIXTURE_TEST_CASE(dynamicSetUnionInsertNonEmptySets, set_union_test)
+ 
+ BOOST_FIXTURE_TEST_CASE(dynamicSetUnionInsertSetTwice, set_union_test)
+ {
+-  weak_ptr<dynamic_set<int> > set1_weak(set1);
++  boost::weak_ptr<dynamic_set<int> > set1_weak(set1);
+ 
+   set1->insert(4);
+   set1->insert(2);
+diff --git a/tests/test_enumerator.cc b/tests/test_enumerator.cc
+index 3c42bae..48d4a41 100644
+--- a/tests/test_enumerator.cc
++++ b/tests/test_enumerator.cc
+@@ -27,7 +27,6 @@
+ using aptitude::util::enumerator;
+ using aptitude::util::iterator_enumerator;
+ using aptitude::util::iterator_enumerator_with_keepalive;
+-using boost::weak_ptr;
+ 
+ struct fourNumbers
+ {
+@@ -149,7 +148,7 @@ BOOST_FIXTURE_TEST_CASE(iteratorEnumeratorKeepaliveAdvance, fourNumbers)
+ 
+ BOOST_FIXTURE_TEST_CASE(iteratorEnumeratorKeepalive, fourNumbers)
+ {
+-  weak_ptr<std::vector<int> > numbersWeak(numbersShared);
++  boost::weak_ptr<std::vector<int> > numbersWeak(numbersShared);
+ 
+   {
+     int_keepalive_enum e(numbersShared->begin(),
+diff --git a/tests/test_logging.cc b/tests/test_logging.cc
+index af4d506..8f3c126 100644
+--- a/tests/test_logging.cc
++++ b/tests/test_logging.cc
+@@ -36,7 +36,6 @@ using aptitude::util::logging::TRACE_LEVEL;
+ using aptitude::util::logging::WARN_LEVEL;
+ using aptitude::util::logging::createLoggingSystem;
+ using aptitude::util::logging::log_level;
+-using boost::shared_ptr;
+ using testing::Exactly;
+ using testing::InSequence;
+ using testing::StrictMock;
+@@ -67,7 +66,7 @@ namespace
+ 
+   struct LoggingTest : public Test
+   {
+-    shared_ptr<LoggingSystem> loggingSystem;
++    boost::shared_ptr<LoggingSystem> loggingSystem;
+ 
+     static const char *sourceFilename1;
+     static const int sourceLineNumber1 = 100;
+diff --git a/tests/test_search_input_controller.cc b/tests/test_search_input_controller.cc
+index 99f7088..e373a05 100644
+--- a/tests/test_search_input_controller.cc
++++ b/tests/test_search_input_controller.cc
+@@ -34,8 +34,6 @@ namespace mocks = aptitude::views::mocks;
+ 
+ using aptitude::matching::compare_patterns;
+ using aptitude::matching::pattern;
+-using boost::make_shared;
+-using boost::shared_ptr;
+ using cwidget::util::ref_ptr;
+ using testing::AnyNumber;
+ using testing::Expectation;
+@@ -113,9 +111,9 @@ namespace
+     }
+ 
+     SearchInputTest()
+-      : view(make_shared<mocks::search_input>()),
+-        viewNice(make_shared<NiceMock<mocks::search_input> >()),
+-        viewStrict(make_shared<StrictMock<mocks::search_input> >())
++      : view(boost::make_shared<mocks::search_input>()),
++        viewNice(boost::make_shared<NiceMock<mocks::search_input> >()),
++        viewStrict(boost::make_shared<StrictMock<mocks::search_input> >())
+     {
+     }
+   };
+diff --git a/tests/test_teletype_mock.cc b/tests/test_teletype_mock.cc
+index bdcc946..97ff7b9 100644
+--- a/tests/test_teletype_mock.cc
++++ b/tests/test_teletype_mock.cc
+@@ -35,7 +35,6 @@ namespace mocks = aptitude::cmdline::mocks;
+ 
+ using aptitude::cmdline::mocks::StrTrimmedEq;
+ using aptitude::cmdline::mocks::StrTrimmedRightEq;
+-using boost::shared_ptr;
+ using testing::InSequence;
+ using testing::Not;
+ using testing::Return;
+@@ -65,10 +64,10 @@ namespace
+     // value of CTYPE.
+     std::string previous_lc_ctype;
+ 
+-    shared_ptr<mocks::terminal_locale> term_locale;
+-    shared_ptr<mocks::terminal_metrics> term_metrics;
+-    shared_ptr<mocks::terminal_with_combined_output> term_output;
+-    shared_ptr<mocks::teletype> teletype;
++    boost::shared_ptr<mocks::terminal_locale> term_locale;
++    boost::shared_ptr<mocks::terminal_metrics> term_metrics;
++    boost::shared_ptr<mocks::terminal_with_combined_output> term_output;
++    boost::shared_ptr<mocks::teletype> teletype;
+ 
+     static std::string safe_string(const char *c)
+     {
+@@ -344,9 +343,9 @@ TEST_F(TeletypeTest, testOverwritePastEOL)
+ 
+ TEST_F(TeletypeTest, TeletypeDoesNotBreakTerminalMock)
+ {
+-  shared_ptr<mocks::combining_terminal_output> real_term_output =
++  boost::shared_ptr<mocks::combining_terminal_output> real_term_output =
+     mocks::combining_terminal_output::create_strict();
+-  shared_ptr<mocks::teletype> teletype =
++  boost::shared_ptr<mocks::teletype> teletype =
+     mocks::create_strict_teletype(term_locale, term_metrics, real_term_output);
+ 
+   EXPECT_CALL(*term_metrics, get_screen_width())
+diff --git a/tests/test_terminal_mock.cc b/tests/test_terminal_mock.cc
+index b033d42..035acbd 100644
+--- a/tests/test_terminal_mock.cc
++++ b/tests/test_terminal_mock.cc
+@@ -23,7 +23,6 @@
+ 
+ namespace mocks = aptitude::cmdline::mocks;
+ 
+-using boost::shared_ptr;
+ using testing::InSequence;
+ using testing::StrEq;
+ using testing::Test;
+diff --git a/tests/test_transient_message.cc b/tests/test_transient_message.cc
+index 5544c2b..14ba285 100644
+--- a/tests/test_transient_message.cc
++++ b/tests/test_transient_message.cc
+@@ -33,7 +33,6 @@ namespace mocks = aptitude::cmdline::mocks;
+ using aptitude::cmdline::create_transient_message;
+ using aptitude::cmdline::mocks::StrTrimmedRightEq;
+ using aptitude::cmdline::transient_message;
+-using boost::shared_ptr;
+ using testing::InSequence;
+ using testing::Return;
+ using testing::StrEq;
+@@ -47,19 +46,19 @@ namespace
+ 
+   struct TransientMessage : public Test
+   {
+-    shared_ptr<mocks::terminal_locale> term_locale;
+-    shared_ptr<mocks::terminal_metrics> term_metrics;
+-    shared_ptr<mocks::combining_terminal_output> term_output;
+-    shared_ptr<mocks::teletype> teletype;
+-    shared_ptr<transient_message> message;
++    boost::shared_ptr<mocks::terminal_locale> term_locale;
++    boost::shared_ptr<mocks::terminal_metrics> term_metrics;
++    boost::shared_ptr<mocks::combining_terminal_output> term_output;
++    boost::shared_ptr<mocks::teletype> teletype;
++    boost::shared_ptr<transient_message> message;
+     std::wstring widechar;
+ 
+     // I need to set up expectations on the terminal during member
+     // initialization, since some of the other member initializers
+     // cause methods to be invoked on it.
+-    static shared_ptr<mocks::combining_terminal_output> create_terminal_output()
++    static boost::shared_ptr<mocks::combining_terminal_output> create_terminal_output()
+     {
+-      shared_ptr<mocks::combining_terminal_output> rval =
++      boost::shared_ptr<mocks::combining_terminal_output> rval =
+         mocks::combining_terminal_output::create_strict();
+ 
+       EXPECT_CALL(*rval, output_is_a_terminal())
+@@ -68,9 +67,9 @@ namespace
+       return rval;
+     }
+ 
+-    static shared_ptr<mocks::terminal_metrics> create_terminal_metrics()
++    static boost::shared_ptr<mocks::terminal_metrics> create_terminal_metrics()
+     {
+-      shared_ptr<mocks::terminal_metrics> rval =
++      boost::shared_ptr<mocks::terminal_metrics> rval =
+         mocks::terminal_metrics::create_strict();
+ 
+       EXPECT_CALL(*rval, get_screen_width())
+@@ -163,7 +162,7 @@ TEST_F(TransientMessage, DisplayAndAdvanceWithoutTerminal)
+ 
+   // Need to create a new message object since it reads and caches the
+   // value of output_is_a_terminal() when it's created.
+-  const shared_ptr<transient_message> requiring_message =
++  const boost::shared_ptr<transient_message> requiring_message =
+     create_transient_message(term_locale, term_metrics, term_output);
+ 
+   requiring_message->display_and_advance(L"xyzwabcd");
+@@ -352,7 +351,7 @@ TEST_F(TransientMessage, RequireTtyDecorationsWithTty)
+ 
+   // Need to create a new message object since it reads and caches the
+   // value of output_is_a_terminal() when it's created.
+-  const shared_ptr<transient_message> requiring_message =
++  const boost::shared_ptr<transient_message> requiring_message =
+     create_transient_message(term_locale, term_metrics, term_output);
+ 
+   requiring_message->set_text(L"abc");
+@@ -369,7 +368,7 @@ TEST_F(TransientMessage, RequireTtyDecorationsWithoutTty)
+ 
+   // Need to create a new message object since it reads and caches the
+   // value of output_is_a_terminal() when it's created.
+-  const shared_ptr<transient_message> requiring_message =
++  const boost::shared_ptr<transient_message> requiring_message =
+     create_transient_message(term_locale, term_metrics, term_output);
+ 
+   requiring_message->set_text(L"abc");

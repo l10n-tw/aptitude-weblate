@@ -44,6 +44,9 @@ aptitude (0.7-1) UNRELEASED; urgency=medium
     + Remove override_dh_builddeb: xz compression is default nowadays.
     + Remove obsolete x from [ "x$var" != "x" ] comparisons.
   * Add myself to Uploaders.
+  * Cherry-pick 3593bdcb, 2a5a8b25, and 4b24b358 from upstream to cope
+    with Boost 1.58 which has been uploaded to unstable during the
+    libstdc++6 transition, but after the 0.7 upstream release.
 
  -- Axel Beckert <abe@debian.org>  Sun, 19 Jul 2015 00:56:03 +0200
 
