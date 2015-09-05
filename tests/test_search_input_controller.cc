@@ -22,11 +22,12 @@
 #include <generic/controllers/search_input.h>
 #include <generic/views/mocks/search_input.h>
 
-#include <boost/make_shared.hpp>
 #include <boost/test/unit_test.hpp>
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
+
+#include <memory>
 
 namespace ctrls = aptitude::controllers;
 namespace views = aptitude::views;
@@ -34,8 +35,6 @@ namespace mocks = aptitude::views::mocks;
 
 using aptitude::matching::compare_patterns;
 using aptitude::matching::pattern;
-using boost::make_shared;
-using boost::shared_ptr;
 using cwidget::util::ref_ptr;
 using testing::AnyNumber;
 using testing::Expectation;
@@ -63,9 +62,9 @@ namespace
 
   struct SearchInputTest
   {
-    boost::shared_ptr<mocks::search_input> view;
-    boost::shared_ptr<mocks::search_input> viewNice;
-    boost::shared_ptr<mocks::search_input> viewStrict;
+    std::shared_ptr<mocks::search_input> view;
+    std::shared_ptr<mocks::search_input> viewNice;
+    std::shared_ptr<mocks::search_input> viewStrict;
 
     controller_callbacks callbacks;
     controller_callbacks callbacksNice;
@@ -74,12 +73,12 @@ namespace
     // Controllers are initialized lazily, to give us a chance to
     // register expectations with the views first.
   private:
-    boost::shared_ptr<ctrls::search_input> controller;
-    boost::shared_ptr<ctrls::search_input> controllerNice;
-    boost::shared_ptr<ctrls::search_input> controllerStrict;
+    std::shared_ptr<ctrls::search_input> controller;
+    std::shared_ptr<ctrls::search_input> controllerNice;
+    std::shared_ptr<ctrls::search_input> controllerStrict;
 
   public:
-    boost::shared_ptr<ctrls::search_input> get_controller()
+    std::shared_ptr<ctrls::search_input> get_controller()
     {
       if(controller.get() == NULL)
         {
@@ -90,7 +89,7 @@ namespace
       return controller;
     }
 
-    boost::shared_ptr<ctrls::search_input> get_controllerNice()
+    std::shared_ptr<ctrls::search_input> get_controllerNice()
     {
       if(controllerNice.get() == NULL)
         {
@@ -101,7 +100,7 @@ namespace
       return controllerNice;
     }
 
-    boost::shared_ptr<ctrls::search_input> get_controllerStrict()
+    std::shared_ptr<ctrls::search_input> get_controllerStrict()
     {
       if(controllerStrict.get() == NULL)
         {
@@ -113,9 +112,9 @@ namespace
     }
 
     SearchInputTest()
-      : view(make_shared<mocks::search_input>()),
-        viewNice(make_shared<NiceMock<mocks::search_input> >()),
-        viewStrict(make_shared<StrictMock<mocks::search_input> >())
+      : view(std::make_shared<mocks::search_input>()),
+        viewNice(std::make_shared<NiceMock<mocks::search_input> >()),
+        viewStrict(std::make_shared<StrictMock<mocks::search_input> >())
     {
     }
   };

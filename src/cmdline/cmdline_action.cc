@@ -42,7 +42,7 @@ namespace
 				pkgset &to_remove, pkgset &to_purge,
 				int verbose,
 				bool allow_auto,
-                                const boost::shared_ptr<terminal_metrics> &term_metrics)
+                                const std::shared_ptr<terminal_metrics> &term_metrics)
   {
     aptitude::cmdline::source_package sourcepkg =
       aptitude::cmdline::find_source_package(pkg,
@@ -228,7 +228,7 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
 			 pkgPolicy &policy,
 			 bool arch_only,
 			 bool allow_auto,
-                         const boost::shared_ptr<terminal_metrics> &term_metrics)
+                         const std::shared_ptr<terminal_metrics> &term_metrics)
 {
   // Handle virtual packages.
   if(!pkg.ProvidesList().end())
@@ -316,7 +316,7 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
     case cmdline_install:
       if(pkg.CurrentVer()!=ver || pkg->CurrentState!=pkgCache::State::Installed)
 	to_install.insert(pkg);
-      else if(pkg_state.Keep() && verbose>0)
+      else
 	printf(_("%s is already installed at the requested version (%s)\n"),
 	       pkg.FullName(true).c_str(),
 	       ver.VerStr());
@@ -326,13 +326,13 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
 	to_install.insert(pkg);
       else if(pkg_state.Status > 1)
 	{
-	  if(verbose > 0)
-	    printf(_("%s is not currently installed, so it will not be upgraded.\n"),
-                   pkg.FullName(true).c_str());
+	  printf(_("%s is not currently installed, so it will not be upgraded.\n"),
+                 pkg.FullName(true).c_str());
 	}
-      else if(verbose > 0)
-	printf(_("%s is already installed at the latest version, so it will not be upgraded.\n"),
-               pkg.FullName(true).c_str());
+      else
+	printf(_("%s is already installed at the latest version (%s), so it will not be upgraded.\n"),
+               pkg.FullName(true).c_str(),
+	       ver.VerStr());
       break;
 
     case cmdline_reinstall:
@@ -344,14 +344,14 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
     case cmdline_remove:
       if(!pkg.CurrentVer().end())
 	to_remove.insert(pkg);
-      else if(pkg_state.Keep() && verbose>0)
+      else
 	printf(_("Package %s is not installed, so it will not be removed\n"),
                pkg.FullName(true).c_str());
       break;
     case cmdline_purge:
       if(!pkg.CurrentVer().end() || pkg->CurrentState!=pkgCache::State::ConfigFiles)
 	to_purge.insert(pkg);
-      else if(pkg_state.Keep() && verbose>0)
+      else
 	printf(_("Package %s is not installed, so it will not be removed\n"),
                pkg.FullName(true).c_str());
       break;
@@ -461,7 +461,7 @@ bool cmdline_applyaction(string s,
 			 int verbose,
 			 pkgPolicy &policy, bool arch_only,
 			 bool allow_auto,
-                         const boost::shared_ptr<terminal_metrics> &term_metrics)
+                         const std::shared_ptr<terminal_metrics> &term_metrics)
 {
   using namespace aptitude::matching;
 
@@ -552,11 +552,14 @@ bool cmdline_applyaction(string s,
 		possible.push_back(j);
 	    }
 
+	  // Don't overwhelm the user.
+	  size_t package_limit = 40;
 	  if(!possible.empty())
 	    {
 	      // Don't overwhelm the user.
-	      if(possible.size()>40)
-		printf(_("Couldn't find package \"%s\", and more than 40\npackages contain \"%s\" in their name.\n"), package.c_str(), package.c_str());
+	      if (possible.size() > package_limit)
+	        printf(_("Couldn't find package \"%s\", and more than %zu\npackages contain \"%s\" in their name.\n"),
+		       package.c_str(), package_limit, package.c_str());
 	      else
 		{
 		  printf(_("Couldn't find package \"%s\".  However, the following\npackages contain \"%s\" in their name:\n"), package.c_str(), package.c_str());
@@ -582,8 +585,10 @@ bool cmdline_applyaction(string s,
 
 	      if(possible.empty())
 		printf(_("Couldn't find any package whose name or description matched \"%s\"\n"), package.c_str());
-	      else if(possible.size()>40)
-		printf(_("Couldn't find any package matching \"%s\", and more than 40\npackages contain \"%s\" in their description.\n"), package.c_str(), package.c_str());
+	      else if (possible.size() > package_limit)
+		// Don't overwhelm the user.
+		printf(_("Couldn't find any package matching \"%s\", and more than %zu\npackages contain \"%s\" in their description.\n"),
+		       package.c_str(), package_limit, package.c_str());
 	      else
 		{
 		  printf(_("Couldn't find any package matching \"%s\".  However, the following\npackages contain \"%s\" in their description:\n"), package.c_str(), package.c_str());
@@ -714,7 +719,7 @@ void cmdline_parse_action(string s,
 			  int verbose,
 			  pkgPolicy &policy, bool arch_only,
 			  bool allow_auto,
-                          const boost::shared_ptr<aptitude::cmdline::terminal_metrics> &term_metrics)
+                          const std::shared_ptr<aptitude::cmdline::terminal_metrics> &term_metrics)
 {
   string::size_type loc=0;
 

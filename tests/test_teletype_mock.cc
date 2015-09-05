@@ -31,11 +31,12 @@
 
 #include <locale.h>
 
+#include <memory>
+
 namespace mocks = aptitude::cmdline::mocks;
 
 using aptitude::cmdline::mocks::StrTrimmedEq;
 using aptitude::cmdline::mocks::StrTrimmedRightEq;
-using boost::shared_ptr;
 using testing::InSequence;
 using testing::Not;
 using testing::Return;
@@ -65,10 +66,10 @@ namespace
     // value of CTYPE.
     std::string previous_lc_ctype;
 
-    shared_ptr<mocks::terminal_locale> term_locale;
-    shared_ptr<mocks::terminal_metrics> term_metrics;
-    shared_ptr<mocks::terminal_with_combined_output> term_output;
-    shared_ptr<mocks::teletype> teletype;
+    std::shared_ptr<mocks::terminal_locale> term_locale;
+    std::shared_ptr<mocks::terminal_metrics> term_metrics;
+    std::shared_ptr<mocks::terminal_with_combined_output> term_output;
+    std::shared_ptr<mocks::teletype> teletype;
 
     static std::string safe_string(const char *c)
     {
@@ -344,9 +345,9 @@ TEST_F(TeletypeTest, testOverwritePastEOL)
 
 TEST_F(TeletypeTest, TeletypeDoesNotBreakTerminalMock)
 {
-  shared_ptr<mocks::combining_terminal_output> real_term_output =
+  std::shared_ptr<mocks::combining_terminal_output> real_term_output =
     mocks::combining_terminal_output::create_strict();
-  shared_ptr<mocks::teletype> teletype =
+  std::shared_ptr<mocks::teletype> teletype =
     mocks::create_strict_teletype(term_locale, term_metrics, real_term_output);
 
   EXPECT_CALL(*term_metrics, get_screen_width())

@@ -26,10 +26,6 @@
 #include <sigc++/functors/ptr_fun.h>
 #include <sigc++/functors/mem_fun.h>
 
-#include <boost/make_shared.hpp>
-#include <boost/shared_ptr.hpp>
-#include <boost/weak_ptr.hpp>
-
 #include <apt-pkg/acquire.h>
 #include <apt-pkg/clean.h>
 #include <apt-pkg/configuration.h>
@@ -45,6 +41,7 @@
 #include <fstream>
 #include <sstream>
 #include <utility>
+#include <memory>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -778,14 +775,45 @@ static cw::widget_ref make_default_view(const menu_tree_ref &mainwidget,
 	}
     }
 
+  // helper for format strings of headers, status
+  struct aptcfg_format_string {
+    std::string option_name;
+    std::string value;
+    std::string default_value;
+
+    void get_value_from_config() {
+      value = aptcfg->Find(option_name.c_str(), default_value.c_str());
+    }
+
+    void sanitize_values() {
+      bool valid = pkg_item::pkg_columnizer::check_valid_display_format(value, option_name);
+      if (!valid) {
+	// forcing default
+	value = default_value;
+	_error->Warning(_("Using default value for %s string: '%s'"), option_name.c_str(), value.c_str());
+	// raise error
+	check_apt_errors();
+      }
+    }
+  };
+  // ::UI::Package-Header-Format
+  aptcfg_format_string ui_package_header_format = { PACKAGE "::UI::Package-Header-Format", "", default_pkgheaderdisplay };
+  ui_package_header_format.get_value_from_config();
+  ui_package_header_format.sanitize_values();
+  // ::UI::Package-Status-Format
+  aptcfg_format_string ui_package_status_format = { PACKAGE "::UI::Package-Status-Format", "", default_pkgstatusdisplay };
+  ui_package_status_format.get_value_from_config();
+  ui_package_status_format.sanitize_values();
+
+
   list<package_view_item> basic_format;
 
   // FIXME: do the config lookup inside the package-view code?
   basic_format.push_back(package_view_item("static1",
-					   parse_columns(cw::util::transcode(aptcfg->Find(PACKAGE "::UI::Package-Header-Format", default_pkgheaderdisplay)),
+					   parse_columns(cw::util::transcode(ui_package_header_format.value),
 							 pkg_item::pkg_columnizer::parse_column_type,
 							 pkg_item::pkg_columnizer::defaults),
-					   PACKAGE "::UI::Package-Header-Format",
+					   ui_package_header_format.option_name,
 					   0, 0, 1, 1,
 					   cw::table::ALIGN_CENTER | cw::table::EXPAND | cw::table::FILL | cw::table::SHRINK,
 					   cw::table::ALIGN_CENTER,
@@ -801,10 +829,10 @@ static cw::widget_ref make_default_view(const menu_tree_ref &mainwidget,
 					   true));
 
   basic_format.push_back(package_view_item("static2",
-					   parse_columns(cw::util::transcode(aptcfg->Find(PACKAGE "::UI::Package-Status-Format", default_pkgstatusdisplay)),
+					   parse_columns(cw::util::transcode(ui_package_status_format.value),
 							 pkg_item::pkg_columnizer::parse_column_type,
 							 pkg_item::pkg_columnizer::defaults),
-					   PACKAGE "::UI::Package-Status-Format",
+					   ui_package_status_format.option_name,
 					   2, 0, 1, 1,
 					   cw::table::ALIGN_CENTER | cw::table::EXPAND | cw::table::FILL | cw::table::SHRINK,
 					   cw::table::ALIGN_CENTER,
@@ -1228,8 +1256,8 @@ namespace
 
 void install_or_remove_packages()
 {
-  boost::shared_ptr<download_install_manager> m =
-    boost::make_shared<download_install_manager>(false, sigc::ptr_fun(&run_dpkg_with_cwidget_suspended));
+  std::shared_ptr<download_install_manager> m =
+    std::make_shared<download_install_manager>(false, sigc::ptr_fun(&run_dpkg_with_cwidget_suspended));
 
   m->post_forget_new_hook.connect(package_states_changed.make_slot());
 
@@ -1382,7 +1410,7 @@ static void do_keep_all()
   if(apt_cache_file == NULL)
     return;
 
-  auto_ptr<undo_group> undo(new apt_undo_group);
+  unique_ptr<undo_group> undo(new apt_undo_group);
 
   aptitudeDepCache::action_group group(*apt_cache_file, undo.get());
 
@@ -1673,9 +1701,9 @@ void do_package_run()
     }
 }
 
-static void lists_autoclean_msg(boost::weak_ptr<download_update_manager> m_weak)
+static void lists_autoclean_msg(std::weak_ptr<download_update_manager> m_weak)
 {
-  boost::shared_ptr<download_update_manager> m(m_weak);
+  std::shared_ptr<download_update_manager> m(m_weak);
 
   if(m.get() == NULL)
     return;
@@ -1690,9 +1718,9 @@ static void lists_autoclean_msg(boost::weak_ptr<download_update_manager> m_weak)
 
 void really_do_update_lists()
 {
-  boost::shared_ptr<download_update_manager> m = boost::make_shared<download_update_manager>();
+  std::shared_ptr<download_update_manager> m = std::make_shared<download_update_manager>();
   m->pre_autoclean_hook.connect(sigc::bind(sigc::ptr_fun(lists_autoclean_msg),
-					   boost::weak_ptr<download_update_manager>(m)));
+					   std::weak_ptr<download_update_manager>(m)));
   m->post_forget_new_hook.connect(package_states_changed.make_slot());
 
   std::pair<download_signal_log *, download_list_ref>
@@ -2051,7 +2079,7 @@ void cwidget_resolver_trampoline(const sigc::slot<void> &f)
 // list, queue up a calculation for it in the background thread.
 static void start_solution_calculation()
 {
-  resman->maybe_start_solution_calculation(boost::make_shared<interactive_continuation>(resman),
+  resman->maybe_start_solution_calculation(std::make_shared<interactive_continuation>(resman),
 					   &cwidget_resolver_trampoline);
 }
 
@@ -2643,6 +2671,8 @@ static void do_show_menu_description(cw::menu_item *item, cw::label &label)
 static void do_setup_columns()
 {
   pkg_item::pkg_columnizer::setup_columns(true);
+  // check for errors in ::UI::Package-Display-Format or substitute
+  check_apt_errors();
 }
 
 static void load_options(string base, bool usetheme)
@@ -2820,7 +2850,7 @@ void ui_init()
     update_key=cw::config::global_bindings.readable_keyname("UpdatePackageList"),
     install_key=cw::config::global_bindings.readable_keyname("DoInstallRun");
 
-  wstring helptext = swsprintf(W_("%ls: Menu  %ls: Help  %ls: Quit  %ls: Update  %ls: Download/Install/Remove Pkgs").c_str(),
+  wstring helptext = swsprintf(W_("%ls: Menu  %ls: Help  %ls: Quit  %ls: Update  %ls: Preview/Download/Install/Remove Pkgs").c_str(),
 			menu_key.c_str(),
 			help_key.c_str(),
 			quit_key.c_str(),
@@ -2871,6 +2901,8 @@ void ui_init()
   // FIXME: put this in load_options() and kill all other references
   //       to setup_columns?
   pkg_item::pkg_columnizer::setup_columns();
+  // check for errors in ::UI::Package-Display-Format or substitute
+  check_apt_errors();
 
   // Make sure the broken indicator doesn't annoyingly pop up for a
   // moment. (hack?)

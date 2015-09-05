@@ -26,8 +26,8 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/unordered_set.hpp>
 #include <boost/variant.hpp>
-#include <boost/weak_ptr.hpp>
 
+#include <memory>
 #include <vector>
 
 using aptitude::util::dynamic_set;
@@ -36,10 +36,8 @@ using aptitude::util::dynamic_set_union;
 using aptitude::util::enumerator;
 using aptitude::util::writable_dynamic_set;
 
-using boost::shared_ptr;
 using boost::unordered_set;
 using boost::variant;
-using boost::weak_ptr;
 
 namespace
 {
@@ -244,7 +242,7 @@ namespace
 
   struct set_test
   {
-    shared_ptr<writable_dynamic_set<int> > valuesPtr;
+    std::shared_ptr<writable_dynamic_set<int> > valuesPtr;
     writable_dynamic_set<int> &values;
     dynamic_set_signals<int> signals, expected_signals;
 
@@ -271,7 +269,7 @@ namespace
     {
       std::vector<int> rval;
 
-      for(shared_ptr<enumerator<int> > e = values.enumerate();
+      for(std::shared_ptr<enumerator<int> > e = values.enumerate();
           e->advance(); )
         {
           rval.push_back(e->get_current());
@@ -304,7 +302,7 @@ std::vector<T> to_vector(dynamic_set<T> &s)
   std::vector<T> rval;
   rval.reserve(s.size());
 
-  for(shared_ptr<enumerator<int> > e = s.enumerate();
+  for(std::shared_ptr<enumerator<int> > e = s.enumerate();
       e->advance(); )
     {
       rval.push_back(e->get_current());
@@ -314,7 +312,7 @@ std::vector<T> to_vector(dynamic_set<T> &s)
 }
 
 template<typename T>
-std::vector<T> to_vector(const shared_ptr<dynamic_set<T> > &s)
+std::vector<T> to_vector(const std::shared_ptr<dynamic_set<T> > &s)
 {
   return to_vector(*s);
 }
@@ -403,8 +401,8 @@ BOOST_FIXTURE_TEST_CASE(dynamicSetEnumeratorKeepsSetAlive, set_test)
   // to die, so we need one element.
   values.insert(5);
 
-  weak_ptr<dynamic_set<int> > valuesWeak(valuesPtr);
-  shared_ptr<enumerator<int> > valuesEnum(values.enumerate());
+  std::weak_ptr<dynamic_set<int> > valuesWeak(valuesPtr);
+  std::shared_ptr<enumerator<int> > valuesEnum(values.enumerate());
 
   BOOST_CHECK(!valuesWeak.expired());
 
@@ -525,8 +523,8 @@ BOOST_FIXTURE_TEST_CASE(dynamicSetRemoveTwice, set_test)
 
 struct set_union_test
 {
-  shared_ptr<writable_dynamic_set<int> > set1, set2, set3;
-  shared_ptr<dynamic_set_union<int> > valuesPtr;
+  std::shared_ptr<writable_dynamic_set<int> > set1, set2, set3;
+  std::shared_ptr<dynamic_set_union<int> > valuesPtr;
   dynamic_set_union<int> &values;
   dynamic_set_signals<int> signals, expected_signals;
 
@@ -565,7 +563,7 @@ struct set_union_test
   {
     std::vector<int> rval;
 
-    for(shared_ptr<enumerator<int> > e = values.enumerate();
+    for(std::shared_ptr<enumerator<int> > e = values.enumerate();
         e->advance(); )
       {
         rval.push_back(e->get_current());
@@ -617,7 +615,7 @@ BOOST_FIXTURE_TEST_CASE(dynamicSetUnionInsertNonEmptySets, set_union_test)
 
 BOOST_FIXTURE_TEST_CASE(dynamicSetUnionInsertSetTwice, set_union_test)
 {
-  weak_ptr<dynamic_set<int> > set1_weak(set1);
+  std::weak_ptr<dynamic_set<int> > set1_weak(set1);
 
   set1->insert(4);
   set1->insert(2);

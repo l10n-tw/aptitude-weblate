@@ -39,7 +39,6 @@ using aptitude::apt::get_tags;
 using aptitude::apt::tag;
 using aptitude::description_element_ref;
 using aptitude::parse_desc;
-using boost::make_shared;
 using cw::util::transcode;
 
 namespace aptitude
@@ -50,7 +49,10 @@ namespace aptitude
     {
       package_ptr package::create(const pkgCache::PkgIterator &pkg)
       {
-        return make_shared<package>(pkg);
+	// friend declaration not working properly, using this as substite --
+	// maybe the constructor should be public
+        struct make_shared_enabler : public package { make_shared_enabler(const pkgCache::PkgIterator &pkg) : package{pkg} {} };
+	return std::make_shared<make_shared_enabler>(pkg);
       }
 
       package::package(const pkgCache::PkgIterator &_pkg)

@@ -38,7 +38,10 @@
 
 #include <iostream>
 
-#include <stdio.h>
+#include <memory>
+
+#include <cstdio>
+#include <cstdint>
 #include <sys/stat.h>
 
 using namespace std;
@@ -97,7 +100,7 @@ class LogCleaner : public pkgArchiveCleaner
 {
   bool simulate;
 
-  long total_size;
+  uint64_t total_size;
 
 protected:
   virtual void Erase(const char *File,string Pkg,string Ver,struct stat &St) 
@@ -114,17 +117,18 @@ protected:
       }
     else
       total_size+=St.st_size;
-  };
-public:
-  LogCleaner(bool _simulate):simulate(_simulate), total_size(0) { }
+  }
 
-  long get_total_size() {return total_size;}
+public:
+  LogCleaner(bool _simulate) : simulate(_simulate), total_size(0) { }
+
+  uint64_t get_total_size() const { return total_size; }
 };
 
 int cmdline_autoclean(int argc, char *argv[], bool simulate)
 {
   const string archivedir = aptcfg->FindDir("Dir::Cache::archives");
-  const boost::shared_ptr<terminal_io> term = create_terminal();
+  const std::shared_ptr<terminal_io> term = create_terminal();
 
   _error->DumpErrors();
 
@@ -148,7 +152,7 @@ int cmdline_autoclean(int argc, char *argv[], bool simulate)
         }
     }
 
-  boost::shared_ptr<OpProgress> progress = make_text_progress(false, term, term, term);
+  std::shared_ptr<OpProgress> progress = make_text_progress(false, term, term, term);
 
   apt_init(progress.get(), false);
 

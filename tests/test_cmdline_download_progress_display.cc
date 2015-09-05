@@ -27,18 +27,14 @@
 #include <generic/views/download_progress.h>
 #include <generic/views/mocks/download_progress.h>
 
-// System includes:
-#include <boost/make_shared.hpp>
-#include <boost/shared_ptr.hpp>
-
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
+#include <memory>
+
 using aptitude::cmdline::create_download_progress_display;
 using aptitude::views::download_progress;
-using boost::make_shared;
 using boost::optional;
-using boost::shared_ptr;
 using testing::InSequence;
 using testing::Mock;
 using testing::Return;
@@ -61,11 +57,11 @@ namespace
   // The test parameter controls whether messages are to be displayed.
   struct CmdlineDownloadProgressDisplayTest : public TestWithParam<bool>
   {
-    shared_ptr<mocks::transient_message> msg;
-    shared_ptr<mocks::download_status_display> status_display;
-    shared_ptr<mocks::terminal_input> term_input;
+    std::shared_ptr<mocks::transient_message> msg;
+    std::shared_ptr<mocks::download_status_display> status_display;
+    std::shared_ptr<mocks::terminal_input> term_input;
 
-    shared_ptr<views::download_progress> progress;
+    std::shared_ptr<views::download_progress> progress;
 
     typedef download_progress::file_progress file_progress;
     typedef download_progress::status status;

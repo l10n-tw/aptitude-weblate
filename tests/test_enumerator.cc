@@ -20,19 +20,18 @@
 
 #include <generic/util/enumerator.h>
 
-#include <boost/array.hpp>
 #include <boost/test/unit_test.hpp>
-#include <boost/weak_ptr.hpp>
+
+#include <memory>
 
 using aptitude::util::enumerator;
 using aptitude::util::iterator_enumerator;
 using aptitude::util::iterator_enumerator_with_keepalive;
-using boost::weak_ptr;
 
 struct fourNumbers
 {
   std::vector<int> numbers;
-  boost::shared_ptr<std::vector<int> > numbersShared;
+  std::shared_ptr<std::vector<int> > numbersShared;
 
   typedef iterator_enumerator<std::vector<int>::const_iterator> int_enum;
   typedef iterator_enumerator_with_keepalive<std::vector<int>::const_iterator,
@@ -149,7 +148,7 @@ BOOST_FIXTURE_TEST_CASE(iteratorEnumeratorKeepaliveAdvance, fourNumbers)
 
 BOOST_FIXTURE_TEST_CASE(iteratorEnumeratorKeepalive, fourNumbers)
 {
-  weak_ptr<std::vector<int> > numbersWeak(numbersShared);
+  std::weak_ptr<std::vector<int> > numbersWeak(numbersShared);
 
   {
     int_keepalive_enum e(numbersShared->begin(),
