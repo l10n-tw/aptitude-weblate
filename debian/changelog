@@ -1,3 +1,81 @@
+aptitude (0.7.1-1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+    - Bug fixes:
+      * Fix for wrong reported size of deleted files with 'autoclean' on
+        32-bit arches (Closes: #499872)
+      * Be explicit when packages are already installed, cannot be
+        removed/purged because they are not installed, and similar
+        (Closes: #421469).
+      * Check string formats for columns in both curses and command line
+        interface, and forbid characters which can lead to cwidget
+        assertions and program crashes.  (Closes: #497129, #532662).
+    - Documentation:
+      * Quick help (help.txt):
+        * Document 'l' (Limit Display) in quick help (Closes: #514541)
+        * Improve description of '_' (Purge) (Closes: #495326)
+        * Improve the description of the search shortcut, and point more
+          clearly to search patterns in the full documentation
+      * man page:
+        * Fix example of '-F' with current and candidate versions
+          (Closes: #752517)
+      * Guide/User's Manual:
+        * Upgrade doc/??/aptitude.xml documents from DocBook XML 4.2 to
+          4.5
+        * Use XHTML 1.0 rather than HTML 4.01, at least to have something
+	  from this decade/century.  The resulting documentation still
+          does not fully validate (see #496724), I think that due to
+          bugs/problems of docbook-xsl conversions using invalid elements in
+	  the different standards (tried HTML 4.0, 4.01, XHTML 1.0 and 1.1).
+        * Generate 'alt' tag for images in HTML documentation (see #496724)
+        * In "Customizing the package list", fix order of variables
+          ::UI::Package-Status-Format and ::UI::Package-Header-Format and
+	  their explanations
+    - User visible changes:
+      * Slightly change description of shortcut 'g' in title bar
+        (Closes: #247487)
+    - Internal changes:
+      * search_graph.h, fix problem with code which was working for many
+        years (with boost 1.55 and many versions before), but now the
+	straightforward option to convert boost::optional to bool does not
+        work with gcc-5.2 and boost-1.58, so use .is_initialized() instead.
+      * solution_item.cc, copy string of package name coming from libapt
+        because it does not guarantee that the string is valid for all of the
+        time span that we need it, to not show garbage that it happens
+        sometimes (Closes: #795150, #795028)
+      * match.cc, pkg_info_screen.cc, reason_fragment.cc: remove and
+        modify code relying on pkg.Section() (from apt PkgIterator), it is
+        deprecated code and it will get removed soon according to the apt team
+        (Versions have Sections, Package in abstract doesn't have unique
+        Sections)
+      * aptitude_resolver.cc: use std::unique_ptr instead of deprecated
+        SPtrArray
+      * Add compatibility for APT 1.1:
+        * Create DepIterator values from Dependency pointers on-the-fly,
+          where required
+        * Adjust AcqQueuedFile() for changed signatures of overriden
+          methods
+      * Improving C++11 compatibilty mode:
+        * Convert std::auto_ptr (deprecated in C++11) to unique_ptr
+        * Convert boost::scoped_ptr (deprecated in C++11) to std::unique_ptr
+        * Convert instances of boost::shared_ptr, make_shared, and
+          weak_ptr to be explicitly prefixed by boost::, otherwise they clash
+	  or have problems compiling with the new C++11 std::shared_ptr and
+          analogues (many were not converted in the previous version).
+      * Remove unused function serialize_pattern_list()
+      * Remove unused function wcsempty()
+      * Improvements of the autoconf/automake infrastructure.
+       * No more generate a dummy ChangeLog file just to please automake.
+       * Clean up some more leftover files in "make maintainer-clean"
+       * Use 'cp -u' when copying gtest and gmock, so they don't need to be
+         recompiled every time
+    - Translation updates:
+      * Swedish by Josef Andersson (Closes: #792911)
+      * Fix typos/syntax oddities and translation issues, thanks Jens Seidel
+       (Closes: #381702)
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 05 Sep 2015 23:42:42 +0100
+
 aptitude (0.7-1) unstable; urgency=medium
 
   [ Manuel A. Fernandez Montecelo ]
