@@ -42,10 +42,6 @@
 /* Define to 1 if you have the <boost/compressed_pair.hpp> header file. */
 #undef HAVE_BOOST_COMPRESSED_PAIR_HPP
 
-/* Define to 1 if you have the <boost/enable_shared_from_this.hpp> header
-   file. */
-#undef HAVE_BOOST_ENABLE_SHARED_FROM_THIS_HPP
-
 /* Define to 1 if you have the <boost/flyweight/hashed_factory.hpp> header
    file. */
 #undef HAVE_BOOST_FLYWEIGHT_HASHED_FACTORY_HPP
@@ -176,9 +172,6 @@
 /* Define to 1 if you have the <boost/lexical_cast.hpp> header file. */
 #undef HAVE_BOOST_LEXICAL_CAST_HPP
 
-/* Define to 1 if you have the <boost/make_shared.hpp> header file. */
-#undef HAVE_BOOST_MAKE_SHARED_HPP
-
 /* Define to 1 if you have the <boost/mpl/begin.hpp> header file. */
 #undef HAVE_BOOST_MPL_BEGIN_HPP
 
@@ -238,17 +231,8 @@
 /* Define to 1 if you have the <boost/range.hpp> header file. */
 #undef HAVE_BOOST_RANGE_HPP
 
-/* Define to 1 if you have the <boost/ref.hpp> header file. */
-#undef HAVE_BOOST_REF_HPP
-
 /* Define to 1 if you have the <boost/scoped_array.hpp> header file. */
 #undef HAVE_BOOST_SCOPED_ARRAY_HPP
-
-/* Define to 1 if you have the <boost/scoped_ptr.hpp> header file. */
-#undef HAVE_BOOST_SCOPED_PTR_HPP
-
-/* Define to 1 if you have the <boost/shared_ptr.hpp> header file. */
-#undef HAVE_BOOST_SHARED_PTR_HPP
 
 /* Define to 1 if you have the <boost/test/unit_test.hpp> header file. */
 #undef HAVE_BOOST_TEST_UNIT_TEST_HPP
@@ -267,9 +251,6 @@
 
 /* Define to 1 if you have the <boost/variant.hpp> header file. */
 #undef HAVE_BOOST_VARIANT_HPP
-
-/* Define to 1 if you have the <boost/weak_ptr.hpp> header file. */
-#undef HAVE_BOOST_WEAK_PTR_HPP
 
 /* Define to 1 if you have the MacOS X function CFLocaleCopyCurrent in the
    CoreFoundation framework. */

@@ -336,6 +336,7 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
+runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -406,9 +407,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(srcdir)/moc.mk $(am__configure_d
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu src/qt/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign src/qt/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu src/qt/Makefile
+	  $(AUTOMAKE) --foreign src/qt/Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
 	  *config.status*) \

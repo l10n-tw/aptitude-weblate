@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([aptitude], [0.7], [aptitude-devel@lists.alioth.debian.org])
+AC_INIT([aptitude], [0.7.1], [aptitude-devel@lists.alioth.debian.org])
 AC_CONFIG_SRCDIR([src/main.cc])
-AM_INIT_AUTOMAKE([dist-xz no-dist-gzip -Wno-portability])
+AM_INIT_AUTOMAKE([foreign dist-xz no-dist-gzip -Wno-portability])
 AM_CONFIG_HEADER(config.h)
 
 dnl Use C++
@@ -84,7 +84,6 @@ AC_CHECK_HEADERS( dnl
 boost/algorithm/string.hpp dnl
 boost/algorithm/string/join.hpp dnl
 boost/compressed_pair.hpp dnl
-boost/enable_shared_from_this.hpp dnl
 boost/flyweight/hashed_factory.hpp dnl
 boost/flyweight.hpp dnl
 boost/format.hpp dnl
@@ -124,7 +123,6 @@ dnl sanity-check of the config file:
 dnl boost/lambda/construct.hpp dnl
 boost/lambda/lambda.hpp dnl
 boost/lexical_cast.hpp dnl
-boost/make_shared.hpp dnl
 boost/mpl/begin.hpp dnl
 boost/mpl/fold.hpp dnl
 boost/mpl/front.hpp dnl
@@ -142,17 +140,13 @@ boost/preprocessor/repetition/enum_params.hpp dnl
 boost/preprocessor/repetition/repeat.hpp dnl
 boost/random.hpp dnl
 boost/range.hpp dnl
-boost/ref.hpp dnl
 boost/scoped_array.hpp dnl
-boost/scoped_ptr.hpp dnl
-boost/shared_ptr.hpp dnl
 boost/test/unit_test.hpp dnl
 boost/type_traits/is_same.hpp dnl
 boost/unordered_map.hpp dnl
 boost/unordered_set.hpp dnl
 boost/utility.hpp dnl
 boost/variant.hpp dnl
-boost/weak_ptr.hpp dnl
                   , []
                   , [AC_MSG_FAILURE([Boost install not found, too old, or incomplete; install libboost-dev.])])
 
@@ -272,8 +266,8 @@ AC_SUBST(BOOST_UNIT_TEST_LIBS)
 
 ##### Copy gmock inside source #####
 dnl Needed after automake was set to 'subdir-objects' after 1.14
-AC_CONFIG_COMMANDS([copy-gtest],[cp -v /usr/src/gtest/src/gtest-all.cc tests/gtest-all.cc])
-AC_CONFIG_COMMANDS([copy-gmock],[cp -v /usr/src/gmock/src/gmock-all.cc tests/gmock-all.cc])
+AC_CONFIG_COMMANDS([copy-gtest],[cp -uv /usr/src/gtest/src/gtest-all.cc tests/gtest-all.cc])
+AC_CONFIG_COMMANDS([copy-gmock],[cp -uv /usr/src/gmock/src/gmock-all.cc tests/gmock-all.cc])
 
 
 ##### Check for Google Mock #####

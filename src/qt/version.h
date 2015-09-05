@@ -28,16 +28,14 @@
 // System includes
 #include <apt-pkg/pkgcache.h>
 
-#include <boost/make_shared.hpp>
 #include <boost/optional.hpp>
-#include <boost/shared_ptr.hpp>
 #include <boost/utility.hpp>
 
 #include <list>
+#include <memory>
 #include <vector>
 
 using aptitude::description_element_ref;
-using boost::make_shared;
 using boost::optional;
 
 namespace aptitude
@@ -47,7 +45,7 @@ namespace aptitude
     namespace qt
     {
       class version;
-      typedef boost::shared_ptr<version> version_ptr;
+      typedef std::shared_ptr<version> version_ptr;
 
       /** \brief An object representing a displayable version of a package.
        *
@@ -58,7 +56,7 @@ namespace aptitude
        */
       class version : boost::noncopyable
       {
-        friend boost::shared_ptr<version> make_shared<version>(const pkgCache::VerIterator &);
+	friend std::shared_ptr<version> std::make_shared<version>(const pkgCache::VerIterator &);
 
         const pkgCache::VerIterator ver;
 

@@ -30,6 +30,7 @@
 #include <signal.h>
 
 #include <map>
+#include <memory>
 
 #undef OK
 #include <gtkmm.h>
@@ -49,8 +50,6 @@
 #include <generic/util/refcounted_wrapper.h>
 
 #include <sigc++/signal.h>
-
-#include <boost/make_shared.hpp>
 
 #include <cwidget/generic/threads/event_queue.h>
 #include <cwidget/generic/util/ssprintf.h>
@@ -214,7 +213,7 @@ namespace gui
 					&guiOpProgress::destroy));
   }
 
-  void start_download(const boost::shared_ptr<download_manager> &manager,
+  void start_download(const std::shared_ptr<download_manager> &manager,
 		      const std::string &title,
 		      Gtk::Widget *image,
 		      download_progress_mode progress_mode,
@@ -262,7 +261,7 @@ namespace gui
   // \todo make this use the threaded download system.
   void really_do_update_lists()
   {
-    boost::shared_ptr<download_update_manager> m(boost::make_shared<download_update_manager>());
+    std::shared_ptr<download_update_manager> m(std::make_shared<download_update_manager>());
 
     active_download = true;
 
@@ -955,9 +954,9 @@ namespace gui
 
       active_download = true;
 
-      boost::shared_ptr<download_install_manager> m =
-	boost::make_shared<download_install_manager>(false,
-						     sigc::ptr_fun(&gui_run_dpkg));
+      std::shared_ptr<download_install_manager> m =
+	std::make_shared<download_install_manager>(false,
+						   sigc::ptr_fun(&gui_run_dpkg));
 
       start_download(m,
 		     _("Downloading packages"),
@@ -988,7 +987,7 @@ namespace gui
 
   void do_keep_all()
   {
-    std::auto_ptr<undo_group> undo(new apt_undo_group);
+    std::unique_ptr<undo_group> undo(new apt_undo_group);
     aptitudeDepCache::action_group group(*apt_cache_file, undo.get());
 
     for(pkgCache::PkgIterator i=(*apt_cache_file)->PkgBegin();

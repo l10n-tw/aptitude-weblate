@@ -27,17 +27,13 @@
 #include <generic/util/mocks/throttle.h>
 #include <generic/views/mocks/progress.h>
 
-// System includes:
-#include <boost/make_shared.hpp>
-#include <boost/shared_ptr.hpp>
-
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
+#include <memory>
+
 using aptitude::cmdline::create_search_progress;
 using aptitude::util::progress_info;
-using boost::make_shared;
-using boost::shared_ptr;
 using testing::AnyNumber;
 using testing::Expectation;
 using testing::Mock;
@@ -58,18 +54,18 @@ namespace
 {
   struct CmdlineSearchProgressTest : public Test
   {
-    const shared_ptr<mocks::progress> progress;
-    const shared_ptr<mocks::throttle> throttle;
+    const std::shared_ptr<mocks::progress> progress;
+    const std::shared_ptr<mocks::throttle> throttle;
 
     /** \brief The search pattern string used to create the search
      *  progress object.
      */
     const std::string search_pattern;
-    const shared_ptr<views::progress> search_progress;
+    const std::shared_ptr<views::progress> search_progress;
 
     CmdlineSearchProgressTest()
-      : progress(make_shared<mocks::progress>()),
-        throttle(make_shared<mocks::throttle>()),
+      : progress(std::make_shared<mocks::progress>()),
+        throttle(std::make_shared<mocks::throttle>()),
         search_pattern("?name(aptitude)"),
         search_progress(create_search_progress(search_pattern,
                                                progress,
