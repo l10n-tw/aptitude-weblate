@@ -1,4 +1,4 @@
-aptitude (0.7.1-1) UNRELEASED; urgency=medium
+aptitude (0.7.1-1) unstable; urgency=medium
 
   * New upstream release.
     - Bug fixes:
@@ -74,7 +74,7 @@ aptitude (0.7.1-1) UNRELEASED; urgency=medium
       * Fix typos/syntax oddities and translation issues, thanks Jens Seidel
        (Closes: #381702)
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 05 Sep 2015 23:42:42 +0100
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 05 Sep 2015 23:57:57 +0100
 
 aptitude (0.7-1) unstable; urgency=medium
 
