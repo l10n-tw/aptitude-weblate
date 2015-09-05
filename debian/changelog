@@ -74,6 +74,11 @@ aptitude (0.7.1-1) unstable; urgency=medium
       * Fix typos/syntax oddities and translation issues, thanks Jens Seidel
        (Closes: #381702)
 
+  * Disable patches, now in the upstream release:
+    - 05-cherry-pick-3593bdcb.patch
+    - 10-cherry-pick-2a5a8b25.patch
+    - 15-cherry-pick-4b24b358.patch
+
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 05 Sep 2015 23:57:57 +0100
 
 aptitude (0.7-1) unstable; urgency=medium
