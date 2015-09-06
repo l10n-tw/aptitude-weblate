@@ -2,6 +2,8 @@ aptitude (0.7.1-2) UNRELEASED; urgency=medium
 
   * Add lintian override for spelling-error-in-binary "ressize", seems to
     be from "resource size" or such. Cannot be found in the source code.
+  * Fix spelling errors in the two previous changelog entries as reported
+    by Lintian.
 
  -- Axel Beckert <abe@debian.org>  Sun, 06 Sep 2015 17:29:31 +0200
 
@@ -62,7 +64,7 @@ aptitude (0.7.1-1) unstable; urgency=medium
           where required
         * Adjust AcqQueuedFile() for changed signatures of overriden
           methods
-      * Improving C++11 compatibilty mode:
+      * Improving C++11 compatibility mode:
         * Convert std::auto_ptr (deprecated in C++11) to unique_ptr
         * Convert boost::scoped_ptr (deprecated in C++11) to std::unique_ptr
         * Convert instances of boost::shared_ptr, make_shared, and
@@ -100,7 +102,7 @@ aptitude (0.7-1) unstable; urgency=medium
       package groups are no more available, though.  The removal discussion
       has taken place in #686646. (Closes: #686124, #686142, #686646 as
       well as LP: #1082198).
-    - Changes to allow to compile with C++11 compatibilty mode (prompted by
+    - Changes to allow to compile with C++11 compatibility mode (prompted by
       changes in the toolchain in Debian) (Closes: #777778)
     - Fix reported installed size change when installing/deinstalling
       packages which are bigger than 2 GiB (int type size 32 bits).  Thanks
