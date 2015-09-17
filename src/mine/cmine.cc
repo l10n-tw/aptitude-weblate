@@ -239,11 +239,6 @@ void cmine::do_start_custom_game(cw::widget &w_bare,
 
   if(s.empty()==true || *end!='\0' || height<1)
     {
-      // FIXME: should say "positive integer" but the translators will
-      // lynch me ;-)
-      //
-      //
-      // That's ok, they'll do that anyway in a couple releases ;-)
       popup_widget(dialogs::ok(W_("The board height must be a positive integer"),
 			       NULL,
 			       cw::get_style("Error")));
@@ -463,6 +458,12 @@ void cmine::checkend()
     {
       popup_widget(dialogs::ok(W_("You lose!")));
 #if 0
+      /* Commented out instead of just "#if 0" so the strings are not marked for
+       * translation, wasting time of translators, resources, etc.
+       *
+       * See: https://bugs.debian.org/790568
+
+
       // (messages in reverse order because the minibuf is a stack by default..
       // I could use the special feature of sticking them at the end, but I
       // want them to override whatever's there (probably nothing :) )
@@ -552,6 +553,7 @@ void cmine::checkend()
 					     retr_status_color()));
 	  break;
 	}
+      */
 #endif
     }
 }
