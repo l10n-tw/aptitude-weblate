@@ -357,8 +357,8 @@ namespace
        final.get_num_broken() != initial.get_num_broken())
       {
 	std::string change =
-	  ssprintf(ngettext("%d broken [%+d]",
-			    "%d broken [%+d]",
+	  ssprintf(ngettext("%d (%+d) broken",
+			    "%d (%+d) broken",
 			    final.get_num_broken()),
 		   final.get_num_broken(),
 		   final.get_num_broken() - initial.get_num_broken());
@@ -371,8 +371,8 @@ namespace
        final.get_num_upgradable() != initial.get_num_upgradable())
       {
 	std::string change =
-	  ssprintf(ngettext("%d update [%+d]",
-			    "%d updates [%+d]",
+	  ssprintf(ngettext("%d (%+d) upgradable",
+			    "%d (%+d) upgradable",
 			    final.get_num_upgradable()),
 		   final.get_num_upgradable(),
 		   final.get_num_upgradable() - initial.get_num_upgradable());
@@ -385,8 +385,8 @@ namespace
        final.get_num_new() != initial.get_num_new())
       {
 	std::string change =
-	  ssprintf(ngettext("%d new [%+d]",
-			    "%d new [%+d]",
+	  ssprintf(ngettext("%d (%+d) new",
+			    "%d (%+d) new",
 			    final.get_num_new()),
 		   final.get_num_new(),
 		   final.get_num_new() - initial.get_num_new());
@@ -672,26 +672,33 @@ namespace aptitude
 
 	  if(!ver.end())
 	    {
+#if APT_PKG_MAJOR >= 5
+	      // with apt-1.1:
+	      //
+	      // - SourcePkg (and Version) are in the binary cache and available via
+	      //   the VerIterator; much faster than parsing the pkgRecord
+	      //
+	      // - defaults to package name, no need to check if it's empty
+	      source_package_name = ver.SourcePkgName();
+	      source_version = ver.SourceVerStr();
+
+	      rval = find_source_package(source_package_name, source_version);
+#else
 	      pkgRecords::Parser &rec =
 		apt_package_records->Lookup(ver.FileList());
 
 	      if(!rec.SourcePkg().empty())
 		source_package_name = rec.SourcePkg();
 
-	      if(version_source == cmdline_version_version)
+	      if(version_source == cmdline_version_version
+		 || version_source == cmdline_version_curr_or_cand)
 		{
 		  const std::string source_version =
 		    rec.SourceVer().empty() ? ver.VerStr() : rec.SourceVer();
 
 		  rval = find_source_package(source_package_name, source_version);
 		}
-	      else if(version_source == cmdline_version_curr_or_cand)
-		{
-		  const std::string source_version =
-		    rec.SourceVer().empty() ? ver.VerStr() : rec.SourceVer();		  
-
-		  rval = find_source_package(source_package_name, source_version);
-		}
+#endif
 	    }
 	  // Last-ditch effort: if no matching version was found but
 	  // a source package can be found, use that and try again below.

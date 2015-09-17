@@ -1,6 +1,7 @@
 // pkg_grouppolicy.cc
 //
 //  Copyright 1999-2005, 2007-2010 Daniel Burrows
+//  Copyright 2012-2015 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -25,8 +26,6 @@
 #include "pkg_item.h"
 #include "pkg_subtree.h"
 
-#include <cwidget/generic/util/transcode.h>
-
 #include <generic/apt/apt.h>
 #include <generic/apt/config_signal.h>
 #include <generic/apt/matching/match.h>
@@ -35,6 +34,8 @@
 #include <generic/apt/tasks.h>
 
 #include <generic/util/util.h>
+
+#include <cwidget/generic/util/transcode.h>
 
 #include <apt-pkg/configuration.h>
 #include <apt-pkg/pkgsystem.h>
@@ -599,6 +600,31 @@ public:
   void add_package(const pkgCache::PkgIterator &pkg, pkg_subtree *root)
   {
     int group = find_pkg_state(pkg, *apt_cache_file);
+
+    // establish an explicit, more sensible order for the children of the
+    // subtree; rather than using the values coming from a structure that were
+    // not devised for this purpose and do not work well -- see #434352
+    //
+    // possible states are from pkg_action_state in src/generic/apt/apt.h
+    unsigned char explicit_order = 0;
+    switch (group)
+    {
+    case pkg_broken:		explicit_order =  1; break; /** \brief The package has broken dependencies. */
+    case pkg_upgrade:		explicit_order =  2; break; /** \brief The package is being upgraded. */
+    case pkg_downgrade:		explicit_order =  3; break; /** \brief The package is being downgraded. */
+    case pkg_install:		explicit_order =  4; break; /** \brief The package is being installed. */
+    case pkg_auto_install:	explicit_order =  5; break; /** \brief The package is being installed to fulfill dependencies. */
+    case pkg_reinstall:		explicit_order =  6; break; /** \brief The package is being reinstalled. */
+    case pkg_remove:		explicit_order =  7; break; /** \brief The package is being removed. */
+    case pkg_auto_remove:	explicit_order =  8; break; /** \brief The package is being removed to fulfill dependencies. */
+    case pkg_unused_remove:	explicit_order =  9; break; /** \brief The package is unused and will be removed. */
+    case pkg_hold:		explicit_order = 10; break; /** \brief The package is held back. */
+    case pkg_auto_hold:		explicit_order = 11; break; /** \brief The package was automatically held on the system. */
+    case pkg_unchanged:		explicit_order = 12; break; /** \brief No action is being performed on the package. */
+    case pkg_unconfigured:	explicit_order = 13; break; /** \brief The package is installed but not configured. */
+    default:			explicit_order = 99; break;
+    };
+
     if(group!=pkg_unchanged)
       {
 	if(!children[group].second)
@@ -609,7 +635,7 @@ public:
 	    pkg_subtree *newtree=new pkg_subtree_with_order(shortdesc,
 							    desc,
 							    get_desc_sig(),
-							    group,
+							    explicit_order,
 							    true);
 	    root->add_child(newtree);
 	    newtree->set_num_packages_parent(root);
@@ -627,10 +653,14 @@ public:
 	    const wstring desc=W_("Packages which are recommended by other packages\n These packages are not strictly required, but they may be necessary to provide full functionality in some other programs that you are installing or upgrading.");
 	    const wstring shortdesc(desc, 0, desc.find('\n'));
 
+	    // see explicit_order above, anything between actual package states
+	    // and upper limit (and not used by others) will do
+	    explicit_order = 20;
+
 	    pkg_subtree *newtree=new pkg_subtree_with_order(shortdesc,
 							    desc,
 							    get_desc_sig(),
-							    num_pkg_action_states,
+							    explicit_order,
 							    true);
 	    root->add_child(newtree);
 	    newtree->set_num_packages_parent(root);
@@ -648,10 +678,14 @@ public:
 	    const wstring desc=W_("Packages which are suggested by other packages\n These packages are not required in order to make your system function properly, but they may provide enhanced functionality for some programs that you are currently installing.");
 	    const wstring shortdesc(desc, 0, desc.find('\n'));
 
+	    // see explicit_order above, anything between actual package states
+	    // and upper limit (and not used by others) will do
+	    explicit_order = 21;
+
 	    pkg_subtree *newtree=new pkg_subtree_with_order(shortdesc,
 							    desc,
 							    get_desc_sig(),
-							    num_pkg_action_states+1,
+							    explicit_order,
 							    false);
 	    root->add_child(newtree);
 	    newtree->set_num_packages_parent(root);
@@ -695,17 +729,23 @@ pkg_grouppolicy *pkg_grouppolicy_mode_factory::instantiate(pkg_signal *_sig,
 
 /*****************************************************************************/
 
-class pkg_grouppolicy_firstchar:public pkg_grouppolicy
+class pkg_grouppolicy_firstchar: public pkg_grouppolicy
 {
   pkg_grouppolicy_factory *chain;
 
-  typedef map<string, pair<pkg_grouppolicy *, pkg_subtree *> > childmap;
+  typedef map<string, pair<pkg_grouppolicy*, pkg_subtree*>> childmap;
   // Store the child group policies and their associated subtrees.
   childmap children;
+
+  // As in the factory
+  typedef pkg_grouppolicy_firstchar_factory::package_name_mode_type package_name_mode_type;
+  package_name_mode_type package_name_mode;
+
 public:
-  pkg_grouppolicy_firstchar(pkg_grouppolicy_factory *_chain,
+  pkg_grouppolicy_firstchar(const package_name_mode_type _package_name_mode,
+			    pkg_grouppolicy_factory *_chain,
 			    pkg_signal *_sig, desc_signal *_desc_sig)
-    :pkg_grouppolicy(_sig, _desc_sig), chain(_chain)
+    : pkg_grouppolicy(_sig, _desc_sig), chain(_chain), package_name_mode(_package_name_mode)
   {
   }
 
@@ -719,11 +759,42 @@ public:
   {
     eassert(pkg.Name());
 
+    // default to package name
+    string package_name = pkg.Name();
+
+    // source package name?
+    if (package_name_mode == package_name_mode_type::source)
+      {
+#if APT_PKG_MAJOR >= 5
+	// with apt-1.1:
+	//
+	// - SourcePkg (and Version) are in the binary cache and available via
+	//   the VerIterator; much faster than parsing the pkgRecord
+	//
+	// - defaults to package name, no need to check if it's empty
+	if ( ! pkg.VersionList().end() )
+	  {
+	    package_name = pkg.VersionList().SourcePkgName();
+	  }
+#else
+	if ( ! (pkg.VersionList().end() || pkg.VersionList().FileList().end()) )
+	  {
+	    string source = apt_package_records->Lookup(pkg.VersionList().FileList()).SourcePkg();
+	    if ( ! source.empty() )
+	      {
+		package_name = source;
+	      }
+	  }
+#endif
+      }
+
+    eassert( ! package_name.empty() );
+
     string treename;
-    if(strncmp(pkg.Name(), "lib", 3) == 0)
-      treename = string(pkg.Name(), 4);
+    if(strncmp(package_name.c_str(), "lib", 3) == 0)
+      treename = package_name.substr(0, 4);
     else
-      treename = pkg.Name()[0];
+      treename = package_name.at(0);
 
     childmap::iterator found=children.find(treename);
     if(found!=children.end())
@@ -747,7 +818,7 @@ public:
 pkg_grouppolicy *pkg_grouppolicy_firstchar_factory::instantiate(pkg_signal *sig,
 								desc_signal *desc_sig)
 {
-  return new pkg_grouppolicy_firstchar(chain, sig, desc_sig);
+  return new pkg_grouppolicy_firstchar(package_name_mode, chain, sig, desc_sig);
 }
 
 /*****************************************************************************/
@@ -1513,12 +1584,26 @@ public:
 
   void add_package(const pkgCache::PkgIterator &pkg, pkg_subtree *root)
   {
+#if APT_PKG_MAJOR >= 5
+    // with apt-1.1:
+    //
+    // - SourcePkg (and Version) are in the binary cache and available via
+    //   the VerIterator; much faster than parsing the pkgRecord
+    //
+    // - defaults to package name, no need to check if it's empty
+    if (pkg.VersionList().end())
+      return;
+
+    std::string source_package_name = pkg.VersionList().SourcePkgName();
+#else
     if(pkg.VersionList().end() || pkg.VersionList().FileList().end())
       return;
+
     std::string source_package_name =
       apt_package_records->Lookup(pkg.VersionList().FileList()).SourcePkg();
     if(source_package_name.length() == 0)
       source_package_name = pkg.Name();
+#endif
 
     childmap::iterator found = children.find(source_package_name);
 

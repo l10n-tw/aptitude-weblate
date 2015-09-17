@@ -1,6 +1,7 @@
 // ui.cc
 //
 //   Copyright 2000-2009 Daniel Burrows <dburrows@debian.org>
+//   Copyright 2012-2015 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -927,9 +928,9 @@ void do_new_flat_view(OpProgress &progress)
   add_main_widget(make_default_view(tree,
                                     &tree->selected_signal,
                                     &tree->selected_desc_signal),
-                  _("Packages"),
-                  _("View available packages and choose actions to perform"),
-                  _("Packages"));
+                  _("Packages (flat)"),
+                  _("View available packages (flat, no grouping) and choose actions to perform"),
+                  _("Packages (flat)"));
 
   tree->build_tree(progress);
 }
@@ -955,9 +956,29 @@ static void do_new_tag_view_with_new_bar()
   add_main_widget(make_default_view(tree,
 				    &tree->selected_signal,
 				    &tree->selected_desc_signal),
-		  _("Packages"),
-		  _("View available packages and choose actions to perform"),
-		  _("Packages"));
+		  _("Packages (debtags)"),
+		  _("View available packages (debtags grouping) and choose actions to perform"),
+		  _("Packages (debtags)"));
+
+  tree->build_tree(*p->get_progress().unsafe_get_ref());
+  p->destroy();
+}
+
+static void do_new_source_view_with_new_bar()
+{
+  progress_ref p = gen_progress_bar();
+
+  string grpstr = "section(topdir),firstchar(source),source";
+  pkg_grouppolicy_factory *grp = parse_grouppolicy(grpstr);
+
+  pkg_tree_ref tree = pkg_tree::create(grpstr.c_str(), grp);
+
+  add_main_widget(make_default_view(tree,
+				    &tree->selected_signal,
+				    &tree->selected_desc_signal),
+		  _("Packages (source)"),
+		  _("View available packages (source grouping) and choose actions to perform"),
+		  _("Packages (source)"));
 
   tree->build_tree(*p->get_progress().unsafe_get_ref());
   p->destroy();
@@ -2608,6 +2629,11 @@ cw::menu_info views_menu_info[]={
 	       N_("Browse packages using Debtags data"),
 	       sigc::ptr_fun(do_new_tag_view_with_new_bar)),
 
+  cw::menu_info(cw::menu_info::MENU_ITEM, N_("New ^Source Package View"),
+	       NULL,
+	       N_("Create a new package view, grouped by source package"),
+	       sigc::ptr_fun(do_new_source_view_with_new_bar)),
+
   cw::menu_info::MENU_SEPARATOR,
   cw::menu_info::MENU_END
 };
@@ -3160,11 +3186,20 @@ void prompt_string(const std::wstring &prompt,
       main_table->focus_widget(main_status_multiplex);
     }
   else
-    main_stacked->add_visible_widget(cw::dialogs::string(prompt, text,
-						      slot, cancel_slot,
-						      changed_slot,
-						      history),
-				     true);
+    {
+      cw::widget_ref w = cw::dialogs::string(prompt, text,
+					     slot, cancel_slot,
+					     changed_slot,
+					     history);
+      w->connect_key("Cancel",
+		     &cw::config::global_bindings,
+		     sigc::mem_fun(w.unsafe_get_ref(), &cw::widget::destroy));
+      if (cancel_slot)
+	w->connect_key("Cancel",
+		       &cw::config::global_bindings,
+		       *cancel_slot);
+      main_stacked->add_visible_widget(w, true);
+    }
 }
 
 void prompt_string(const std::string &prompt,
@@ -3220,6 +3255,14 @@ void prompt_yesno(const std::wstring &prompt,
 				   deflt,
 				   yesslot,
 				   noslot));
+
+      c->connect_key("Cancel",
+		     &cw::config::global_bindings,
+		     sigc::mem_fun(c.unsafe_get_ref(), &cw::widget::destroy));
+      if(noslot)
+	c->connect_key("Cancel",
+		       &cw::config::global_bindings,
+		       *noslot);
 
       main_status_multiplex->add_visible_widget(c, true);
       main_table->focus_widget(main_status_multiplex);

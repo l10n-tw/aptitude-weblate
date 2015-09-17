@@ -1,3 +1,138 @@
+[2015-09-17]
+Version 0.7.2
+
+- New features:
+
+  * 'Escape' key cancels input dialogs (search, limit, etc.) (Closes: #493322)
+
+  * Extend "firstchar" grouping policy to optionally use source package names.
+
+    With "firstchar(binary)" or the default "firstchar" it will use binary
+    package names (same behaviour as before); while with "firstchar(source)" it
+    will use source package names.
+
+    This is useful for example when browsing packages coming from the same
+    source package ("source" grouping policy) within large collections
+    (examples: all installed packages, all upgradable packages, all packages
+    from "main" section), to add an intermediate grouping step.  In this way,
+    one can for example emulate the hierarchy of FTPs (try grouping:
+    "section(topdir),firstchar(source),source").
+
+  * [curses] Add 'New Source Package View' to Views menu (thanks Thadeu Lima de
+    Souza Cascardo, see #497206), with some updates and minor modifications,
+    like more complex grouping.
+
+    The menu entry was removed before applying the patch attached to that bug
+    report, see comment to the commit: 66adb6c872f7b49279da43601e7d3ff199996c1a
+
+  * [curses] Use Yellow/Brown colour to highlight downgrades (Closes: #584510)
+
+    Previously downgrades were not highlighted, so it was bit confusing/odd and
+    it looked as if nothing would be done with the package.
+
+    There are not many colours "left" in the limited choice, only Yellow/Brown
+    (same as downloads) and Blue.  Since Blue is used in the menus, Yellow/Brown
+    is probably better; Downgrades and Downloads are never on the same screen.
+
+  * Log file now contains version information for most actions (Closes: #222585)
+
+    Previously it only contained version information for upgrades and
+    downgrades, both current (old) and candidate (new) versions.  Now most
+    actions show version information, either the candidate version
+    (e.g. install, auto install) or current version (remove, hold, ...).
+
+  * Save selection state of packages to dpkg database (Closes: #137771)
+
+    Aptitude maintains a separate database (in "pkgstates" file), with a field
+    Dselect-State to keep track of its selected state in dpkg ("status" file).
+    This is updated upon start of aptitude or some operations, so aptitude is
+    aware of changes of this selected state made by other tools; but it was
+    never updated back to dpkg after the selection state changed in aptitude.
+    As a result, for example packages set "hold" in aptitude were then not
+    respected by other tools which do use dpkg selected states.
+
+  * Consider packages "unknown" to dpkg as not to install (Closes: #328616)
+
+    While aptitude tried to take into account the selected state of packages in
+    dpkg, the ones not present (with state "unknown", meaning never installed,
+    or purged) were ignored in aptitude, and the internal selected state was
+    used.  This was causing problems like not respecting actions taken with
+    other tools (see #328616 and duplicates) -- installing with aptitude and
+    then purging with either dpkg or apt (or higher level applications, like
+    puppet), meant that in the next run of aptitude it would try to install the
+    package again.
+
+    We now save the selected states of packages from aptitude to dpkg (another
+    feature added in this release), so the selected states are synchronised.  If
+    it's "unknown" to dpkg, we will assume that other tools uninstalled it in
+    between aptitude runs, and we will keep it uninstalled.
+
+    The behaviour of scheduled aptitude actions will be preserved: if a package
+    is selected to install but is not actually installed in the session,
+    aptitude saves the selection in dpkg as "install", so it will be attemped to
+    install in the next aptitude runs (or other tools honouring the selected
+    state in dpkg).  Or if a installed package is marked to purge with "aptitude
+    --schedule-only purge PKG", "dpkg --purge --pending" does honour the
+    request.
+
+- Bug fixes:
+
+  * Disable strings gathered for translation (Closes: #790568)
+
+  * Change to try to make updated status stats more clear (Closes: #458351)
+
+  * [cmdline] Correctly print when a package should be purged (Closes: #798286)
+
+  * [curses] With the option of mini-buffer prompts enabled, cancellation of the
+    "Quit confirmation" with 'Escape' or 'Ctrl-g' does not cause the
+    dialog/prompt to stop working (Closes: #607118)
+
+  * [cmdline] Warn when package cannot be marked/unmarked auto (Closes: #498240)
+
+  * Install signal handlers and do clean-up when terminating abruptly
+    (Closes: #558352)
+
+  * [curses] Set better ordering for groups of Preview Actions (Closes: #434352)
+
+- User visible changes:
+
+  * Change error string of source_policy_parser to be the same as the rest
+
+  * [curses] Improve titles and descriptions of views
+
+- Internal changes:
+
+  * Improve retrieval of source package information with (upcoming) APT 1.1.
+
+    Thanks to David Kalnischkies for the suggestion and implementation advice.
+
+    Information about source package and version will be in the binary cache,
+    and available via the VerIterator (ver.SourcePkgName() and
+    ver.SourceVerStr()); and it is much faster than parsing the package record.
+
+    Additionally, retrieving the source package name in that way defaults to the
+    binary package name if no Source record is explicit, so there is no need to
+    check if it's empty.
+
+    It is not used in many places in the aptitude code (about 6 files and 10
+    different functions/places), but this speeds-up and simplifies the code
+    considerably where it was used.
+
+  * New helper dpkg_selections.{h,cc}, to help to manage saving selections to
+    the dpkg database (--set-selections)
+
+- Documentation:
+
+  * Guide/User's Manual:
+
+    * Remove grouping policy "hier" from doc/??/aptitude.xml (the
+      categorial/hierarchical browser features were removed in version 0.7)
+
+- Translation updates:
+
+  * Russian by Lev Lamberov (Closes: #798485, #769428)
+
+
 [2015-09-06]
 Version 0.7.1
 
