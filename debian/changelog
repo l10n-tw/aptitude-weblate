@@ -64,6 +64,9 @@ aptitude (0.7.2-1) UNRELEASED; urgency=medium
   * Add lintian override for symlink to /usr/share/common-license/…
   * Remove explicit build-dependency on g++ >= 4:5.2, no more needed.
   * Detabify previous changelog entry.
+  * Remove no more active team members from Uploaders as suggested by the
+    MIA team. Every team member is welcome to re-add himself to Uploaders
+    once he's active again. Thanks for all your work, Daniel and Daniel!
 
  -- Axel Beckert <abe@debian.org>  Thu, 17 Sep 2015 23:30:34 +0200
 
