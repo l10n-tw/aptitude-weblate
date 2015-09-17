@@ -1,4 +1,61 @@
-aptitude (0.7.1-2) UNRELEASED; urgency=medium
+aptitude (0.7.2-1) UNRELEASED; urgency=medium
+
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
+    - New features:
+      * 'Escape' key cancels input dialogs (search, limit, etc.) (Closes:
+        #493322)
+      * Extend "firstchar" grouping policy to optionally use source
+        package names.
+      * [curses] Add 'New Source Package View' to Views menu (thanks
+        Thadeu Lima de Souza Cascardo, really closes: #497206), with some
+        updates and minor modifications, like more complex grouping.
+      * [curses] Use Yellow/Brown colour to highlight downgrades (Closes:
+        #584510)
+      * Log file now contains version information for most actions
+        (Closes: #222585)
+      * Save selection state of packages to dpkg database (Closes:
+        #137771)
+      * Consider packages "unknown" to dpkg as not to install. (Closes:
+        #328616) The behaviour of scheduled aptitude actions will be
+        preserved.
+
+    - Bug fixes:
+      * Disable strings gathered for translation (Closes: #790568)
+      * Change to try to make updated status stats more clear (Closes:
+        #458351)
+      * [cmdline] Correctly print when a package should be purged (Closes:
+        #798286)
+      * [curses] With the option of mini-buffer prompts enabled,
+        cancellation of the "Quit confirmation" with 'Escape' or 'Ctrl-g'
+        does not cause the dialog/prompt to stop working (Closes: #607118)
+      * [cmdline] Warn when package cannot be marked/unmarked auto
+        (Closes: #498240)
+      * Install signal handlers and do clean-up when terminating abruptly
+        (Closes: #558352)
+      * [curses] Set better ordering for groups of Preview Actions
+        (Closes: #434352)
+
+    - User visible changes:
+      * Change error string of source_policy_parser to be the same as the
+        rest.
+      * [curses] Improve titles and descriptions of views.
+
+    - Internal changes:
+      * Improve retrieval of source package information with (upcoming)
+        APT 1.1. Thanks to David Kalnischkies for the suggestion and
+        implementation advice.
+      * New helper dpkg_selections.{h,cc}, to help to manage saving
+        selections to the dpkg database (--set-selections)
+
+    - Documentation:
+      * Guide/User's Manual: Remove grouping policy "hier" from
+        doc/??/aptitude.xml (the categorial/hierarchical browser features
+        were removed in version 0.7)
+
+    - Translation updates:
+      * Russian by Lev Lamberov (Closes: #798485, #769428)
 
   * Add lintian override for spelling-error-in-binary "ressize", seems to
     be from "resource size" or such. Cannot be found in the source code.
@@ -8,7 +65,7 @@ aptitude (0.7.1-2) UNRELEASED; urgency=medium
   * Remove explicit build-dependency on g++ >= 4:5.2, no more needed.
   * Detabify previous changelog entry.
 
- -- Axel Beckert <abe@debian.org>  Sun, 06 Sep 2015 17:29:31 +0200
+ -- Axel Beckert <abe@debian.org>  Thu, 17 Sep 2015 23:30:34 +0200
 
 aptitude (0.7.1-1) unstable; urgency=medium
 
