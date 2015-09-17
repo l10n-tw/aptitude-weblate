@@ -6,6 +6,7 @@ aptitude (0.7.1-2) UNRELEASED; urgency=medium
     by Lintian.
   * Add lintian override for symlink to /usr/share/common-license/…
   * Remove explicit build-dependency on g++ >= 4:5.2, no more needed.
+  * Detabify previous changelog entry.
 
  -- Axel Beckert <abe@debian.org>  Sun, 06 Sep 2015 17:29:31 +0200
 
@@ -34,21 +35,21 @@ aptitude (0.7.1-1) unstable; urgency=medium
         * Upgrade doc/??/aptitude.xml documents from DocBook XML 4.2 to
           4.5
         * Use XHTML 1.0 rather than HTML 4.01, at least to have something
-	  from this decade/century.  The resulting documentation still
+          from this decade/century.  The resulting documentation still
           does not fully validate (see #496724), I think that due to
           bugs/problems of docbook-xsl conversions using invalid elements in
-	  the different standards (tried HTML 4.0, 4.01, XHTML 1.0 and 1.1).
+          the different standards (tried HTML 4.0, 4.01, XHTML 1.0 and 1.1).
         * Generate 'alt' tag for images in HTML documentation (see #496724)
         * In "Customizing the package list", fix order of variables
           ::UI::Package-Status-Format and ::UI::Package-Header-Format and
-	  their explanations
+          their explanations
     - User visible changes:
       * Slightly change description of shortcut 'g' in title bar
         (Closes: #247487)
     - Internal changes:
       * search_graph.h, fix problem with code which was working for many
         years (with boost 1.55 and many versions before), but now the
-	straightforward option to convert boost::optional to bool does not
+        straightforward option to convert boost::optional to bool does not
         work with gcc-5.2 and boost-1.58, so use .is_initialized() instead.
       * solution_item.cc, copy string of package name coming from libapt
         because it does not guarantee that the string is valid for all of the
@@ -71,7 +72,7 @@ aptitude (0.7.1-1) unstable; urgency=medium
         * Convert boost::scoped_ptr (deprecated in C++11) to std::unique_ptr
         * Convert instances of boost::shared_ptr, make_shared, and
           weak_ptr to be explicitly prefixed by boost::, otherwise they clash
-	  or have problems compiling with the new C++11 std::shared_ptr and
+          or have problems compiling with the new C++11 std::shared_ptr and
           analogues (many were not converted in the previous version).
       * Remove unused function serialize_pattern_list()
       * Remove unused function wcsempty()
