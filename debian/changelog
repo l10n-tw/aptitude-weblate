@@ -1,4 +1,4 @@
-aptitude (0.7.2-1) UNRELEASED; urgency=medium
+aptitude (0.7.2-1) unstable; urgency=medium
 
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
     log with more details.
@@ -68,7 +68,7 @@ aptitude (0.7.2-1) UNRELEASED; urgency=medium
     MIA team. Every team member is welcome to re-add himself to Uploaders
     once he's active again. Thanks for all your work, Daniel and Daniel!
 
- -- Axel Beckert <abe@debian.org>  Thu, 17 Sep 2015 23:30:34 +0200
+ -- Axel Beckert <abe@debian.org>  Fri, 18 Sep 2015 00:42:40 +0200
 
 aptitude (0.7.1-1) unstable; urgency=medium
 
