@@ -1,6 +1,7 @@
 // cmdline_show.cc                               -*-c++-*-
 //
 // Copyright (C) 2004, 2010 Daniel Burrows
+// Copyright (C) 2015 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -116,10 +117,14 @@ static cwidget::fragment *dep_lst_frag(pkgCache::DepIterator dep,
   if(fragments.size()==0)
     return cw::fragf("");
   else
-    return cw::fragf("%s: %F",
-		 title.c_str(),
-		 indentbox(0, title.size()+2,
-			   flowbox(cw::join_fragments(fragments, L", "))));
+    {
+      // correctly calculate the indentation for multi-byte encoded strings
+      size_t rest_indent = cw::util::transcode(title).length() + 2;
+      return cw::fragf("%s: %F",
+		       title.c_str(),
+		       indentbox(0, rest_indent,
+				 flowbox(cw::join_fragments(fragments, L", "))));
+    }
 }
 
 typedef std::pair<std::string, std::string> pkgverpair;
@@ -140,50 +145,44 @@ static cwidget::fragment *prv_lst_frag(pkgCache::PrvIterator prv,
   using cwidget::fragment;
   using cwidget::fragf;
 
+  std::set<pkgverpair, package_version_pair_cmp> packagevers;
+
+  for ( ; !prv.end(); ++prv)
+    {
+      string name = reverse ? prv.OwnerPkg().Name() : prv.ParentPkg().Name();
+      const char* version = reverse ? prv.OwnerVer().VerStr() : prv.ProvideVersion();
+
+      if (version)
+	packagevers.insert(pkgverpair(name, version));
+      else
+	packagevers.insert(pkgverpair(name, ""));
+    }
+
   vector<cw::fragment *> fragments;
 
-  if(reverse && verbose >= 1)
+  for (const auto& it : packagevers)
     {
-      std::set<pkgverpair, package_version_pair_cmp> packagevers;
-
-      for( ; !prv.end(); ++prv)
+      if (it.second.empty())
 	{
-	  const string name   = prv.OwnerPkg().FullName(true);
-	  const char *version = prv.OwnerVer().VerStr();
-
-	  if(version != NULL)
-	    packagevers.insert(pkgverpair(name, version));
-	  else
-	    packagevers.insert(pkgverpair(name, ""));
+	  fragments.push_back(cw::fragf("%s", it.first.c_str()));
 	}
-
-      for(std::set<pkgverpair>::const_iterator it = packagevers.begin();
-	  it != packagevers.end(); ++it)
-	fragments.push_back(cw::fragf("%s (%s)", it->first.c_str(), it->second.c_str()));
-    }
-  else
-    {
-      std::set<std::string> packages;
-
-      for( ; !prv.end(); ++prv)
+      else
 	{
-	  string name = reverse ? prv.OwnerPkg().Name() : prv.ParentPkg().Name();
-
-	  packages.insert(name);
+	  fragments.push_back(cw::fragf("%s (%s)", it.first.c_str(), it.second.c_str()));
 	}
-
-      for(std::set<std::string>::const_iterator it = packages.begin();
-	  it != packages.end(); ++it)
-	fragments.push_back(cwidget::text_fragment(*it));
     }
 
-  if(fragments.size()==0)
+  if (fragments.empty())
     return cw::fragf("");
   else
-    return cw::fragf("%s: %F",
-		 title.c_str(),
-		 indentbox(0, title.size()+2,
-			   flowbox(cw::join_fragments(fragments, L", "))));
+    {
+      // correctly calculate the indentation for multi-byte encoded strings
+      size_t rest_indent = cw::util::transcode(title).length() + 2;
+      return cw::fragf("%s: %F",
+		       title.c_str(),
+		       indentbox(0, rest_indent,
+				 flowbox(cw::join_fragments(fragments, L", "))));
+    }
 }
 
 static cwidget::fragment *archive_lst_frag(pkgCache::VerFileIterator vf,
@@ -202,10 +201,14 @@ static cwidget::fragment *archive_lst_frag(pkgCache::VerFileIterator vf,
   if(fragments.size()==0)
     return cw::fragf("");
   else
-    return cw::fragf("%s: %F",
-		 title.c_str(),
-		 indentbox(0, title.size()+2,
-			   flowbox(cw::join_fragments(fragments, L", "))));
+    {
+      // correctly calculate the indentation for multi-byte encoded strings
+      size_t rest_indent = cw::util::transcode(title).length() + 2;
+      return cw::fragf("%s: %F",
+		       title.c_str(),
+		       indentbox(0, rest_indent,
+				 flowbox(cw::join_fragments(fragments, L", "))));
+    }
 }
 
 static const char *current_state_string(pkgCache::PkgIterator pkg, pkgCache::VerIterator ver)
@@ -225,12 +228,10 @@ static const char *current_state_string(pkgCache::PkgIterator pkg, pkgCache::Ver
       return _("partially installed");
     case pkgCache::State::ConfigFiles:
       return _("not installed (configuration files remain)");
-#ifdef APT_HAS_TRIGGERS
     case pkgCache::State::TriggersAwaited:
       return _("awaiting trigger processing by other package(s)");
     case pkgCache::State::TriggersPending:
       return _("awaiting trigger processing");
-#endif
     case pkgCache::State::Installed:
       return _("installed");
     default:
@@ -475,11 +476,9 @@ cw::fragment *version_file_fragment(const pkgCache::VerIterator &ver,
 			    get_short_description(ver, apt_package_records).c_str()));
   fragments.push_back(indentbox(1, 1, make_desc_fragment(get_long_description(ver, apt_package_records))));
 
-#ifdef APT_HAS_HOMEPAGE
   if(rec.Homepage() != "")
     fragments.push_back(cw::dropbox(cwidget::text_fragment(_("Homepage: ")),
 				cw::hardwrapbox(cwidget::text_fragment(rec.Homepage()))));
-#endif
 
   cw::fragment *tags = make_tags_fragment(pkg);
   if(tags)

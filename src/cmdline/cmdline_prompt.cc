@@ -541,11 +541,11 @@ static bool prompt_trust(const std::shared_ptr<terminal_metrics> &term_metrics)
 	  return true;
 	}
 
-      if(aptcfg->FindB("Apt::Get::AllowUnauthenticated", false))
+      if(aptcfg->FindB("APT::Get::AllowUnauthenticated", false))
 	{
 	  printf("%s",
 		 _("*** WARNING ***   Ignoring these trust violations because\n"
-		   "                  Apt::Get::AllowUnauthenticated is 'true'!\n"));
+		   "                  APT::Get::AllowUnauthenticated is 'true'!\n"));
 	  return true;
 	}
 
@@ -614,8 +614,6 @@ bool cmdline_show_preview(bool as_upgrade, pkgset &to_install,
 			  int verbose,
                           const std::shared_ptr<terminal_metrics> &term_metrics)
 {
-  const int quiet = aptcfg->FindI("Quiet", 0);
-
   pkgvector lists[num_pkg_action_states];
   pkgvector recommended, suggested;
   pkgvector extra_install, extra_remove;
@@ -702,7 +700,7 @@ bool cmdline_show_preview(bool as_upgrade, pkgset &to_install,
 	}
     }
 
-  if(quiet == 0 && !recommended.empty())
+  if(!recommended.empty())
     {
       printf(_("The following packages are RECOMMENDED but will NOT be installed:\n"));
       cmdline_show_instinfo(recommended, verbose, showvers, showdeps, showsize, false, showwhy, term_metrics);

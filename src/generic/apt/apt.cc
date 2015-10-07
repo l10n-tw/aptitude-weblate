@@ -1,6 +1,7 @@
 // apt.cc
 //
 //  Copyright 1999-2010 Daniel Burrows
+//  Copyright 2015 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -40,15 +41,15 @@
 
 #include <generic/util/undo.h>
 
+#include <apt-pkg/aptconfiguration.h>
 #include <apt-pkg/configuration.h>
 #include <apt-pkg/depcache.h>
 #include <apt-pkg/error.h>
+#include <apt-pkg/fileutl.h>
 #include <apt-pkg/init.h>
 #include <apt-pkg/pkgcachegen.h>
 #include <apt-pkg/sourcelist.h>
 #include <apt-pkg/version.h>
-#include <apt-pkg/aptconfiguration.h>
-#include <apt-pkg/fileutl.h>
 
 #include <fstream>
 
@@ -602,10 +603,8 @@ pkg_action_state find_pkg_state(pkgCache::PkgIterator pkg,
   // States where --configure fixes things.
   else if(pkg->CurrentState == pkgCache::State::UnPacked ||
 	  pkg->CurrentState == pkgCache::State::HalfConfigured
-#ifdef APT_HAS_TRIGGERS
 	  || pkg->CurrentState == pkgCache::State::TriggersAwaited
 	  || pkg->CurrentState == pkgCache::State::TriggersPending
-#endif
 	  )
     return pkg_unconfigured;
 
@@ -924,6 +923,61 @@ pkgCache::DepIterator is_conflicted(const pkgCache::VerIterator &ver,
   return pkgCache::DepIterator(cache, 0, (pkgCache::Version *)0);
 }
 
+
+bool can_remove_autoinstalled(const pkgCache::PkgIterator& pkg,
+			      aptitudeDepCache& cache,
+			      bool follow_recommends,
+			      bool follow_suggests)
+{
+  // if not valid, consider not-OK -- cannot decide if it's safe
+  if (pkg.end())
+    return false;
+
+  if (is_virtual(pkg))
+    {
+      // handle virtual packages later
+    }
+  else if (!pkg.VersionList().end() && pkg.CurrentVer().end())
+    {
+      // if not virtual and not installed, consider not-OK -- cannot decide if
+      // it's safe
+      return false;
+    }
+  else if (!pkg.CurrentVer().end() && !pkg.CurrentVer().Automatic())
+    {
+      // if installed and not automatic, consider not-OK
+      return false;
+    }
+
+  bool rdeps_prevent_removal = false;
+
+  // walk all rdeps of the given package, and see if any of them is to be/remain
+  // installed (incl. upgrades, downgrades) or kept installed
+  for (pkgCache::DepIterator rev_dep = pkg.RevDependsList(); !rev_dep.end(); ++rev_dep)
+    {
+      // consider only these type of dependencies
+      if (! ((rev_dep->Type == pkgCache::Dep::Depends) ||
+	     (rev_dep->Type == pkgCache::Dep::PreDepends) ||
+	     (rev_dep->Type == pkgCache::Dep::Recommends && follow_recommends) ||
+	     (rev_dep->Type == pkgCache::Dep::Suggests   && follow_suggests)))
+	continue;
+
+      // consider only to be/remain installed rdeps
+      pkgDepCache::StateCache& rev_dep_state = cache[rev_dep.ParentPkg()];
+      bool rev_dep_to_remain_installed = is_installed(rev_dep.ParentPkg()) && !rev_dep_state.Delete();
+      bool rev_dep_to_be_installed = rev_dep_state.Install();
+
+      if (rev_dep_to_remain_installed || rev_dep_to_be_installed)
+	{
+	  rdeps_prevent_removal = true;
+	  break;
+	}
+    }
+
+  return !rdeps_prevent_removal;
+}
+
+
 /** \return \b true if d1 subsumes d2; that is, if one of the
  *  following holds:
  *
@@ -1071,7 +1125,7 @@ static bool internal_is_interesting_dep(const pkgCache::DepIterator &d,
   else if(const_cast<pkgCache::DepIterator &>(d).IsCritical())
     return true;
   else if(d->Type != pkgCache::Dep::Recommends ||
-	  !aptcfg->FindB("Apt::Install-Recommends", true))
+	  !aptcfg->FindB("APT::Install-Recommends", true))
     return false;
   else
     {
@@ -1168,29 +1222,12 @@ std::wstring get_short_description(const pkgCache::VerIterator &ver,
   if(ver.end() || ver.FileList().end() || records == NULL)
     return std::wstring();
 
-#ifndef HAVE_DDTP
   pkgCache::VerFileIterator vf = ver.FileList();
 
   if(vf.end())
     return std::wstring();
   else
     return cw::util::transcode(records->Lookup(vf).ShortDesc());
-#else
-  pkgCache::DescIterator d = ver.TranslatedDescription();
-
-  if(d.end())
-    return std::wstring();
-
-  pkgCache::DescFileIterator df = d.FileList();
-
-  if(df.end())
-    return std::wstring();
-  else
-    // apt "helpfully" cw::util::transcodes the description for us, instead of
-    // providing direct access to it.  So I need to assume that the
-    // description is encoded in the current locale.
-    return cwidget::util::transcode(records->Lookup(df).ShortDesc());
-#endif
 }
 
 std::wstring get_long_description(const pkgCache::VerIterator &ver,
@@ -1199,26 +1236,12 @@ std::wstring get_long_description(const pkgCache::VerIterator &ver,
   if(ver.end() || ver.FileList().end() || records == NULL)
     return std::wstring();
 
-#ifndef HAVE_DDTP
   pkgCache::VerFileIterator vf = ver.FileList();
 
   if(vf.end())
     return std::wstring();
   else
     return cw::util::transcode(records->Lookup(vf).LongDesc());
-#else
-  pkgCache::DescIterator d = ver.TranslatedDescription();
-
-  if(d.end())
-    return std::wstring();
-
-  pkgCache::DescFileIterator df = d.FileList();
-
-  if(df.end())
-    return std::wstring();
-  else
-    return cwidget::util::transcode(records->Lookup(df).LongDesc());
-#endif
 }
 
 const char *multiarch_type(unsigned char type)

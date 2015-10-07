@@ -1,6 +1,7 @@
 // pkg_item.cc
 //
 // Copyright 1999-2005, 2007-2009 Daniel Burrows
+// Copyright 2014-2015 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -16,8 +17,6 @@
 //  along with this program; see the file COPYING.  If not, write to
 //  the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 //  Boston, MA 02111-1307, USA.
-//
-//  Definitions of stuff in pkg_item.h
 
 #include "aptitude.h"
 
@@ -221,9 +220,15 @@ void pkg_item::forbid_upgrade(undo_group *undo)
     (*apt_cache_file)->forbid_upgrade(package, candver.VerStr(), undo);
 }
 
-void pkg_item::set_auto(bool isauto, undo_group *undo)
+void pkg_item::set_auto(bool value, undo_group *undo)
 {
-  (*apt_cache_file)->mark_auto_installed(package, isauto, undo);
+  // it is faster to check first
+  bool current_value = is_auto_installed((*apt_cache_file)[package]);
+
+  if (value != current_value)
+    {
+      (*apt_cache_file)->mark_auto_installed(package, value, undo);
+    }
 }
 
 void pkg_item::show_information()
@@ -246,10 +251,10 @@ cw::style pkg_item::get_normal_style()
   return cw::treeitem::get_normal_style() + pkg_style(package, false);
 }
 
-#define MAYBE_HIGHLIGHTED(x) (highlighted ? (x "Highlighted") : (x))
-
 cw::style pkg_item::pkg_style(pkgCache::PkgIterator package, bool highlighted)
 {
+#define MAYBE_HIGHLIGHTED(x) (highlighted ? (x "Highlighted") : (x))
+
   if(package.VersionList().end())
     {
       bool present_now=false, present_inst=false;
@@ -299,6 +304,8 @@ cw::style pkg_item::pkg_style(pkgCache::PkgIterator package, bool highlighted)
       else
 	return cw::get_style(MAYBE_HIGHLIGHTED("PkgIsInstalled"));
     }
+
+#undef MAYBE_HIGHLIGHTED
 }
 
 void pkg_item::paint(cw::tree *win, int y, bool hierarchical, const cw::style &st)
@@ -337,16 +344,6 @@ bool pkg_item::dispatch_key(const cw::config::key &k, cw::tree *owner)
 
       undo_group *grp=new apt_undo_group;
       (*apt_cache_file)->mark_single_install(package, grp);
-      if(!grp->empty())
-	apt_undos->add_item(grp);
-      else
-	delete grp;
-    }
-  else if(bindings->key_matches(k, "ForbidUpgrade"))
-    {
-      undo_group *grp=new apt_undo_group;
-      forbid_upgrade(grp);
-
       if(!grp->empty())
 	apt_undos->add_item(grp);
       else

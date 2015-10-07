@@ -285,8 +285,8 @@ option_item misc_options[]={
 		 "upgrade."),
 	      PACKAGE "::Auto-Upgrade", false),
   option_item(N_("Remove obsolete package files after downloading new package lists"),
-	      N_("If this option is enabled, then after every "
-		 "install run, aptitude will delete from the package "
+	      N_("If this option is enabled, then after package lists "
+		 "are updated aptitude will delete from the package "
 		 "cache any package files that can no longer be "
 		 "downloaded from any archive in sources.list."),
 	      PACKAGE "::AutoClean-After-Update", false),
@@ -376,7 +376,7 @@ option_item dependency_options[]={
 		 "packages automatically\" is enabled, packages "
 		 "that are recommended by an installed package "
 		 "will not be automatically removed."),
-	      "Apt::Install-Recommends", true),
+	      "APT::Install-Recommends", true),
   option_item(N_("Remove unused packages automatically"),
 	      N_("If this option is enabled, packages that are "
 		 "automatically installed and that no manually "
