@@ -1,11 +1,5 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
-/* Set to true if apt supports the Homepage: field */
-#undef APT_HAS_HOMEPAGE
-
-/* Set to true if apt supports dpkg trigger states */
-#undef APT_HAS_TRIGGERS
-
 /* Define if boost::fusion::fold passes the state as the first argument to the
    fold function. */
 #undef BOOST_FUSION_FOLD_STATE_BEFORE_VALUE
@@ -225,14 +219,8 @@
    header file. */
 #undef HAVE_BOOST_PREPROCESSOR_REPETITION_REPEAT_HPP
 
-/* Define to 1 if you have the <boost/random.hpp> header file. */
-#undef HAVE_BOOST_RANDOM_HPP
-
 /* Define to 1 if you have the <boost/range.hpp> header file. */
 #undef HAVE_BOOST_RANGE_HPP
-
-/* Define to 1 if you have the <boost/scoped_array.hpp> header file. */
-#undef HAVE_BOOST_SCOPED_ARRAY_HPP
 
 /* Define to 1 if you have the <boost/test/unit_test.hpp> header file. */
 #undef HAVE_BOOST_TEST_UNIT_TEST_HPP
@@ -263,9 +251,6 @@
 /* Define if the GNU dcgettext() function is already present or preinstalled.
    */
 #undef HAVE_DCGETTEXT
-
-/* Set to true if apt is DDTP-enabled */
-#undef HAVE_DDTP
 
 /* Define if the execinfo file (for self-backtracing) is available */
 #undef HAVE_EXECINFO_H

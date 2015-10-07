@@ -71,7 +71,7 @@ bool do_log(const string &log,
 
   fprintf(f, "Aptitude " VERSION ": %s\n%s\n\n",
 	  _("log report"), timestr.c_str());
-  fprintf(f, _("IMPORTANT: this log only lists intended actions; actions which fail due to\ndpkg problems may not be completed.\n\n"));
+  fprintf(f, _("  IMPORTANT: this log only lists intended actions; actions which fail\n  due to dpkg problems may not be completed.\n\n"));
   fprintf(f, _("Will install %li packages, and remove %li packages.\n"),
 	  (*apt_cache_file)->InstCount(), (*apt_cache_file)->DelCount());
 
@@ -82,8 +82,7 @@ bool do_log(const string &log,
     fprintf(f, _("%sB of disk space will be freed\n"),
 	    SizeToStr((*apt_cache_file)->UsrSize()).c_str());
 
-  fprintf(f, "===============================================================================\n");
-
+  fprintf(f, "========================================\n");
 
   for(loglist::const_iterator i = changed_packages.begin();
       i != changed_packages.end(); ++i)
@@ -158,7 +157,10 @@ bool do_log(const string &log,
 		  i->first.FullName(false).c_str());
 	}
     }
-  fprintf(f, _("===============================================================================\n\nLog complete.\n"));
+  fprintf(f, "========================================\n");
+
+  fprintf(f, "\n%s\n", _("Log complete."));
+  fprintf(f, "\n===============================================================================\n\n");
 
   if(log[0] == '|')
     pclose(f);
@@ -205,8 +207,7 @@ void log_changes()
   if(!logs.empty())
     {
       loglist changed_packages;
-      for(pkgCache::PkgIterator i
-	    = (*apt_cache_file)->PkgBegin(); !i.end(); i++)
+      for(pkgCache::PkgIterator i = (*apt_cache_file)->PkgBegin(); !i.end(); ++i)
 	{
 	  pkg_action_state s = find_pkg_state(i, *apt_cache_file);
 	  if(s != pkg_unchanged)
@@ -215,8 +216,7 @@ void log_changes()
 
       sort(changed_packages.begin(), changed_packages.end(), log_sorter());
 
-      for(vector<string>::iterator i
-	    = logs.begin(); i != logs.end(); ++i)
+      for(vector<string>::const_iterator i = logs.begin(); i != logs.end(); ++i)
 	do_log(*i, changed_packages);
     }
 }

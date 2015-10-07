@@ -1233,11 +1233,14 @@ namespace
 				       sigc::slot1<void, pkgPackageManager::OrderResult> k)
   {
     cw::toplevel::suspend();
+
+    cout << _("Performing actions...") << endl;
+
     pkgPackageManager::OrderResult rval = f(-1);
-    
+
     if(rval != pkgPackageManager::Incomplete)
       {
-	cerr << _("Press Return to continue.") << endl;
+	cout << _("Press Return to continue.") << endl;
 	int c = getchar();
 
 	while(c != '\n'  && c != EOF)

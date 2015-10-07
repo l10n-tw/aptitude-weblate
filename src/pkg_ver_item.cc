@@ -1,6 +1,7 @@
 // pkg_ver_item.cc
 //
 //  Copyright 1999-2005, 2007-2008, 2010 Daniel Burrows
+//  Copyright 2014-2015 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -16,8 +17,6 @@
 //  along with this program; see the file COPYING.  If not, write to
 //  the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 //  Boston, MA 02111-1307, USA.
-//
-//  Implementations of stuff in pkg_ver_item.h
 
 #include "aptitude.h"
 
@@ -172,7 +171,9 @@ cw::column_disposition pkg_ver_columnizer::setup_column(const pkgCache::VerItera
       if(ver.end())
 	return cw::column_disposition("", 0);
 
-      if(ver.ParentPkg().CurrentVer()!=ver)
+      // packages with state pkgCache::State::ConfigFiles don't seem to have
+      // valid CurrentVer(), so check specifically for this
+      if(!ver.ParentPkg().CurrentVer().end() && (ver.ParentPkg().CurrentVer() != ver))
 	return cw::column_disposition("p", 0);
 
       if((*apt_cache_file)[ver.ParentPkg()].NowBroken())
@@ -195,12 +196,10 @@ cw::column_disposition pkg_ver_columnizer::setup_column(const pkgCache::VerItera
 	  return cw::column_disposition("c", 0);
 	case pkgCache::State::Installed:
 	  return cw::column_disposition("i", 0);
-#ifdef APT_HAS_TRIGGERS
 	case pkgCache::State::TriggersAwaited:
 	  return cw::column_disposition("W", 0);
 	case pkgCache::State::TriggersPending:
 	  return cw::column_disposition("T", 0);
-#endif
 	default:
 	  return cw::column_disposition("E", 0);
 	}
@@ -210,7 +209,9 @@ cw::column_disposition pkg_ver_columnizer::setup_column(const pkgCache::VerItera
       if(ver.end())
 	return cw::column_disposition("", 0);
 
-      if(ver.ParentPkg().CurrentVer()!=ver)
+      // packages with state pkgCache::State::ConfigFiles don't seem to have
+      // valid CurrentVer(), so check specifically for this
+      if(!ver.ParentPkg().CurrentVer().end() && (ver.ParentPkg().CurrentVer() != ver))
 	return cw::column_disposition(_("purged"), 0);
 
       if((*apt_cache_file)[ver.ParentPkg()].NowBroken())
@@ -233,6 +234,10 @@ cw::column_disposition pkg_ver_columnizer::setup_column(const pkgCache::VerItera
 	  return cw::column_disposition(_("config-files"), 0);
 	case pkgCache::State::Installed:
 	  return cw::column_disposition(_("installed"), 0);
+	case pkgCache::State::TriggersAwaited:
+	  return cw::column_disposition(_("triggers-awaited"), 0);
+	case pkgCache::State::TriggersPending:
+	  return cw::column_disposition(_("triggers-pending"), 0);
 	default:
 	  return cw::column_disposition(_("ERROR"), 0);
 	}
@@ -270,7 +275,7 @@ cw::column_disposition pkg_ver_columnizer::setup_column(const pkgCache::VerItera
 	    else
 	      return cw::column_disposition(" ", 0);
 	  }
-	else if(state.Upgrade())
+	else if(state.Upgrade() || state.Downgrade())
 	  {
 	    if(ver.ParentPkg().CurrentVer()==ver)
 	      return cw::column_disposition("d", 0);
@@ -511,11 +516,11 @@ pkg_ver_item::pkg_ver_item(const pkgCache::VerIterator &_version, pkg_signal *_s
   highlighted_changed.connect(sigc::mem_fun(this, &pkg_ver_item::do_highlighted_changed));
 }
 
-#define MAYBE_HIGHLIGHTED(x) (highlighted ? (x "Highlighted") : (x))
-
 cw::style pkg_ver_item::ver_style(pkgCache::VerIterator version,
 			      bool highlighted)
 {
+#define MAYBE_HIGHLIGHTED(x) (highlighted ? (x "Highlighted") : (x))
+
   pkgCache::PkgIterator pkg=version.ParentPkg();
   pkgDepCache::StateCache &state=(*apt_cache_file)[pkg];
 
@@ -544,6 +549,8 @@ cw::style pkg_ver_item::ver_style(pkgCache::VerIterator version,
 
   else
     return cw::get_style(MAYBE_HIGHLIGHTED("PkgIsInstalled"));
+
+#undef MAYBE_HIGHLIGHTED
 }
 
 void pkg_ver_item::paint(cw::tree *win, int y, bool hierarchical,
@@ -659,12 +666,18 @@ void pkg_ver_item::reinstall(undo_group *undo)
 				    undo);
 }
 
-void pkg_ver_item::set_auto(bool isauto, undo_group *undo)
+void pkg_ver_item::set_auto(bool value, undo_group *undo)
 {
-  (*apt_cache_file)->mark_auto_installed(version.ParentPkg(), isauto, undo);
+  // it is faster to check first
+  bool current_value = is_auto_installed((*apt_cache_file)[version.ParentPkg()]);
+
+  if (value != current_value)
+    {
+      (*apt_cache_file)->mark_auto_installed(version.ParentPkg(), value, undo);
+    }
 }
 
-void pkg_ver_item::forbid_version(undo_group *undo)
+void pkg_ver_item::forbid_upgrade(undo_group *undo)
 {
   if(version!=version.ParentPkg().CurrentVer())
     (*apt_cache_file)->forbid_upgrade(version.ParentPkg(), version.VerStr(), undo);
@@ -712,18 +725,6 @@ bool pkg_ver_item::dispatch_key(const cw::config::key &k, cw::tree *owner)
   else if(bindings->key_matches(k, "Changelog"))
     {
       view_changelog(version);
-      return true;
-    }
-  else if(bindings->key_matches(k, "ForbidUpgrade"))
-    {
-      undo_group *grp=new apt_undo_group;
-      forbid_version(grp);
-
-      if(!grp->empty())
-	apt_undos->add_item(grp);
-      else
-	delete grp;
-
       return true;
     }
   else if(bindings->key_matches(k, "BugReport"))
@@ -775,7 +776,7 @@ bool pkg_ver_item::package_forbid()
 {
   undo_group *grp = new apt_undo_group;
 
-  forbid_version(grp);
+  forbid_upgrade(grp);
 
   if(!grp->empty())
     apt_undos->add_item(grp);

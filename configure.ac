@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([aptitude], [0.7.2], [aptitude-devel@lists.alioth.debian.org])
+AC_INIT([aptitude], [0.7.3], [aptitude-devel@lists.alioth.debian.org])
 AC_CONFIG_SRCDIR([src/main.cc])
 AM_INIT_AUTOMAKE([foreign dist-xz no-dist-gzip -Wno-portability])
 AM_CONFIG_HEADER(config.h)
@@ -138,9 +138,7 @@ boost/optional.hpp dnl
 boost/preprocessor/repetition/enum_binary_params.hpp dnl
 boost/preprocessor/repetition/enum_params.hpp dnl
 boost/preprocessor/repetition/repeat.hpp dnl
-boost/random.hpp dnl
 boost/range.hpp dnl
-boost/scoped_array.hpp dnl
 boost/test/unit_test.hpp dnl
 boost/type_traits/is_same.hpp dnl
 boost/unordered_map.hpp dnl
@@ -459,61 +457,39 @@ AC_CHECK_HEADER(locale.h, [AC_DEFINE([HAVE_LOCALE_H], [], [Define if locale.h is
 
 AC_CHECK_DECL(setlocale, [AC_DEFINE([HAVE_SETLOCALE], [], [Define if setlocale is available in locale.h])], , [#include <locale.h>])
 
-dnl All the hash-related stuff is commented out because g++ 4.3 will
-dnl blow us up if we ever include hash_map -- yet it's present and I
-dnl can't make the autoconf test fail.  The replacement is
-dnl unordered_map, which is not just a nonstandard header: it also
-dnl requires language extensions in order to work.  So, since aptitude
-dnl has no real need for hashes anyway, I'm just removing all the
-dnl hashes that it uses.
-
-dnl HASH_INC=""
-dnl HASH_CLS=""
-
-dnl AC_CHECK_HEADER(hash_map,
-dnl 		[HASH_INC="hash_map"
-dnl 		 HASH_CLS="hash_map"
-dnl 		 AC_DEFINE(HAVE_HASH_MAP, ,
-dnl 			  [Define if the g++ extension hash_map is available])],
-dnl 	  	[AC_CHECK_HEADER(ext/hash_map,
-dnl 				 [HASH_INC="ext/hash_map"
-dnl 				  HASH_CLS="hash_map"
-dnl 				  AC_DEFINE(HAVE_EXT_HASH_MAP, , [Define if the g++ extension ext/hash_map is available])])])
-
-dnl AC_CHECK_HEADER(hash_set,
-dnl 		[HASH_INC="hash_set"
-dnl 		 HASH_CLS="hash_set"
-dnl 		 AC_DEFINE(HAVE_HASH_SET,  , [Define if the g++ extension hash_set is available])],
-dnl 		[AC_CHECK_HEADER(ext/hash_set,
-dnl 				[HASH_INC="ext/hash_set"
-dnl 				 HASH_CLS="hash_set"
-dnl 				 AC_DEFINE(HAVE_EXT_HASH_SET,  , [Define if the g++ extension ext/hash_set is available])])])
-
 AC_MSG_CHECKING([whether apt supports ddtp])
 
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <apt-pkg/pkgcache.h>]],
-                                   [[pkgCache::DescIterator d;]])],
-                  AC_MSG_RESULT([yes])
-		  AC_DEFINE([HAVE_DDTP], [], [Set to true if apt is DDTP-enabled]),
-		  AC_MSG_RESULT([no]))
 
-AC_MSG_CHECKING([whether apt supports the Homepage: field])
+dnl ============================================================================
+dnl Disabled, but leaving them as models of future checks
+dnl ============================================================================
 
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <apt-pkg/pkgrecords.h>]],
-				  [[  pkgRecords::Parser *p = NULL;]]
-				  [[  if(0) p->Homepage();]])],
-		   AC_MSG_RESULT([yes])
-		   AC_DEFINE([APT_HAS_HOMEPAGE], [], [Set to true if apt supports the Homepage: field]),
-		   AC_MSG_RESULT([no]))
+dnl AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <apt-pkg/pkgcache.h>]],
+dnl                                    [[pkgCache::DescIterator d;]])],
+dnl                   AC_MSG_RESULT([yes])
+dnl 		  AC_DEFINE([HAVE_DDTP], [], [Set to true if apt is DDTP-enabled]),
+dnl 		  AC_MSG_RESULT([no]))
 
-AC_MSG_CHECKING([whether apt supports dpkg triggers])
+dnl AC_MSG_CHECKING([whether apt supports the Homepage: field])
 
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <apt-pkg/pkgcache.h>]],
-                                   [[pkgCache::State::TriggersAwaited;]]
-                                   [[pkgCache::State::TriggersPending;]])],
-		  AC_MSG_RESULT([yes])
-		  AC_DEFINE([APT_HAS_TRIGGERS], [], [Set to true if apt supports dpkg trigger states]),
-		  AC_MSG_RESULT([no]))
+dnl AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <apt-pkg/pkgrecords.h>]],
+dnl 				  [[  pkgRecords::Parser *p = NULL;]]
+dnl 				  [[  if(0) p->Homepage();]])],
+dnl 		   AC_MSG_RESULT([yes])
+dnl 		   AC_DEFINE([APT_HAS_HOMEPAGE], [], [Set to true if apt supports the Homepage: field]),
+dnl 		   AC_MSG_RESULT([no]))
+
+dnl AC_MSG_CHECKING([whether apt supports dpkg triggers])
+
+dnl AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <apt-pkg/pkgcache.h>]],
+dnl                                    [[pkgCache::State::TriggersAwaited;]]
+dnl                                    [[pkgCache::State::TriggersPending;]])],
+dnl 		  AC_MSG_RESULT([yes])
+dnl 		  AC_DEFINE([APT_HAS_TRIGGERS], [], [Set to true if apt supports dpkg trigger states]),
+dnl 		  AC_MSG_RESULT([no]))
+
+dnl ============================================================================
+
 
 # Try to guess what namespace the hash stuff is in (maybe I should just
 # use rbltrees instead in most places?)

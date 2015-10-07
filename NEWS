@@ -1,3 +1,169 @@
+[2015-10-07]
+Version 0.7.3
+
+- Bug fixes:
+
+  * [cmdline] Correctly calculate the indentation for multi-byte encoded strings
+    in command line "show" (Closes: #360202)
+
+  * [curses] Show intended action when downgrading (Closes: #516517)
+
+    In package view/info screen, it was not handling this action and not showing
+    anything in this case.
+
+  * Update internal state for upgrades/downgrades with target version after the
+    action is performed (Closes: #787658, #714429)
+
+    Thanks to David Kalnischkies and Julian Andres Klode from APT team for their
+    help, clues and patience.  It took some serious effort to get to this fix,
+    which in the end is quite modest in terms of code changes.
+
+    Internal state was neither reset nor written to disk until other packages'
+    states changed, so aptitude marked the same action on the packages as
+    pending to be performed again and again (but the action had already been
+    taken, so there was no observable effect in terms of installations).
+
+    However, this meant that the packages that were downgraded to older versions
+    when newer were still available (e.g., mixing stable and unstable), was not
+    shown as "Upgradable" neither in the current sessions nor in subsequent
+    sessions (under Upgradable subtree in interactive mode; or command line like
+    "aptitude search ~U"), until the file pkgstates was written to disk because
+    of changes in other packages.
+
+  * [curses] Don't precede Tags field by newline in package info screen
+    (Closes: #799933)
+
+  * Correctly detect state of vers/pkg when is ConfigFiles (Closes: #698768)
+
+  * [cmdline] Show "RECOMMENDED but will not be installed" on pipes and redirs
+    (Closes: #647474)
+
+    The change was requested in #452202 in 2007 to not show this message and was
+    applied, but after that there are at least 3 separate requests (#647474,
+    #587676 and #720074) asking to show the same messages independently if the
+    output is an interactive terminal, a pipe or a redirection to a file, all
+    citing the lack of this message.  (Makes sense, because it is one of the
+    most prominent messages that users see, and also because this way of hiding
+    messages is almost never used elsewhere in the code).
+
+    In principle, "quiet" shouldn't make a difference when using ttys or
+    pipes/files, but it does because it's primarily tied to the "progress"
+    messages appearing all around the command line code; so in main.cc quiet is
+    set to "1" when the output is not a tty.
+
+    I think that the best solution by now is to revert the behaviour and simply
+    show the message whenever there are packages to show.  The only harm is if
+    people complain again that it's too verbose, but probably nobody is using
+    "-q" in practice to avoid having this message printed.
+
+    A proper implementation would involve to clean-up the mess of quiet/verbose
+    and convert it to only one single variable, and act verbosely accordinly,
+    and perhaps tie the condition of showing progress of operations on another
+    variable/mechanism.
+
+  * [curses] Improve the integration of Forbid upgrades (Closes: #439258)
+
+    Now it will advance the selection to the next line after marking a package
+    with 'F', if that option is enabled.
+
+  * Remove unneeded automatically installed packages in the same action
+    (Closes: #478116, #564545, #637257, #368037, #486454, #738517, #789803,
+    #779999, #756507, #759764, #766702, #655483, #740009)
+
+    There were some cases where manually installed packages were removed/purged,
+    but dependencies that were needed only by these packages (marked as
+    automatically installed, and unused after the removal of the main package)
+    were not removed as part of the the same "action", due to interactions
+    between aptitude (in find_not_orphaned()) and libapt.
+
+    The packages were detected as "garbage" in subsequent runs of apt (offering
+    to "autoremove" them), aptitude in the command line, or further actions
+    within the interactive session of aptitude; but nevertheless this caused
+    numerous complaints about aptitude not removing the "cruft" (sometimes
+    assuming that because it was not removed immediately, it will not be removed
+    later either).
+
+    Now, as part of the removal of a package and unless the option
+    "::Delete-Unused" is set to true (defaults to false); aptitude pro-actively
+    marks for removal the dependencies of the package marked as automatic and
+    not used by other packages; and find_not_orphaned() was modified to only
+    have into account installed packages or to-be-installed packages to prevent
+    removals.
+
+  * Honour ::Purge-Unused when removing packages (Closes: #724034)
+
+  * Be more informative when virtual packages are involved in broken deps
+    (Closes: #316633, #798898, #799918)
+
+  * Fix description of config option ::AutoClean-After-Update (Closes: #756937)
+
+- User visible changes:
+
+  * Make boundaries of sessions in the log file more clear (Closes: #269275)
+
+  * [curses] Avoid marking as auto/non-auto if already set (Closes: #265013)
+
+  * [curses] Print message when starting to perform actions (Closes: #323371)
+
+  * Use uppercase APT:: for apt config vars, for consistency (Closes: #519425)
+
+    Both APT:: and Apt:: (the other common form that we were using) are valid,
+    in fact they are case-agnostic.  But for internal consistency and specially
+    for consistency with APT documentation (apt.conf), use the uppercase form.
+    
+    This mostly affects documentation, but also some code and translations.  It
+    was substituted automatically in all translations.
+
+  * [cmdline] Print versions of Provides, if they exist (Closes: #767393)
+
+    Some aspects of the bug report refer to the curses TUI and it is still
+    unclear how to deal with them, so it was cloned to another report; but the
+    change implemented for this part could be useful, it is harmless, and it
+    simplifies code (two branches differentiating for this reason now merge).
+
+- Internal changes:
+
+  * temp.cc: simplify code and messages and reduce the use of boost libs
+
+  * configure.ac: Remove checks for boost/scoped_array.hpp and boost/random.hpp,
+    not used anymore -- a few seconds less per compilation
+
+  * In file pkg_ver_item.cc, function pkg_ver_columnizer::setup_column(), the
+    switch/case handling for longstate was missing the options added in 2007 for
+    APT_HAS_TRIGGERS, present for stageflag case and both cases in
+    pkg_columnizer::setup_column() of pkg_columnizer.cc.
+
+    (In other words, it was missing in 1 of these 4 places where it is
+    necessary).
+
+  * Disable obsolete checks in configure.ac and preprocessor checks in code for
+    APT_HAS_TRIGGERS, APT_HAS_HOMEPAGE and HAVE_DDTP.
+
+    The support for these functionalities has been present in all involved tools
+    since 2007-2008 or earlier, so it is safe to disable the checks and the
+    dead code.
+
+  * Add functions to check if packages are installed, automatically installed,
+    if they are virtual, and others.  They can be used later to make other code
+    more consistent, clear and clean.
+
+  * Remove sigc++ include from apt_config_widgets.h (fails to build with newer
+    versions)
+
+- Documentation:
+
+  * Guide/User's Manual:
+
+    * Document Brown colour for downgraded packages in UI (feature implemented
+      in the last version)
+
+- Translation updates:
+
+  * Russian by Lev Lamberov (Closes: #769425)
+
+  * Dutch by Frans Spiesschaert (Closes: #800516)
+
+
 [2015-09-17]
 Version 0.7.2
 
