@@ -64,6 +64,8 @@ aptitude (0.7.3-1) unstable; urgency=low
 
 
   * d/rules: Upgrade C++ required to C++14, only minor changes/fixes from C++11
+  * debian/patches:
+    - Add fix-tmpdir.patch to fix a minor problem with temp directories
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Wed, 07 Oct 2015 16:53:49 +0100
 
