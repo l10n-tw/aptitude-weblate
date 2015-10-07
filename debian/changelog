@@ -1,3 +1,9 @@
+aptitude (0.7.3-1) UNRELEASED; urgency=low
+
+  * d/rules: Upgrade C++ required to C++14, only minor changes/fixes from C++11
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Wed, 07 Oct 2015 16:29:48 +0100
+
 aptitude (0.7.2-1) unstable; urgency=medium
 
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
