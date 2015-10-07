@@ -1,5 +1,68 @@
 aptitude (0.7.3-1) UNRELEASED; urgency=low
 
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
+    - Bug fixes:
+      * [cmdline] Correctly calculate the indentation for multi-byte
+        encoded strings in command line "show" (Closes: #360202)
+      * [curses] Show intended action when downgrading (Closes: #516517)
+      * Update internal state for upgrades/downgrades with target version
+        after the action is performed (Closes: #787658, #714429)
+      * [curses] Don't precede Tags field by newline in package info
+        screen (Closes: #799933)
+      * Correctly detect state of vers/pkg when is ConfigFiles
+        (Closes: #698768)
+      * [cmdline] Show "RECOMMENDED but will not be installed" on pipes
+        and redirections (Closes: #647474)
+      * [curses] Improve the integration of Forbid upgrades
+        (Closes: #439258)
+      * Remove unneeded automatically installed packages in the same action
+        (Closes: #478116, #564545, #637257, #368037, #486454, #738517,
+         #789803, #779999, #756507, #759764, #766702, #655483,#740009)
+      * Honour ::Purge-Unused when removing packages (Closes: #724034)
+      * Be more informative when virtual packages are involved in broken
+        deps (Closes: #316633, #798898, #799918)
+      * Fix description of config option ::AutoClean-After-Update
+        (Closes: #756937)
+
+    - User visible changes:
+      * Make boundaries of sessions in the log file more clear
+        (Closes: #269275)
+      * [curses] Avoid marking as auto/non-auto if already set
+        (Closes: #265013)
+      * [curses] Print message when starting to perform actions
+        (Closes: #323371)
+      * Use uppercase APT:: for apt config vars, for consistency
+        (Closes: #519425)
+      * [cmdline] Print versions of Provides, if they exist
+        (Closes: #767393)
+
+    - Internal changes:
+      * temp.cc: simplify code and messages and reduce the use of boost
+        libs
+      * configure.ac: Remove checks for boost/scoped_array.hpp and
+        boost/random.hpp, not used anymore
+      * Adding missing trigger states in some functions
+      * Disable checks in configure.ac and preprocessor in code for
+        APT_HAS_TRIGGERS, APT_HAS_HOMEPAGE and HAVE_DDTP (apt supports them
+        since 2007-2008).
+      * Add functions to check if packages are installed, automatically
+        installed, if they are virtual, and others.  They can be used later
+        to make other code more consistent, clear and clean.
+      * Remove sigc++ include from apt_config_widgets.h (fails to build
+        with newer version 2.6 recently uploaded to unstable)
+
+    - Documentation:
+      * Guide/User's Manual:
+        * Document Brown colour for downgraded packages in UI (feature
+          implemented in the last version)
+
+    - Translation updates:
+      * Russian by Lev Lamberov (Closes: #769425)
+      * Dutch by Frans Spiesschaert (Closes: #800516)
+
+
   * d/rules: Upgrade C++ required to C++14, only minor changes/fixes from C++11
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Wed, 07 Oct 2015 16:29:48 +0100
