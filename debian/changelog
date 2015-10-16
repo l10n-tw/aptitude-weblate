@@ -3,6 +3,46 @@ aptitude (0.7.4-1) UNRELEASED; urgency=medium
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
     log with more details.
 
+    - New features:
+      * [curses] Show providers of virtual packages in "description" area
+        (Closes: #103964)
+
+    - Bug fixes:
+      * Retrieve again long descriptions (Closes: #801460)
+      * Fix for circular dependencies in internal_mark_delete()
+        (Closes: #801430)
+      * Fix race condition replacing ~/.aptitude/config (Closes: #764046)
+
+    - User visible changes:
+      * [cmdline] In versioned provides, include '=' symbol (Closes: #767393)
+      * [cmdline] "show" now shows arch of packages in multi-arch systems
+      * [curses] Use 'w' in action column for package downgrades
+        (Closes: #801310)
+      * [cmdline] Show feedback of some commands (hold, forbid-version, ...)
+        with verbose>0 (Closes: #270033, #638841)
+      * [cmdline] Require args for some commands: hold, keep...
+        (Closes: #759520)
+
+    - Internal changes:
+      * In internal_mark_delete(), also check for auto-installability
+        property of real packages providing virtual packages to stop them
+        being marked for deletion (check was also done in later steps).
+      * Convert some instances of boost::unordered_{set,map,multimap} to std::
+      * Convert some instances of boost::hash to std::
+      * Remove two uses of boost::lexical_cast, use std::to_string() instead
+      * Create utility function remove_non_recursive()
+
+    - Documentation:
+      * manpage:
+        * Remove wrong assertion that safe-upgrade does not accept
+          --full-resolver (Closes: #560991)
+        * Document missing &BD specifier when installing packages
+          (Closes: #696568)
+      * Guide/User's Manual:
+        * Update renamed config option ::CmdLine::Show-Summary
+          (Closes: #776789)
+        * Correct some wrong examples of search patterns (Closes: #519456)
+
 
   * debian/patches:
     - Remove fix-tmpdir.patch, applied upstream
