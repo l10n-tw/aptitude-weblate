@@ -262,11 +262,15 @@ void apt_dumpcfg(const char *root)
       cfgloc += "/config";
     }
 
-  ofstream f((cfgloc+".new").c_str());
+  // perhaps should use generic/util/temp.* or be implemented in a better way,
+  // but this is better than what was before (see #764046)
+  string cfgloc_new = cfgloc + ".new-" + std::to_string(getpid());
+
+  ofstream f(cfgloc_new.c_str());
 
   if(!f)
     {
-      _error->Errno("apt_init", _("Unable to open %s for writing"), cfgloc.c_str());
+      _error->Errno("apt_init", _("Unable to open %s for writing"), cfgloc_new.c_str());
       return;
     }
 
@@ -281,7 +285,7 @@ void apt_dumpcfg(const char *root)
 
   f.close();
 
-  if(rename((cfgloc+".new").c_str(), cfgloc.c_str())!=0)
+  if (rename(cfgloc_new.c_str(), cfgloc.c_str()) != 0)
     {
       _error->Errno("apt_init", _("Unable to replace %s with new configuration file"), cfgloc.c_str());
       return;
@@ -1222,12 +1226,20 @@ std::wstring get_short_description(const pkgCache::VerIterator &ver,
   if(ver.end() || ver.FileList().end() || records == NULL)
     return std::wstring();
 
-  pkgCache::VerFileIterator vf = ver.FileList();
+  pkgCache::DescIterator d = ver.TranslatedDescription();
 
-  if(vf.end())
+  if(d.end())
+    return std::wstring();
+
+  pkgCache::DescFileIterator df = d.FileList();
+
+  if(df.end())
     return std::wstring();
   else
-    return cw::util::transcode(records->Lookup(vf).ShortDesc());
+    // apt "helpfully" cw::util::transcodes the description for us, instead of
+    // providing direct access to it.  So I need to assume that the
+    // description is encoded in the current locale.
+    return cwidget::util::transcode(records->Lookup(df).ShortDesc());
 }
 
 std::wstring get_long_description(const pkgCache::VerIterator &ver,
@@ -1236,12 +1248,17 @@ std::wstring get_long_description(const pkgCache::VerIterator &ver,
   if(ver.end() || ver.FileList().end() || records == NULL)
     return std::wstring();
 
-  pkgCache::VerFileIterator vf = ver.FileList();
+  pkgCache::DescIterator d = ver.TranslatedDescription();
 
-  if(vf.end())
+  if(d.end())
+    return std::wstring();
+
+  pkgCache::DescFileIterator df = d.FileList();
+
+  if(df.end())
     return std::wstring();
   else
-    return cw::util::transcode(records->Lookup(vf).LongDesc());
+    return cwidget::util::transcode(records->Lookup(df).LongDesc());
 }
 
 const char *multiarch_type(unsigned char type)

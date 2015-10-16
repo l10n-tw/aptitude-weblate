@@ -1,6 +1,7 @@
 // cmdline_action.cc
 //
 //  Copyright 2004 Daniel Burrows
+//  Copyright 2015 Manuel A. Fernandez Montecelo
 
 #include "cmdline_action.h"
 #include "cmdline_util.h"
@@ -413,30 +414,69 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
       (*apt_cache_file)->mark_delete(pkg, true, false, NULL);
       break;
     case cmdline_hold:
-      (*apt_cache_file)->mark_keep(pkg, false, true, NULL);
+      {
+	if (verbose > 0)
+	  printf(_("Setting package %s on hold\n"), pkg.FullName(true).c_str());
+
+	(*apt_cache_file)->mark_keep(pkg, false, true, NULL);
+      }
       break;
     case cmdline_keep:
-      (*apt_cache_file)->mark_keep(pkg, false, false, NULL);
+      {
+	if (verbose > 0)
+	  printf(_("Marking package %s as keep\n"), pkg.FullName(true).c_str());
+
+	(*apt_cache_file)->mark_keep(pkg, false, false, NULL);
+      }
       break;
     case cmdline_unhold:
       if(pkg_state.Keep())
-	(*apt_cache_file)->mark_keep(pkg, false, false, NULL);
+	{
+	  if (verbose > 0)
+	    printf(_("Setting package %s as not on hold\n"), pkg.FullName(true).c_str());
+
+	  (*apt_cache_file)->mark_keep(pkg, false, false, NULL);
+	}
+      else
+	{
+	  printf(_("Package %s is not on hold\n"), pkg.FullName(true).c_str());
+	}
       break;
     case cmdline_markauto:
-      (*apt_cache_file)->mark_auto_installed(pkg, true, NULL);
+      {
+	if (verbose > 0)
+	  printf(_("Marking package %s as automatically installed\n"), pkg.FullName(true).c_str());
+
+	(*apt_cache_file)->mark_auto_installed(pkg, true, NULL);
+      }
       break;
     case cmdline_unmarkauto:
-      (*apt_cache_file)->mark_auto_installed(pkg, false, NULL);
+      {
+	if (verbose > 0)
+	  printf(_("Unmarking package %s as automatically installed\n"), pkg.FullName(true).c_str());
+
+	(*apt_cache_file)->mark_auto_installed(pkg, false, NULL);
+      }
       break;
     case cmdline_forbid_version:
       if(source!=cmdline_version_cand)
-	(*apt_cache_file)->forbid_upgrade(pkg, sourcestr, NULL);
+	{
+	  if (verbose > 0)
+	    printf(_("Marking version %s of package %s as forbidden\n"), sourcestr.c_str(), pkg.FullName(true).c_str());
+
+	  (*apt_cache_file)->forbid_upgrade(pkg, sourcestr, NULL);
+	}
       else
 	{
-	  pkgCache::VerIterator curver=pkg.CurrentVer();
+	  pkgCache::VerIterator curver = pkg.CurrentVer();
 	  pkgCache::VerIterator candver = pkg_state.CandidateVerIter(*apt_cache_file);
 	  if(!curver.end() && !candver.end() && curver!=candver)
-	    (*apt_cache_file)->forbid_upgrade(pkg, candver.VerStr(), NULL);
+	    {
+	      if (verbose > 0)
+		printf(_("Marking version %s of package %s as forbidden\n"), candver.VerStr(), pkg.FullName(true).c_str());
+
+	      (*apt_cache_file)->forbid_upgrade(pkg, candver.VerStr(), NULL);
+	    }
 	}
       break;
     case cmdline_build_depends:

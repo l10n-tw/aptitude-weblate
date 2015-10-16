@@ -104,17 +104,20 @@ public:
 
     if(prev_iflags&ReInstall)
       owner->internal_mark_install(pkg, false, true);
-    else switch(prev_mode)
+    else
       {
-      case ModeDelete:
-	owner->internal_mark_delete(pkg, prev_iflags & Purge, prev_removereason == unused);
-	break;
-      case ModeKeep:
-	owner->internal_mark_keep(pkg, prev_iflags & AutoKept, prev_selection_state == pkgCache::State::Hold);
-	break;
-      case ModeInstall:
-	owner->internal_mark_install(pkg, false, false);
-	break;
+	switch (prev_mode)
+	  {
+	  case ModeDelete:
+	    owner->internal_mark_delete(pkg, prev_iflags & Purge, prev_removereason == unused);
+	    break;
+	  case ModeKeep:
+	    owner->internal_mark_keep(pkg, prev_iflags & AutoKept, prev_selection_state == pkgCache::State::Hold);
+	    break;
+	  case ModeInstall:
+	    owner->internal_mark_install(pkg, false, false);
+	    break;
+	  }
       }
 
     // make sure that everything is really set.
@@ -1231,6 +1234,15 @@ void aptitudeDepCache::internal_mark_delete(const PkgIterator &Pkg,
 					    bool Purge,
 					    bool unused_delete)
 {
+  std::vector<unsigned int> unused_already_visited;
+  internal_mark_delete(Pkg, Purge, unused_delete, unused_already_visited);
+}
+
+void aptitudeDepCache::internal_mark_delete(const PkgIterator &Pkg,
+					    bool Purge,
+					    bool unused_delete,
+					    std::vector<unsigned int>& unused_already_visited)
+{
   // honour ::Purge-Unused in the main entry point for removing packages, it
   // should catch cases of automatically installed and unused packages not
   // purged (#724034 and others)
@@ -1274,6 +1286,21 @@ void aptitudeDepCache::internal_mark_delete(const PkgIterator &Pkg,
 
   if (Pkg.CurrentVer().end())
     return;
+
+  // to avoid endless recursion/crashes, check if this package has already been
+  // visited for this purpose (the container has to be empty at the start of
+  // each run)
+  auto it = std::find(unused_already_visited.begin(), unused_already_visited.end(), Pkg->ID);
+  if (it == std::end(unused_already_visited))
+    {
+      // not previously visited, register
+      unused_already_visited.push_back(Pkg->ID);
+    }
+  else
+    {
+      // already visited
+      return;
+    }
 
   // from now and for the remaining of this function, these are "unused
   // deletes", so set variable accordingly
@@ -1319,13 +1346,14 @@ void aptitudeDepCache::internal_mark_delete(const PkgIterator &Pkg,
 	      }
 
 	      // real package
-	      if (! can_remove_autoinstalled(dep_prv.OwnerPkg(), (*this), follow_recommends, follow_suggests)) {
+	      if (! is_auto_installed((*this)[dep_prv.OwnerPkg()]) ||
+		  ! can_remove_autoinstalled(dep_prv.OwnerPkg(), (*this), follow_recommends, follow_suggests)) {
 		continue;
 	      }
 
 	      // if we reach here, can delete the real package providing the
 	      // dependency
-	      internal_mark_delete(dep_prv.OwnerPkg(), Purge, unused_delete);
+	      internal_mark_delete(dep_prv.OwnerPkg(), Purge, unused_delete, unused_already_visited);
 	    }
 
 	  // it was a virtual package -- so stop processing the considered
@@ -1355,7 +1383,7 @@ void aptitudeDepCache::internal_mark_delete(const PkgIterator &Pkg,
 	    continue;
 	  }
 
-	  internal_mark_delete(dep_pkg, Purge, unused_delete);
+	  internal_mark_delete(dep_pkg, Purge, unused_delete, unused_already_visited);
 	}
     }
 }

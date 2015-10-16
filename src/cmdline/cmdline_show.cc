@@ -77,7 +77,7 @@ ostream &operator<<(ostream &out, const cwidget::fragment_contents &contents)
 }
 
 static cwidget::fragment *dep_lst_frag(pkgCache::DepIterator dep,
-				       string title, pkgCache::Dep::DepType T)
+				       const string& title, pkgCache::Dep::DepType T)
 {
   using cwidget::fragment;
   using cwidget::fragf;
@@ -102,8 +102,8 @@ static cwidget::fragment *dep_lst_frag(pkgCache::DepIterator dep,
 	      verfrag=cw::fragf("");
 
 	    or_fragments.push_back(cw::fragf("%s%F",
-					 start.TargetPkg().Name(),
-					 verfrag));
+					     start.TargetPkg().FullName(true).c_str(),
+					     verfrag));
 
 	    if(start==end)
 	      break;
@@ -127,16 +127,6 @@ static cwidget::fragment *dep_lst_frag(pkgCache::DepIterator dep,
     }
 }
 
-typedef std::pair<std::string, std::string> pkgverpair;
-struct package_version_pair_cmp
-{
-  bool operator()(const pkgverpair &x, const pkgverpair &y) const
-  {
-    return x.first < y.first
-      || _system->VS->CmpVersion(x.second, y.second) < 0;
-  }
-};
-
 static cwidget::fragment *prv_lst_frag(pkgCache::PrvIterator prv,
 				       bool reverse,
 				       int verbose,
@@ -145,31 +135,34 @@ static cwidget::fragment *prv_lst_frag(pkgCache::PrvIterator prv,
   using cwidget::fragment;
   using cwidget::fragf;
 
-  std::set<pkgverpair, package_version_pair_cmp> packagevers;
+  std::vector<std::string> packagevers;
 
   for ( ; !prv.end(); ++prv)
     {
-      string name = reverse ? prv.OwnerPkg().Name() : prv.ParentPkg().Name();
+      string name = reverse ? prv.OwnerPkg().FullName(true) : prv.ParentPkg().FullName(true);
       const char* version = reverse ? prv.OwnerVer().VerStr() : prv.ProvideVersion();
 
       if (version)
-	packagevers.insert(pkgverpair(name, version));
+	{
+	  // versioned provides have the '=' symbol, and only that one at the
+	  // moment, and it is hardcoded in dpkg and apt -- so joining the club
+	  const char* symbol = reverse ? "" : "= ";
+
+	  packagevers.push_back(name + " (" + symbol + version + ")");
+	}
       else
-	packagevers.insert(pkgverpair(name, ""));
+	{
+	  packagevers.push_back(name);
+	}
     }
+
+  std::sort(packagevers.begin(), packagevers.end());
 
   vector<cw::fragment *> fragments;
 
   for (const auto& it : packagevers)
     {
-      if (it.second.empty())
-	{
-	  fragments.push_back(cw::fragf("%s", it.first.c_str()));
-	}
-      else
-	{
-	  fragments.push_back(cw::fragf("%s (%s)", it.first.c_str(), it.second.c_str()));
-	}
+      fragments.push_back(cw::fragf("%s", it.c_str()));
     }
 
   if (fragments.empty())
@@ -211,7 +204,7 @@ static cwidget::fragment *archive_lst_frag(pkgCache::VerFileIterator vf,
     }
 }
 
-static const char *current_state_string(pkgCache::PkgIterator pkg, pkgCache::VerIterator ver)
+static const char *current_state_string(const pkgCache::PkgIterator& pkg, const pkgCache::VerIterator& ver)
 {
   if(!ver.end() && ver != pkg.CurrentVer())
     return _("not installed");
@@ -374,7 +367,7 @@ static void show_package(pkgCache::PkgIterator pkg, int verbose,
 {
   vector<cw::fragment *> fragments;
 
-  fragments.push_back(cw::fragf("%s%s%n", _("Package: "), pkg.Name()));
+  fragments.push_back(cw::fragf("%s%s%n", _("Package: "), pkg.FullName(true).c_str()));
   fragments.push_back(cw::fragf("%s: %F%n", _("State"), state_fragment(pkg, pkgCache::VerIterator())));
   fragments.push_back(prv_lst_frag(pkg.ProvidesList(), true, verbose, _("Provided by")));
 
@@ -397,7 +390,7 @@ cw::fragment *version_file_fragment(const pkgCache::VerIterator &ver,
   aptitudeDepCache::aptitude_state &estate=(*apt_cache_file)->get_ext_state(pkg);
   pkgDepCache::StateCache &state = (*apt_cache_file)[pkg];
 
-  fragments.push_back(cw::fragf("%s%s%n", _("Package: "), pkg.Name()));
+  fragments.push_back(cw::fragf("%s%s%n", _("Package: "), pkg.FullName(true).c_str()));
   if((pkg->Flags & pkgCache::Flag::Essential)==pkgCache::Flag::Essential)
     fragments.push_back(cw::fragf("%s%s%n", _("Essential: "),  _("yes")));
 
@@ -482,7 +475,7 @@ cw::fragment *version_file_fragment(const pkgCache::VerIterator &ver,
 
   cw::fragment *tags = make_tags_fragment(pkg);
   if(tags)
-    fragments.push_back(cw::fragf("%n%F", tags));
+    fragments.push_back(cw::fragf("%F", tags));
 
   return cw::sequence_fragment(fragments);
 }
@@ -550,7 +543,7 @@ bool do_cmdline_show_target(const pkgCache::PkgIterator &pkg,
   return true;
 }
 
-bool do_cmdline_show(string s, int verbose, const std::shared_ptr<terminal_metrics> &term_metrics)
+bool do_cmdline_show(const string& s, int verbose, const std::shared_ptr<terminal_metrics> &term_metrics)
 {
   cmdline_version_source source;
   string name, sourcestr;
