@@ -1,4 +1,4 @@
-aptitude (0.7.4-1) UNRELEASED; urgency=medium
+aptitude (0.7.4-1) unstable; urgency=low
 
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
     log with more details.
@@ -47,7 +47,7 @@ aptitude (0.7.4-1) UNRELEASED; urgency=medium
   * debian/patches:
     - Remove fix-tmpdir.patch, applied upstream
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 16 Oct 2015 13:08:11 +0100
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 16 Oct 2015 13:28:08 +0100
 
 aptitude (0.7.3-1) unstable; urgency=low
 
