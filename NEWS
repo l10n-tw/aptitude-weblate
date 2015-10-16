@@ -1,3 +1,113 @@
+[2015-10-16]
+Version 0.7.4
+
+- New features:
+
+  * [curses] Show providers of virtual packages in "description" area
+    (Closes: #103964)
+
+    The description area (bottom half of the screen in the default view) was
+    completely empty for virtual packages.  Now it shows the list of "real"
+    packages providing the virtual package, in a nicely formatted list.
+
+- Bug fixes:
+
+  * Retrieve again long descriptions (Closes: #801460)
+
+    When disabling the #ifdef of HAVE_DDTP, it was done the wrong way around and
+    the old code (untested for many years) compiled fine and didn't cause
+    errors, but didn't retrieve long descriptions anymore (it did for short
+    ones).
+
+  * Fix for circular dependencies in internal_mark_delete() (Closes: #801430)
+
+    Under some circumstances, when following reverse dependencies of packages to
+    be deleted to see if they are automatically installed and unused (so they
+    can be pro-actively marked for deletion as well), the function calls itself
+    recursively.  In this case, it uses this version with an extra parameter to
+    detect when packages were already visited, to avoid infinite loops in the
+    case of circular dependencies (bug #801430).
+
+  * Fix race condition replacing ~/.aptitude/config (Closes: #764046)
+
+- User visible changes:
+
+  * [cmdline] In versioned provides, include '=' symbol (Closes: #767393)
+
+    At the moment, there is only one symbol ('='), and it is hardcoded in dpkg
+    and apt, so doing the same to avoid possible confusion among users, as
+    suggested by David Kalnischkies from APT Team.
+
+  * [cmdline] "show" now shows arch of packages in multi-arch systems
+
+    Until now, it was not appending the arch in Depends and other places, so
+    there was output like:
+
+      Package: dput-ng
+      ...
+      Conflicts: dput, dput
+      Replaces: dput, dput
+      Provides: dput
+
+    Now this shows:
+
+      Package: dput-ng
+      ...
+      Conflicts: dput, dput:i386
+      Replaces: dput, dput:i386
+      Provides: dput
+
+  * [curses] Use 'w' in action column for package downgrades (Closes: #801310)
+
+    In the column that shows the action selected for the packages (between
+    current installation state and automatically installed), e.g. in the main
+    package view and the preview screen before installing of the curses
+    interface, there was no character for downgrades.  There was 'u' for
+    upgrades, 'd' for removals, 'p' for purges, 'h' for holds, etc., but the
+    action character for downgrades was missing, so the column was left empty --
+    as it was an specific background colour until recently.
+
+  * [curses] Show feedback of some commands (hold, forbidden-version, ...) with
+    verbose>0 (Closes: #270033, #638841)
+
+  * [curses] Require args for some commands: hold, keep... (Closes: #759520)
+
+- Internal changes:
+
+  * In internal_mark_delete(), also check for auto-installability property of
+    real packages providing virtual packages to stop them being marked for
+    deletion.  can_remove_autoinstalled() checks for this anyway, but the
+    implementation could change in the future, and it shouldn't hurt to double
+    check.
+
+  * Convert some instances of boost::unordered_{set,map,multimap} to std::
+
+  * Convert some instances of boost::hash to std::
+
+  * Remove two uses of boost::lexical_cast, use std::to_string() instead
+
+  * Create utility function remove_non_recursive()
+
+- Documentation:
+
+  * manpage:
+
+    * Remove wrong assertion that safe-upgrade does not accept --full-resolver
+      (Closes: #560991)
+
+    * Document missing &BD specifier when installing packages (Closes: #696568)
+
+  * Guide/User's Manual:
+
+    * Update renamed config option ::CmdLine::Show-Summary (Closes: #776789)
+
+      The config option used in the code is ::CmdLine::Show-Summary, but in one
+      place in the documentation it was named ::CmdLine::Why-Display-Mode
+      (probably from an incomplete rename).
+
+    * Correct some wrong examples of search patterns (Closes: #519456)
+
+
 [2015-10-07]
 Version 0.7.3
 

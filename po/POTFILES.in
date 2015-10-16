@@ -163,8 +163,6 @@ src/generic/apt/tags.cc
 src/generic/apt/tags.h
 src/generic/apt/tasks.cc
 src/generic/apt/tasks.h
-src/generic/apt/usertags.cc
-src/generic/apt/usertags.h
 src/generic/controllers/acquire_download_progress.cc
 src/generic/controllers/acquire_download_progress.h
 src/generic/controllers/search_input.cc
