@@ -1,0 +1,31 @@
+Origin: commit cfc3c6b975bc72a60be4a26ae98acd32995fcae2
+Author: Manuel A. Fernandez Montecelo <manuel.montezelo@gmail.com>
+
+    Changes to support apt-1.1/libapt-pkg5.0
+
+Index: aptitude/src/cmdline/cmdline_util.cc
+===================================================================
+--- aptitude.orig/src/cmdline/cmdline_util.cc	2015-11-27 00:09:53.450704076 +0100
++++ aptitude/src/cmdline/cmdline_util.cc	2015-11-27 00:09:53.446704087 +0100
+@@ -680,7 +680,7 @@
+ 	      //
+ 	      // - defaults to package name, no need to check if it's empty
+ 	      source_package_name = ver.SourcePkgName();
+-	      source_version = ver.SourceVerStr();
++	      std::string source_version = ver.SourceVerStr();
+ 
+ 	      rval = find_source_package(source_package_name, source_version);
+ #else
+Index: aptitude/src/cmdline/cmdline_versions.cc
+===================================================================
+--- aptitude.orig/src/cmdline/cmdline_versions.cc	2015-11-27 00:09:53.450704076 +0100
++++ aptitude/src/cmdline/cmdline_versions.cc	2015-11-27 00:09:53.446704087 +0100
+@@ -175,7 +175,7 @@
+       //   the VerIterator; much faster than parsing the pkgRecord
+       //
+       // - defaults to package name, no need to check if it's empty
+-      output.push_back(ver.SourcePkgName() + " " + ver.SourceVerStr());
++      output.push_back(std::string(ver.SourcePkgName()) + " " + ver.SourceVerStr());
+ #else
+       // I don't think FileList() *can* be invalid; this is just
+       // paranoia.
