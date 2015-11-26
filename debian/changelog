@@ -1,6 +1,7 @@
 aptitude (0.7.4-2) UNRELEASED; urgency=medium
 
   * Cherry-pick patch cfc3c6b9 from master to fix build against APT 1.1.
+  * Bump b-d on libapt-pkg-dev to ≥ 1.1 for now to ease the transition.
 
  -- Axel Beckert <abe@debian.org>  Fri, 27 Nov 2015 00:00:13 +0100
 
