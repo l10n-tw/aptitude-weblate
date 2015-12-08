@@ -7,7 +7,7 @@
   <!ENTITY dselect '<command>dselect</command>'>
   <!ENTITY apt-get '<command>apt-get</command>'>
   <!ENTITY root '<systemitem class="username">root</systemitem>'>
-  <!ENTITY VERSION '0.7.4'>
+  <!ENTITY VERSION '0.7.5'>
 
   <!-- Shortcuts for menu commands: -->
 
@@ -729,10 +729,15 @@ These packages are currently installed on your computer.
 	</para>
 
 	<para>
-	  As the top line of the screen suggests, you can access
-	  &aptitude;'s menus by pressing <keycombo action='simul'><keycap>Control</keycap><keycap>t</keycap></keycombo>; you can
-	  also click the mouse on a menu title if your system supports
-	  it.  Pressing <keycombo action='simul'><keycap>Control</keycap><keycap>t</keycap></keycombo> will open the Actions menu:
+	  As the top line of the screen suggests, you can access &aptitude;'s
+	  menus by pressing <keycombo
+	  action='simul'><keycap>Control</keycap><keycap>t</keycap></keycombo>
+	  (also valid: <keycombo
+	  action='simul'><keycap>Control</keycap><keycap>Space</keycap></keycombo>
+	  and <keycap>F10</keycap>); you can also click the mouse on a menu
+	  title if your system supports it.  Pressing <keycombo
+	  action='simul'><keycap>Control</keycap><keycap>t</keycap></keycombo>
+	  will open the Actions menu:
 	</para>
 
 	<screenshot>
@@ -2139,11 +2144,13 @@ Abort.</screen>
 	<title>Using the menus</title>
 
 	<para>
-	  The menu bar at the top of the screen lists the most
-	  important commands in &aptitude;.  To activate the menu bar,
-	  press <keycombo><keycap>Control</keycap><keycap>t</keycap></keycombo>; you can then navigate it using
-	  the arrow keys and select a menu item using
-	  <keycap>Enter</keycap>.
+	  The menu bar at the top of the screen lists the most important
+	  commands in &aptitude;.  To activate the menu bar, press
+	  <keycombo><keycap>Control</keycap><keycap>t</keycap></keycombo> (also
+	  valid: <keycombo
+	  action='simul'><keycap>Control</keycap><keycap>Space</keycap></keycombo>
+	  and <keycap>F10</keycap>); you can then navigate it using the arrow
+	  keys and select a menu item using <keycap>Enter</keycap>.
 	</para>
 
 	<para>
@@ -7341,6 +7348,29 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 	    </seglistitem>
 
 	    <seglistitem>
+	      <seg><literal>%e</literal></seg>
+	      <seg>Architecture</seg>
+	      <seg>10</seg>
+	      <seg>No</seg>
+	      <seg>
+		Outputs the string of the architecture, for example
+		<quote><computeroutput>amd64</computeroutput></quote>.
+	      </seg>
+	    </seglistitem>
+
+	    <seglistitem>
+	      <seg><literal>%E</literal></seg>
+	      <seg>Source</seg>
+	      <seg>30</seg>
+	      <seg>No</seg>
+	      <seg>
+		Outputs the source package, for example
+		<quote><computeroutput>aptitude</computeroutput></quote> for
+		<quote><computeroutput>aptitude-doc-en</computeroutput></quote>.
+	      </seg>
+	    </seglistitem>
+
+	    <seglistitem>
 	      <seg><literal>%H</literal></seg>
 	      <seg>Hostname</seg>
 	      <seg>15</seg>
@@ -7433,6 +7463,18 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 	    </seglistitem>
 
 	    <seglistitem>
+	      <seg><literal>%O</literal></seg>
+	      <seg>Origin</seg>
+	      <seg>30</seg>
+	      <seg>No</seg>
+	      <seg>
+		Outputs a string of the origin of the package, for example
+		<quote><computeroutput>Debian:unstable
+		[amd64]</computeroutput></quote>.
+	      </seg>
+	    </seglistitem>
+
+	    <seglistitem>
 	      <seg><literal>%p</literal></seg>
 	      <seg>Package Name</seg>
 	      <seg>30</seg>
@@ -7511,15 +7553,19 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 
 	    <seglistitem>
 	      <seg><literal>%T</literal></seg>
-	      <seg>Tagged</seg>
-	      <seg>1</seg>
+	      <seg>Tagged (and user-tags)</seg>
+	      <seg>30</seg>
 	      <seg>No</seg>
 	      <seg>
-		Outputs <quote><computeroutput>*</computeroutput></quote> if the
-		package is tagged, nothing
-		otherwise.<footnote><para>Currently tagging is not
-		supported; this escape is for future
-		use.</para></footnote>
+		<para>
+		  Outputs <quote><computeroutput>*</computeroutput></quote> if
+		  the package is tagged, nothing
+		  otherwise.<footnote><para>Currently tagging is not supported;
+		  this escape is for future use.</para></footnote>
+		</para>
+		<para>
+		  This field also includes user-tags.
+		</para>
 	      </seg>
 	    </seglistitem>
 
@@ -12523,7 +12569,7 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 	    <seglistitem id='configPackage-Header-Format'>
 	      <seg><literal>Aptitude::UI::Package-Header-Format</literal></seg>
 
-	      <seg><literal>%N %n #%B %u %o</literal></seg>
+	      <seg><literal>%N %n @ %H #%B %u %o</literal></seg>
 
 	      <seg>
 		This option controls the format string used to

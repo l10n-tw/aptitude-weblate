@@ -91,7 +91,9 @@ host_triplet = @host@
 subdir = src/generic/apt
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/ax_boost_base.m4 \
+	$(top_srcdir)/m4/ax_boost_filesystem.m4 \
 	$(top_srcdir)/m4/ax_boost_iostreams.m4 \
+	$(top_srcdir)/m4/ax_boost_system.m4 \
 	$(top_srcdir)/m4/gettext.m4 $(top_srcdir)/m4/iconv.m4 \
 	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/lib-link.m4 \
 	$(top_srcdir)/m4/lib-prefix.m4 $(top_srcdir)/m4/nls.m4 \
@@ -119,16 +121,17 @@ am_libgeneric_apt_a_OBJECTS = aptcache.$(OBJEXT) apt.$(OBJEXT) \
 	aptitude_resolver_cost_syntax.$(OBJEXT) \
 	aptitude_resolver_cost_types.$(OBJEXT) \
 	aptitude_resolver_universe.$(OBJEXT) apt_undo_group.$(OBJEXT) \
-	changelog_parse.$(OBJEXT) config_signal.$(OBJEXT) \
-	desc_parse.$(OBJEXT) download_manager.$(OBJEXT) \
-	download_install_manager.$(OBJEXT) download_queue.$(OBJEXT) \
-	download_update_manager.$(OBJEXT) \
+	changelog_parse.$(OBJEXT) config_file.$(OBJEXT) \
+	config_signal.$(OBJEXT) desc_parse.$(OBJEXT) \
+	download_manager.$(OBJEXT) download_install_manager.$(OBJEXT) \
+	download_queue.$(OBJEXT) download_update_manager.$(OBJEXT) \
 	download_signal_log.$(OBJEXT) dpkg.$(OBJEXT) \
 	dpkg_selections.$(OBJEXT) dump_packages.$(OBJEXT) \
 	globals.$(OBJEXT) infer_reason.$(OBJEXT) log.$(OBJEXT) \
 	parse_dpkg_status.$(OBJEXT) pkg_acqfile.$(OBJEXT) \
 	pkg_changelog.$(OBJEXT) resolver_manager.$(OBJEXT) \
-	screenshot.$(OBJEXT) tags.$(OBJEXT) tasks.$(OBJEXT)
+	screenshot.$(OBJEXT) tags.$(OBJEXT) tasks.$(OBJEXT) \
+	usertags.$(OBJEXT)
 libgeneric_apt_a_OBJECTS = $(am_libgeneric_apt_a_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -250,8 +253,10 @@ AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
 BOOST_CPPFLAGS = @BOOST_CPPFLAGS@
+BOOST_FILESYSTEM_LIB = @BOOST_FILESYSTEM_LIB@
 BOOST_IOSTREAMS_LIB = @BOOST_IOSTREAMS_LIB@
 BOOST_LDFLAGS = @BOOST_LDFLAGS@
+BOOST_SYSTEM_LIB = @BOOST_SYSTEM_LIB@
 BOOST_UNIT_TEST_LIBS = @BOOST_UNIT_TEST_LIBS@
 CC = @CC@
 CCDEPMODE = @CCDEPMODE@
@@ -419,6 +424,8 @@ libgeneric_apt_a_SOURCES = \
         apt_undo_group.h    \
 	changelog_parse.cc  \
 	changelog_parse.h   \
+        config_file.cc      \
+        config_file.h       \
         config_signal.cc    \
         config_signal.h     \
 	desc_parse.cc       \
@@ -458,7 +465,9 @@ libgeneric_apt_a_SOURCES = \
         tags.cc             \
         tags.h              \
         tasks.cc            \
-        tasks.h
+        tasks.h             \
+        usertags.cc         \
+        usertags.h
 
 all: all-recursive
 
@@ -518,6 +527,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/aptitude_resolver_universe.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/aptitudepolicy.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/changelog_parse.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/config_file.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/config_signal.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/desc_parse.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/download_install_manager.Po@am__quote@
@@ -538,6 +548,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/screenshot.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tags.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tasks.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/usertags.Po@am__quote@
 
 .cc.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

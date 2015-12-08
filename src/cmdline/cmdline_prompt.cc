@@ -1,6 +1,7 @@
 // cmdline_prompt.cc
 //
 // Copyright (C) 2010-2011 Daniel Burrows
+// Copyright (C) 2014-2015 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -210,6 +211,11 @@ namespace
     else
       mode = show_requiring_packages;
     summarize_reasons(reasons, mode, reason_strings);
+
+    // it seems that sometimes the code reaches here despite having nothing to
+    // show -- see #576584
+    if (reason_strings.empty())
+      return "";
 
     std::string rval = "(";
     if(mode == show_requiring_packages)
@@ -432,7 +438,7 @@ string prompt_string(const string &prompt)
  *  fat warning message about them.  Returns false if the user doesn't
  *  want to continue.
  */
-static bool prompt_essential(const std::shared_ptr<terminal_metrics> &term_metrics)
+static bool prompt_essential(bool simulate_only, const std::shared_ptr<terminal_metrics> &term_metrics)
 {
   pkgvector todelete, whatsbroken;
   bool ok=true;
@@ -477,21 +483,32 @@ static bool prompt_essential(const std::shared_ptr<terminal_metrics> &term_metri
     {
       printf(_("WARNING: Performing this action will probably cause your system to break!\n         Do NOT continue unless you know EXACTLY what you are doing!\n"));
 
-      string untranslated_prompt = N_("I am aware that this is a very bad idea");
-      string prompt = _(untranslated_prompt.c_str());
-      char buf[1024];
+      if (simulate_only)
+	{
+	  printf("\n");
+	  printf(_("Ignoring confirmation in Simulation mode (subsequent actions will not have effects)\n"));
+	  printf(_("Press any key to continue...\n"));
+	  cin.get();
+	  return true;
+	}
+      else
+	{
+	  string untranslated_prompt = N_("I am aware that this is a very bad idea");
+	  string prompt = _(untranslated_prompt.c_str());
+	  char buf[1024];
 
-      printf(_("To continue, type the phrase \"%s\":\n"), prompt.c_str());
-      cin.getline(buf, 1023);
-      bool rval = (prompt == buf || untranslated_prompt == buf);
+	  printf(_("To continue, type the phrase \"%s\":\n"), prompt.c_str());
+	  cin.getline(buf, 1023);
+	  bool rval = (prompt == buf || untranslated_prompt == buf);
 
-      while(!cin && !cin.eof())
-	cin.getline(buf, 1023);
+	  while(!cin && !cin.eof())
+	    cin.getline(buf, 1023);
 
-      if(!cin)
-	throw StdinEOFException();
+	  if(!cin)
+	    throw StdinEOFException();
 
-      return rval;
+	  return rval;
+	}
     }
 
   return true;
@@ -570,7 +587,7 @@ static bool prompt_trust(const std::shared_ptr<terminal_metrics> &term_metrics)
       const string fallback_okstr = "Yes";
       const string fallback_abortstr = "No";
 
-      while(1)
+      while (true)
 	{
 	  printf(_("Do you want to ignore this warning and proceed anyway?\n"));
 	  printf(_("To continue, enter \"%s\"; to abort, enter \"%s\": "), okstr.c_str(), abortstr.c_str());
@@ -615,7 +632,7 @@ bool cmdline_show_preview(bool as_upgrade, pkgset &to_install,
                           const std::shared_ptr<terminal_metrics> &term_metrics)
 {
   pkgvector lists[num_pkg_action_states];
-  pkgvector recommended, suggested;
+  pkgvector recommended, suggested, not_upgraded;
   pkgvector extra_install, extra_remove;
   unsigned long Upgrade=0, Downgrade=0, Install=0, ReInstall=0;
 
@@ -656,6 +673,11 @@ bool cmdline_show_preview(bool as_upgrade, pkgset &to_install,
 	      else if(package_suggested(pkg))
 		suggested.push_back(pkg);
 	    }
+	  break;
+	case pkg_hold:
+	case pkg_auto_hold:
+	  not_upgraded.push_back(pkg);
+	  break;
 	default:
 	  break;
 	}
@@ -710,6 +732,12 @@ bool cmdline_show_preview(bool as_upgrade, pkgset &to_install,
     {
       printf(_("The following packages are SUGGESTED but will NOT be installed:\n"));
       cmdline_show_instinfo(suggested, verbose, showvers, showdeps, showsize, false, showwhy, term_metrics);
+    }
+
+  if (verbose>0 && ! not_upgraded.empty())
+    {
+      printf(_("The following packages will NOT be UPGRADED:\n"));
+      cmdline_show_instinfo(not_upgraded, verbose, showvers, showdeps, showsize, false, showwhy, term_metrics);
     }
 
   if((*apt_cache_file)->DelCount() == 0 &&
@@ -935,6 +963,8 @@ bool cmdline_do_prompt(bool as_upgrade,
 		       bool force_no_change,
 		       pkgPolicy &policy,
 		       bool arch_only,
+		       bool download_only,
+		       bool simulate_only,
                        const std::shared_ptr<terminal_metrics> &term_metrics)
 {
   bool exit=false;
@@ -1043,10 +1073,22 @@ bool cmdline_do_prompt(bool as_upgrade,
 		}
 	    }
 
+	  if (download_only)
+	    {
+	      printf("\n");
+	      printf(_("Note: Using 'Download Only' mode, no other actions will be performed.\n"));
+	    }
+
 	  while(!valid_response)
 	    {
 	      valid_response=true;
 	      fflush(stdout);
+
+	      if (simulate_only)
+		{
+		  printf("\n");
+		  printf(_("Note: Using 'Simulate' mode.\n"));
+		}
 
 	      string prompt =
 		!have_broken
@@ -1168,7 +1210,7 @@ bool cmdline_do_prompt(bool as_upgrade,
 	}
 
       // Note: only show the prompt if we're planning to continue.
-      if(rval && (!prompt_essential(term_metrics) || !prompt_trust(term_metrics)))
+      if(rval && (!prompt_essential(simulate_only, term_metrics) || !prompt_trust(term_metrics)))
 	{
 	  rval=false;
 	  exit=true;
