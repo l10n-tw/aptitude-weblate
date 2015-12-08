@@ -3,6 +3,78 @@ aptitude (0.7.5-1) UNRELEASED; urgency=low
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
     log with more details.
 
+    - New features:
+      * [curses] Show Origin and URI in pkg info screen
+        (Closes: #294040, #457794, #513622, #611515)
+      * [cmdline] Print version of provider of virtual package in
+        conflicts/broken (Closes: #802943)
+      * [cmdline] Show packages that will not be upgraded with verbose>0
+        (Closes: #553577)
+      * [cmdline] Notify of 'Download Only' mode before confirmation to
+        continue (Closes: #446265, #804287)
+      * [cmdline] When simulating do not prompt for removal of essential
+        packages (Closes: #613049)
+      * [cmdline] When simulating, add notice before confirmation to
+        continue actions (Closes: #173277)
+      * Use XDG_CACHE_HOME spec instead of ~/.aptitude/cache (Closes: #671780)
+      * Print useful message when package lists are out of date
+        (Closes: #758764)
+      * [curses] Allow to hide bottom half in several screens (Closes: #453853)
+      * [curses] Show hostname on header line (Closes: #398101)
+      * Log now distinguishes between remove and purge (Closes: #705612)
+      * [cmdline] Improve error reporting of add/remove-user-tags
+        (Closes: #652421)
+      * Reuse format string %T also for user-tags (Closes: #498442, #665824)
+      * Add format strings for Source (%E), Architecture (%e) and
+        Origin (%O) (Closes: #248561, #604982, #760608)
+      * [curses] Provide more info about broken packages in solution
+        screen (Closes: #642800)
+      * Don't use __DATE__ & __TIME__ when printing version, for
+        reproducible builds
+
+    - Bug fixes:
+      * [cmdline] Fix problems in 'build-depends' causing malfunctions
+        (Closes: #802532)
+      * [curses] Use default string for Default-Grouping when config is
+        empty (Closes: #405970)
+      * [curses] Improve message when becoming root fails (Closes:  #516854)
+      * [cmdline] For "search", use candidate or, if does not exist,
+        current version rather than a random version to show information
+        about the package (Closes: #490593)
+      * Check that the config files are valid, otherwise exit (Closes: #472701)
+      * Use new config_file.{h,cc} to improve config file management
+        (Closes: #504152, #502617, #442937, #407284)
+      * When becoming root with 'su', pass along "--login" (Closes: #190784)
+      * Return an error if adding/removing tags without "root" (Closes: #725272)
+      * Format string '%t' tells about locally installed packages
+        (Closes: #349413)
+      * Save state before package reconfiguration (to not be lost)
+        (Closes: #474876)
+      * [curses] Allow to view changelogs of packages in Backports
+        (Closes: #755677)
+      * Get the real pin priority in "versions" and other cases
+        (Closes: #640731)
+      * Use new user-tags implementation, more secure (Closes: #792601)
+      * Upgrades can do downgrades when pinned high (>1000, see apt_preferences)
+        (Closes: #344700, #348679)
+
+          Note that downgrading is highly discouraged in general, though.
+
+    - User visible changes:
+      * [cmdline] Minor improvements to help (Closes: #497136)
+      * [cmdline] Hide Show-Why reasons when the string is empty
+        (Closes: #576584)
+      * [cmdline] Slightly improve and reformat --help
+      * [cmdline] Document add/remove-user-tag in --help
+
+    - Documentation:
+      * manpage:
+        * Separate two elements in --add-user-tag-to description with comma,
+          they were displayed together
+      * Guide/User's Manual:
+        * Add keybindings for menu bar (Closes: #365298)
+
+
   * debian/patches:
     - Remove cherry-pick-cfc3c6b9-apt-1.1-compatibility.patch
 
