@@ -1,3 +1,13 @@
+aptitude (0.7.5-1) UNRELEASED; urgency=low
+
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
+  * debian/patches:
+    - Remove cherry-pick-cfc3c6b9-apt-1.1-compatibility.patch
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Tue, 08 Dec 2015 20:35:03 +0000
+
 aptitude (0.7.4-2) unstable; urgency=high
 
   * Cherry-pick patch cfc3c6b9 from master to fix build against APT 1.1.
