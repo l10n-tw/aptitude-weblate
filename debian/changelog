@@ -37,7 +37,7 @@ aptitude (0.7.5-1) unstable; urgency=low
         (Closes: #802532)
       * [curses] Use default string for Default-Grouping when config is
         empty (Closes: #405970)
-      * [curses] Improve message when becoming root fails (Closes:  #516854)
+      * [curses] Improve message when becoming root fails (Closes: #516854)
       * [cmdline] For "search", use candidate or, if does not exist,
         current version rather than a random version to show information
         about the package (Closes: #490593)
