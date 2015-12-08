@@ -36,6 +36,12 @@
 /* Define to 1 if you have the <boost/compressed_pair.hpp> header file. */
 #undef HAVE_BOOST_COMPRESSED_PAIR_HPP
 
+/* define if the Boost::Filesystem library is available */
+#undef HAVE_BOOST_FILESYSTEM
+
+/* Define to 1 if you have the <boost/filesystem.hpp> header file. */
+#undef HAVE_BOOST_FILESYSTEM_HPP
+
 /* Define to 1 if you have the <boost/flyweight/hashed_factory.hpp> header
    file. */
 #undef HAVE_BOOST_FLYWEIGHT_HASHED_FACTORY_HPP
@@ -221,6 +227,9 @@
 
 /* Define to 1 if you have the <boost/range.hpp> header file. */
 #undef HAVE_BOOST_RANGE_HPP
+
+/* define if the Boost::System library is available */
+#undef HAVE_BOOST_SYSTEM
 
 /* Define to 1 if you have the <boost/test/unit_test.hpp> header file. */
 #undef HAVE_BOOST_TEST_UNIT_TEST_HPP

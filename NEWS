@@ -1,3 +1,175 @@
+[2015-12-08]
+Version 0.7.5
+
+- New features:
+
+  * [curses] Show Origin and URI in pkg info screen
+    (Closes: #294040, #457794, #513622, #611515)
+
+  * [cmdline] Print version of provider of virtual package in conflicts/broken
+    (Closes: #802943)
+
+  * [cmdline] Show packages that will not be upgraded with verbose>0
+    (Closes: #553577)
+
+  * [cmdline] Notify of 'Download Only' mode before confirmation to continue
+    (Closes: #446265, #804287)
+
+  * [cmdline] When simulating do not prompt for removal of essential packages
+    (Closes: #613049)
+
+  * [cmdline] When simulating, add notice before confirmation to continue
+    actions (Closes: #173277)
+
+  * Use XDG_CACHE_HOME spec instead of ~/.aptitude/cache (Closes: #671780)
+
+  * Print useful message when package lists are out of date (Closes: #758764)
+
+  * [curses] Allow to hide bottom half in several screens (Closes: #453853)
+
+  * [curses] Show hostname on header line (Closes: #398101)
+
+  * Log now distinguishes between remove and purge (Closes: #705612)
+
+  * [cmdline] Improve error reporting of add/remove-user-tags (Closes: #652421)
+
+  * Reuse format string %T also for user-tags (Closes: #498442, #665824)
+
+  * Add format strings for Source (%E), Architecture (%e) and Origin (%O)
+    (Closes: #248561, #604982, #760608)
+
+  * [curses] Provide more info about broken packages in solution screen
+    (Closes: #642800)
+
+    This screen will now show the extra "(action, version/s involved)":
+
+      The following packages depend on cpp-5 and will be broken by its removal:
+
+      * cpp (upgraded, 4:5.2.1-6 -> 4:5.2.1-8) depends on cpp-5 (>= 5.2.1-13~)
+      * gcc-5 (held/unchanged, 5.2.1-26) depends on cpp-5 (= 5.2.1-26)
+
+  * Don't use __DATE__ & __TIME__ when printing version, for reproducible builds
+
+- Bug fixes:
+
+  * [cmdline] Fix problems in 'build-depends' causing malfunctions
+    (Closes: #802532)
+
+    * Fix problem in which alternative dependencies of uninstalled packages were
+      not resolved and satisfied properly, causing "Unable to satisfy
+      dependencies", when they were actually installable.  Due to a
+      mistake/typo, the possible packages were always compared against versions
+      of one of the alternatives (the last one), instead of comparing the proper
+      package-version of each alternative.
+
+    * Messages about build-depends conflicts (unable to satisfy dependencies)
+      now show version comparison operators.  There was a mistake in the
+      variable to print (dependency type rather than operator).
+
+  * [curses] Use default string for Default-Grouping when config is empty
+    (Closes: #405970)
+
+  * [curses] Improve message when becoming root fails (Closes: #516854)
+
+  * [cmdline] For "search", use candidate or, if does not exist, current version
+    rather than a random version to show information about the package
+    (Closes: #490593)
+
+  * Check that the config files are valid, otherwise exit (Closes: #472701)
+
+    Upon reading the configuration files it did not check if they were valid,
+    and for "~/.aptitude/config" it was writing it back immediately.  The
+    writing stopped at the point of the reading failure (instead of just
+    skipping the problematic parts), so part of the previous configuration file
+    was lost.
+
+    It is safer (and not too onerous) to ask the user to fix the configuration
+    file before continuing, rather than stomping on valid configuration values.
+
+  * Use new config_file.{h,cc} to improve config file management
+    (Closes: #504152, #502617, #442937, #407284)
+
+  * When becoming root with 'su', pass along "--login" (Closes: #190784)
+
+  * Return an error if adding/removing tags without "root" (Closes: #725272)
+
+  * Format string '%t' tells about locally installed packages (Closes: #349413)
+
+  * Save state before package reconfiguration (to not be lost) (Closes: #474876)
+
+  * [curses] Allow to view changelogs of packages in Backports (Closes: #755677)
+
+    This was already possible in command line.  Now code was merged in command
+    line and curses to work in the same way.
+
+  * Get the real pin priority in "versions" and other cases (Closes: #640731)
+
+  * Use new user-tags implementation, more secure (Closes: #792601)
+
+  * Upgrades can do downgrades when pinned high (>1000, see apt_preferences)
+    (Closes: #344700, #348679)
+
+    "install" did the correct thing, but the differet upgrade modes
+    (command-line and TUI/curses) did not consider to downgrade versions pinned
+    higher than 1000, as established in apt_preferences.  apt also behaves in
+    this way, so it improves compatibility.
+
+    Note that downgrading is highly discouraged in general, though.
+
+- User visible changes:
+
+  * [cmdline] Minor improvements to help (Closes: #497136)
+
+  * [cmdline] Hide Show-Why reasons when the string is empty (Closes: #576584)
+
+  * [cmdline] Slightly improve and reformat --help
+
+  * [cmdline] Document add/remove-user-tag in --help
+
+- Internal changes:
+
+  * Change APT::Changelogs::Server (src/apt_options.cc) from
+    http://packages.debian.org/changelogs to
+    http://metadata.ftp-master.debian.org/changelogs -- it is the default for a
+    few years already.
+
+  * Add function to get the URI of a package version
+
+  * Add function to get the Origin of a package version
+
+  * Add function to get the candidate version of a package
+
+  * Use Boost::Filesystem for some file-related operations
+
+    C++ Filesystem TS is derived from it not approved yet, and the support from
+    compilers is not great.  When support is good, the switch should be almost
+    automatic.
+
+  * Add generic/apt/config_file.{h,cc} to help manage config file
+
+  * attach/detach_user_tag() now return results of the operation
+
+  * Create function get_user_tags() for compartimentalisation and reuse
+
+  * Changes to support apt-1.1/libapt-pkg5.0
+
+  * Improve user-tags implementation and move to own file, away from aptcache
+
+- Documentation:
+
+  * manpage:
+
+    * Separate two elements in --add-user-tag-to description with comma, they
+      were displayed together
+
+  * Guide/User's Manual:
+
+    * Add keybindings for menu bar (Closes: #365298)
+
+      Add an indication in the document that "Control+[space]" and "F10" are
+      also valid.
+
+
 [2015-10-16]
 Version 0.7.4
 
@@ -67,10 +239,10 @@ Version 0.7.4
     action character for downgrades was missing, so the column was left empty --
     as it was an specific background colour until recently.
 
-  * [curses] Show feedback of some commands (hold, forbidden-version, ...) with
+  * [cmdline] Show feedback of some commands (hold, forbid-version, ...) with
     verbose>0 (Closes: #270033, #638841)
 
-  * [curses] Require args for some commands: hold, keep... (Closes: #759520)
+  * [cmdline] Require args for some commands: hold, keep... (Closes: #759520)
 
 - Internal changes:
 

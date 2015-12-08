@@ -64,7 +64,10 @@ cw::config::column_type_defaults pkg_item::pkg_columnizer::defaults[pkg_columniz
   {10, false, true},    // section
   {2, false, false},    // revdepcount
   {1, false, false},    // autoset
-  {1, false, false},    // tagged
+  {30, false, false},   // tagged (also user-tags)
+  {30, false, false},   // source
+  {10, false, false},   // architecture
+  {30, false, false},   // origin
   {10, true, true},     // archive
   {9, false, false},    // sizechange
   {strlen(PACKAGE), false, false},  // progname
@@ -84,7 +87,7 @@ cw::config::column_type_defaults pkg_item::pkg_columnizer::defaults[pkg_columniz
 //
 // You can't set default widths for the program name and version here (those
 // strings aren't affected by translation, for one thing)
-const char *default_widths = N_("30 8 8 1 1 40 14 14 11 10 35 9 10 2 1 1 10 9 12 30 17 15");
+const char *default_widths = N_("30 8 8 1 1 40 14 14 11 10 35 9 10 2 1 30 30 10 30 10 9 12 30 17 15");
 
 const char *pkg_item::pkg_columnizer::column_names[pkg_columnizer::numtypes]=
   {N_("Package"),
@@ -102,7 +105,10 @@ const char *pkg_item::pkg_columnizer::column_names[pkg_columnizer::numtypes]=
    N_("Section"),
    N_("RC"),
    N_("Auto"),
-   N_("Tag"),
+   N_("Tag/user-tags"),
+   N_("Source"),
+   N_("Architecture"),
+   N_("Origin"),
 
    // These don't make sense with headers, but whatever:
    N_("ProgName"),
@@ -383,8 +389,10 @@ cw::column_disposition pkg_item::pkg_columnizer::setup_column(const pkgCache::Pk
       break;
     case progname:
       return cw::column_disposition(PACKAGE, 0);
+      break;
     case progver:
       return cw::column_disposition(VERSION, 0);
+      break;
     case brokencount:
       if(apt_cache_file && (*apt_cache_file)->BrokenCount()>0)
 	{
@@ -437,28 +445,27 @@ cw::column_disposition pkg_item::pkg_columnizer::setup_column(const pkgCache::Pk
       break;
     case pin_priority:
       {
-	if(apt_cache_file && !pkg.end())
+	// sibling implementation of the one in pkg_ver_item.cc
+
+	// empty by default
+	string pin_priority_str;
+
+	pkgPolicy* policy = dynamic_cast<pkgPolicy *>(&(*apt_cache_file)->GetPolicy());
+
+	if (apt_cache_file && policy && !pkg.end())
 	  {
-	    char buf[256];
+	    signed short priority = policy->GetPriority(pkg);
 
-	    pkgPolicy *policy=dynamic_cast<pkgPolicy *>(&(*apt_cache_file)->GetPolicy());
-
-	    if(!policy)
-	      return cw::column_disposition("", 0);
-
-	    // Not quite sure what this indicates
-	    signed short priority=policy->GetPriority(pkg);
-
-	    if(priority==0)
-	      return cw::column_disposition("", 0);
-
-	    snprintf(buf, 256, "%d", priority);
-
-	    return cw::column_disposition(buf, 0);
+	    if (priority != 0)
+	      {
+		pin_priority_str = std::to_string(priority);
+	      }
 	  }
-	else
-	  return cw::column_disposition("", 0);
+
+	// return whatever was gathered
+	return cw::column_disposition(pin_priority_str, 0);
       }
+      break;
     case autoset:
       // Display the "auto" flag UNLESS the package has been removed
       // or purged already and is not presently being installed.
@@ -472,22 +479,87 @@ cw::column_disposition pkg_item::pkg_columnizer::setup_column(const pkgCache::Pk
 
       break;
     case tagged:
-      if(!pkg.end() && (*apt_cache_file)->get_ext_state(pkg).tagged)
-	return cw::column_disposition("*", 0);
-      else
-	return cw::column_disposition("", 0);
+      {
+	string tagged_str = "";
 
+	// old "tagged" (actually unused)
+	if (!pkg.end() && (*apt_cache_file)->get_ext_state(pkg).tagged)
+	  tagged_str = "*";
+
+	// reuse field also for user-tags (some parts of #498442 and #665824)
+	for (const string& s : (*apt_cache_file)->get_user_tags(pkg))
+	  {
+	    if (tagged_str == "*")
+	      tagged_str += " ";
+	    else if (!tagged_str.empty())
+	      tagged_str += ", ";
+
+	    tagged_str += s;
+	  }
+
+	return cw::column_disposition(tagged_str, 0);
+      }
+      break;
+
+    case source:
+      {
+	std::string source_package_str;
+#if APT_PKG_MAJOR >= 5
+	// with apt-1.1:
+	//
+	// - SourcePkg (and Version) are in the binary cache and available via
+	//   the VerIterator; much faster than parsing the pkgRecord
+	//
+	// - defaults to package name, no need to check if it's empty
+	if ( !visible_ver.end() )
+	  {
+	    source_package_str = visible_ver.SourcePkgName();
+	  }
+#else
+	pkgRecords::Parser &rec=apt_package_records->Lookup(visible_ver.FileList());
+	source_package_str = rec.SourcePkg().empty() ? pkg.Name() : rec.SourcePkg();
+#endif
+
+	return cw::column_disposition(source_package_str, 0);
+      }
+      break;
+
+    case architecture:
+      {
+	std::string architecture_str;
+	if ( !visible_ver.end() )
+	  {
+	    architecture_str = visible_ver.Arch();
+	  }
+
+	return cw::column_disposition(architecture_str, 0);
+      }
+      break;
+
+    case origin:
+      {
+	std::string origin_str = get_origin(visible_ver, apt_package_records);
+	return cw::column_disposition(origin_str, 0);
+      }
       break;
 
     case archive:
       if(!visible_ver.end())
 	{
-	  string buf = archives_text(visible_ver, true, ",");
-	  return cw::column_disposition(buf,0);
+	  bool ignore_local = true;
+	  string archives = archives_text(visible_ver, ignore_local, ",");
+	  // see #349413 -- say 'now' for obsolete/local installed packages only
+	  if (archives.empty())
+	    {
+	      ignore_local = false;
+	      archives = archives_text(visible_ver, ignore_local, ",");
+	    }
+	  return cw::column_disposition(archives, 0);
 	}
       else
 	return cw::column_disposition("", 0);
 
+      break;
     case hostname:
       {
 	char buf[256];
@@ -546,6 +618,7 @@ cw::column_disposition pkg_item::pkg_columnizer::setup_column(const pkgCache::Pk
 	else
 	  return cw::column_disposition("U", 0);
       }
+      break;
     default:
       return cw::column_disposition(_("ERROR"), 0);
     }
@@ -594,6 +667,12 @@ int pkg_item::pkg_columnizer::parse_column_type(char id)
       return tagged;
     case 't': // like apt-get -t
       return archive;
+    case 'E':
+      return source;
+    case 'e':
+      return architecture;
+    case 'O':
+      return origin;
 
     case 'B':
       return brokencount;
@@ -631,7 +710,7 @@ public:
 void pkg_item::pkg_columnizer::init_formatting()
 {
   sscanf(_(default_widths),
-	 "%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
+	 "%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
 	 &defaults[name].width,
 	 &defaults[installed_size].width,
 	 &defaults[debsize].width,
@@ -648,6 +727,9 @@ void pkg_item::pkg_columnizer::init_formatting()
 	 &defaults[revdepcount].width,
 	 &defaults[autoset].width,
 	 &defaults[tagged].width,
+	 &defaults[source].width,
+	 &defaults[architecture].width,
+	 &defaults[origin].width,
 	 &defaults[archive].width,
 	 &defaults[sizechange].width,
 	 &defaults[brokencount].width,

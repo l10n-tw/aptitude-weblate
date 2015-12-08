@@ -1,6 +1,7 @@
 // cmdline_simulate.cc
 //
 // Copyright (C) 2004, 2010 Daniel Burrows
+// Copyright (C) 2015 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -45,15 +46,17 @@ int cmdline_simulate(bool as_upgrade,
 		     bool showsize, bool showwhy,
 		     bool always_prompt, int verbose,
 		     bool assume_yes, bool force_no_change,
-		     pkgPolicy &policy, bool arch_only,
+		     pkgPolicy &policy, bool arch_only, bool download_only,
                      const std::shared_ptr<terminal_metrics> &term_metrics)
 {
+  bool simulate_only = true;
+
   if(!cmdline_do_prompt(as_upgrade,
 			to_install, to_hold, to_remove, to_purge,
 			showvers, showdeps, showsize, showwhy,
 			always_prompt, verbose,
 			assume_yes, force_no_change,
-			policy, arch_only,
+			policy, arch_only, download_only, simulate_only,
                         term_metrics))
     {
       printf(_("Abort.\n"));

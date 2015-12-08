@@ -119,7 +119,7 @@ namespace
 			for(pkgCache::VerIterator ver = pkg.VersionList();
 			    !ver.end(); ++ver)
 			  {
-			    if(!_system->VS->CheckDep(ver.VerStr(), it->Op, it->Version.c_str()))
+			    if(!_system->VS->CheckDep(ver.VerStr(), it2->Op, it2->Version.c_str()))
 			      continue;
 
 			    for(pkgCache::VerFileIterator vf = ver.FileList();
@@ -192,7 +192,7 @@ namespace
 	  {
 	    rval = false;
 
-	    std::string build_dep_description = pkgSrcRecords::Parser::BuildDepType(it->Type);;
+	    std::string build_dep_description = pkgSrcRecords::Parser::BuildDepType(it->Type);
 	    build_dep_description += ": ";
 	    for(BuildDepList::const_iterator it2 = or_group_start;
 		it2 <= it; ++it2)
@@ -203,7 +203,7 @@ namespace
 		if((it2->Op & ~pkgCache::Dep::Or) != pkgCache::Dep::NoOp)
 		  {
 		    build_dep_description += " (";
-		    build_dep_description += pkgCache::CompType(it2->Type);
+		    build_dep_description += pkgCache::CompType(it2->Op);
 		    build_dep_description += " ";
 		    build_dep_description += it2->Version;
 		    build_dep_description += ")";
@@ -306,8 +306,8 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
     }
 
   pkgCache::VerIterator ver=pkg.CurrentVer();
-  if(action==cmdline_install || action == cmdline_installauto)
-    ver=cmdline_find_ver(pkg, source, sourcestr);
+  if (action==cmdline_install || action == cmdline_installauto || action == cmdline_upgrade)
+    ver = cmdline_find_ver(pkg, source, sourcestr);
 
   pkgDepCache::StateCache &pkg_state((*apt_cache_file)[pkg]);
 
@@ -323,8 +323,11 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
 	       ver.VerStr());
       break;
     case cmdline_upgrade:
-      if(pkg_state.Status == 1)
-	to_install.insert(pkg);
+      // allow downgrades when pinned high -- see #344700, #348679
+      if (pkg.CurrentVer() != ver)
+	{
+	  to_install.insert(pkg);
+	}
       else if(pkg_state.Status > 1)
 	{
 	  printf(_("%s is not currently installed, so it will not be upgraded.\n"),
@@ -403,9 +406,9 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
 	(*apt_cache_file)->mark_auto_installed(pkg, true, NULL);
       break;
     case cmdline_upgrade:
-      if(pkg_state.Status == 1)
-	(*apt_cache_file)->mark_install(pkg, allow_auto && aptcfg->FindB(PACKAGE "::Auto-Install", true),
-					false, NULL);
+      (*apt_cache_file)->set_candidate_version(ver, NULL);
+      (*apt_cache_file)->mark_install(pkg, allow_auto && aptcfg->FindB(PACKAGE "::Auto-Install", true),
+				      false, NULL);
       break;
     case cmdline_remove:
       (*apt_cache_file)->mark_delete(pkg, false, false, NULL);

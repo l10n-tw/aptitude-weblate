@@ -26,6 +26,7 @@
 #include <loggers.h>
 
 #include "aptitude_resolver_universe.h"
+#include "config_file.h"
 #include "config_signal.h"
 #include "download_queue.h"
 #include "resolver_manager.h"
@@ -51,7 +52,11 @@
 #include <apt-pkg/sourcelist.h>
 #include <apt-pkg/version.h>
 
+#include <boost/filesystem.hpp>
+
+#include <exception>
 #include <fstream>
+#include <sstream>
 
 #include <signal.h>
 #include <unistd.h>
@@ -62,6 +67,7 @@ using namespace std;
 using aptitude::Loggers;
 
 namespace cw = cwidget;
+namespace fs = boost::filesystem;
 
 enum interesting_state {uncached = 0, uninteresting, interesting};
 static interesting_state *cached_deps_interesting = NULL;
@@ -102,6 +108,29 @@ static void reset_surrounding_or_memoization()
 bool get_apt_knows_about_rootdir()
 {
   return apt_knows_about_rootdir;
+}
+
+/** Read and check that the config file doesn't contain errors, otherwise exit.
+ *
+ * See #472701 for the motivation.  Upon reading the configuration file
+ * (especially "~/.aptitude/config"), it was writing it back immediately, and
+ * the writing stopped at the point of the reading failure (instead of just
+ * skipping the problematic parts), so part of the previous configuration file
+ * was lost.
+ *
+ * It is safer (and not too onerous) to ask the user to fix the configuration
+ * before continuing, rather than stomping on valid configuration values.
+ */
+void readconfigfile_or_die(Configuration& config, const std::string& path)
+{
+  bool config_ok = ReadConfigFile(config, path);
+
+  if (!config_ok)
+    {
+      _error->Error(_("Configuration file '%s' is not correct, please fix it"), path.c_str());
+      _error->DumpErrors();
+      exit(EXIT_FAILURE);
+    }
 }
 
 void apt_preinit(const char *rootdir)
@@ -148,12 +177,11 @@ void apt_preinit(const char *rootdir)
       user_config->Set("RootDir", rootdir);
     }
 
-  ReadConfigFile(*theme_config, PKGDATADIR "/aptitude-defaults");
+  readconfigfile_or_die(*theme_config, PKGDATADIR "/aptitude-defaults");
 
   pkgInitConfig(*_config);
 
-
-  ReadConfigFile(*_config, PKGDATADIR "/section-descriptions");
+  readconfigfile_or_die(*_config, PKGDATADIR "/section-descriptions");
 
   // TRANSLATORS: Set this string to the name of a configuration
   // file in $pkgdatadir/aptitude that overrides defaults for your
@@ -166,8 +194,10 @@ void apt_preinit(const char *rootdir)
   // "aptitude-defaults.ww".  If you use this mechanism, you should
   // also add your defaults file to pkgdata_DATA in Makefile.am.
   std::string localized_config_name = P_("Localized defaults|");
-  if(localized_config_name.size() > 0)
-    ReadConfigFile(*_config, PKGDATADIR "/" + localized_config_name);
+  if (localized_config_name.size() > 0)
+    {
+      readconfigfile_or_die(*_config, string(PKGDATADIR "/") + localized_config_name);
+    }
 
   pkgInitSystem(*_config, _system);
 
@@ -188,8 +218,8 @@ void apt_preinit(const char *rootdir)
 
   if(!cfgloc.empty() && access(cfgloc.c_str(), R_OK) == 0)
     {
-      ReadConfigFile(*user_config, cfgloc);
-      ReadConfigFile(*_config, cfgloc);
+      readconfigfile_or_die(*user_config, cfgloc);
+      readconfigfile_or_die(*_config, cfgloc);
     }
 
   aptcfg=new signalling_config(user_config, _config, theme_config);
@@ -226,68 +256,26 @@ void apt_preinit(const char *rootdir)
 
 void apt_dumpcfg(const char *root)
 {
-  string cfgloc;
-
-  const char *HOME = getenv("HOME");
-  if(strempty(HOME) == false)
-    {
-      string tmp(HOME);
-      tmp += "/.aptitude";
-      if(access(tmp.c_str(), W_OK) == 0)
-	cfgloc = tmp + "/config";
-      else if(access(tmp.c_str(), R_OK | X_OK) == 0)
-	{
-	  // The squashed-root case.
-	  _error->Error(_("%s is readable but not writable; unable to write configuration file."),
-			tmp.c_str());
-	  return;
-	}
-    }
-
-  if(cfgloc.empty())
-    {
-      cfgloc = get_homedir();
-
-      if(cfgloc.empty())
-	return;
-
-      cfgloc += "/.aptitude";
-
-      if(mkdir(cfgloc.c_str(), 0700)<0 && errno != EEXIST)
-	{
-	  _error->Errno("mkdir", "%s", cfgloc.c_str());
-	  return;
-	}
-
-      cfgloc += "/config";
-    }
-
-  // perhaps should use generic/util/temp.* or be implemented in a better way,
-  // but this is better than what was before (see #764046)
-  string cfgloc_new = cfgloc + ".new-" + std::to_string(getpid());
-
-  ofstream f(cfgloc_new.c_str());
-
-  if(!f)
-    {
-      _error->Errno("apt_init", _("Unable to open %s for writing"), cfgloc_new.c_str());
-      return;
-    }
-
   // Don't write RootDir to the user's configuration file -- it causes
   // horrible confusion.
   std::string rootDir(_config->Find("RootDir", ""));
   _config->Clear("RootDir");
 
-  aptcfg->Dump(f);
+  std::ostringstream content;
+  aptcfg->Dump(content);
 
   _config->Set("RootDir", rootDir);
 
-  f.close();
-
-  if (rename(cfgloc_new.c_str(), cfgloc.c_str()) != 0)
+  try
     {
-      _error->Errno("apt_init", _("Unable to replace %s with new configuration file"), cfgloc.c_str());
+      if ( ! aptitude::apt::ConfigFile::write(content.str()) )
+	{
+	  throw std::runtime_error("");
+	}
+    }
+  catch (...)
+    {
+      _error->Errno("apt_dumpcfg", _("Error saving configuration file"));
       return;
     }
 }
@@ -478,37 +466,119 @@ void apt_load_cache(OpProgress *progress_bar, bool do_initselections,
 
   LOG_TRACE(logger, "Initializing the download cache.");
   // Open the download cache.  By default, it goes in
-  // ~/.aptitude/cache; it has 512Kb of in-memory cache and 10MB of
-  // on-disk cache.
-  const char *HOME = getenv("HOME");
-  if(strempty(HOME) == false)
-    {
-      std::string download_cache_file_name = string(HOME) + "/.aptitude/cache";
-      const int download_cache_memory_size =
-	aptcfg->FindI(PACKAGE "::UI::DownloadCache::MemorySize", 512 * 1024);
-      const int download_cache_disk_size   =
-	aptcfg->FindI(PACKAGE "::UI::DownloadCache::DiskSize", 10 * 1024 * 1024);
-      try
-	{
-	  download_cache = aptitude::util::file_cache::create(download_cache_file_name,
-							      download_cache_memory_size,
-							      download_cache_disk_size);
-	}
-      catch(cwidget::util::Exception &ex)
-	{
-	  LOG_WARN(logger,
-		   "Can't open the file cache \""
-		   << download_cache_file_name
-		   << "\": " << ex.errmsg());
-	}
-      catch(std::exception &ex)
-	{
-	  LOG_WARN(logger,
-		   "Can't open the file cache \""
-		   << download_cache_file_name
-		   << "\": " << ex.what());
-	}
-    }
+  // ~/.cache/aptitude/metadata-download; it has 512Kb of in-memory cache and
+  // 10MB of on-disk cache.
+  {
+    // remove old path, if exists, so if config is empty and there are no other
+    // files, ~/.aptitude can also be removed
+    try
+      {
+	const char* env_HOME = getenv("HOME");
+	if ( ! strempty(env_HOME))
+	  {
+	    string old_file = string(env_HOME) + "/.aptitude/cache";
+	    fs::remove(old_file);
+	  }
+      }
+    catch (const fs::filesystem_error& e)
+      {
+	// ignore exceptions, if the file does not exist or we cannot remove it,
+	// it doesn't matter
+      }
+
+    // get xdg_cache_home directory to use
+    const char* env_XDG_CACHE_HOME = getenv("XDG_CACHE_HOME");
+    string xdg_cache_home;
+    if ( ! strempty(env_XDG_CACHE_HOME))
+      {
+	xdg_cache_home = string(env_XDG_CACHE_HOME);
+      }
+    else
+      {
+	const char* env_HOME = getenv("HOME");
+	string home = (! strempty(env_HOME)) ? string(env_HOME) : get_homedir();
+	if ( ! home.empty())
+	  {
+	    xdg_cache_home = string(env_HOME);
+	  }
+      }
+
+    // if directory to be used could be gathered, create the path if needed
+    std::string download_cache_dir;
+    if (!xdg_cache_home.empty())
+      {
+	// if dir does not exist, create default $XDG_CACHE_HOME with the right
+	// permisisons (0700) according to the spec -- see
+	// http://standards.freedesktop.org/basedir-spec/latest/ar01s03.html and
+	// http://standards.freedesktop.org/basedir-spec/latest/ar01s04.html
+	if ( ! fs::is_directory(xdg_cache_home) )
+	  {
+	    mode_t previous_umask = umask(0077);
+
+	    try
+	      {
+		fs::create_directory(xdg_cache_home);
+	      }
+	    catch (const fs::filesystem_error& e)
+	      {
+		_error->Error(_("Could not create directory: %s: %s"), xdg_cache_home.c_str(), e.what());
+	      }
+
+	    umask(previous_umask);
+	  }
+
+	// if the directory exist, continue to the next step
+	if ( fs::is_directory(xdg_cache_home) )
+	  {
+	    download_cache_dir = xdg_cache_home + "/aptitude";
+	  }
+      }
+
+    // if directory to be used could be gathered, create full path if needed,
+    // then assign filename
+    std::string download_cache_file_name;
+    if (!download_cache_dir.empty())
+      {
+	try
+	  {
+	    fs::create_directories(download_cache_dir);
+	    download_cache_file_name = download_cache_dir + "/metadata-download";
+	  }
+	catch (const fs::filesystem_error& e)
+	  {
+	    _error->Error(_("Could not create directories: %s: %s"), download_cache_dir.c_str(), e.what());
+	  }
+      }
+
+    // do create the cache file
+    if (!download_cache_file_name.empty())
+      {
+	const int download_cache_memory_size =
+	  aptcfg->FindI(PACKAGE "::UI::DownloadCache::MemorySize", 512 * 1024);
+	const int download_cache_disk_size   =
+	  aptcfg->FindI(PACKAGE "::UI::DownloadCache::DiskSize", 10 * 1024 * 1024);
+	try
+	  {
+	    download_cache = aptitude::util::file_cache::create(download_cache_file_name,
+								download_cache_memory_size,
+								download_cache_disk_size);
+	  }
+	catch(cwidget::util::Exception &ex)
+	  {
+	    LOG_WARN(logger,
+		     "Can't open the file cache \""
+		     << download_cache_file_name
+		     << "\": " << ex.errmsg());
+	  }
+	catch(std::exception &ex)
+	  {
+	    LOG_WARN(logger,
+		     "Can't open the file cache \""
+		     << download_cache_file_name
+		     << "\": " << ex.what());
+	  }
+      }
+  }
 
   LOG_DEBUG(logger, "Emitting cache_reloaded().");
   cache_reloaded();
@@ -1218,6 +1288,63 @@ bool is_interesting_dep(const pkgCache::DepIterator &d,
     default:
       abort();
     }
+}
+
+std::string get_uri(const pkgCache::VerIterator& ver,
+		    const pkgRecords* records)
+{
+  if (ver.end() || ver.FileList().end() || records == nullptr)
+    return string{};
+
+  for (auto vfi = ver.FileList(); !vfi.end(); ++vfi)
+    {
+      // match against source list
+      pkgIndexFile* index = nullptr;
+      if (apt_source_list->FindIndex(vfi.File(), index) == false)
+	continue;
+
+      // get package record
+      pkgRecords::Parser& parse = apt_package_records->Lookup(vfi);
+      if (_error->PendingError())
+	continue;
+
+      string pkg_file = parse.FileName();
+      if (pkg_file.empty())
+	continue;
+
+      string uri = index->ArchiveURI(pkg_file);
+
+      return uri;
+    }
+
+  return string{};
+}
+
+std::string get_origin(const pkgCache::VerIterator& ver,
+		       const pkgRecords* records)
+{
+  if (ver.end() || ver.FileList().end() || records == nullptr)
+    return string{};
+
+  if (ver.Downloadable())
+    {
+      return ver.RelStr();
+    }
+  else
+    {
+      return _("(installed locally)");
+    }
+}
+
+pkgCache::VerIterator get_candidate_version(const pkgCache::PkgIterator& pkg)
+{
+  if (apt_cache_file && ! pkg.end())
+    {
+      return (*apt_cache_file)[pkg].CandidateVerIter(*apt_cache_file);
+    }
+
+  // default return
+  return pkgCache::VerIterator();
 }
 
 std::wstring get_short_description(const pkgCache::VerIterator &ver,

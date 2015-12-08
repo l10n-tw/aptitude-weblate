@@ -1,6 +1,7 @@
 // pkg_info_screen.cc
 //
 //  Copyright 2000-2002, 2004-2005, 2007-2008 Daniel Burrows
+//  Copyright 2015 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -79,8 +80,6 @@ void pkg_grouppolicy_info::setup_package_info(const pkgCache::PkgIterator &pkg,
 					      pkg_item_with_generic_subtree *tree,
 					      pkg_signal *sig)
 {
-  char buf[256];
-  
   if(!ver.end())
     {
       pkgRecords::Parser &rec=apt_package_records->Lookup(ver.FileList());
@@ -150,6 +149,19 @@ void pkg_grouppolicy_info::setup_package_info(const pkgCache::PkgIterator &pkg,
 					_("Source Package: "), source_package.c_str()
 				      )));
 
+      std::string origin = get_origin(ver, apt_package_records);
+      frags.push_back(clipbox(cw::fragf("%B%s%b%s%n",
+					_("Origin: "), origin.c_str()
+					)));
+
+      std::string origin_uri = get_uri(ver, apt_package_records);
+      if (!origin_uri.empty())
+	{
+	  frags.push_back(clipbox(cw::fragf("%B%s%b%s%n",
+					    _("Origin URI: "), origin_uri.c_str()
+					    )));
+	}
+
       tree->add_child(new cw::layout_item(cw::sequence_fragment(frags)));
 
       setup_package_deps<pkg_item_with_generic_subtree>(pkg, ver, tree, sig);
@@ -157,8 +169,8 @@ void pkg_grouppolicy_info::setup_package_info(const pkgCache::PkgIterator &pkg,
       // Note: reverse provides show up in the version list
       if(!ver.ProvidesList().end())
 	{
-	  snprintf(buf, 256, _("Package names provided by %s"), pkg.FullName(true).c_str());
-	  pkg_subtree *prvtree=new pkg_subtree(cw::util::transcode(buf));
+	  string msg = cwidget::util::ssprintf(_("Package names provided by %s"), pkg.FullName(true).c_str());
+	  pkg_subtree *prvtree=new pkg_subtree(cw::util::transcode(msg));
 
 	  for(pkgCache::PrvIterator prv=ver.ProvidesList(); !prv.end(); ++prv)
 	    {
@@ -170,8 +182,8 @@ void pkg_grouppolicy_info::setup_package_info(const pkgCache::PkgIterator &pkg,
 	}
     }
 
-  snprintf(buf, 256, _("Packages which depend on %s"), pkg.FullName(true).c_str());
-  pkg_subtree *revtree=new pkg_subtree(cw::util::transcode(buf));
+  string msg = cwidget::util::ssprintf(_("Packages which depend on %s"), pkg.FullName(true).c_str());
+  pkg_subtree *revtree=new pkg_subtree(cw::util::transcode(msg));
   setup_package_deps<pkg_subtree>(pkg, ver, revtree, sig, true);
   tree->add_child(revtree);
 

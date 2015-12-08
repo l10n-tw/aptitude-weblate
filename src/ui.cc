@@ -201,7 +201,7 @@ sigc::signal1<void, bool> install_finished;
 sigc::signal1<void, bool> update_finished;
 
 const char *default_pkgstatusdisplay="%d";
-const char *default_pkgheaderdisplay="%N %n #%B %u %o";
+const char *default_pkgheaderdisplay="%N %n @ %H #%B %u %o";
 const char *default_grpstr="task,status,section(subdirs,passthrough),section(topdir)";
 // TRANSLATORS: This string is a confirmation message, which users
 // (especially CJK users) should be able to input without input
@@ -500,7 +500,7 @@ static void do_su_to_root(string args)
 	  cmdbuf << argv0 << " --no-gui -S "
 		 << statusname.get_name() << " "
 		 << args;
-	  execl(root_program.c_str(), root_program.c_str(), "-c", cmdbuf.str().c_str(), NULL);
+	  execl(root_program.c_str(), root_program.c_str(), "--login", "-c", cmdbuf.str().c_str(), NULL);
 
 	  exit(1);
 	}
@@ -575,7 +575,10 @@ static void do_su_to_root(string args)
       if(!WIFEXITED(status) || WEXITSTATUS(status))
 	{
 	  _error->Error("%s",
-			_("Subprocess exited with an error -- did you type your password correctly?"));
+			_("Subprocess exited with an error, probably due to one of these reasons:\n"
+			  " - incorrect password,\n"
+			  " - insufficient permissions to become root, or\n"
+			  " - root login disabled"));
 	  cw::toplevel::resume();
 	  check_apt_errors();
 	  // We have to clear these out or the cache won't reload properly (?)
@@ -861,8 +864,8 @@ void do_new_package_view(OpProgress &progress)
 
   if(aptcfg->Exists(PACKAGE "::UI::Default-Grouping"))
     {
-      grpstr=aptcfg->Find(PACKAGE "::UI::Default-Grouping");
-      grp=parse_grouppolicy(grpstr);
+      grpstr = aptcfg->Find(PACKAGE "::UI::Default-Grouping", default_grpstr);
+      grp = parse_grouppolicy(grpstr);
     }
 
   if(!grp) // Fallback
