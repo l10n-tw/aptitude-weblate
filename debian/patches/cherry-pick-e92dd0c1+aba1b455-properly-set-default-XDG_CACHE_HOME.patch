@@ -1,0 +1,19 @@
+Description: Properly set a default for $XDG_CACHE_HOME if not set
+Bug-Debian: https://bugs.debian.org/807545
+Author: Axel Beckert <abe@debian.org>
+Origin: commit aba1b45550ef3de560121f44c7586cbbee354304
+Origin: commit e92dd0c182eb2a4d53b4e811bb0a1e2aa15300b8
+
+Index: aptitude/src/generic/apt/apt.cc
+===================================================================
+--- aptitude.orig/src/generic/apt/apt.cc	2015-12-10 19:38:13.261389909 +0100
++++ aptitude/src/generic/apt/apt.cc	2015-12-10 19:46:33.977338896 +0100
+@@ -499,7 +499,7 @@
+ 	string home = (! strempty(env_HOME)) ? string(env_HOME) : get_homedir();
+ 	if ( ! home.empty())
+ 	  {
+-	    xdg_cache_home = string(env_HOME);
++	    xdg_cache_home = string(env_HOME) + "/.cache";
+ 	  }
+       }
+ 
