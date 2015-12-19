@@ -1,11 +1,11 @@
-aptitude (0.7.5-3) UNRELEASED; urgency=medium
+aptitude (0.7.5-3) unstable; urgency=low
 
   * Cherry pick and apply modified bc3b0246 to only initialise cache file
     if needed (lazy init.) instead of unconditionally when starting
     aptitude, and use cache file for downloaded metadata if the file could
     be created (Closes: #807852)
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 19 Dec 2015 12:25:32 +0000
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 19 Dec 2015 12:29:27 +0000
 
 aptitude (0.7.5-2) unstable; urgency=low
 
