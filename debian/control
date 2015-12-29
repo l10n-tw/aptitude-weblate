@@ -74,26 +74,6 @@ Description: architecture independent files for the aptitude package manager
  This package contains the data files and translations used by
  aptitude.
 
-Package: aptitude-dbg
-Section: debug
-Priority: extra
-Architecture: any
-Multi-Arch: same
-Depends: aptitude (= ${binary:Version}),
-         ${misc:Depends}
-Recommends: libcwidget3-dbg
-Description: Debug symbols for the aptitude package manager
- aptitude is a package manager with a number of useful features,
- including: a mutt-like syntax for matching packages in a flexible
- manner, dselect-like persistence of user actions, the ability to
- retrieve and display the Debian changelog of most packages, and a
- command-line mode similar to that of apt-get.
- .
- This package contains the debugging symbols for aptitude.  You only
- need these if you want to generate debugging backtraces of aptitude;
- if you do, you probably also want the debug package for the cwidget
- library.
-
 Package: aptitude-doc-cs
 Section: doc
 Priority: optional
