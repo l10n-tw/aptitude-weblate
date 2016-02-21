@@ -124,6 +124,7 @@ aptitude (0.7.6-1) unstable; urgency=low
     - Add patch to fix problem building due to string formatting and
       strict compiler checks
       - ftbfs-string-format.patch
+  * Bump Policy Standards-Version to 3.9.7 (no changes needed)
 
   [ Axel Beckert ]
   * Drop aptitude-dbg in favour of automatic debug packages.
