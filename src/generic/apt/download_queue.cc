@@ -2,6 +2,7 @@
 
 
 // Copyright (C) 2009-2011 Daniel Burrows
+// Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -25,6 +26,7 @@
 #include <generic/apt/apt.h>
 #include <generic/util/file_cache.h>
 #include <generic/util/job_queue_thread.h>
+#include <generic/util/util.h>
 
 #include <apt-pkg/acquire.h>
 #include <apt-pkg/acquire-item.h>
@@ -33,13 +35,17 @@
 
 #include <sigc++/bind.h>
 
+#include <boost/filesystem.hpp>
 #include <boost/format.hpp>
 
 #include <list>
 #include <memory>
 #include <unordered_map>
+#include <regex>
+
 
 namespace cw = cwidget;
+namespace fs = boost::filesystem;
 
 namespace aptitude
 {
@@ -56,8 +62,8 @@ namespace aptitude
     {
       std::string uri;
       std::string short_description;
-      temp::name filename;
-      temp::name cached_filename;
+      std::string filename;
+      std::string cached_filename;
       // The last-modified-time of the cached value.
       time_t last_modified_time;
 
@@ -74,8 +80,8 @@ namespace aptitude
 
       download_job(const std::string &_uri,
 		   const std::string &_short_description,
-		   const temp::name &_filename,
-		   const temp::name &_cached_filename,
+		   const std::string &_filename,
+		   const std::string &_cached_filename,
 		   time_t _last_modified_time)
 	: uri(_uri),
 	  short_description(_short_description),
@@ -87,8 +93,8 @@ namespace aptitude
 
       const std::string &get_uri() const { return uri; }
       const std::string &get_short_description() const { return short_description; }
-      const temp::name &get_filename() const { return filename; }
-      const temp::name &get_cached_filename() const { return cached_filename; }
+      const std::string &get_filename() const { return filename; }
+      const std::string &get_cached_filename() const { return cached_filename; }
       time_t get_last_modified_time() const { return last_modified_time; }
 
       /** \brief Return \b true if there are no listeners on this job. */
@@ -112,7 +118,7 @@ namespace aptitude
       void mark_finished();
 
       /** \brief Invoke the success callback on each listener. */
-      void invoke_success(const temp::name &filename) const
+      void invoke_success(const std::string& filename) const
       {
 	for(std::list<listener>::const_iterator
 	      it = listeners.begin(); it != listeners.end(); ++it)
@@ -150,7 +156,7 @@ namespace aptitude
       }
 
       /** \brief Invoke the partial download callback on each listener. */
-      void invoke_partial_download(const temp::name &filename,
+      void invoke_partial_download(const std::string& filename,
 				   unsigned long long currentSize,
 				   unsigned long long totalSize) const
       {
@@ -202,7 +208,7 @@ namespace aptitude
       // fall back to cached values if they're available.
       void handle_failure(const std::string &msg)
       {
-	if(job->get_cached_filename().valid())
+	if (fs::is_regular_file(job->get_cached_filename()))
 	  {
 	    LOG_INFO(Loggers::getAptitudeDownloadQueue(),
 		     "Failed to download " << job->get_short_description()
@@ -227,7 +233,7 @@ namespace aptitude
 		    const std::shared_ptr<download_job> &_job)
 	: pkgAcqFile(Owner, _job->get_uri(), "", 0,
 		     "", _job->get_short_description(), "",
-		     _job->get_filename().get_name()),
+		     _job->get_filename()),
 	  job(_job)
       {
 	LOG_TRACE(Loggers::getAptitudeDownloadQueue(),
@@ -340,8 +346,24 @@ namespace aptitude
 		     << lastModifiedTimeStr << "]) : "
 		     << LookupTag(Message, "Message"));
 
-	    download_cache->putItem(job->get_uri(), job->get_filename().get_name(), lastModifiedTime);
-	    job->invoke_success(job->get_filename());
+	    auto download_cache = get_download_cache();
+	    if (download_cache)
+	      download_cache->putItem(job->get_uri(), job->get_filename(), lastModifiedTime);
+
+	    // need to copy to a new name (gets removed by apt)
+	    temp::name tmp("aptitude-download-");
+	    std::string new_filename = tmp.get_name() + "_" + fs::path(DestFile).filename().string();
+	    try {
+	      fs::copy_file(DestFile, new_filename);
+	    } catch (fs::filesystem_error& e) {
+	      std::string error_str = std::string("Failed to copy file: ") + (e.what() ? e.what() : "unknown");
+	      _error->Error(error_str.c_str());
+	      job->invoke_failure(error_str);
+	      job.reset();
+	      return;
+	    }
+
+	    job->invoke_success(new_filename);
 	  }
 
 	// We have to be careful here because mark_finished() might
@@ -378,8 +400,17 @@ namespace aptitude
       {
       }
 
+      active_download_info(const std::shared_ptr<download_job> &_job)
+	: job(_job)
+      {
+      }
+
       const std::shared_ptr<download_job> &get_job() const { return job; }
-      void destroy_item() { destroy(); }
+      void destroy_item() {
+	if (!destroy.empty()) {
+	  destroy();
+	}
+      }
     };
 
     /** \brief Identifies a single download request; used to allow
@@ -470,7 +501,7 @@ namespace aptitude
       {
 	std::string uri;
 	std::string short_description;
-	temp::name filename;
+	std::string filename;
 	// A location where the last cached data is stored, or an
 	// invalid pointer if there isn't cached data.  (note: it's
 	// tempting to only store the last modification time here so
@@ -478,7 +509,7 @@ namespace aptitude
 	// file expires from the cache between when we check for it
 	// the first time and when we check again, you could have
 	// trouble)
-	temp::name cached_filename;
+	std::string cached_filename;
 
 	std::shared_ptr<download_callbacks> callbacks;
 	post_thunk_f post_thunk;
@@ -497,7 +528,7 @@ namespace aptitude
       public:
 	start_request(const std::string &_uri,
 		      const std::string &_short_description,
-		      const temp::name &_filename,
+		      const std::string& _filename,
 		      const std::shared_ptr<download_callbacks> &_callbacks,
 		      post_thunk_f _post_thunk,
 		      const std::shared_ptr<download_request_impl> &_request)
@@ -513,14 +544,14 @@ namespace aptitude
 
 	const std::string &get_uri() const { return uri; }
 	const std::string &get_short_description() const { return short_description; }
-	const temp::name &get_filename() const { return filename; }
-	const temp::name &get_cached_filename() const { return cached_filename; }
+	const std::string &get_filename() const { return filename; }
+	const std::string &get_cached_filename() const { return cached_filename; }
 	time_t get_last_modified_time() const { return last_modified_time; }
 	const std::shared_ptr<download_callbacks> &get_callbacks() const { return callbacks; }
 	post_thunk_f get_post_thunk() const { return post_thunk; }
 	const std::shared_ptr<download_request_impl> &get_request() const { return request; }
 
-	void update_from_cache(const temp::name &new_filename,
+	void update_from_cache(const std::string& new_filename,
 			       time_t new_last_modified_time)
 	{
 	  cached_filename = new_filename;
@@ -561,13 +592,13 @@ namespace aptitude
 
 	void process_job(const std::shared_ptr<start_request> &job)
 	{
-	  if(download_cache)
+	  auto download_cache = get_download_cache();
+	  if (download_cache)
 	    {
 	      time_t mtime;
-	      temp::name filename =
-		download_cache->getItem(job->get_uri(), mtime);
-	      if(filename.valid())
-		job->update_from_cache(filename, mtime);
+	      temp::name filename = download_cache->getItem(job->get_uri(), mtime);
+	      if (filename.valid() && fs::is_regular_file(filename.get_name()))
+		job->update_from_cache(filename.get_name(), mtime);
 	    }
 
 	  download_thread::queue_job(job);
@@ -591,8 +622,7 @@ namespace aptitude
 	    found = active_downloads.find(item.URI);
 	  if(found != active_downloads.end())
 	    {
-	      temp::name cached_filename =
-		found->second->get_job()->get_cached_filename();
+	      std::string cached_filename = found->second->get_job()->get_cached_filename();
 	      found->second->get_job()->invoke_success(cached_filename);
 	    }
 	}
@@ -641,7 +671,7 @@ namespace aptitude
 
 		  LOG_TRACE(Loggers::getAptitudeDownloadQueue(),
 			    "Noting a partial download of "
-			    << found->first << " to " << job.get_filename().get_name()
+			    << found->first << " to " << job.get_filename()
 			    << " (" << w->CurrentSize << " of "
 			    << w->TotalSize << " bytes)");
 
@@ -652,6 +682,67 @@ namespace aptitude
 	    }
 
 	  return true;
+	}
+
+	/** \brief Invoked when an item is successfully and completely fetched. */
+	virtual void Done(pkgAcquire::ItemDesc& itemdesc)
+	{
+	  // apt doesn't invoke any methods on the item itself in this
+	  // case, so we have to signal the hit manually.
+	  cw::threads::mutex::lock l(state_mutex);
+
+	  for (auto it : active_downloads)
+	    {
+	      auto& job = it.second->get_job();
+	      if (job->get_uri() == itemdesc.URI)
+		{
+		  if (itemdesc.Owner->Status == pkgAcquire::Item::ItemState::StatDone)
+		    {
+		      // need to copy to a new name (gets removed by apt)
+		      temp::name tmp("aptitude-download-");
+		      std::string new_filename = tmp.get_name() + "_" + fs::path(itemdesc.Owner->DestFile).filename().string();
+		      try {
+			fs::copy_file(itemdesc.Owner->DestFile, new_filename);
+		      } catch (fs::filesystem_error& e) {
+			std::string error_str = std::string("Failed to copy file: ") + (e.what() ? e.what() : "unknown");
+			_error->Error(error_str.c_str());
+			job->invoke_failure(error_str);
+			job->mark_finished();
+			return;
+		      }
+
+		      job->invoke_success(new_filename);
+		      job->mark_finished();
+		    }
+		  else
+		    {
+		      l.release();
+		      Fail(itemdesc);
+		    }
+		  return;
+		}
+	    }
+	}
+
+	/** \brief Invoked when the process of fetching an item encounters
+	 *  a fatal error.
+	 */
+	virtual void Fail(pkgAcquire::ItemDesc& itemdesc)
+	{
+	  // apt doesn't invoke any methods on the item itself in this
+	  // case, so we have to signal the hit manually.
+	  cw::threads::mutex::lock l(state_mutex);
+
+	  for (auto it : active_downloads)
+	    {
+	      auto& job = it.second->get_job();
+	      if (job->get_uri() == itemdesc.URI)
+		{
+		  job->invoke_failure(itemdesc.Owner->ErrorText);
+		  job->mark_finished();
+		  break;
+		}
+	    }
 	}
 
 	bool MediaChange(std::string, std::string) override
@@ -776,16 +867,43 @@ namespace aptitude
 	// The next couple lines are only safe because we're
 	// holding a lock (otherwise someone could sneak in and
 	// delete the item in between them).
-	AcqQueuedFile *item = new AcqQueuedFile(&acquireQueue, job);
 
-	std::shared_ptr<active_download_info> download =
-	  std::make_shared<active_download_info>(job, sigc::mem_fun(*item, &AcqQueuedFile::destroy));
+	if (req.get_uri().find("/changelogs/") != std::string::npos)
+	  {
+	    std::string uri_filename = req.get_uri().substr(req.get_uri().find_last_of("/") + 1);
 
-	active_downloads[req.get_uri()] = download;
+	    std::regex underscore_regex("[^_]+");
+	    auto elem_begin = std::sregex_iterator(uri_filename.begin(), uri_filename.end(), underscore_regex);
+	    auto elem_end = std::sregex_iterator();
+	    std::string pkg_name = (*elem_begin).str();
+	    std::string pkg_version = (*(++elem_begin)).str();
 
-	req.get_request()->bind(job,
-				job->add_listener(req.get_callbacks(),
-						  req.get_post_thunk()));
+	    // pkgAcq* get deleted when the download fetcher exits
+	    new pkgAcqChangelog(&acquireQueue, req.get_uri(), pkg_name.c_str(), pkg_version.c_str(),
+				"", req.get_filename());
+
+	    std::shared_ptr<active_download_info> download =
+	      std::make_shared<active_download_info>(job);
+
+	    active_downloads[req.get_uri()] = download;
+
+	    req.get_request()->bind(job,
+				    job->add_listener(req.get_callbacks(),
+						      req.get_post_thunk()));
+	  }
+	else
+	  {
+	    AcqQueuedFile *item = new AcqQueuedFile(&acquireQueue, job);
+
+	    std::shared_ptr<active_download_info> download =
+	      std::make_shared<active_download_info>(job, sigc::mem_fun(*item, &AcqQueuedFile::destroy));
+
+	    active_downloads[req.get_uri()] = download;
+
+	    req.get_request()->bind(job,
+				    job->add_listener(req.get_callbacks(),
+						      req.get_post_thunk()));
+	  }
       }
 
     public:
@@ -814,12 +932,42 @@ namespace aptitude
 	    return rval;
 	  }
 
-	std::shared_ptr<start_request> start =
-	  std::make_shared<start_request>(uri, short_description,
-					    temp::name("aptitudeDownload"),
-					    callbacks,
-					    post_thunk,
-					    rval);
+	// check whether it's already being downloaded
+	{
+	  bool found_start = false;
+	  for (auto sr : start_requests)
+	    {
+	      if (uri == sr->get_uri())
+		{
+		  found_start = true;
+		  break;
+		}
+	    }
+
+	  auto found_active = active_downloads.find(uri);
+
+	  if (found_start || (found_active != active_downloads.end()))
+	    {
+	      LOG_WARN(Loggers::getAptitudeDownloadQueue(),
+		       "Not starting a job to download " << uri << ": already being downloaded.");
+	      return rval;
+	    }
+	}
+
+	std::string dest_dir = aptitude::util::create_temporary_changelog_dir();
+	if (dest_dir.empty())
+	  {
+	    _error->Error("Failed to create temporary directory for download");
+	    return rval;
+	  }
+	std::string dest_filename = dest_dir + "/" + fs::unique_path().string();
+
+	auto start = std::make_shared<start_request>(uri,
+						     short_description,
+						     dest_filename,
+						     callbacks,
+						     post_thunk,
+						     rval);
 
 	cache_lookup_thread::add_job(start);
 
@@ -939,7 +1087,7 @@ namespace aptitude
 
 	    download_callback cb;
 	    pkgAcquire downloader;
-            downloader.Setup(&cb);
+            downloader.SetLog(&cb);
 
 	    for(std::deque<std::shared_ptr<start_request> >::const_iterator it =
 		  start_requests.begin();

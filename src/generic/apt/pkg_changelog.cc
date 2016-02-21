@@ -1,7 +1,7 @@
 // pkg_changelog.cc
 //
 //  Copyright 2000, 2004-2005, 2008-2009 Daniel Burrows
-//  Copyright 2015 Manuel A. Fernandez Montecelo
+//  Copyright 2015-2016 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -38,6 +38,7 @@
 
 #include <sigc++/bind.h>
 
+#include <apt-pkg/acquire-item.h>
 #include <apt-pkg/sourcelist.h>
 
 #include <cwidget/generic/util/ssprintf.h>
@@ -86,12 +87,14 @@ namespace aptitude
     changelog_info::create(const std::string &source_package,
 			   const std::string &source_version,
 			   const std::string &section,
-			   const std::string &display_name)
+			   const std::string &display_name,
+			   const std::string& uri)
     {
       return std::make_shared<changelog_info>(source_package,
 					      source_version,
 					      section,
-					      display_name);
+					      display_name,
+					      uri);
     }
 
     std::shared_ptr<changelog_info>
@@ -104,7 +107,7 @@ namespace aptitude
 	{
 	  LOG_TRACE(Loggers::getAptitudeChangelog(),
 		    "No changelog information for " << ver.ParentPkg().Name()
-		    << ": it isn't available from any archive.");
+		    << ": it isn't available from any archive");
 	  return std::shared_ptr<changelog_info>();
 	}
 
@@ -135,7 +138,8 @@ namespace aptitude
       return std::make_shared<changelog_info>(source_package,
 					      source_version,
 					      ver.Section(),
-					      ver.ParentPkg().Name());
+					      ver.ParentPkg().Name(),
+					      pkgAcqChangelog::URI(ver));
     }
 
     namespace
@@ -198,7 +202,7 @@ namespace aptitude
 	  if(finished)
 	    LOG_WARN(Loggers::getAptitudeChangelog(),
 		     "Not adding " << uri << " to the queue for " << short_description
-		     << ": the item is no longer active.");
+		     << ": the item is no longer active");
 	  else
 	    {
 	      LOG_INFO(Loggers::getAptitudeChangelog(),
@@ -216,12 +220,12 @@ namespace aptitude
 	  if(started)
 	    LOG_TRACE(Loggers::getAptitudeChangelog(),
 		      "Not starting to download " << short_description
-		      << ": it is already started.");
+		      << ": it is already started");
 	  else if(finished)
 	    LOG_TRACE(Loggers::getAptitudeChangelog(),
 		      "Not starting to download " << short_description
-		      << ": it already finished downloading.");
-	  else
+		      << ": it already finished downloading");
+	  else if (!uris.empty())
 	    {
 	      const std::string &uri(uris.front());
 
@@ -234,22 +238,30 @@ namespace aptitude
 						post_thunk);
 	      started = true;
 	    }
+	  else
+	    {
+	      LOG_INFO(Loggers::getAptitudeChangelog(),
+		       "No URIs to enqueue");
+	      started = true;
+	      l.release();
+	      failure(_("No URIs for this download"));
+	    }
 	}
 
-	void success(const temp::name &filename)
+	void success(const std::string& filename)
 	{
 	  cw::threads::mutex::lock l(state_mutex);
 
 	  if(finished)
 	    LOG_TRACE(Loggers::getAptitudeChangelog(),
 		      "Not signaling success for the download to "
-		      << filename.get_name()
-		      << " for " << short_description << ": the item is no longer active.");
+		      << filename
+		      << " for " << short_description << ": the item is no longer active");
 	  else
 	    {
 	      LOG_TRACE(Loggers::getAptitudeChangelog(),
 			"Signaling success for the download to "
-			<< filename.get_name()
+			<< filename
 			<< " for " << short_description);
 
 	      current_download.reset();
@@ -272,7 +284,7 @@ namespace aptitude
 	      LOG_TRACE(Loggers::getAptitudeChangelog(),
 			"Not signaling failure for the download of "
 			<< short_description
-			<< ": the item is no longer active.");
+			<< ": the item is no longer active");
 
 	      return;
 	    }
@@ -314,7 +326,7 @@ namespace aptitude
 	    }
 	}
 
-	void partial_download(const temp::name &filename,
+	void partial_download(const std::string& filename,
 			      unsigned long long currentSize,
 			      unsigned long long totalSize)
 	{
@@ -342,7 +354,7 @@ namespace aptitude
 	      LOG_TRACE(Loggers::getAptitudeChangelog(),
 			"Not canceling the download of "
 			<< short_description
-			<< ": the item is no longer active.");
+			<< ": the item is no longer active");
 
 	      return;
 	    }
@@ -541,46 +553,53 @@ namespace aptitude
 		      }
 		}
 
-	      string realsection;
+	      std::string uri = info.get_uri();
+	      if (uri.empty())
+		{
+		  string realsection;
 
-	      if(section.find('/') != section.npos)
-		realsection.assign(section, 0, section.find('/'));
-	      else
-		realsection.assign("main");
+		  if (section.find('/') != section.npos)
+		    realsection.assign(section, 0, section.find('/'));
+		  else
+		    realsection.assign("main");
 
-	      string prefix;
+		  string prefix;
 
-	      if(source_package.size() > 3 &&
-		 source_package[0] == 'l' && source_package[1] == 'i' && source_package[2] == 'b')
-		prefix = std::string("lib") + source_package[3];
-	      else
-		prefix = source_package[0];
+		  if(source_package.size() > 3 &&
+		     source_package[0] == 'l' && source_package[1] == 'i' && source_package[2] == 'b')
+		    prefix = std::string("lib") + source_package[3];
+		  else
+		    prefix = source_package[0];
 
-	      string realver;
+		  string realver;
 
-	      if(source_version.find(':') != source_version.npos)
-		realver.assign(source_version, source_version.find(':') + 1, source_version.npos);
-	      else
-		realver = source_version;
+		  if(source_version.find(':') != source_version.npos)
+		    realver.assign(source_version, source_version.find(':') + 1, source_version.npos);
+		  else
+		    realver = source_version;
 
-              // WATCH: apt/cmdline/apt-get.cc(DownloadChangelog)
-              string server = aptcfg->Find("APT::Changelogs::Server",
-                                           "http://metadata.ftp-master.debian.org/changelogs");
-	      string path = cw::util::ssprintf("%s/%s/%s/%s_%s",
-					      realsection.c_str(),
-					      prefix.c_str(),
-					      source_package.c_str(),
-					      source_package.c_str(),
-					      realver.c_str());
-              string uri = cw::util::ssprintf("%s/%s_changelog",
-                                              server.c_str(),
-                                              path.c_str());
-	      LOG_TRACE(logger,
-			"Adding " << uri
-			<< " as a URI for the changelog of " << source_package << " " << source_version);
+		  // WATCH: apt/cmdline/apt-get.cc(DownloadChangelog)
+		  string server = aptcfg->Find("APT::Changelogs::Server",
+					       "http://metadata.ftp-master.debian.org/changelogs");
+		  string path = cw::util::ssprintf("%s/%s/%s/%s_%s",
+						   realsection.c_str(),
+						   prefix.c_str(),
+						   source_package.c_str(),
+						   source_package.c_str(),
+						   realver.c_str());
+		  uri = cw::util::ssprintf("%s/%s_changelog",
+					   server.c_str(),
+					   path.c_str());
+		}
 
-	      download.push_back(uri);
+	      if (!uri.empty())
+		{
+		  LOG_TRACE(logger,
+			    "Adding " << uri
+			    << " as a URI for the changelog of " << source_package << " " << source_version);
 
+		  download.push_back(uri);
+		}
 
 	      LOG_TRACE(logger,
 			"Starting to download " << short_description);
@@ -599,7 +618,7 @@ namespace aptitude
 	  catch(...)
 	    {
 	      LOG_FATAL(logger, "Failed to download changelogs: unexpected exception type");
-	      download.post_failure(cw::util::ssprintf(_("Failed to download changelogs: unexpected exception.")));
+	      download.post_failure(cw::util::ssprintf(_("Failed to download changelogs: unexpected exception")));
 	    }
 	}
       };
@@ -627,20 +646,20 @@ namespace
 {
   class slot_callbacks : public download_callbacks
   {
-    sigc::slot<void, temp::name> success_slot;
+    sigc::slot<void, std::string> success_slot;
     sigc::slot<void, std::string> failure_slot;
 
   public:
-    slot_callbacks(const sigc::slot<void, temp::name> &_success_slot,
+    slot_callbacks(const sigc::slot<void, std::string> &_success_slot,
 		   const sigc::slot<void, std::string> &_failure_slot)
       : success_slot(_success_slot),
 	failure_slot(_failure_slot)
     {
     }
 
-    void success(const temp::name &n)
+    void success(const std::string& filename)
     {
-      success_slot(n);
+      success_slot(filename);
     }
 
     void failure(const std::string &msg)
@@ -653,7 +672,7 @@ namespace
 std::shared_ptr<download_request>
 get_changelog(const pkgCache::VerIterator &ver,
 	      post_thunk_f post_thunk,
-	      const sigc::slot<void, temp::name> &success,
+	      const sigc::slot<void, std::string>& success,
 	      const sigc::slot<void, std::string> &failure)
 {
   return get_changelog(changelog_info::create(ver),
@@ -674,7 +693,7 @@ bool check_valid_origin(const pkgCache::VerIterator& ver)
 	}
     }
 
-  _error->Error(_("%s version %s is not an official Debian package, cannot display its changelog."),
+  _error->Error(_("Cannot display changelog: Origin of %s version %s is unknown (maybe not an official Debian package; if it is, try to \"update\" package lists)"),
 		ver.ParentPkg().FullName(true).c_str(),
 		ver.VerStr());
   return false;

@@ -1,3 +1,348 @@
+[2016-02-21]
+Version 0.7.6
+
+- New features:
+
+  * [cmdline] "show -v" shows all hashes, not only MD5Sum
+
+  * Improvements to "why"/"why-not" (Closes: #729349)
+
+    It now gives more information about installed versions, manually or
+    automatic installations and priority; instead of "Unable to find a reason to
+    install/remove" when no dependencies require or conflict with a pacakge.
+
+    This enhancement is not only for the command-line commands "why" and
+    "why-not" -- it is also for one of the info screens in the bottom half in
+    curses/TUI (cycling with 'i'), and typing 'w PKG' in command line prompts
+    when requesting confirmation.
+
+  * Add support to clean the packages downloaded after successful install or
+    similar operations (config option ::Clean-After-Install) (Closes: #110685)
+
+  * [curses] "Keep" now works in version nodes (Closes: #585182)
+
+  * [curses] "Install" on virtual packages now installs single candidate, or
+    emits an error if there are no candidates or more than one (Closes: #174820)
+
+  * [curses] Dependency subtrees are now sorted in a pre-determined order
+    (Closes: #808882)
+
+  * Show Origin URI for packages being untrusted when asking for confirmation
+    (Closes: #582064)
+
+    It does not explain why they are untrusted (libapt does not seem to provide
+    much information) but at least is a better hint than just the package name.
+
+  * [curses] In package info screen, "Packages depending on [this]" are further
+    split based on the virtual (provided) packages that they depend upon
+    (Closes: #159584, #760610)
+
+    This helps to avoid the reverse dependencies listed multiple times within
+    the same subtree, as it was happening until now; but specially to vastly
+    improve the use-case to find out which packages depend not on this package
+    directly, but on virtual packages also provided by this package (so perhaps
+    an alternative can be installed).
+
+  * [cmdline] "search" and "versions" do not truncate columns with
+    redirections/pipes (Closes: #445206, #496728)
+
+    It will behave as passing "--disable-columns" without column limit (large
+    enough number for all practical purposes).
+
+- Bug fixes:
+
+  * Properly set a default for $XDG_CACHE_HOME if not set. (Closes: #807545)
+
+  * [cmdline] "w" at prompt now actually works (Closes: #555014)
+
+  * Refuse to remove aptitude within aptitude (Closes: #319782, #568548)
+
+  * [cmdline] Address prompt deficiencies related with translation and input
+    methods (Closes: #475802)
+
+  * Abort with Failure (rather to continue with the installation) when packages
+    fail to be fetched -- except if APT::Get::Fix-Missing is present and set to
+    true.  When this happens, the actions in the command line also return with
+    non-zero status.  (Closes: #121313, #302784)
+
+  * [cmdline] Abort with Failure when actions cannot be taken
+    (Closes: #121313, #430392, #445034, #498239, #576212, #639789, #798320)
+
+    The Closes of #121313 overlap with other fixes, there are reports of each
+    case merged.
+
+  * [curses] Adjust widths and "expand"/"shrink"-ability of some fields so
+    Broken count and Download size are shown fully even with 80-width terminals
+    (Closes: #810221)
+
+  * [cmdline] Changelog operations now exit with non-zero on errors
+    (Closes: #675833)
+
+  * Fix problem showing versioned provides of virtual packages in error message
+
+    It was showing candidate version or version of the provider "real" package
+    instead of the version of virtual package ("versioned provides" is not a
+    very commonly used feature yet, but there were requests to support them
+    better).
+
+  * Fix problem showing the actual version of the package providing the virtual
+    package in error message
+
+    It was showing the candidate version of the provider, rather than the
+    version actually providing the virtual package -- the candidate version, and
+    in general different versions, do not necessarily provide the same virtual
+    packages.
+
+  * Avoid loss of automatic flags when packages are marked for removal but not
+    removed immediately, and the state is saved in between
+    (Closes: #686573, #718802, #787663)
+
+    Thanks to David Kalnischkies for the investigation and suggestion to fix
+    this.
+
+    It started to happen in aptitude after 2010 due to a change that happened in
+    apt to fix #572364 (a change of a default in a parameter in
+    pkgDepCache::writeStateFile() to ignore packages marked as deleted).
+
+  * Avoid loss of automatic flags when package actions are scheduled multiple
+    times before taking place
+    (Closes: #563877)
+
+    aptitude has a mechanism to store information about packages-to-be-installed
+    that are pulled in automatically, when apt doesn't save that information
+    (#435079, commit 1193257d).  When scheduling actions multiple times, it was
+    not taking this extra information into account, so the new scheduled actions
+    ruined the automatically-installed flag of packages previously scheduled.
+
+  * [cmdline] Arguments for "versions" which are not patterns now treated as
+    '?exact-name' instead of '?name' (Closes: #691874)
+
+  * [curses] "Cancel pending actions" now reloads the cache (roughly equivalent
+    to restarting the program), rather than marking all packages as "keep" plus
+    ruining all auto-installed flags and holds
+    (Closes: #537735, #576319)
+
+  * Reinstate auto-installed flag when marking packages to keep in apt cache
+    (Closes: #508428)
+
+    There were situations like for example in conflicts/solution resolver, that
+    after applying the solution "Keep at current version", sometimes packages
+    had their auto-installed flag cleared.
+
+  * Message explaining unability to fetch changelogs now suggests "update"
+    operation (Closes: #456822)
+
+  * Do not use ncurses ("visual mode") in dumb terminals (Closes: #317928)
+
+  * [cmdline] Do not show "update" progress in dumb terminals (Closes: #757940)
+
+  * [cmdline] Catch exceptions when stdin is not available in prompts
+    (Closes: #620782)
+
+  * Brief explanation when column definitions could not be parsed
+    (Closes: #813319)
+
+  * Do not download changelogs when they are already being downloaded
+    (Closes: #810020)
+
+    Until now, pending changelogs kept being queued (e.g. pressing 'C'
+    repeatedly in the curses interface spawned many downloads), and in the
+    latest versions of apt (>= 1.1) it caused aptitude to crash.  In previous
+    versions of aptitude/apt I did not crash, but it caused weird errors
+    ("download queue being destroyed").  Maybe internal changes within apt cause
+    now crashes when they were errors before (not necessarily apt's fault, maybe
+    it's a misuse from aptitude).
+
+    The errors already seen in previous versions seem to be caused by aptitude
+    code, for example because all downloads with the same URI are deleted from
+    some internal structures of aptitude.  With this "fix" at least repeated
+    downloads are not repeated (*), which is a nice feature in general, and
+    seems to solve this problem.
+
+      (*) Still, sometimes the changelog is downloaded and shown twice, maybe
+      this is because of sync problems between background threads, or maybe
+      because sometimes the download happens so fast that the first is already
+      downloaded by the time that the second is queued (this fix only prevents
+      to queue when "to-be-started" or "active-downloads", not when it was
+      downloaded previously).
+
+    More in general, the code related with downloading files/changelogs is
+    incredibly complex and entangled, spans many files and dozens of classes
+    nested again and using inheritences and overlapping code, and it uses a
+    home-grown implementation of threads in cwidget copied or based on POSIX
+    threads.  After several multi-hour sessions trying to analyse the point of
+    the crash and improve this situation, and failing to wrap my head around it,
+    I think that it's probably better to implement a new way to download
+    changelogs, which I believe that can be simplified significantly, and
+    hopefully in this case other problems will be easier to fix, and we can
+    start to use pkgAcqChangelog and avoid the warnings about not being able to
+    change the user to "_apt".  But this has to wait for another release.
+
+  * Fix so libapt can drop privileges to _apt:nogroup when downloading from the
+    network and use pkgAcqChangelog (Closes: #797527, #806595)
+
+    When downloading changelogs, aptitude was using temp::dirs which are owned
+    by root or the user launching aptitude, and libapt could not drop
+    privileges, causing unwanted annoying warnings (#806595).  Since aptitude
+    can run as root and normal users, it is also not possible to let libapt
+    create files and copy them later: when running as normal users, it is not
+    possible to access those files to copy them.  This was changed by letting
+    libapt to download to an intermediate place created by aptitude, and copy
+    the file afterwards.
+
+    Another change is that aptitude uses the specific functionality in libapt
+    for changelogs, pkgAcqChangelog, present since apt v1.1.
+
+    The whole set of classes dealing with download queues is very complex and
+    should probably be rewritten to adapt to real needs and adapt to changes in
+    apt over the years.  This is a quick way to fix this annoying item present
+    already for months, without ripping apart the whole download subsystem.  See
+    also comment of the other entry closing #810020.
+
+  * Improve support for trace dumps (Closes: #814408)
+
+    Probably due to changes in config variable handling from apt during the
+    years, this functionality (related with ::ProblemResolver::Trace-Directory
+    and ::ProblemResolver::Trace-File) was copying too many unrelated files,
+    including parts of the root fs and causing the temporary directory to
+    fill-up.
+
+    Improvements included to copy only the needed files, as well as trying to
+    safe-guard about similar problems with apt config values in the future.
+    Also, removed an extra block of code copying a directory twice by mistake.
+
+- User visible changes:
+
+  * [cmdline] Prompt dialog shows lowercase instead of capitalised "yes"/"no"
+    (Closes: #607444)
+
+  * [cmdline] "search" now exits with non-zero on errors or empty results
+    (Closes: #497299)
+
+  * Remove the trailing period from some error messages (Closes: #803011)
+
+  * [curses] New style for Download Progress in Status bar, with higher contrast
+    (Closes: #803980)
+
+  * "why" modes, group-by modes and log levels should be provided in English,
+    translations not accepted anymore (Closes: #738345)
+
+  * [curses] Pressing keybinding "Keep" (":") on package names or versions does
+    not remove the auto-installed flag
+
+  * [cmdline] Show error message when using --purge (Close: #434502)
+
+  * [cmdline] "show" selects by default the candidate version (as documented in
+    man page) and shows extra information when the package is installed but can
+    be upgraded, rather than showing "not installed" (Close: #539978)
+
+  * [cmdline] Give more prominence to Version field in "show" command by showing
+    it as second
+
+  * [cmdline] Improve message about packages similar to mistyped names
+    (Closes: #812397)
+
+- Internal changes:
+
+  * configure.ac: change order so aptitude CXXFLAGS, CPPFLAGS and LDFLAGS
+    override dependencies' (e.g. to set new compiler standards)
+
+  * Use pkgDepCache::GetCandidateVersion() instead of GetCandidateVer(),
+    deprecated apt API
+
+  * Create function to convert from priority to a string and reuse in several
+    places
+
+  * New apt function: is_auto_installed(PkgIterator)
+
+  * Lazy initialisation and better encapsulation of metadata download cache
+    (Closes: #807852)
+
+    This avoids some problems in builders, like pbuilder (not all env vars are
+    cleaned, or for some reason the home of the user invoking aptitude inside
+    pbuilder does not exist), and when home or some specific directories are not
+    writable for some reason.
+
+    This "metadata download cache" is only necessary for screenshots (GTK+,
+    possibly Qt?, disabled for a long time and probably removed soon), and to
+    store successfully downloaded changelogs after the user explicitly requests
+    that operation in command line or TUI/curses mode -- which does not happen
+    in every session, and never at all like when autobuilders use aptitude as
+    resolver.
+
+  * Add common function in apt.{h,cc} to clean cache of downloaded package files
+
+  * Convert from some deprecated methods of libapt to supported ones
+
+  * Add the common function (class method) add_msg_to_display() in
+    download_list.{h,cc} to reuse code in several places
+
+  * Move pkg_subtree_with_order to "pkg_subtree.h"
+
+  * New util function: is_dumb_terminal()
+
+  * New util function: print_ncurses_dumb_terminal()
+
+  * New util function: create_temporary_changelog_dir()
+
+    This functionality is similar to temp::file and temp::dir (and these were
+    used before), but apt v1.1 added a feature by which the process drops
+    privileges to _apt:nogroup when downloading files from the network, to not
+    have code running as root doing such tasks.
+
+    As a consequence, temp::dirs are owned by root and libapt cannot drop
+    privileges, causing unwanted annoying warnings (#806595).  Since aptitude
+    can run as root and normal users, it is not possible to let libapt create
+    files and copy them later: when running as normal users, it is not possible
+    to access those files to copy them.
+
+    This function supports other code to get around these problems.
+
+- Documentation:
+
+  * manpage:
+
+    * Explain that "why"/"why-not" need a valid package name (Closes: #535635)
+
+    * Improve documentation of "forbid-version" (Closes: #773023)
+
+    * Clarify automatic flag treatment with "install" actions (Closes: #469219)
+
+    * Fix typo in --autoclean-on-startup (Closes: #812864)
+
+  * Guide/User's Manual:
+
+    * Make images available in the french translation by copying them from the
+      original document (Closes: #414150, #697736)
+
+      This is obviously suboptimal because the images are not translated, but
+      since 10 of the 11 were missing altogether, this is not making the problem
+      worse.  The remaining image of the copied ones was present in the french
+      translation, but was missing a key part of the interface described in the
+      surrounding text (it was still "wrong", and hopefully the new one is more
+      understandable in this context, even if in a different language).
+
+      The suboptimal solution is being taken at this point because the bugs have
+      been reported almost 9 years ago, and almost 2 years ago I requested help
+      from the Debian French l10n team, and there has not been any feedback so
+      far.  Perhaps having English images in the French translation (rather than
+      missing the images altogether) will spike somebody into action, to send us
+      a recent and localised capture to fix the problem properly ;-)
+
+    * Add note about ?upgradable (Closes: #498440)
+
+      To explain that it just means that there are upgrades available, not
+      related at all with "safe-upgrade" or "full-upgrade" operations
+
+- Translation updates:
+
+  * Italian documentation translation by Beatrice Torracca (Closes: #808985)
+
+  * Portuguese translation by Miguel Figueiredo (Closes: #810651)
+
+  * Danish translation by Morten Bo Johansen (Closes: #811400)
+
+
 [2015-12-08]
 Version 0.7.5
 

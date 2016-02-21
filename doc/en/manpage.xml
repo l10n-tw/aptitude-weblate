@@ -254,6 +254,15 @@
 		<para>
 		  Install <replaceable>package</replaceable>.
 		</para>
+		<para>
+		  If the package was not installed, it is marked as manually
+		  installed, and the dependencies newly installed are marked
+		  with the automatic flag.  If the package or the dependencies
+		  were already installed, the automatic flag is preserved.  See
+		  the <link linkend='secAutoInstall'>section about automatic
+		  installations</link> in the documentation for more
+		  information.
+		</para>
 	      </listitem>
 	    </varlistentry>
 
@@ -454,23 +463,28 @@
 
 	<listitem>
 	  <para>
-	    Forbid a package from being upgraded to a particular
-	    version.  This will prevent &aptitude; from
-	    automatically upgrading to this version, but will
-	    allow automatic upgrades to future versions.  By
-	    default, &aptitude; will select the version to which the
-	    package would normally be upgraded; you may override
-	    this selection by appending <quote><literal>=<replaceable>version</replaceable></literal></quote>
-	    to the package name: for instance, <quote><literal>aptitude forbid-version
-	    vim=1.2.3.broken-4</literal></quote>.
+	    Forbid a package from being upgraded to a particular version, while
+	    allowing automatic upgrades to future versions.  This is useful for
+	    example to avoid a known broken version of a package, without having
+	    to set and clear manual holds.
 	  </para>
 
 	  <para>
-	    This command is useful for avoiding broken versions of
-	    packages without having to set and clear manual holds.
-	    If you decide you really want the forbidden version
-	    after all, <quote><literal>aptitude install <replaceable>package</replaceable></literal></quote> will
-	    remove the ban.
+	    By default, &aptitude; will select the forbidden version to be the
+	    one which the package would normally be upgraded (the candidate
+	    version).  This may be overriden by appending
+	    <quote><literal>=<replaceable>version</replaceable></literal></quote>
+	    to the package name: for instance, <quote><literal>aptitude
+	    forbid-version vim=1.2.3.broken-4</literal></quote>.
+	  </para>
+
+	  <para>
+	    To revert the action, <quote><literal>aptitude install
+	    <replaceable>package</replaceable></literal></quote> will remove the
+	    ban.  To remove the forbidden version without installing the
+	    candidate version, the current version should be appended:
+	    <quote>install
+	    <replaceable>package</replaceable><literal>=<replaceable>version</replaceable></literal></quote>.
 	  </para>
 	</listitem>
       </varlistentry>
@@ -890,18 +904,18 @@ i A ocamlweb            Depends   tetex-extra | texlive-latex-extra
 i A texlive-latex-extra Conflicts textopo</screen>
 
 	  <para>
-	    If one or more <replaceable>pattern</replaceable>s are
-	    present, then &aptitude; will begin its search at these
-	    patterns; that is, the first package in the chain it
-	    prints will be a package matching the pattern in question.
-	    The patterns are considered to be package names unless
-	    they contain a tilde character
-	    (<quote><literal>~</literal></quote>) or a question mark
-	    (<quote><literal>?</literal></quote>), in which case they
-	    are treated as search patterns (see the section
+	    If one or more <replaceable>pattern</replaceable>s are present (in
+	    addition to the mandatory last argument, which should be a valid
+	    <replaceable>package</replaceable> name), then &aptitude; will begin
+	    its search at these patterns.  That is, the first package in the
+	    chain it prints to explain why <replaceable>package</replaceable> is
+	    or is not installed, will be a package matching the pattern in
+	    question.  The patterns are considered to be package names unless
+	    they contain a tilde character (<quote><literal>~</literal></quote>)
+	    or a question mark (<quote><literal>?</literal></quote>), in which
+	    case they are treated as search patterns (see the section
 	    <quote><link linkend='secSearchPatterns'>Search
-	    Patterns</link></quote> in the &aptitude; reference
-	    manual).
+	    Patterns</link></quote> in the &aptitude; reference manual).
 	  </para>
 
 	  <para>
@@ -2192,9 +2206,16 @@ The following packages will be REMOVED:
 
 	<listitem>
 	  <para>
-	    Specify the display width which should be used for
-	    output from the <literal>search</literal> command (by
-	    default, the terminal width is used).
+	    Specify the display width which should be used for output from the
+	    <literal>search</literal> and <literal>versions</literal> commands
+	    (in the command line).
+	  </para>
+
+	  <para>
+	    By default and when the output is seen directly in a terminal, the
+	    terminal width is used.  When the output is redirected or piped, a
+	    very large "unlimited" line width is used, and this option is
+	    ignored.
 	  </para>
 
 	  <para>
@@ -2257,7 +2278,7 @@ The following packages will be REMOVED:
 	    <menuchoice><guimenu>Actions</guimenu><guimenuitem>Clean
 	    obsolete files</guimenuitem></menuchoice>).  You cannot
 	    use this option and
-	    <quote><literal>--autoclean-on-startup</literal></quote>,
+	    <quote><literal>--clean-on-startup</literal></quote>,
 	    <quote><literal>-i</literal></quote>, or
 	    <quote><literal>-u</literal></quote> at the same time.
 	  </para>

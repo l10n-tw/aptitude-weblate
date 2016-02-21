@@ -1,7 +1,7 @@
 // aptcache.cc
 //
 //  Copyright 1999-2009, 2011 Daniel Burrows
-//  Copyright 2015 Manuel A. Fernandez Montecelo
+//  Copyright 2015-2016 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -611,7 +611,6 @@ void aptitudeDepCache::get_upgradable(bool ignore_removed,
 
   for(pkgCache::PkgIterator p = PkgBegin(); !p.end(); ++p)
     {
-      StateCache &state = (*this)[p];
       aptitude_state &estate = get_ext_state(p);
 
       if(p.CurrentVer().end())
@@ -625,7 +624,7 @@ void aptitudeDepCache::get_upgradable(bool ignore_removed,
       if(!ignore_removed)
 	{
 	  // allow downgrades when pinned high -- see #344700, #348679
-	  do_upgrade = !is_held(p) && !GetCandidateVer(p).end() && (GetCandidateVer(p) != p.CurrentVer());
+	  do_upgrade = !is_held(p) && !GetCandidateVersion(p).end() && (GetCandidateVersion(p) != p.CurrentVer());
 
 	  if(do_upgrade)
 	    LOG_DEBUG(logger, p.FullName(false) << " is upgradable.");
@@ -644,7 +643,7 @@ void aptitudeDepCache::get_upgradable(bool ignore_removed,
 	      // Fall through
 	    case pkgCache::State::Install:
 	      // allow downgrades when pinned high -- see #344700, #348679
-	      if (!is_held(p) && !GetCandidateVer(p).end() && (GetCandidateVer(p) != p.CurrentVer()))
+	      if (!is_held(p) && !GetCandidateVersion(p).end() && (GetCandidateVersion(p) != p.CurrentVer()))
 		{
 		  do_upgrade = true;
 		  LOG_TRACE(logger, p.FullName(false) << " is upgradable.");
@@ -686,7 +685,7 @@ bool aptitudeDepCache::save_selection_list(OpProgress &prog,
   // Ow, that sucks.  The solution will be to write the apt states to
   // a separate file.
   if(status_fname == NULL)
-    writeStateFile(&prog);
+    writeStateFile(&prog, false);
 
   // helper class to save selection state of packages to dpkg database
   aptitude::apt::dpkg::DpkgSelections dpkg_selections;
@@ -730,14 +729,14 @@ bool aptitudeDepCache::save_selection_list(OpProgress &prog,
 	    bool auto_new_install = (i.CurrentVer().end() &&
 				     state.Install() &&
 				     ((state.Flags & Flag::Auto) != 0));
-	    string autostr = auto_new_install ? "Auto-New-Install: yes\n" : "";
+	    string autostr = (auto_new_install || estate.previously_auto_package) ? "Auto-New-Install: yes\n" : "";
 
 	    string tailstr;
 
 	    if(state.Install() &&
 	       !estate.candver.empty() &&
-	       (GetCandidateVer(i).end() ||
-		GetCandidateVer(i).VerStr() != estate.candver))
+	       (GetCandidateVersion(i).end() ||
+		GetCandidateVersion(i).VerStr() != estate.candver))
 	      tailstr = "Version: " + estate.candver + "\n";
 
 	    // Build the list of usertags for this package.
@@ -782,9 +781,9 @@ bool aptitudeDepCache::save_selection_list(OpProgress &prog,
 		std::string select_arch = i.Arch();
 
 		// all install, downgrade, upgrade, etc -- try to use candidate version
-		if (state.Install() && !GetCandidateVer(i).end())
+		if (state.Install() && !GetCandidateVersion(i).end())
 		  {
-		    select_arch = GetCandidateVer(i).Arch();
+		    select_arch = GetCandidateVersion(i).Arch();
 		  }
 		// all delete, purge, hold, keep etc -- try to use current version
 		else if (! i.CurrentVer().end())
@@ -1106,6 +1105,13 @@ void aptitudeDepCache::mark_delete(const PkgIterator &Pkg,
 				   bool unused_delete,
 				   undo_group *undo)
 {
+  // refuse to remove itself -- see #319782, #568548
+  if (!Pkg.end() && string("aptitude") == Pkg.Name())
+    {
+      _error->Error(_("Cannot remove aptitude within aptitude"));
+      return;
+    }
+
   if(read_only && !read_only_permission())
     {
       if(group_level == 0)
@@ -1133,6 +1139,13 @@ void aptitudeDepCache::internal_mark_delete(const PkgIterator &Pkg,
 					    bool unused_delete,
 					    std::vector<unsigned int>& unused_already_visited)
 {
+  // refuse to remove itself -- see #319782, #568548
+  if (!Pkg.end() && string("aptitude") == Pkg.Name())
+    {
+      _error->Error(_("Cannot remove aptitude within aptitude"));
+      return;
+    }
+
   // honour ::Purge-Unused in the main entry point for removing packages, it
   // should catch cases of automatically installed and unused packages not
   // purged (#724034 and others)
@@ -1311,11 +1324,15 @@ void aptitudeDepCache::internal_mark_keep(const PkgIterator &Pkg, bool Automatic
   if(was_garbage_removed)
     MarkAuto(Pkg, false);
 
-  set_candidate_version(GetCandidateVer(Pkg), NULL);
+  set_candidate_version(GetCandidateVersion(Pkg), NULL);
 
   pkgDepCache::MarkKeep(Pkg, false, !Automatic);
   pkgDepCache::SetReInstall(Pkg, false);
   get_ext_state(Pkg).reinstall=false;
+
+  // explicitly mark auto-installed, sometimes apt does not apply it properly in
+  // some cases -- see #508428
+  pkgDepCache::MarkAuto(Pkg, Automatic);
 
   if(Pkg.CurrentVer().end())
     {
@@ -1365,7 +1382,7 @@ void aptitudeDepCache::set_candidate_version(const VerIterator &ver,
 
       aptitude_state &estate = get_ext_state(ver.ParentPkg());
 
-      if(ver!=GetCandidateVer(ver.ParentPkg()))
+      if(ver!=GetCandidateVersion(ver.ParentPkg()))
 	estate.candver=ver.VerStr();
       else
 	estate.candver="";
@@ -2354,7 +2371,7 @@ bool aptitudeCacheFile::Open(OpProgress &Progress, bool do_initselections,
     return _error->Error(_("The list of sources could not be read."));
 
   // Read the caches:
-  bool Res=pkgMakeStatusCache(List, Progress, &Map, !WithLock);
+  bool Res = pkgCacheGenerator::MakeStatusCache(List, &Progress, &Map, !WithLock);
   Progress.Done();
 
   if(!Res)

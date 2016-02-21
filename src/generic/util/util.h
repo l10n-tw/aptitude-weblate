@@ -2,6 +2,7 @@
 //
 //   Copyright (C) 2005, 2007, 2009-2010 Daniel Burrows
 //   Copyright (C) 2014 Daniel Hartwig
+//   Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -134,6 +135,39 @@ namespace aptitude
      *  otherwise.
      */
     bool mkdir_parents(const std::string &dirname, mode_t mode);
+
+    /** Check whether we are in a dumb term
+     *
+     *  @return The requested value
+     */
+    bool is_dumb_terminal();
+
+    /** Print message about not being possible to use ncurses mode when inside
+     * dumb terminals
+     */
+    void print_ncurses_dumb_terminal();
+
+    /** Create temporary directory for changelog downloads
+     *
+     * The directory is registered for autoremoval at exit.
+     *
+     * @return Path of the directory, empty if error
+     *
+     * This functionality is similar to temp::file and temp::dir (and these were
+     * used before), but apt v1.1 added a feature by which the process drops
+     * privileges to _apt:nogroup when downloading files from the network, to
+     * not have code running as root doing such tasks.
+     *
+     * As a consequence, temp::dirs are owned by root and libapt cannot drop
+     * privileges, causing unwanted annoying warnings (#806595).  Since aptitude
+     * can run as root and normal users, it is not possible to let libapt create
+     * files and copy them later: when running as normal users, it is not
+     * possible to access those files to copy them.
+     *
+     * This function supports other code to get around these problems.
+     *
+     */
+    std::string create_temporary_changelog_dir();
   }
 }
 

@@ -72,11 +72,11 @@ cw::config::column_type_defaults pkg_item::pkg_columnizer::defaults[pkg_columniz
   {9, false, false},    // sizechange
   {strlen(PACKAGE), false, false},  // progname
   {strlen(VERSION), false, false},  // progver
-  {12, false, true},    // brokencount
+  {12, false, false},   // brokencount
   {30, false, true},    // diskusage
-  {17, false, true},    // downloadsize
+  {18, false, true},    // downloadsize
   {4, false, false},    // pin_priority
-  {15, false, true},    // hostname
+  {8, true, false},     // hostname
   {1, false, false}     // trust_state
 };
 
@@ -87,7 +87,7 @@ cw::config::column_type_defaults pkg_item::pkg_columnizer::defaults[pkg_columniz
 //
 // You can't set default widths for the program name and version here (those
 // strings aren't affected by translation, for one thing)
-const char *default_widths = N_("30 8 8 1 1 40 14 14 11 10 35 9 10 2 1 30 30 10 30 10 9 12 30 17 15");
+const char *default_widths = N_("30 8 8 1 1 40 14 14 11 10 35 9 10 2 1 30 30 10 30 10 9 12 30 18 4 8 1");
 
 const char *pkg_item::pkg_columnizer::column_names[pkg_columnizer::numtypes]=
   {N_("Package"),
@@ -351,34 +351,22 @@ cw::column_disposition pkg_item::pkg_columnizer::setup_column(const pkgCache::Pk
 
       break;
     case priority:
-      if(!visible_ver.end() &&
-	 const_cast<pkgCache::VerIterator &>(visible_ver).PriorityType() &&
-	 const_cast<pkgCache::VerIterator &>(visible_ver).PriorityType()[0])
-	return cw::column_disposition(const_cast<pkgCache::VerIterator &>(visible_ver).PriorityType(), 0);
-      else
-	return cw::column_disposition(_("Unknown"), 0);
-
-      break;
     case shortpriority:
-      if(!visible_ver.end())
-	switch(visible_ver->Priority)
-	  {
-	  case pkgCache::State::Important:
-	    return cw::column_disposition(_("Imp"), 0);
-	  case pkgCache::State::Required:
-	    return cw::column_disposition(_("Req"), 0);
-	  case pkgCache::State::Standard:
-	    return cw::column_disposition(_("Std"), 0);
-	  case pkgCache::State::Optional:
-	    return cw::column_disposition(_("Opt"), 0);
-	  case pkgCache::State::Extra:
-	    return cw::column_disposition(_("Xtr"), 0);
-	  default:
-	    return cw::column_disposition(_("ERR"), 0);
-	  }
-      else
-	return cw::column_disposition(_("Unknown"), 0);
+      {
+	bool short_form = (type == shortpriority) ? true : false;
+	std::string priority_str;
 
+	if (!visible_ver.end())
+	  {
+	    priority_str = aptitude::apt::priority_to_string(static_cast<pkgCache::State::VerPriority>(visible_ver->Priority), short_form);
+	  }
+	else
+	  {
+	    priority_str = _("Unknown");
+	  }
+
+	return cw::column_disposition(priority_str, 0);
+      }
       break;
     case section:
       if(!visible_ver.end() && visible_ver.Section())

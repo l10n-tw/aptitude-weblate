@@ -1,6 +1,7 @@
 // download_list.h  (this is -*-c++-*-)
 //
 //   Copyright (C) 2001-2005, 2008 Daniel Burrows
+//   Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -119,6 +120,10 @@ class download_list:public cwidget::widgets::widget
   void cancel();
 
   void layout_me();
+
+  /** Helper function used in several places to add a new message to display */
+  void add_msg_to_display(const msg& msg_);
+
 protected:
   void paint(const cwidget::style &st);
   bool handle_key(const cwidget::config::key &k);

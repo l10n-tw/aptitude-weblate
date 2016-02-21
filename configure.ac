@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([aptitude], [0.7.5], [aptitude-devel@lists.alioth.debian.org])
+AC_INIT([aptitude], [0.7.6], [aptitude-devel@lists.alioth.debian.org])
 AC_CONFIG_SRCDIR([src/main.cc])
 AM_INIT_AUTOMAKE([foreign dist-xz no-dist-gzip -Wno-portability])
 AM_CONFIG_HEADER(config.h)
@@ -366,14 +366,14 @@ then
   AC_DEFINE([HAVE_GTK], [], [Define if the GTK+ frontend is included in the build.])
 fi
 
-CXXFLAGS="$CXXFLAGS $SIGC_CFLAGS $CWIDGET_CFLAGS $ept_CFLAGS $SQLITE3_CFLAGS $XAPIAN_CXXFLAGS"
+CXXFLAGS="$SIGC_CFLAGS $CWIDGET_CFLAGS $ept_CFLAGS $SQLITE3_CFLAGS $XAPIAN_CXXFLAGS $CXXFLAGS"
 LIBS="$LIBS $SIGC_LIBS $CWIDGET_LIBS $ept_LIBS $SQLITE3_LIBS $BOOST_IOSTREAMS_LIB $BOOST_FILESYSTEM_LIB $BOOST_SYSTEM_LIB $XAPIAN_LIBS"
-CPPFLAGS="$CPPFLAGS $BOOST_CPPFLAGS"
-LDFLAGS="$LDFLAGS $BOOST_LDFLAGS"
+CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
+LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
 
 if test x$HAVE_GTK = x1
 then
-  CXXFLAGS="$CXXFLAGS $GLIBMM_CFLAGS $GTHREAD_CFLAGS $GTKMM_CFLAGS $LIBGLADEMM_CFLAGS $VTE_CFLAGS"
+  CXXFLAGS="$GLIBMM_CFLAGS $GTHREAD_CFLAGS $GTKMM_CFLAGS $LIBGLADEMM_CFLAGS $VTE_CFLAGS $CXXFLAGS"
   LIBS="$LIBS $GLIBMM_LIBS $GTHREAD_LIBS $GTKMM_LIBS $LIBGLADEMM_LIBS $VTE_LIBS"
 fi
 
@@ -436,7 +436,7 @@ fi
 
 if test x$HAVE_QT = x1
 then
-  CXXFLAGS="$CXXFLAGS -DQT_NO_KEYWORDS $QtCore_CFLAGS $QtGui_CFLAGS"
+  CXXFLAGS="-DQT_NO_KEYWORDS $QtCore_CFLAGS $QtGui_CFLAGS $CXXFLAGS"
   LIBS="$LIBS $QtCore_LIBS $QtGui_LIBS"
 fi
 
@@ -666,9 +666,7 @@ AC_ARG_ENABLE(resolver-sanity-checks,
 	fi
 	)
 
-# We need -fno-strict-aliasing to avoid compiler errors that I can't
-# figure out how to fix.
-CXXFLAGS="$CXXFLAGS -fno-strict-aliasing -Wall $WERROR"
+CXXFLAGS="$CXXFLAGS -Wall $WERROR"
 
 AC_SUBST(SRCDIRS)
 AC_SUBST(DOCDIRS)

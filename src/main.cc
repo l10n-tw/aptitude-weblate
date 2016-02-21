@@ -1,7 +1,7 @@
 // main.cc  (neé testscr.cc)
 //
 //  Copyright 1999-2011 Daniel Burrows
-//  Copyright 2014-2015 Manuel A. Fernandez Montecelo
+//  Copyright 2014-2016 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -243,9 +243,9 @@ static void usage()
   printf(_(" -v              Display extra information. (may be supplied multiple times).\n"));
   printf(_(" -t [release]    Set the release from which packages should be installed.\n"));
   printf(_(" -q              In command-line mode, suppress the incremental progress\n"
-           "                 indicators.\n"));
+           "                  indicators.\n"));
   printf(_(" -o key=val      Directly set the configuration option named 'key'.\n"));
-  printf(_(" --with(out)-recommends	Specify whether or not to treat recommends as\n"
+  printf(_(" --with(out)-recommends     Specify whether or not to treat recommends as\n"
            "                            strong dependencies.\n"));
   printf(_(" -S fname        Read the aptitude extended status info from fname.\n"));
   printf(_(" -u              Download new package lists on startup.\n"));
@@ -377,27 +377,15 @@ namespace
     {
       using namespace logging;
 
-      // TRANSLATORS: This is a log level that the user can pass on
-      // the command-line or set in the configuration file.
-      add_level(N_("trace"), TRACE_LEVEL);
-      // TRANSLATORS: This is a log level that the user can pass on
-      // the command-line or set in the configuration file.
-      add_level(N_("debug"), DEBUG_LEVEL);
-      // TRANSLATORS: This is a log level that the user can pass on
-      // the command-line or set in the configuration file.
-      add_level(N_("info"), INFO_LEVEL);
-      // TRANSLATORS: This is a log level that the user can pass on
-      // the command-line or set in the configuration file.
-      add_level(N_("warn"), WARN_LEVEL);
-      // TRANSLATORS: This is a log level that the user can pass on
-      // the command-line or set in the configuration file.
-      add_level(N_("error"), ERROR_LEVEL);
-      // TRANSLATORS: This is a log level that the user can pass on
-      // the command-line or set in the configuration file.
-      add_level(N_("fatal"), FATAL_LEVEL);
-      // TRANSLATORS: This is a log level that the user can pass on
-      // the command-line or set in the configuration file.
-      add_level(N_("off"), OFF_LEVEL);
+      // TRANSLATORS: These are not translatable anymore
+
+      add_level("trace", TRACE_LEVEL);
+      add_level("debug", DEBUG_LEVEL);
+      add_level("info",  INFO_LEVEL);
+      add_level("warn",  WARN_LEVEL);
+      add_level("error", ERROR_LEVEL);
+      add_level("fatal", FATAL_LEVEL);
+      add_level("off",   OFF_LEVEL);
 
       std::vector<std::pair<std::string, log_level> >
 	tmp(levels.begin(), levels.end());
@@ -463,8 +451,8 @@ namespace
 
     if(!level)
       {
-	// TRANSLATORS: both the translated and the untranslated
-	// log level names are accepted here.
+	// TRANSLATORS: levels are not translatable anymore
+
 	_error->Error(_("Unknown log level name \"%s\" (expected \"trace\", \"debug\", \"info\", \"warn\", \"error\", \"fatal\", or \"off\")."),
 		      level_name.c_str());
 	return;
@@ -913,7 +901,15 @@ int main(int argc, char *argv[])
 	      queue_only=true;
 	      break;
 	    case OPTION_PURGE_UNUSED:
-	      aptcfg->Set(PACKAGE "::Purge-Unused", "true");
+	      if (string("--purge-unused") == argv[optind-1])
+		{
+		  aptcfg->Set(PACKAGE "::Purge-Unused", "true");
+		}
+	      else
+		{
+		  fprintf(stderr, _("Invalid option \"%s\" (only \"--purge-unused\" is valid).  Perhaps you want the \"purge\" action?\n"), argv[optind-1]);
+		  exit(EXIT_FAILURE);
+		}
 	      break;
 	    case OPTION_ADD_USER_TAG:
 	    case OPTION_REMOVE_USER_TAG:
@@ -1069,21 +1065,20 @@ int main(int argc, char *argv[])
     }
 
   aptitude::why::roots_string_mode why_display_mode;
-  if(show_why_summary_mode == "no-summary" || show_why_summary_mode == _("no-summary"))
+  if(show_why_summary_mode == "no-summary")
     why_display_mode = aptitude::why::no_summary;
-  else if(show_why_summary_mode == "first-package" || show_why_summary_mode == _("first-package"))
+  else if(show_why_summary_mode == "first-package")
     why_display_mode = aptitude::why::show_requiring_packages;
-  else if(show_why_summary_mode == "first-package-and-type" || show_why_summary_mode == _("first-package-and-type"))
+  else if(show_why_summary_mode == "first-package-and-type")
     why_display_mode = aptitude::why::show_requiring_packages_and_strength;
-  else if(show_why_summary_mode == "all-packages" || show_why_summary_mode == _("all-packages"))
+  else if(show_why_summary_mode == "all-packages")
     why_display_mode = aptitude::why::show_chain;
-  else if(show_why_summary_mode == "all-packages-with-dep-versions" || show_why_summary_mode == _("all-packages-with-dep-versions"))
+  else if(show_why_summary_mode == "all-packages-with-dep-versions")
     why_display_mode = aptitude::why::show_chain_with_versions;
   else
     {
-      // TRANSLATORS: "why" here is the aptitude command name and should not
-      // be translated.  Both the translated and the untranslated log level
-      // names are accepted here.
+      // TRANSLATORS: "why" and "modes" here are the aptitude command name and
+      // parameters, and should not be translated.
       _error->Error(_("Invalid \"why\" summary mode \"%s\": expected "
 		      "\"no-summary\", \"first-package\", \"first-package-and-type\", \"all-packages\", or \"all-packages-with-dep-versions\"."),
 		    show_why_summary_mode.c_str());
@@ -1229,6 +1224,12 @@ int main(int argc, char *argv[])
 		    }
 		}
 
+	      if (aptitude::util::is_dumb_terminal())
+		{
+		  aptitude::util::print_ncurses_dumb_terminal();
+		  exit(EXIT_FAILURE);
+		}
+
 	      return cmdline_do_action(argc-optind, argv+optind,
 				       status_fname,
 				       simulate, assume_yes, download_only,
@@ -1330,6 +1331,12 @@ int main(int argc, char *argv[])
     }
 #endif
 
+  if (aptitude::util::is_dumb_terminal())
+    {
+      aptitude::util::print_ncurses_dumb_terminal();
+      exit(EXIT_FAILURE);
+    }
+  else
     {
       ui_init();
 

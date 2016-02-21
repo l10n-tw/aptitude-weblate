@@ -1,7 +1,7 @@
 // cmdline_prompt.cc
 //
 // Copyright (C) 2010-2011 Daniel Burrows
-// Copyright (C) 2014-2015 Manuel A. Fernandez Montecelo
+// Copyright (C) 2014-2016 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -79,7 +79,7 @@ static bool get_fetchinfo(fetchinfo &f)
 {
   download_signal_log m;
   pkgAcquire fetcher;
-  fetcher.Setup(&m);
+  fetcher.SetLog(&m);
   pkgSourceList l;
   if(!l.ReadMainList())
     return _error->Error(_("Couldn't read list of sources"));
@@ -497,7 +497,14 @@ static bool prompt_essential(bool simulate_only, const std::shared_ptr<terminal_
 	  string prompt = _(untranslated_prompt.c_str());
 	  char buf[1024];
 
-	  printf(_("To continue, type the phrase \"%s\":\n"), prompt.c_str());
+	  if (prompt == untranslated_prompt)
+	    {
+	      printf(_("To continue, type the phrase \"%s\":\n"), prompt.c_str());
+	    }
+	  else
+	    {
+	      printf(_("To continue, type the phrase \"%s\" (or: \"%s\"):\n"), prompt.c_str(), untranslated_prompt.c_str());
+	    }
 	  cin.getline(buf, 1023);
 	  bool rval = (prompt == buf || untranslated_prompt == buf);
 
@@ -520,7 +527,7 @@ static bool prompt_essential(bool simulate_only, const std::shared_ptr<terminal_
  */
 static bool prompt_trust(const std::shared_ptr<terminal_metrics> &term_metrics)
 {
-  pkgvector untrusted;
+  std::vector<pkgCache::VerIterator> untrusted_versions;
 
   for(pkgCache::PkgIterator pkg=(*apt_cache_file)->PkgBegin();
       !pkg.end(); ++pkg)
@@ -534,18 +541,25 @@ static bool prompt_trust(const std::shared_ptr<terminal_metrics> &term_metrics)
 
 	  if((curr.end() || package_trusted(curr)) &&
 	     !package_trusted(cand))
-	    untrusted.push_back(pkg);
+	    {
+	      untrusted_versions.push_back(cand);
+	    }
 	}
     }
 
-  if(!untrusted.empty())
+  if(!untrusted_versions.empty())
     {
       printf(_("WARNING: untrusted versions of the following packages will be installed!\n\n"
 	       "Untrusted packages could compromise your system's security.\n"
 	       "You should only proceed with the installation if you are certain that\n"
 	       "this is what you want to do.\n\n"));
 
-      cmdline_show_pkglist(untrusted, term_metrics);
+      for (auto it : untrusted_versions)
+	{
+	  printf("  %s %s\n",
+		 it.ParentPkg().FullName(true).c_str(),
+		 get_uri(it, apt_package_records).c_str());
+	}
 
       printf("\n");
 
@@ -572,25 +586,36 @@ static bool prompt_trust(const std::shared_ptr<terminal_metrics> &term_metrics)
       // input methods.  Please include nothing but ASCII characters.
       // The text preceding the pipe character (|) will be ignored and
       // can be removed from your translation.
-      const string okstr    = P_("Go ahead and ignore the warning|Yes");
+      const string okstr    = P_("Go ahead and ignore the warning|yes");
       // TRANSLATORS: This string is a confirmation message, which
       // users (especially CJK users) should be able to input without
       // input methods.  Please include nothing but ASCII characters.
       // The text preceding the pipe character (|) will be ignored and
       // can be removed from your translation.
-      const string abortstr = P_("Abort instead of overriding the warning|No");
+      const string abortstr = P_("Abort instead of overriding the warning|no");
 
       // These strings are used to compare in a translation-invariant
       // way, so that "yes" and "no" are always valid inputs; if the
       // user can't enter the translated string for some reason,
       // he/she can always enter the fallback strings.
-      const string fallback_okstr = "Yes";
-      const string fallback_abortstr = "No";
+      const string fallback_okstr = "yes";
+      const string fallback_abortstr = "no";
 
       while (true)
 	{
 	  printf(_("Do you want to ignore this warning and proceed anyway?\n"));
-	  printf(_("To continue, enter \"%s\"; to abort, enter \"%s\": "), okstr.c_str(), abortstr.c_str());
+	  if (okstr == fallback_okstr && abortstr == fallback_abortstr)
+	    {
+	      printf(_("To continue, enter \"%s\"; to abort, enter \"%s\": "), okstr.c_str(), abortstr.c_str());
+	    }
+	  else
+	    {
+	      printf(_("To continue, enter \"%s\" (or \"%s\"); to abort, enter \"%s\" (or \"%s\"): "),
+		     okstr.c_str(),
+		     fallback_okstr.c_str(),
+		     abortstr.c_str(),
+		     fallback_abortstr.c_str());
+	    }
 	  char buf[1024];
 	  cin.getline(buf, 1023);
 	  buf[1023]='\0';
@@ -598,16 +623,17 @@ static bool prompt_trust(const std::shared_ptr<terminal_metrics> &term_metrics)
 	  if(cin.eof())
 	    throw StdinEOFException();
 
-
 	  const bool is_ok =             strncasecmp(okstr.c_str(), buf, okstr.size()) == 0;
 	  const bool is_fallback_ok =    strncasecmp(fallback_okstr.c_str(), buf, fallback_okstr.size()) == 0;
 	  const bool is_abort =          strncasecmp(abortstr.c_str(), buf, abortstr.size()) == 0;
 	  const bool is_fallback_abort = strncasecmp(fallback_abortstr.c_str(), buf, fallback_abortstr.size()) == 0;
+	  const bool is_rpmatch_ok      = (rpmatch(buf) > 0);
+	  const bool is_rpmatch_invalid = (rpmatch(buf) < 0);
 
-	  const bool rval = is_ok || (is_fallback_ok && !is_abort);
+	  const bool rval = is_ok || (is_fallback_ok && !is_abort) || is_rpmatch_ok;
 
-	  if(!is_ok && !is_abort && !is_fallback_ok && !is_fallback_abort)
-	    printf(_("Unrecognized input.  Enter either \"%s\" or \"%s\".\n"), okstr.c_str(), abortstr.c_str());
+	  if ((!is_ok && !is_abort && !is_fallback_ok && !is_fallback_abort) && is_rpmatch_invalid)
+	    printf(_("Unrecognized input\n"));
 	  else
 	    return rval;
 	}
@@ -800,7 +826,12 @@ static void cmdline_parse_show(string response,
 	it != packages.end(); ++it)
       do_cmdline_show(*it, verbose, term_metrics);
 
-  prompt_string(_("Press Return to continue."));
+  try {
+    prompt_string(_("Press Return to continue."));
+  }
+  catch (...) {
+    // ignore all exceptions
+  }
 }
 
 // Erm.  Merge w/ above?
@@ -813,9 +844,20 @@ static void cmdline_parse_changelog(string response, const std::shared_ptr<termi
   if(packages.empty())
     printf(_("No packages found -- enter the package names on the line after 'c'.\n"));
   else
-    do_cmdline_changelog(packages, term_metrics);
+    {
+      do_cmdline_changelog(packages, term_metrics);
+      if (_error->PendingError())
+	{
+	  _error->DumpErrors();
+	}
+    }
 
-  prompt_string(_("Press Return to continue."));
+  try {
+    prompt_string(_("Press Return to continue."));
+  }
+  catch (...) {
+    // ignore all exceptions
+  }
 }
 
 static void cmdline_parse_why(string response,
@@ -825,8 +867,11 @@ static void cmdline_parse_why(string response,
   // assume response[0]=='w'
   splitws(response, arguments, 1, response.size());
 
-  if(arguments.empty())
-    printf(_("No packages found -- enter zero or more roots of the search followed by the package to justify.\n"));
+  if (arguments.empty())
+    {
+      printf(_("No packages found -- enter zero or more roots of the search followed by the package to justify.\n"));
+      printf("\n");
+    }
   else
     {
       bool success;
@@ -839,12 +884,14 @@ static void cmdline_parse_why(string response,
 						false, false,
 						callbacks,
 						success));
-      if(frag.get() != NULL)
+      if (frag.get())
         {
           const unsigned int screen_width = term_metrics->get_screen_width();
           std::cout << frag->layout(screen_width, screen_width, cwidget::style());
         }
+
       _error->DumpErrors();
+      std::cout << std::endl;
     }
 }
 
@@ -1095,8 +1142,16 @@ bool cmdline_do_prompt(bool as_upgrade,
 		    ? _("Do you want to continue? [Y/n/?] ")
 		    : _("Resolve these dependencies by hand? [N/+/-/_/:/?] ");
 
-	      string response=prompt_string(prompt);
-	      string::size_type loc=0;
+	      string response;
+	      string::size_type loc = 0;
+	      try {
+		response = prompt_string(prompt);
+	      }
+	      catch (...) {
+		// ignore all exceptions, default to "no"
+		response = "n";
+		printf(_("%s (stdin unavailable)\n"), response.c_str());
+	      }
 
 	      while(loc<response.size() && isspace(response[loc]))
 		++loc;
