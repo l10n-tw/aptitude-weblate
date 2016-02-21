@@ -1,4 +1,4 @@
-aptitude (0.7.6-1) UNRELEASED; urgency=medium
+aptitude (0.7.6-1) unstable; urgency=low
 
   [ Manuel A. Fernandez Montecelo ]
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
@@ -121,7 +121,7 @@ aptitude (0.7.6-1) UNRELEASED; urgency=medium
   [ Axel Beckert ]
   * Drop aptitude-dbg in favour of automatic debug packages.
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 21 Feb 2016 20:01:27 +0000
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 21 Feb 2016 20:03:52 +0000
 
 aptitude (0.7.5-3) unstable; urgency=low
 
