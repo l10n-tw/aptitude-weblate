@@ -117,10 +117,13 @@ aptitude (0.7.6-1) unstable; urgency=low
       * Portuguese translation by Miguel Figueiredo (Closes: #810651)
       * Danish translation by Morten Bo Johansen (Closes: #811400)
 
-  * d/patches: Drop patches that had been picked from the development
-    branch
-    - cherry-pick-e92dd0c1+aba1b455-properly-set-default-XDG_CACHE_HOME.patch
-    - fix-807852_modified_bc3b024667a0b6f5c5c7ded59f7b7f80e383603b.patch
+  * d/patches:
+    - Drop patches that had been picked from the development branch:
+      - cherry-pick-e92dd0c1+aba1b455-properly-set-default-XDG_CACHE_HOME.patch
+      - fix-807852_modified_bc3b024667a0b6f5c5c7ded59f7b7f80e383603b.patch
+    - Add patch to fix problem building due to string formatting and
+      strict compiler checks
+      - ftbfs-string-format.patch
 
   [ Axel Beckert ]
   * Drop aptitude-dbg in favour of automatic debug packages.
