@@ -13,7 +13,7 @@ aptitude (0.7.6-1) UNRELEASED; urgency=medium
       * [curses] "Keep" now works in version nodes (Closes: #585182)
       * [curses] "Install" on virtual packages now installs single candidate,
         or emits an error if there are no candidates or more than one
-	(Closes: #174820)
+        (Closes: #174820)
       * [curses] Dependency subtrees are now sorted in a pre-determined order
         (Closes: #808882)
       * Show Origin URI for packages being untrusted when asking for
@@ -47,7 +47,7 @@ aptitude (0.7.6-1) UNRELEASED; urgency=medium
         virtual package in error message
       * Avoid loss of automatic flags when packages are marked for removal but
         not removed immediately, and the state is saved in between
-	(Closes: #686573, #718802, #787663)
+        (Closes: #686573, #718802, #787663)
       * Avoid loss of automatic flags when package actions are scheduled
         multiple times before taking place (Closes: #563877)
       * [cmdline] Arguments for "versions" which are not patterns now treated as
@@ -55,7 +55,7 @@ aptitude (0.7.6-1) UNRELEASED; urgency=medium
       * [curses] "Cancel pending actions" now reloads the cache (roughly
         equivalent to restarting the program), rather than marking all packages
         as "keep" plus ruining all auto-installed flags and holds
-	(Closes: #537735, #576319)
+        (Closes: #537735, #576319)
       * Reinstate auto-installed flag when marking packages to keep in apt cache
         (Closes: #508428)
       * Message explaining unability to fetch changelogs now suggests "update"
@@ -89,7 +89,7 @@ aptitude (0.7.6-1) UNRELEASED; urgency=medium
       * [cmdline] "show" selects by default the candidate version (as documented
         in man page) and shows extra information when the package is installed
         but can be upgraded, rather than showing "not installed"
-	(Close: #539978)
+        (Close: #539978)
       * [cmdline] Give more prominence to Version field in "show" command by
         showing it as second
       * [cmdline] Improve message about packages similar to mistyped names
@@ -102,10 +102,10 @@ aptitude (0.7.6-1) UNRELEASED; urgency=medium
     - Documentation:
       * manpage:
         * Explain that "why"/"why-not" need a valid package name
-	  (Closes: #535635)
+          (Closes: #535635)
         * Improve documentation of "forbid-version" (Closes: #773023)
         * Clarify automatic flag treatment with "install" actions
-	  (Closes: #469219)
+          (Closes: #469219)
         * Fix typo in --autoclean-on-startup (Closes: #812864)
       * Guide/User's Manual:
         * Make images available in the french translation by copying them from
@@ -121,7 +121,7 @@ aptitude (0.7.6-1) UNRELEASED; urgency=medium
   [ Axel Beckert ]
   * Drop aptitude-dbg in favour of automatic debug packages.
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 21 Feb 2016 19:41:55 +0000
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 21 Feb 2016 20:01:27 +0000
 
 aptitude (0.7.5-3) unstable; urgency=low
 
