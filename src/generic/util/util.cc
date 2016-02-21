@@ -2,6 +2,7 @@
 //
 //   Copyright (C) 2005, 2007, 2009-2010 Daniel Burrows
 //   Copyright (C) 2014 Daniel Hartwig
+//   Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -40,6 +41,10 @@
 #include <apt-pkg/strutl.h>
 
 #include <cwidget/generic/util/eassert.h>
+
+#include <boost/filesystem.hpp>
+
+#include <mutex>
 
 #include <sys/time.h>
 
@@ -465,6 +470,72 @@ namespace aptitude
             return false;
         }
       return true;
+    }
+
+    bool is_dumb_terminal()
+    {
+      bool dumbTERM = false;
+
+      const char* TERM = getenv("TERM");
+      if (TERM && string("dumb") == TERM)
+	{
+	  dumbTERM = true;
+	}
+
+      return dumbTERM;
+    }
+
+    void print_ncurses_dumb_terminal()
+    {
+      fprintf(stderr, _("%s cannot run in ncurses mode with terminal type \"dumb\"\n"), PACKAGE);
+    }
+
+    /// Helper function for create_temporary_changelog_dir()
+    static std::vector<std::string> temp_dirs_to_delete;
+    std::mutex mutex_temp_dirs_to_delete;
+    static bool registered_delete_temp_dirs_on_exit = false;
+    void delete_temp_dirs_on_exit()
+    {
+      std::lock_guard<std::mutex> l { mutex_temp_dirs_to_delete };
+
+      for (auto d : temp_dirs_to_delete)
+	{
+	  recursive_remdir(d);
+	}
+    }
+
+    std::string create_temporary_changelog_dir()
+    {
+      namespace fs = boost::filesystem;
+
+      fs::path dest_dir = fs::temp_directory_path() / fs::unique_path("aptitude-download-%%%%-%%%%-%%%%-%%%%");
+      try {
+
+	// create and set permissions
+	bool tmp_dir_ok = fs::create_directory(dest_dir);
+	if (!tmp_dir_ok)
+	  return {};
+
+	fs::permissions(dest_dir,
+			fs::perms::owner_all | fs::perms::group_all | fs::perms::others_all);
+
+	// register for deletion
+	{
+	  std::lock_guard<std::mutex> l { mutex_temp_dirs_to_delete };
+	  temp_dirs_to_delete.push_back(dest_dir.string());
+	}
+	if (!registered_delete_temp_dirs_on_exit)
+	  {
+	    atexit(delete_temp_dirs_on_exit);
+	    registered_delete_temp_dirs_on_exit = true;
+	  }
+
+	// return dir if everything OK
+	return dest_dir.string();
+
+      } catch (...) {
+	return {};
+      }
     }
   }
 }

@@ -54,6 +54,12 @@ using aptitude::cmdline::create_terminal;
 using aptitude::cmdline::make_text_progress;
 using aptitude::cmdline::terminal_io;
 
+
+void print_clean_msg()
+{
+  printf("%s\n", _("Deleting downloaded files"));
+}
+
 namespace
 {
   void run_dpkg_directly(sigc::slot1<pkgPackageManager::OrderResult, int> f,
@@ -222,6 +228,8 @@ int cmdline_do_action(int argc, char *argv[],
 
   // TODO: look for filenames and call dpkg directly if that's the case.
 
+  bool apply_ok = true;
+
   {
     aptitudeDepCache::action_group group(*apt_cache_file, NULL);
 
@@ -326,14 +334,20 @@ int cmdline_do_action(int argc, char *argv[],
 	  for(std::vector<action_pair>::const_iterator it = actions.begin();
 	      it != actions.end(); ++it)
 	    {
-	      cmdline_applyaction(it->second, seen_virtual_packages, it->first,
-				  to_install, to_hold, to_remove, to_purge,
-				  verbose, policy, arch_only, pass > 0,
-                                  term);
+	      apply_ok = apply_ok && cmdline_applyaction(it->second, seen_virtual_packages, it->first,
+							 to_install, to_hold, to_remove, to_purge,
+							 verbose, policy, arch_only, pass > 0,
+							 term);
 	    }
 	}
     }
   }
+
+  if (!apply_ok)
+    {
+      fprintf(stderr, _("Unable to apply some actions, aborting\n"));
+      return -1;
+    }
 
   if(resolver_mode == resolver_mode_safe)
     {
@@ -391,6 +405,8 @@ int cmdline_do_action(int argc, char *argv[],
 
       download_install_manager m(download_only,
 				 sigc::ptr_fun(&run_dpkg_directly));
+
+      m.pre_clean_after_install_hook.connect(sigc::ptr_fun(print_clean_msg));
 
       int rval =
 	(cmdline_do_download(&m, verbose, term, term, term, term)

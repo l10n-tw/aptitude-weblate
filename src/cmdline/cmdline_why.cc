@@ -1,6 +1,7 @@
 // cmdline_why.cc                                -*-c++-*-
 //
 //   Copyright (C) 2007-2010 Daniel Burrows
+//   Copyright (C) 2015 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -1156,6 +1157,36 @@ namespace aptitude
   }
 }
 
+bool interpret_why_args(const std::vector<std::string> &args,
+			std::vector<cwidget::util::ref_ptr<pattern> > &output)
+{
+  bool parsing_arguments_failed = false;
+
+  for(std::vector<std::string>::const_iterator it = args.begin();
+      it != args.end(); ++it)
+    {
+      // If there isn't a tilde, treat it as an exact package name.
+      cwidget::util::ref_ptr<pattern> p;
+      if(!aptitude::matching::is_pattern(*it))
+	{
+	  pkgCache::PkgIterator pkg = (*apt_cache_file)->FindPkg(*it);
+	  if(pkg.end())
+	    _error->Error(_("No package named \"%s\" exists."), it->c_str());
+	  else
+	    p = pattern::make_name(ssprintf("^%s$", pkg.Name()));
+	}
+      else
+	p = parse(*it);
+
+      if(!p.valid())
+	parsing_arguments_failed = true;
+      else
+	output.push_back(p);
+    }
+
+  return !parsing_arguments_failed;
+}
+
 cw::fragment *do_why(const std::vector<cwidget::util::ref_ptr<pattern> > &leaves,
 		 const pkgCache::PkgIterator &root,
 		     aptitude::why::roots_string_mode display_mode,
@@ -1181,10 +1212,42 @@ cw::fragment *do_why(const std::vector<cwidget::util::ref_ptr<pattern> > &leaves
     {
       success = false;
 
-      if(root_is_removal)
-	return cw::fragf(_("Unable to find a reason to remove %s.\n"), root.FullName(true).c_str());
+      std::vector<cw::fragment *> fragments;
+
+      pkgCache::VerIterator ver;
+
+      ver = root.CurrentVer();
+      if (!ver.end() && ver.VerStr())
+	{
+	  std::string message;
+	  if (is_auto_installed(root))
+	    message = _("Automatically installed, current version %s, priority %s\n");
+	  else
+	    message = _("Manually installed, current version %s, priority %s\n");
+
+	  fragments.push_back(cw::fragf(message.c_str(),
+					ver.VerStr(),
+					aptitude::apt::priority_to_string(static_cast<pkgCache::State::VerPriority>(ver->Priority), false).c_str()));
+	}
       else
-	return cw::fragf(_("Unable to find a reason to install %s.\n"), root.FullName(true).c_str());
+	{
+	  fragments.push_back(cw::fragf(_("Not currently installed\n")));
+	}
+
+      ver = (*apt_cache_file)->GetCandidateVersion(root);
+      if (!ver.end() && ver.VerStr() && ver != root.CurrentVer())
+	fragments.push_back(cw::fragf(_("The candidate version %s has priority %s\n"),
+				      ver.VerStr(),
+				      aptitude::apt::priority_to_string(static_cast<pkgCache::State::VerPriority>(ver->Priority), false).c_str()));
+
+      if (root_is_removal)
+	fragments.push_back(cw::fragf(_("No dependencies require to remove %s\n"), root.FullName(true).c_str()));
+      else
+	fragments.push_back(cw::fragf(_("No dependencies require to install %s\n"), root.FullName(true).c_str()));
+
+
+      return sequence_fragment(fragments);
+
     }
   else if(display_mode == aptitude::why::no_summary)
     return render_reason_columns(solutions, verbosity >= 1);
@@ -1234,20 +1297,25 @@ cw::fragment *do_why(const std::vector<cwidget::util::ref_ptr<pattern> > &leaves
     }
 }
 
-int do_why(const std::vector<cwidget::util::ref_ptr<pattern> > &leaves,
-	   const pkgCache::PkgIterator &root,
+int do_why(const std::vector<std::string>& arguments,
+	   const std::string& root,
 	   aptitude::why::roots_string_mode display_mode,
 	   int verbosity,
 	   bool root_is_removal,
-           const std::shared_ptr<terminal_metrics> &term_metrics)
+           const std::shared_ptr<terminal_metrics>& term_metrics)
 {
   bool success = false;
   const std::shared_ptr<why_callbacks> callbacks =
     make_cmdline_why_callbacks(verbosity, term_metrics);
-  std::unique_ptr<cw::fragment> f(do_why(leaves, root, display_mode,
-					 verbosity, root_is_removal,
+
+  std::unique_ptr<cw::fragment> f(do_why(arguments,
+					 root,
+					 display_mode,
+					 verbosity,
+					 root_is_removal,
 					 callbacks,
 					 success));
+
   const unsigned int screen_width = term_metrics->get_screen_width();
   // TODO: display each result as we find it.
   std::cout << f->layout(screen_width, screen_width, cw::style());
@@ -1273,36 +1341,6 @@ cw::fragment *do_why(const std::vector<cwidget::util::ref_ptr<pattern> > &leaves
                 success);
 }
 
-bool interpret_why_args(const std::vector<std::string> &args,
-			std::vector<cwidget::util::ref_ptr<pattern> > &output)
-{
-  bool parsing_arguments_failed = false;
-
-  for(std::vector<std::string>::const_iterator it = args.begin();
-      it != args.end(); ++it)
-    {
-      // If there isn't a tilde, treat it as an exact package name.
-      cwidget::util::ref_ptr<pattern> p;
-      if(!aptitude::matching::is_pattern(*it))
-	{
-	  pkgCache::PkgIterator pkg = (*apt_cache_file)->FindPkg(*it);
-	  if(pkg.end())
-	    _error->Error(_("No package named \"%s\" exists."), it->c_str());
-	  else
-	    p = pattern::make_name(ssprintf("^%s$", pkg.Name()));
-	}
-      else
-	p = parse(*it);
-
-      if(!p.valid())
-	parsing_arguments_failed = true;
-      else
-	output.push_back(p);
-    }
-
-  return !parsing_arguments_failed;
-}
-
 cw::fragment *do_why(const std::vector<std::string> &arguments,
 		 const std::string &root,
 		     aptitude::why::roots_string_mode display_mode,
@@ -1314,12 +1352,24 @@ cw::fragment *do_why(const std::vector<std::string> &arguments,
   success = false;
 
   pkgCache::PkgIterator pkg((*apt_cache_file)->FindPkg(root.c_str()));
-  if(pkg.end())
+  if (pkg.end())
     return cw::fragf(_("No package named \"%s\" exists."), root.c_str());
 
   std::vector<cwidget::util::ref_ptr<pattern> > matchers;
-  if(!interpret_why_args(arguments, matchers))
+  if (!interpret_why_args(arguments, matchers))
     return cw::text_fragment(_("Unable to parse some match patterns."));
+
+  // default matchers
+  if (matchers.empty())
+    {
+      cwidget::util::ref_ptr<pattern> p =
+	pattern::make_and(pattern::make_installed(),
+			  pattern::make_not(pattern::make_automatic()));
+      if (p.valid())
+	matchers.push_back(p);
+      else
+	return cw::text_fragment(_("Unable to parse the default match patterns."));
+    }
 
   cw::fragment *rval = do_why(matchers, pkg, display_mode,
 			      verbosity, root_is_removal,
@@ -1386,35 +1436,24 @@ int cmdline_why(int argc, char *argv[],
   std::vector<std::string> arguments;
   for(int i = 1; i + 1 < argc; ++i)
     arguments.push_back(argv[i]);
+
   std::vector<cwidget::util::ref_ptr<pattern> > matchers;
-  if(!interpret_why_args(arguments, matchers))
+  if (!interpret_why_args(arguments, matchers))
     parsing_arguments_failed = true;
-
-  if(matchers.empty())
-    {
-      cwidget::util::ref_ptr<pattern> p =
-	pattern::make_and(pattern::make_installed(),
-			  pattern::make_not(pattern::make_automatic()));
-      if(!p.valid())
-	parsing_arguments_failed = true;
-      else
-	matchers.push_back(p);
-    }
-
 
 
   _error->DumpErrors();
 
   int rval;
-  if(parsing_arguments_failed)
+  if (parsing_arguments_failed)
     rval = -1;
   else
-    rval = do_why(matchers,
-                  pkg,
-                  display_mode,
-                  verbosity,
-                  is_removal,
-                  term);
+    rval = do_why(arguments,
+		  pkgname,
+		  display_mode,
+		  verbosity,
+		  is_removal,
+		  term);
 
   return rval;
 }

@@ -1,6 +1,7 @@
 // download_list.cc
 //
 //   Copyright (C) 2001-2005, 2008 Daniel Burrows
+//   Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -165,7 +166,8 @@ void download_list::paint(const cw::style &st)
   int y=0;
   unsigned int where=start;
   int width,height;
-  const cw::style progress_style = st + cw::get_style("DownloadProgress");
+  const cw::style progress_style_item = st + cw::get_style("DownloadProgress");
+  const cw::style progress_style_status = st + cw::get_style("DownloadProgressStatus");
   getmaxyx(height, width);
 
   // Display the completed items
@@ -201,7 +203,7 @@ void download_list::paint(const cw::style &st)
 		   min<wstring::size_type>(startx, workers[where].msg.size()));
 
       show_string_as_progbar(0, y, disp,
-			     progress_style, st,
+			     progress_style_item, st,
 			     width1, width);
 
       y++;
@@ -273,7 +275,7 @@ void download_list::paint(const cw::style &st)
   show_string_as_progbar(0,
 			 height-1,
 			 output,
-			 progress_style,
+			 progress_style_status,
 			 cw::get_style("Status"),
 			 barsize,
 			 width);
@@ -357,15 +359,13 @@ void download_list::IMSHit(pkgAcquire::ItemDesc &itmdesc,
 {
   cw::widget_ref tmpref(this);
 
-  if(display_messages)
+  if (display_messages)
     {
-      msgs.push_back(msg(cw::util::transcode(itmdesc.Description + " " + _("[Hit]")),
-			 cw::get_style("DownloadHit")));
+      std::string acquire_action = _("[Hit]");
+      cw::style acquire_action_style = cw::get_style("DownloadHit");
 
-      sync_top();
-
-      if(get_visible())
-	cw::toplevel::queuelayout();
+      add_msg_to_display(msg(cw::util::transcode(itmdesc.Description + " " + acquire_action),
+			     acquire_action_style));
     }
 }
 
@@ -379,15 +379,13 @@ void download_list::Done(pkgAcquire::ItemDesc &itmdesc,
 {
   cw::widget_ref tmpref(this);
 
-  if(display_messages)
+  if (display_messages)
     {
-      msgs.push_back(msg(cw::util::transcode(itmdesc.Description + " " + _("[Downloaded]")),
-			 cw::get_style("DownloadProgress")));
+      std::string acquire_action = _("[Downloaded]");
+      cw::style acquire_action_style = cw::get_style("DownloadProgress");
 
-      sync_top();
-
-      if(get_visible())
-	cw::toplevel::queuelayout();
+      add_msg_to_display(msg(cw::util::transcode(itmdesc.Description + " " + acquire_action),
+			     acquire_action_style));
     }
 }
 
@@ -396,29 +394,36 @@ void download_list::Fail(pkgAcquire::ItemDesc &itmdesc,
 {
   cw::widget_ref tmpref(this);
 
-  if(display_messages)
+  if (display_messages)
     {
-      if(itmdesc.Owner->Status==pkgAcquire::Item::StatIdle)
+      if (itmdesc.Owner->Status==pkgAcquire::Item::StatIdle)
 	return;
 
+      std::string acquire_action;
+      cw::style acquire_action_style;
+
       // ???
-      if(itmdesc.Owner->Status==pkgAcquire::Item::StatDone)
-	msgs.push_back(msg(cw::util::transcode(itmdesc.Description + " " + _("[IGNORED]")),
-			   cw::get_style("DownloadHit")));
+      if (itmdesc.Owner->Status==pkgAcquire::Item::StatDone)
+	{
+	  acquire_action = _("[IGNORED]");
+	  acquire_action_style = cw::get_style("DownloadHit");
+
+	  add_msg_to_display(msg(cw::util::transcode(itmdesc.Description + " " + acquire_action),
+				 acquire_action_style));
+	}
       else
 	{
-	  failed=true;
+	  failed = true;
 
-	  msgs.push_back(msg(cw::util::transcode(itmdesc.Description + " " + _("[ERROR]")),
-			     cw::get_style("Error")));
-	  msgs.push_back(msg(cw::util::transcode(" " + itmdesc.Owner->ErrorText),
-			     cw::get_style("Error")));
+	  acquire_action = _("[ERROR]");
+	  acquire_action_style = cw::get_style("Error");
+
+	  add_msg_to_display(msg(cw::util::transcode(itmdesc.Description + " " + acquire_action),
+				 acquire_action_style));
+
+	  add_msg_to_display(msg(cw::util::transcode(" " + itmdesc.Owner->ErrorText),
+				 acquire_action_style));
 	}
-
-      sync_top();
-
-      if(get_visible())
-	cw::toplevel::queuelayout();
     }
 }
 
@@ -645,4 +650,14 @@ void download_list::sync_top()
 	    start=optimal_start;
 	}
     }
+}
+
+void download_list::add_msg_to_display(const msg& msg_)
+{
+  msgs.push_back(msg_);
+
+  sync_top();
+
+  if (get_visible())
+    cw::toplevel::queuelayout();
 }

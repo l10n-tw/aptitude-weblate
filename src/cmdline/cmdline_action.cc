@@ -1,7 +1,7 @@
 // cmdline_action.cc
 //
 //  Copyright 2004 Daniel Burrows
-//  Copyright 2015 Manuel A. Fernandez Montecelo
+//  Copyright 2015-2016 Manuel A. Fernandez Montecelo
 
 #include "cmdline_action.h"
 #include "cmdline_util.h"
@@ -52,7 +52,7 @@ namespace
 
     if(!sourcepkg.valid())
       {
-	printf(_("Unable to find the source package for \"%s\".\n"),
+	printf(_("Unable to find the source package for \"%s\"\n"),
 	       pkg.c_str());
 	return false;
       }
@@ -60,7 +60,7 @@ namespace
     if(apt_cache_file == NULL)
       {
 	// Should never happen.
-	printf("Sanity-check failed: apt_cache_file should not be NULL here.\n");
+	printf("Sanity-check failed: apt_cache_file should not be NULL here\n");
 	return false;
       }
 
@@ -209,7 +209,7 @@ namespace
 		    build_dep_description += ")";
 		  }
 	      }
-	    printf(_("Unable to satisfy the build-depends: %s.\n"),
+	    printf(_("Unable to satisfy the build-depends: %s\n"),
 		   build_dep_description.c_str());
 	  }
       }
@@ -246,7 +246,7 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
 		  if(prv.OwnerPkg().CurrentVer()==prv.OwnerVer())
 		    {
 		      if(verbose>0)
-			printf(_("Note: \"%s\", providing the virtual package\n      \"%s\", is already installed.\n"),
+			printf(_("Note: \"%s\", providing the virtual package \"%s\", is already installed\n"),
 			       prv.OwnerPkg().FullName(true).c_str(),
                                pkg.FullName(true).c_str());
 		      return true;
@@ -254,7 +254,7 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
 		  else if((*apt_cache_file)[prv.OwnerPkg()].InstVerIter(*apt_cache_file)==prv.OwnerVer())
 		    {
 		      if(verbose>0)
-			printf(_("Note: \"%s\", providing the virtual package\n      \"%s\", is already going to be installed.\n"),
+			printf(_("Note: \"%s\", providing the virtual package \"%s\", is already going to be installed\n"),
 			       prv.OwnerPkg().FullName(true).c_str(),
                                pkg.FullName(true).c_str());
 		      return true;
@@ -277,7 +277,7 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
 	  if(cands.size()==0)
 	    {
 	      if(!seen_in_first_pass)
-		printf(_("\"%s\" exists in the package database, but it is not a\nreal package and no package provides it.\n"),
+		printf(_("\"%s\" exists in the package database, but it is not a real package and no package provides it\n"),
                        pkg.FullName(true).c_str());
 	      return false;
 	    }
@@ -296,7 +296,7 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
 	    {
 	      if(!seen_in_first_pass)
 		{
-		  printf(_("Note: selecting \"%s\" instead of the\n      virtual package \"%s\"\n"),
+		  printf(_("Note: selecting \"%s\" instead of the virtual package \"%s\"\n"),
 			 cands[0].FullName(true).c_str(),
                          pkg.FullName(true).c_str());
 		}
@@ -307,7 +307,13 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
 
   pkgCache::VerIterator ver=pkg.CurrentVer();
   if (action==cmdline_install || action == cmdline_installauto || action == cmdline_upgrade)
-    ver = cmdline_find_ver(pkg, source, sourcestr);
+    {
+      ver = cmdline_find_ver(pkg, source, sourcestr);
+      if (ver.end())
+	{
+	  return false;
+	}
+    }
 
   pkgDepCache::StateCache &pkg_state((*apt_cache_file)[pkg]);
 
@@ -330,18 +336,18 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
 	}
       else if(pkg_state.Status > 1)
 	{
-	  printf(_("%s is not currently installed, so it will not be upgraded.\n"),
+	  printf(_("%s is not currently installed, so it will not be upgraded\n"),
                  pkg.FullName(true).c_str());
 	}
       else
-	printf(_("%s is already installed at the latest version (%s), so it will not be upgraded.\n"),
+	printf(_("%s is already installed at the latest version (%s), so it will not be upgraded\n"),
                pkg.FullName(true).c_str(),
 	       ver.VerStr());
       break;
 
     case cmdline_reinstall:
       if(pkg.CurrentVer().end())
-	printf(_("%s is not currently installed, so it will not be reinstalled.\n"),
+	printf(_("%s is not currently installed, so it will not be reinstalled\n"),
                pkg.FullName(true).c_str());
 
       break;
@@ -558,7 +564,7 @@ bool cmdline_applyaction(string s,
      action != cmdline_installauto &&
      action != cmdline_build_depends)
     {
-      printf(_("You can only specify a package version with an 'install' command or a 'forbid-version' command.\n"));
+      printf(_("You can only specify a package version with an 'install' command or a 'forbid-version' command\n"));
       return false;
     }
 
@@ -567,7 +573,7 @@ bool cmdline_applyaction(string s,
      action != cmdline_installauto &&
      action != cmdline_build_depends)
     {
-      printf(_("You can only specify a package archive with an 'install' command.\n"));
+      printf(_("You can only specify a package archive with an 'install' command\n"));
       return false;
     }
 
@@ -605,13 +611,14 @@ bool cmdline_applyaction(string s,
 	  size_t package_limit = 40;
 	  if(!possible.empty())
 	    {
+	      printf(_("Couldn't find any package whose name is \"%s\", but there are %zu packages which contain \"%s\" in their name:\n"),
+		       package.c_str(), possible.size(), package.c_str());
+
 	      // Don't overwhelm the user.
 	      if (possible.size() > package_limit)
-	        printf(_("Couldn't find package \"%s\", and more than %zu\npackages contain \"%s\" in their name.\n"),
-		       package.c_str(), package_limit, package.c_str());
+		printf(_("  (too many to show, the limit is %zu)\n"), package_limit);
 	      else
 		{
-		  printf(_("Couldn't find package \"%s\".  However, the following\npackages contain \"%s\" in their name:\n"), package.c_str(), package.c_str());
 		  cmdline_show_pkglist(possible, term_metrics);
 		}
 	    }
@@ -634,14 +641,16 @@ bool cmdline_applyaction(string s,
 
 	      if(possible.empty())
 		printf(_("Couldn't find any package whose name or description matched \"%s\"\n"), package.c_str());
-	      else if (possible.size() > package_limit)
-		// Don't overwhelm the user.
-		printf(_("Couldn't find any package matching \"%s\", and more than %zu\npackages contain \"%s\" in their description.\n"),
-		       package.c_str(), package_limit, package.c_str());
 	      else
 		{
-		  printf(_("Couldn't find any package matching \"%s\".  However, the following\npackages contain \"%s\" in their description:\n"), package.c_str(), package.c_str());
-		  cmdline_show_pkglist(possible, term_metrics);
+		  printf(_("Couldn't find any package matching \"%s\", but there are %zu packages which contain \"%s\" in their description:\n"),
+			 package.c_str(), possible.size(), package.c_str());
+
+		  // Don't overwhelm the user.
+		  if (possible.size() > package_limit)
+		    printf(_("  (too many to show, the limit is %zu)\n"), package_limit);
+		  else
+		    cmdline_show_pkglist(possible, term_metrics);
 		}
 	    }
 

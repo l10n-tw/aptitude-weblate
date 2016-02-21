@@ -1,6 +1,7 @@
 // changelog_parse.cc
 //
 //   Copyright (C) 2005, 2008-2009, 2011 Daniel Burrows
+//   Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -25,23 +26,22 @@
 #include "apt.h"
 #include "desc_render.h"
 
-#include <apt-pkg/fileutl.h>
-#include <apt-pkg/tagfile.h>
-#include <apt-pkg/strutl.h>
-
-#include <stdlib.h>
-
+#include <generic/util/file_cache.h>
+#include <generic/util/job_queue_thread.h>
 #include <generic/util/temp.h>
+#include <generic/util/util.h>
 
 #include <cwidget/fragment.h>
 #include <cwidget/generic/util/ssprintf.h>
 #include <cwidget/generic/util/transcode.h>
 
-#include <generic/util/file_cache.h>
-#include <generic/util/job_queue_thread.h>
-#include <generic/util/util.h>
+#include <apt-pkg/fileutl.h>
+#include <apt-pkg/tagfile.h>
+#include <apt-pkg/strutl.h>
 
 #include <memory>
+
+#include <cstdlib>
 
 namespace cw = cwidget;
 
@@ -300,6 +300,8 @@ namespace aptitude
 							maintainer,
 							date));
 	    }
+
+	  filename = digest.Name();
 	}
     }
 
@@ -318,7 +320,7 @@ namespace aptitude
 	}
     }
 
-    temp::name digest_changelog(const temp::name &changelog,
+    temp::name digest_changelog(const std::string& filename,
 				const std::string &from)
     {
       temp::name rval("parsedchangelog");
@@ -337,7 +339,7 @@ namespace aptitude
       std::string cmd =
 	cw::util::ssprintf("/usr/bin/parsechangelog --format rfc822 %s -l %s > %s 2> /dev/null",
 			   version_fragment.c_str(),
-			   changelog.get_name().c_str(),
+			   filename.c_str(),
 			   rval.get_name().c_str());
 
       if(system(cmd.c_str()) == 0)
@@ -346,10 +348,10 @@ namespace aptitude
 	return temp::name();
     }
 
-    cw::util::ref_ptr<changelog> parse_changelog(const temp::name &file,
+    cw::util::ref_ptr<changelog> parse_changelog(const std::string& filename,
 						 const std::string &from)
     {
-      temp::name digested = digest_changelog(file, from);
+      temp::name digested = digest_changelog(filename, from);
       return parse_digested_changelog(digested);
     }
 
@@ -474,7 +476,7 @@ namespace aptitude
 	  if(job->get_digested())
 	    digested = job->get_name();
 	  else
-	    digested = aptitude::apt::digest_changelog(job->get_name(), job->get_from());
+	    digested = aptitude::apt::digest_changelog(job->get_name().get_name(), job->get_from());
 
 	  // Note that we don't re-cache the digested
 	  // changelog if it was retrieved from the cache
@@ -483,7 +485,10 @@ namespace aptitude
 	    {
 	      LOG_TRACE(get_log_category(),
 			"Caching digested changelog as " << changelog_uri);
-	      download_cache->putItem(changelog_uri, digested.get_name());
+
+	      auto download_cache = get_download_cache();
+	      if (download_cache)
+		download_cache->putItem(changelog_uri, digested.get_name());
 	    }
 
 	  cw::util::ref_ptr<aptitude::apt::changelog> parsed =

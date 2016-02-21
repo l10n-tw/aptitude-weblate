@@ -1,6 +1,7 @@
 // cmdline_versions.cc
 //
 // Copyright (C) 2010 Daniel Burrows
+// Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -237,7 +238,8 @@ namespace
                                int format_width,
                                const unsigned int screen_width,
                                bool disable_columns,
-                               bool show_package_names)
+                               bool show_package_names,
+			       const std::shared_ptr<terminal_output> &term_output)
   {
     for(std::vector<std::pair<pkgCache::VerIterator, cw::util::ref_ptr<m::structural_match> > >::const_iterator it = output.begin();
         it != output.end(); ++it)
@@ -247,12 +249,15 @@ namespace
                                       show_package_names,
                                       columns,
                                       0);
-        if(disable_columns)
-          printf("%ls\n", aptitude::cmdline::de_columnize(columns, columnizer, *p).c_str());
-        else
-          printf("%ls\n",
-                 columnizer.layout_columns(format_width == -1 ? screen_width : format_width,
-                                           *p).c_str());
+
+	// do not truncate to 80 cols on redirections, pipes, etc -- see
+	// #445206, #775671
+	std::wstring line;
+	if (disable_columns || !term_output->output_is_a_terminal())
+	  line = aptitude::cmdline::de_columnize(columns, columnizer, *p);
+	else
+	  line = columnizer.layout_columns(format_width == -1 ? screen_width : format_width, *p);
+	printf("%ls\n", line.c_str());
       }
   }
 
@@ -481,7 +486,8 @@ namespace
                                     format_width,
                                     screen_width,
                                     disable_columns,
-                                    do_show_package_names);
+                                    do_show_package_names,
+				    term_output);
           }
       }
     else
@@ -490,7 +496,8 @@ namespace
                               format_width,
                               screen_width,
                               disable_columns,
-                              do_show_package_names);
+                              do_show_package_names,
+			      term_output);
 
     return return_value;
   }
@@ -512,37 +519,28 @@ const char *GroupByParseException::what() const throw ()
 
 group_by_option parse_group_by_option(const std::string &option)
 {
-  // TRANSLATORS: if you add synonyms to the possible values here,
-  // please also use the translations in your manpage and in the error
-  // string below.
-  if(option == "archive" ||
-     option == P_("--group-by|archive"))
+  // TRANSLATORS: These are not translatable anymore
+
+  if(option == "archive")
     return group_by_archive;
 
-  else if(option == "auto" ||
-          option == P_("--group-by|auto"))
+  else if(option == "auto")
     return group_by_auto;
 
-  else if(option == "none" ||
-          option == P_("--group-by|none"))
+  else if(option == "none")
     return group_by_none;
 
-  else if(option == "package" ||
-          option == P_("--group-by|package"))
+  else if(option == "package")
     return group_by_package;
 
-  else if(option == "source-package" ||
-          option == P_("--group-by|source-package"))
+  else if(option == "source-package")
     return group_by_source_package;
 
-  else if(option == "source-version" ||
-          option == P_("--group-by|source-version"))
+  else if(option == "source-version")
     return group_by_source_version;
 
   else
-    // TRANSLATORS: --group-by is the argument name and shouldn't
-    // be translated.
-    throw GroupByParseException((boost::format(_("Invalid package grouping mode \"%s\" (should be \"auto\", \"none\", \"package\", or \"source-package\")"))
+    throw GroupByParseException((boost::format(_("Invalid package grouping mode \"%s\" (should be \"auto\", \"none\", \"package\", \"source-package\" or \"source-version\")"))
                                  % option).str());
 }
 
@@ -598,6 +596,7 @@ int cmdline_versions(int argc, char *argv[], const char *status_fname,
 
   if(columns.get() == NULL)
     {
+      fprintf(stderr, _("%s: Could not parse column definitions: '%ls'\n"), "versions", wdisplay_format.c_str());
       _error->DumpErrors();
       return -1;
     }
@@ -612,7 +611,7 @@ int cmdline_versions(int argc, char *argv[], const char *status_fname,
 
   apt_init(&progress, true, status_fname);
 
-  if(_error->PendingError())
+  if (_error->PendingError())
     {
       _error->DumpErrors();
       return -1;
@@ -624,15 +623,35 @@ int cmdline_versions(int argc, char *argv[], const char *status_fname,
     {
       const char * const arg = argv[i];
 
-      cw::util::ref_ptr<m::pattern> m = m::parse(arg);
-      if(!m.valid())
+      cw::util::ref_ptr<m::pattern> m;
+      if (m::is_pattern(arg))
 	{
-	  _error->DumpErrors();
-
-	  return -1;
+	  m = m::parse(arg);
+	}
+      else
+	{
+	  pkgCache::PkgIterator pkg = (*apt_cache_file)->FindPkg(arg);
+	  if (!pkg.end())
+	    {
+	      m = m::pattern::make_exact_name(pkg.Name());
+	    }
 	}
 
-      matchers.push_back(m);
+      if (m.valid())
+	{
+	  matchers.push_back(m);
+	}
+      else
+	{
+	  _error->Error(_("Argument is neither a package name nor a pattern: '%s'"), arg);
+	}
+    }
+
+  // check for errors after parsing arguments
+  if (_error->PendingError())
+    {
+      _error->DumpErrors();
+      return -1;
     }
 
   return do_search_versions(matchers,

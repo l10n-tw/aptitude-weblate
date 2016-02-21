@@ -138,7 +138,7 @@ extern sigc::signal0<void> consume_errors;
 /** \brief Used to cache downloaded data, to avoid multiple
  *  downloads of items such as changelogs and screenshots.
  */
-extern std::shared_ptr<aptitude::util::file_cache> download_cache;
+std::shared_ptr<aptitude::util::file_cache> get_download_cache();
 
 void apt_dumpcfg(const char *root);
 // Dumps a subtree of the configuration to ~/.aptitude/config
@@ -348,6 +348,17 @@ inline bool is_auto_installed(const pkgDepCache::StateCache& state)
   return (state.Flags & pkgCache::Flag::Auto);
 }
 
+/** Check if package is auto installed
+ *
+ * @param pkg Package to check
+ *
+ * @return Whether the package is auto installed or not
+ */
+inline bool is_auto_installed(const pkgCache::PkgIterator& pkg)
+{
+  return (apt_cache_file && is_auto_installed((*apt_cache_file)[pkg]));
+}
+
 /** A pair (veriterator,verfile) -- used for building a list of
  *  versions sorted by file location.
  */
@@ -505,6 +516,17 @@ namespace aptitude
 {
   namespace apt
   {
+    /** Translate from Priority type in apt to a string
+     *
+     * @param priority Priority
+     *
+     * @param short_form Whether to return three letter "code" instead of full
+     * name
+     *
+     * @return Priority as string
+     */
+    std::string priority_to_string(const pkgCache::State::VerPriority priority, bool short_form = false);
+
     /** \return \b true if the given dependency is a Replaces dependency
      *  and participates in a conflicts/provides/replaces relationship.
      *
@@ -529,6 +551,12 @@ namespace aptitude
     {
       return !is_native_arch(ver) && (strcmp(ver.Arch(), "all") != 0);
     }
+
+    /** Clean cache of downloaded packages from the canonical directory
+     *
+     * @return Whether the operation was successful
+     */
+    bool clean_cache_dir();
   }
 }
 

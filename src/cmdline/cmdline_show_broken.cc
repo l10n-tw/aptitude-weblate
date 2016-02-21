@@ -35,22 +35,22 @@ void print_installation_explanation(const pkgCache::PkgIterator& pkg)
   if (!ver.end()) // ok, it's installable.
     {
       if ((*apt_cache_file)[pkg].Install())
-	printf(_("but %s is to be installed."),
+	printf(_("but %s is to be installed"),
 	       ver.VerStr());
       else if ((*apt_cache_file)[pkg].Upgradable())
-	printf(_("but %s is installed and it is kept back."),
+	printf(_("but %s is installed and it is kept back"),
 	       pkg.CurrentVer().VerStr());
       else
-	printf(_("but %s is installed."),
+	printf(_("but %s is installed"),
 	       pkg.CurrentVer().VerStr());
     }
   else
     {
       pkgCache::VerIterator cand = (*apt_cache_file)[pkg].CandidateVerIter(*apt_cache_file);
       if (cand.end())
-	printf(_("but it is not installable."));
+	printf(_("but it is not installable"));
       else
-	printf(_("but it is not going to be installed."));
+	printf(_("but it is not going to be installed"));
     }
 }
 
@@ -116,7 +116,7 @@ void show_broken_deps(const pkgCache::PkgIterator& pkg)
 		{
 		  if (target.ProvidesList().end())
 		    {
-		      printf(_(" which is a virtual package and is not provided by any available package.\n"));
+		      printf(_(" which is a virtual package and is not provided by any available package\n"));
 		    }
 		  else
 		    {
@@ -130,22 +130,22 @@ void show_broken_deps(const pkgCache::PkgIterator& pkg)
 			    {
 			      // version of the package providing the virtual
 			      // package
-			      std::string prv_candver_str = prv_pkg.CandVersion() ? (string(" (") + prv_pkg.CandVersion() + ")") : "";
+			      std::string prv_pkg_ver_str = prv_ver.VerStr() ? (string(" (") + prv_ver.VerStr() + ")") : "";
 
 			      // versioned provides, show only if exist and
 			      // doesn't match (if it's a special version for
 			      // the virtual package)
-			      std::string prv_ver_str = "";
+			      std::string prv_versioned_str = "";
 			      if (prv_ver.VerStr() &&
-				  prv_pkg.CandVersion() &&
-				  string(prv_ver.VerStr()) != string(prv_pkg.CandVersion()))
+				  prv.ProvideVersion() &&
+				  string(prv_ver.VerStr()) != string(prv.ProvideVersion()))
 				{
-				  prv_ver_str = cwidget::util::ssprintf(_(" provides %s=%s"), target.FullName(true).c_str(), prv_ver.VerStr());
+				  prv_versioned_str = cwidget::util::ssprintf(_(" provides %s=%s"), target.FullName(true).c_str(), prv.ProvideVersion());
 				}
 
 			      for (size_t i = 0; i < (indent + indent_dep); ++i)
 				printf(" ");
-			      printf("- %s%s%s, ", prv_pkg.FullName(true).c_str(), prv_candver_str.c_str(), prv_ver_str.c_str());
+			      printf("- %s%s%s, ", prv_pkg.FullName(true).c_str(), prv_pkg_ver_str.c_str(), prv_versioned_str.c_str());
 			      print_installation_explanation(prv_pkg);
 			      printf("\n");
 			    }

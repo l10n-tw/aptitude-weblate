@@ -1,7 +1,7 @@
 // pkg_item.cc
 //
 // Copyright 1999-2005, 2007-2009 Daniel Burrows
-// Copyright 2014-2015 Manuel A. Fernandez Montecelo
+// Copyright 2014-2016 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
 #include <cwidget/config/keybindings.h>
 #include <cwidget/dialogs.h>
 #include <cwidget/fragment.h>
+#include <cwidget/generic/util/ssprintf.h>
 #include <cwidget/generic/util/transcode.h>
 #include <cwidget/toplevel.h>
 
@@ -123,7 +124,39 @@ void pkg_item::do_highlighted_changed(bool highlighted)
 
 void pkg_item::do_select(undo_group *undo)
 {
-	(*apt_cache_file)->mark_install(package, aptcfg->FindB(PACKAGE "::Auto-Install", true), false, undo);
+  pkgCache::PkgIterator& package_to_install = package;
+
+  if (is_virtual(package))
+    {
+      std::string pkgtext;
+      std::vector<std::string> pkgnames;
+      for (pkgCache::PrvIterator prv = package.ProvidesList(); !prv.end(); ++prv)
+	{
+	  string name = prv.OwnerPkg().FullName(true);
+	  pkgnames.push_back(name);
+
+	  pkgtext += cwidget::util::ssprintf("* %s\n", name.c_str());
+	}
+
+      // messages copied from from cmdline_action.cc
+      if (pkgnames.empty())
+	{
+	  _error->Error(_("\"%s\" exists in the package database, but it is not a real package and no package provides it\n"),
+			package.FullName(true).c_str());
+	}
+      else if (pkgnames.size() == 1)
+	{
+	  // only one, install this one
+	  package_to_install = package.ProvidesList().OwnerPkg();
+	}
+      else
+	{
+	  _error->Error(_("\"%s\" is a virtual package provided by:\n\n%s\nYou must choose one to install.\n"),
+			package.FullName(true).c_str(), pkgtext.c_str());
+	}
+    }
+
+  (*apt_cache_file)->mark_install(package_to_install, aptcfg->FindB(PACKAGE "::Auto-Install", true), false, undo);
 }
 
 void pkg_item::select(undo_group *undo)
@@ -159,9 +192,11 @@ void pkg_item::hold(undo_group *undo)
 
 void pkg_item::keep(undo_group *undo)
 {
+  // copied to pkg_ver_item::keep()
+
   // Keep, don't hold, the package.
   (*apt_cache_file)->mark_keep(package,
-			       false,
+			       is_auto_installed(package),
 			       false,
 			       undo);
 }

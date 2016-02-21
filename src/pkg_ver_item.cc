@@ -1,7 +1,7 @@
 // pkg_ver_item.cc
 //
 //  Copyright 1999-2005, 2007-2008, 2010 Daniel Burrows
-//  Copyright 2014-2015 Manuel A. Fernandez Montecelo
+//  Copyright 2014-2016 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -326,41 +326,6 @@ cw::column_disposition pkg_ver_columnizer::setup_column(const pkgCache::VerItera
 	return cw::column_disposition("", 0);
 
       return cw::column_disposition(apt_package_records->Lookup(ver.FileList()).Maintainer(), 0);
-    case priority:
-      if(ver.end())
-	return cw::column_disposition("", 0);
-
-      if(const_cast<pkgCache::VerIterator &>(ver).PriorityType() &&
-	 const_cast<pkgCache::VerIterator &>(ver).PriorityType()[0])
-	return cw::column_disposition(const_cast<pkgCache::VerIterator &>(ver).PriorityType(), 0);
-      else
-	return cw::column_disposition(_("Unknown"), 0);
-    case shortpriority:
-      if(ver.end())
-	return cw::column_disposition("", 0);
-
-      switch(ver->Priority)
-	{
-	case pkgCache::State::Important:
-	  // TRANSLATORS: Imp = Important
-	  return cw::column_disposition(_("Imp"), 0);
-	case pkgCache::State::Required:
-	  // TRANSLATORS: Req = Required
-	  return cw::column_disposition(_("Req"), 0);
-	case pkgCache::State::Standard:
-	  // TRANSLATORS: Std = Standard
-	  return cw::column_disposition(_("Std"), 0);
-	case pkgCache::State::Optional:
-	  // TRANSLATORS: Opt = Optional
-	  return cw::column_disposition(_("Opt"), 0);
-	case pkgCache::State::Extra:
-	  // TRANSLATORS: Xtr = Extra
-	  return cw::column_disposition(_("Xtr"), 0);
-	default:
-	  return cw::column_disposition(_("ERR"), 0);
-	}
-
-      break;
     case section:
       if(ver.end())
 	return cw::column_disposition("", 0);
@@ -410,6 +375,8 @@ cw::column_disposition pkg_ver_columnizer::setup_column(const pkgCache::VerItera
 	  return cw::column_disposition("U", 0);
       }
 
+    case priority:
+    case shortpriority:
     case source:
     case architecture:
     case origin:
@@ -640,7 +607,15 @@ void pkg_ver_item::hold(undo_group *undo)
 
 void pkg_ver_item::keep(undo_group *undo)
 {
-  // Do nothing for now.
+  // copied from pkg_item::keep()
+
+  auto package = version.ParentPkg();
+
+  // Keep, don't hold, the package.
+  (*apt_cache_file)->mark_keep(package,
+			       is_auto_installed(package),
+			       false,
+			       undo);
 }
 
 void pkg_ver_item::purge(undo_group *undo)
@@ -800,4 +775,3 @@ bool pkg_ver_item::package_information()
   show_information();
   return true;
 }
-

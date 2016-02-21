@@ -1,6 +1,7 @@
 // download_install_manager.cc
 //
 //   Copyright (C) 2005-2011 Daniel Burrows
+//   Copyright (C) 2015 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -25,6 +26,8 @@
 
 #include <aptitude.h>
 
+#include <generic/apt/apt.h>
+
 #include <apt-pkg/acquire-item.h>
 #include <apt-pkg/dpkgpm.h>
 #include <apt-pkg/error.h>
@@ -36,6 +39,7 @@
 #include <signal.h>
 
 using namespace std;
+
 
 download_install_manager::download_install_manager(bool _download_only,
 						   const run_dpkg_in_terminal_func &_run_dpkg_in_terminal)
@@ -71,7 +75,8 @@ bool download_install_manager::prepare(OpProgress &progress,
     return false;
 
   fetcher = new pkgAcquire;
-  if(fetcher->Setup(&acqlog, aptcfg->FindDir("Dir::Cache::archives")) == false)
+  fetcher->SetLog(&acqlog);
+  if (fetcher->GetLock(aptcfg->FindDir("Dir::Cache::archives")) == false)
     {
       delete fetcher;
       fetcher = NULL;
@@ -138,10 +143,23 @@ download_manager::result download_install_manager::finish_pre_dpkg(pkgAcquire::R
 	}
     }
 
-  if(failed && !pm->FixMissing())
+  const char* fix_missing_cstr = "APT::Get::Fix-Missing";
+  bool fix_missing = aptcfg->FindB(fix_missing_cstr, false);
+  if (failed)
     {
-      _error->Error(_("Unable to correct for unavailable packages"));
-      return failure;
+      if (fix_missing)
+	{
+	  if (!pm->FixMissing())
+	    {
+	      _error->Error(_("Unable to correct for unavailable packages"));
+	      return failure;
+	    }
+	}
+      else
+	{
+	  _error->Error(_("Unable to fetch some packages; try '-o %s=true' to continue with missing packages"), fix_missing_cstr);
+	  return failure;
+	}
     }
 
   log_changes();
@@ -169,7 +187,8 @@ pkgPackageManager::OrderResult download_install_manager::run_dpkg(int status_fd)
   sigfillset(&allsignals);
 
   pthread_sigmask(SIG_UNBLOCK, &allsignals, &oldsignals);
-  pkgPackageManager::OrderResult pmres = pm->DoInstallPostFork(status_fd);
+  APT::Progress::PackageManagerProgressFd progress(status_fd);
+  pkgPackageManager::OrderResult pmres = pm->DoInstallPostFork(&progress);
 
   switch(pmres)
     {
@@ -250,6 +269,23 @@ void download_install_manager::finish_post_dpkg(pkgPackageManager::OrderResult d
 	    }
 	}
     }
+
+    if (rval == success && !download_only)
+      {
+	if (aptcfg->FindB(PACKAGE "::Clean-After-Install", false))
+	  {
+	    pre_clean_after_install_hook();
+
+	    bool result_ok = aptitude::apt::clean_cache_dir();
+
+	    if (!result_ok)
+	      {
+		rval = failure;
+	      }
+
+	    post_clean_after_install_hook();
+	  }
+      }
 
   k(rval);
 }

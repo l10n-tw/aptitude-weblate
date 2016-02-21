@@ -1,7 +1,7 @@
 // ui.cc
 //
 //   Copyright 2000-2009 Daniel Burrows <dburrows@debian.org>
-//   Copyright 2012-2015 Manuel A. Fernandez Montecelo
+//   Copyright 2012-2016 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -208,6 +208,36 @@ const char *default_grpstr="task,status,section(subdirs,passthrough),section(top
 // methods.  Please include nothing but ASCII characters.
 const char *confirm_delete_essential_str=N_("Yes, I am aware this is a very bad idea");
 
+
+static void lists_autoclean_msg(std::weak_ptr<download_update_manager> m_weak)
+{
+  std::shared_ptr<download_update_manager> m(m_weak);
+
+  if(m.get() == NULL)
+    return;
+
+  cw::widget_ref msg = cw::center::create(cw::frame::create(cw::label::create(_("Deleting obsolete downloaded files"))));
+  m->post_autoclean_hook.connect(sigc::mem_fun(msg.unsafe_get_ref(),
+					       &cw::widget::destroy));
+
+  popup_widget(msg);
+  cw::toplevel::tryupdate();
+}
+
+static void clean_after_install_msg(std::weak_ptr<download_install_manager> m_weak)
+{
+  std::shared_ptr<download_install_manager> m(m_weak);
+
+  if(m.get() == NULL)
+    return;
+
+  cw::widget_ref msg = cw::center::create(cw::frame::create(cw::label::create(_("Deleting downloaded files"))));
+  m->post_clean_after_install_hook.connect(sigc::mem_fun(msg.unsafe_get_ref(),
+							 &cw::widget::destroy));
+
+  popup_widget(msg);
+  cw::toplevel::tryupdate();
+}
 
 void ui_start_download(bool hide_preview)
 {
@@ -1288,6 +1318,9 @@ void install_or_remove_packages()
 
   m->post_forget_new_hook.connect(package_states_changed.make_slot());
 
+  m->pre_clean_after_install_hook.connect(sigc::bind(sigc::ptr_fun(clean_after_install_msg),
+						     std::weak_ptr<download_install_manager>(m)));
+
   std::pair<download_signal_log *, download_list_ref>
     download_log_pair = gen_download_progress(false, false,
 					      _("Downloading packages"),
@@ -1345,9 +1378,11 @@ static void check_package_trust()
 
       for(vector<pkgCache::VerIterator>::const_iterator i=untrusted.begin();
 	  i!=untrusted.end(); ++i)
-	frags.push_back(clipbox(cw::fragf(_("  %S*%N %s [version %s]%n"),
-				      "Bullet",
-					  i->ParentPkg().FullName(true).c_str(), i->VerStr())));
+	frags.push_back(clipbox(cw::fragf(_("  %S*%N %s [version %s] %s%n"),
+					  "Bullet",
+					  i->ParentPkg().FullName(true).c_str(),
+					  i->VerStr(),
+					  get_uri(*i, apt_package_records).c_str())));
 
       main_stacked->add_visible_widget(cw::dialogs::yesno(cw::sequence_fragment(frags),
 						       cw::util::arg(sigc::ptr_fun(install_or_remove_packages)),
@@ -1430,25 +1465,6 @@ static void do_show_preview()
       eassert(active_preview.valid());
       active_preview->show();
     }
-}
-
-static void do_keep_all()
-{
-  if(apt_cache_file == NULL)
-    return;
-
-  unique_ptr<undo_group> undo(new apt_undo_group);
-
-  aptitudeDepCache::action_group group(*apt_cache_file, undo.get());
-
-  for(pkgCache::PkgIterator i=(*apt_cache_file)->PkgBegin();
-      !i.end(); ++i)
-    (*apt_cache_file)->mark_keep(i, false, false, undo.get());
-
-  if(!undo.get()->empty())
-    apt_undos->add_item(undo.release());
-
-  package_states_changed();
 }
 
 static void fixer_dialog_done()
@@ -1728,21 +1744,6 @@ void do_package_run()
     }
 }
 
-static void lists_autoclean_msg(std::weak_ptr<download_update_manager> m_weak)
-{
-  std::shared_ptr<download_update_manager> m(m_weak);
-
-  if(m.get() == NULL)
-    return;
-
-  cw::widget_ref msg = cw::center::create(cw::frame::create(cw::label::create(_("Deleting obsolete downloaded files"))));
-  m->post_autoclean_hook.connect(sigc::mem_fun(msg.unsafe_get_ref(),
-					       &cw::widget::destroy));
-
-  popup_widget(msg);
-  cw::toplevel::tryupdate();
-}
-
 void really_do_update_lists()
 {
   std::shared_ptr<download_update_manager> m = std::make_shared<download_update_manager>();
@@ -1804,33 +1805,26 @@ static void really_do_clean()
     _error->Error(_("Cleaning while a download is in progress is not allowed"));
   else
     {
-      // Lock the archive directory
-      FileFd lock;
-      if (_config->FindB("Debug::NoLocking",false) == false)
-        {
-          lock.Fd(GetLock(_config->FindDir("Dir::Cache::archives") + "lock"));
-          if (_error->PendingError() == true)
-            {
-              _error->Error(_("Unable to lock the download directory"));
-              return;
-            }
-        }
-
+      // show message
       cw::widget_ref msg=cw::center::create(cw::frame::create(cw::label::create(_("Deleting downloaded files"))));
       msg->show_all();
       popup_widget(msg);
       cw::toplevel::tryupdate();
 
-      if(aptcfg)
-	{
-	  pkgAcquire fetcher;
-	  fetcher.Clean(aptcfg->FindDir("Dir::Cache::archives"));
-	  fetcher.Clean(aptcfg->FindDir("Dir::Cache::archives")+"partial/");
-	}
+      // do clean
+      bool result_ok = aptitude::apt::clean_cache_dir();
 
       msg->destroy();
 
-      show_message(_("Downloaded package files have been deleted"));
+      // results
+      if (result_ok)
+	{
+	  show_message(_("Downloaded package files have been deleted"));
+	}
+      else
+	{
+	  check_apt_errors();
+	}
     }
 }
 
@@ -1988,14 +1982,12 @@ void do_forget_new()
     }
 }
 
-#ifdef WITH_RELOAD_CACHE
 static void do_reload_cache()
 {
   progress_ref p = gen_progress_bar();
   apt_reload_cache(p->get_progress().unsafe_get_ref(), true);
   p->destroy();
 }
-#endif
 
 static void start_solution_calculation();
 
@@ -2388,8 +2380,8 @@ cw::menu_info actions_menu[]={
 	       sigc::ptr_fun(do_forget_new), sigc::ptr_fun(forget_new_enabled)),
 
   cw::menu_info(cw::menu_info::MENU_ITEM, N_("Canc^el pending actions"), NULL,
-	       N_("Cancel all pending installations, removals, holds, and upgrades."),
-	       sigc::ptr_fun(do_keep_all)),
+	       N_("Cancel all pending actions from this session"),
+	       sigc::ptr_fun(do_reload_cache)),
 
   cw::menu_info(cw::menu_info::MENU_ITEM, N_("^Clean package cache"), NULL,
 	       N_("Delete package files which were previously downloaded"),
