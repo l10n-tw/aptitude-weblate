@@ -7,7 +7,7 @@
   <!ENTITY dselect '<command>dselect</command>'>
   <!ENTITY apt-get '<command>apt-get</command>'>
   <!ENTITY root '<systemitem class="username">root</systemitem>'>
-  <!ENTITY VERSION '0.7.6'>
+  <!ENTITY VERSION '0.7.7'>
 
   <!-- Shortcuts for menu commands: -->
 
@@ -8336,15 +8336,6 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 		<entry>
 		  Move to the beginning of the current display: to the
 		  top of a list, or to the left of a text entry field.
-		</entry>
-	      </row>
-
-	      <row>
-		<entry><literal>BugReport</literal></entry>
-		<entry><literal>B</literal></entry>
-		<entry>
-		  Reports a bug in the currently selected package,
-		  using <command>reportbug</command>.
 		</entry>
 	      </row>
 

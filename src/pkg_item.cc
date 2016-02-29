@@ -384,29 +384,6 @@ bool pkg_item::dispatch_key(const cw::config::key &k, cw::tree *owner)
       else
 	delete grp;
     }
-  else if(bindings->key_matches(k, "BugReport"))
-    {
-      // Try to report a bug on the package.  (ew quoting ew)
-      string cmd=string("reportbug '")+package.Name()+"'";
-
-      // Default to reporting a bug on the current version.
-      pkgCache::VerIterator ver=package.CurrentVer();
-      if(ver.end())
-	ver=visible_version();
-      if(ver.end())
-	ver=package.VersionList();
-
-      if(!ver.end())
-	cmd+=string(" -V '")+ver.VerStr()+"'";
-
-      cw::toplevel::suspend();
-
-      printf(_("Reporting a bug in %s:\n"), package.Name());
-
-      if(system(cmd.c_str()) != 0) { /* ignore */ }
-
-      cw::toplevel::resume();
-    }
   else if(bindings->key_matches(k, "DpkgReconfigure"))
     // Don't bother with my internal su-to-root stuff here, since I don't
     // need to touch the package lists in the subprocess.
@@ -416,7 +393,7 @@ bool pkg_item::dispatch_key(const cw::config::key &k, cw::tree *owner)
       if ((*apt_cache_file)->is_dirty())
 	{
 	  progress_ref p = gen_progress_bar();
-	  bool saved_ok = (*apt_cache_file)->save_selection_list(*p->get_progress().unsafe_get_ref());
+	  bool saved_ok = (*apt_cache_file)->save_selection_list(p->get_progress().unsafe_get_ref());
 	  p->destroy();
 
 	  if (saved_ok)
@@ -465,7 +442,8 @@ bool pkg_item::dispatch_key(const cw::config::key &k, cw::tree *owner)
 	    }
 
 	  progress_ref p = gen_progress_bar();
-	  apt_reload_cache(p->get_progress().unsafe_get_ref(), true);
+	  bool operation_needs_lock = true;
+	  apt_reload_cache(p->get_progress().unsafe_get_ref(), true, operation_needs_lock, nullptr);
 	  p->destroy();
 	}
     }

@@ -1,3 +1,269 @@
+[2016-03-01]
+Version 0.7.7
+
+- New features:
+
+  * Only lock package cache dirs and call pkgAcquire->Run() when necessary
+    (Closes: #766122)
+
+  * [curses] Bindings for reject/approval of solutions in resolver can be
+    applied to subtrees (Closes:#475595)
+
+  * Several optimizations that improve performance at startup and when
+    reading/writing files (Closes: #312920)
+
+    See "Internal Changes" for more details.
+
+    Basically, when using some basic command that shouldn't perform much
+    computation ("aptitude install does-not-exist"), the time was cut down from
+    around ~3s to ~1.5s in my system.
+
+    The system is a relatively modern computer with SSD disks (but nothing
+    bleeding edge), with multi-arch enabled (2 architectures) and close to 90
+    thousand binary packages, which is the double of systems without multi-arch
+    enabled and affects many operations significantly (like doubling the size of
+    the file "pkgstates").
+
+  * [curses] Download Size field shows remaining to be fetched (Closes: #446085)
+
+    Now it will show "DL: 368 kB/661 kB" instead of "DL Size: 368 kB" when part
+    of the files to download are already there, and the field is now aligned to
+    the right.  To make room for this in narrow terminals the field "Will use
+    43.0 kB of disk space" had been changed first to "Disk usage: +43.0 kB" due
+    to other needs, and now to "Disk: +43.0 kB".
+
+    The implementation was a bit tricky, though.  The total size of downloads is
+    pre-calculated in libapt and readily available; but to check for the actual
+    size needed one needs to instantiate and initialize pkgAcquire,
+    pkgSourceList and pkgDPkgPM, and then call a method to check for the files
+    that are already there on the disk.  The whole operation took only fractions
+    of a second (~0.03s in the development system, in the testing conditions),
+    but could be worse in other cases or when the disk is slow or busy.
+
+    In command-line mode this only happen once, so the overhead is negligible;
+    but on interactive systems this is bad because: a) it happens multiple
+    times; and b) because interactivity and screen freezes --even if small-- do
+    not mix well, and the program seems sluggish.
+
+    But specially, due to how aptitude implements redrawing the screen, this was
+    done in almost every key stroke, e.g. when moving to the next package/line
+    down, so the overhead was very significant.
+
+    So a mechanism was implemented (in previous commits) to only retrieve this
+    information when the state of any package changes (marked to install, to
+    delete, etc.), and to cache the result.  Afterwards, on typical redraws of
+    the screen without changes of packages involved (e.g. just scrolling), only
+    the cached information is needed, and filling this field takes only 30
+    microseconds (in the development system) instead of ~30ms when full check is
+    needed.
+
+- Bug fixes:
+
+  * [cmdline] Fix crash with "show" and not installed packages (Closes: #815581)
+
+  * [curses] Fix for wrong width/properties of some columns in the columnizer,
+    incl. "hostname" rendered with 4 characters instead of 8 (Closes: #815554)
+
+    Some columns like shortpriority, pin_priority and trust_state should not be
+    present in default_widths due to their size being fixed and independent of
+    translations.  The mechanism is quite brittle, but maybe it's difficult to
+    get something more robust since it involves getting width values that depend
+    on width of translated strings.
+
+  * [curses] Fix crash when trying to view changelog.  Thanks Wei-Cheng Pan for
+    the fix.  (Closes: #815635)
+
+  * [cmdline] In "search" and "versions", when width is set explicitly,
+    pipes/redirections do not act as --disable-columns (Closes: #815690)
+
+    Width can be set through config or command line.  The behaviour to act as
+    --disable-columns changed in the last version, 0.7.5; before it was using
+    80-width columns by default, or explicitly set width.
+
+  * [curses] "%r" (revdepcount) now includes virtual packages (Closes: #320089)
+
+    This was caused by the patch to address #270057, PkgIterator::ProvidesList()
+    doesn't include virtual packages provided by the visible version (should use
+    VerIterator::ProvidesList()).
+
+  * [curses] infer_reason() for pkg_unused_removed now has recommends/suggests
+    into account in all cases (Closes: #476596)
+
+    It was not taking into account several cases when packages were being
+    removed (because of being marked as auto-install and not required anymore),
+    e.g. when the dependency was downgraded to Suggests, or only showing
+    Recommends if config option APT::Install-Recommends was enabled.
+
+    Even if APT::Install-Recommends is not enabled, if a package is installed it
+    is kept as long as it's recommended (the user has decided to install it,
+    despite being only recommended); and similar for Suggests; so the reason for
+    removal should include these cases as explanation for being removed at this
+    point.
+
+  * Fixed case of packages wrongly being marked with auto-flag upon start
+    (Closes: #816229)
+
+    This was due to variable of extended-state previously_auto_package not being
+    cleared when marking the package as manually installed, combined with using
+    this variable to decide whether to write "Auto-New-Install: yes" in
+    pkgstates in a recent change of 0.7.6, commit 7369d8f9 to address/fix
+    #563877, which is another problem caused by the handling of automatic flags.
+
+  * Packages to "keep" when applying solutions of the resolver maintain current
+    manual/auto (Closes: #815551)
+
+    In previous versions, first it was removing the auto flag unconditionally
+    (#508428), probably due to APT thinking that it was a decision to keep it
+    manually, and aptitude not marking it explicitly as auto.  The fix for
+    #508428 in recent versions changed this by setting the flag, but aptitude's
+    resolver considers "keep" as a more generic "install_version", with new
+    version being the same as current, and the auto-flag being always true in
+    those cases.
+
+    This is now refined to treat specially the "install" solutions when a
+    package is actually to be kept -- first it retrieves the auto-flag of the
+    current state of the package, then marks to keep, then sets the auto-flag
+    accordingly after asking APT to keep the current version.
+
+- User visible changes:
+
+  * [curses] Change "Will use/free %sB of disk space" for "Disk: %sB"
+
+    Addresses some concerns of #815554, closed elsewhere.  The new string is
+    shorter (helps when terminal width is 80 columnsor so) and should be equally
+    clear.
+
+  * [curses] In Preview screen, bottom pannel, improve dependency reasons
+    explanations for package to be installed (Closes: #814592)
+
+  * [curses] Remove option to run "reportbug" on a given package or package
+    version (Closes: #463510)
+
+    It was mostly an annoyance for the reasons explained in the bug report:
+    aptitude often running as root and reportbug complaining, often triggered by
+    mistake, and it is not a very useful feature in general.
+
+  * [cmdline] Operations like "show", "search", "versions", "why"/"why-not" or
+    "changelog" do not need to lock dpkg state directories (Closes: #498061)
+
+    Maybe some of the ones which still require it don't need it, but they are
+    not used very often and leaving locking enabled is the default, safe option.
+
+- Internal changes:
+
+  * Support for most changes in recent versions of apt
+    (Closes: #687678, #687686, #687688, #687684)
+
+    aptitude had to be adapted already in the last few months for many of the
+    changes in recent versions of apt (up to 1.2.*), including some that
+    prevented compilation or caused warnings/errors to be emitted when
+    downloading changelogs, removed or deprecated API calls, and caused crashes
+    in some of the most unfortunate cases.
+
+    Keeping the above bugs open, several without any useful information, did not
+    help to make the needed changes happen after 3.5 years around; and Wheezy
+    and Jessie stable releases went out without these bugs being acted upon.
+    Some of the important remaining problems or bugs with actual useful
+    information will remain open.  Several, like aptitude not handling config
+    options '-o' correctly, are not blocking or related to "catch-up with
+    changes in apt" at all, but problems in aptitude in its own right.
+
+    In general, changes of apt will keep coming continuously, maybe making some
+    of the changes in previous releases irrelevant, so as time goes on these
+    older and generic "to-dos" without useful information make less and less
+    sense to keep around.
+
+    So marking those bugs as closed in this release -- the changes that they
+    mention and that are not covered by specific bugs is basically complete, up
+    to 1.2.*.
+
+  * Move the definition methods of dpkg_selections to the headers (optimization)
+
+    These methods are called inside loops many times (based on the number of
+    packages, which are many tens of thousands), so it makes a difference in
+    common operations which happen very often (e.g. more than 0.1s, when saving
+    the file state).
+
+  * Lazy initialization of reading "tasks" information (optimization)
+
+    This functionality was called upon start from src/generic/apt/apt.cc, and
+    taking more than 0.3s (in modern computer with SSD disks), when many times
+    in command line mode is not needed.  Now the loading is delayed until it's
+    needed (when other related methods are called and expect this information to
+    be present).
+
+  * Optimizations when reading/writing files
+
+    These operations happen typically several times every time that the program
+    runs.  The changes save 0.2 to 0.3s (in modern computer with SSD disks),
+    with multi-arch enabled (2 architectures) and close to 90 thousand binary
+    packages, in a simple test where an inexisting package is requested to
+    install in the command line ("aptitude install does-not-exist").
+
+    The individual optimizations are:
+
+      - Not updating progress for every package when reading/writing files, only
+        ~10 times (every 10% increment) instead of ~90 thousand for the test
+        scenario above
+
+      - Declare some variables, specially strings, out of the loop executing for
+        every package -- in that way, initialization and reserving memory is
+        saved
+
+      - Writing aptitude state file only when complete
+
+  * Optimizations when reading debtags
+
+    This functionality was called upon start from src/generic/apt/apt.cc.  There
+    are two modes, with "debtags" package installed and from "verfiles".
+
+    Loading with "debtags" was improved from 0.13s to 0.05s, and "verfiles" from
+    0.4s to 0.27s, in modern computer with SSD disks, multi-arch with 2
+    architectures enabled.
+
+    The improvement consisted in doing some extra calculations to update
+    progress only ~10 times (every 10% increment) instead of ~54 thousand
+    ("debtags") or ~121 thousand ("verfiles") for the test scenario above.
+
+  * Optimizations when building trees for package views
+
+    The tests were done in modern computer with SSD disks, multi-arch with 2
+    architectures enabled (close to 90 thousand packages to show).
+
+    This functionality is used in when building the views in curses mode.
+    Creating the tree for the initial default view takes ~0.42s, creating the
+    tree for a new default "Package view" ~0.22s, "Debtags browser" ~0.3s,
+    "Sources view" ~0.28s, "Flat" ~0.18s, "Package view" with limit "~slibs"
+    (section "libs") ~0.09s.
+
+    With optimizations enabled, the initial default view takes ~0.34s, creating
+    the tree for a new default "Package view" ~0.13s, "Debtags browser" ~0.21s,
+    "Sources view" ~0.23s, "Flat" ~0.12s, "Package view" with limit "~slibs"
+    (section "libs") ~0.08s.
+
+    The improvement consisted in doing some extra calculations to update
+    progress ("Building view") only ~10 times (every 10% increment) instead of
+    ~90 thousand for the test scenario above (~10 thousand with the limit
+    "~slibs").
+
+  * src/generic/apt/apt.*: Create get_pkgAcquire_fetch_info() to reuse in the
+    future
+
+    Update the information when the package installation states change, and
+    cache the information, so it can be used for example in the interactive mode
+    without the information being retrieved again and again when the screen is
+    redrawn (simply moving a line up or down, for example).
+
+  * Make Progress parameters to be a pointer in several functions in aptcache.*,
+    so it can be passed as null if necessary/desirable
+
+- Translation updates:
+
+  * Dutch documentation translation by Frans Spiesschaert (Closes: #815183)
+
+  * Dutch translation by Frans Spiesschaert (Closes: #815185)
+
+
 [2016-02-21]
 Version 0.7.6
 
@@ -230,11 +496,11 @@ Version 0.7.6
   * [curses] Pressing keybinding "Keep" (":") on package names or versions does
     not remove the auto-installed flag
 
-  * [cmdline] Show error message when using --purge (Close: #434502)
+  * [cmdline] Show error message when using --purge (Closes: #434502)
 
   * [cmdline] "show" selects by default the candidate version (as documented in
     man page) and shows extra information when the package is installed but can
-    be upgraded, rather than showing "not installed" (Close: #539978)
+    be upgraded, rather than showing "not installed" (Closes: #539978)
 
   * [cmdline] Give more prominence to Version field in "show" command by showing
     it as second

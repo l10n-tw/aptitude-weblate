@@ -1,6 +1,7 @@
 // download_update_manager.cc
 //
 //   Copyright (C) 2005, 2007-2009, 2011 Daniel Burrows
+//   Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -58,12 +59,14 @@ bool download_update_manager::prepare(OpProgress &progress,
 {
   log = signallog;
 
-  if(apt_cache_file != NULL &&
-     !(*apt_cache_file)->save_selection_list(progress))
-    return false;
+  if(apt_cache_file == NULL)
+    {
+      _error->Error(_("The package cache is not available; unable to download and install packages."));
+      return false;
+    }
 
-  // FIXME: should save_selection_list do this?
-  progress.Done();
+  if(!(*apt_cache_file)->save_selection_list(&progress))
+    return false;
 
   if(src_list.ReadMainList() == false)
     {
@@ -189,7 +192,10 @@ void download_update_manager::finish(pkgAcquire::RunResult res,
     aptcfg->FindB(PACKAGE "::AutoClean-After-Update", false);
 
   if (need_forget_new || need_autoclean)
-    apt_load_cache(progress, true);
+    {
+      bool operation_needs_lock = true;
+      apt_load_cache(progress, true, operation_needs_lock, nullptr);
+    }
 
   if (apt_cache_file)
     {

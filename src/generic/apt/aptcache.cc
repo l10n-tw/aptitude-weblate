@@ -222,7 +222,7 @@ aptitudeDepCache::aptitudeDepCache(pkgCache *Cache, Policy *Plcy)
 
 bool aptitudeDepCache::Init(OpProgress *Prog, bool WithLock, bool do_initselections, const char *status_fname)
 {
-  return build_selection_list(*Prog, WithLock, do_initselections, status_fname);
+  return build_selection_list(Prog, WithLock, do_initselections, status_fname);
 }
 
 aptitudeDepCache::~aptitudeDepCache()
@@ -239,16 +239,17 @@ void aptitudeDepCache::set_read_only(bool new_read_only)
   read_only = new_read_only;
 }
 
-bool aptitudeDepCache::build_selection_list(OpProgress &Prog, bool WithLock,
+bool aptitudeDepCache::build_selection_list(OpProgress* Prog,
+					    bool WithLock,
 					    bool do_initselections,
-					    const char *status_fname)
+					    const char* status_fname)
 {
   action_group group(*this);
 
   bool initial_open=false;
   // This will be set to true if the state file does not exist.
 
-  if(!pkgDepCache::Init(&Prog))
+  if(!pkgDepCache::Init(Prog))
     return false;
 
   records = new pkgRecords(*this);
@@ -320,12 +321,18 @@ bool aptitudeDepCache::build_selection_list(OpProgress &Prog, bool WithLock,
     }
   else
     {
+      // last percent shown in progress -- do not update on every cycle
+      int last_pct_shown = 0;
+      int amt = 0;
       int file_size=state_file.Size();
-      Prog.OverallProgress(0, file_size, 1, _("Reading extended state information"));
+      if (Prog)
+	{
+	  Prog->OverallProgress(0, file_size, 1, _("Reading extended state information"));
+	}
 
       pkgTagFile tagfile(&state_file);
       pkgTagSection section;
-      int amt=0;
+
       bool do_dselect=aptcfg->FindB(PACKAGE "::Track-Dselect-State", true);
       while(tagfile.Step(section))
 	{
@@ -445,16 +452,34 @@ bool aptitudeDepCache::build_selection_list(OpProgress &Prog, bool WithLock,
 		  dirty = true;
 		}
 	    }
-	  amt+=section.size();
-	  Prog.OverallProgress(amt, file_size, 1, _("Reading extended state information"));
+
+	  if (Prog)
+	    {
+	      // update progress, but not every time -- very expensive
+	      amt += section.size();
+	      int pct = (100*amt) / file_size;
+	      if ((pct % 10 == 1) && last_pct_shown != pct)
+		{
+		  last_pct_shown = pct;
+		  Prog->OverallProgress(amt, file_size, 1, _("Reading extended state information"));
+		}
+	    }
 	}
-      Prog.OverallProgress(file_size, file_size, 1, _("Reading extended state information"));
-      Prog.Done();
+
+      if (Prog)
+	{
+	  Prog->OverallProgress(file_size, file_size, 1, _("Reading extended state information"));
+	  Prog->Done();
+	}
     }
 
-  int num=0;
-
-  Prog.OverallProgress(0, Head().PackageCount, 1, _("Initializing package states"));
+  // only update if we're going to increase 10% or so
+  int update_progress_10pct = Head().PackageCount / 10;
+  int num = 0;
+  if (Prog)
+    {
+      Prog->OverallProgress(0, Head().PackageCount, 1, _("Initializing package states"));
+    }
 
   new_package_count=0;
 
@@ -537,18 +562,27 @@ bool aptitudeDepCache::build_selection_list(OpProgress &Prog, bool WithLock,
 	  dirty = true;
 	}
 
-      ++num;
-      Prog.OverallProgress(num, Head().PackageCount, 1, _("Initializing package states"));
+      if (Prog)
+	{
+	  // don't update on every cycle
+	  if ((++num % update_progress_10pct) == 1)
+	    {
+	      Prog->OverallProgress(num, Head().PackageCount, 1, _("Initializing package states"));
+	    }
+	}
     }
 
-  Prog.OverallProgress(Head().PackageCount, Head().PackageCount, 1, _("Initializing package states"));
+  if (Prog)
+    Prog->OverallProgress(Head().PackageCount, Head().PackageCount, 1, _("Initializing package states"));
 
   duplicate_cache(&backup_state);
 
   if(aptcfg->FindB(PACKAGE "::Auto-Upgrade", false) && do_initselections)
     mark_all_upgradable(aptcfg->FindB(PACKAGE "::Auto-Install", true),
 			true, NULL);
-  Prog.Done();
+
+  if (Prog)
+    Prog->Done();
 
   read_only = (lock == -1);
 
@@ -667,8 +701,8 @@ void aptitudeDepCache::get_upgradable(bool ignore_removed,
 //  FIXME: clean up the logic by having an internal "write to this fd"
 // routine and an exported "ok, set up for the write and then clean up"
 // routine.
-bool aptitudeDepCache::save_selection_list(OpProgress &prog,
-					   const char *status_fname)
+bool aptitudeDepCache::save_selection_list(OpProgress* Prog,
+					   const char* status_fname)
 {
   // Refuse to write to disk if nothing changed and we aren't writing
   // to an unusual file
@@ -685,7 +719,7 @@ bool aptitudeDepCache::save_selection_list(OpProgress &prog,
   // Ow, that sucks.  The solution will be to write the apt states to
   // a separate file.
   if(status_fname == NULL)
-    writeStateFile(&prog, false);
+    writeStateFile(Prog, false);
 
   // helper class to save selection state of packages to dpkg database
   aptitude::apt::dpkg::DpkgSelections dpkg_selections;
@@ -706,41 +740,58 @@ bool aptitudeDepCache::save_selection_list(OpProgress &prog,
   if(!newstate.IsOpen())
     {
       _error->Error(_("Cannot open Aptitude state file"));
-      prog.Done();
+      if (Prog)
+	Prog->Done();
       return false;
     }
   else
     {
-      int num=0;
-      prog.OverallProgress(0, Head().PackageCount, 1, _("Writing extended state information"));
+      // only update if we're going to increase 10% or so
+      int update_progress_10pct = Head().PackageCount / 10;
+      int num = 0;
+      if (Prog)
+	{
+	  Prog->OverallProgress(0, Head().PackageCount, 1, _("Writing extended state information"));
+	}
+
+      // save some allocations in the loop and other optimisations -- see #312920
+      std::stringstream newstate_tmpbuffer;
+      string line;
+      string forbidstr;
+      string upgradestr;
+      string autostr;
+      string tailstr;
+      string user_tags;
+      string select_arch;
 
       for(PkgIterator i=PkgBegin(); !i.end(); i++)
-	if(!i.VersionList().end())
+	if (i.VersionList().end())
+	  {
+	    ++num;
+	  }
+	else
 	  {
 	    StateCache &state=(*this)[i];
 	    aptitude_state &estate=get_ext_state(i);
 
-	    string forbidstr=!estate.forbidver.empty()
-	      ? "ForbidVer: "+estate.forbidver+"\n":"";
+	    forbidstr = (!estate.forbidver.empty()) ? ("ForbidVer: " + estate.forbidver + "\n") : "";
 
-	    bool upgrade=(!i.CurrentVer().end()) && state.Install();
-	    string upgradestr=upgrade ? "Upgrade: yes\n" : "";
+	    upgradestr = ((!i.CurrentVer().end()) && state.Install()) ? "Upgrade: yes\n" : "";
 
 	    bool auto_new_install = (i.CurrentVer().end() &&
 				     state.Install() &&
 				     ((state.Flags & Flag::Auto) != 0));
-	    string autostr = (auto_new_install || estate.previously_auto_package) ? "Auto-New-Install: yes\n" : "";
-
-	    string tailstr;
+	    autostr = (auto_new_install || estate.previously_auto_package) ? "Auto-New-Install: yes\n" : "";
 
 	    if(state.Install() &&
 	       !estate.candver.empty() &&
 	       (GetCandidateVersion(i).end() ||
 		GetCandidateVersion(i).VerStr() != estate.candver))
 	      tailstr = "Version: " + estate.candver + "\n";
+	    else
+	      tailstr = "";
 
 	    // Build the list of usertags for this package.
-	    std::string user_tags;
 	    if (!estate.user_tags.empty())
 	      {
 		user_tags = "User-Tags:";
@@ -757,9 +808,12 @@ bool aptitudeDepCache::save_selection_list(OpProgress &prog,
 
 		user_tags.push_back('\n');
 	      }
+	    else
+	      user_tags = "";
 
+	    // write section for this package
 	    using cw::util::ssprintf;
-	    std::string line(ssprintf("Package: %s\nArchitecture: %s\nUnseen: %s\nState: %i\nDselect-State: %i\nRemove-Reason: %i\n%s%s%s%s%s\n",
+	    line = ssprintf("Package: %s\nArchitecture: %s\nUnseen: %s\nState: %i\nDselect-State: %i\nRemove-Reason: %i\n%s%s%s%s%s\n",
 				      i.Name(),
                                       i.Arch(),
 				      estate.new_package?"yes":"no",
@@ -770,7 +824,8 @@ bool aptitudeDepCache::save_selection_list(OpProgress &prog,
 				      autostr.c_str(),
 				      forbidstr.c_str(),
 				      user_tags.c_str(),
-				      tailstr.c_str()));
+				      tailstr.c_str());
+	    newstate_tmpbuffer << line;
 
 	    // dpkg-dselect state
 	    if (estate.original_selection_state != estate.selection_state
@@ -778,7 +833,7 @@ bool aptitudeDepCache::save_selection_list(OpProgress &prog,
 	      {
 		// for internal reasons, apt's PkgIterator is always arch:any,
 		// not arch:all.  VerIterator can be arch:all, though.
-		std::string select_arch = i.Arch();
+		select_arch = i.Arch();
 
 		// all install, downgrade, upgrade, etc -- try to use candidate version
 		if (state.Install() && !GetCandidateVersion(i).end())
@@ -798,35 +853,34 @@ bool aptitudeDepCache::save_selection_list(OpProgress &prog,
 		estate.original_selection_state = estate.selection_state;
 	      }
 
-	    if(newstate.Failed() || !newstate.Write(line.c_str(), line.size()))
+	    if (Prog)
 	      {
-		_error->Error(_("Couldn't write state file"));
-		newstate.Close();
-
-		if(!status_fname)
-		  unlink((statefile+".new").c_str());
-		return false;
+		// don't update on every cycle
+		if ((++num % update_progress_10pct) == 1)
+		  {
+		    Prog->OverallProgress(num, Head().PackageCount, 1, _("Writing extended state information"));
+		  }
 	      }
-
-	    num++;
-	    prog.OverallProgress(num, Head().PackageCount, 1, _("Writing extended state information"));
 	  }
 
-      prog.OverallProgress(Head().PackageCount, Head().PackageCount, 1, _("Writing extended state information"));
+      if (Prog)
+	Prog->OverallProgress(Head().PackageCount, Head().PackageCount, 1, _("Writing extended state information"));
 
-      if(newstate.Failed())
-	// This is /probably/ redundant, but paranoia never hurts.
+      if (newstate.Failed() ||
+	  !newstate.Write(newstate_tmpbuffer.str().c_str(), newstate_tmpbuffer.str().size()))
 	{
-	  _error->Error(_("Error writing state file"));
+	  _error->Error(_("Couldn't write state file"));
 	  newstate.Close();
 
-	  if(!status_fname)
+	  if (!status_fname)
 	    unlink((statefile+".new").c_str());
 
-	  prog.Done();
+	  if (Prog)
+	    Prog->Done();
 	  return false;
 	}
       newstate.Close();
+
       // FIXME!  This potentially breaks badly on NFS.. (?) -- actually, it
       //       wouldn't be harmful; you'd just get gratuitous errors..
       if(!status_fname)
@@ -836,7 +890,8 @@ bool aptitudeDepCache::save_selection_list(OpProgress &prog,
 	  if(unlink(oldstr.c_str()) != 0 && errno != ENOENT)
 	    {
 	      _error->Errno("save_selection_list", _("failed to remove %s"), oldstr.c_str());
-	      prog.Done();
+	      if (Prog)
+		Prog->Done();
 	      return false;
 	    }
 
@@ -844,14 +899,16 @@ bool aptitudeDepCache::save_selection_list(OpProgress &prog,
 	    {
 	      _error->Errno("save_selection_list", _("failed to rename %s to %s"),
 			    statefile.c_str(), (statefile + ".old").c_str());
-	      prog.Done();
+	      if (Prog)
+		Prog->Done();
 	      return false;
 	    }
 
 	  if(rename(newstr.c_str(), statefile.c_str()) != 0)
 	    {
 	      _error->Errno("save_selection_list", _("couldn't replace %s with %s"), statefile.c_str(), newstr.c_str());
-	      prog.Done();
+	      if (Prog)
+		Prog->Done();
 	      return false;
 	    }
 	}
@@ -872,12 +929,15 @@ bool aptitudeDepCache::save_selection_list(OpProgress &prog,
       if (! dpkg_selections_saved)
 	{
 	  _error->Error(_("failed to save selections to dpkg database"));
-	  prog.Done();
+	  if (Prog)
+	    Prog->Done();
 	  return false;
 	}
     }
 
-  prog.Done();
+  if (Prog)
+    Prog->Done();
+
   return true;
 }
 
@@ -1081,6 +1141,10 @@ void aptitudeDepCache::internal_mark_install(const PkgIterator &Pkg,
   // here and restore it afterwards:
   bool previously_auto = ((*this)[Pkg].Flags & Flag::Auto) != 0;
 
+  bool final_auto = previously_auto;
+  if (set_to_manual)
+    final_auto = false;
+
   if(!ReInstall)
     {
       pkgDepCache::MarkInstall(Pkg, AutoInst);
@@ -1090,14 +1154,12 @@ void aptitudeDepCache::internal_mark_install(const PkgIterator &Pkg,
 
   pkgDepCache::SetReInstall(Pkg, ReInstall);
 
-  MarkAuto(Pkg, previously_auto);
-
-  if(set_to_manual)
-    MarkAuto(Pkg, false);
+  MarkAuto(Pkg, final_auto);
 
   get_ext_state(Pkg).selection_state=pkgCache::State::Install;
   get_ext_state(Pkg).reinstall=ReInstall;
   get_ext_state(Pkg).forbidver="";
+  get_ext_state(Pkg).previously_auto_package = final_auto;
 }
 
 void aptitudeDepCache::mark_delete(const PkgIterator &Pkg,
@@ -2281,7 +2343,10 @@ void aptitudeDepCache::apply_solution(const generic_solution<aptitude_universe> 
 	{
 	  aptitude_resolver_version ver(i->get_ver());
 	  LOG_TRACE(logger, "Adding version chosen by the resolver: " << ver);
-	  versions.push_back(std::make_pair(ver, true));
+	  // auto_installed true by default because "install_version" is very
+	  // broad, but might mean to "keep the same version"
+	  constexpr bool auto_installed = true;
+	  versions.push_back(std::make_pair(ver, auto_installed));
 	}
       else
 	LOG_TRACE(logger, "Skipping " << *i << ": it is not a version install.");
@@ -2316,7 +2381,11 @@ void aptitudeDepCache::apply_solution(const generic_solution<aptitude_universe> 
 		    << " at its current version ("
 		    << curver.VerStr() << ")");
 
-	  internal_mark_keep(pkg, is_auto, false);
+	  // auto_installed true because "install_version" is very broad, but
+	  // might mean to "keep the same version"
+	  bool was_auto = is_auto_installed(pkg);
+
+	  internal_mark_keep(pkg, was_auto, false);
 	}
       else
 	// install a particular version that's not the current one.
@@ -2352,8 +2421,10 @@ aptitudeCacheFile::~aptitudeCacheFile()
   delete Policy;
 }
 
-bool aptitudeCacheFile::Open(OpProgress &Progress, bool do_initselections,
-			     bool WithLock, const char *status_fname)
+bool aptitudeCacheFile::Open(OpProgress* Progress,
+			     bool do_initselections,
+			     bool WithLock,
+			     const char* status_fname)
 {
   if(WithLock)
     {
@@ -2371,8 +2442,9 @@ bool aptitudeCacheFile::Open(OpProgress &Progress, bool do_initselections,
     return _error->Error(_("The list of sources could not be read."));
 
   // Read the caches:
-  bool Res = pkgCacheGenerator::MakeStatusCache(List, &Progress, &Map, !WithLock);
-  Progress.Done();
+  bool Res = pkgCacheGenerator::MakeStatusCache(List, Progress, &Map, !WithLock);
+  if (Progress)
+    Progress->Done();
 
   if(!Res)
     return _error->Error(_("The package lists or status file could not be parsed or opened."));
@@ -2394,8 +2466,9 @@ bool aptitudeCacheFile::Open(OpProgress &Progress, bool do_initselections,
   if(_error->PendingError())
     return false;
 
-  DCache->Init(&Progress, WithLock, do_initselections, status_fname);
-  Progress.Done();
+  DCache->Init(Progress, WithLock, do_initselections, status_fname);
+  if (Progress)
+    Progress->Done();
 
   if(_error->PendingError())
     return false;

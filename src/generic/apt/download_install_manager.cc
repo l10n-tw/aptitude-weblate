@@ -1,7 +1,7 @@
 // download_install_manager.cc
 //
 //   Copyright (C) 2005-2011 Daniel Burrows
-//   Copyright (C) 2015 Manuel A. Fernandez Montecelo
+//   Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -65,10 +65,8 @@ bool download_install_manager::prepare(OpProgress &progress,
       return false;
     }
 
-  if(!(*apt_cache_file)->save_selection_list(progress))
+  if(!(*apt_cache_file)->save_selection_list(&progress))
     return false;
-
-  progress.Done();
 
   // Abort here so we don't spew random messages below.
   if(_error->PendingError())
@@ -76,12 +74,6 @@ bool download_install_manager::prepare(OpProgress &progress,
 
   fetcher = new pkgAcquire;
   fetcher->SetLog(&acqlog);
-  if (fetcher->GetLock(aptcfg->FindDir("Dir::Cache::archives")) == false)
-    {
-      delete fetcher;
-      fetcher = NULL;
-      return false;
-    }
 
   if(!src_list.ReadMainList())
     {
@@ -103,6 +95,21 @@ bool download_install_manager::prepare(OpProgress &progress,
       delete fetcher;
       fetcher = NULL;
       return false;
+    }
+
+  // whether download is actually needed -- see #766122
+  if (fetcher->FetchNeeded() > 0)
+    {
+      if (fetcher->GetLock(aptcfg->FindDir("Dir::Cache::archives")) == false)
+	{
+	  delete fetcher;
+	  fetcher = NULL;
+	  return false;
+	}
+    }
+  else
+    {
+      download_manager::is_download_needed = false;
     }
 
   return true;
@@ -256,7 +263,10 @@ void download_install_manager::finish_post_dpkg(pkgPackageManager::OrderResult d
       //
       // This implicitly updates the package state file on disk.
       if(!download_only)
-	apt_load_cache(progress, true);
+	{
+	  bool operation_needs_lock = true;
+	  apt_load_cache(progress, true, operation_needs_lock, nullptr);
+	}
 
       if(aptcfg->FindB(PACKAGE "::Forget-New-On-Install", false)
 	 && !download_only)
@@ -264,7 +274,7 @@ void download_install_manager::finish_post_dpkg(pkgPackageManager::OrderResult d
 	  if(apt_cache_file != NULL)
 	    {
 	      (*apt_cache_file)->forget_new(NULL);
-	      (*apt_cache_file)->save_selection_list(*progress);
+	      (*apt_cache_file)->save_selection_list(progress);
 	      post_forget_new_hook();
 	    }
 	}
