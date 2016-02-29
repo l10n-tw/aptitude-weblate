@@ -56,6 +56,11 @@ aptitude (0.7.7-1) UNRELEASED; urgency=medium
       * Dutch documentation translation by Frans Spiesschaert (Closes: #815183)
       * Dutch translation by Frans Spiesschaert (Closes: #815185)
 
+  * d/patches:
+    - Drop patch to fix problem building due to string formatting and
+      strict compiler checks (added "upstream")
+      - ftbfs-string-format.patch
+
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Mon, 29 Feb 2016 23:12:41 +0000
 
 aptitude (0.7.6-1) unstable; urgency=low
