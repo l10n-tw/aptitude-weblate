@@ -579,12 +579,12 @@ static void do_su_to_root(string args)
   else
     {
       int status;
-      OpProgress foo; // Need a generic non-outputting progress bar
+      OpProgress null_progress; // Need a generic non-outputting progress bar
 
       // Save the selection list.  Check first if it's NULL to handle the
       // case of a closed cache.
       if(apt_cache_file != NULL)
-	(*apt_cache_file)->save_selection_list(foo, statusname.get_name().c_str());
+	(*apt_cache_file)->save_selection_list(&null_progress, statusname.get_name().c_str());
 
       // Ok, wake the other process up.
       char tmp=0;
@@ -614,7 +614,8 @@ static void do_su_to_root(string args)
 	  // We have to clear these out or the cache won't reload properly (?)
 
 	  progress_ref p = gen_progress_bar();
-	  apt_reload_cache(p->get_progress().unsafe_get_ref(), true, statusname.get_name().c_str());
+	  bool operation_needs_lock = true;
+	  apt_reload_cache(p->get_progress().unsafe_get_ref(), true, operation_needs_lock, statusname.get_name().c_str());
 	  p->destroy();
 	}
       else
@@ -1985,7 +1986,8 @@ void do_forget_new()
 static void do_reload_cache()
 {
   progress_ref p = gen_progress_bar();
-  apt_reload_cache(p->get_progress().unsafe_get_ref(), true);
+  bool operation_needs_lock = true;
+  apt_reload_cache(p->get_progress().unsafe_get_ref(), true, operation_needs_lock, nullptr);
   p->destroy();
 }
 
@@ -2967,7 +2969,7 @@ void ui_main()
      apt_cache_file->is_locked())
     {
       progress_ref p=gen_progress_bar();
-      (*apt_cache_file)->save_selection_list(*p->get_progress().unsafe_get_ref());
+      (*apt_cache_file)->save_selection_list(p->get_progress().unsafe_get_ref());
       p->destroy();
     }
 

@@ -3,7 +3,7 @@
 //  The pkg_columnizer class.
 //
 //  Copyright 1999-2005, 2007-2008, 2010 Daniel Burrows
-//  Copyright 2012-2015 Manuel A. Fernandez Montecelo
+//  Copyright 2012-2016 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -73,21 +73,20 @@ cw::config::column_type_defaults pkg_item::pkg_columnizer::defaults[pkg_columniz
   {strlen(PACKAGE), false, false},  // progname
   {strlen(VERSION), false, false},  // progver
   {12, false, false},   // brokencount
-  {30, false, true},    // diskusage
-  {18, false, true},    // downloadsize
+  {16, false, false},   // diskusage, example (max): "Disk: -2,587 kB "
+  {22, false, false},   // downloadsize, example (max): " DL: 2,586 kB/2,587 kB"
   {4, false, false},    // pin_priority
   {8, true, false},     // hostname
   {1, false, false}     // trust_state
 };
 
-// Default widths for:
-// name, installed_size, debsize, stateflag, actionflag, description, currver,
-// candver, longstate, longaction, maintainer, priority, section, revdepcount,
-// brokencount, diskusage, downloadsize.
+// Default widths for columns: name, installed_size, debsize... etc.
 //
-// You can't set default widths for the program name and version here (those
-// strings aren't affected by translation, for one thing)
-const char *default_widths = N_("30 8 8 1 1 40 14 14 11 10 35 9 10 2 1 30 30 10 30 10 9 12 30 18 4 8 1");
+// Complete list and order in "pkg_item::pkg_columnizer::defaults", except that
+// "progname" and "progver" are fixed (not affected by translation), and that
+// shortpriority, pin_priority and trust_state have also fixed sizes due to
+// being of numerical nature or size requirements that translators sould respect
+const char *default_widths = N_("30 8 8 1 1 40 14 14 11 10 35 9 10 2 1 30 30 10 30 10 9 12 16 22 8");
 
 const char *pkg_item::pkg_columnizer::column_names[pkg_columnizer::numtypes]=
   {N_("Package"),
@@ -396,24 +395,14 @@ cw::column_disposition pkg_item::pkg_columnizer::setup_column(const pkgCache::Pk
       break;
     case diskusage:
       {
-	char buf[256];
-	if(apt_cache_file && (*apt_cache_file)->UsrSize()>0)
+	size_t bufsize = 256;
+	char buf[bufsize] = "";
+	if (apt_cache_file && ((*apt_cache_file)->UsrSize() != 0))
 	  {
-	    // Be translator-friendly -- breaking messages up like that is not
-	    // so good..
-	    snprintf(buf, 256, _("Will use %sB of disk space"), SizeToStr((*apt_cache_file)->UsrSize()).c_str());
-	    return cw::column_disposition(buf, 0);
+	    char sign = ((*apt_cache_file)->UsrSize() > 0) ? '+' : '-';
+	    snprintf(buf, bufsize, _("Disk: %c%sB"), sign, SizeToStr((*apt_cache_file)->UsrSize()).c_str());
 	  }
-	else if(apt_cache_file &&
-		(*apt_cache_file)->UsrSize()<0)
-	  {
-	    // Be translator-friendly -- breaking messages up like that is not
-	    // so good..
-	    snprintf(buf, 256, _("Will free %sB of disk space"), SizeToStr(-(*apt_cache_file)->UsrSize()).c_str());
-	    return cw::column_disposition(buf, 0);
-	  }
-	else
-	  return cw::column_disposition("", 0);
+	return cw::column_disposition(buf, 0);
       }
 
       break;
@@ -421,10 +410,28 @@ cw::column_disposition pkg_item::pkg_columnizer::setup_column(const pkgCache::Pk
       {
 	if(apt_cache_file && (*apt_cache_file)->DebSize()!=0)
 	  {
+	    auto f = aptitude::apt::get_pkgAcquire_fetch_info();
 	    char buf[256];
-	    snprintf(buf, 256,
-		     _("DL Size: %sB"), SizeToStr((*apt_cache_file)->DebSize()).c_str());
-	    return cw::column_disposition(buf, 0);
+	    if (f && (f->FetchNeeded != f->TotalNeeded))
+	      {
+		snprintf(buf, 256, _("DL: %sB/%sB"),
+			 SizeToStr(f->FetchNeeded).c_str(),
+			 SizeToStr(f->TotalNeeded).c_str());
+	      }
+	    else
+	      {
+		snprintf(buf, 256, _("DL: %sB"),
+			 SizeToStr((*apt_cache_file)->DebSize()).c_str());
+	      }
+
+	    // align to the right
+	    string s(buf);
+	    size_t total_size = defaults[downloadsize].width;
+	    int fill_size = (total_size - s.size());
+	    if (fill_size > 0)
+	      s.insert(0, fill_size, ' ');
+
+	    return cw::column_disposition(s.c_str(), 0);
 	  }
 	else
 	  return cw::column_disposition("", 0);
@@ -566,13 +573,13 @@ cw::column_disposition pkg_item::pkg_columnizer::setup_column(const pkgCache::Pk
 	int count=0;
 	char buf[100];
 
-        if(pkg.end())
+        if (pkg.end())
           return cw::column_disposition("", 0);
 
-	if(!visible_ver.end())
+	if (!visible_ver.end())
 	  {
-	    for(pkgCache::DepIterator D=pkg.RevDependsList(); !D.end(); D++)
-	      if(D.IsCritical() &&
+	    for (pkgCache::DepIterator D=pkg.RevDependsList(); !D.end(); ++D)
+	      if (D.IsCritical() &&
 		 !is_conflict(D->Type) &&
 		 D.ParentVer()==D.ParentPkg().CurrentVer() &&
 		 // That test is CORRECT; we want to see if the version
@@ -581,18 +588,23 @@ cw::column_disposition pkg_item::pkg_columnizer::setup_column(const pkgCache::Pk
 		 //  and couldn't remember what it did despite writing it
 		 //  5 minutes ago. Maybe I should have my head examined :) )
 		 _system->VS->CheckDep(visible_ver.VerStr(), D->CompareOp, D.TargetVer()))
-		count++;
+		{
+		  ++count;
+		}
+
+	    for (pkgCache::PrvIterator i=visible_ver.ProvidesList(); !i.end(); ++i)
+	      for (pkgCache::DepIterator D=i.ParentPkg().RevDependsList(); !D.end(); ++D)
+		{
+		  if (D.IsCritical() &&
+		     !is_conflict(D->Type) &&
+		     D.ParentVer()==D.ParentPkg().CurrentVer() &&
+		     _system->VS->CheckDep(i.ProvideVersion(), D->CompareOp, D.TargetVer()))
+		    {
+		      ++count;
+		    }
+		}
 	  }
 
-	for(pkgCache::PrvIterator i=pkg.ProvidesList(); !i.end(); i++)
-	  for(pkgCache::DepIterator D=i.ParentPkg().RevDependsList(); !D.end(); D++)
-	    {
-	      if(D.IsCritical() &&
-		 !is_conflict(D->Type) &&
-		 D.ParentVer()==D.ParentPkg().CurrentVer() &&
-		 _system->VS->CheckDep(i.ProvideVersion(), D->CompareOp, D.TargetVer()))
-		count++;
-	    }
 	snprintf(buf, 100, "%i", count);
 	return cw::column_disposition(buf, 0);
       }

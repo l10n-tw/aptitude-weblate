@@ -1,7 +1,7 @@
 // apt.cc
 //
 //  Copyright 1999-2010 Daniel Burrows
-//  Copyright 2015 Manuel A. Fernandez Montecelo
+//  Copyright 2015-2016 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -47,6 +47,7 @@
 #include <apt-pkg/clean.h>
 #include <apt-pkg/configuration.h>
 #include <apt-pkg/depcache.h>
+#include <apt-pkg/dpkgpm.h>
 #include <apt-pkg/error.h>
 #include <apt-pkg/fileutl.h>
 #include <apt-pkg/init.h>
@@ -313,10 +314,11 @@ void apt_revertoptions()
 }
 
 void apt_init(OpProgress *progress_bar, bool do_initselections,
+	      bool operation_needs_lock,
 	      const char *status_fname)
 {
   if(!apt_cache_file)
-    apt_reload_cache(progress_bar, do_initselections, status_fname);
+    apt_reload_cache(progress_bar, do_initselections, operation_needs_lock, status_fname);
 }
 
 void apt_close_cache()
@@ -380,6 +382,7 @@ void apt_close_cache()
 }
 
 void apt_load_cache(OpProgress *progress_bar, bool do_initselections,
+		    bool operation_needs_lock,
 		    const char * status_fname)
 {
   logging::LoggerPtr logger(Loggers::getAptitudeAptGlobals());
@@ -395,7 +398,6 @@ void apt_load_cache(OpProgress *progress_bar, bool do_initselections,
   aptitudeCacheFile *new_file=new aptitudeCacheFile;
 
   LOG_TRACE(logger, "Reading the sources list.");
-
   apt_source_list=new pkgSourceList;
   apt_source_list->ReadMainList();
 
@@ -409,8 +411,8 @@ void apt_load_cache(OpProgress *progress_bar, bool do_initselections,
 
   LOG_TRACE(logger, "Opening the apt cache.");
 
-  bool open_failed=!new_file->Open(*progress_bar, do_initselections,
-				   (getuid() == 0) && !simulate,
+  bool open_failed=!new_file->Open(progress_bar, do_initselections,
+				   operation_needs_lock && ((getuid() == 0) && !simulate),
 				   status_fname)
     || _error->PendingError();
 
@@ -423,7 +425,7 @@ void apt_load_cache(OpProgress *progress_bar, bool do_initselections,
       // Don't discard errors, make sure they get displayed instead.
       consume_errors();
 
-      open_failed=!new_file->Open(*progress_bar, do_initselections,
+      open_failed=!new_file->Open(progress_bar, do_initselections,
 				  false, status_fname);
 
       if(open_failed)
@@ -453,7 +455,7 @@ void apt_load_cache(OpProgress *progress_bar, bool do_initselections,
   if(!status_fname && apt_cache_file->is_locked())
     {
       LOG_TRACE(logger, "Trying to save the current selection list.");
-      (*apt_cache_file)->save_selection_list(*progress_bar);
+      (*apt_cache_file)->save_selection_list(progress_bar);
     }
 
   LOG_TRACE(logger, "Loading the apt package records.");
@@ -462,8 +464,6 @@ void apt_load_cache(OpProgress *progress_bar, bool do_initselections,
   // Um, good time to clear our undo info.
   apt_undos->clear_items();
 
-  LOG_TRACE(logger, "Loading task information.");
-  aptitude::apt::load_tasks(*progress_bar);
   LOG_TRACE(logger, "Loading tags.");
   aptitude::apt::load_tags(progress_bar);
 
@@ -613,10 +613,11 @@ std::shared_ptr<aptitude::util::file_cache> get_download_cache()
 }
 
 void apt_reload_cache(OpProgress *progress_bar, bool do_initselections,
+		      bool operation_needs_lock,
 		      const char * status_fname)
 {
   apt_close_cache();
-  apt_load_cache(progress_bar, do_initselections, status_fname);
+  apt_load_cache(progress_bar, do_initselections, operation_needs_lock, status_fname);
 }
 
 void apt_shutdown()
@@ -1610,6 +1611,47 @@ namespace aptitude
 	{
 	  return true;
 	}
+    }
+
+
+    static std::unique_ptr<pkgAcquire_fetch_info> internal_fetchinfo {};
+
+    void update_pkgAcquire_fetch_info()
+    {
+      if (!apt_cache_file)
+	return;
+
+      pkgAcquire fetcher;
+      pkgSourceList l;
+      if (!l.ReadMainList())
+	{
+	  _error->Error(_("Couldn't read list of sources"));
+	  return;
+	}
+
+      pkgDPkgPM pm(*apt_cache_file);
+      pm.GetArchives(&fetcher, &l, apt_package_records);
+      if (_error->PendingError())
+	return;
+
+      pkgAcquire_fetch_info f { fetcher.FetchNeeded(), fetcher.PartialPresent(), fetcher.TotalNeeded() };
+
+      internal_fetchinfo = std::make_unique<pkgAcquire_fetch_info>(f);
+    }
+
+    std::unique_ptr<pkgAcquire_fetch_info> get_pkgAcquire_fetch_info()
+    {
+      // if invalid, update and register for next time
+      if (!internal_fetchinfo && apt_cache_file)
+	{
+	  update_pkgAcquire_fetch_info();
+	  (*apt_cache_file)->package_state_changed.connect(sigc::ptr_fun(update_pkgAcquire_fetch_info));
+	}
+
+      if (internal_fetchinfo)
+	return std::make_unique<pkgAcquire_fetch_info>(*internal_fetchinfo);
+      else
+	return {};
     }
 
   }

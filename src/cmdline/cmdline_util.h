@@ -1,6 +1,7 @@
 // cmdline_util.h                                   -*-c++-*-
 //
 // Copyright (C) 2004, 2010 Daniel Burrows
+// Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -29,7 +30,6 @@
 #include <generic/apt/download_manager.h>
 #include <generic/apt/matching/pattern.h>
 #include <generic/apt/matching/match.h> // For structural_match.
-#include <generic/apt/tasks.h>
 
 // System includes:
 #include <apt-pkg/srcrecords.h>
@@ -46,6 +46,11 @@
 
 namespace aptitude
 {
+  namespace apt
+  {
+    class task;
+  }
+
   namespace cmdline
   {
     class terminal_input;

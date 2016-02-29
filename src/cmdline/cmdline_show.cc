@@ -208,7 +208,7 @@ static cwidget::fragment *archive_lst_frag(pkgCache::VerFileIterator vf,
 
 std::string current_state_string(const pkgCache::PkgIterator& pkg, const pkgCache::VerIterator& ver)
 {
-  if (!ver.end() && ver != pkg.CurrentVer())
+  if (!ver.end() && !pkg.CurrentVer().end() && ver != pkg.CurrentVer())
     {
       return ssprintf(_("%s (%s), upgrade available (%s)"),
 		      current_state_string(pkg, pkg.CurrentVer()).c_str(),
@@ -638,7 +638,8 @@ int cmdline_show(int argc, char *argv[], int verbose)
   _error->DumpErrors();
 
   std::shared_ptr<OpProgress> progress = make_text_progress(true, term, term, term);
-  apt_init(progress.get(), false);
+  bool operation_needs_lock = false;
+  apt_init(progress.get(), false, operation_needs_lock, nullptr);
 
   if(_error->PendingError())
     {
