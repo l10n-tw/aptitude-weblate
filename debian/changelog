@@ -1,3 +1,63 @@
+aptitude (0.7.7-1) UNRELEASED; urgency=medium
+
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
+    - New features:
+      * Only lock package cache dirs and call pkgAcquire->Run() when necessary
+        (Closes: #766122)
+      * [curses] Bindings for reject/approval of solutions in resolver can
+        be applied to subtrees (Closes:#475595)
+      * Several optimizations that improve performance at startup and when
+        reading/writing files (Closes: #312920)
+      * [curses] Download Size field shows remaining to be fetched
+        (Closes: #446085)
+
+    - Bug fixes:
+      * [cmdline] Fix crash with "show" and not installed packages
+        (Closes: #815581)
+      * [curses] Fix for wrong width/properties of some columns in the
+        columnizer, incl. "hostname" rendered with 4 characters instead
+        of 8 (Closes: #815554)
+      * [curses] Fix crash when trying to view changelog.  Thanks Wei-Cheng Pan
+        for the fix.  (Closes: #815635)
+      * [cmdline] In "search" and "versions", when width is set explicitly,
+        pipes/redirections do not act as --disable-columns (Closes: #815690)
+      * [curses] "%r" (revdepcount) now includes virtual packages
+        (Closes: #320089)
+      * [curses] infer_reason() for pkg_unused_removed now has
+        recommends/suggests into account in all cases (Closes: #476596)
+      * Fixed case of packages wrongly being marked with auto-flag upon start
+        (Closes: #816229)
+      * Packages to "keep" when applying solutions of the resolver maintain
+        current manual/auto (Closes: #815551)
+
+    - User visible changes:
+      * [curses] Change "Will use/free %sB of disk space" for "Disk: %sB"
+      * [curses] In Preview screen, bottom pannel, improve dependency reasons
+        explanations for package to be installed (Closes: #814592)
+      * [curses] Remove option to run "reportbug" on a given package or package
+        version (Closes: #463510)
+      * [cmdline] Operations like "show", "search", "versions", "why"/"why-not"
+        or "changelog" do not need to lock dpkg state directories
+        (Closes: #498061)
+
+    - Internal changes:
+      * Support for most changes in recent versions of apt
+        (Closes: #687678, #687686, #687688, #687684)
+      * Move the definition methods of dpkg_selections to the headers
+        (optimization)
+      * Lazy initialization of reading "tasks" information (optimization)
+      * Optimizations when reading/writing files
+      * Optimizations when reading debtags
+      * Optimizations when building trees for package views
+
+    - Translation updates:
+      * Dutch documentation translation by Frans Spiesschaert (Closes: #815183)
+      * Dutch translation by Frans Spiesschaert (Closes: #815185)
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Mon, 29 Feb 2016 23:12:41 +0000
+
 aptitude (0.7.6-1) unstable; urgency=low
 
   [ Manuel A. Fernandez Montecelo ]
