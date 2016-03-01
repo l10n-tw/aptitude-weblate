@@ -1,4 +1,4 @@
-aptitude (0.7.7-1) UNRELEASED; urgency=medium
+aptitude (0.7.7-1) unstable; urgency=low
 
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
     log with more details.
@@ -61,7 +61,7 @@ aptitude (0.7.7-1) UNRELEASED; urgency=medium
       strict compiler checks (added "upstream")
       - ftbfs-string-format.patch
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Mon, 29 Feb 2016 23:12:41 +0000
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Tue, 01 Mar 2016 00:12:09 +0000
 
 aptitude (0.7.6-1) unstable; urgency=low
 
