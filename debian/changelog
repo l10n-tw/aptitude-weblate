@@ -1,3 +1,28 @@
+aptitude (0.7.8-1) UNRELEASED; urgency=medium
+
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
+    - Bug fixes:
+      * Allow update to happen at the start ("-u") (Closes: #816385)
+      * Extra check in update_pkgAcquire_fetch_info() to make sure that
+        pkgRecords / apt_packagerecords is available
+      * Now explains packages being removed when deps are broken
+        (Closes: #342835)
+      * Avoid crash due to divide by zero in progress counters (Closes: #816431)
+      * load_tags_from_verfiles(): guard against progress pointer being null
+      * Use factory from APT to support different progress bars for dpkg actions
+        (Closes: #816520)
+      * Fix problem with recent change that prevented to work with local
+        repositories (Closes: #816537)
+      * Fixing crash when invoking curses resolver from command line
+        (Closes: #816322)
+      * Fix problem with auto-flag due to persistent Auto-New-Install in
+        pkgstates (Closes: #816497)
+      * Convert std::sprintf to std::snprintf (Closes: #767533)
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 05 Mar 2016 18:02:23 +0000
+
 aptitude (0.7.7-1) unstable; urgency=low
 
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
