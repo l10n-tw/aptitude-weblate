@@ -74,6 +74,15 @@ bool download_install_manager::prepare(OpProgress &progress,
 
   fetcher = new pkgAcquire;
   fetcher->SetLog(&acqlog);
+  // even if we would like to not have to get locks and have to call
+  // fetcher->Run() if no (remote) fetch is needed (see #766122), it is needed
+  // anyway to work with local repositories (see #816537)
+  if (fetcher->GetLock(aptcfg->FindDir("Dir::Cache::archives")) == false)
+    {
+      delete fetcher;
+      fetcher = NULL;
+      return false;
+    }
 
   if(!src_list.ReadMainList())
     {
@@ -95,21 +104,6 @@ bool download_install_manager::prepare(OpProgress &progress,
       delete fetcher;
       fetcher = NULL;
       return false;
-    }
-
-  // whether download is actually needed -- see #766122
-  if (fetcher->FetchNeeded() > 0)
-    {
-      if (fetcher->GetLock(aptcfg->FindDir("Dir::Cache::archives")) == false)
-	{
-	  delete fetcher;
-	  fetcher = NULL;
-	  return false;
-	}
-    }
-  else
-    {
-      download_manager::is_download_needed = false;
     }
 
   return true;
@@ -194,14 +188,18 @@ pkgPackageManager::OrderResult download_install_manager::run_dpkg(int status_fd)
   sigfillset(&allsignals);
 
   pthread_sigmask(SIG_UNBLOCK, &allsignals, &oldsignals);
-  APT::Progress::PackageManagerProgressFd progress(status_fd);
-  pkgPackageManager::OrderResult pmres = pm->DoInstallPostFork(&progress);
+  std::unique_ptr<APT::Progress::PackageManager> progress;
+  if (status_fd > 0)
+    progress = std::make_unique<APT::Progress::PackageManagerProgressFd>(status_fd);
+  else
+    progress = std::unique_ptr<APT::Progress::PackageManager> { APT::Progress::PackageManagerProgressFactory() };
+  pkgPackageManager::OrderResult pmres = pm->DoInstallPostFork(progress.get());
 
   switch(pmres)
     {
     case pkgPackageManager::Failed:
       _error->DumpErrors();
-      cerr << _("Failed to perform requested operation on package.  Trying to recover:") << endl;
+      //cout << _("Failed to perform requested operation on package.  Trying to recover:") << endl;
       if(system("DPKG_NO_TSTP=1 dpkg --configure -a") != 0) { /* ignore */ }
       break;
     case pkgPackageManager::Completed:
