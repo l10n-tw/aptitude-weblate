@@ -1,4 +1,4 @@
-aptitude (0.7.8-1) UNRELEASED; urgency=medium
+aptitude (0.7.8-1) unstable; urgency=medium
 
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
     log with more details.
@@ -21,7 +21,7 @@ aptitude (0.7.8-1) UNRELEASED; urgency=medium
         pkgstates (Closes: #816497)
       * Convert std::sprintf to std::snprintf (Closes: #767533)
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 05 Mar 2016 18:02:23 +0000
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 05 Mar 2016 18:29:05 +0000
 
 aptitude (0.7.7-1) unstable; urgency=low
 
