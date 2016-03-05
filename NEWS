@@ -1,3 +1,60 @@
+[2016-03-05]
+Version 0.7.8
+
+- Bug fixes:
+
+  * Allow update to happen at the start ("-u") (Closes: #816385)
+
+    While trying to make the code to behave the same in download_install_manager
+    and download_update_manager, a change was made to make the latter to save
+    the "package state" before proceeding.  However, when aptitude is launched
+    with "-u", download_update_manager runs before apt_cache_file is loaded for
+    the first time, so it's not possible to save the "package state".  So revert
+    the behaviour and act as before -- try to save the state, but don't enforce
+    it.
+
+  * Extra check in update_pkgAcquire_fetch_info() to make sure that pkgRecords /
+    apt_packagerecords is available
+
+  * Now explains packages being removed when deps are broken (Closes: #342835)
+
+    infer_reason() was not checking for this reason for package_auto_removed.
+
+  * Avoid crash due to divide by zero in progress counters (Closes: #816431)
+
+  * load_tags_from_verfiles(): guard against progress pointer being null
+
+  * Use factory from APT to support different progress bars for dpkg actions
+    (Closes: #816520)
+
+  * Fix problem with recent change that prevented to work with local
+    repositories (Closes: #816537)
+
+    Even if we would like to not have to get locks and have to call
+    fetcher->Run() if no (remote) fetch is needed (see #766122), it is needed
+    anyway to work with local repositories (see #816537).
+
+  * Fixing crash when invoking curses resolver from command line
+    (Closes: #816322)
+
+    The solution had already been found to deal with crashing problems involving
+    boost::flyweights in the past (copied from "struct close_cache_on_exit" in
+    main.cc).  Instead of calling exit() directly, the solution is to invoke a
+    sequence of shutting down data structures from apt and aptitude via
+    apt_shutdown().
+
+  * Fix problem with auto-flag due to persistent Auto-New-Install in pkgstates
+    (Closes: #816497)
+
+    Auto-New-Install remained in pkgstates after the package was installed.  As
+    a consequence, (un)markauto (and maybe some other parts) were not working on
+    packages where this had been recorded, because the persistent
+    Auto-New-Install was read back upon start and was interfering with the logic
+    of the code handling auto-flags.
+
+  * Convert std::sprintf to std::snprintf (Closes: #767533)
+
+
 [2016-03-01]
 Version 0.7.7
 
