@@ -1,3 +1,9 @@
+aptitude (0.7.8-2) UNRELEASED; urgency=medium
+
+  * Add aptitude-doc-nl package
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 01 Apr 2016 12:04:42 +0100
+
 aptitude (0.7.8-1) unstable; urgency=medium
 
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
