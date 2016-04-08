@@ -39,10 +39,10 @@ Multi-Arch: foreign
 Depends: aptitude-common (= ${source:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Recommends: aptitude-doc-en | aptitude-doc,
-            libparse-debianchangelog-perl,
+Recommends: libparse-debianchangelog-perl,
             sensible-utils
-Suggests: apt-xapian-index,
+Suggests: aptitude-doc-en | aptitude-doc,
+          apt-xapian-index,
           debtags,
           tasksel
 Description: terminal-based package manager
