@@ -10,6 +10,7 @@ aptitude (0.7.8-2) UNRELEASED; urgency=medium
   [ Axel Beckert ]
   * Demote Recommends on HTML documentation to Suggests. (Closes: #820452)
   * Declare compliance with Debian Policy 3.9.8. (No changes needed.)
+  * Switch Homepage header from http:// to https://.
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 01 Apr 2016 12:04:42 +0100
 
