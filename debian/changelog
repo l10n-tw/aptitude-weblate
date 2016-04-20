@@ -1,6 +1,9 @@
-aptitude (0.7.8-2) UNRELEASED; urgency=medium
+aptitude (0.8-1) UNRELEASED; urgency=low
 
   [ Manuel A. Fernandez Montecelo ]
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
   * Add aptitude-doc-nl package
   * d/control: Drop Build-dependencies present for a long time but which
     haven't been used in the last few years:
