@@ -2,6 +2,7 @@
 //
 // 
 //   Copyright (C) 2005, 2008-2010 Daniel Burrows
+//   Copyright (C) 2014-2016 Manuel A. Fernandez Montecelo
 
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -15,8 +16,8 @@
 
 //   You should have received a copy of the GNU General Public License
 //   along with this program; see the file COPYING.  If not, write to
-//   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//   Boston, MA 02111-1307, USA.
+//   the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//   Boston, MA 02110-1301, USA.
 //
 // 
 //
@@ -477,6 +478,12 @@ public:
    * \param remove_score the score to assign to removing a package
    * against the user's wishes.
    *
+   * \param remove_obsolete_score the score to assign to removing an obsolete
+   * package against the user's wishes.  It should at least counter
+   * remove_score, because it will still be applied.
+   *
+   * \param cancel_removal_score the score to assign to cancelling a removal.
+   *
    * \param keep_score the score to assign to cancelling actions on a
    * package against the user's wishes.
    *
@@ -521,7 +528,9 @@ public:
    * "true" if they do not have a mapping in this collection.
    */
   void add_action_scores(int preserve_score, int auto_score,
-			 int remove_score, int keep_score,
+			 int remove_score, int remove_obsolete_score,
+			 int cancel_removal_score,
+			 int keep_score,
 			 int install_score, int upgrade_score,
 			 int non_default_score, int essential_remove,
 			 int full_replacement_score,

@@ -1,6 +1,7 @@
 // aptitude_resolver.cc
 //
 //   Copyright (C) 2005, 2008-2011 Daniel Burrows
+//   Copyright (C) 2014-2016 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -14,8 +15,8 @@
 //
 //   You should have received a copy of the GNU General Public License
 //   along with this program; see the file COPYING.  If not, write to
-//   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//   Boston, MA 02111-1307, USA.
+//   the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//   Boston, MA 02110-1301, USA.
 
 #include "aptitude_resolver.h"
 
@@ -1159,7 +1160,9 @@ void aptitude_resolver::add_default_resolution_score(const pkgCache::DepIterator
 }
 
 void aptitude_resolver::add_action_scores(int preserve_score, int auto_score,
-					  int remove_score, int keep_score,
+					  int remove_score, int remove_obsolete_score,
+					  int cancel_removal_score,
+					  int keep_score,
 					  int install_score, int upgrade_score,
 					  int non_default_score, int essential_remove,
 					  int full_replacement_score,
@@ -1179,6 +1182,8 @@ void aptitude_resolver::add_action_scores(int preserve_score, int auto_score,
 
   LOG_TRACE(loggerScores, "Setting up action scores; score parameters: preserver_score = " << preserve_score
 	    << ", auto_score = " << auto_score << ", remove_score = " << remove_score
+	    << ", remove_obsolete_score = " << remove_obsolete_score
+	    << ", cancel_removal_score = " << cancel_removal_score
 	    << ", keep_score = " << keep_score << ", install_score = " << install_score
 	    << ", upgrade_score = " << upgrade_score << ", non_default_score = "
 	    << non_default_score << ", essential_remove = " << essential_remove
@@ -1202,6 +1207,7 @@ void aptitude_resolver::add_action_scores(int preserve_score, int auto_score,
     safety_component(cost_settings.get_or_create_component("safety", aptitude_resolver_cost_settings::maximized)),
     priority_component(cost_settings.get_or_create_component("priority", aptitude_resolver_cost_settings::maximized)),
     removals_component = cost_settings.get_or_create_component("removals", aptitude_resolver_cost_settings::additive),
+    removals_of_obsolete_component = cost_settings.get_or_create_component("removals-of-obsolete", aptitude_resolver_cost_settings::additive),
     removals_of_manual_component = cost_settings.get_or_create_component("removals-of-manual", aptitude_resolver_cost_settings::additive),
     installs_component = cost_settings.get_or_create_component("installs", aptitude_resolver_cost_settings::additive),
     upgrades_component = cost_settings.get_or_create_component("upgrades", aptitude_resolver_cost_settings::additive),
@@ -1395,24 +1401,28 @@ void aptitude_resolver::add_action_scores(int preserve_score, int auto_score,
                                                      v, policy,
                                                      priority_component));
 
-	  // Remember, the initial version is the InstVer.
-	  if(v == initial_state.version_of(p))
+	  if (v == initial_state.version_of(p))
 	    {
-	      if(manual)
+	      // only add Preserve{Auto,Manual}Score if the packages are
+	      // actually installed.
+	      if (is_installed(p.get_pkg()))
 		{
-		  LOG_DEBUG(loggerScores,
-			    "** Score: " << std::showpos << preserve_score
-			    << std::noshowpos << " for " << v
-			    << " because it is the to-be-installed version of a manually installed package (" PACKAGE "::ProblemResolver::PreserveManualScore).");
-		  add_version_score(v, preserve_score);
-		}
-	      else
-		{
-		  LOG_DEBUG(loggerScores,
-			    "** Score: " << std::showpos << auto_score
-			    << std::noshowpos << " for " << v
-			    << " because it is the to-be-installed version of an automatically installed package (" PACKAGE "::ProblemResolver::PreserveAutoScore).");
-		  add_version_score(v, auto_score);
+		  if(manual)
+		    {
+		      LOG_DEBUG(loggerScores,
+				"** Score: " << std::showpos << preserve_score
+				<< std::noshowpos << " for " << v
+				<< " because it is the to-be-installed version of a manually installed package (" PACKAGE "::ProblemResolver::PreserveManualScore).");
+		      add_version_score(v, preserve_score);
+		    }
+		  else
+		    {
+		      LOG_DEBUG(loggerScores,
+				"** Score: " << std::showpos << auto_score
+				<< std::noshowpos << " for " << v
+				<< " because it is the to-be-installed version of an automatically installed package (" PACKAGE "::ProblemResolver::PreserveAutoScore).");
+		      add_version_score(v, auto_score);
+		    }
 		}
 
 	      // No change to the cost in this case.
@@ -1420,25 +1430,52 @@ void aptitude_resolver::add_action_scores(int preserve_score, int auto_score,
 	  // Ok, if this version is selected it'll be a change.
 	  else if(apt_ver == p.get_pkg().CurrentVer())
 	    {
-	      if(manual)
+	      // penalise not removing package requested to be removed
+	      if (apt_state.Delete())
+		{
+		  LOG_DEBUG(loggerScores,
+			    "** Score: " << std::showpos << cancel_removal_score
+			    << std::noshowpos << " for " << v
+			    << " because keeps the currently installed version of a package to be removed  (" PACKAGE "::ProblemResolver::CancelRemovalScore).");
+		  add_version_score(v, cancel_removal_score);
+
+		  modify_version_cost(v,
+				      apply_cfg_level(safe_level, cost_settings, safety_component)
+				      + cost_settings.add_to_cost(canceled_actions_component, 1));
+
+		  LOG_DEBUG(loggerCosts,
+			    "** Safety level raised to at least " << safe_level << " for " << v
+			    << " because it is not the removal of a package requested to be removed/purged (" PACKAGE "::ProblemResolver::Safe-Level)");
+		}
+	      else if (manual)
 		{
 		  LOG_DEBUG(loggerScores,
 			    "** Score: " << std::showpos << keep_score
 			    << std::noshowpos << " for " << v
 			    << " because it is the currently installed version of a manually installed package  (" PACKAGE "::ProblemResolver::KeepScore).");
 		  add_version_score(v, keep_score);
-		}
 
-              modify_version_cost(v,
-                                  apply_cfg_level(safe_level, cost_settings, safety_component)
-                                  + cost_settings.add_to_cost(canceled_actions_component, 1));
-	      LOG_DEBUG(loggerCosts,
-			"** Safety level raised to at least " << safe_level << " for " << v
-			<< " because it is the currently installed version of a package  (" PACKAGE "::ProblemResolver::Safe-Level)");
+		  modify_version_cost(v,
+				      apply_cfg_level(safe_level, cost_settings, safety_component)
+				      + cost_settings.add_to_cost(canceled_actions_component, 1));
+		  LOG_DEBUG(loggerCosts,
+			    "** Safety level raised to at least " << safe_level << " for " << v
+			    << " because it is the currently installed version of a package  (" PACKAGE "::ProblemResolver::Safe-Level)");
+		}
 	    }
 	  else if(apt_ver.end())
 	    {
-	      if(manual)
+	      if (pkg_obsolete(p.get_pkg()))
+		{
+		  LOG_DEBUG(loggerScores,
+			    "** Score: " << std::showpos << remove_obsolete_score
+			    << std::noshowpos << " for " << v
+			    << " because it represents the removal of an obsolete package  (" PACKAGE "::ProblemResolver::RemoveObsoleteScore).");
+		  add_version_score(v, remove_obsolete_score);
+                  modify_version_cost(v,
+                                      cost_settings.add_to_cost(removals_of_obsolete_component, 1));
+		}
+	      else if (manual)
 		{
 		  LOG_DEBUG(loggerScores,
 			    "** Score: " << std::showpos << remove_score
@@ -1454,11 +1491,28 @@ void aptitude_resolver::add_action_scores(int preserve_score, int auto_score,
                                   + cost_settings.add_to_cost(removals_component, 1));
 	      LOG_DEBUG(loggerCosts,
 			"** Safety level raised to at least " << remove_level << " for " << v
-			<< " because it represents the removal of a package (" PACKAGE "::ProblemResolver::Removal-Level)");
+			<< " because it represents the removal of a package (" PACKAGE "::ProblemResolver::Remove-Level)");
 	    }
 	  else if(apt_ver == (*cache)[p.get_pkg()].CandidateVerIter(*cache))
 	    {
-	      if(manual)
+	      // penalise not removing package requested to be removed
+	      if (apt_state.Delete())
+		{
+		  LOG_DEBUG(loggerScores,
+			    "** Score: " << std::showpos << cancel_removal_score
+			    << std::noshowpos << " for " << v
+			    << " because it is a install/upgrade of a package to be removed  (" PACKAGE "::ProblemResolver::CancelRemovalScore).");
+		  add_version_score(v, cancel_removal_score);
+
+		  modify_version_cost(v,
+				      apply_cfg_level(safe_level, cost_settings, safety_component)
+				      + cost_settings.add_to_cost(canceled_actions_component, 1));
+
+		  LOG_DEBUG(loggerCosts,
+			    "** Safety level raised to at least " << safe_level << " for " << v
+			    << " because it is not the removal of a package requested to be removed/purged (" PACKAGE "::ProblemResolver::Safe-Level)");
+		}
+	      else
 		{
 		  // Could try harder not to break holds.
 		  if(p.get_pkg().CurrentVer().end())
@@ -1468,7 +1522,7 @@ void aptitude_resolver::add_action_scores(int preserve_score, int auto_score,
 				<< std::noshowpos << " for " << v
 				<< " because it is a new install (" PACKAGE "::ProblemResolver::InstallScore).");
 		      add_version_score(v, install_score);
-                      modify_version_cost(v, cost_settings.add_to_cost(installs_component, 1));
+		      modify_version_cost(v, cost_settings.add_to_cost(installs_component, 1));
 		    }
 		  else
 		    {
@@ -1477,15 +1531,15 @@ void aptitude_resolver::add_action_scores(int preserve_score, int auto_score,
 				<< std::noshowpos << " for " << v
 				<< " because it is an upgrade (" PACKAGE "::ProblemResolver::UpgradeScore).");
 		      add_version_score(v, upgrade_score);
-                      modify_version_cost(v, cost_settings.add_to_cost(upgrades_component, 1));
+		      modify_version_cost(v, cost_settings.add_to_cost(upgrades_component, 1));
 		    }
-		}
 
-              modify_version_cost(v,
-                                  apply_cfg_level(safe_level, cost_settings, safety_component));
-	      LOG_DEBUG(loggerCosts,
-			"** Safety level raised to at least " << safe_level << " for " << v
-			<< " because it is the default install version of a package (" PACKAGE "::ProblemResolver::Safe-Level).");
+		  modify_version_cost(v,
+				      apply_cfg_level(safe_level, cost_settings, safety_component));
+		  LOG_DEBUG(loggerCosts,
+			    "** Safety level raised to at least " << safe_level << " for " << v
+			    << " because it is the default install version of a package (" PACKAGE "::ProblemResolver::Safe-Level).");
+		}
 	    }
 	  else
 	    // We know that:
@@ -1495,18 +1549,38 @@ void aptitude_resolver::add_action_scores(int preserve_score, int auto_score,
 	    //  - it's not a removal
 	    //  - it follows that this is a non-default version.
 	    {
-	      LOG_DEBUG(loggerScores,
-			"** Score: " << std::showpos << non_default_score
-			<< std::noshowpos << " for " << v
-			<< " because it is a non-default version (" PACKAGE "::ProblemResolver::NonDefaultScore).");
-	      add_version_score(v, non_default_score);
+	      // penalise not removing package requested to be removed
+	      if (apt_state.Delete())
+		{
+		  LOG_DEBUG(loggerScores,
+			    "** Score: " << std::showpos << cancel_removal_score
+			    << std::noshowpos << " for " << v
+			    << " because it is a install/upgrade of a package to be removed  (" PACKAGE "::ProblemResolver::CancelRemovalScore).");
+		  add_version_score(v, cancel_removal_score);
 
-              modify_version_cost(v,
-                                  apply_cfg_level(non_default_level, cost_settings, safety_component)
-                                  + cost_settings.add_to_cost(non_default_versions_component, 1));
-	      LOG_DEBUG(loggerCosts,
-			"** Safety level raised to at least " << non_default_level << " for " << v
-			<< " because it is a non-default version (" PACKAGE "::ProblemResolver::Non-Default-Level).");
+		  modify_version_cost(v,
+				      apply_cfg_level(safe_level, cost_settings, safety_component)
+				      + cost_settings.add_to_cost(canceled_actions_component, 1));
+
+		  LOG_DEBUG(loggerCosts,
+			    "** Safety level raised to at least " << safe_level << " for " << v
+			    << " because it is not the removal of a package requested to be removed/purged (" PACKAGE "::ProblemResolver::Safe-Level)");
+		}
+	      else
+		{
+		  LOG_DEBUG(loggerScores,
+			    "** Score: " << std::showpos << non_default_score
+			    << std::noshowpos << " for " << v
+			    << " because it is a non-default version (" PACKAGE "::ProblemResolver::NonDefaultScore).");
+		  add_version_score(v, non_default_score);
+
+		  modify_version_cost(v,
+				      apply_cfg_level(non_default_level, cost_settings, safety_component)
+				      + cost_settings.add_to_cost(non_default_versions_component, 1));
+		  LOG_DEBUG(loggerCosts,
+			    "** Safety level raised to at least " << non_default_level << " for " << v
+			    << " because it is a non-default version (" PACKAGE "::ProblemResolver::Non-Default-Level).");
+		}
 	    }
 
 	  // This logic is slightly duplicated in resolver_manger.cc,

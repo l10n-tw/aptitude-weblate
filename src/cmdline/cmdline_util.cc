@@ -15,8 +15,8 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; see the file COPYING.  If not, write to
-// the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-// Boston, MA 02111-1307, USA.
+// the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+// Boston, MA 02110-1301, USA.
 
 
 // Local includes:
@@ -96,6 +96,11 @@ void ui_preview()
 				      &result));
   do_package_run_or_show_preview();
   ui_main();
+
+  // copied from "struct close_cache_on_exit" in main.cc, to fix #817776 and
+  // #816322 before that in ui_solution_screen()
+  apt_shutdown();
+
   exit(result);
 }
 
@@ -110,7 +115,8 @@ void ui_solution_screen()
   do_examine_solution();
   ui_main();
 
-  // copied from "struct close_cache_on_exit" in main.cc, to fix #816322
+  // copied from "struct close_cache_on_exit" in main.cc, to fix #816322 and
+  // #817776 after that in ui_preview()
   apt_shutdown();
 
   exit(0);
@@ -470,7 +476,8 @@ download_manager::result cmdline_do_download(download_manager *m,
       // Dump errors so we don't spuriously think we failed.
       _error->DumpErrors();
       bool operation_needs_lock = true;
-      apt_load_cache(&tmpProgress, false, operation_needs_lock, nullptr);
+      bool reset_reinstall = false;
+      apt_load_cache(&tmpProgress, false, operation_needs_lock, nullptr, reset_reinstall);
       initial_stats = compute_apt_stats();
     }
 
@@ -503,9 +510,7 @@ download_manager::result cmdline_do_download(download_manager *m,
   stats final_stats(0, 0, 0, std::set<std::string>());
   if(aptcfg->FindI("Quiet", 0) == 0)
     {
-      OpProgress tmpProgress;
-      bool operation_needs_lock = true;
-      apt_load_cache(&tmpProgress, false, operation_needs_lock, nullptr);
+      // cache just (re)loaded in last steps of download_manager
       final_stats = compute_apt_stats();
       show_stats_change(initial_stats, final_stats,
 			verbose >= 1, verbose >= 2,

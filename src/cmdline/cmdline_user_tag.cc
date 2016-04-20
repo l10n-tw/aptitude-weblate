@@ -15,8 +15,8 @@
 //
 //   You should have received a copy of the GNU General Public License
 //   along with this program; see the file COPYING.  If not, write to
-//   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//   Boston, MA 02111-1307, USA.
+//   the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//   Boston, MA 02110-1301, USA.
 
 
 // Local includes:
@@ -128,7 +128,7 @@ namespace aptitude
 
       _error->DumpErrors();
       OpProgress progress;
-      bool operation_needs_lock = false;
+      bool operation_needs_lock = true;
       apt_init(&progress, true, operation_needs_lock, nullptr);
       if(_error->PendingError())
 	{
@@ -199,9 +199,9 @@ namespace aptitude
       // check for root/permissions -- needs to lock before
       // (*apt_cache_file)->save_selection_list() below, see #725272
       {
-	apt_cache_file->GainLock();
+	bool could_lock = apt_cache_file->GainLock();
 
-	if (_error->PendingError())
+	if (!could_lock || _error->PendingError())
 	  {
 	    _error->DumpErrors();
 	    return -1;

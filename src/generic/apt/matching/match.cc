@@ -14,8 +14,8 @@
 //
 //   You should have received a copy of the GNU General Public License
 //   along with this program; see the file COPYING.  If not, write to
-//   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//   Boston, MA 02111-1307, USA.
+//   the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//   Boston, MA 02110-1301, USA.
 
 #include "match.h"
 
@@ -1099,8 +1099,7 @@ namespace aptitude
 	    {
 	      pkgCache::PkgIterator pkg(target.get_package_iterator(cache));
 
-	      if(  ((pkg->Flags & pkgCache::Flag::Essential) == pkgCache::Flag::Essential) ||
-		   ((pkg->Flags & pkgCache::Flag::Important) == pkgCache::Flag::Important)  )
+	      if ((pkg->Flags & pkgCache::Flag::Essential) == pkgCache::Flag::Essential)
 		  return match::make_atomic(p);
 	      else
 		return NULL;

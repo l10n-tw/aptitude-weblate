@@ -15,8 +15,8 @@
 //
 //   You should have received a copy of the GNU General Public License
 //   along with this program; see the file COPYING.  If not, write to
-//   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//   Boston, MA 02111-1307, USA.
+//   the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//   Boston, MA 02110-1301, USA.
 //
 //  Various UI glue-code and routines.
 
@@ -1272,23 +1272,39 @@ namespace
 
     pkgPackageManager::OrderResult rval = f(-1);
 
+    bool quit_after_dpkg_run = false;
     if(rval != pkgPackageManager::Incomplete)
       {
-	cout << _("Press Return to continue.") << endl;
-	int c = getchar();
+	cout << _("Press Return to continue, 'q' followed by Return to quit.") << endl;
 
-	while(c != '\n'  && c != EOF)
-	  c = getchar();
+	int c = getchar();
+	while (c != '\n' && c != EOF)
+	  {
+	    if (c == 'q' || c == 'Q')
+	      {
+		quit_after_dpkg_run = true;
+		break; // will still read the Return
+	      }
+
+	    c = getchar();
+	  }
       }
 
-    // libapt-pkg likes to stomp on SIGINT and SIGQUIT.  Restore them
-    // here in the simplest possible way.
-    cw::toplevel::install_sighandlers();
+    if (!quit_after_dpkg_run)
+      {
+	// libapt-pkg likes to stomp on SIGINT and SIGQUIT.  Restore them
+	// here in the simplest possible way.
+	cw::toplevel::install_sighandlers();
 
-    cw::toplevel::resume();
+	cw::toplevel::resume();
+      }
 
     k(rval);
-    return;
+
+    if (quit_after_dpkg_run)
+      {
+	file_quit();
+      }
   }
 }
 
@@ -1489,12 +1505,24 @@ static void auto_fix_broken()
 
   try
     {
+      // transient message
+      cw::widget_ref w = cw::frame::create(cw::label::create(_("Trying to fix broken packages...")));
+      auto transient_message = cw::center::create(w);
+      transient_message->show_all();
+      popup_widget(transient_message);
+      cw::toplevel::tryupdate();
+
       eassert(resman != NULL);
       eassert(resman->resolver_exists());
 
       aptitude_solution sol = resman->get_solution(resman->get_selected_solution(), 0);
 
       (*apt_cache_file)->apply_solution(sol, undo);
+
+      // remove transient message
+      transient_message->destroy();
+      transient_message = nullptr;
+      cw::toplevel::tryupdate();
 
       cw::widget_ref d = cw::dialogs::ok(cw::fragf("%s%n%n%F",
 					   _("Some packages were broken and have been fixed:"),
@@ -2222,6 +2250,12 @@ void do_apply_solution()
   if(!apt_cache_file)
     return;
 
+  // unsatisfied recommends -- see #819636
+  //
+  // approves all broken [soft] deps, like recommends, because the user
+  // acknowledged them
+  resman->approve_all_broken_deps();
+
   resolver_manager::state state = resman->state_snapshot();
 
   if(!do_apply_solution_enabled_from_state(state))
@@ -2234,8 +2268,9 @@ void do_apply_solution()
       undo_group *undo=new apt_undo_group;
       try
 	{
-	  (*apt_cache_file)->apply_solution(resman->get_solution(state.selected_solution, aptcfg->FindI(PACKAGE "::ProblemResolver::StepLimit", 5000)),
-					    undo);
+	  const generic_solution<aptitude_universe>& sol = resman->get_solution(state.selected_solution,
+										aptcfg->FindI(PACKAGE "::ProblemResolver::StepLimit", 5000));
+	  (*apt_cache_file)->apply_solution(sol, undo);
 	}
       catch(NoMoreSolutions)
 	{

@@ -1,3 +1,542 @@
+[2016-04-20]
+Version 0.8
+
+- New features:
+
+  * Detect and suggest solutions when pkgstates is corrupt (Closes: #405506)
+
+  * Allow to choose between localized logs or not (default is not) with the
+    option ::Localized-Log (Closes: #357828, #596221)
+
+  * [curses] Left/Right arrow keys collapse/expand one level of the subtree, and
+    when in a package item (row) Left jumps to "parent"
+    (Closes: #157984, #241945, #415449)
+
+    The solution is a bit "hacky", because for example for the left arrow in the
+    package item to jump to its parent, the pkg_item objects have to capture
+    events of some keybinding ("collapse") and re-inject the event as "parent".
+    The direct route, which would be to add "left" as an alias of "Parent",
+    doesn't work in this case, because some elements using "left" for other
+    purposes would be confused and would interpret it as "Parent".
+
+    Maybe there is another way to achieve this more cleanly if it's possible to
+    assign bindings like "Parent" specific to e.g. tree items (pkg_items derive
+    from that), but even if cwidget allows for this, it seems to be quite
+    complicated to achieve it.
+
+  * [curses] Be able to Quit after dpkg run (Closes: #246672)
+
+    The current implementation seems to work, but the handling of these issues
+    is a bit brittle and with lots of circular dependencies, with signals and
+    events happening everywhere.  E.g view (cwidget objects) being reloaded
+    automatically when cache is reloaded, while cwidget is supended for dpkg
+    run.  The initial events trigger further updates and triggers using cwidget
+    objects and other structures, sometimes depending on different options being
+    enabled or how the curses mode was launched (e.g. "visual preview", or
+    "solution screen").
+
+    In any case, the cache needs to be reloaded (and with it, state saved to
+    disk) to perform some updates/cleanup after dpkg runs, like resetting
+    "reinstall" state when done (the "save pending reinstall" was implemented in
+    this version), or unmarking upgraded packages as needing upgrade after the
+    version has been upgraded to the desired one (bug fixed in this version,
+    when aptitude was not acknowledging the "upgrade" as having taken place, and
+    still marking it as update in the next runs).
+
+    Presumably all of these complications are why this hand't been implemented
+    before, in all the intervening years.
+
+    Still I thought that it was worth to implement it now because it will now at
+    least save the user/system from spending time in some of the curses actions,
+    save a few extra keystrokes, and with it a few seconds (specially in slower
+    systems) having to keep an eye just for quitting.
+
+- Bug fixes:
+
+  * ~E pattern now returns packages with Essential only (Closes: #548505)
+
+    apt marks itsef as Essential, so this doesn't change much some aspects of
+    the bug report.
+
+  * Detect as "Security Upgrades" when site matches security.*.d.o
+    (Closes: #328620)
+
+    Previously it was only matching "security.debian.org", not accounting for
+    mirrors like "security.eu.debian.org".
+
+  * Allow to run in dumb terminals when not requiring curses preview or solution
+    screen (Closes: #817276)
+
+    The bug fixing #317928 forbade some uses which are not problematic.  Also
+    added a few more checks to also forbid launching solution screens and
+    previews from the command-line.
+
+  * "reinstall" planned action is now preserved across sessions, when becoming
+    root or in the command line with --schedule-only (Closes: #255587, #785641)
+
+    After the successful reinstallation of this package (and probably other
+    installations/upgrades/deletions/... in the same action), the package is
+    unmarked for reinstallation.  There's no way to detect individually whether
+    a package was reinstalled successfully, so if there is a failure in the
+    whole set of actions, the package will still be marked for reinstallation
+    even if the reinstallation itself has actually succeeded.  This is the best
+    that we can do without significant complications (e.g. handling
+    reinstallations in a package-per-package basis and separate from other
+    actions, but this would be somewhat similar to going back to the current
+    situation -- not treating it just as other actions).
+
+    It is unlikely that this is a big problem in the real world, though.
+    Probably reinstallations are performed very frequently, and when they are,
+    it's unlikely that they are bundled in conjunction with package actions such
+    as big upgrades.
+
+  * Fix crash when invoking curses resolver from command line (Closes: #817776)
+
+    This fix is analog to the one for #816322, and previously to that the
+    problems involving boost::flyweights.
+
+  * Update internal state for upgrades without target version after the action
+    is performed (Closes: #721426)
+
+    This extends "Update internal state for upgrades/downgrades with target
+    version after the action is performed (Closes: #787658, #714429)", by also
+    trying to remove the "Upgrade: yes" line in pkgstates when the package has
+    been upgraded to the candidate version (when a explicit version is not
+    requested).
+
+    Otherwise the lines linger in "pkgstates" for longer than necessary, until
+    it is updated due to other packages needing changes; with the side effect
+    that if an "aptitude update" happens before the lines are removed, the
+    packages are automatically marked for upgrade in subsequent aptitude
+    sessions.
+
+  * [curses] Fix for miscalculated Download Size field (Closes: #817547)
+
+    After running dpkg run or under some other conditions (cache closed), the
+    object storing fetch information did not get reset and updated correctly.
+
+  * Marking as keep, through ':' or other actions, clears Forbidden version
+
+    Uncovered investigating #615481.
+
+  * Fix cases where user tags operations did not apply (Closes: #819002)
+
+    This was caused by misuse of locks before the operation of saving the state
+    file (pkgstates).
+
+  * Actions involving unfulfilled Recommends invoke the resolver
+    (Closes: #819636)
+
+    With APT::Install-Recommends="true" (the default), actions resulting in
+    unavailable Recommends (e.g., the recommended package is upgraded instead of
+    remaining in the required version) invoke the resolver, for the user to take
+    decision.
+
+    This is because now the resolver monitors situation when the
+    PolicyBrokenCount is not zero, before it was only taken BrokenCount into
+    account (it was the only count available when the code was set up).
+
+  * Enhance infer_reason() to explain more cases of pkg_unused_remove
+    (Closes: #266061)
+
+    Enhance infer_reason() to explain more cases where package is removed
+    because of automatically installed and unused (one case related to #819636).
+
+    The case related with #819636 is when the version of the depended package
+    (the one for which we look the reason of removal) changes because e.g. it is
+    upgraded, so maybe it doesn't fulfill the original dependency (for example
+    because the package depending on it it depends on an exact or less-than
+    version, as in the bug report).
+
+    The second case (#266061) was missing the explanation because it didn't take
+    into account reverse-depends of virtual packages provided by the package
+    being inspected.
+
+- User visible changes:
+
+  * [cmdline] Output in dumb terminals, when there is no piping/redirection
+    involved and even if ioctl doesn't work to get window size (e.g. inside
+    emacs), will now use COLUMNS instead of the default very big default width
+
+  * Format string scapes for Source (%E->%e) and Architecture (%e->%E) swapped
+
+    This is for consistency while addressing #743769, while it's not too late
+    (only a few releases in unstable since they were added).
+
+  * New short form "~e" for search term "?source-package" (Closes: #743769)
+
+  * [curses] Remove option to run "dpkg-reconfigure" on a given package
+    (Closes: #680334, #686626, #738350)
+
+    Similar to "reportbug" recently removed, it was mostly an annoyance with
+    several related bugs open, with others fixed in the recent past (#474876),
+    was not integrated with the rest of actions -- no menu entry, would trigger
+    an immediate without confirmation (sometimes by mistake) instead of a
+    planned action, since it was immediate could not be saved as most/all
+    actions are...
+
+    In addition, this is a relatively dangerous operation that should seldom be
+    needed, and it's better if people run it run by hand rather than if they
+    trigger it by mistake.
+
+    Lastly, as a curiosity and as telling of the typical evolution of the
+    sofware features, the history of it is: Added in the version 0.2.3 released
+    on 2001-07-11, with this comment: "You can now run dpkg-reconfigure from
+    within aptitude (it's a silly feature, but it's also about 10 lines of
+    code..)".  The original 10 lines of code are now 67 in pkg_item.cc, 1
+    keybinding in defaults.cc, mentions in the documentation and all of the
+    translations; needs to use different mechanisms for "su-to-root" permissions
+    that it needs, there were at least 4 bugs involving the feature, and
+    spending a few hours tracking all of this to finally remove it... so much
+    for an innocent silly feature with only 10 lines of code :-)
+
+  * [cmdline] Solution screen for "Remove the following packages" shows version
+    and suite
+
+    This is to make it more similar to the other cases shown, which include a
+    version, as well as being able to deduce when a package is local / obsolete
+    ("now") instead of being part of other suites.
+
+    E.g. it will show:
+
+           Remove the following packages:
+      1)     libsdl1.2-dbg [1.2.15+dfsg1-2 (now)]
+
+    instead of the previous:
+
+           Remove the following packages:
+      1)     libsdl1.2-dbg
+
+- User visible changes (Resolver):
+
+  This subsection is to separate the (many) changes of the Resolver in this
+  version from other changes.
+
+  When dealing with conflicts or when called when special options
+  (--full-resolver in the command line), aptitude fires an internal resolver to
+  try to address the resolution of conflicts caused by the requested action(s).
+  This was created at a time when apt was not resolving very well the
+  dist-upgrades and other actions, and long before Multi-Arch was implemented in
+  Debian, so with time the gap between aptitude and others was smaller, often
+  apt does a better job than aptitude, then unfavorable comparisons started to
+  be made, and other problems started to appear in the implementation.
+
+  This is a very complicated piece of software, and it's very difficult to fully
+  understand and reason about the consequences of deep changes.  As a heuristic
+  system, the solutions that it gives are quite open (so it's better if it's
+  guided towards desired solutions), and tweaks to the process can have
+  unpredictable and undesired effects somewhere else.
+
+  That said, since in the last few years there were many complaints about the
+  first solution offered being very often undesirable (removal of many
+  packages), and (from most user's point of view) preferable solutions like
+  upgrades being offered only after many removals, and keeps only offered as
+  last resort; some changes were made to try to address these problems.
+
+  The main change that seems to have started this in the past was with #565867
+  in 0.6.1.5 back in 2010 (but there are bugs open much older than that, so it's
+  been a recurring problem):
+
+    + [all] Changed the default resolver configuration so that removals
+            and "safe" actions are grouped together.  Without this
+            change, aptitude was being too conservative and failing to
+            solve simple upgrades. (Closes: #565867)
+
+            The safe-upgrade resolver is unaffected by this change,
+            since it uses explicit constraints to prevent removals from
+            being installed.
+
+  In the comment of the bug report, the original developer says:
+
+    "In the 0.6 series, the aptitude resolver is a lot more conservative
+     than it used to be, due to repeated complaints by users that it was
+     removing too many packages in the first solution that was presented.
+     It looks like maybe I overcompensated, though (this is not the first
+     report along these lines).
+
+     The main difficulty in cases like this is getting the algorithm to
+     properly balance removals with upgrades.  However, it looks like the
+     old scoring system works just fine here."
+
+  This is still true now.  Hopefully after the changes in this version the
+  balance is acceptable for most common actions when using aptitude, including
+  day-to-day upgrades as well as occasional big upgrades between Debian
+  releases.
+
+  Now onto the changes.  Executive summary:
+
+  * Changes to the order in which solutions are offered in conflict resolutions,
+    so upgrades or keeps are preferred over removal of many packages
+
+    (Closes: #341963, #359171, #365644, #453935, #569315, #570377, #574132,
+             #588202, #610845, #651410, #651947, #653284, #661678, #722211,
+	     #798240)
+
+  A more detailed description of individual changes follows:
+
+  * Modify several resolver scores config variables
+
+    ::ProblemResolver::RequiredScore was lower (4) than ImportantScore (5), even
+    if it's in fact higher in the rank; while ExtraScore was -1, even if many
+    regular package in current systems are priority "extra" -- they should not
+    be penalised as "could we do without".  The new scores are:
+
+      ::ProblemResolver::RequiredScore  = 8  (was: 4)
+      ::ProblemResolver::ImportantScore = 4  (was: 5)
+      ::ProblemResolver::StandardScore  = 2  (was: 3)
+      ::ProblemResolver::OptionalScore  = 1
+      ::ProblemResolver::ExtraScore     = 0  (was: -1)
+
+  * Add new score for removal of obsolete package and corresponding config
+    variable ::ProblemResolver::RemoveObsoleteScore
+
+    Removal of obsolete packages is treated as positive (310) to allow for
+    easier upgrades.  It has to counter at least the penalty to remove packages
+    (currently -300).
+
+  * Add new score for partial solutions cancelling the removal of a package and
+    corresponding config variable ::ProblemResolver::CancelRemovalScore
+
+    Resolver actions cancelling the removal (or purge) of a package requested to
+    be removed/purged were not being penalised, now they are (default -300).
+
+    This was missing compared to penalisations for other actions like
+    RemoveScore, when removing packages not marked for removal.  Now, solutions
+    of the resolver cancelling explicitly requested removals are also penalised.
+
+  * Only add Preserve{Auto,Manual}Score if the packages are actually installed
+
+    Without this, the algorithm was assigning extra score +60 (default
+    PreserveManualScore) for packages which remained uninstalled (were not to be
+    installed) and when the user actually didn't select them manually -- even if
+    the justification was "because it is the to-be-installed version of a
+    manually installed package".
+
+    This caused for example that in amd64 with multi-arch 386 "Score: +60 for
+    uno-libs3:i386 [UNINST] because it is the to-be-installed version of a
+    manually installed package (..::PreserveManualScore)", and "Score: -20 for
+    uno-libs3:i386 5.1.1-1 because it is a new install (..::InstallScore)", so
+    installing the version rather than keep it uninstalled had comparatively a
+    -80 disadvantage, 4 times worse than the penalty of installing the new
+    package itself (which is already quite big).
+
+    At the same time, since PreserveAutoScore is 0, the package which was
+    actually installed had "Score: +0 for uno-libs3:amd64 5.1.1-1 because it is
+    the to-be-installed version of an automatically installed package
+    (..::PreserveAutoScore)".
+
+    So this is now only applied to installed packages, to avoid these undesired
+    effects.
+
+  * Change the default score of several ::ProblemResolver config variables
+
+    These are:
+
+      ::StepScore to -10 (was +70)
+      ::PreserveManualScore to +20 (was +60)
+      ::UpgradeScore to +30 (was 0)
+
+    Long explanations:
+
+    1) ::StepScore to -10 (was +70)
+
+    Due to #418385 (back in 2007) it was raised from +10 to +70.  There were
+    already complaints after the change about "removing way too much stuff on
+    upgrades".
+
+    With positive numbers it gives extra score for exploring more and more steps
+    in the problem space (more inclined to search "depth-first" in the graph),
+    and the comparatively large score meant that this was offsetting the
+    negative score of some generally undesired actions (e.g. removing packages
+    which are otherwise fine), so the overall balance of taking more actions on
+    packages was positive even if it meant removing many packages removed rather
+    than upgrading only one.
+
+    (On a related note, RemoveObsoleteScore was added to consider removal of
+    local/obsolete packages as positive, when e.g. doing dist-upgrades and
+    leaving packages behind).
+
+    This played a big role in the problem (that appeared or became worse at some
+    point a few years ago) of the first suggestions offered by the full resolver
+    to be those removing many packages, rather than upgrading a single one or a
+    few, or at least suggesting the one(s) causing the conflict (selected to be
+    upgraded by the user) to be kept.
+
+    This has been tested in several bread-and-butter scenarios with
+    a better outcome than the previous solutions (dist-upgrade, and upgrading
+    packages that breaks others if not upgrading them --transitions,
+    dependencies on same versions of the same source package, etc--).
+
+    It will of course have some side effects, and perhaps has to be reverted or
+    further tweaked, but at least is an attempt to improve the general
+    situation.
+
+    2) ::PreserveManualScore to +20 (was +60)
+
+    As explained in another point of this version in the changelog, this
+    variable caused that the score for installing a new version was -20 plus +60
+    bonus to keep the "manual" uninstalled version uninstalled.  This was
+    changed to only have into account cases where packages are installed, but it
+    affects still other cases in similar ways.
+
+    It also interacts badly with UpgradeScore, because if the score assigned to
+    this variable is higher than the one in ::UpgradeScore, the package is
+    preferred to be kept in the current versions than upgraded, and this used to
+    cause big penalties for situations packages that need to be upgraded to the
+    same versions.  Upgrading packages coming from the same source in lock-step
+    is a typical case where packages have these strict dependencies with exact
+    versions.
+
+    So it seems sensible to lower this score to something that might be more
+    easily overcome by other package actions that are needed very often.
+
+    3) ::UpgradeScore to +30 (was 0)
+
+    Apart from the explanation in 2) (that this score should be higher than
+    ::PreserveManualScore to have better suggestions in many common cases), it
+    seems natural that upgrades are preferred to actions at 0 like Keep, since
+    very often the purpose of launching package management tools like aptitude
+    is to upgrade -- if there are upgrades available.
+
+  * Change the default value of ::ProblemResolver::Keep-All-Level config
+    variable
+
+      ::Keep-All-Level to 10000 (was 20000)
+
+    This cost level is assigned to solutions that cancel all the user's actions
+    ("keep all").  A cost level that is lower is preferable in the "safety"
+    mode, which is the default.  More information about Costs in the User's
+    Manual documentation, section "Resolving package dependencies".
+
+    There are two levels which were lower (at 10000 both) than this one,
+    Safe-Level and Remove-Level.  The first is for safe actions, the other one
+    (also with 10000 in the last few years) is presumably to allow for packages
+    to be removed when they become obsolete, chiefly in dist-upgrade situations.
+
+    Since several years ago, in cases where the full resolver had to kick in,
+    the first suggestion for conflicts or unfulfilled dependencies was often to
+    remove a lot of packages.  Part of the reason why this was preferred to
+    upgrades or installations of new packages had to do with other causes (see
+    other changes in the same version of the changelog).
+
+    But the reason why all of those were preferred to the "keep packages
+    uninstalled" (again, in the default settings with "safety" mode) is because
+    this class of solution is ranked in the ::Keep-All-Level, which is higher
+    than the others and thus left as the last resort.  It was assumed that "keep
+    packages uninstalled" was undesirable because of cancelling all of the
+    user's requested actions of packages.
+
+    At the same time, the solution where "the package that you requested should
+    be removed rather than upgraded, and along this one this dozen too" was at
+    ::Remove-Level, in consequence, always offered before ::Keep-All-Level.
+
+    It seems natural to have "keeps" being offered at the same "safety" level
+    than removal of many packages, and in fact it should be offered before
+    removing many packages, including ones that are installed and requested to
+    upgrade and trigger the conflict that is being resolved.
+
+    This change makes that almost all day-to-day solutions are classified at the
+    same level now, excluding exceptional cases like removing essential packages
+    or installing non-default versions.  When at the same level, solutions are
+    classified by an extra score depending on the actions taken, which is a
+    cause of further tweaks in this version, so different solutions at the same
+    safety level are not offered randomly in any case.
+
+    But perhaps this change doesn't leave the "safety" levels mechanism in a
+    very good position, if almost all solutions are always in a single level.
+    In any case, I think that it's better to fix the oddity described above
+    rather than overhaul a very complex system, and potentially causing many
+    more unintended consequences than the one that this change might cause.
+
+  * Change how the costs are compared
+
+    Costs defer comparisons to "cost implementations" (cost_impl), and these
+    were compared based on "structural_level", and when it was equal, on
+    "actions".
+
+    "actions" is a vector of pairs with "level indices" and "levels".  For
+    "levels" only the value is calculated.  But before reaching that point,
+    vectors and pairs were compared in a more generic way, so if the vector had
+    a smaller number of elements and was equal up to that point, the shorter one
+    was chosen as smaller (similar to lexicographical comparisons of strings),
+    ignoring the effect of some modifiers in "actions".
+
+    This was extremely convoluted to follow and reason about, so a more explicit
+    comparison calculation is beneficial.
+
+    Additionally, the overall result with the previous comparison is that it
+    still produced undesired solutions in many cases, due to the levels of the
+    solutions being the same ("safe", "remove", the newly changed "keep-all")
+    when the resulting package changes (simple upgrades, removal of packages
+    requested to be upgraded, keep current state) are perceived as very
+    different in importance / desirability by the users.
+
+    The modifiers in the "actions" change the level values a bit, but these were
+    not taken into account in many cases in the previous comparison to give
+    preference to some solutions over the others.
+
+    Maybe these modifiers are not accurate or don't produce good results in all
+    cases (they are untested for a number of years due to the behavior of
+    comparisons until now, if nothing else), but the new sorting (with the
+    combination of the other changes in this release, modifying scores and
+    levels) seems to produce much better results overall.
+
+  * Apply InstallScore and UpgradeScore also when the packages are not "manual"
+
+    For some reason this was only enabled for "manual" packages, even if there
+    was nothing in the documentation mentioning this.  This is another step to
+    promote Upgrades over other solutions.
+
+- Internal changes:
+
+  * configure.ac: Allow to disable check for Boost library headers individually
+
+    Note: Should be used only when developing, if at all.
+
+    The reason to implement this is that the check is expensive, 1~2 minutes at
+    ./configure time (more than 50% of the time that it takes to run the whole
+    script); and if it's known that the packages and versions of related Boost
+    libraries are there and working then it is unnecessary to check again and
+    again.
+
+  * Avoid extra code calling apt_load_cache() when already loaded
+
+    src/cmdline/cmdline_util.cc
+    src/ui_download_manager.cc
+
+    The cache just (re)loaded in last steps of download_manager (either
+    download_install_manager or download_update_manager).
+
+    Loading again is mostly harmless because the function when called detects
+    that it has already been loaded and quits, but duplicated code is not good
+    in general, and the call was modified several times lately, so it is always
+    a maintenance burden (not knowing / noticing that it was actually duplicated
+    code, otherwise would have removed it then).
+
+  * [cmdline] Rejecting a solution advances to the next one only
+
+    Previously it was advancing to the last generated solution, which is
+    equivalent at the moment (generates one by one), but not if/when several
+    solutions are generated at once (which might happen in future changes).
+
+  * [General] Update FSF's postal address everywhere, drop duplicated
+    boilerplates.
+
+- Documentation:
+
+  * manpage:
+
+    * Minor clarification about "install" example (Closes: #268698)
+
+- Translation updates:
+
+  * da.po: Danish translation by Morten Bo Johansen (Closes: #817065)
+
+  * ja.po: Japanese translation by Takuma Yamada (Closes: #819603)
+
+  * Actually enable Dutch (nl) documentation translation by Frans Spiesschaert
+
+
 [2016-03-05]
 Version 0.7.8
 

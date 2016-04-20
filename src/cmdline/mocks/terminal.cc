@@ -14,15 +14,14 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; see the file COPYING.  If not, write to
-// the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-// Boston, MA 02111-1307, USA.
+// the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+// Boston, MA 02110-1301, USA.
 
 
 // Local includes:
 #include "terminal.h"
 
 using testing::AnyNumber;
-using testing::Invoke;
 using testing::NiceMock;
 using testing::Return;
 using testing::StrictMock;

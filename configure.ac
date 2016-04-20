@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([aptitude], [0.7.8], [aptitude-devel@lists.alioth.debian.org])
+AC_INIT([aptitude], [0.8], [aptitude-devel@lists.alioth.debian.org])
 AC_CONFIG_SRCDIR([src/main.cc])
 AM_INIT_AUTOMAKE([foreign dist-xz no-dist-gzip -Wno-portability])
 AM_CONFIG_HEADER(config.h)
@@ -27,6 +27,25 @@ AM_CONDITIONAL(HAVE_FOP, [test "x$FOP" != "x"])
 dnl C++ has const and inline!!!
 ac_cv_c_const=yes
 ac_cv_c_inline=yes
+
+
+dnl Disable check for Boost library headers individually (it's expensive, 1~2
+dnl minutes at ./configure time, and not always needed when developing)
+DISABLE_BOOST_LIB_CHECKS=no
+AC_ARG_ENABLE(boost-lib-checks,
+	AS_HELP_STRING(--disable-boost-lib-checks, [Disable Boost library checks in "configure" (for development only)]),
+	[if test "x$enable_aptitude" = xyes
+	then
+	        if test x$enableval=xno
+		then
+		          DISABLE_BOOST_LIB_CHECKS=no
+		else
+			  DISABLE_BOOST_LIB_CHECKS=yes
+		fi
+	else
+		DISABLE_BOOST_LIB_CHECKS=yes
+	fi])
+
 
 dnl Check for libraries only if compiling the program.
 AS_IF([test "x$enable_aptitude" != xno],
@@ -77,10 +96,18 @@ PKG_CHECK_MODULES(SIGC, sigc++-2.0)
 
 PKG_CHECK_MODULES(CWIDGET, cwidget)
 
+
+AC_MSG_CHECKING([for Boost library headers individually (optional, default: yes)])
+AS_IF([test x$DISABLE_BOOST_LIB_CHECKS != xyes],
+	AC_MSG_RESULT([yes]),
+	AC_MSG_RESULT([no])
+)
+
+AS_IF([test x$DISABLE_BOOST_LIB_CHECKS != xyes],
 dnl Check for Boost headers.  Place each one on a line by itself and
 dnl write "dnl" at the end: the "dnl" deletes the newline, and without
 dnl it you'll get an error when you run the configure script.
-AC_CHECK_HEADERS( dnl
+[AC_CHECK_HEADERS( dnl
 boost/algorithm/string.hpp dnl
 boost/algorithm/string/join.hpp dnl
 boost/compressed_pair.hpp dnl
@@ -148,6 +175,7 @@ boost/utility.hpp dnl
 boost/variant.hpp dnl
                   , []
                   , [AC_MSG_FAILURE([Boost install not found, too old, or incomplete; install libboost-dev.])])
+])
 
 AX_BOOST_BASE()
 AX_BOOST_IOSTREAMS
@@ -709,6 +737,8 @@ AC_CONFIG_FILES([
 	doc/it/images/Makefile
 	doc/ja/Makefile
 	doc/ja/images/Makefile
+	doc/nl/Makefile
+	doc/nl/images/Makefile
 	doc/pl/Makefile
 	doc/ru/Makefile
 	doc/ru/images/Makefile
@@ -717,6 +747,7 @@ AC_CONFIG_FILES([
 	doc/po4a/add_de/Makefile
 	doc/po4a/add_es/Makefile
 	doc/po4a/add_fr/Makefile
+	doc/po4a/add_nl/Makefile
 	doc/po4a/add_pl/Makefile
 	doc/po4a/add_ru/Makefile
 	m4/Makefile

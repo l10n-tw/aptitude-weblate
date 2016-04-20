@@ -15,8 +15,8 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; see the file COPYING.  If not, write to
-//  the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//  Boston, MA 02111-1307, USA.
+//  the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//  Boston, MA 02110-1301, USA.
 
 #ifndef APTCACHE_H
 #define APTCACHE_H
@@ -246,17 +246,6 @@ private:
 
   pkgRecords *records;
 
-  /** Call whenever the cache state is modified; discards the
-   *  state of the active resolver.
-   *
-   *  \param undo the undo group with which this discarding should be
-   *  associated.
-   */
-  void discard_resolver(undo_group *undo);
-
-  /** Call whenever a new resolver should be instantiated. */
-  void create_resolver();
-
   undoable *state_restorer(PkgIterator pkg, StateCache &state, aptitude_state &ext_state);
   // Returns an 'undoable' object which will restore the given package to the
   // given state via {Mark,Set}* routines
@@ -316,7 +305,9 @@ public:
   aptitudeDepCache(pkgCache *cache, Policy *Plcy=0);
 
   bool Init(OpProgress *Prog, bool WithLock,
-	    bool do_initselections, const char * status_fname=NULL);
+	    bool do_initselections,
+	    const char * status_fname,
+	    bool reset_reinstall);
 
   bool is_locked() const { return (lock != -1); }
 
@@ -329,7 +320,8 @@ public:
   bool build_selection_list(OpProgress* Prog,
 			    bool WithLock,
 			    bool do_initselections,
-			    const char* status_fname = nullptr);
+			    const char* status_fname,
+			    bool reset_reinstall);
 
   void forget_new(undoable **undoer);
   // Clears all information about which packages are 'new'.  Overwrites undoer
@@ -581,8 +573,9 @@ public:
 
   bool Open(OpProgress* Progress,
 	    bool do_initselections,
-	    bool WithLock = true,
-	    const char* status_fname = NULL);
+	    bool WithLock,
+	    const char* status_fname,
+	    bool reset_reinstall);
   bool is_locked() {return have_system_lock;} // EWW (also not quite right)
 
   void ReleaseLock();

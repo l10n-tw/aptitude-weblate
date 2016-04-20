@@ -15,8 +15,8 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; see the file COPYING.  If not, write to
-//  the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//  Boston, MA 02111-1307, USA.
+//  the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//  Boston, MA 02110-1301, USA.
 //
 //  Implementation of stuff that needs implementing.
 
@@ -436,7 +436,7 @@ public:
 
 const char * const pkg_grouppolicy_status::state_titles[numgroups] =
 {
-  N_("Security Updates\n Security updates for these packages are available from security.debian.org."),
+  N_("Security Updates\n Security updates for these packages are available from security.debian.org (or mirrors)."),
   N_("Upgradable Packages\n A newer version of these packages is available."),
   N_("New Packages\n These packages have been added to Debian since the last time you cleared the list of \"new\" packages (choose \"Forget new packages\" from the Actions menu to empty this list)."),
   N_("Installed Packages\n These packages are currently installed on your computer."),
@@ -449,21 +449,6 @@ pkg_grouppolicy *pkg_grouppolicy_status_factory::instantiate(pkg_signal *_sig,
 							     desc_signal *_desc_sig)
 {
   return new pkg_grouppolicy_status(chain, _sig, _desc_sig);
-}
-
-// Stolen from apt-watch:
-
-/** Tests whether a particular version is security-related.
- *
- *  \return \b true iff the given package version comes from security.d.o
- */
-static bool version_is_security(const pkgCache::VerIterator &ver)
-{
-  for(pkgCache::VerFileIterator F=ver.FileList(); !F.end(); ++F)
-    if(string(F.File().Site())=="security.debian.org")
-      return true;
-
-  return false;
 }
 
 void pkg_grouppolicy_status::add_package(const pkgCache::PkgIterator &pkg,
@@ -481,7 +466,7 @@ void pkg_grouppolicy_status::add_package(const pkgCache::PkgIterator &pkg,
       else if(state.Status != 2 && state.Upgradable())
 	{
 	  pkgCache::VerIterator candver=state.CandidateVerIter(*apt_cache_file);
-	  if(version_is_security(candver))
+	  if (is_security(candver))
 	    section=security_upgradable;
 	  else
 	    section=upgradable;

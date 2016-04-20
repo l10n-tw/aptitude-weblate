@@ -1,6 +1,7 @@
 // resolver_manager.cc
 //
 //   Copyright (C) 2005, 2007-2010 Daniel Burrows
+//   Copyright (C) 2014-2016 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -14,8 +15,8 @@
 //
 //   You should have received a copy of the GNU General Public License
 //   along with this program; see the file COPYING.  If not, write to
-//   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//   Boston, MA 02111-1307, USA.
+//   the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//   Boston, MA 02110-1301, USA.
 
 #include "resolver_manager.h"
 
@@ -183,7 +184,7 @@ resolver_manager::resolver_manager(aptitudeCacheFile *_cache_file,
    mutex(cwidget::threads::mutex::attr(PTHREAD_MUTEX_RECURSIVE))
 {
   (*cache_file)->pre_package_state_changed.connect(sigc::mem_fun(this, &resolver_manager::discard_resolver));
-  (*cache_file)->package_state_changed.connect(sigc::mem_fun(this, &resolver_manager::maybe_create_resolver));
+  (*cache_file)->package_state_changed.connect(sigc::mem_fun0(this, &resolver_manager::maybe_create_resolver));
 
   aptcfg->connect("APT::Install-Recommends",
 		  sigc::mem_fun(this,
@@ -211,10 +212,10 @@ resolver_manager::~resolver_manager()
   delete undos;
 }
 
-void resolver_manager::reset_resolver()
+void resolver_manager::reset_resolver(bool consider_policybroken)
 {
   discard_resolver();
-  maybe_create_resolver();
+  maybe_create_resolver(consider_policybroken);
 }
 
 resolver_manager::background_continuation::~background_continuation()
@@ -789,11 +790,12 @@ void resolver_manager::unsuspend_background_thread()
   background_control_cond.wake_all();
 }
 
-void resolver_manager::maybe_create_resolver()
+void resolver_manager::maybe_create_resolver(bool consider_policybroken)
 {
   cwidget::threads::mutex::lock l(mutex);
 
-  if(resolver == NULL && ((*cache_file)->BrokenCount() > 0 || !initial_installations.empty()))
+  if (resolver == nullptr &&
+      ((*cache_file)->BrokenCount() > 0 || (consider_policybroken && (*cache_file)->PolicyBrokenCount() > 0) || !initial_installations.empty()))
     {
       {
 	cwidget::threads::mutex::lock l(background_control_mutex);
@@ -802,11 +804,29 @@ void resolver_manager::maybe_create_resolver()
       }
       create_resolver();
 
+      // apply approved broken [soft] deps from previous invocations (e.g. from
+      // an "apply solution").  the resolver gets discarded and created again,
+      // so these are reinstated to get out of the loop
+      for (const auto& dep : previously_approved_broken_deps)
+	{
+	  if (! resolver->is_approved_broken(dep))
+	    approve_broken_dep(dep);
+	}
+
       // If there are initial installations, we don't know whether
       // there are broken dependencies until we actually create the
       // resolver.  If there aren't broken dependencies, don't create
       // a resolver object.
-      if(resolver->get_initial_broken().empty())
+      bool all_broken_are_approved = true;
+      for (const auto& b : resolver->get_initial_broken())
+	{
+	  if ( ! resolver->is_approved_broken(b))
+	    {
+	      all_broken_are_approved = false;
+	      break;
+	    }
+	}
+      if (resolver->get_initial_broken().empty() || all_broken_are_approved)
 	discard_resolver();
     }
 
@@ -935,7 +955,7 @@ void resolver_manager::create_resolver()
     ignored_recommends_cost = cost_settings.add_to_cost(ignored_recommends_component, 1);
   }
 
-  resolver=new aptitude_resolver(aptcfg->FindI(PACKAGE "::ProblemResolver::StepScore", 70),
+  resolver=new aptitude_resolver(aptcfg->FindI(PACKAGE "::ProblemResolver::StepScore", -10),
 				 aptcfg->FindI(PACKAGE "::ProblemResolver::BrokenScore", -100),
 				 aptcfg->FindI(PACKAGE "::ProblemResolver::UnfixedSoftScore", -200),
 				 aptcfg->FindI(PACKAGE "::ProblemResolver::Infinity", 1000000),
@@ -980,12 +1000,14 @@ void resolver_manager::create_resolver()
 	}
     }
 
-  resolver->add_action_scores(aptcfg->FindI(PACKAGE "::ProblemResolver::PreserveManualScore", 60),
+  resolver->add_action_scores(aptcfg->FindI(PACKAGE "::ProblemResolver::PreserveManualScore", 20),
 			      aptcfg->FindI(PACKAGE "::ProblemResolver::PreserveAutoScore", 0),
 			      aptcfg->FindI(PACKAGE "::ProblemResolver::RemoveScore", -300),
+			      aptcfg->FindI(PACKAGE "::ProblemResolver::RemoveObsoleteScore", 310),
+			      aptcfg->FindI(PACKAGE "::ProblemResolver::CancelRemovalScore", -300),
 			      aptcfg->FindI(PACKAGE "::ProblemResolver::KeepScore", 0),
 			      aptcfg->FindI(PACKAGE "::ProblemResolver::InstallScore", -20),
-			      aptcfg->FindI(PACKAGE "::ProblemResolver::UpgradeScore", 0),
+			      aptcfg->FindI(PACKAGE "::ProblemResolver::UpgradeScore", 30),
 			      aptcfg->FindI(PACKAGE "::ProblemResolver::NonDefaultScore", -40),
 			      aptcfg->FindI(PACKAGE "::ProblemResolver::EssentialRemoveScore", -100000),
 			      aptcfg->FindI(PACKAGE "::ProblemResolver::FullReplacementScore", 500),
@@ -996,11 +1018,11 @@ void resolver_manager::create_resolver()
 			      manual_flags,
 			      hints);
 
-  resolver->add_priority_scores(aptcfg->FindI(PACKAGE "::ProblemResolver::ImportantScore", 5),
-				aptcfg->FindI(PACKAGE "::ProblemResolver::RequiredScore", 4),
-				aptcfg->FindI(PACKAGE "::ProblemResolver::StandardScore", 3),
+  resolver->add_priority_scores(aptcfg->FindI(PACKAGE "::ProblemResolver::RequiredScore", 8),
+				aptcfg->FindI(PACKAGE "::ProblemResolver::ImportantScore", 4),
+				aptcfg->FindI(PACKAGE "::ProblemResolver::StandardScore", 2),
 				aptcfg->FindI(PACKAGE "::ProblemResolver::OptionalScore", 1),
-				aptcfg->FindI(PACKAGE "::ProblemResolver::ExtraScore", -1));
+				aptcfg->FindI(PACKAGE "::ProblemResolver::ExtraScore", 0));
 
   {
     cwidget::threads::mutex::lock l2(background_control_mutex);
@@ -1571,6 +1593,32 @@ bool resolver_manager::is_approved_broken(const aptitude_resolver_dep &dep)
   eassert(resolver != NULL);
 
   return resolver->is_approved_broken(dep);
+}
+
+void resolver_manager::approve_all_broken_deps()
+{
+  cwidget::threads::mutex::lock l(mutex);
+  background_suspender bs(*this);
+
+  std::unique_ptr<undo_group> undo(new undo_group);
+
+  const generic_solution<aptitude_universe>* sol = solutions[selected_solution]->get_solution();
+  for (generic_choice_set<aptitude_universe>::const_iterator i = sol->get_choices().begin(); i != sol->get_choices().end(); ++i)
+    {
+      if (i->get_type() == generic_choice<aptitude_universe>::break_soft_dep)
+	{
+	  const aptitude_resolver_dep& d(i->get_dep());
+	  resman->approve_broken_dep(d);
+	  previously_approved_broken_deps.push_back(d);
+	}
+    }
+
+  if(!undo->empty())
+    undos->add_item(undo.release());
+
+  l.release();
+  bs.unsuspend();
+  state_changed();
 }
 
 bool resolver_manager::has_undo_items()

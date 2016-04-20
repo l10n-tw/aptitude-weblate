@@ -15,8 +15,8 @@
 //
 //   You should have received a copy of the GNU General Public License
 //   along with this program; see the file COPYING.  If not, write to
-//   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//   Boston, MA 02111-1307, USA.
+//   the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//   Boston, MA 02110-1301, USA.
 
 #include "ui_download_manager.h"
 
@@ -73,9 +73,7 @@ void ui_download_manager::done(download_thread *t, pkgAcquire::RunResult res)
 
 void ui_download_manager::finish_done(download_manager::result run_res)
 {
-  bool operation_needs_lock = true;
-  apt_load_cache(done_progress.unsafe_get_ref(), true, operation_needs_lock, nullptr);
-
+  // created in done(), has to be destructed
   done_progress_destructor();
   done_progress = NULL;
 
