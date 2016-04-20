@@ -15,8 +15,8 @@
 //
 //   You should have received a copy of the GNU General Public License
 //   along with this program; see the file COPYING.  If not, write to
-//   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//   Boston, MA 02111-1307, USA.
+//   the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//   Boston, MA 02110-1301, USA.
 
 #include "download_update_manager.h"
 
@@ -188,11 +188,9 @@ void download_update_manager::finish(pkgAcquire::RunResult res,
   bool need_autoclean =
     aptcfg->FindB(PACKAGE "::AutoClean-After-Update", false);
 
-  if (need_forget_new || need_autoclean)
-    {
-      bool operation_needs_lock = true;
-      apt_load_cache(progress, true, operation_needs_lock, nullptr);
-    }
+  bool reset_reinstall = false;
+  bool operation_needs_lock = true;
+  apt_load_cache(progress, true, operation_needs_lock, nullptr, reset_reinstall);
 
   if (apt_cache_file)
     {

@@ -1,6 +1,7 @@
 // cmdline_resolver.cc
 //
 //   Copyright (C) 2005-2010 Daniel Burrows
+//   Copyright (C) 2014-2016 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -14,8 +15,8 @@
 //
 //   You should have received a copy of the GNU General Public License
 //   along with this program; see the file COPYING.  If not, write to
-//   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//   Boston, MA 02111-1307, USA.
+//   the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//   Boston, MA 02110-1301, USA.
 
 
 // Local includes:
@@ -804,7 +805,7 @@ aptitude_solution calculate_current_solution(bool suppress_message,
   const int step_limit = aptcfg->FindI(PACKAGE "::ProblemResolver::StepLimit", 5000);
   if(step_limit <= 0)
     {
-      const std::string msg = ssprintf(_("Would resolve dependencies, but dependency resolution is disabled.\n   (%s::ProblemResolver::StepLimit = 0)\n"), PACKAGE);
+      const std::string msg = ssprintf(_("Would resolve dependencies, but dependency resolution is disabled.\n   (%s::ProblemResolver::StepLimit <= 0)\n"), PACKAGE);
 
       // It's important that the code path leading to here doesn't
       // access resman: the resolver won't exist in this case.
@@ -817,8 +818,6 @@ aptitude_solution calculate_current_solution(bool suppress_message,
 
       throw CmdlineSearchAbortedException(msg);
     }
-
-
 
   if(resman->get_selected_solution() < resman->generated_solution_count())
     return resman->get_solution(resman->get_selected_solution(), 0);
@@ -923,13 +922,8 @@ cmdline_resolve_deps(pkgset &to_install,
 		    modified_pkgs=true;
 		    break;
 		  case 'N':
-		    {
-		      unsigned int curr_count = resman->generated_solution_count();
-
-		      if(curr_count>0)
-			while(resman->get_selected_solution() < curr_count)
-			  resman->select_next_solution();
-		    }
+		    // same as "next" ('.')
+		    resman->select_next_solution();
 		    break;
 		  case 'Q':
 		    cout << _("Abandoning all efforts to resolve these dependencies.") << endl;
@@ -951,7 +945,13 @@ cmdline_resolve_deps(pkgset &to_install,
 		      break;
 		    }
 		  case 'E':
-		    ui_solution_screen();
+		    {
+		      // prevent curses if dumb term -- see #317928, #817276
+		      if (aptitude::util::is_dumb_terminal())
+			aptitude::util::print_ncurses_dumb_terminal();
+		      else
+			ui_solution_screen();
+		    }
 		    break;
 		  case 'R':
 		    reject_or_mandate_version(string(response, 1), ids, true);

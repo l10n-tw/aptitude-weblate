@@ -1,6 +1,7 @@
 // parse.cc
 //
 //  Copyright 2000-2005, 2007-2009, 2011 Daniel Burrows
+//  Copyright 2014-2016 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -14,8 +15,8 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; see the file COPYING.  If not, write to
-//  the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//  Boston, MA 02111-1307, USA.
+//  the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//  Boston, MA 02110-1301, USA.
 //
 //  Grammer for the condition language.  (TODO: this is what the
 //  grammar *will* be, not what it is)
@@ -1348,6 +1349,8 @@ ref_ptr<pattern> parse_atom(string::const_iterator &start,
 		      }
 		    case 'd':
 		      return pattern::make_description(substr);
+		    case 'e':
+		      return pattern::make_source_package(substr);
 		    case 'G':
 		      return pattern::make_tag(substr);
 		    case 'm':

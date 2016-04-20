@@ -15,8 +15,8 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; see the file COPYING.  If not, write to
-// the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-// Boston, MA 02111-1307, USA.
+// the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+// Boston, MA 02110-1301, USA.
 //
 //   Handles the preview and prompt that's displayed from the command-line.
 
@@ -1215,7 +1215,14 @@ bool cmdline_do_prompt(bool as_upgrade,
 		  }
 		  break;
 		case 'E':
-		  ui_preview();
+		  {
+		    // prevent curses if dumb term -- see #317928, #817276
+		    if (aptitude::util::is_dumb_terminal())
+		      aptitude::util::print_ncurses_dumb_terminal();
+		    else
+		      ui_preview();
+		  }
+		  break;
 		case '?':
 		  valid_response=false;
 		  prompt_help(cout, have_broken, term_metrics);

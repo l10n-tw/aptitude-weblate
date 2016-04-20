@@ -2,6 +2,7 @@
 
 
 // Copyright (C) 2010 Daniel Burrows
+// Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -15,8 +16,8 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; see the file COPYING.  If not, write to
-// the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-// Boston, MA 02111-1307, USA.
+// the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+// Boston, MA 02110-1301, USA.
 
 #include "logging.h"
 

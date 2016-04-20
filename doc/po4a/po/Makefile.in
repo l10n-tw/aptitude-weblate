@@ -280,7 +280,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-EXTRA_DIST = aptitude.pot de.po es.po fr.po it.po ja.po pl.po ru.po
+EXTRA_DIST = aptitude.pot de.po es.po fr.po it.po nl.po ja.po pl.po ru.po
 all: all-am
 
 .SUFFIXES:

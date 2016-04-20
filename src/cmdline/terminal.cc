@@ -16,14 +16,16 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; see the file COPYING.  If not, write to
-// the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-// Boston, MA 02111-1307, USA.
+// the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+// Boston, MA 02110-1301, USA.
 
 
 
 // Local includes:
 
 #include "terminal.h"
+
+#include "generic/util/util.h"
 
 #include <aptitude.h>
 
@@ -117,6 +119,16 @@ namespace aptitude
           return ws.ws_col;
         else
 	  {
+	    // special case for dumb terms when not piping/redirecting
+	    if (aptitude::util::is_dumb_terminal() && output_is_a_terminal())
+	      {
+		const char* env_COLUMNS = getenv("COLUMNS");
+		if ( ! strempty(env_COLUMNS))
+		  {
+		    return std::atoi(env_COLUMNS);
+		  }
+	      }
+
 	    // \todo Should we distinguish between "can't read a
 	    // terminal size" and "read a tiny terminal size"?
 

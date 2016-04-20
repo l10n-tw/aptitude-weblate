@@ -15,8 +15,8 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; see the file COPYING.  If not, write to
-//  the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//  Boston, MA 02111-1307, USA.
+//  the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//  Boston, MA 02110-1301, USA.
 //
 
 
@@ -107,11 +107,13 @@ bool get_apt_knows_about_rootdir();
  *                           sticky database.
  *  \param status_fname if not \b NULL, a filename to use in lieu
  *                      of /var/lib/aptitude/pkgstates.
+ *  \param reset_reinstall Reset packages set for reinstall (do this after successful installation only).
  */
 void apt_load_cache(OpProgress *progress_bar,
 		    bool do_initselections,
 		    bool operation_needs_lock,
-		    const char *status_fname);
+		    const char *status_fname,
+		    bool reset_reinstall);
 
 void apt_reload_cache(OpProgress *progress_bar,
 		      bool do_initselections,
@@ -307,16 +309,16 @@ pkgCache::DepIterator is_conflicted(const pkgCache::VerIterator &ver,
  *
  * @cache Dependency cache
  *
- * @param follow_recommends Whether to follow recommends
+ * @param keep_recommends_installed Whether to keep recommends
  *
- * @param follow_suggests Whether to follow suggests
+ * @param keep_suggests_installed Whether to keep suggests
  *
  * @return Whether the action is allowed or not.
  */
 bool can_remove_autoinstalled(const pkgCache::PkgIterator& pkg,
 			      aptitudeDepCache& cache,
-			      bool follow_recommends,
-			      bool follow_suggests);
+			      bool keep_recommends_installed,
+			      bool keep_suggests_installed);
 
 /** Check if package is virtual
  *
@@ -381,6 +383,17 @@ struct location_compare
       return (a.second->File < b.second->File);
   }
 };
+
+
+/** Whether a particular version is security-related
+ *
+ * Useful e.g. to classify in menus as "Security Upgrade"
+ *
+ * @return \b true iff the given package version comes from security.d.o or
+ * known places
+ */
+bool is_security(const pkgCache::VerIterator &ver);
+
 
 /** \return \b true if the given dependency is "interesting":
  *          specifically, if it's either critical or a Recommends

@@ -15,8 +15,8 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; see the file COPYING.  If not, write to
-//  the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//  Boston, MA 02111-1307, USA.
+//  the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//  Boston, MA 02110-1301, USA.
 
 #include "aptitude.h"
 
@@ -384,68 +384,21 @@ bool pkg_item::dispatch_key(const cw::config::key &k, cw::tree *owner)
       else
 	delete grp;
     }
-  else if(bindings->key_matches(k, "DpkgReconfigure"))
-    // Don't bother with my internal su-to-root stuff here, since I don't
-    // need to touch the package lists in the subprocess.
+  else if (bindings->key_matches(k, "CollapseTree"))
     {
-      // see #474876 -- aptitude: selections lost by package reconfiguration
-      bool pending_actions = false;
-      if ((*apt_cache_file)->is_dirty())
-	{
-	  progress_ref p = gen_progress_bar();
-	  bool saved_ok = (*apt_cache_file)->save_selection_list(p->get_progress().unsafe_get_ref());
-	  p->destroy();
-
-	  if (saved_ok)
-	    {
-	      pending_actions = false;
-	    }
-	  else
-	    {
-	      pending_actions = true;
-	      popup_widget(cw::dialogs::ok(cw::text_fragment(_("Pending actions could not be saved and would be lost, reconfiguring packages is not allowed at this point."))));
-	    }
-	}
-
-      // Try to do *something*.
-      const char *sucmd=NULL;
-
-      if(getuid()==0)
-	sucmd="dpkg-reconfigure '%s'";
-      else if(access("/usr/sbin/su-to-root", X_OK)==0)
-	sucmd="/usr/sbin/su-to-root -c \"/usr/sbin/dpkg-reconfigure '%s'\"";
-      else if(access("/bin/su", X_OK)==0)
-	sucmd="/bin/su -c \"/usr/sbin/dpkg-reconfigure '%s'\"";
-      else
-	popup_widget(cw::dialogs::ok(cw::text_fragment(_("You are not root and I cannot find any way to become root.  To reconfigure this package, install the menu package, the login package, or run aptitude as root."))));
-
-      if (sucmd && !pending_actions)
-	{
-	  cw::toplevel::suspend();
-
-	  apt_cache_file->ReleaseLock();
-
-	  printf(_("Reconfiguring %s\n"), package.FullName(true).c_str());
-
-	  char buf[512];
-	  if(sucmd)
-	    {
-              const string name(aptitude::apt::dpkg_package_name(package));
-              snprintf(buf, 512, sucmd, name.c_str());
-
-	      if(system(buf) != 0) { /* FIXME: ignore? */ }
-
-	      cout << _("Press Return to continue.") << endl;
-	      getchar();
-
-	      cw::toplevel::resume();
-	    }
-
-	  progress_ref p = gen_progress_bar();
-	  bool operation_needs_lock = true;
-	  apt_reload_cache(p->get_progress().unsafe_get_ref(), true, operation_needs_lock, nullptr);
-	  p->destroy();
-	}
+      // hack to convert a Left key stroke to moving to the parent (several
+      // requests for this, like #241945 and #415449; with suggestions that it
+      // could be done by moving to Parent --doing this at the moment-- or
+      // folding the Parent subtree directly).
+      //
+      // unfortunately this cannot be done in a cleaner way than injecting from
+      // this tree item to the owner, setting "Left" as a keybinding for
+      // "Parent" is interpreted in other elements as well, thus disrupting
+      // unrelated things, because it's not specific to tree items.
+      //
+      // NOTE: get("") needs to be passed as uppercase, see #818046
+      cw::config::keybinding keybindings_Parent = cw::config::global_bindings.get("PARENT");
+      return ((keybindings_Parent.size() > 0) && owner && owner->dispatch_key(keybindings_Parent[0]));
     }
   else
     return pkg_tree_node::dispatch_key(k, owner);

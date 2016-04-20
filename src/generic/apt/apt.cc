@@ -15,8 +15,8 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; see the file COPYING.  If not, write to
-//  the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//  Boston, MA 02111-1307, USA.
+//  the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//  Boston, MA 02110-1301, USA.
 //
 //  Handles basic apt bookkeeping.
 
@@ -59,6 +59,7 @@
 
 #include <exception>
 #include <fstream>
+#include <regex>
 #include <sstream>
 
 #include <signal.h>
@@ -383,7 +384,8 @@ void apt_close_cache()
 
 void apt_load_cache(OpProgress *progress_bar, bool do_initselections,
 		    bool operation_needs_lock,
-		    const char * status_fname)
+		    const char * status_fname,
+		    bool reset_reinstall)
 {
   logging::LoggerPtr logger(Loggers::getAptitudeAptGlobals());
 
@@ -413,7 +415,8 @@ void apt_load_cache(OpProgress *progress_bar, bool do_initselections,
 
   bool open_failed=!new_file->Open(progress_bar, do_initselections,
 				   operation_needs_lock && ((getuid() == 0) && !simulate),
-				   status_fname)
+				   status_fname,
+				   reset_reinstall)
     || _error->PendingError();
 
   if(open_failed && getuid() == 0)
@@ -426,7 +429,8 @@ void apt_load_cache(OpProgress *progress_bar, bool do_initselections,
       consume_errors();
 
       open_failed=!new_file->Open(progress_bar, do_initselections,
-				  false, status_fname);
+				  false, status_fname,
+				  reset_reinstall);
 
       if(open_failed)
 	LOG_ERROR(logger, "Unable to load the apt cache at all; giving up.");
@@ -617,7 +621,7 @@ void apt_reload_cache(OpProgress *progress_bar, bool do_initselections,
 		      const char * status_fname)
 {
   apt_close_cache();
-  apt_load_cache(progress_bar, do_initselections, operation_needs_lock, status_fname);
+  apt_load_cache(progress_bar, do_initselections, operation_needs_lock, status_fname, false);
 }
 
 void apt_shutdown()
@@ -1027,8 +1031,8 @@ pkgCache::DepIterator is_conflicted(const pkgCache::VerIterator &ver,
 
 bool can_remove_autoinstalled(const pkgCache::PkgIterator& pkg,
 			      aptitudeDepCache& cache,
-			      bool follow_recommends,
-			      bool follow_suggests)
+			      bool keep_recommends_installed,
+			      bool keep_suggests_installed)
 {
   // if not valid, consider not-OK -- cannot decide if it's safe
   if (pkg.end())
@@ -1059,8 +1063,8 @@ bool can_remove_autoinstalled(const pkgCache::PkgIterator& pkg,
       // consider only these type of dependencies
       if (! ((rev_dep->Type == pkgCache::Dep::Depends) ||
 	     (rev_dep->Type == pkgCache::Dep::PreDepends) ||
-	     (rev_dep->Type == pkgCache::Dep::Recommends && follow_recommends) ||
-	     (rev_dep->Type == pkgCache::Dep::Suggests   && follow_suggests)))
+	     (rev_dep->Type == pkgCache::Dep::Recommends && keep_recommends_installed) ||
+	     (rev_dep->Type == pkgCache::Dep::Suggests   && keep_suggests_installed)))
 	continue;
 
       // consider only to be/remain installed rdeps
@@ -1206,6 +1210,35 @@ static bool or_group_subsumes(const pkgCache::DepIterator &d1,
   return true;
 }
 
+
+/** Whether a particular version is security-related
+ *
+ * Useful e.g. to classify in menus as "Security Upgrade"
+ *
+ * @return \b true iff the given package version comes from security.d.o or
+ * known places
+ */
+bool is_security(const pkgCache::VerIterator &ver)
+{
+  static std::regex site_regex { "^security\\.(.+\\.)?debian.org$" };
+  std::smatch site_match;
+
+  for (pkgCache::VerFileIterator F = ver.FileList(); !F.end(); ++F)
+    {
+      pkgCache::PkgFileIterator fileit = F.File();
+      if (!fileit.end())
+	{
+	  string site  = fileit.Site()  ? fileit.Site()  : "";
+	  string label = fileit.Label() ? fileit.Label() : "";
+	  std::regex_search(site, site_match, site_regex);
+
+	  if (!site_match.empty() && label == "Debian-Security")
+	    return true;
+	}
+    }
+
+  return false;
+}
 
 // Interesting deps are:
 //
@@ -1616,6 +1649,11 @@ namespace aptitude
 
     static std::unique_ptr<pkgAcquire_fetch_info> internal_fetchinfo {};
 
+    void reset_pkgAcquire_fetch_info()
+    {
+      internal_fetchinfo.reset();
+    }
+
     void update_pkgAcquire_fetch_info()
     {
       if (!apt_cache_file || !apt_package_records)
@@ -1646,6 +1684,7 @@ namespace aptitude
 	{
 	  update_pkgAcquire_fetch_info();
 	  (*apt_cache_file)->package_state_changed.connect(sigc::ptr_fun(update_pkgAcquire_fetch_info));
+	  cache_closed.connect(sigc::ptr_fun(reset_pkgAcquire_fetch_info));
 	}
 
       if (internal_fetchinfo)

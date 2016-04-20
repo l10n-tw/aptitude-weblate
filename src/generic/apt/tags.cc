@@ -16,8 +16,8 @@
 //
 //   You should have received a copy of the GNU General Public License
 //   along with this program; see the file COPYING.  If not, write to
-//   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//   Boston, MA 02111-1307, USA.
+//   the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//   Boston, MA 02110-1301, USA.
 
 #include "tags.h"
 
@@ -252,7 +252,11 @@ static bool load_tags_from_debtags(OpProgress *progress)
     }
 
   if (progress)
-    progress->Done();
+    {
+      progress->OverallProgress(file_size, file_size, 1,
+				_("Building tag database"));
+      progress->Done();
+    }
 
   return true;
 }
@@ -295,7 +299,11 @@ static bool load_tags_from_verfiles(OpProgress *progress)
     }
 
   if (progress)
-    progress->Done();
+    {
+      progress->OverallProgress(progress_total, progress_total, 1,
+				_("Building tag database"));
+      progress->Done();
+    }
 
   return true;
 }

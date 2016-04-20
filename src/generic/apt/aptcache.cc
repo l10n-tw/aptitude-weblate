@@ -15,8 +15,8 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; see the file COPYING.  If not, write to
-//  the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//  Boston, MA 02111-1307, USA.
+//  the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//  Boston, MA 02110-1301, USA.
 
 #include "aptcache.h"
 
@@ -220,9 +220,9 @@ aptitudeDepCache::aptitudeDepCache(pkgCache *Cache, Policy *Plcy)
 #endif
 }
 
-bool aptitudeDepCache::Init(OpProgress *Prog, bool WithLock, bool do_initselections, const char *status_fname)
+bool aptitudeDepCache::Init(OpProgress *Prog, bool WithLock, bool do_initselections, const char *status_fname, bool reset_reinstall)
 {
-  return build_selection_list(Prog, WithLock, do_initselections, status_fname);
+  return build_selection_list(Prog, WithLock, do_initselections, status_fname, reset_reinstall);
 }
 
 aptitudeDepCache::~aptitudeDepCache()
@@ -242,7 +242,8 @@ void aptitudeDepCache::set_read_only(bool new_read_only)
 bool aptitudeDepCache::build_selection_list(OpProgress* Prog,
 					    bool WithLock,
 					    bool do_initselections,
-					    const char* status_fname)
+					    const char* status_fname,
+					    bool reset_reinstall)
 {
   action_group group(*this);
 
@@ -260,8 +261,6 @@ bool aptitudeDepCache::build_selection_list(OpProgress* Prog,
   // Garbage set up (they behave more the way they ought to then).
   MarkAndSweep();
 
-  string statedir=aptcfg->FindDir("Dir::Aptitude::state", STATEDIR);
-  // Should this not go under Dir:: ?  I'm not sure..
   delete package_states;
   package_states=new aptitude_state[Head().PackageCount];
   user_tags.clear();
@@ -293,13 +292,14 @@ bool aptitudeDepCache::build_selection_list(OpProgress* Prog,
   // manages to trigger a mark operation.
   duplicate_cache(&backup_state);
 
+  // Should this not go under Dir:: ?  I'm not sure..
+  string statedir = aptcfg->FindDir("Dir::Aptitude::state", STATEDIR);
+  string statefilepath = (status_fname) ? status_fname : (statedir + "/" + "pkgstates");
+
   FileFd state_file;
 
   // Read in the states that we saved
-  if(status_fname==NULL)
-    state_file.Open(statedir+"pkgstates", FileFd::ReadOnly);
-  else
-    state_file.Open(status_fname, FileFd::ReadOnly);
+  state_file.Open(statefilepath, FileFd::ReadOnly);
 
   // Have to make the file NOT read-only to set up the initial state.
   read_only = false;
@@ -361,6 +361,24 @@ bool aptitudeDepCache::build_selection_list(OpProgress* Prog,
 	      tmp=0;
 	      section.FindFlag("Upgrade", tmp, 1);
 	      pkg_state.upgrade=(tmp==1);
+
+	      tmp=0;
+	      section.FindFlag("Reinstall", tmp, 1);
+	      pkg_state.reinstall = (tmp==1);
+
+	      // if the last installation was successful reset_reinstall==true,
+	      // to unmark .reinstall property of the package, otherwise there
+	      // is no way to control that this is not repeated forever.
+	      //
+	      // doing the more expensive test "(reset_reinstall &&
+	      // pkg_state.reinstall)" rather than blindly marking as false,
+	      // because of "dirty" (so we only mark as dirty and pending to
+	      // save when we really changed the state.
+	      if (reset_reinstall && pkg_state.reinstall)
+		{
+		  pkg_state.reinstall = false;
+		  dirty = true;
+		}
 
 	      unsigned long auto_new_install = 0;
 	      section.FindFlag("Auto-New-Install", auto_new_install, 1);
@@ -444,12 +462,21 @@ bool aptitudeDepCache::build_selection_list(OpProgress* Prog,
 	      // "downgrade") again down in this function, and while for
 	      // "upgrades" it is not a problem, with "downgrades" it will not
 	      // show as upgradable in the current interactive session.
+	      //
+	      //
+	      // also unmark as upgrade as soon as already upgraded, even if no
+	      // candidate version required in pkgstates -- see #721426
 	      std::string installed_ver = pkg.CurVersion() ? pkg.CurVersion() : "";
-	      if (pkg_state.upgrade && installed_ver == candver)
+	      if (pkg_state.upgrade)
 		{
-		  pkg_state.upgrade = false;
-		  pkg_state.candver = "";
-		  dirty = true;
+		  bool version_as_in_pkgstates = (!pkg_state.candver.empty() && (installed_ver == pkg_state.candver));
+		  bool version_as_candidate = (!GetCandidateVersion(pkg).end() && !pkg.CurrentVer().end() && (GetCandidateVersion(pkg) == pkg.CurrentVer()));
+		  if (version_as_in_pkgstates || (pkg_state.candver.empty() && version_as_candidate))
+		    {
+		      pkg_state.upgrade = false;
+		      pkg_state.candver = "";
+		      dirty = true;
+		    }
 		}
 	    }
 
@@ -464,6 +491,14 @@ bool aptitudeDepCache::build_selection_list(OpProgress* Prog,
 		  Prog->OverallProgress(amt, file_size, 1, _("Reading extended state information"));
 		}
 	    }
+	}
+
+      // if pkgTagFile.Step() throws errors, file likely corrupt -- see #405506
+      if (_error->PendingError())
+	{
+	  _error->Error(_("Problem parsing '%s', is it corrupt or malformed? You can try to recover from '%s.old'."),
+			statefilepath.c_str(), statefilepath.c_str());
+	  return false;
 	}
 
       if (Prog)
@@ -588,7 +623,10 @@ bool aptitudeDepCache::build_selection_list(OpProgress* Prog,
 
   read_only = (lock == -1);
 
-  return true;
+  if (_error->PendingError())
+    return false;
+  else
+    return true;
 }
 
 void aptitudeDepCache::mark_all_upgradable(bool with_autoinst,
@@ -763,6 +801,7 @@ bool aptitudeDepCache::save_selection_list(OpProgress* Prog,
       string line;
       string forbidstr;
       string upgradestr;
+      string reinstall_str;
       string autostr;
       string tailstr;
       string user_tags;
@@ -781,6 +820,8 @@ bool aptitudeDepCache::save_selection_list(OpProgress* Prog,
 	    forbidstr = (!estate.forbidver.empty()) ? ("ForbidVer: " + estate.forbidver + "\n") : "";
 
 	    upgradestr = ((!i.CurrentVer().end()) && state.Install()) ? "Upgrade: yes\n" : "";
+
+	    reinstall_str = (estate.reinstall) ? ("Reinstall: yes\n") : "";
 
 	    // packages that are auto and not yet installed are marked in this
 	    // way in aptitude's DB, to set the flag accordingly when installing
@@ -831,7 +872,7 @@ bool aptitudeDepCache::save_selection_list(OpProgress* Prog,
 
 	    // write section for this package
 	    using cw::util::ssprintf;
-	    line = ssprintf("Package: %s\nArchitecture: %s\nUnseen: %s\nState: %i\nDselect-State: %i\nRemove-Reason: %i\n%s%s%s%s%s\n",
+	    line = ssprintf("Package: %s\nArchitecture: %s\nUnseen: %s\nState: %i\nDselect-State: %i\nRemove-Reason: %i\n%s%s%s%s%s%s\n",
 				      i.Name(),
                                       i.Arch(),
 				      estate.new_package?"yes":"no",
@@ -839,6 +880,7 @@ bool aptitudeDepCache::save_selection_list(OpProgress* Prog,
 				      i->SelectedState,
 				      estate.remove_reason,
 				      upgradestr.c_str(),
+				      reinstall_str.c_str(),
 				      autostr.c_str(),
 				      forbidstr.c_str(),
 				      user_tags.c_str(),
@@ -1292,8 +1334,13 @@ void aptitudeDepCache::internal_mark_delete(const PkgIterator &Pkg,
   // not to purge unused lightly, can cause data loss -- see comments in #661188
   Purge = aptcfg->FindB(PACKAGE "::Purge-Unused", false);
 
-  bool follow_recommends = aptcfg->FindB("APT::Install-Recommends", true) || aptcfg->FindB(PACKAGE "::Keep-Recommends", false);
-  bool follow_suggests   = aptcfg->FindB(PACKAGE "::Keep-Suggests", false) || aptcfg->FindB(PACKAGE "::Suggests-Important", false);
+  bool keep_recommends_installed =
+    aptcfg->FindB("APT::Install-Recommends", true)
+    || aptcfg->FindB("APT::AutoRemove::RecommendsImportant", true)
+    || aptcfg->FindB(PACKAGE "::Keep-Recommends", false);
+  bool keep_suggests_installed   =
+    aptcfg->FindB("APT::AutoRemove::SuggestsImportant", true)
+    || aptcfg->FindB(PACKAGE "::Keep-Suggests", false);
 
   for (pkgCache::DepIterator dep = Pkg.CurrentVer().DependsList(); !dep.end(); ++dep)
     {
@@ -1307,8 +1354,8 @@ void aptitudeDepCache::internal_mark_delete(const PkgIterator &Pkg,
       // consider only these type of dependencies
       if (! ((dep->Type == pkgCache::Dep::Depends) ||
 	     (dep->Type == pkgCache::Dep::PreDepends) ||
-	     (dep->Type == pkgCache::Dep::Recommends && follow_recommends) ||
-	     (dep->Type == pkgCache::Dep::Suggests   && follow_suggests)))
+	     (dep->Type == pkgCache::Dep::Recommends && keep_recommends_installed) ||
+	     (dep->Type == pkgCache::Dep::Suggests   && keep_suggests_installed)))
 	{
 	  continue;
 	}
@@ -1324,13 +1371,13 @@ void aptitudeDepCache::internal_mark_delete(const PkgIterator &Pkg,
 	  for (pkgCache::PrvIterator dep_prv = dep_pkg.ProvidesList(); !dep_prv.end(); ++dep_prv)
 	    {
 	      // virtual package itself
-	      if (! can_remove_autoinstalled(dep_pkg, (*this), follow_recommends, follow_suggests)) {
+	      if (! can_remove_autoinstalled(dep_pkg, (*this), keep_recommends_installed, keep_suggests_installed)) {
 		continue;
 	      }
 
 	      // real package
 	      if (! is_auto_installed((*this)[dep_prv.OwnerPkg()]) ||
-		  ! can_remove_autoinstalled(dep_prv.OwnerPkg(), (*this), follow_recommends, follow_suggests)) {
+		  ! can_remove_autoinstalled(dep_prv.OwnerPkg(), (*this), keep_recommends_installed, keep_suggests_installed)) {
 		continue;
 	      }
 
@@ -1362,7 +1409,7 @@ void aptitudeDepCache::internal_mark_delete(const PkgIterator &Pkg,
 
       if (is_installed(dep_pkg) && is_auto && is_not_required)
 	{
-	  if (! can_remove_autoinstalled(dep_pkg, (*this), follow_recommends, follow_suggests)) {
+	  if (! can_remove_autoinstalled(dep_pkg, (*this), keep_recommends_installed, keep_suggests_installed)) {
 	    continue;
 	  }
 
@@ -1409,6 +1456,7 @@ void aptitudeDepCache::internal_mark_keep(const PkgIterator &Pkg, bool Automatic
   pkgDepCache::MarkKeep(Pkg, false, !Automatic);
   pkgDepCache::SetReInstall(Pkg, false);
   get_ext_state(Pkg).reinstall=false;
+  get_ext_state(Pkg).forbidver="";
 
   // explicitly mark auto-installed, sometimes apt does not apply it properly in
   // some cases -- see #508428
@@ -2442,7 +2490,8 @@ aptitudeCacheFile::~aptitudeCacheFile()
 bool aptitudeCacheFile::Open(OpProgress* Progress,
 			     bool do_initselections,
 			     bool WithLock,
-			     const char* status_fname)
+			     const char* status_fname,
+			     bool reset_reinstall)
 {
   if(WithLock)
     {
@@ -2480,16 +2529,24 @@ bool aptitudeCacheFile::Open(OpProgress* Progress,
   if(ReadPinFile(*Policy) == false || ReadPinDir(*Policy) == false)
     return false;
 
-  DCache=new aptitudeDepCache(Cache, Policy);
-  if(_error->PendingError())
-    return false;
+  {
+    DCache=new aptitudeDepCache(Cache, Policy);
+    if (_error->PendingError())
+      {
+	_error->Error(_("Could not create dependency cache"));
+	return false;
+      }
 
-  DCache->Init(Progress, WithLock, do_initselections, status_fname);
-  if (Progress)
-    Progress->Done();
+    bool init_result = DCache->Init(Progress, WithLock, do_initselections, status_fname, reset_reinstall);
+    if (Progress)
+      Progress->Done();
 
-  if(_error->PendingError())
-    return false;
+    if (!init_result || _error->PendingError())
+      {
+	_error->Error(_("Could not initialize dependency cache"));
+	return false;
+      }
+  }
 
   return true;
 }

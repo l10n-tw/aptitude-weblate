@@ -7,7 +7,7 @@
   <!ENTITY dselect '<command>dselect</command>'>
   <!ENTITY apt-get '<command>apt-get</command>'>
   <!ENTITY root '<systemitem class="username">root</systemitem>'>
-  <!ENTITY VERSION '0.7.8'>
+  <!ENTITY VERSION '0.8'>
 
   <!-- Shortcuts for menu commands: -->
 
@@ -153,14 +153,14 @@
   </author>
   <author>
     <personname><firstname>Manuel A.</firstname><surname>Fernandez Montecelo</surname></personname><email>mafm@debian.org</email>
-    <contrib>Added documentation about new features, corrections and formatting.</contrib>
+    <contrib>Main maintainer after Daniel Burrows, documentation about new features, corrections and formatting.</contrib>
   </author>
 </authorgroup>
 
 <copyright>
   <year>2004-2011</year>
   <holder>Daniel Burrows</holder>
-  <year>2012-2015</year>
+  <year>2012-2016</year>
   <holder>Manuel A. Fernandez Montecelo</holder>
 </copyright>
 
@@ -182,8 +182,8 @@
   <para>
     You should have received a copy of the GNU General Public License
     along with this manual; if not, write to the Free Software
-    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
-    02111-1307 USA
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+    02110-1301 USA
   </para>
 </legalnotice>
 
@@ -4869,9 +4869,13 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
                 </row>
 
                 <row>
-                  <entry>20,000</entry>
+                  <entry>10,000</entry>
                   <entry>
-                    The solution that cancels all the user's actions.
+                    The solution that cancels all the user's actions.  It used
+                    to be higher than <literal><link
+                    linkend='configProblemResolver-Remove-Level'>Aptitude::ProblemResolver::Remove-Level</link></literal>,
+                    but removing packages was ranked higher than keeping the
+                    same packages, even if the package was to be upgraded.
                   </entry>
                   <entry><literal><link linkend='configProblemResolver-Keep-All-Level'>Aptitude::ProblemResolver::Keep-All-Level</link></literal></entry>
                 </row>
@@ -6014,7 +6018,7 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 
 	      <row>
 		<entry><literal>&Ssource-package;(<replaceable>name</replaceable>)</literal></entry>
-		<entry/>
+		<entry><literal>~e<replaceable>name</replaceable></literal></entry>
 		<entry>
 		  Select packages whose source package name matches
 		  the regular expression
@@ -6880,7 +6884,7 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 
 	<varlistentry id='searchSourcePackage'>
 	  <term>
-	    <literal>?source-package(<replaceable>name</replaceable>)</literal>
+	    <literal>?source-package(<replaceable>name</replaceable>)</literal>, <literal>~e<replaceable>name</replaceable></literal>
 	  </term>
 
 	  <listitem>
@@ -7365,7 +7369,7 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 	    </seglistitem>
 
 	    <seglistitem>
-	      <seg><literal>%e</literal></seg>
+	      <seg><literal>%E</literal></seg>
 	      <seg>Architecture</seg>
 	      <seg>10</seg>
 	      <seg>No</seg>
@@ -7376,7 +7380,7 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 	    </seglistitem>
 
 	    <seglistitem>
-	      <seg><literal>%E</literal></seg>
+	      <seg><literal>%e</literal></seg>
 	      <seg>Source</seg>
 	      <seg>30</seg>
 	      <seg>No</seg>
@@ -8407,7 +8411,7 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 
 	      <row>
 		<entry><literal>CollapseTree</literal></entry>
-		<entry>No binding</entry>
+		<entry>left</entry>
 		<entry>
 		  Collapses the selected tree in a hierarchical list.
 		</entry>
@@ -8553,15 +8557,6 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 	      </row>
 
 	      <row>
-		<entry><literal>DpkgReconfigure</literal></entry>
-		<entry><literal>R</literal></entry>
-		<entry>
-		  Runs <quote>dpkg-reconfigure</quote> on the currently selected
-		  package.
-		</entry>
-	      </row>
-
-	      <row>
 		<entry><literal>DumpResolver</literal></entry>
 		<entry><literal>*</literal></entry>
 		<entry>
@@ -8602,7 +8597,7 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 
 	      <row>
 		<entry><literal>ExpandTree</literal></entry>
-		<entry>No binding</entry>
+		<entry>right</entry>
 		<entry>
 		  Expands the selected tree in a hierarchical list.
 		</entry>
@@ -8831,10 +8826,11 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 
 	      <row>
 		<entry><literal>Parent</literal></entry>
-		<entry><literal>^</literal></entry>
+		<entry><literal>^, left (in package items)</literal></entry>
 		<entry>
-		  Selects the parent of the selected item in a
-		  hierarchical list.
+		  Selects the parent of the selected item in a hierarchical
+		  list.  <literal>left</literal> is used only in package items
+		  (rows) when showing trees of packages.
 		</entry>
 	      </row>
 
@@ -11574,7 +11570,7 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 	    <seglistitem id='configLockFile'>
 	      <seg><literal>Aptitude::LockFile</literal></seg>
 
-	      <seg><literal>/var/lock/aptitude</literal></seg>
+	      <seg><filename>/var/lock/aptitude</filename></seg>
 
 	      <seg>
 		A file that will be fcntl-locked to ensure that at
@@ -11588,6 +11584,20 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 		and will be destroyed when the program holding them
 		terminates; failure to acquire the lock means that
 		another running program is using it!
+	      </seg>
+	    </seglistitem>
+
+	    <seglistitem id='configLocalizeLog'>
+	      <seg><literal>Aptitude::Localize-Log</literal></seg>
+
+	      <seg><literal>false</literal></seg>
+
+	      <seg>
+		If this option is enabled, &aptitude; will use the user's locale
+		for messages and dates in the log file; otherwise it is written
+		in the "classic" locale, to avoid having the log file written in
+		different languages (depending on the locales of the users
+		running the program).
 	      </seg>
 	    </seglistitem>
 
@@ -11744,6 +11754,15 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 	      </seg>
 	    </seglistitem>
 
+	    <seglistitem id='configProblemResolver-CancelRemovalScore'>
+	      <seg><literal>Aptitude::ProblemResolver::CancelRemovalScore</literal></seg>
+	      <seg><literal>-300</literal></seg>
+	      <seg>
+		How much weight the problem resolver should give to not remove
+		or purge a package requested to be removed or purged.
+	      </seg>
+	    </seglistitem>
+
 	    <seglistitem id='configProblemResolver-DefaultResolutionScore'>
 	      <seg><literal>Aptitude::ProblemResolver::DefaultResolutionScore</literal></seg>
 	      <seg><literal>400</literal></seg>
@@ -11793,7 +11812,7 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 
 	    <seglistitem id='configProblemResolver-ExtraScore'>
 	      <seg><literal>Aptitude::ProblemResolver::ExtraScore</literal></seg>
-	      <seg><literal>-1</literal></seg>
+	      <seg><literal>0</literal></seg>
 
 	      <seg>
 		Any version of a package whose Priority is
@@ -11844,7 +11863,7 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 
 	    <seglistitem id='configProblemResolver-ImportantScore'>
 	      <seg><literal>Aptitude::ProblemResolver::ImportantScore</literal></seg>
-	      <seg><literal>5</literal></seg>
+	      <seg><literal>4</literal></seg>
 
 	      <seg>
 		Any version of a package whose Priority is
@@ -11877,7 +11896,7 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 
 	    <seglistitem id='configProblemResolver-Keep-All-Level'>
 	      <seg><literal>Aptitude::ProblemResolver::Keep-All-Level</literal></seg>
-	      <seg><literal>20000</literal></seg>
+	      <seg><literal>10000</literal></seg>
 	      <seg>
 		The safety cost assigned to the single solution that
 		cancels all of the actions selected by the user.  See
@@ -11945,10 +11964,21 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 
 	    <seglistitem id='configProblemResolver-PreserveManualScore'>
 	      <seg><literal>Aptitude::ProblemResolver::PreserveManualScore</literal></seg>
-	      <seg><literal>60</literal></seg>
+	      <seg><literal>20</literal></seg>
 	      <seg>
 		How much weight the problem resolver should give to
 		preserving explicit user selections.
+	      </seg>
+	    </seglistitem>
+
+	    <seglistitem id='configProblemResolver-RemoveObsoleteScore'>
+	      <seg><literal>Aptitude::ProblemResolver::RemoveObsoleteScore</literal></seg>
+	      <seg><literal>310</literal></seg>
+	      <seg>
+		How much weight the problem resolver should give to removing an
+		obsolete package (if it is not already marked for removal).  It
+		should at least counter RemoveScore, because it will still be
+		applied.
 	      </seg>
 	    </seglistitem>
 
@@ -11975,7 +12005,7 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 
 	    <seglistitem id='configProblemResolver-RequiredScore'>
 	      <seg><literal>Aptitude::ProblemResolver::RequiredScore</literal></seg>
-	      <seg><literal>4</literal></seg>
+	      <seg><literal>8</literal></seg>
 
 	      <seg>
 		Any version of a package whose Priority is
@@ -12027,7 +12057,7 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 
 	    <seglistitem id='configProblemResolver-StandardScore'>
 	      <seg><literal>Aptitude::ProblemResolver::StandardScore</literal></seg>
-	      <seg><literal>3</literal></seg>
+	      <seg><literal>2</literal></seg>
 
 	      <seg>
 		Any version of a package whose Priority is
@@ -12060,12 +12090,12 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 
 	    <seglistitem id='configProblemResolver-StepScore'>
 	      <seg><literal>Aptitude::ProblemResolver::StepScore</literal></seg>
-	      <seg><literal>70</literal></seg>
+	      <seg><literal>-10</literal></seg>
 
 	      <seg>
 		How much to reward or penalize prospective solutions
 		based on their length.  For each action performed by a
-		solution, this many points are added to its score.
+		solution, these many points are added to its score.
 		The larger this value is, the more the resolver tends
 		to stick with its first choice rather than considering
 		alternatives; this will cause it to produce a solution
@@ -12132,7 +12162,7 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 
 	    <seglistitem id='configProblemResolver-UpgradeScore'>
 	      <seg><literal>Aptitude::ProblemResolver::UpgradeScore</literal></seg>
-	      <seg><literal>0</literal></seg>
+	      <seg><literal>30</literal></seg>
 	      <seg>
 		How much weight the problem resolver should give to
 		upgrading (or downgrading) a package to its candidate

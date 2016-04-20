@@ -1,6 +1,7 @@
 /** \file cost.h */  // -*-c++-*-
 
 // Copyright (C) 2010 Daniel Burrows
+// Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -14,8 +15,8 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program; see the file COPYING.  If not, write to
-// the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-// Boston, MA 02111-1307, USA.
+// the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+// Boston, MA 02110-1301, USA.
 
 #ifndef COST_H
 #define COST_H
@@ -394,6 +395,19 @@ class cost
       return !actions.empty();
     }
 
+    /** Get an overall level number for the combined actions.
+     *
+     * level::combine() suggests that "lower_bounded" and "additive" levels
+     * should not be mixed, but then there's no way to differentiate between
+     * solutions when other parts of the code mix levels, like "safe level" and
+     * "priority".
+     *
+     * This combines levels such as the higher lower bound (for lower_bounded
+     * levels) is preserved, and "additive" levels accumulated and added on top
+     * of the lower bound for the final number.
+     */
+    int get_combined_actions_level() const;
+
     /** \brief Test two costs for equality.
      *
      *  \note Relies on the fact that the level's equality comparison
@@ -583,6 +597,16 @@ public:
   int get_structural_level() const
   {
     return get_impl().get_structural_level();
+  }
+
+    /** Get an overall level number for the combined actions.
+     *
+     * See level cost_impl::get_combined_actions_level() description for more
+     * explanations.
+     */
+  int get_combined_actions_level() const
+  {
+    return get_impl().get_combined_actions_level();
   }
 
   /** \brief Get the value of this cost at a user level. */

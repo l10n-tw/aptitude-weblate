@@ -2,6 +2,7 @@
 //
 //
 //   Copyright (C) 2005, 2007, 2009-2010 Daniel Burrows
+//   Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -15,8 +16,8 @@
 //
 //   You should have received a copy of the GNU General Public License
 //   along with this program; see the file COPYING.  If not, write to
-//   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//   Boston, MA 02111-1307, USA.
+//   the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//   Boston, MA 02110-1301, USA.
 
 #include "solution_fragment.h"
 
@@ -411,7 +412,10 @@ cw::fragment *solution_fragment_with_ids(const aptitude_solution &sol,
 	  i!=remove_packages.end(); ++i)
 	{
 	  ids_column.append_id(i->second);
-	  fragments.push_back(cw::fragf("  %s%n", i->first.FullName(true).c_str()));
+	  fragments.push_back(cw::fragf("  %s [%s (%s)]%n",
+					i->first.FullName(true).c_str(),
+					i->first.CurrentVer().VerStr(),
+					archives_text(i->first.CurrentVer()).c_str()));
 	}
 
       ids_column.append_newline();
@@ -504,7 +508,7 @@ cw::fragment *solution_fragment_with_ids(const aptitude_solution &sol,
   if(!unresolved.empty())
     {
       ids_column.append_newline();
-      fragments.push_back(cw::fragf("%s%n", _("Leave the following dependencies unresolved:")));
+      fragments.push_back(cw::fragf(_("%BLeave%b the following dependencies %Bunresolved%b:%n")));
 
       for(std::vector<std::pair<pkgCache::DepIterator, choice> >::const_iterator i = unresolved.begin();
 	  i != unresolved.end(); ++i)
@@ -512,6 +516,9 @@ cw::fragment *solution_fragment_with_ids(const aptitude_solution &sol,
 	  ids_column.append_id(i->second);
 	  fragments.push_back(cw::fragf("  %ls%n", dep_text(i->first).c_str()));
 	}
+
+      ids_column.append_newline();
+      fragments.push_back(cw::newline_fragment());
     }
 
   ids_column.append_newline();

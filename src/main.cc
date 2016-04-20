@@ -15,8 +15,8 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; see the file COPYING.  If not, write to
-//  the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//  Boston, MA 02111-1307, USA.
+//  the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//  Boston, MA 02110-1301, USA.
 //
 //  Tests the various screen-output mechanisms
 
@@ -94,6 +94,7 @@
 #endif
 
 #include <fstream>
+#include <locale>
 
 #include "loggers.h"
 #include "progress.h"
@@ -658,7 +659,16 @@ int main(int argc, char *argv[])
   //cw::util::transcode_mbtow_err=handle_mbtow_error;
   //cw::util::transcode_wtomb_err=handle_wtomb_error;
 
-  setlocale(LC_ALL, "");
+  // Use the C++ classes if possible, otherwise if ::global() is not called the
+  // internal state of std::locale is not initialized properly
+  //
+  // it can throw an exception if the locale defined in the environment is not
+  // valid
+  try {
+    std::locale::global(std::locale(""));
+  } catch (...) {
+    setlocale(LC_ALL, "");
+  }
   bindtextdomain(PACKAGE, LOCALEDIR);
   textdomain(PACKAGE);
 
@@ -1224,7 +1234,8 @@ int main(int argc, char *argv[])
 		    }
 		}
 
-	      if (aptitude::util::is_dumb_terminal())
+	      // prevent visual preview if dumb term -- see #317928, #817276
+	      if (visual_preview && aptitude::util::is_dumb_terminal())
 		{
 		  aptitude::util::print_ncurses_dumb_terminal();
 		  exit(EXIT_FAILURE);

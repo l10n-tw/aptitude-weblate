@@ -1,6 +1,7 @@
 // broken_indicator.cc
 //
 //   Copyright (C) 2005, 2007-2009 Daniel Burrows
+//   Copyright (C) 2014-2016 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -14,8 +15,8 @@
 //
 //   You should have received a copy of the GNU General Public License
 //   along with this program; see the file COPYING.  If not, write to
-//   the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//   Boston, MA 02111-1307, USA.
+//   the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//   Boston, MA 02110-1301, USA.
 
 #include "broken_indicator.h"
 
@@ -83,7 +84,7 @@ class broken_indicator : public cw::text_layout
 
   void handle_cache_reload()
   {
-    if(resman != NULL)
+    if (resman)
       resman->state_changed.connect(sigc::mem_fun(*this, &broken_indicator::post_update));
 
     update();
@@ -93,7 +94,7 @@ protected:
   broken_indicator()
     :spin_count(0)
   {
-    if(resman != NULL)
+    if (resman)
       resman->state_changed.connect(sigc::mem_fun(*this, &broken_indicator::post_update));
 
     cache_closed.connect(sigc::mem_fun(*this, &broken_indicator::update));
@@ -163,7 +164,7 @@ private:
   {
     cw::widget_ref tmpref(this);
 
-    if(resman != NULL && resman->background_thread_active())
+    if (resman && resman->background_thread_active())
       {
  	++spin_count;
 	update();
@@ -231,7 +232,7 @@ public:
   {
     cw::widget_ref tmpref(this);
 
-    if(resman == NULL || !resman->resolver_exists())
+    if (!resman || !resman->resolver_exists())
       {
 	set_fragment(cw::fragf(""));
 	last_sol.nullify();
@@ -371,7 +372,7 @@ public:
 
 
     if(last_sol_is_keep_all)
-      fragments.push_back(cw::text_fragment(_("Suggest keeping all packages at their current version.")));
+      fragments.push_back(cw::text_fragment(_("Keep all packages at their current version")));
     else
       {
 	vector<cw::fragment *> suggestions;
@@ -430,7 +431,12 @@ public:
 	/* TRANSLATORS: %F is replaced with a comma separated list such as
 	   "n1 installs, n2 removals", ...
 	*/
-	fragments.push_back(cw::fragf(_("Suggest %F"), cw::join_fragments(suggestions, L", ")));
+	cw::fragment* actions_frag = nullptr;
+	if (suggestions.empty())
+	  actions_frag = cw::text_fragment(_("no changes"));
+	else
+	  actions_frag = cw::join_fragments(suggestions, L", ");
+	fragments.push_back(cw::fragf(_("Actions: %F"), actions_frag));
       }
 
     if(state.background_thread_active)

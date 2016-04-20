@@ -17,8 +17,8 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program; see the file COPYING.  If not, write to
-//  the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-//  Boston, MA 02111-1307, USA.
+//  the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+//  Boston, MA 02110-1301, USA.
 
 #include "aptitude.h"
 
@@ -668,9 +668,9 @@ int pkg_item::pkg_columnizer::parse_column_type(char id)
     case 't': // like apt-get -t
       return archive;
     case 'E':
-      return source;
-    case 'e':
       return architecture;
+    case 'e':
+      return source;
     case 'O':
       return origin;
 
