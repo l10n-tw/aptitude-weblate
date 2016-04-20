@@ -4,6 +4,113 @@ aptitude (0.8-1) UNRELEASED; urgency=low
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
     log with more details.
 
+    - New features:
+      * Detect and suggest solutions when pkgstates is corrupt (Closes: #405506)
+      * Allow to choose between localized logs or not (default is not) with the
+        option ::Localized-Log (Closes: #357828, #596221)
+      * [curses] Left/Right arrow keys collapse/expand one level of the subtree,
+        and when in a package item (row) Left jumps to "parent"
+        (Closes: #157984, #241945, #415449)
+      * [curses] Be able to Quit after dpkg run (Closes: #246672)
+
+    - Bug fixes:
+      * ~E pattern now returns packages with Essential only (Closes: #548505)
+      * Detect as "Security Upgrades" when site matches security.*.d.o
+        (Closes: #328620)
+      * Allow to run in dumb terminals when not requiring curses preview or
+        solution screen (Closes: #817276)
+      * "reinstall" planned action is now preserved across sessions, when
+        becoming root or in the command line with --schedule-only
+        (Closes: #255587, #785641)
+      * Fix crash when invoking curses resolver from command line
+        (Closes: #817776)
+      * Update internal state for upgrades without target version after the
+        action is performed (Closes: #721426)
+      * [curses] Fix for miscalculated Download Size field (Closes: #817547)
+      * Marking as keep, through ':' or other actions, clears Forbidden version
+      * Fix cases where user tags operations did not apply (Closes: #819002)
+      * Actions involving unfulfilled Recommends invoke the resolver
+        (Closes: #819636)
+      * Enhance infer_reason() to explain more cases of pkg_unused_remove
+        (Closes: #266061)
+
+    - User visible changes:
+      * [cmdline] Output in dumb terminals, when there is no piping/redirection
+        involved and even if ioctl doesn't work to get window size (e.g. inside
+        emacs), will now use COLUMNS instead of the default very big default
+        width
+      * Format string scapes for Source (%E->%e) and Architecture (%e->%E)
+        swapped (for consistency with search patterns, fix for #743769)
+      * New short form "~e" for search term "?source-package" (Closes: #743769)
+      * [curses] Remove option to run "dpkg-reconfigure" on a given package
+        (Closes: #680334, #686626, #738350)
+      * [cmdline] Solution screen for "Remove the following packages" shows
+        version and suite
+
+    - User visible changes (Resolver):
+      This subsection is to separate the (many) changes of the Resolver in this
+      version from other changes.  Many more details in the "upstream" changelog
+      (NEWS).
+
+      Executive summary:
+      * Changes to the order in which solutions are offered in conflict
+        resolutions, so upgrades or keeps are preferred over removal of many
+        packages
+        (Closes: #341963, #359171, #365644, #453935, #569315, #570377, #574132,
+                 #588202, #610845, #651410, #651947, #653284, #661678, #722211,
+                 #798240)
+
+      A more detailed description of individual changes follows:
+      * Modify several resolver scores config variables
+          ::ProblemResolver::RequiredScore  = 8  (was: 4)
+          ::ProblemResolver::ImportantScore = 4  (was: 5)
+          ::ProblemResolver::StandardScore  = 2  (was: 3)
+          ::ProblemResolver::OptionalScore  = 1
+          ::ProblemResolver::ExtraScore     = 0  (was: -1)
+      * Add new score for removal of obsolete package and corresponding config
+        variable ::ProblemResolver::RemoveObsoleteScore
+        Default to 310 to allow for easier upgrades and to counter the penalty
+        to remove packages (default -300).
+      * Add new score for partial solutions cancelling the removal of a package
+        and corresponding config variable ::ProblemResolver::CancelRemovalScore
+        Resolver actions cancelling the removal (or purge) of a package
+        requested to be removed/purged were not being penalised, now they are
+        (default -300).
+      * Only add Preserve{Auto,Manual}Score if the packages are actually
+        installed
+        Without this, the algorithm was assigning extra score +60 (default
+        PreserveManualScore) for packages which remained uninstalled
+        (were not to be installed) and when the user actually didn't select
+        them manually -- even if the justification was "because it is the
+        to-be-installed version of a manually installed package".
+      * Change the default score of several ::ProblemResolver config variables
+        * ::StepScore to -10 (was +70)
+        * ::PreserveManualScore to +20 (was +60)
+        * ::UpgradeScore to +30 (was 0)
+        * ::Keep-All-Level to 10000 (was 20000)
+      * Change how the costs are compared
+      * Apply InstallScore and UpgradeScore also when the packages are not
+        "manual"
+
+    - Internal changes:
+      * configure.ac: Allow to disable check for Boost library headers
+        individually
+      * Avoid extra code calling apt_load_cache() when already loaded
+      * [cmdline] Rejecting a solution advances to the next one only
+      * [General] Update FSF's postal address everywhere, drop duplicated
+        boilerplates
+
+    - Documentation:
+      * manpage:
+        * Minor clarification about "install" example (Closes: #268698)
+
+    - Translation updates:
+      * da.po: Danish translation by Morten Bo Johansen (Closes: #817065)
+      * ja.po: Japanese translation by Takuma Yamada (Closes: #819603)
+      * Actually enable Dutch (nl) documentation translation by Frans
+        Spiesschaert
+
+
   * Add aptitude-doc-nl package
   * d/control: Drop Build-dependencies present for a long time but which
     haven't been used in the last few years:
