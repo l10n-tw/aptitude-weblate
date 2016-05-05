@@ -1290,17 +1290,47 @@ namespace
 	  }
       }
 
-    if (!quit_after_dpkg_run)
+    // preparation for quitting
+    if (quit_after_dpkg_run)
       {
-	// libapt-pkg likes to stomp on SIGINT and SIGQUIT.  Restore them
-	// here in the simplest possible way.
-	cw::toplevel::install_sighandlers();
+	// global variable to signal shutdown in progress, so when
+	// apt_load_cache() is called later will skip some actions like loading
+	// tags.
+	//
+	// this is not very elegant, but:
+	//
+	// a) we cannot quit directly (we need to save the state after package
+	//    actions were taken, for example), and
+	//
+	// b) untangling the rest of the shutdown process is very difficult,
+	//    with the state of the code growing organically for years without
+	//    taking this into account, and duplicating code for the cases when
+	//    we quit and we continue is not very good either
+	shutdown_in_progress = true;
 
-	cw::toplevel::resume();
+	// emit and disable future events for cache_closed
+	cache_closed();
+	cache_closed.clear();
+	do_hide_reload_message();
+	// disable future cache_reloaded events (e.g. rebuilding views)
+	cache_reloaded.clear();
+
+	// transient message
+	cw::widget_ref w = cw::frame::create(cw::label::create(_("Updating state and shutting down...")));
+	auto transient_message = cw::center::create(w);
+	transient_message->show_all();
+	popup_widget(transient_message);
+	cw::toplevel::update();
       }
+
+    // libapt-pkg likes to stomp on SIGINT and SIGQUIT.  Restore them here in
+    // the simplest possible way.
+    cw::toplevel::install_sighandlers();
+    cw::toplevel::resume();
 
     k(rval);
 
+    // do quit after normal sequence of updating state for packages that changed
     if (quit_after_dpkg_run)
       {
 	file_quit();
@@ -1769,7 +1799,33 @@ void do_package_run()
 	    install_fixer_dialog();
 	}
       else
-	do_package_run_or_show_preview();
+	{
+	  // check (only here, not every time) if recommended packages are not
+	  // fulfilled
+	  if ((*apt_cache_file)->PolicyBrokenCount() > 0)
+	    {
+	      // show message for the delay
+	      cw::widget_ref w = cw::frame::create(cw::label::create(_("Checking dependencies")));
+	      cw::widget_ref transient_message = cw::center::create(w);
+	      transient_message->show_all();
+	      popup_widget(transient_message);
+	      cw::toplevel::tryupdate();
+
+	      // do reload resolver with checks for policy broken
+	      resman->reset_resolver(true);
+
+	      // hide message for the delay
+	      transient_message->destroy();
+	      transient_message = nullptr;
+	      cw::toplevel::tryupdate();
+
+	      // if resolver was destroyed, policy breakages have been accepted
+	      if (resman->resolver_exists())
+		return;
+	    }
+
+	  do_package_run_or_show_preview();
+	}
     }
 }
 
@@ -1980,6 +2036,25 @@ static void do_mark_upgradable()
       undo_group *undo=new apt_undo_group;
 
       (*apt_cache_file)->mark_all_upgradable(true, true, undo);
+
+      // same implementation in CmdLine full-upgrade and UI MarkUpgradable
+      //
+      // install Essential/Required packages -- #555896 and #757028
+      for (pkgCache::GrpIterator grp = (*apt_cache_file)->GrpBegin(); !grp.end(); ++grp)
+	{
+	  for (pkgCache::PkgIterator pkg = grp.PackageList(); !pkg.end(); pkg = grp.NextPkg(pkg))
+	    {
+	      bool is_essential = (pkg->Flags & pkgCache::Flag::Essential) == pkgCache::Flag::Essential;
+	      if (!is_essential || is_installed(pkg))
+		continue;
+
+	      pkgCache::PkgIterator preferred_pkg = grp.FindPreferredPkg();
+	      if (is_installed(preferred_pkg) || (*apt_cache_file)[preferred_pkg].Install())
+		continue;
+
+	      (*apt_cache_file)->mark_install(preferred_pkg, false, false, nullptr);
+	    }
+	}
 
       if(!undo->empty())
 	apt_undos->add_item(undo);
