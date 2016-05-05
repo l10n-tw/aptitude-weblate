@@ -208,7 +208,7 @@ int cmdline_do_action(int argc, char *argv[],
   ReadPinFile(policy);
   ReadPinDir(policy);
 
-  pkgset to_upgrade, to_install, to_hold, to_remove, to_purge;
+  pkgset to_install, to_hold, to_remove, to_purge;
 
   if(upgrade_mode == full_upgrade || upgrade_mode == safe_upgrade)
     {
@@ -219,16 +219,28 @@ int cmdline_do_action(int argc, char *argv[],
       bool use_autoinst = (resolver_mode != resolver_mode_safe);
       (*apt_cache_file)->mark_all_upgradable(use_autoinst, ignore_removed, NULL);
     }
-  /*else if(argc==1 && default_action==cmdline_install)
+
+  // same implementation in CmdLine full-upgrade and UI MarkUpgradable
+  //
+  // install Essential/Required packages -- #555896 and #757028
+  if (upgrade_mode == full_upgrade)
     {
-      // FIXME: Build to_install to avoid a big printout
-      for(pkgCache::PkgIterator i=(*apt_cache_file)->PkgBegin(); !i.end(); ++i)
+      for (pkgCache::GrpIterator grp = (*apt_cache_file)->GrpBegin(); !grp.end(); ++grp)
 	{
+	  for (pkgCache::PkgIterator pkg = grp.PackageList(); !pkg.end(); pkg = grp.NextPkg(pkg))
+	    {
+	      bool is_essential = (pkg->Flags & pkgCache::Flag::Essential) == pkgCache::Flag::Essential;
+	      if (!is_essential || is_installed(pkg))
+		continue;
 
+	      pkgCache::PkgIterator preferred_pkg = grp.FindPreferredPkg();
+	      if (is_installed(preferred_pkg) || (*apt_cache_file)[preferred_pkg].Install())
+		continue;
+
+	      (*apt_cache_file)->mark_install(preferred_pkg, false, false, nullptr);
+	    }
 	}
-	}*/
-
-  // TODO: look for filenames and call dpkg directly if that's the case.
+    }
 
   bool apply_ok = true;
 
