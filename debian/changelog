@@ -1,3 +1,50 @@
+aptitude (0.8.2-1) UNRELEASED; urgency=medium
+
+  [ Manuel A. Fernandez Montecelo ]
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
+    - New features:
+      * [cmdline] New commands "showsrc" and "source"
+        (Closes: #243412, #403372, #403631)
+      * [cmdline] "forget-new" accepts package names and pattern arguments
+      * [curses] "forget-new" accepts package names and pattern arguments
+        (Closes: #421043)
+
+    - Bug fixes:
+      * [curses] Apply solution ('!') guarded against crash when there are
+        no solutions (Closes: #823734)
+      * [cmdline] Command "download" now provided by a thin wrapper over
+        apt tools (Closes: #431568)
+      * [curses] Flat view changed to honour ::Pkg-Display-Limit if exists
+        (Closes: #814037)
+      * Fix crash caused in infer_reason.cc for pkg_unused_remove
+        (Closes: #824441)
+      * [cmdline] Fix for code that failed to fetch the changelog for
+        source packages.  Thanks Emmanouil Maroudas for the fix.
+        (Closes: #827133)
+
+    - User visible changes:
+     * [curses] Change TUI message after "pressing 'q' and then 'Enter'"
+       to no more mention "shutting down". Use "quitting" instead.
+
+    - Documentation:
+      * Guide/User's Manual:
+        * Enhance the documentation of the use of "architecture
+          specification" for ?architecture search pattern arguments, instead
+          of simple string matches (Closes: #823927)
+        * Add clarification for ?any-version search pattern (Closes: #691531)
+      * manpage:
+        * Remove outdated exceptions of -t/--target-release for "changelog",
+          "download" and "show" (Closes: #693684, #821866)
+        * Describe aptitude-[create|run]-state-bundle as for internal use only
+          (Closes: #521190)
+
+    - Translation updates:
+      * Russian documentation translation by Lev Lamberov (Closes: #829681)
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 23 Jul 2016 22:55:03 +0100
+
 aptitude (0.8.1-1) unstable; urgency=low
 
   [ Manuel A. Fernandez Montecelo ]
