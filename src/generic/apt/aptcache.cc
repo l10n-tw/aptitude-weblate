@@ -1001,54 +1001,68 @@ bool aptitudeDepCache::save_selection_list(OpProgress* Prog,
   return true;
 }
 
-void aptitudeDepCache::set_new_flag(const pkgCache::PkgIterator &pkg,
+void aptitudeDepCache::set_new_flag(const pkgCache::PkgIterator& pkg,
 				    bool is_new)
 {
-  if(read_only && !read_only_permission())
+  if (read_only && !read_only_permission())
     {
-      if(group_level == 0)
+      if (group_level == 0)
 	read_only_fail();
       return;
     }
 
-  aptitude_state &estate=get_ext_state(pkg);
+  aptitude_state& estate = get_ext_state(pkg);
 
-  if(estate.new_package && !is_new)
+  if (estate.new_package && !is_new)
     {
       --new_package_count;
-      estate.new_package=is_new;
+      estate.new_package = is_new;
     }
-  else if(!estate.new_package && is_new)
+  else if (!estate.new_package && is_new)
     {
       ++new_package_count;
-      estate.new_package=is_new;
+      estate.new_package = is_new;
     }
 }
 
 void aptitudeDepCache::forget_new(undoable **undoer)
 {
-  if(read_only && !read_only_permission())
+  std::vector<pkgCache::PkgIterator> pkg_its;
+  for (pkgCache::PkgIterator it = PkgBegin(); !it.end(); ++it)
     {
-      if(group_level == 0)
+      pkg_its.push_back(it);
+    }
+
+  forget_new(undoer, pkg_its);
+}
+
+void aptitudeDepCache::forget_new(undoable **undoer, const std::vector<pkgCache::PkgIterator>& pkg_its)
+{
+  if (read_only && !read_only_permission())
+    {
+      if (group_level == 0)
 	read_only_fail();
       return;
     }
 
-  forget_undoer *undo=undoer?new forget_undoer(this):NULL;
+  forget_undoer* undo = undoer ? new forget_undoer(this) : NULL;
 
-  for(pkgCache::PkgIterator i=PkgBegin(); !i.end(); i++)
-    if(package_states[i->ID].new_package)
-      {
-	dirty=true;
-	package_states[i->ID].new_package=false;
-	if(undo)
-	  undo->add_item(i);
-      }
+  for (pkgCache::PkgIterator i : pkg_its)
+    {
+      if (package_states[i->ID].new_package)
+	{
+	  if (package_states[i->ID].new_package && (new_package_count > 0))
+	    --new_package_count;
 
-  new_package_count=0;
+	  dirty = true;
+	  package_states[i->ID].new_package = false;
+	  if (undo)
+	    undo->add_item(i);
+	}
+    }
 
-  if(undoer && undo && !undo->empty())
-    *undoer=undo;
+  if (undoer && undo && !undo->empty())
+    *undoer = undo;
   else
     delete undo;
 

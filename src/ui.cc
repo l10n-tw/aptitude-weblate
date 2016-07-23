@@ -94,6 +94,8 @@
 #include <generic/apt/download_signal_log.h>
 #include <generic/apt/resolver_manager.h>
 
+#include <cmdline/cmdline_util.h>
+
 #include <generic/problemresolver/exceptions.h>
 #include <generic/problemresolver/solution.h>
 
@@ -957,7 +959,7 @@ void do_new_flat_view(OpProgress &progress)
 {
   pkg_grouppolicy_factory *grp = new pkg_grouppolicy_end_factory;
   pkg_tree_ref tree = pkg_tree::create("", grp);
-  tree->set_limit(cw::util::transcode("!~v"));
+  tree->set_limit(cw::util::transcode(std::string(aptcfg->Find(PACKAGE "::Pkg-Display-Limit", "")) + "!~v"));
 
   add_main_widget(make_default_view(tree,
                                     &tree->selected_signal,
@@ -1316,7 +1318,7 @@ namespace
 	cache_reloaded.clear();
 
 	// transient message
-	cw::widget_ref w = cw::frame::create(cw::label::create(_("Updating state and shutting down...")));
+	cw::widget_ref w = cw::frame::create(cw::label::create(_("Updating state and quitting...")));
 	auto transient_message = cw::center::create(w);
 	transient_message->show_all();
 	popup_widget(transient_message);
@@ -2073,17 +2075,64 @@ static bool forget_new_enabled()
     return (*apt_cache_file)->get_new_package_count()>0;
 }
 
-void do_forget_new()
+void do_forget_new(const std::wstring& str)
 {
-  if(apt_cache_file)
-    {
-      undoable *undo=NULL;
-      (*apt_cache_file)->forget_new(&undo);
-      if(undo)
-	apt_undos->add_item(undo);
+  if (!apt_cache_file)
+    return;
 
-      package_states_changed();
+  // verify the existence of package names and "resolve" patterns, if given
+  std::vector<pkgCache::PkgIterator> pkgs;
+  if (!str.empty())
+    {
+      std::string plain_str = cw::util::transcode(str);
+
+      pkgs = aptitude::cmdline::get_packages_from_string(plain_str);
+      if (pkgs.empty())
+	{
+	  // problem parsing line or finding packages
+
+	  if (aptitude::matching::is_pattern(plain_str))
+	    _error->Error(_("No packages match pattern \"%s\""), plain_str.c_str());
+	  else
+	    _error->Error(_("No such package \"%s\""), plain_str.c_str());
+
+	  return;
+	}
     }
+
+  // do call command
+  undoable* undo = NULL;
+
+  if (str.empty())
+    (*apt_cache_file)->forget_new(&undo);
+  else
+    (*apt_cache_file)->forget_new(&undo, pkgs);
+
+  if (undo)
+    apt_undos->add_item(undo);
+
+
+  package_states_changed();
+}
+
+void do_forget_new_dialog()
+{
+  static cw::editline::history_list forget_new_history;
+
+  std::wstring forget_new_str;
+
+  prompt_string(W_("Package name or pattern for \"forget new\"\n"
+		   "\n"
+		   "Hints:\n"
+		   " * empty, to mark all packages as not new\n"
+		   " * 'aptitude' to unmark a single package\n"
+		   " * '~sdoc' to unmark all packages from section \"doc\"\n"
+		   "\n"),
+		forget_new_str,
+		cw::util::arg(sigc::ptr_fun(do_forget_new)),
+		NULL,
+		NULL,
+		&forget_new_history);
 }
 
 static void do_reload_cache()
@@ -2325,12 +2374,6 @@ void do_apply_solution()
   if(!apt_cache_file)
     return;
 
-  // unsatisfied recommends -- see #819636
-  //
-  // approves all broken [soft] deps, like recommends, because the user
-  // acknowledged them
-  resman->approve_all_broken_deps();
-
   resolver_manager::state state = resman->state_snapshot();
 
   if(!do_apply_solution_enabled_from_state(state))
@@ -2340,6 +2383,12 @@ void do_apply_solution()
     }
   else
     {
+      // unsatisfied recommends -- see #819636
+      //
+      // approves all broken [soft] deps, like recommends, because the user
+      // acknowledged them
+      resman->approve_all_broken_deps();
+
       undo_group *undo=new apt_undo_group;
       try
 	{
@@ -2489,7 +2538,7 @@ cw::menu_info actions_menu[]={
   // FIXME: this is a bad name for the menu item.
   cw::menu_info(cw::menu_info::MENU_ITEM, N_("^Forget new packages"), "ForgetNewPackages",
 	       N_("Forget which packages are \"new\""),
-	       sigc::ptr_fun(do_forget_new), sigc::ptr_fun(forget_new_enabled)),
+	       sigc::ptr_fun(do_forget_new_dialog), sigc::ptr_fun(forget_new_enabled)),
 
   cw::menu_info(cw::menu_info::MENU_ITEM, N_("Canc^el pending actions"), NULL,
 	       N_("Cancel all pending actions from this session"),
@@ -2946,7 +2995,7 @@ void ui_init()
 				 sigc::ptr_fun(do_mark_upgradable));
   main_stacked->connect_key_post("ForgetNewPackages",
 				 &cw::config::global_bindings,
-				 sigc::ptr_fun(do_forget_new));
+				 sigc::ptr_fun(do_forget_new_dialog));
   main_stacked->connect_key_post("Help",
 				 &cw::config::global_bindings,
 				 sigc::ptr_fun(do_help_help));

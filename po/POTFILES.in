@@ -13,6 +13,8 @@ src/broken_indicator.cc
 src/broken_indicator.h
 src/cmdline/cmdline_action.cc
 src/cmdline/cmdline_action.h
+src/cmdline/cmdline_apt_proxy.cc
+src/cmdline/cmdline_apt_proxy.h
 src/cmdline/cmdline_changelog.cc
 src/cmdline/cmdline_changelog.h
 src/cmdline/cmdline_check_resolver.cc
@@ -22,8 +24,6 @@ src/cmdline/cmdline_clean.h
 src/cmdline/cmdline_common.h
 src/cmdline/cmdline_do_action.cc
 src/cmdline/cmdline_do_action.h
-src/cmdline/cmdline_download.cc
-src/cmdline/cmdline_download.h
 src/cmdline/cmdline_download_progress_display.cc
 src/cmdline/cmdline_download_progress_display.h
 src/cmdline/cmdline_dump_resolver.cc

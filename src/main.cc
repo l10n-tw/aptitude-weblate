@@ -58,12 +58,12 @@
 #include <cwidget/toplevel.h>
 #include <cwidget/dialogs.h>
 
+#include <cmdline/cmdline_apt_proxy.h>
 #include <cmdline/cmdline_changelog.h>
 #include <cmdline/cmdline_check_resolver.h>
 #include <cmdline/cmdline_clean.h>
 #include <cmdline/cmdline_common.h>
 #include <cmdline/cmdline_do_action.h>
-#include <cmdline/cmdline_download.h>
 #include <cmdline/cmdline_dump_resolver.h>
 #include <cmdline/cmdline_extract_cache_subset.h>
 #include <cmdline/cmdline_forget_new.h>
@@ -1259,8 +1259,6 @@ int main(int argc, char *argv[])
 	  else if(!strcasecmp(argv[optind], "extract-cache-subset"))
 	    return aptitude::cmdline::extract_cache_subset(argc - optind,
 							   argv + optind);
-	  else if(!strcasecmp(argv[optind], "download"))
-	    return cmdline_download(argc-optind, argv+optind);
 	  else if(!strcasecmp(argv[optind], "changelog"))
 	    return cmdline_changelog(argc-optind, argv+optind);
 	  else if(!strcasecmp(argv[optind], "moo"))
@@ -1292,6 +1290,12 @@ int main(int argc, char *argv[])
 	      bool operation_needs_lock = false;
 	      apt_init(&p, false, operation_needs_lock, nullptr);
 	      exit(0);
+	    }
+	  else if (!strcasecmp(argv[optind], "download") ||
+		   !strcasecmp(argv[optind], "showsrc") ||
+		   !strcasecmp(argv[optind], "source"))
+	    {
+	      return cmdline_apt_proxy(argc, argv);
 	    }
 	  else
 	    {
