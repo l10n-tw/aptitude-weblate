@@ -109,6 +109,8 @@
 	<arg choice='plain'>reinstall</arg>
 	<arg choice='plain'>remove</arg>
 	<arg choice='plain'>show</arg>
+	<arg choice='plain'>showsrc</arg>
+	<arg choice='plain'>source</arg>
 	<arg choice='plain'>unhold</arg>
 	<arg choice='plain'>unmarkauto</arg>
         <arg choice='plain'>versions</arg>
@@ -610,9 +612,20 @@
 
 	<listitem>
 	  <para>
-	    Forgets all internal information about what packages
-	    are <quote>new</quote> (equivalent to pressing <quote><keycap>f</keycap></quote> when in visual
-	    mode).
+	    Forgets all internal information about what packages are
+	    <quote>new</quote> (equivalent to pressing
+	    <quote><keycap>f</keycap></quote> when in visual mode).
+	  </para>
+
+	  <para>
+	    This command accepts package names or patterns as arguments.  If the
+	    string contains a tilde character
+	    (<quote><literal>~</literal></quote>) or a question mark
+	    (<quote><literal>?</literal></quote>), it will be treated as a
+	    search pattern and every package matching the pattern will be
+	    considered (see the section <link
+	    linkend='secSearchPatterns'><quote>Search Patterns</quote></link> in
+	    the &aptitude; reference manual).
 	  </para>
 	</listitem>
       </varlistentry>
@@ -745,6 +758,36 @@ ihA raptor-utils                    - Raptor RDF Parser utilities</screen>
 	    will be displayed.  If the verbosity level is 2 or
 	    greater, the select version or versions will be displayed
 	    once for each archive in which they are found.
+	  </para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term><literal>showsrc</literal></term>
+
+	<listitem>
+	  <para>
+	    Displays detailed information about one or more source packages.
+	  </para>
+
+	  <para>
+	    This is a thin wrapper over
+	    <citerefentry><refentrytitle>apt</refentrytitle><manvolnum>8</manvolnum></citerefentry>.
+	  </para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term><literal>source</literal></term>
+
+	<listitem>
+	  <para>
+	    Downloads one or more source packages.
+	  </para>
+
+	  <para>
+	    This is a thin wrapper over
+	    <citerefentry><refentrytitle>apt</refentrytitle><manvolnum>8</manvolnum></citerefentry>.
 	  </para>
 	</listitem>
       </varlistentry>
@@ -1028,28 +1071,12 @@ i A texlive-latex-extra Conflicts textopo</screen>
 	<listitem>
 	  <para>
 	    Downloads the <literal>.deb</literal> file for the given
-	    package to the current directory.  If a package name
-	    contains a tilde character
-	    (<quote><literal>~</literal></quote>) or a question mark
-	    (<quote><literal>?</literal></quote>), it will be treated
-	    as a search pattern and all the matching packages will be
-	    downloaded (see the section <quote><link
-	    linkend='secSearchPatterns'>Search Patterns</link></quote>
-	    in the &aptitude; reference manual).
+	    package to the current directory.
 	  </para>
 
 	  <para>
-	    By default, the version which would be installed with
-	    <quote><literal>aptitude install</literal></quote> is
-	    downloaded.  You can select a particular version of a
-	    package by appending
-	    <literal>=<replaceable>version</replaceable></literal> to
-	    the package name; you can select the version from a
-	    particular archive or release by appending
-	    <literal>/<replaceable>archive</replaceable></literal> or
-	    <literal>/<replaceable>release</replaceable></literal> to
-	    the package name (for instance:
-	    <literal>/unstable</literal> or <literal>/sid</literal>).
+	    This is a thin wrapper over
+	    <citerefentry><refentrytitle>apt</refentrytitle><manvolnum>8</manvolnum></citerefentry>.
 	  </para>
 	</listitem>
       </varlistentry>
@@ -2093,11 +2120,13 @@ Packages requiring libglib2.0-data:
 	    installed.  For instance, <quote><literal>aptitude -t
 	    experimental ...</literal></quote> will install
 	    packages from the experimental distribution unless you
-	    specify otherwise.  For the command-line actions <quote>changelog</quote>, <quote>download</quote>, and <quote>show</quote>,
-	    this is equivalent to appending <literal>/<replaceable>release</replaceable></literal>
-	    to each package named on the command-line; for other commands,
-	    this will affect the default candidate version of packages
-	    according to the rules described in <citerefentry><refentrytitle>apt_preferences</refentrytitle><manvolnum>5</manvolnum></citerefentry>.
+	    specify otherwise.
+	  </para>
+
+	  <para>
+	    This will affect the default candidate version of packages
+	    according to the rules described in
+	    <citerefentry><refentrytitle>apt_preferences</refentrytitle><manvolnum>5</manvolnum></citerefentry>.
 	  </para>
 
 	  <para>
@@ -2536,6 +2565,13 @@ The following packages will be REMOVED:
   <refsect1>
     <title>Description</title>
 
+    <note>
+      <para>
+	This command is mostly for internal use and bug reporting in exceptional
+	cases, it is not intended for end-users under normal circumstances.
+      </para>
+    </note>
+
     <para>
       <command>aptitude-create-state-bundle</command> produces a
       compressed archive storing the files that are required to
@@ -2740,6 +2776,13 @@ The following packages will be REMOVED:
 
   <refsect1>
     <title>Description</title>
+
+    <note>
+      <para>
+	This command is mostly for internal use and bug reporting in exceptional
+	cases, it is not intended for end-users under normal circumstances.
+      </para>
+    </note>
 
     <para>
       <command>aptitude-run-state-bundle</command> unpacks the given

@@ -116,9 +116,9 @@ am__v_AR_1 =
 libcmdline_a_AR = $(AR) $(ARFLAGS)
 libcmdline_a_LIBADD =
 am_libcmdline_a_OBJECTS = cmdline_action.$(OBJEXT) \
-	cmdline_changelog.$(OBJEXT) cmdline_check_resolver.$(OBJEXT) \
-	cmdline_clean.$(OBJEXT) cmdline_do_action.$(OBJEXT) \
-	cmdline_download.$(OBJEXT) \
+	cmdline_apt_proxy.$(OBJEXT) cmdline_changelog.$(OBJEXT) \
+	cmdline_check_resolver.$(OBJEXT) cmdline_clean.$(OBJEXT) \
+	cmdline_do_action.$(OBJEXT) \
 	cmdline_download_progress_display.$(OBJEXT) \
 	cmdline_dump_resolver.$(OBJEXT) \
 	cmdline_extract_cache_subset.$(OBJEXT) \
@@ -405,6 +405,8 @@ noinst_LIBRARIES = libcmdline.a
 libcmdline_a_SOURCES = \
 	cmdline_action.cc \
 	cmdline_action.h \
+	cmdline_apt_proxy.h \
+	cmdline_apt_proxy.cc \
 	cmdline_changelog.cc \
 	cmdline_changelog.h \
 	cmdline_check_resolver.cc \
@@ -414,8 +416,6 @@ libcmdline_a_SOURCES = \
 	cmdline_common.h \
 	cmdline_do_action.cc \
 	cmdline_do_action.h \
-	cmdline_download.cc \
-	cmdline_download.h \
 	cmdline_download_progress_display.cc \
 	cmdline_download_progress_display.h \
 	cmdline_dump_resolver.cc \
@@ -514,11 +514,11 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_action.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_apt_proxy.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_changelog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_check_resolver.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_clean.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_do_action.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_download.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_download_progress_display.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_dump_resolver.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_extract_cache_subset.Po@am__quote@

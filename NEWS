@@ -1,3 +1,87 @@
+[2016-07-23]
+Version 0.8.2
+
+- New features:
+
+  * [cmdline] New commands "showsrc" and "source"
+    (Closes: #243412, #403372, #403631)
+
+    Provided by a thin wrapper over apt tools.
+
+  * [cmdline] "forget-new" accepts package names and pattern arguments
+
+    Addresses part of #421043 (and merged).
+
+  * [curses] "forget-new" accepts package names and pattern arguments
+    (Closes: #421043)
+
+- Bug fixes:
+
+  * [curses] Apply solution ('!') guarded against crash when there are no
+    solutions (Closes: #823734)
+
+  * [cmdline] Command "download" now provided by a thin wrapper over apt tools
+    (Closes: #431568)
+
+    This command from aptitude did not provide verification of downloaded files.
+
+  * [curses] Flat view changed to honour ::Pkg-Display-Limit if exists
+    (Closes: #814037)
+
+  * Fix crash caused in infer_reason.cc for pkg_unused_remove (Closes: #824441)
+
+    Introduced in some difficult to reproduce conditions by fix for "Enhance
+    infer_reason() to explain more cases of pkg_unused_remove", bug #266061, in
+    0.8.
+
+  * [cmdline] Fix for code that failed to fetch the changelog for source
+    packages.  Thanks Emmanouil Maroudas for the fix.  (Closes: #827133)
+
+- User visible changes:
+
+  * [curses] Change TUI message after "pressing 'q' and then 'Enter'"
+    to no more mention "shutting down". Use "quitting" instead.
+
+- Internal changes:
+
+  * aptcache.{h,cc}: Split aptitudeDepCache::forget_new() in two parts, one to
+    unmark as 'new' a given set of PkgIterators, another unmarking all.
+
+  * cmdline_util: Add get_packages_from_string(), to help parsing package names
+    and resolve patterns in the command line
+
+- Documentation:
+
+  * Guide/User's Manual:
+
+    * Enhance the documentation of the use of "architecture specification" for
+      ?architecture search pattern arguments, instead of simple string matches
+      (Closes: #823927)
+
+      The commit d78de1ea in 0.6.8.2-1 had the side effect that the strings for
+      the arch search pattern are no longer treated as simple "string patterns"
+      as it happened before, when architectures were matched with partial
+      strings (as it does with package names, etc.).
+
+      In the case of TUI with interactive search enabled, it means that packages
+      do not match until the arch-specification is complete/valid, triggering
+      "beeps" meaning that no packaged match.
+
+    * Add clarification for ?any-version search pattern (Closes: #691531)
+
+  * manpage:
+
+    * Remove outdated exceptions of -t/--target-release for "changelog",
+      "download" and "show" (Closes: #693684, #821866)
+
+    * Describe aptitude-[create|run]-state-bundle as for internal use only
+      (Closes: #521190)
+
+- Translation updates:
+
+  * Russian documentation translation by Lev Lamberov (Closes: #829681)
+
+
 [2016-05-05]
 Version 0.8.1
 

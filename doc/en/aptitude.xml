@@ -7,7 +7,7 @@
   <!ENTITY dselect '<command>dselect</command>'>
   <!ENTITY apt-get '<command>apt-get</command>'>
   <!ENTITY root '<systemitem class="username">root</systemitem>'>
-  <!ENTITY VERSION '0.8.1'>
+  <!ENTITY VERSION '0.8.2'>
 
   <!-- Shortcuts for menu commands: -->
 
@@ -6356,22 +6356,40 @@ e: Examine  !: Apply  .: Next  ,: Previous</screen>
 		<replaceable>pattern2</replaceable>)</literal>.
 	      </para>
 	    </note>
+
+	    <note>
+	      <para>
+		To be precise, as with any other pattern, it is not packages but
+		versions of the packages which are matched.  For
+		<quote><literal>aptitude search</literal></quote> and other uses
+		it does not make much difference, but <quote><literal>aptitude
+		versions</literal></quote> will only show the versions that
+		match, not all versions of the package for which any version
+		matches.  For that, use an enclosing &Swiden;.
+	      </para>
+	    </note>
 	  </listitem>
 	</varlistentry>
 
 	<varlistentry id='searchArchitecture'>
-	  <term><literal>?architecture(<replaceable>architecture</replaceable>)</literal>, <literal>~r<replaceable>architecture</replaceable></literal></term>
+	  <term><literal>?architecture(<replaceable>architecture-spec</replaceable>)</literal>, <literal>~r<replaceable>architecture-spec</replaceable></literal></term>
 
 	  <listitem>
 	    <para>
 	      Matches package versions for the given
-	      <replaceable>architecture</replaceable>.  For instance,
-	      <quote><literal>?architecture(amd64)</literal></quote>
-	      matches <literal>amd64</literal> packages, while
-	      <quote><literal>?architecture(all)</literal></quote>
-	      matches arch-independent packages.  Also accepts the
-	      special values <literal>native</literal> and
-	      <literal>foreign</literal>.
+	      <replaceable>architecture-spec</replaceable>.  For instance,
+	      <quote><literal>?architecture(amd64)</literal></quote> matches
+	      <literal>amd64</literal> packages, while
+	      <quote><literal>?architecture(all)</literal></quote> matches
+	      arch-independent packages.
+	    </para>
+
+	    <para>
+	      It also accepts the special values <literal>native</literal> and
+	      <literal>foreign</literal>, and architecture wildcards
+	      (e.g. <literal>linux-any</literal> or
+	      <literal>any-amd64</literal>), as specified in Policy (<quote>11.1
+	      Architecture specification strings</quote>).
 	    </para>
 	  </listitem>
 	</varlistentry>
