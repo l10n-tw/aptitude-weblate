@@ -1,4 +1,4 @@
-aptitude (0.8.2-1) UNRELEASED; urgency=medium
+aptitude (0.8.2-1) unstable; urgency=medium
 
   [ Manuel A. Fernandez Montecelo ]
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
@@ -43,7 +43,7 @@ aptitude (0.8.2-1) UNRELEASED; urgency=medium
     - Translation updates:
       * Russian documentation translation by Lev Lamberov (Closes: #829681)
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 23 Jul 2016 22:55:03 +0100
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 23 Jul 2016 23:02:42 +0100
 
 aptitude (0.8.1-1) unstable; urgency=low
 
