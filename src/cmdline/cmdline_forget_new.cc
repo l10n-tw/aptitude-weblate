@@ -53,17 +53,13 @@ int cmdline_forget_new(int argc, char *argv[],
 {
   const std::shared_ptr<terminal_io> term = create_terminal();
 
-  _error->DumpErrors();
+  aptitude::cmdline::on_apt_errors_print_and_die();
 
   std::shared_ptr<OpProgress> progress = make_text_progress(false, term, term, term);
   bool operation_needs_lock = true;
   apt_init(progress.get(), false, operation_needs_lock, status_fname);
 
-  if(_error->PendingError())
-    {
-      _error->DumpErrors();
-      return -1;
-    }
+  aptitude::cmdline::on_apt_errors_print_and_die();
 
   // In case we aren't root.
   if(!simulate)
@@ -71,11 +67,7 @@ int cmdline_forget_new(int argc, char *argv[],
   else
     apt_cache_file->ReleaseLock();
 
-  if(_error->PendingError())
-    {
-      _error->DumpErrors();
-      return -1;
-    }
+  aptitude::cmdline::on_apt_errors_print_and_die();
 
   bool all_ok = true;
 
@@ -83,38 +75,14 @@ int cmdline_forget_new(int argc, char *argv[],
     printf(_("Would forget what packages are new\n"));
   else
     {
-      std::vector<pkgCache::PkgIterator> pkg_its;
-
+      std::vector<std::string> args;
       int argc_start = 1;
-
       for (int i = argc_start; i < argc; ++i)
 	{
-	  std::vector<pkgCache::PkgIterator> pkgs_from_args = aptitude::cmdline::get_packages_from_string(argv[i]);
-
-	  if (pkgs_from_args.empty())
-	    {
-	      // problem parsing command line or finding packages
-
-	      all_ok = false;
-
-	      int quiet = aptcfg->FindI("quiet", 0);
-	      if (quiet == 0)
-		{
-		  if (aptitude::matching::is_pattern(argv[i]))
-		    std::cerr << ssprintf(_("No packages match pattern \"%s\""), argv[i]) << std::endl;
-		  else
-		    std::cerr << ssprintf(_("No such package \"%s\""), argv[i]) << std::endl;
-		}
-	    }
-	  else
-	    {
-	      // append packages
-	      for (const auto& it : pkgs_from_args)
-		{
-		  pkg_its.push_back(it);
-		}
-	    }
+	  args.push_back(argv[i]);
 	}
+
+      std::vector<pkgCache::PkgIterator> pkg_its = aptitude::cmdline::get_packages_from_set_of_strings(args, all_ok);
 
       // if the was some problem, stop here
       if (!all_ok)
@@ -128,12 +96,7 @@ int cmdline_forget_new(int argc, char *argv[],
 
       (*apt_cache_file)->save_selection_list(progress.get());
 
-      if(_error->PendingError())
-	{
-	  _error->DumpErrors();
-
-	  return -1;
-	}
+      aptitude::cmdline::on_apt_errors_print_and_die();
     }
 
   return (all_ok ? 0 : -1);

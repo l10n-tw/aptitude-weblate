@@ -123,16 +123,16 @@ am_libcmdline_a_OBJECTS = cmdline_action.$(OBJEXT) \
 	cmdline_dump_resolver.$(OBJEXT) \
 	cmdline_extract_cache_subset.$(OBJEXT) \
 	cmdline_forget_new.$(OBJEXT) cmdline_main_loop.$(OBJEXT) \
-	cmdline_moo.$(OBJEXT) cmdline_progress.$(OBJEXT) \
-	cmdline_progress_display.$(OBJEXT) cmdline_prompt.$(OBJEXT) \
-	cmdline_resolver.$(OBJEXT) cmdline_search.$(OBJEXT) \
-	cmdline_search_progress.$(OBJEXT) cmdline_show.$(OBJEXT) \
-	cmdline_show_broken.$(OBJEXT) cmdline_simulate.$(OBJEXT) \
-	cmdline_spinner.$(OBJEXT) cmdline_update.$(OBJEXT) \
-	cmdline_user_tag.$(OBJEXT) cmdline_util.$(OBJEXT) \
-	cmdline_versions.$(OBJEXT) cmdline_why.$(OBJEXT) \
-	terminal.$(OBJEXT) text_progress.$(OBJEXT) \
-	transient_message.$(OBJEXT)
+	cmdline_mark.$(OBJEXT) cmdline_moo.$(OBJEXT) \
+	cmdline_progress.$(OBJEXT) cmdline_progress_display.$(OBJEXT) \
+	cmdline_prompt.$(OBJEXT) cmdline_resolver.$(OBJEXT) \
+	cmdline_search.$(OBJEXT) cmdline_search_progress.$(OBJEXT) \
+	cmdline_show.$(OBJEXT) cmdline_show_broken.$(OBJEXT) \
+	cmdline_simulate.$(OBJEXT) cmdline_spinner.$(OBJEXT) \
+	cmdline_update.$(OBJEXT) cmdline_user_tag.$(OBJEXT) \
+	cmdline_util.$(OBJEXT) cmdline_versions.$(OBJEXT) \
+	cmdline_why.$(OBJEXT) terminal.$(OBJEXT) \
+	text_progress.$(OBJEXT) transient_message.$(OBJEXT)
 libcmdline_a_OBJECTS = $(am_libcmdline_a_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -426,6 +426,8 @@ libcmdline_a_SOURCES = \
 	cmdline_forget_new.h \
 	cmdline_main_loop.cc \
 	cmdline_main_loop.h \
+	cmdline_mark.cc \
+	cmdline_mark.h \
 	cmdline_moo.cc \
 	cmdline_moo.h \
 	cmdline_progress.cc \
@@ -524,6 +526,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_extract_cache_subset.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_forget_new.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_main_loop.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_mark.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_moo.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_progress.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmdline_progress_display.Po@am__quote@

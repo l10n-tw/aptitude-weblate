@@ -67,6 +67,7 @@
 #include <cmdline/cmdline_dump_resolver.h>
 #include <cmdline/cmdline_extract_cache_subset.h>
 #include <cmdline/cmdline_forget_new.h>
+#include <cmdline/cmdline_mark.h>
 #include <cmdline/cmdline_moo.h>
 #include <cmdline/cmdline_prompt.h>
 #include <cmdline/cmdline_search.h>
@@ -207,12 +208,14 @@ static void usage()
   printf(_(" build-dep       Install the build-dependencies of packages.\n"));
   printf(_(" forget-new      Forget what packages are \"new\".\n"));
   printf(_(" search          Search for a package by name and/or expression.\n"));
-  printf(_(" show            Display detailed information about a package.\n"));
+  printf(_(" show            Display detailed info about a package.\n"));
+  printf(_(" showsrc         Display detailed info about a source package (apt wrapper).\n"));
   printf(_(" versions        Displays the versions of specified packages.\n"));
   printf(_(" clean           Erase downloaded package files.\n"));
   printf(_(" autoclean       Erase old downloaded package files.\n"));
   printf(_(" changelog       View a package's changelog.\n"));
-  printf(_(" download        Download the .deb file for a package.\n"));
+  printf(_(" download        Download the .deb file for a package (apt wrapper).\n"));
+  printf(_(" source          Download source package (apt wrapper).\n"));
   printf(_(" reinstall       Reinstall a currently installed package.\n"));
   printf(_(" why             Explain why a particular package should be installed.\n"));
   printf(_(" why-not         Explain why a particular package cannot be installed.\n"));
@@ -1197,6 +1200,41 @@ int main(int argc, char *argv[])
 	    return cmdline_why(argc - optind, argv + optind,
 			       status_fname, verbose,
 			       why_display_mode, true);
+	  else if ( (!strcasecmp(argv[optind], "hold")) ||
+		    (!strcasecmp(argv[optind], "unhold")) ||
+		    (!strcasecmp(argv[optind], "forbid-version")) ||
+		    (!strcasecmp(argv[optind], "markauto")) ||
+		    (!strcasecmp(argv[optind], "unmarkauto")) ||
+		    (!strcasecmp(argv[optind], "keep")) ||
+		    (!strcasecmp(argv[optind], "keep-all")) )
+	    {
+	      // require at least one argument in addition to the command
+	      int num_args = argc-optind;
+	      int error_status = 1;
+	      if ( (!strcasecmp(argv[optind], "hold")) ||
+		   (!strcasecmp(argv[optind], "unhold")) ||
+		   (!strcasecmp(argv[optind], "markauto")) ||
+		   (!strcasecmp(argv[optind], "unmarkauto")) ||
+		   (!strcasecmp(argv[optind], "forbid-version")) ||
+		   (!strcasecmp(argv[optind], "keep")) )
+		{
+		  if (num_args < 2)
+		    {
+		      fprintf(stderr, _("Command \"%s\" needs arguments\n"), argv[optind]);
+		      return error_status;
+		    }
+		}
+	      else if (!strcasecmp(argv[optind], "keep-all"))
+		{
+		  if (num_args != 1)
+		    {
+		      fprintf(stderr, _("Command \"%s\" does not accept arguments\n"), argv[optind]);
+		      return error_status;
+		    }
+		}
+
+	      return cmdline_mark(argc-optind, argv+optind, status_fname, simulate, verbose);
+	    }
 	  else if( (!strcasecmp(argv[optind], "install")) ||
 		   (!strcasecmp(argv[optind], "reinstall")) ||
 		   (!strcasecmp(argv[optind], "dist-upgrade")) ||
@@ -1205,24 +1243,11 @@ int main(int argc, char *argv[])
 		   (!strcasecmp(argv[optind], "upgrade")) ||
 		   (!strcasecmp(argv[optind], "remove")) ||
 		   (!strcasecmp(argv[optind], "purge")) ||
-		   (!strcasecmp(argv[optind], "hold")) ||
-		   (!strcasecmp(argv[optind], "unhold")) ||
-		   (!strcasecmp(argv[optind], "markauto")) ||
-		   (!strcasecmp(argv[optind], "unmarkauto")) ||
-		   (!strcasecmp(argv[optind], "forbid-version")) ||
-		   (!strcasecmp(argv[optind], "keep")) ||
-		   (!strcasecmp(argv[optind], "keep-all")) ||
 		   (!strcasecmp(argv[optind], "build-dep")) ||
 		   (!strcasecmp(argv[optind], "build-depends")))
 	    {
 	      // require at least one argument in addition to the command
-	      if ( (!strcasecmp(argv[optind], "hold")) ||
-		   (!strcasecmp(argv[optind], "unhold")) ||
-		   (!strcasecmp(argv[optind], "markauto")) ||
-		   (!strcasecmp(argv[optind], "unmarkauto")) ||
-		   (!strcasecmp(argv[optind], "forbid-version")) ||
-		   (!strcasecmp(argv[optind], "keep")) ||
-		   (!strcasecmp(argv[optind], "build-dep")) ||
+	      if ( (!strcasecmp(argv[optind], "build-dep")) ||
 		   (!strcasecmp(argv[optind], "build-depends")))
 		{
 		  int num_args = argc-optind;

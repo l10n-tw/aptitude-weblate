@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude_po\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2016-07-23 22:52+0100\n"
+"POT-Creation-Date: 2016-08-07 11:38+0100\n"
 "PO-Revision-Date: 2012-06-03 13:13+0800\n"
 "Last-Translator: Ossama M. Khayat <okhayat@yahoo.com>\n"
 "Language-Team: Arabic <support@arabeyes.org>\n"
@@ -561,7 +561,6 @@ msgstr "خطأ داخلي: حلّ غير فارغ متوقع."
 
 #: src/broken_indicator.cc:375
 #, fuzzy
-#| msgid "Keep the following packages at their current version:"
 msgid "Keep all packages at their current version"
 msgstr "إبقاء الحزم التالية بنسختها الحالية:"
 
@@ -612,13 +611,11 @@ msgstr[3] "%d تثبيط"
 
 #: src/broken_indicator.cc:436
 #, fuzzy
-#| msgid "%s changes"
 msgid "no changes"
 msgstr "%s تغييرات"
 
 #: src/broken_indicator.cc:439
 #, fuzzy, c-format
-#| msgid "Actions"
 msgid "Actions: %F"
 msgstr "أعمال"
 
@@ -707,19 +704,19 @@ msgstr "الحزمة %s غير مثبتة، لذا لن يتم إزالتها\n"
 msgid "Package %s is not installed, so it will not be purged\n"
 msgstr "الحزمة %s غير مثبتة، لذا لن يتم إزالتها\n"
 
-#: src/cmdline/cmdline_action.cc:383
+#: src/cmdline/cmdline_action.cc:383 src/cmdline/cmdline_mark.cc:252
 #, fuzzy, c-format
 msgid ""
 "Package %s is not installed, cannot be marked/unmarked as automatically "
 "installed\n"
 msgstr "الحزمة %s غير مثبتة، لن يمكن منع الترقية\n"
 
-#: src/cmdline/cmdline_action.cc:390
+#: src/cmdline/cmdline_action.cc:390 src/cmdline/cmdline_mark.cc:197
 #, c-format
 msgid "Package %s is not installed, cannot forbid an upgrade\n"
 msgstr "الحزمة %s غير مثبتة، لن يمكن منع الترقية\n"
 
-#: src/cmdline/cmdline_action.cc:393
+#: src/cmdline/cmdline_action.cc:393 src/cmdline/cmdline_mark.cc:200
 #, c-format
 msgid "Package %s is not upgradable, cannot forbid an upgrade\n"
 msgstr "الحزمة %s غير قابلة للترقية، لا يمكن منع الترقية\n"
@@ -755,6 +752,7 @@ msgid "Unmarking package %s as automatically installed\n"
 msgstr "'&M' لتحديد الحزم بالتثبيت التلقائي"
 
 #: src/cmdline/cmdline_action.cc:474 src/cmdline/cmdline_action.cc:485
+#: src/cmdline/cmdline_mark.cc:167 src/cmdline/cmdline_mark.cc:185
 #, fuzzy, c-format
 msgid "Marking version %s of package %s as forbidden\n"
 msgstr "التحقق من وجود نسخ جديدة من الحزم"
@@ -856,19 +854,18 @@ msgstr ""
 msgid "Error: too many arguments: %d\n"
 msgstr ""
 
-#: src/cmdline/cmdline_apt_proxy.cc:193
+#: src/cmdline/cmdline_apt_proxy.cc:192
 #, c-format
 msgid "Error: pattern not supported by this subcommand: '%s'\n"
 msgstr ""
 
-#: src/cmdline/cmdline_apt_proxy.cc:202
+#: src/cmdline/cmdline_apt_proxy.cc:213
 #, c-format
-msgid "Subcommand not supported: %s\n"
+msgid "Supported subcommand not found, needs one of: "
 msgstr ""
 
-#: src/cmdline/cmdline_apt_proxy.cc:210
+#: src/cmdline/cmdline_apt_proxy.cc:226
 #, fuzzy, c-format
-#| msgid "Reconfiguring %s\n"
 msgid ""
 "Executing '%s'\n"
 "\n"
@@ -912,38 +909,38 @@ msgstr "تعذر العثور على سجل تغيير لـ%s"
 msgid "Couldn't run pager %s"
 msgstr "تعذر العثور على سجل تغيير لـ%s"
 
-#: src/cmdline/cmdline_clean.cc:63
+#: src/cmdline/cmdline_clean.cc:65
 #, fuzzy, c-format
 msgid "E: The clean command takes no arguments\n"
 msgstr "خطأ: أمر التحديث لا يتطلّب أي مُعطيات\n"
 
-#: src/cmdline/cmdline_clean.cc:69
+#: src/cmdline/cmdline_clean.cc:71
 #, c-format
 msgid "Del %s* %spartial/*\n"
 msgstr "حذف %s* %spartial/*\n"
 
-#: src/cmdline/cmdline_clean.cc:98
+#: src/cmdline/cmdline_clean.cc:100
 #, c-format
 msgid "Del %s %s [%sB]\n"
 msgstr "حذف %s %s [%sB]\n"
 
-#: src/cmdline/cmdline_clean.cc:127
+#: src/cmdline/cmdline_clean.cc:129
 #, fuzzy, c-format
 msgid "E: The autoclean command takes no arguments\n"
 msgstr "خطأ: أمر التحديث لا يتطلّب أي مُعطيات\n"
 
-#: src/cmdline/cmdline_clean.cc:139 src/generic/apt/apt.cc:1633 src/ui.cc:1983
+#: src/cmdline/cmdline_clean.cc:141 src/generic/apt/apt.cc:1633 src/ui.cc:1983
 #, fuzzy
 msgid "Unable to lock the download directory"
 msgstr ""
 "تعذر التعرف على مكان دليلك الموطن، لذا سيتم الحفظ في /tmp/function_pkgs!"
 
-#: src/cmdline/cmdline_clean.cc:166
+#: src/cmdline/cmdline_clean.cc:164
 #, c-format
 msgid "Would free %sB of disk space\n"
 msgstr "سوف يفرغ %sبايت من مساحة القرص\n"
 
-#: src/cmdline/cmdline_clean.cc:169
+#: src/cmdline/cmdline_clean.cc:167
 #, c-format
 msgid "Freed %sB of disk space\n"
 msgstr "حرّرت %s بايت من مساحة القرص\n"
@@ -952,28 +949,33 @@ msgstr "حرّرت %s بايت من مساحة القرص\n"
 msgid "Deleting downloaded files"
 msgstr "حذف الملفات المنزلة"
 
-#: src/cmdline/cmdline_do_action.cc:166
+#: src/cmdline/cmdline_do_action.cc:160
+#, c-format
+msgid "Internal error, operation %s should be handled elsewhere"
+msgstr ""
+
+#: src/cmdline/cmdline_do_action.cc:167
 #, c-format
 msgid "Invalid operation %s"
 msgstr "عملية غير صالحة %s"
 
-#: src/cmdline/cmdline_do_action.cc:256
+#: src/cmdline/cmdline_do_action.cc:257
 msgid "Unexpected pattern argument following \"keep-all\""
 msgstr "مُعطى صيغة غير متوقع يتبع \"إبقاء الكل\""
 
-#: src/cmdline/cmdline_do_action.cc:362
+#: src/cmdline/cmdline_do_action.cc:363
 #, fuzzy, c-format
 msgid "Unable to apply some actions, aborting\n"
 msgstr "تعذر فتح %s لتسجيل الأعمال"
 
-#: src/cmdline/cmdline_do_action.cc:374
+#: src/cmdline/cmdline_do_action.cc:375
 #, fuzzy, c-format
 msgid ""
 "Unable to safely resolve dependencies, try running with --full-resolver.\n"
 msgstr "تعذر إرضاء المعتمدات."
 
-#: src/cmdline/cmdline_do_action.cc:414 src/cmdline/cmdline_simulate.cc:62
-#: src/main.cc:1309
+#: src/cmdline/cmdline_do_action.cc:415 src/cmdline/cmdline_simulate.cc:62
+#: src/main.cc:1334
 #, c-format
 msgid "Abort.\n"
 msgstr "إجهاض.\n"
@@ -1015,29 +1017,88 @@ msgid ""
 "to which to write files).\n"
 msgstr ""
 
-#: src/cmdline/cmdline_extract_cache_subset.cc:96
-#: src/cmdline/cmdline_forget_new.cc:106 src/cmdline/cmdline_resolver.cc:355
-#: src/cmdline/cmdline_user_tag.cc:151 src/cmdline/cmdline_versions.cc:313
-#: src/ui.cc:2097
+#: src/cmdline/cmdline_extract_cache_subset.cc:93
+#: src/cmdline/cmdline_mark.cc:130 src/cmdline/cmdline_resolver.cc:355
+#: src/cmdline/cmdline_user_tag.cc:149 src/cmdline/cmdline_util.cc:895
+#: src/cmdline/cmdline_versions.cc:313 src/ui.cc:2097
 #, c-format
 msgid "No such package \"%s\""
 msgstr "لا توجد حزمة بالاسم \"%s\""
 
-#: src/cmdline/cmdline_extract_cache_subset.cc:136
+#: src/cmdline/cmdline_extract_cache_subset.cc:133
 #, c-format
 msgid "No packages were selected by the given search pattern; nothing to do.\n"
 msgstr ""
 
-#: src/cmdline/cmdline_forget_new.cc:83
+#: src/cmdline/cmdline_forget_new.cc:75
 #, c-format
 msgid "Would forget what packages are new\n"
 msgstr "قد ينسى ما هي الحزم الجديدة\n"
 
-#: src/cmdline/cmdline_forget_new.cc:104 src/ui.cc:2095
+#: src/cmdline/cmdline_mark.cc:77
+#, fuzzy
+msgid "Unexpected argument following \"keep-all\""
+msgstr "مُعطى صيغة غير متوقع يتبع \"إبقاء الكل\""
+
+#: src/cmdline/cmdline_mark.cc:82
 #, fuzzy, c-format
-#| msgid "No packages matched the pattern \"%ls\"."
+msgid "Marking all packages as keep (%s)\n"
+msgstr "تحديث لوائح الحزم"
+
+#: src/cmdline/cmdline_mark.cc:86
+#, fuzzy, c-format
+msgid "Would mark all packages as keep\n"
+msgstr "الحزمة المصدرية: "
+
+#: src/cmdline/cmdline_mark.cc:98 src/cmdline/cmdline_mark.cc:209
+#, fuzzy
+msgid "Subcommand needs arguments: "
+msgstr "خطأ: أمر التحديث لا يتطلّب أي مُعطيات\n"
+
+#: src/cmdline/cmdline_mark.cc:128 src/cmdline/cmdline_util.cc:893
+#: src/ui.cc:2095
+#, fuzzy, c-format
 msgid "No packages match pattern \"%s\""
 msgstr "لم تطابق أية حزم الصيغة \"%ls\"."
+
+#: src/cmdline/cmdline_mark.cc:151
+#, fuzzy, c-format
+msgid "Could not parse version for %s: %s\n"
+msgstr "تعذر إعراب تعريف العمود"
+
+#: src/cmdline/cmdline_mark.cc:158
+#, c-format
+msgid "Package not found: %s, from %s\n"
+msgstr ""
+
+#: src/cmdline/cmdline_mark.cc:171 src/cmdline/cmdline_mark.cc:189
+#, c-format
+msgid "Would mark package %s as forbid to upgrade to version %s\n"
+msgstr ""
+
+#: src/cmdline/cmdline_mark.cc:236 src/cmdline/cmdline_mark.cc:292
+msgid "Subcommand unknown/unhandled: "
+msgstr ""
+
+#: src/cmdline/cmdline_mark.cc:244
+#, fuzzy, c-format
+msgid "Marking package %s (%s)\n"
+msgstr "تحديث لوائح الحزم"
+
+#: src/cmdline/cmdline_mark.cc:258
+#, fuzzy, c-format
+msgid "Would mark package %s as auto-installed=%d\n"
+msgstr "'&M' لتحديد الحزم بالتثبيت التلقائي"
+
+#: src/cmdline/cmdline_mark.cc:270
+#, fuzzy, c-format
+msgid "Would mark package %s as hold\n"
+msgstr "الحزمة المصدرية: "
+
+#: src/cmdline/cmdline_mark.cc:283
+#, fuzzy, c-format
+msgid "Would mark package %s as keep (or unhold)\n"
+msgstr "الحزمة المصدرية: "
 
 #: src/cmdline/cmdline_moo.cc:16
 #, c-format
@@ -1623,17 +1684,17 @@ msgstr ""
 "لن تظهر تغييرات الحجم.\n"
 "\n"
 
-#: src/cmdline/cmdline_resolver.cc:143 src/cmdline/cmdline_resolver.cc:995
+#: src/cmdline/cmdline_resolver.cc:143 src/cmdline/cmdline_resolver.cc:1001
 #, c-format
 msgid "Unable to open %s for writing"
 msgstr "تعذر فتح %s للتسجيل"
 
-#: src/cmdline/cmdline_resolver.cc:149 src/cmdline/cmdline_resolver.cc:1000
+#: src/cmdline/cmdline_resolver.cc:149 src/cmdline/cmdline_resolver.cc:1006
 #, c-format
 msgid "Error writing resolver state to %s"
 msgstr "خطأ في تسجيل وضع المُحلّل إلى %s"
 
-#: src/cmdline/cmdline_resolver.cc:151 src/cmdline/cmdline_resolver.cc:1002
+#: src/cmdline/cmdline_resolver.cc:151 src/cmdline/cmdline_resolver.cc:1008
 msgid "Resolver state successfully written!"
 msgstr "تم تسجيل وضع المحلّل بنجاح!"
 
@@ -1651,8 +1712,8 @@ msgid "accept the proposed changes"
 msgstr "قبول التغييرات المقدمة"
 
 #: src/cmdline/cmdline_resolver.cc:239
-msgid "reject the proposed changes and search for another solution"
-msgstr "رفض التغييرات المقترحة و البحث عن حلّ آخر"
+msgid "jump to the end of all the generated solutions and search for another"
+msgstr ""
 
 #: src/cmdline/cmdline_resolver.cc:241
 msgid "give up and quit the program"
@@ -1884,7 +1945,7 @@ msgstr ""
 msgid "I want to resolve dependencies, but no dependency resolver was created."
 msgstr ""
 
-#: src/cmdline/cmdline_resolver.cc:829 src/cmdline/cmdline_resolver.cc:1173
+#: src/cmdline/cmdline_resolver.cc:829 src/cmdline/cmdline_resolver.cc:1179
 #: src/gtk/resolver.cc:2058 src/solution_dialog.cc:127
 #: src/solution_screen.cc:562
 msgid "Resolving dependencies..."
@@ -1898,51 +1959,51 @@ msgstr "العمليات التالية ستحلّ هذه الاعتمادات:"
 msgid "Accept this solution? [Y/n/q/?] "
 msgstr "قبول هذا الحل? [Y/n/q/?] "
 
-#: src/cmdline/cmdline_resolver.cc:929 src/cmdline/cmdline_resolver.cc:1070
+#: src/cmdline/cmdline_resolver.cc:935 src/cmdline/cmdline_resolver.cc:1076
 msgid "Abandoning all efforts to resolve these dependencies."
 msgstr "تجاهل جميع الجهود لحلّ هذه المعتمدات."
 
-#: src/cmdline/cmdline_resolver.cc:932
+#: src/cmdline/cmdline_resolver.cc:938
 msgid ""
 "Abandoning automatic dependency resolution and reverting to manual "
 "resolution."
 msgstr ""
 
-#: src/cmdline/cmdline_resolver.cc:971
+#: src/cmdline/cmdline_resolver.cc:977
 msgid "The following commands are available:"
 msgstr "الأوامر التالية متوفّرة:"
 
-#: src/cmdline/cmdline_resolver.cc:992 src/ui.cc:2496
+#: src/cmdline/cmdline_resolver.cc:998 src/ui.cc:2506
 msgid "File to write resolver state to: "
 msgstr "اسم الملف المطلوب تسجيل وضع المحلّل إليه:"
 
-#: src/cmdline/cmdline_resolver.cc:1024
+#: src/cmdline/cmdline_resolver.cc:1030
 msgid "Invalid response; please enter one of the following commands:"
 msgstr "ردّ باطل؛ من فضلك أدخل أحد هذه الأوامر: "
 
-#: src/cmdline/cmdline_resolver.cc:1044
+#: src/cmdline/cmdline_resolver.cc:1050
 msgid "No solution found within the allotted time.  Try harder? [Y/n] "
 msgstr "لم يُعثر على حل ضمن الوقع المُخصّص.  هل أحاول بجهد أكبر؟ [Y/n] "
 
-#: src/cmdline/cmdline_resolver.cc:1073
+#: src/cmdline/cmdline_resolver.cc:1079
 msgid "Invalid response; please enter 'y' or 'n'."
 msgstr "ردّ باطل؛ من فضلك أدخل 'y' أو 'n'."
 
-#: src/cmdline/cmdline_resolver.cc:1082
+#: src/cmdline/cmdline_resolver.cc:1088
 msgid "Unable to resolve dependencies!  Giving up..."
 msgstr "تعذر إرضاء المعتمدات!  الاستسلام..."
 
-#: src/cmdline/cmdline_resolver.cc:1088
+#: src/cmdline/cmdline_resolver.cc:1094
 msgid "*** No more solutions available ***"
 msgstr "*** لا مزيد من الحلول ***"
 
-#: src/cmdline/cmdline_resolver.cc:1107
+#: src/cmdline/cmdline_resolver.cc:1113
 msgid ""
 "*** ERROR: search aborted by fatal exception.  You may continue\n"
 "           searching, but some solutions will be unreachable."
 msgstr ""
 
-#: src/cmdline/cmdline_resolver.cc:1184
+#: src/cmdline/cmdline_resolver.cc:1190
 #, c-format
 msgid ""
 "Unable to resolve dependencies for the upgrade because the resolver timed "
@@ -1951,27 +2012,27 @@ msgid ""
 "  Aptitude::ProblemResolver::StepLimit (currently %d)."
 msgstr ""
 
-#: src/cmdline/cmdline_resolver.cc:1194
+#: src/cmdline/cmdline_resolver.cc:1200
 #, fuzzy
 msgid "Unable to resolve dependencies for the upgrade: no solution found."
 msgstr "تعذر إرضاء المعتمدات!  الاستسلام..."
 
-#: src/cmdline/cmdline_resolver.cc:1200
+#: src/cmdline/cmdline_resolver.cc:1206
 #, fuzzy, c-format
 msgid "Unable to resolve dependencies for the upgrade: %s"
 msgstr "تعذر إرضاء المعتمدات."
 
-#: src/cmdline/cmdline_search.cc:229 src/cmdline/cmdline_versions.cc:586
+#: src/cmdline/cmdline_search.cc:226 src/cmdline/cmdline_versions.cc:586
 #, c-format
 msgid "iconv of %s failed.\n"
 msgstr "فشل تنفيذ iconv على%s.\n"
 
-#: src/cmdline/cmdline_search.cc:240 src/cmdline/cmdline_versions.cc:597
+#: src/cmdline/cmdline_search.cc:237 src/cmdline/cmdline_versions.cc:597
 #, fuzzy, c-format
 msgid "%s: Could not parse column definitions: '%ls'\n"
 msgstr "تعذر إعراب تعريف العمود"
 
-#: src/cmdline/cmdline_search.cc:247
+#: src/cmdline/cmdline_search.cc:244
 #, c-format
 msgid "search: You must provide at least one search term\n"
 msgstr "البحث: يجب أن تعطي كلمة بحث واحدة على الأقل\n"
@@ -2251,7 +2312,7 @@ msgid "Enhances"
 msgstr ""
 
 #: src/cmdline/cmdline_show.cc:483 src/cmdline/cmdline_why.cc:222
-#: src/cmdline/cmdline_why.cc:1661 src/gtk/dependency_chains_tab.cc:207
+#: src/cmdline/cmdline_why.cc:1657 src/gtk/dependency_chains_tab.cc:207
 msgid "Provides"
 msgstr "يُوفّر"
 
@@ -2284,11 +2345,11 @@ msgstr "سيقوم بتنزيل/تثبيت/إزالة الحزم.\n"
 msgid "Internal Error, Ordering didn't finish"
 msgstr "خطأ داخلي، لم ينته الترتيب"
 
-#: src/cmdline/cmdline_update.cc:43 src/ui.cc:221 src/ui.cc:1988
+#: src/cmdline/cmdline_update.cc:46 src/ui.cc:221 src/ui.cc:1988
 msgid "Deleting obsolete downloaded files"
 msgstr "حذف الملفات المنزلة الملغاة"
 
-#: src/cmdline/cmdline_update.cc:54
+#: src/cmdline/cmdline_update.cc:55
 #, c-format
 msgid "E: The update command takes no arguments\n"
 msgstr "خطأ: أمر التحديث لا يتطلّب أي مُعطيات\n"
@@ -2431,7 +2492,7 @@ msgstr ""
 msgid "versions: You must provide at least one package selector\n"
 msgstr "البحث: يجب أن تعطي كلمة بحث واحدة على الأقل\n"
 
-#: src/cmdline/cmdline_versions.cc:644
+#: src/cmdline/cmdline_versions.cc:640
 #, c-format
 msgid "Argument is neither a package name nor a pattern: '%s'"
 msgstr ""
@@ -2549,7 +2610,7 @@ msgid "Starting search with parameters %ls\n"
 msgstr ""
 
 #: src/cmdline/cmdline_why.cc:1174 src/cmdline/cmdline_why.cc:1356
-#: src/cmdline/cmdline_why.cc:1432
+#: src/cmdline/cmdline_why.cc:1428
 #, fuzzy, c-format
 msgid "No package named \"%s\" exists."
 msgstr "تعذر العثور على أيّة حزمة بالاسم \"%s\""
@@ -3632,19 +3693,19 @@ msgstr ""
 msgid "_File"
 msgstr "إغلاق"
 
-#: src/gtk/aptitude.glade:28 src/gtk/aptitude.glade:2274 src/ui.cc:2527
+#: src/gtk/aptitude.glade:28 src/gtk/aptitude.glade:2274 src/ui.cc:2537
 msgid "Perform all pending installs and removals"
 msgstr "إجراء كل عمليات التثبيت والإزالة المؤخَّرة"
 
-#: src/gtk/aptitude.glade:38 src/gtk/aptitude.glade:2285 src/ui.cc:2530
+#: src/gtk/aptitude.glade:38 src/gtk/aptitude.glade:2285 src/ui.cc:2540
 msgid "Check for new versions of packages"
 msgstr "التحقق من وجود نسخ جديدة من الحزم"
 
-#: src/gtk/aptitude.glade:53 src/gtk/aptitude.glade:2301 src/ui.cc:2535
+#: src/gtk/aptitude.glade:53 src/gtk/aptitude.glade:2301 src/ui.cc:2545
 msgid "Mark all upgradable packages which are not held for upgrade"
 msgstr "تعليم كل الحزم القابلة للترقية والتي ليست مبقاة للترقية"
 
-#: src/gtk/aptitude.glade:63 src/gtk/aptitude.glade:2312 src/ui.cc:2540
+#: src/gtk/aptitude.glade:63 src/gtk/aptitude.glade:2312 src/ui.cc:2550
 msgid "Forget which packages are \"new\""
 msgstr "نسيان أيّ الحزم هي \"جديدة\""
 
@@ -3652,26 +3713,26 @@ msgstr "نسيان أيّ الحزم هي \"جديدة\""
 msgid "Cancel all pending installations, removals, holds, and upgrades."
 msgstr "إلغاء جميع التثبيتات، والإزالات، والإبقاءات، والترقيات المؤجلة."
 
-#: src/gtk/aptitude.glade:81 src/gtk/aptitude.glade:2332 src/ui.cc:2548
+#: src/gtk/aptitude.glade:81 src/gtk/aptitude.glade:2332 src/ui.cc:2558
 msgid "Delete package files which were previously downloaded"
 msgstr "حذف ملفات الحزم التي تم تنزيلها من قبل"
 
-#: src/gtk/aptitude.glade:90 src/gtk/aptitude.glade:2342 src/ui.cc:2552
+#: src/gtk/aptitude.glade:90 src/gtk/aptitude.glade:2342 src/ui.cc:2562
 msgid "Delete package files which can no longer be downloaded"
 msgstr "حذف ملفات الحزم التي لا يمكن تنزيلها بعد الآن"
 
-#: src/gtk/aptitude.glade:104 src/gtk/aptitude.glade:2357 src/ui.cc:2559
+#: src/gtk/aptitude.glade:104 src/gtk/aptitude.glade:2357 src/ui.cc:2569
 msgid "Reload the package cache"
 msgstr "إعادة تحميل مخزن الحزم"
 
-#: src/gtk/aptitude.glade:118 src/gtk/aptitude.glade:2372 src/ui.cc:2569
+#: src/gtk/aptitude.glade:118 src/gtk/aptitude.glade:2372 src/ui.cc:2579
 #, fuzzy
 msgid "Restart the program as root; your settings will be preserved"
 msgstr ""
 "استخدم 'su' كي تصبح المستخدم root؛ سيقوم هذا بإعادة تشغيل البرنامج، ولكن "
 "سيتم الإبقاء على إعداداتك"
 
-#: src/gtk/aptitude.glade:127 src/gtk/aptitude.glade:2382 src/ui.cc:2572
+#: src/gtk/aptitude.glade:127 src/gtk/aptitude.glade:2382 src/ui.cc:2582
 msgid "Exit the program"
 msgstr "الخروج من البرنامج"
 
@@ -3679,7 +3740,7 @@ msgstr "الخروج من البرنامج"
 msgid "E_dit"
 msgstr ""
 
-#: src/gtk/aptitude.glade:148 src/gtk/aptitude.glade:2404 src/ui.cc:2579
+#: src/gtk/aptitude.glade:148 src/gtk/aptitude.glade:2404 src/ui.cc:2589
 msgid "Undo the last package operation or group of operations"
 msgstr "التراجع عن آخر عملية حزمة أو مجموعة من العمليات"
 
@@ -3733,7 +3794,7 @@ msgid "Preview"
 msgstr "معاينة"
 
 #: src/gtk/aptitude.glade:369 src/gtk/aptitude.glade:2628 src/gtk/gui.cc:1028
-#: src/qt/tabs_manager.cc:263 src/ui.cc:2969
+#: src/qt/tabs_manager.cc:263 src/ui.cc:2979
 msgid "Resolver"
 msgstr "مقدم الحلول"
 
@@ -5490,81 +5551,81 @@ msgstr "حرف '(' ليس له مقابل في وصف سياسة الفرز"
 msgid "Invalid sorting policy type '%s'"
 msgstr "نوع سياسة الفرز '%s' غير صالح"
 
-#: src/main.cc:135
+#: src/main.cc:136
 #, c-format
 msgid "Can't decode multibyte string after \"%ls\""
 msgstr "تعذر فك ترميز سلسلة الأحرف الثنائية البايت بعد \"%ls\""
 
-#: src/main.cc:144
+#: src/main.cc:145
 #, c-format
 msgid "Can't decode wide-character string after \"%s\""
 msgstr "تعذر فك ترميز سلسلة الأحرف العريضة بعد \"%s\""
 
-#: src/main.cc:156
+#: src/main.cc:157
 #, c-format
 msgid "Compiler: g++ %s\n"
 msgstr "المُجمّع: g++ %s\n"
 
-#: src/main.cc:158
+#: src/main.cc:159
 #, fuzzy
 msgid "Compiled against:\n"
 msgstr "المُجمّع: g++ %s\n"
 
-#: src/main.cc:159
+#: src/main.cc:160
 #, fuzzy, c-format
 msgid "  apt version %d.%d.%d\n"
 msgstr "إبقاء %F النسخة %s (%s)"
 
-#: src/main.cc:162
+#: src/main.cc:163
 #, fuzzy, c-format
 msgid "  NCurses version: Unknown\n"
 msgstr ""
 "\n"
 "نسخة NCurses: %s\n"
 
-#: src/main.cc:164
+#: src/main.cc:165
 #, fuzzy, c-format
 msgid "  NCurses version %s\n"
 msgstr ""
 "\n"
 "نسخة NCurses: %s\n"
 
-#: src/main.cc:166
+#: src/main.cc:167
 #, fuzzy, c-format
 msgid "  libsigc++ version: %s\n"
 msgstr "نسخة libsigc++: %s\n"
 
-#: src/main.cc:168
+#: src/main.cc:169
 #, fuzzy, c-format
 msgid "  Gtk+ version %d.%d.%d\n"
 msgstr "إبقاء %F النسخة %s (%s)"
 
-#: src/main.cc:170
+#: src/main.cc:171
 #, fuzzy, c-format
 msgid "  Gtk-- version %d.%d.%d\n"
 msgstr "إبقاء %F النسخة %s (%s)"
 
-#: src/main.cc:173
+#: src/main.cc:174
 #, c-format
 msgid "  Gtk+ support disabled.\n"
 msgstr ""
 
-#: src/main.cc:176
+#: src/main.cc:177
 #, fuzzy, c-format
 msgid "  Compiled with Qt %s\n"
 msgstr "%s %s جمعت في %s %s\n"
 
-#: src/main.cc:177
+#: src/main.cc:178
 #, c-format
 msgid "  Running on Qt %s\n"
 msgstr ""
 
-#: src/main.cc:179
+#: src/main.cc:180
 #, c-format
 msgid "  Qt support disabled.\n"
 msgstr ""
 
-#: src/main.cc:181
+#: src/main.cc:182
 #, fuzzy
 msgid ""
 "\n"
@@ -5573,36 +5634,36 @@ msgstr ""
 "\n"
 "نسخة Curses: %s\n"
 
-#: src/main.cc:182
+#: src/main.cc:183
 #, fuzzy, c-format
 msgid "  NCurses version: %s\n"
 msgstr ""
 "\n"
 "نسخة NCurses: %s\n"
 
-#: src/main.cc:183
+#: src/main.cc:184
 #, fuzzy, c-format
 msgid "  cwidget version: %s\n"
 msgstr "نسخة libsigc++: %s\n"
 
-#: src/main.cc:184
+#: src/main.cc:185
 #, fuzzy, c-format
 msgid "  Apt version: %s\n"
 msgstr ""
 "\n"
 "نسخة Curses: %s\n"
 
-#: src/main.cc:190
+#: src/main.cc:191
 #, c-format
 msgid "Usage: aptitude [-S fname] [-u|-i]"
 msgstr "الاستخدام: aptitude [-S fname] [-u|-i]"
 
-#: src/main.cc:192
+#: src/main.cc:193
 #, c-format
 msgid "       aptitude [options] <action> ..."
 msgstr "       aptitude [options] <action> ..."
 
-#: src/main.cc:195
+#: src/main.cc:196
 #, fuzzy, c-format
 msgid ""
 "Actions (if none is specified, aptitude will enter interactive mode):\n"
@@ -5612,188 +5673,200 @@ msgstr ""
 "التفاعلي):\n"
 "\n"
 
-#: src/main.cc:196
+#: src/main.cc:197
 #, fuzzy, c-format
 msgid " install         Install/upgrade packages.\n"
 msgstr " install      - تثبيت/ترقية الحزم\n"
 
-#: src/main.cc:197
+#: src/main.cc:198
 #, fuzzy, c-format
 msgid " remove          Remove packages.\n"
 msgstr " remove       - إزالة الحزم\n"
 
-#: src/main.cc:198
+#: src/main.cc:199
 #, fuzzy, c-format
 msgid " purge           Remove packages and their configuration files.\n"
 msgstr " purge        - إزالة الحزم وملفات تهيئتها\n"
 
-#: src/main.cc:199
+#: src/main.cc:200
 #, fuzzy, c-format
 msgid " hold            Place packages on hold.\n"
 msgstr " hold         - وضع الحزم على الإبقاء\n"
 
-#: src/main.cc:200
+#: src/main.cc:201
 #, fuzzy, c-format
 msgid " unhold          Cancel a hold command for a package.\n"
 msgstr " unhold       - إلغاء أمر الإبقاء لحزمة\n"
 
-#: src/main.cc:201
+#: src/main.cc:202
 #, fuzzy, c-format
 msgid ""
 " markauto        Mark packages as having been automatically installed.\n"
 msgstr " markauto     - تعليم الحزم على أنها ثُبّتت تلقائياً\n"
 
-#: src/main.cc:202
+#: src/main.cc:203
 #, fuzzy, c-format
 msgid " unmarkauto      Mark packages as having been manually installed.\n"
 msgstr " unmarkauto   - تحديد الحزم كمُثبتة يدوياً\n"
 
-#: src/main.cc:203
+#: src/main.cc:204
 #, fuzzy, c-format
 msgid ""
 " forbid-version  Forbid aptitude from upgrading to a specific package "
 "version.\n"
 msgstr " forbid-version - منع aptitude من الترقية إلى نسخة ما من الحزمة.\n"
 
-#: src/main.cc:204
+#: src/main.cc:205
 #, fuzzy, c-format
 msgid " update          Download lists of new/upgradable packages.\n"
 msgstr " update       - تنزيل قوائم الحزم الجديدة/القابلة للترقية\n"
 
-#: src/main.cc:205
+#: src/main.cc:206
 #, fuzzy, c-format
 msgid " safe-upgrade    Perform a safe upgrade.\n"
 msgstr " upgrade      - القيام بترقية آمنة\n"
 
-#: src/main.cc:206
+#: src/main.cc:207
 #, fuzzy, c-format
 msgid ""
 " full-upgrade    Perform an upgrade, possibly installing and removing "
 "packages.\n"
 msgstr " dist-upgrade - تنفيذ الترقية، مع تثبيت وإزالة الحزم على الأرجح\n"
 
-#: src/main.cc:207
+#: src/main.cc:208
 #, fuzzy, c-format
 msgid " build-dep       Install the build-dependencies of packages.\n"
 msgstr " install      - تثبيت/ترقية الحزم\n"
 
-#: src/main.cc:208
+#: src/main.cc:209
 #, fuzzy, c-format
 msgid " forget-new      Forget what packages are \"new\".\n"
 msgstr " forget-new   - نسيان أي الحزم هي \"جديدة\"\n"
 
-#: src/main.cc:209
+#: src/main.cc:210
 #, fuzzy, c-format
 msgid " search          Search for a package by name and/or expression.\n"
 msgstr " search       - البحث عن حزمة باسمها و/أو بصيغة\n"
 
-#: src/main.cc:210
-#, fuzzy, c-format
-msgid " show            Display detailed information about a package.\n"
-msgstr " show         - عرض معلومات مفصلة حول حزمة\n"
-
 #: src/main.cc:211
 #, fuzzy, c-format
-msgid " versions        Displays the versions of specified packages.\n"
+msgid " show            Display detailed info about a package.\n"
 msgstr " show         - عرض معلومات مفصلة حول حزمة\n"
 
 #: src/main.cc:212
 #, fuzzy, c-format
+msgid ""
+" showsrc         Display detailed info about a source package (apt "
+"wrapper).\n"
+msgstr " show         - عرض معلومات مفصلة حول حزمة\n"
+
+#: src/main.cc:213
+#, fuzzy, c-format
+msgid " versions        Displays the versions of specified packages.\n"
+msgstr " show         - عرض معلومات مفصلة حول حزمة\n"
+
+#: src/main.cc:214
+#, fuzzy, c-format
 msgid " clean           Erase downloaded package files.\n"
 msgstr " clean        - حذف ملفات الحزم المنزلة\n"
 
-#: src/main.cc:213
+#: src/main.cc:215
 #, fuzzy, c-format
 msgid " autoclean       Erase old downloaded package files.\n"
 msgstr " autoclean    - إزالة ملفات الحزم المنزلة القديمة\n"
 
-#: src/main.cc:214
+#: src/main.cc:216
 #, fuzzy, c-format
 msgid " changelog       View a package's changelog.\n"
 msgstr " changelog    - عرض سجل تغييرات حزمة\n"
 
-#: src/main.cc:215
+#: src/main.cc:217
 #, fuzzy, c-format
-msgid " download        Download the .deb file for a package.\n"
+msgid " download        Download the .deb file for a package (apt wrapper).\n"
 msgstr " download     - تنزيل الملف .deb لحزمة\n"
 
-#: src/main.cc:216
+#: src/main.cc:218
+#, fuzzy, c-format
+msgid " source          Download source package (apt wrapper).\n"
+msgstr " -u             تنزيل قوائم الحزم الجديدة عند بدء التشغيل.\n"
+
+#: src/main.cc:219
 #, fuzzy, c-format
 msgid " reinstall       Reinstall a currently installed package.\n"
 msgstr " reinstall    - تنزيل و(محتمل) إعادة تثبيت حزمةمثبتة حالياً\n"
 
-#: src/main.cc:217
+#: src/main.cc:220
 #, fuzzy, c-format
 msgid ""
 " why             Explain why a particular package should be installed.\n"
 msgstr " -V             إظهار نسخة الحزم التي سيتم تثبيتها.\n"
 
-#: src/main.cc:218
+#: src/main.cc:221
 #, fuzzy, c-format
 msgid ""
 " why-not         Explain why a particular package cannot be installed.\n"
 msgstr " -V             إظهار نسخة الحزم التي سيتم تثبيتها.\n"
 
-#: src/main.cc:220
+#: src/main.cc:223
 #, c-format
 msgid " add-user-tag    Add user tag to packages/patterns.\n"
 msgstr ""
 
-#: src/main.cc:221
+#: src/main.cc:224
 #, c-format
 msgid " remove-user-tag Remove user tag from packages/patterns.\n"
 msgstr ""
 
-#: src/main.cc:223
+#: src/main.cc:226
 #, fuzzy, c-format
 msgid "Options:\n"
 msgstr "  خيارات:\n"
 
-#: src/main.cc:224
+#: src/main.cc:227
 #, fuzzy, c-format
 msgid " -h              This help text.\n"
 msgstr " -h             نص المساعدة هذا\n"
 
-#: src/main.cc:226
+#: src/main.cc:229
 #, c-format
 msgid ""
 " --gui           Use the GTK GUI even if disabled in the configuration.\n"
 msgstr ""
 
-#: src/main.cc:228
+#: src/main.cc:231
 #, c-format
 msgid " --no-gui        Do not use the GTK GUI even if available.\n"
 msgstr ""
 
-#: src/main.cc:230
+#: src/main.cc:233
 #, fuzzy, c-format
 msgid " --qt            Use the Qt GUI.\n"
 msgstr " -h             نص المساعدة هذا\n"
 
-#: src/main.cc:231
+#: src/main.cc:234
 #, c-format
 msgid ""
 " --no-qt         Do not use the Qt GUI even if enabled in the "
 "configuration.\n"
 msgstr ""
 
-#: src/main.cc:233
+#: src/main.cc:236
 #, fuzzy, c-format
 msgid " -s              Simulate actions, but do not actually perform them.\n"
 msgstr " -s             تمثيل الإجراءات، لكن دون تنفيذها بالفعل.\n"
 
-#: src/main.cc:234
+#: src/main.cc:237
 #, fuzzy, c-format
 msgid ""
 " -d              Only download packages, do not install or remove anything.\n"
 msgstr " -d             تنزيل الحزم فقط، دون تثبيت أو إزالة أيها.\n"
 
-#: src/main.cc:235
+#: src/main.cc:238
 #, fuzzy, c-format
 msgid " -P              Always prompt for confirmation of actions.\n"
 msgstr " -P             السؤال دائماً للتأكيد أو لتنفيذ الإجراءات\n"
 
-#: src/main.cc:236
+#: src/main.cc:239
 #, fuzzy, c-format
 msgid ""
 " -y              Assume that the answer to simple yes/no questions is "
@@ -5802,61 +5875,61 @@ msgstr ""
 " -y             افتراض أن الإجابة على أسئلة الإجابة بنعم أو لا البسيطة هي "
 "'نعم'\n"
 
-#: src/main.cc:237
+#: src/main.cc:240
 #, fuzzy, c-format
 msgid ""
 " -F format       Specify a format for displaying search results; see the "
 "manual.\n"
 msgstr " -F format      تحديد نسق عرض نتائج البحث؛ راجع التعليمات\n"
 
-#: src/main.cc:238
+#: src/main.cc:241
 #, fuzzy, c-format
 msgid ""
 " -O order        Specify how search results should be sorted; see the "
 "manual.\n"
 msgstr " -O order       تحديد كيفية فرز نتائج البحث؛ راجع التعليمات\n"
 
-#: src/main.cc:239
+#: src/main.cc:242
 #, fuzzy, c-format
 msgid ""
 " -w width        Specify the display width for formatting search results.\n"
 msgstr " -w width       تحديد عرض الإظهار لتنسيق نتائج البحث\n"
 
-#: src/main.cc:240
+#: src/main.cc:243
 #, fuzzy, c-format
 msgid " -f              Aggressively try to fix broken packages.\n"
 msgstr " -f             محاولة إصلاح الحزم المعطوبة بشدة.\n"
 
-#: src/main.cc:241
+#: src/main.cc:244
 #, fuzzy, c-format
 msgid " -V              Show which versions of packages are to be installed.\n"
 msgstr " -V             إظهار نسخة الحزم التي سيتم تثبيتها.\n"
 
-#: src/main.cc:242
+#: src/main.cc:245
 #, fuzzy, c-format
 msgid ""
 " -D              Show the dependencies of automatically changed packages.\n"
 msgstr " -D             إظهار معتمدات الحزم المغيرة تلقائياً.\n"
 
-#: src/main.cc:243
+#: src/main.cc:246
 #, fuzzy, c-format
 msgid " -Z              Show the change in installed size of each package.\n"
 msgstr " -Z\t\t    إظهار التغيير في حجم تثبيت كل حزمة.\n"
 
-#: src/main.cc:244
+#: src/main.cc:247
 #, fuzzy, c-format
 msgid ""
 " -v              Display extra information. (may be supplied multiple "
 "times).\n"
 msgstr " -v             عرض معلومات إضافية. (يمكن استخدامه عدة مرات)\n"
 
-#: src/main.cc:245
+#: src/main.cc:248
 #, fuzzy, c-format
 msgid ""
 " -t [release]    Set the release from which packages should be installed.\n"
 msgstr " -t [release]   تحديد الإصدارة التي يجب تثبيت الحزم منها\n"
 
-#: src/main.cc:246
+#: src/main.cc:249
 #, fuzzy, c-format
 msgid ""
 " -q              In command-line mode, suppress the incremental progress\n"
@@ -5865,12 +5938,12 @@ msgstr ""
 " -q             في وضع سطر الأوامر، عدم إظهار\n"
 "مؤشرات التقدم التصاعدي.\n"
 
-#: src/main.cc:248
+#: src/main.cc:251
 #, fuzzy, c-format
 msgid " -o key=val      Directly set the configuration option named 'key'.\n"
 msgstr " -o key=val     تعيين خيار التهيئة المسمى 'key' مباشرة\n"
 
-#: src/main.cc:249
+#: src/main.cc:252
 #, fuzzy, c-format
 msgid ""
 " --with(out)-recommends     Specify whether or not to treat recommends as\n"
@@ -5879,39 +5952,39 @@ msgstr ""
 " --with(out)-recommends\tتحديد اعتبار الموصى بها\n"
 "                معتمدات ضرورية\n"
 
-#: src/main.cc:251
+#: src/main.cc:254
 #, fuzzy, c-format
 msgid " -S fname        Read the aptitude extended status info from fname.\n"
 msgstr " -S fname       قراءة معلومات وضع aptitude الشاملة من fname.\n"
 
-#: src/main.cc:252
+#: src/main.cc:255
 #, fuzzy, c-format
 msgid " -u              Download new package lists on startup.\n"
 msgstr " -u             تنزيل قوائم الحزم الجديدة عند بدء التشغيل.\n"
 
-#: src/main.cc:253 src/main.cc:255
+#: src/main.cc:256 src/main.cc:258
 #, fuzzy, c-format
 msgid "                  (terminal interface only)\n"
 msgstr " -h             نص المساعدة هذا\n"
 
-#: src/main.cc:254
+#: src/main.cc:257
 #, fuzzy, c-format
 msgid " -i              Perform an install run on startup.\n"
 msgstr " -i             القيام بتثبيت عند بدء التشغيل.\n"
 
-#: src/main.cc:257
+#: src/main.cc:260
 #, c-format
 msgid ""
 "See the manual page for a complete list and description of all the options.\n"
 msgstr ""
 
-#: src/main.cc:259
+#: src/main.cc:262
 #, fuzzy, c-format
 msgid "This aptitude does not have Super Cow Powers.\n"
 msgstr "                  برنامج aptitude هذا ليست له قوى البقرة الخارقة.\n"
 
 #. TRANSLATORS: levels are not translatable anymore
-#: src/main.cc:457
+#: src/main.cc:460
 #, c-format
 msgid ""
 "Unknown log level name \"%s\" (expected \"trace\", \"debug\", \"info\", "
@@ -5932,55 +6005,55 @@ msgstr ""
 #. * levels for different categories (e.g. level 'warn' for
 #. * 'aptitude.changelog', debug for 'aptitude.why'), etc.
 #.
-#: src/main.cc:480
+#: src/main.cc:483
 #, fuzzy, c-format
 msgid "Invalid logger name \"%s\"."
 msgstr "عملية غير صالحة %s"
 
-#: src/main.cc:810
+#: src/main.cc:813
 #, c-format
 msgid "Expected a number after -q=\n"
 msgstr "توقع رقم بعد -q=\n"
 
-#: src/main.cc:819
+#: src/main.cc:822
 #, c-format
 msgid "Expected a number after -q=, got %s\n"
 msgstr "توقع رقم بعد -q=، لكن وجد %s\n"
 
-#: src/main.cc:843
+#: src/main.cc:846
 #, fuzzy, c-format
 msgid "-o requires an argument of the form key=value, got %s\n"
 msgstr "يتطلب المعطى -o معطى آخر بالشكل key=value، ولكن وجد %s"
 
-#: src/main.cc:920
+#: src/main.cc:923
 #, c-format
 msgid ""
 "Invalid option \"%s\" (only \"--purge-unused\" is valid).  Perhaps you want "
 "the \"purge\" action?\n"
 msgstr ""
 
-#: src/main.cc:941
+#: src/main.cc:944
 #, c-format
 msgid "No comma following tag name \"%s\".\n"
 msgstr ""
 
-#: src/main.cc:1033 src/main.cc:1043
+#: src/main.cc:1036 src/main.cc:1046
 msgid "WEIRDNESS: unknown option code received\n"
 msgstr "عجباً: استقبل رمز خير مجهول\n"
 
-#: src/main.cc:1061
+#: src/main.cc:1064
 msgid "--show-package-names|never"
 msgstr ""
 
-#: src/main.cc:1064
+#: src/main.cc:1067
 msgid "--show-package-names|auto"
 msgstr ""
 
-#: src/main.cc:1067
+#: src/main.cc:1070
 msgid "--show-package-names|always"
 msgstr ""
 
-#: src/main.cc:1072
+#: src/main.cc:1075
 #, c-format
 msgid ""
 "Invalid package names display mode \"%s\" (should be \"never\", \"auto\", or "
@@ -5989,7 +6062,7 @@ msgstr ""
 
 #. TRANSLATORS: "why" and "modes" here are the aptitude command name and
 #. parameters, and should not be translated.
-#: src/main.cc:1092
+#: src/main.cc:1095
 #, c-format
 msgid ""
 "Invalid \"why\" summary mode \"%s\": expected \"no-summary\", \"first-package"
@@ -5997,41 +6070,46 @@ msgid ""
 "versions\"."
 msgstr ""
 
-#: src/main.cc:1133
+#: src/main.cc:1136
 #, fuzzy
 msgid ""
 "Only one of --auto-clean-on-startup, --clean-on-startup, -i, and -u may be "
 "specified\n"
 msgstr "يمكن تحديد -u أو -i فقط\n"
 
-#: src/main.cc:1142
+#: src/main.cc:1145
 #, fuzzy
 msgid ""
 "-u, -i, and --clean-on-startup may not be specified in command-line mode "
 "(eg, with 'install')"
 msgstr "-u و -i لا يمكن تحديدها في وضع سطر الأوامر (مثلاً، مع 'install')"
 
-#: src/main.cc:1159
+#: src/main.cc:1162
 #, fuzzy
 msgid "-u, -i, and --clean-on-startup may not be specified with a command"
 msgstr "لا يمكن تحديد -u و -i مع أمر واحد"
 
-#: src/main.cc:1231
+#: src/main.cc:1223 src/main.cc:1256
 #, fuzzy, c-format
 msgid "Command \"%s\" needs arguments\n"
 msgstr "خطأ: أمر التحديث لا يتطلّب أي مُعطيات\n"
 
-#: src/main.cc:1302
+#: src/main.cc:1231
+#, fuzzy, c-format
+msgid "Command \"%s\" does not accept arguments\n"
+msgstr "خطأ: أمر التحديث لا يتطلّب أي مُعطيات\n"
+
+#: src/main.cc:1327
 #, c-format
 msgid "Unknown command \"%s\"\n"
 msgstr "أمر غير معروف \"%s\"\n"
 
-#: src/main.cc:1314 src/main.cc:1408
+#: src/main.cc:1339 src/main.cc:1433
 #, c-format
 msgid "Uncaught exception: %s\n"
 msgstr "استثناء غير معالج: %s\n"
 
-#: src/main.cc:1318 src/main.cc:1412
+#: src/main.cc:1343 src/main.cc:1437
 #, fuzzy, c-format
 msgid ""
 "Backtrace:\n"
@@ -6170,7 +6248,7 @@ msgstr "ترميز mine-help.txt|UTF-8"
 msgid "30 8 8 1 1 40 14 14 11 10 35 9 10 2 1 30 30 10 30 10 9 12 16 22 8"
 msgstr "30 6 6 1 1 40 14 14 11 10 35 9 10 2 1 1 10 12 30 15 15"
 
-#: src/pkg_columnizer.cc:92 src/ui.cc:2968
+#: src/pkg_columnizer.cc:92 src/ui.cc:2978
 msgid "Package"
 msgstr "حزمة"
 
@@ -6384,10 +6462,6 @@ msgstr "المهام"
 
 #: src/pkg_grouppolicy.cc:462
 #, fuzzy
-#| msgid ""
-#| "Security Updates\n"
-#| " Security updates for these packages are available from security.debian."
-#| "org."
 msgid ""
 "Security Updates\n"
 " Security updates for these packages are available from security.debian.org "
@@ -6810,15 +6884,11 @@ msgstr ""
 
 #: src/reason_fragment.cc:471
 #, fuzzy
-#| msgid "%B%s%b will be automatically removed because of dependency errors:"
 msgid "%B%s %s%b will be automatically removed because of dependency errors:"
 msgstr "ستتم إزالة %B%s%b تلقائياً بسبب أخطاء في المعتمدات:"
 
 #: src/reason_fragment.cc:476
 #, fuzzy
-#| msgid ""
-#| "%B%s%b will be automatically installed to satisfy the following "
-#| "dependencies:"
 msgid ""
 "%B%s %s%b will be automatically installed to satisfy the following "
 "dependencies:"
@@ -6826,9 +6896,6 @@ msgstr "سيتم تثبيت %B%s%b تلقائياً لإرضاء المعتمد�
 
 #: src/reason_fragment.cc:483 src/reason_fragment.cc:498
 #, fuzzy
-#| msgid ""
-#| "%B%s%b cannot be upgraded now, but if it could be, it would still be held "
-#| "at version %B%s%b."
 msgid ""
 "%B%s %s%b cannot be upgraded now, but if it could be, it would still be held "
 "at version %B%s%b."
@@ -6837,9 +6904,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:488
 #, fuzzy
-#| msgid ""
-#| "%B%s%b will not be upgraded to version %B%s%b, to avoid breaking the "
-#| "following dependencies:"
 msgid ""
 "%B%s %s%b will not be upgraded to version %B%s%b, to avoid breaking the "
 "following dependencies:"
@@ -6847,39 +6911,31 @@ msgstr "لن تتم ترقية %B%s%b إلى النسخة %B%s%b لتفادي ع
 
 #: src/reason_fragment.cc:503
 #, fuzzy
-#| msgid "%B%s%b is currently installed."
 msgid "%B%s %s%b is currently installed."
 msgstr "%B%s%b مثبت حالياً."
 
 #: src/reason_fragment.cc:510
 #, fuzzy
-#| msgid "%B%s%b is not currently installed."
 msgid "%B%s %s%b is not currently installed."
 msgstr "%B%s%b غير مثبت حالياً."
 
 #: src/reason_fragment.cc:519
 #, fuzzy
-#| msgid "Some dependencies of %B%s%b are not satisfied:"
 msgid "Some dependencies of %B%s %s%b are not satisfied:"
 msgstr "لم يتم إرضاء بعض معتمدات %B%s%b:"
 
 #: src/reason_fragment.cc:524
 #, fuzzy
-#| msgid "%B%s%b will be downgraded."
 msgid "%B%s %s%b will be downgraded."
 msgstr "سيتم تثبيط %B%s%b."
 
 #: src/reason_fragment.cc:532
 #, fuzzy
-#| msgid "%B%s%b will not be upgraded to the forbidden version %B%s%b."
 msgid "%B%s %s%b will not be upgraded to the forbidden version %B%s%b."
 msgstr "لن تتم ترقية %B%s%b إلى النسخة المحظورة %B%s%b."
 
 #: src/reason_fragment.cc:537
 #, fuzzy
-#| msgid ""
-#| "%B%s%b could be upgraded to version %B%s%b, but it is being held at "
-#| "version %B%s%b."
 msgid ""
 "%B%s %s%b could be upgraded to version %B%s%b, but it is being held at "
 "version %B%s%b."
@@ -6888,25 +6944,21 @@ msgstr ""
 
 #: src/reason_fragment.cc:545
 #, fuzzy
-#| msgid "%B%s%b will be re-installed."
 msgid "%B%s %s%b will be re-installed."
 msgstr "ستتم إعادة تثبيت %B%s%b."
 
 #: src/reason_fragment.cc:550
 #, fuzzy
-#| msgid "%B%s%b will be installed."
 msgid "%B%s %s%b will be installed."
 msgstr "سيتم تثبيت %B%s%b."
 
 #: src/reason_fragment.cc:555
 #, fuzzy
-#| msgid "%B%s%b will be removed."
 msgid "%B%s %s%b will be removed."
 msgstr "ستتم إزالة %B%s%b."
 
 #: src/reason_fragment.cc:561
 #, fuzzy
-#| msgid "%B%s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgid "%B%s %s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgstr "ستتم ترقية %B%s%b من النسخة %B%s%b إلى النسخة %B%s%b."
 
@@ -6917,23 +6969,17 @@ msgstr "%s غير مثبتة حالياً، لذا لن يتم تثبيتها م
 
 #: src/reason_fragment.cc:602
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on %B%s%b and will be broken by its removal:"
 msgid ""
 "The following packages depend on %B%s %s%b and will be broken by its removal:"
 msgstr "الحزم التالية تعتمد على %B%s%b وستعطب بإزالته:"
 
 #: src/reason_fragment.cc:606
 #, fuzzy
-#| msgid "The following packages depend on %B%s%b and are broken:"
 msgid "The following packages depend on %B%s %s%b and are broken:"
 msgstr "الحزم التالية تعتمد على %B%s%b وهي معطوبة:"
 
 #: src/reason_fragment.cc:614
 #, fuzzy
-#| msgid ""
-#| "The following packages conflict with %B%s%b and will be broken by its "
-#| "installation:"
 msgid ""
 "The following packages conflict with %B%s %s%b and will be broken by its "
 "installation:"
@@ -6941,10 +6987,6 @@ msgstr "الحزم التالية تتعارض مع %B%s%b وستعطب بتثب
 
 #: src/reason_fragment.cc:648
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b other than the "
-#| "currently installed version of %B%s%b, or conflict with the currently "
-#| "installed version:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b, or conflict with the currently "
@@ -6955,9 +6997,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:653
 #, fuzzy
-#| msgid ""
-#| "The following packages conflict with %B%s%b, or depend on a version of it "
-#| "which is not going to be installed."
 msgid ""
 "The following packages conflict with %B%s %s%b, or depend on a version of it "
 "which is not going to be installed."
@@ -6965,15 +7004,11 @@ msgstr "الحزم التالية تتعارض مع %B%s%b،أو تعتمد عل
 
 #: src/reason_fragment.cc:658
 #, fuzzy
-#| msgid "The following packages conflict with %B%s%b:"
 msgid "The following packages conflict with %B%s %s%b:"
 msgstr "الحزم التالية تتعارض مع %B%s%b:"
 
 #: src/reason_fragment.cc:664
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b other than the "
-#| "currently installed version of %B%s%b:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b:"
@@ -6982,9 +7017,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:669
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b which is not going "
-#| "to be installed."
 msgid ""
 "The following packages depend on a version of %B%s %s%b which is not going "
 "to be installed."
@@ -7089,7 +7121,6 @@ msgstr "%Bتثبيط%b الحزم التالية:%n"
 
 #: src/solution_fragment.cc:511
 #, fuzzy
-#| msgid "Leave the following dependencies unresolved:%n"
 msgid "%BLeave%b the following dependencies %Bunresolved%b:%n"
 msgstr "ترك المعتمدات التالية غير محلولة:%n"
 
@@ -7239,7 +7270,7 @@ msgstr "تحميل المخزن"
 msgid "Really quit Aptitude?"
 msgstr "حقاً تريد الخروج من Aptitude؟"
 
-#: src/ui.cc:749 src/ui.cc:2729
+#: src/ui.cc:749 src/ui.cc:2739
 msgid "Change the behavior of aptitude"
 msgstr ""
 
@@ -7358,7 +7389,7 @@ msgstr ""
 msgid "License"
 msgstr "^الرخصة"
 
-#: src/ui.cc:1143 src/ui.cc:2821
+#: src/ui.cc:1143 src/ui.cc:2831
 #, fuzzy
 msgid "View the terms under which you may copy and distribute aptitude"
 msgstr "عرض الشروط التي يمكنك نسخ البرنامج ضمنها"
@@ -7380,7 +7411,7 @@ msgstr ""
 msgid "View a brief introduction to aptitude"
 msgstr ""
 
-#: src/ui.cc:1173 src/ui.cc:2973
+#: src/ui.cc:1173 src/ui.cc:2983
 msgid "Help"
 msgstr "مساعدة"
 
@@ -7409,7 +7440,7 @@ msgstr "تحديد يدوي"
 msgid "FAQ"
 msgstr "FAQ"
 
-#: src/ui.cc:1204 src/ui.cc:2813
+#: src/ui.cc:1204 src/ui.cc:2823
 msgid "View a list of frequently asked questions"
 msgstr "عرض لائحة بالأسئلة الأكثر طرحاً"
 
@@ -7455,7 +7486,6 @@ msgstr ""
 
 #: src/ui.cc:1280
 #, fuzzy
-#| msgid "Press Return to continue."
 msgid "Press Return to continue, 'q' followed by Return to quit."
 msgstr "إضغط زر الإدخال للاستمرار."
 
@@ -7505,7 +7535,6 @@ msgstr "عرض و/أو تعديل الأعمال التي ستتم"
 
 #: src/ui.cc:1541
 #, fuzzy
-#| msgid "No broken packages."
 msgid "Trying to fix broken packages..."
 msgstr "ليست هناك حزم معطوبة"
 
@@ -7555,7 +7584,6 @@ msgstr ""
 
 #: src/ui.cc:1810
 #, fuzzy
-#| msgid "Resolving dependencies..."
 msgid "Checking dependencies"
 msgstr "إرضاء المعتمدات..."
 
@@ -7579,7 +7607,7 @@ msgstr ""
 "تحديث لوائح الحزم يتطلب صلاحيات إداريّة، والتي لا تملكها حاليّاً.  هل تود "
 "التغيّر إلى حساب المستخدم root؟"
 
-#: src/ui.cc:1885 src/ui.cc:2564
+#: src/ui.cc:1885 src/ui.cc:2574
 msgid "Waste time trying to find mines"
 msgstr "إضاعة الوقت بمحاولة البحث عن الألغام"
 
@@ -7621,7 +7649,11 @@ msgstr ""
 "تحديث لوائح الحزم يتطلب صلاحيات إداريّة، والتي لا تملكها حاليّاً.  هل تود "
 "التغيّر إلى حساب المستخدم root؟"
 
-#: src/ui.cc:2124
+#: src/ui.cc:2125
+msgid "Package name or pattern for \"forget new\" (empty for all packages): "
+msgstr ""
+
+#: src/ui.cc:2129
 msgid ""
 "Package name or pattern for \"forget new\"\n"
 "\n"
@@ -7632,146 +7664,146 @@ msgid ""
 "\n"
 msgstr ""
 
-#: src/ui.cc:2186
+#: src/ui.cc:2196
 msgid "No more solutions."
 msgstr "لا مزيد من الحلول."
 
-#: src/ui.cc:2401
+#: src/ui.cc:2411
 msgid "Unable to find a solution to apply."
 msgstr "تعذر ايجاد حلّ للاستعمال."
 
-#: src/ui.cc:2407
+#: src/ui.cc:2417
 msgid "Ran out of time while trying to find a solution."
 msgstr "نفذ الوقت أثناء محاولة البحث عن حل."
 
-#: src/ui.cc:2467 src/ui.cc:2469
+#: src/ui.cc:2477 src/ui.cc:2479
 msgid "Resolve Dependencies"
 msgstr "إرضاء المعتمدات"
 
-#: src/ui.cc:2468
+#: src/ui.cc:2478
 msgid "Search for solutions to unsatisfied dependencies"
 msgstr "البحث عن حلول للمعتمدات الغير الغير مستوفاة"
 
-#: src/ui.cc:2480
+#: src/ui.cc:2490
 #, c-format
 msgid "Unable to open %ls"
 msgstr "تعذر فتح %ls"
 
-#: src/ui.cc:2486
+#: src/ui.cc:2496
 msgid "Error while dumping resolver state"
 msgstr "خطأ أثناء حفظ حالة مقدم الحلول"
 
-#: src/ui.cc:2526
+#: src/ui.cc:2536
 msgid "^Install/remove packages"
 msgstr "^تثبيت/إزالة الحزم"
 
-#: src/ui.cc:2529
+#: src/ui.cc:2539
 msgid "^Update package list"
 msgstr "^تحديث لائحة الحزم"
 
-#: src/ui.cc:2534
+#: src/ui.cc:2544
 msgid "Mark Up^gradable"
 msgstr "تعليم ال^قابلة للترقية"
 
-#: src/ui.cc:2539
+#: src/ui.cc:2549
 msgid "^Forget new packages"
 msgstr "^نسيان الحزم الجديدة"
 
-#: src/ui.cc:2543
+#: src/ui.cc:2553
 msgid "Canc^el pending actions"
 msgstr "إل^غاء الأعمال المؤجلة"
 
-#: src/ui.cc:2544
+#: src/ui.cc:2554
 #, fuzzy
 msgid "Cancel all pending actions from this session"
 msgstr "إل^غاء الأعمال المؤجلة"
 
-#: src/ui.cc:2547
+#: src/ui.cc:2557
 msgid "^Clean package cache"
 msgstr "^تنظيف مخزن الحزم"
 
-#: src/ui.cc:2551
+#: src/ui.cc:2561
 msgid "Clean ^obsolete files"
 msgstr "حذف الملفاة ال^ملغية"
 
-#: src/ui.cc:2558
+#: src/ui.cc:2568
 msgid "^Reload package cache"
 msgstr "^إعادة تحميل مخزن الحزم"
 
-#: src/ui.cc:2563
+#: src/ui.cc:2573
 msgid "^Play Minesweeper"
 msgstr "^لعب كانسة الألغام"
 
-#: src/ui.cc:2568
+#: src/ui.cc:2578
 msgid "^Become root"
 msgstr "^تحوّل إلى root"
 
-#: src/ui.cc:2571
+#: src/ui.cc:2581
 msgid "^Quit"
 msgstr "^خروج"
 
-#: src/ui.cc:2578 src/ui.cc:2967
+#: src/ui.cc:2588 src/ui.cc:2977
 msgid "Undo"
 msgstr "تراجع"
 
-#: src/ui.cc:2587
+#: src/ui.cc:2597
 msgid "^Install"
 msgstr "^تثبيت"
 
-#: src/ui.cc:2588
+#: src/ui.cc:2598
 msgid "Flag the currently selected package for installation or upgrade"
 msgstr "تعليم الحزمة المحددة حالياً للتثبيت أو الترقية"
 
-#: src/ui.cc:2591
+#: src/ui.cc:2601
 #, fuzzy
 msgid "R^einstall"
 msgstr "إعادة التثبيت"
 
-#: src/ui.cc:2592
+#: src/ui.cc:2602
 #, fuzzy
 msgid "Flag the currently selected package for reinstallation"
 msgstr "تعليم الحزمة المحددة حالياً للتثبيت أو الترقية"
 
-#: src/ui.cc:2595
+#: src/ui.cc:2605
 msgid "^Remove"
 msgstr "إ^زالة"
 
-#: src/ui.cc:2596
+#: src/ui.cc:2606
 msgid "Flag the currently selected package for removal"
 msgstr "تعليم الحزمة المحددة حالياً للإزالة"
 
-#: src/ui.cc:2599
+#: src/ui.cc:2609
 msgid "^Purge"
 msgstr "^إلغاء"
 
-#: src/ui.cc:2600
+#: src/ui.cc:2610
 msgid ""
 "Flag the currently selected package and its configuration files for removal"
 msgstr "تعليم الحزمة المحددة حالياً وملفات تهيئتها للإزالة"
 
-#: src/ui.cc:2603
+#: src/ui.cc:2613
 msgid "^Keep"
 msgstr "^محافظة"
 
-#: src/ui.cc:2604
+#: src/ui.cc:2614
 msgid "Cancel any action on the selected package"
 msgstr "إلغاء أيّ عمل على الحزمة المحددة"
 
-#: src/ui.cc:2607
+#: src/ui.cc:2617
 msgid "^Hold"
 msgstr "إ^بقاء"
 
-#: src/ui.cc:2608
+#: src/ui.cc:2618
 msgid ""
 "Cancel any action on the selected package, and protect it from future "
 "upgrades"
 msgstr "إلغاء أي عمل على الحزمة المحددة، وحمايتها من الترقيات المستقبليّة"
 
-#: src/ui.cc:2611
+#: src/ui.cc:2621
 msgid "Mark ^Auto"
 msgstr "تحديد ^تلقائي"
 
-#: src/ui.cc:2612
+#: src/ui.cc:2622
 msgid ""
 "Mark the selected package as having been automatically installed; it will "
 "automatically be removed if no other packages depend on it"
@@ -7779,11 +7811,11 @@ msgstr ""
 "تحديد الحزمة المختارة على أنها ثُبتت تلقائيّاً؛ سوف يتم إزالتها إن لم تعتمد "
 "عليها أية حزمة أخرى"
 
-#: src/ui.cc:2615
+#: src/ui.cc:2625
 msgid "Mark ^Manual"
 msgstr "تحديد ^يدوي"
 
-#: src/ui.cc:2616
+#: src/ui.cc:2626
 msgid ""
 "Mark the selected package as having been manually installed; it will not be "
 "removed unless you manually remove it"
@@ -7791,11 +7823,11 @@ msgstr ""
 "تعليم الحزمة المحدّدة على أنها ثُبتت يدويّاً؛ لن يتم إزالتها إلا إن قمت بذلك "
 "يدوياً"
 
-#: src/ui.cc:2619
+#: src/ui.cc:2629
 msgid "^Forbid Version"
 msgstr "^منع النسخة"
 
-#: src/ui.cc:2620
+#: src/ui.cc:2630
 msgid ""
 "Forbid the candidate version of the selected package from being installed; "
 "newer versions of the package will be installed as usual"
@@ -7803,337 +7835,337 @@ msgstr ""
 "منع تثبيت النسخة المرشحة من الحزمة المحددة؛ أما النسخ الأجدد من الحزمة فسيتم "
 "تثبيتها كالعادة"
 
-#: src/ui.cc:2624
+#: src/ui.cc:2634
 msgid "I^nformation"
 msgstr "^معلومات"
 
-#: src/ui.cc:2625
+#: src/ui.cc:2635
 msgid "Display more information about the selected package"
 msgstr "عرض مزيد من المعلومات حول الحزمة المحدّدة"
 
-#: src/ui.cc:2628
+#: src/ui.cc:2638
 msgid "C^ycle Package Information"
 msgstr ""
 
-#: src/ui.cc:2629
+#: src/ui.cc:2639
 msgid ""
 "Cycle through the modes of the package information area: it can show the "
 "package's long description, a summary of its dependency status, or an "
 "analysis of why the package is required."
 msgstr ""
 
-#: src/ui.cc:2632
+#: src/ui.cc:2642
 msgid "^Changelog"
 msgstr "^سجل التغيير"
 
-#: src/ui.cc:2633
+#: src/ui.cc:2643
 msgid "Display the Debian changelog of the selected package"
 msgstr "عرض سجل تغيير دبيان للحزمة المحدّدة"
 
-#: src/ui.cc:2640
+#: src/ui.cc:2650
 msgid "^Examine Solution"
 msgstr "^فحص الحلّ"
 
-#: src/ui.cc:2641
+#: src/ui.cc:2651
 msgid "Examine the currently selected solution to the dependency problems."
 msgstr "فحص الحل المحدد حالياً لمشاكل المعتمدات."
 
-#: src/ui.cc:2644
+#: src/ui.cc:2654
 msgid "Apply ^Solution"
 msgstr "تنفيذ ال^حل"
 
-#: src/ui.cc:2645
+#: src/ui.cc:2655
 msgid "Perform the actions contained in the currently selected solution."
 msgstr "تنفيذ الأعمال المشمولة في الحل المحدد الحالي."
 
-#: src/ui.cc:2648
+#: src/ui.cc:2658
 msgid "^Next Solution"
 msgstr "ال^حل التالي"
 
-#: src/ui.cc:2649
+#: src/ui.cc:2659
 msgid "Select the next solution to the dependency problems."
 msgstr "اختيار الحل التالي لمشاكل المعتمدات."
 
-#: src/ui.cc:2652
+#: src/ui.cc:2662
 msgid "^Previous Solution"
 msgstr "الحل ال^سابق"
 
-#: src/ui.cc:2653
+#: src/ui.cc:2663
 msgid "Select the previous solution to the dependency problems."
 msgstr "اختيار الحل السابق لمشاكل المعتمدات"
 
-#: src/ui.cc:2656
+#: src/ui.cc:2666
 msgid "^First Solution"
 msgstr "الح^ل الأول"
 
-#: src/ui.cc:2657
+#: src/ui.cc:2667
 msgid "Select the first solution to the dependency problems."
 msgstr "اختيار الحل الأول لمشاكل المعتمدات"
 
-#: src/ui.cc:2660
+#: src/ui.cc:2670
 msgid "^Last Solution"
 msgstr "الحل الأ^خير"
 
-#: src/ui.cc:2661
+#: src/ui.cc:2671
 msgid ""
 "Select the last solution to the dependency problems that has been generated "
 "so far."
 msgstr "اختيار الحل الأخير لمشاكل المعتمدات والتي تم إيجادها حتى الآن."
 
-#: src/ui.cc:2667
+#: src/ui.cc:2677
 msgid "Toggle ^Rejected"
 msgstr "عكس المرفو^ضة"
 
-#: src/ui.cc:2668
+#: src/ui.cc:2678
 msgid "Toggle whether the currently selected action is rejected."
 msgstr "عكس ما إذا كان العمل المحدد حالياً مرفوضاً."
 
-#: src/ui.cc:2672
+#: src/ui.cc:2682
 msgid "Toggle ^Approved"
 msgstr "عكس ال^مقبول"
 
-#: src/ui.cc:2673
+#: src/ui.cc:2683
 msgid "Toggle whether the currently selected action is approved."
 msgstr "عكس ما إذا كان العمل المحدد حالياً مقبولاً."
 
-#: src/ui.cc:2677
+#: src/ui.cc:2687
 msgid "^View Target"
 msgstr "^عرض الهدف"
 
-#: src/ui.cc:2678
+#: src/ui.cc:2688
 msgid "View the package which will be affected by the selected action"
 msgstr "عرض الحزمة التي ستتأثر بالعمل المحدد"
 
-#: src/ui.cc:2684
+#: src/ui.cc:2694
 msgid "Reject Breaking ^Holds"
 msgstr ""
 
-#: src/ui.cc:2686
+#: src/ui.cc:2696
 msgid ""
 "Reject all actions that would change the state of held packages or install "
 "forbidden versions"
 msgstr ""
 
-#: src/ui.cc:2694
+#: src/ui.cc:2704
 msgid "^Find"
 msgstr "^بحث"
 
-#: src/ui.cc:2695
+#: src/ui.cc:2705
 msgid "Search forwards"
 msgstr "البحث قدماً"
 
-#: src/ui.cc:2698
+#: src/ui.cc:2708
 msgid "^Find Backwards"
 msgstr "البحث ر^جوعاً"
 
-#: src/ui.cc:2699
+#: src/ui.cc:2709
 msgid "Search backwards"
 msgstr "البحث رجوعاً"
 
-#: src/ui.cc:2702
+#: src/ui.cc:2712
 msgid "Find ^Again"
 msgstr "البحث ^مجدّداً"
 
-#: src/ui.cc:2703
+#: src/ui.cc:2713
 msgid "Repeat the last search"
 msgstr "تكرار البحث الأخير"
 
-#: src/ui.cc:2706
+#: src/ui.cc:2716
 #, fuzzy
 msgid "Find Again ^Backwards"
 msgstr "البحث ر^جوعاً"
 
-#: src/ui.cc:2707
+#: src/ui.cc:2717
 #, fuzzy
 msgid "Repeat the last search in the opposite direction"
 msgstr "تكرار البحث الأخير"
 
-#: src/ui.cc:2711
+#: src/ui.cc:2721
 msgid "^Limit Display"
 msgstr "^حدّ العرض"
 
-#: src/ui.cc:2712
+#: src/ui.cc:2722
 msgid "Apply a filter to the package list"
 msgstr "تصفية لائحة الحزم"
 
-#: src/ui.cc:2715
+#: src/ui.cc:2725
 msgid "^Un-Limit Display"
 msgstr "إ^زالة حدّ العرض"
 
-#: src/ui.cc:2716
+#: src/ui.cc:2726
 msgid "Remove the filter from the package list"
 msgstr "إزالة التصفية من لائحة الحزم"
 
-#: src/ui.cc:2720
+#: src/ui.cc:2730
 msgid "Find ^Broken"
 msgstr "عثور على ^معطوبة"
 
-#: src/ui.cc:2721
+#: src/ui.cc:2731
 msgid "Find the next package with unsatisfied dependencies"
 msgstr "العثور على الحزمة التالية ذات المعتمدات الغير مستوفية"
 
-#: src/ui.cc:2728
+#: src/ui.cc:2738
 #, fuzzy
 msgid "^Preferences"
 msgstr "يعتمد مسبقاً على"
 
-#: src/ui.cc:2733
+#: src/ui.cc:2743
 msgid "^UI options"
 msgstr "خيارات ^واجهة المستخدم"
 
-#: src/ui.cc:2734
+#: src/ui.cc:2744
 msgid "Change the settings which affect the user interface"
 msgstr "تغيير الإعدادات التي تؤثر على واجهة المستخدم"
 
-#: src/ui.cc:2737
+#: src/ui.cc:2747
 msgid "^Dependency handling"
 msgstr "إ^دارة المعتمدات"
 
-#: src/ui.cc:2738
+#: src/ui.cc:2748
 msgid "Change the settings which affect how package dependencies are handled"
 msgstr "تغيير الإعدادات التي تؤثر على كيفية التعامل مع معتمدات الحزم"
 
-#: src/ui.cc:2741
+#: src/ui.cc:2751
 msgid "^Miscellaneous"
 msgstr "^متفرقات"
 
-#: src/ui.cc:2742
+#: src/ui.cc:2752
 msgid "Change miscellaneous program settings"
 msgstr "تغيير إعدادات البرنامج المختلفة"
 
-#: src/ui.cc:2748
+#: src/ui.cc:2758
 msgid "^Revert options"
 msgstr "^استعادة الخيارات"
 
-#: src/ui.cc:2749
+#: src/ui.cc:2759
 msgid "Reset all settings to the system defaults"
 msgstr "إعادة كل الإعدادات إلى افتراضيّات النظام"
 
-#: src/ui.cc:2760
+#: src/ui.cc:2770
 msgid "^Next"
 msgstr "^تالي"
 
-#: src/ui.cc:2761
+#: src/ui.cc:2771
 msgid "View next display"
 msgstr "عرض الشاشة التالية"
 
-#: src/ui.cc:2764
+#: src/ui.cc:2774
 msgid "^Prev"
 msgstr "^سابق"
 
-#: src/ui.cc:2765
+#: src/ui.cc:2775
 msgid "View previous display"
 msgstr "عرض الشاشة السابقة"
 
-#: src/ui.cc:2768
+#: src/ui.cc:2778
 msgid "^Close"
 msgstr "^إغلاق"
 
-#: src/ui.cc:2769
+#: src/ui.cc:2779
 msgid "Close this display"
 msgstr "إغلاق هذه الشاشة"
 
-#: src/ui.cc:2774
+#: src/ui.cc:2784
 msgid "New Package ^View"
 msgstr "^عرض حزم جديد"
 
-#: src/ui.cc:2775
+#: src/ui.cc:2785
 msgid "Create a new default package view"
 msgstr "إنشاء عرض حزم افتراضي جديد"
 
-#: src/ui.cc:2778
+#: src/ui.cc:2788
 msgid "Audit ^Recommendations"
 msgstr "التدقيق بالتو^صيات"
 
-#: src/ui.cc:2779
+#: src/ui.cc:2789
 msgid ""
 "View packages which it is recommended that you install, but which are not "
 "currently installed."
 msgstr "عرض الحزم التي نوصيك بتثبيتها، ولكن التي ليست مثبتة حالياً."
 
-#: src/ui.cc:2782
+#: src/ui.cc:2792
 msgid "New ^Flat Package List"
 msgstr "قائمة حزم ^شاملة جديدة"
 
-#: src/ui.cc:2783
+#: src/ui.cc:2793
 msgid "View all the packages on the system in a single uncategorized list"
 msgstr "عرض جميع الحزم على النظام في قائمة واحدة غير مصنفة"
 
-#: src/ui.cc:2786
+#: src/ui.cc:2796
 msgid "New ^Debtags Browser"
 msgstr "مستعر^ض Debtags جديد"
 
-#: src/ui.cc:2788
+#: src/ui.cc:2798
 msgid "Browse packages using Debtags data"
 msgstr "استعراض الحزم باستخدام بيانات Debtags"
 
-#: src/ui.cc:2791
+#: src/ui.cc:2801
 #, fuzzy
 msgid "New ^Source Package View"
 msgstr "^عرض حزم جديد"
 
-#: src/ui.cc:2793
+#: src/ui.cc:2803
 msgid "Create a new package view, grouped by source package"
 msgstr ""
 
-#: src/ui.cc:2801
+#: src/ui.cc:2811
 msgid "^About"
 msgstr "^حول"
 
-#: src/ui.cc:2802
+#: src/ui.cc:2812
 msgid "View information about this program"
 msgstr "عرض معلومات حول هذا البرنامج"
 
-#: src/ui.cc:2805
+#: src/ui.cc:2815
 msgid "^Help"
 msgstr "^مساعدة"
 
-#: src/ui.cc:2806
+#: src/ui.cc:2816
 msgid "View the on-line help"
 msgstr "عرض المساعدة الفورية"
 
-#: src/ui.cc:2808
+#: src/ui.cc:2818
 msgid "User's ^Manual"
 msgstr "دليل ال^مستخدم"
 
-#: src/ui.cc:2809
+#: src/ui.cc:2819
 msgid "View the detailed program manual"
 msgstr "عرض دليل البرنامج المفصّل"
 
-#: src/ui.cc:2812
+#: src/ui.cc:2822
 msgid "^FAQ"
 msgstr "^FAQ"
 
-#: src/ui.cc:2816
+#: src/ui.cc:2826
 msgid "^News"
 msgstr "أ^خبار"
 
-#: src/ui.cc:2817
+#: src/ui.cc:2827
 #, fuzzy
 msgid "View the important changes made in each version of "
 msgstr "عرض التغييرات المهمة التي تمت في كل نسخة من"
 
-#: src/ui.cc:2820
+#: src/ui.cc:2830
 msgid "^License"
 msgstr "^الرخصة"
 
-#: src/ui.cc:2966
+#: src/ui.cc:2976
 msgid "Actions"
 msgstr "أعمال"
 
-#: src/ui.cc:2970
+#: src/ui.cc:2980
 msgid "Search"
 msgstr "بحث"
 
-#: src/ui.cc:2971
+#: src/ui.cc:2981
 msgid "Options"
 msgstr "خيارات"
 
-#: src/ui.cc:2972
+#: src/ui.cc:2982
 msgid "Views"
 msgstr "عروض"
 
-#: src/ui.cc:3038
+#: src/ui.cc:3048
 #, fuzzy, c-format
 msgid ""
 "%ls: Menu  %ls: Help  %ls: Quit  %ls: Update  %ls: Preview/Download/Install/"
@@ -8141,11 +8173,11 @@ msgid ""
 msgstr ""
 "%ls: قائمة  %ls: مساعدة  %ls: خروج  %ls: تحديث  %ls: تحميل/تثبيت/إزالة حزم"
 
-#: src/ui.cc:3408
+#: src/ui.cc:3418
 msgid "yes_key"
 msgstr "y"
 
-#: src/ui.cc:3409
+#: src/ui.cc:3419
 msgid "no_key"
 msgstr "n"
 
@@ -8185,34 +8217,8 @@ msgstr "تنزيل سجل التغيير"
 #~ msgstr ""
 #~ "ليست هناك ملفات للتحميل لـ%s النسخة %s، ربما هي حزمة محليّة أو ملغاة؟"
 
-#, fuzzy
-#~ msgid "Would mark packages (%s)\n"
-#~ msgstr "الحزمة المصدرية: "
-
-#, fuzzy
-#~| msgid "Unexpected pattern argument following \"keep-all\""
-#~ msgid "Unexpected argument following \"keep-all\""
-#~ msgstr "مُعطى صيغة غير متوقع يتبع \"إبقاء الكل\""
-
-#, fuzzy
-#~ msgid "Marking all packages as keep (%s)\n"
-#~ msgstr "تحديث لوائح الحزم"
-
-#, fuzzy
-#~ msgid "Subcommand needs arguments: "
-#~ msgstr "خطأ: أمر التحديث لا يتطلّب أي مُعطيات\n"
-
-#, fuzzy
-#~ msgid "Could not parse version for %s: %s\n"
-#~ msgstr "تعذر إعراب تعريف العمود"
-
-#, fuzzy
-#~ msgid "Marking package %s (%s)\n"
-#~ msgstr "تحديث لوائح الحزم"
-
-#, fuzzy
-#~ msgid "Command \"%s\" does not accept arguments\n"
-#~ msgstr "خطأ: أمر التحديث لا يتطلّب أي مُعطيات\n"
+#~ msgid "reject the proposed changes and search for another solution"
+#~ msgstr "رفض التغييرات المقترحة و البحث عن حلّ آخر"
 
 #, fuzzy
 #~ msgid "E: The forget-new command takes no arguments\n"
