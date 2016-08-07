@@ -1,3 +1,28 @@
+aptitude (0.8.3-1) UNRELEASED; urgency=medium
+
+  [ Manuel A. Fernandez Montecelo ]
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
+    - User visible changes:
+      * [cmdline] Commands "markauto", "unmarkauto", "hold", "unhold", "keep",
+        "keep-all" and "forbid-version" now work independently of other action
+        commands and they will not try to go ahead with pre-scheduled actions
+        (Closes: #142699, #567079, #764299)
+
+    - Bug fixes:
+      * [curses] Use single-line for "forget-new" dialog when using minibuf
+        prompts (Closes: #832363)
+      * [cmdline] "download", "source" and others provided by a thin wrapper
+        over apt tools now accept "-t" and other options (Closes: #832320)
+      * [cmdline] Document "source" and "showsrc" in --help (Closes: #833584)
+      * [cmdline] Saying 'n' to a solution jumps to the end of the generated
+        solutions and tries to generate a new one (Closes: #832907)
+      * Fix code preventing to save package selection states to dpkg
+        (Closes: #825866, #833588)
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 07 Aug 2016 12:00:02 +0100
+
 aptitude (0.8.2-1) unstable; urgency=medium
 
   [ Manuel A. Fernandez Montecelo ]
