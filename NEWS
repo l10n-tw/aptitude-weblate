@@ -1,3 +1,46 @@
+[2016-08-07]
+Version 0.8.3
+
+- User visible changes:
+
+  * [cmdline] Commands "markauto", "unmarkauto", "hold", "unhold", "keep",
+    "keep-all" and "forbid-version" now work independently of other action
+    commands and they will not try to go ahead with pre-scheduled actions
+    (Closes: #142699, #567079, #764299)
+
+    This is similar to how "forget-new" or user-tag related commands worked, and
+    the fact that they started to install or remove packages caused confusion.
+
+- Bug fixes:
+
+  * [curses] Use single-line for "forget-new" dialog when using minibuf prompts
+    (Closes: #832363)
+
+  * [cmdline] "download", "source" and others provided by a thin wrapper over
+    apt tools now accept "-t" and other options (Closes: #832320)
+
+  * [cmdline] Document "source" and "showsrc" in --help (Closes: #833584)
+
+  * [cmdline] Saying 'n' to a solution jumps to the end of the generated
+    solutions and tries to generate a new one (Closes: #832907)
+
+    This reverts b41db12f ("Rejecting a solution advances to the next one only")
+    but also improves the description.
+
+  * Fix code preventing to save package selection states to dpkg
+    (Closes: #825866, #833588)
+
+- Internal changes:
+
+  * Create on_apt_errors_print_and_die(), for the common case of checking for
+    errors from apt, printing them on the screen and exiting immediately with an
+    error code
+
+  * cmdline_util: Add get_packages_from_set_of_strings(), to help parsing
+    package names and resolve patterns from the command line (using the
+    lower-level get_packages_from_string())
+
+
 [2016-07-23]
 Version 0.8.2
 

@@ -34,6 +34,8 @@ src/cmdline/cmdline_forget_new.cc
 src/cmdline/cmdline_forget_new.h
 src/cmdline/cmdline_main_loop.cc
 src/cmdline/cmdline_main_loop.h
+src/cmdline/cmdline_mark.cc
+src/cmdline/cmdline_mark.h
 src/cmdline/cmdline_moo.cc
 src/cmdline/cmdline_moo.h
 src/cmdline/cmdline_progress.cc
