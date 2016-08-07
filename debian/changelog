@@ -1,4 +1,4 @@
-aptitude (0.8.3-1) UNRELEASED; urgency=medium
+aptitude (0.8.3-1) unstable; urgency=medium
 
   [ Manuel A. Fernandez Montecelo ]
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
