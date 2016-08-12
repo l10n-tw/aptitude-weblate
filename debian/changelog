@@ -1,3 +1,9 @@
+aptitude (0.8.3-2) UNRELEASED; urgency=medium
+
+  * d/rules: Do not force "-std=c++14", it's the default with GCC-6
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 12 Aug 2016 19:51:26 +0100
+
 aptitude (0.8.3-1) unstable; urgency=medium
 
   [ Manuel A. Fernandez Montecelo ]

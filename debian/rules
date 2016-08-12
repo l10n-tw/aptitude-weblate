@@ -19,7 +19,6 @@ ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
   DEB_CXXFLAGS_MAINT_APPEND += -fno-inline
 endif
 
-DEB_CXXFLAGS_MAINT_APPEND += -std=c++14
 export DEB_CXXFLAGS_MAINT_APPEND
 
 BUILDDIR=build-arch
