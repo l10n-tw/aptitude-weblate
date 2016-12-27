@@ -671,7 +671,7 @@ interactive_set_test_SOURCES = interactive_set_test.cc
 # subdir-objects option recently added) tried to build in /usr/src/gtest/ and
 # /gmock/, and then failed to link
 @BUILD_LOCAL_GMOCK_TRUE@nodist_libgmock_a_SOURCES = gtest-all.cc gmock-all.cc
-@BUILD_LOCAL_GMOCK_TRUE@libgmock_a_CPPFLAGS = -I/usr/src/gtest -I/usr/src/gmock
+@BUILD_LOCAL_GMOCK_TRUE@libgmock_a_CPPFLAGS = -I/usr/src/googletest/googletest -I/usr/src/googletest/googlemock
 
 # Note: test_apt_universe is not built by default because it takes way
 # too long.  Of course, ideally this would be done in a less ad-hoc

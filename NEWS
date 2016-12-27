@@ -1,3 +1,48 @@
+[2016-12-27]
+Version 0.8.4
+
+- User visible changes:
+
+  * Updated section list and added descriptions. Thanks Josh Triplett!
+    (Closes: #847530)
+
+  * Support for Build-Depends/Conflicts-Arch, by David Kalnischkies
+    (Closes: #843789)
+
+- Bug fixes:
+
+  * [curses] Do not fail immediately and attempt to continue when some package
+    lists cannot be updated (Closes: #834790)
+
+    The bug, in which the update of package lists stopped and the interface was
+    left at the "Loading cache" stage indefinitely, seems to be due to changes
+    in behaviour of apt or some strange interaction, because the relevant
+    sections of aptitude have not changed in a long time.
+
+    This is fixed now by not being strict with this kind of errors (to cope with
+    what seems to be a new behaviour from libapt -- to not report that the
+    update can proceed)... Hopefully this change will not create other problems.
+
+- Internal changes:
+
+  * Support recent versions of googletest and google-mock, change of paths:
+    /usr/src/gtest -> /usr/src/googletest/googletest
+    /usr/src/gmock -> /usr/src/googletest/googlmock
+
+- Translation updates:
+
+  * cs.po: Czech translation by Miroslav Kure (Closes: #838790)
+
+  * help-cs.txt: Czech translation by Miroslav Kure (Closes: #838790)
+
+  * nl.po: Dutch translation by Frans Spiesschaert (Closes: #841116)
+
+  * aptitude-defaults.ru: Russian translation of updated section list by Lev
+    Lamberov (Closes: #847965)
+
+  * Dutch documentation translation by Frans Spiesschaert (Closes: #842186)
+
+
 [2016-08-07]
 Version 0.8.3
 
