@@ -1,8 +1,35 @@
-aptitude (0.8.3-2) UNRELEASED; urgency=medium
+aptitude (0.8.4-1) UNRELEASED; urgency=medium
+
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
+    - User visible changes:
+      * Updated section list and added descriptions. Thanks Josh Triplett!
+        (Closes: #847530)
+      * Support for Build-Depends/Conflicts-Arch, by David Kalnischkies
+        (Closes: #843789)
+
+    - Bug fixes:
+      * [curses] Do not fail immediately and attempt to continue when some
+        package lists cannot be updated (Closes: #834790)
+
+    - Internal changes:
+      * Support recent versions of googletest and google-mock, change of paths:
+        /usr/src/gtest -> /usr/src/googletest/googletest
+        /usr/src/gmock -> /usr/src/googletest/googlmock
+
+    - Translation updates:
+      * cs.po: Czech translation by Miroslav Kure (Closes: #838790)
+      * help-cs.txt: Czech translation by Miroslav Kure (Closes: #838790)
+      * nl.po: Dutch translation by Frans Spiesschaert (Closes: #841116)
+      * aptitude-defaults.ru: Russian translation of updated section list by
+        Lev Lamberov (Closes: #847965)
+      * Dutch documentation translation by Frans Spiesschaert (Closes: #842186)
+
 
   * d/rules: Do not force "-std=c++14", it's the default with GCC-6
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 12 Aug 2016 19:51:26 +0100
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Tue, 27 Dec 2016 23:10:38 +0100
 
 aptitude (0.8.3-1) unstable; urgency=medium
 
