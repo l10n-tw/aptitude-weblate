@@ -1,4 +1,4 @@
-aptitude (0.8.4-1) UNRELEASED; urgency=medium
+aptitude (0.8.4-1) unstable; urgency=medium
 
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
     log with more details.
@@ -29,7 +29,7 @@ aptitude (0.8.4-1) UNRELEASED; urgency=medium
 
   * d/rules: Do not force "-std=c++14", it's the default with GCC-6
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Tue, 27 Dec 2016 23:10:38 +0100
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Tue, 27 Dec 2016 23:27:07 +0100
 
 aptitude (0.8.3-1) unstable; urgency=medium
 
