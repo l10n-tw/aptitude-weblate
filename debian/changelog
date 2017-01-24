@@ -11,7 +11,11 @@ aptitude (0.8.5-1) unstable; urgency=medium
       * French documentation translation by From: Cédric Boutillier
         (Closes: #852352)
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Tue, 24 Jan 2017 22:24:47 +0100
+
+  * d/patches:
+    - ftbfs-fix-french-doc.patch: Fix missing "</keycombo>" that causes FTBFS
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Tue, 24 Jan 2017 23:24:47 +0100
 
 aptitude (0.8.4-1) unstable; urgency=medium
 
