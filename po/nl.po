@@ -7,10 +7,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: aptitude_0.8.3-1\n"
+"Project-Id-Version: aptitude_0.8.4-1\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
 "POT-Creation-Date: 2016-12-27 22:43+0100\n"
-"PO-Revision-Date: 2016-09-27 16:16+0200\n"
+"PO-Revision-Date: 2016-12-31 17:38+0100\n"
 "Last-Translator: Frans Spiesschaert <Frans.Spiesschaert@yucom.be>\n"
 "Language-Team: Debian Dutch l10n Team <debian-l10n-dutch@lists.debian.org>\n"
 "Language: nl\n"
@@ -3418,9 +3418,8 @@ msgid "Couldn't read list of package sources"
 msgstr "Kon lijst van pakketbronnen niet lezen"
 
 #: src/generic/apt/download_update_manager.cc:105
-#, fuzzy
 msgid "Failed to download some files"
-msgstr "Ophalen van logs van wijzigingen mislukt: %s"
+msgstr "Het ophalen van sommige bestanden mislukte"
 
 #: src/generic/apt/download_update_manager.cc:156
 msgid "Couldn't clean out list directories"
