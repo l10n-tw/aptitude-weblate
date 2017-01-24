@@ -597,7 +597,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_action.cc:56
 #, fuzzy, c-format
-#| msgid "Unable to locate package %s"
 msgid "Unable to find the source package for \"%s\"\n"
 msgstr "ไม่พบแพกเกจ %s"
 
@@ -1275,7 +1274,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_prompt.cc:734
 #, fuzzy, c-format
-#| msgid "The following packages will be DOWNGRADED:"
 msgid "The following packages will NOT be UPGRADED:\n"
 msgstr "จะปรับรุ่นแพกเกจต่อไปนี้ *ลง*:"
 
@@ -1963,7 +1961,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_show_broken.cc:44
 #, fuzzy, c-format
-#| msgid "but it is not installable"
 msgid "but %s is installed"
 msgstr "แต่ไม่สามารถติดตั้งได้"
 
@@ -6624,7 +6621,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:606
 #, fuzzy
-#| msgid "The following packages have been kept back:"
 msgid "The following packages depend on %B%s %s%b and are broken:"
 msgstr "จะคงรุ่นแพกเกจต่อไปนี้:"
 
@@ -6649,7 +6645,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:658
 #, fuzzy
-#| msgid "The following packages will be REMOVED:"
 msgid "The following packages conflict with %B%s %s%b:"
 msgstr "จะ *ลบ* แพกเกจต่อไปนี้:"
 

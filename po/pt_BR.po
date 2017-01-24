@@ -377,7 +377,6 @@ msgstr ""
 
 #: src/apt_options.cc:294
 #, fuzzy
-#| msgid "Remove obsolete package files after downloading new package lists"
 msgid "Remove all package files after successful operations (e.g. install)"
 msgstr ""
 "Remover arquivos de pacotes obsoletos depois de baixar novas\n"
@@ -508,9 +507,6 @@ msgstr ""
 
 #: src/apt_options.cc:353
 #, fuzzy
-#| msgid ""
-#| "If this option is enabled, aptitude will display the status of ongoing "
-#| "downloads at the bottom of the screen, rather than opening a new view."
 msgid ""
 "If this option is enabled, aptitude will use the user's locale for messages "
 "and dates in the log file; otherwise the \"classic\" locale is used for this "
@@ -698,7 +694,6 @@ msgstr "Erro interno: solução nula inesperada."
 
 #: src/broken_indicator.cc:375
 #, fuzzy
-#| msgid "Keep the following packages at their current version:"
 msgid "Keep all packages at their current version"
 msgstr "Manter os pacotes a seguir em suas versões atuais:"
 
@@ -739,33 +734,26 @@ msgstr[1] "%d reversões"
 
 #: src/broken_indicator.cc:436
 #, fuzzy
-#| msgid "%s changes"
 msgid "no changes"
 msgstr "%s mudanças"
 
 #: src/broken_indicator.cc:439
 #, fuzzy, c-format
-#| msgid "Actions"
 msgid "Actions: %F"
 msgstr "Ações"
 
 #: src/cmdline/cmdline_action.cc:56
 #, fuzzy, c-format
-#| msgid "Unable to find the source package for \"%s\".\n"
 msgid "Unable to find the source package for \"%s\"\n"
 msgstr "Impossível encontrar o pacote fonte para \"%s\".\n"
 
 #: src/cmdline/cmdline_action.cc:216
 #, fuzzy, c-format
-#| msgid "Unable to satisfy the build-depends: %s.\n"
 msgid "Unable to satisfy the build-depends: %s\n"
 msgstr "Impossível satisfazer as dependências de construção: %s.\n"
 
 #: src/cmdline/cmdline_action.cc:253
 #, fuzzy, c-format
-#| msgid ""
-#| "Note: \"%s\", providing the virtual package\n"
-#| "      \"%s\", is already installed.\n"
 msgid ""
 "Note: \"%s\", providing the virtual package \"%s\", is already installed\n"
 msgstr ""
@@ -774,9 +762,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_action.cc:261
 #, fuzzy, c-format
-#| msgid ""
-#| "Note: \"%s\", providing the virtual package\n"
-#| "      \"%s\", is already going to be installed.\n"
 msgid ""
 "Note: \"%s\", providing the virtual package \"%s\", is already going to be "
 "installed\n"
@@ -786,9 +771,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_action.cc:284 src/pkg_item.cc:144
 #, fuzzy, c-format
-#| msgid ""
-#| "\"%s\" exists in the package database, but it is not a\n"
-#| "real package and no package provides it.\n"
 msgid ""
 "\"%s\" exists in the package database, but it is not a real package and no "
 "package provides it\n"
@@ -808,9 +790,6 @@ msgstr "Você deve escolher um a ser instalado.\n"
 
 #: src/cmdline/cmdline_action.cc:303
 #, fuzzy, c-format
-#| msgid ""
-#| "Note: selecting \"%s\" instead of the\n"
-#| "      virtual package \"%s\"\n"
 msgid "Note: selecting \"%s\" instead of the virtual package \"%s\"\n"
 msgstr ""
 "Nota: selecionando \"%s\" ao invés do\n"
@@ -835,7 +814,6 @@ msgstr "%s já está instalado na versão requisitada (%s)\n"
 
 #: src/cmdline/cmdline_action.cc:354
 #, fuzzy, c-format
-#| msgid "%s is not currently installed, so it will not be reinstalled.\n"
 msgid "%s is not currently installed, so it will not be reinstalled\n"
 msgstr "%s não está atualmente instalado, portanto não será reinstalado.\n"
 
@@ -912,9 +890,6 @@ msgstr "Nota: selecionando a tarefa \"%s: %s\" para instalação\n"
 
 #: src/cmdline/cmdline_action.cc:571
 #, fuzzy, c-format
-#| msgid ""
-#| "You can only specify a package version with an 'install' command or a "
-#| "'forbid-version' command.\n"
 msgid ""
 "You can only specify a package version with an 'install' command or a "
 "'forbid-version' command\n"
@@ -924,7 +899,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_action.cc:580
 #, fuzzy, c-format
-#| msgid "You can only specify a package archive with an 'install' command.\n"
 msgid "You can only specify a package archive with an 'install' command\n"
 msgstr ""
 "Você só pode especificar um repositório de pacotes com um comando "
@@ -977,7 +951,6 @@ msgstr "Impossível interpretar padrão %s"
 
 #: src/cmdline/cmdline_apt_proxy.cc:122 src/cmdline/cmdline_apt_proxy.cc:137
 #, fuzzy, c-format
-#| msgid "Failed to fetch %s: %s"
 msgid ""
 "Failed to execute:\n"
 "  '%s'"
@@ -985,7 +958,6 @@ msgstr "Falhou ao obter %s: %s"
 
 #: src/cmdline/cmdline_apt_proxy.cc:125
 #, fuzzy, c-format
-#| msgid "waitpid() failed: %s"
 msgid "waitpid error: %d: '%s'"
 msgstr "waitpid() falhou: %s"
 
@@ -1025,7 +997,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_apt_proxy.cc:226
 #, fuzzy, c-format
-#| msgid "Reconfiguring %s\n"
 msgid ""
 "Executing '%s'\n"
 "\n"
@@ -1127,7 +1098,6 @@ msgstr "Argumento de padrão inesperado seguindo \"keep-all\""
 
 #: src/cmdline/cmdline_do_action.cc:363
 #, fuzzy, c-format
-#| msgid "Unable to open %s to log actions"
 msgid "Unable to apply some actions, aborting\n"
 msgstr "Impossível abrir %s para registrar ações"
 
@@ -1205,7 +1175,6 @@ msgstr "Esqueceria quais pacotes são novos\n"
 
 #: src/cmdline/cmdline_mark.cc:77
 #, fuzzy
-#| msgid "Unexpected pattern argument following \"keep-all\""
 msgid "Unexpected argument following \"keep-all\""
 msgstr "Argumento de padrão inesperado seguindo \"keep-all\""
 
@@ -1227,13 +1196,11 @@ msgstr "E: O comando %s não aceita argumentos\n"
 #: src/cmdline/cmdline_mark.cc:128 src/cmdline/cmdline_util.cc:893
 #: src/ui.cc:2095
 #, fuzzy, c-format
-#| msgid "No packages matched the pattern \"%ls\"."
 msgid "No packages match pattern \"%s\""
 msgstr "Nenhum pacote combinou com o padrão \"%ls\"."
 
 #: src/cmdline/cmdline_mark.cc:151
 #, fuzzy, c-format
-#| msgid "Couldn't parse column definition"
 msgid "Could not parse version for %s: %s\n"
 msgstr "Não foi possível interpretar definição de coluna"
 
@@ -1413,7 +1380,6 @@ msgstr "Para continuar, digite a frase \"%s\":\n"
 
 #: src/cmdline/cmdline_prompt.cc:475
 #, fuzzy, c-format
-#| msgid "To continue, type the phrase \"%s\":\n"
 msgid "To continue, type the phrase \"%s\" (or: \"%s\"):\n"
 msgstr "Para continuar, digite a frase \"%s\":\n"
 
@@ -1483,14 +1449,12 @@ msgstr "Para continuar, digite \"%s\"; para abortar, digite \"%s\":"
 
 #: src/cmdline/cmdline_prompt.cc:582
 #, fuzzy, c-format
-#| msgid "To continue, enter \"%s\"; to abort, enter \"%s\": "
 msgid ""
 "To continue, enter \"%s\" (or \"%s\"); to abort, enter \"%s\" (or \"%s\"): "
 msgstr "Para continuar, digite \"%s\"; para abortar, digite \"%s\":"
 
 #: src/cmdline/cmdline_prompt.cc:605
 #, fuzzy, c-format
-#| msgid "Unrecognized tasks"
 msgid "Unrecognized input\n"
 msgstr "Tarefas não reconhecidas"
 
@@ -2139,9 +2103,6 @@ msgstr "aberto: %zd; fechado: %zd; atrasado: %zd; conflito: %zd"
 
 #: src/cmdline/cmdline_resolver.cc:808
 #, fuzzy, c-format
-#| msgid ""
-#| "Would resolve dependencies, but dependency resolution is disabled.\n"
-#| "   (%s::ProblemResolver::StepLimit = 0)\n"
 msgid ""
 "Would resolve dependencies, but dependency resolution is disabled.\n"
 "   (%s::ProblemResolver::StepLimit <= 0)\n"
@@ -2248,7 +2209,6 @@ msgstr "iconv de %s falhou.\n"
 
 #: src/cmdline/cmdline_search.cc:237 src/cmdline/cmdline_versions.cc:597
 #, fuzzy, c-format
-#| msgid "Couldn't parse column definition"
 msgid "%s: Could not parse column definitions: '%ls'\n"
 msgstr "Não foi possível interpretar definição de coluna"
 
@@ -2259,19 +2219,16 @@ msgstr "busca: Você deve fornecer pelo menos um termo para busca\n"
 
 #: src/cmdline/cmdline_show_broken.cc:38
 #, fuzzy, c-format
-#| msgid "but %s is to be installed."
 msgid "but %s is to be installed"
 msgstr "mas %s será instalado."
 
 #: src/cmdline/cmdline_show_broken.cc:41
 #, fuzzy, c-format
-#| msgid "but %s is installed and it is kept back."
 msgid "but %s is installed and it is kept back"
 msgstr "mas %s está instalado e é mantido."
 
 #: src/cmdline/cmdline_show_broken.cc:44
 #, fuzzy, c-format
-#| msgid "but %s is installed."
 msgid "but %s is installed"
 msgstr "mas %s está instalado."
 
@@ -2837,19 +2794,16 @@ msgstr ""
 
 #: src/cmdline/cmdline_why.cc:1234
 #, fuzzy
-#| msgid "%B%s%b is not currently installed."
 msgid "Not currently installed\n"
 msgstr "%B%s%b não está atualmente instalado."
 
 #: src/cmdline/cmdline_why.cc:1239
 #, fuzzy, c-format
-#| msgid "No candidate version found for %s\n"
 msgid "The candidate version %s has priority %s\n"
 msgstr "Nenhuma versão candidata para %s\n"
 
 #: src/cmdline/cmdline_why.cc:1244
 #, fuzzy, c-format
-#| msgid "No longer requiring the removal of %s"
 msgid "No dependencies require to remove %s\n"
 msgstr "Não mais requerendo a remoção de %s"
 
@@ -2869,7 +2823,6 @@ msgstr "Impossível interpretar alguns padrões."
 
 #: src/cmdline/cmdline_why.cc:1371
 #, fuzzy
-#| msgid "Unable to parse some match patterns."
 msgid "Unable to parse the default match patterns."
 msgstr "Impossível interpretar alguns padrões."
 
@@ -3060,7 +3013,6 @@ msgstr ""
 
 #: src/generic/apt/aptcache.cc:1249 src/generic/apt/aptcache.cc:1285
 #, fuzzy
-#| msgid "Cannot open Aptitude state file"
 msgid "Cannot remove aptitude within aptitude"
 msgstr "Não foi possível abrir o arquivo de estado do Aptitude"
 
@@ -5724,7 +5676,6 @@ msgstr ""
 
 #: src/load_pkgview.cc:106
 #, fuzzy
-#| msgid "Couldn't parse layout: encoding error in column descriptor"
 msgid "Couldn't parse layout: error parsing column definitions"
 msgstr ""
 "Não foi possível analisar o layout: erro de codificação no descritor da "
@@ -6664,13 +6615,11 @@ msgstr ""
 
 #: src/pkg_columnizer.cc:417
 #, fuzzy, c-format
-#| msgid "DL Size: %sB"
 msgid "DL: %sB/%sB"
 msgstr "Tamanho DL: %sB"
 
 #: src/pkg_columnizer.cc:423
 #, fuzzy, c-format
-#| msgid "DL Size: %sB"
 msgid "DL: %sB"
 msgstr "Tamanho DL: %sB"
 
@@ -6704,10 +6653,6 @@ msgstr "Tarefas"
 
 #: src/pkg_grouppolicy.cc:462
 #, fuzzy
-#| msgid ""
-#| "Security Updates\n"
-#| " Security updates for these packages are available from security.debian."
-#| "org."
 msgid ""
 "Security Updates\n"
 " Security updates for these packages are available from security.debian.org "
@@ -6911,7 +6856,6 @@ msgstr ""
 
 #: src/pkg_item.cc:154
 #, fuzzy, c-format
-#| msgid "\"%s\" is a virtual package provided by:\n"
 msgid ""
 "\"%s\" is a virtual package provided by:\n"
 "\n"
@@ -7069,7 +7013,6 @@ msgstr "Não modificado"
 
 #: src/reason_fragment.cc:77
 #, fuzzy
-#| msgid "downgraded"
 msgid "downgrade"
 msgstr "revertido"
 
@@ -7134,9 +7077,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:466
 #, fuzzy
-#| msgid ""
-#| "%B%s%b was installed automatically;  it is being removed because all of "
-#| "the packages which depend upon it are being removed:"
 msgid ""
 "%B%s %s%b was installed automatically; it is being removed because all of "
 "the packages which depend upon it are being removed:"
@@ -7146,15 +7086,11 @@ msgstr ""
 
 #: src/reason_fragment.cc:471
 #, fuzzy
-#| msgid "%B%s%b will be automatically removed because of dependency errors:"
 msgid "%B%s %s%b will be automatically removed because of dependency errors:"
 msgstr "%B%s%b será automaticamente removido devido a erros de dependências:"
 
 #: src/reason_fragment.cc:476
 #, fuzzy
-#| msgid ""
-#| "%B%s%b will be automatically installed to satisfy the following "
-#| "dependencies:"
 msgid ""
 "%B%s %s%b will be automatically installed to satisfy the following "
 "dependencies:"
@@ -7164,9 +7100,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:483 src/reason_fragment.cc:498
 #, fuzzy
-#| msgid ""
-#| "%B%s%b cannot be upgraded now, but if it could be, it would still be held "
-#| "at version %B%s%b."
 msgid ""
 "%B%s %s%b cannot be upgraded now, but if it could be, it would still be held "
 "at version %B%s%b."
@@ -7176,9 +7109,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:488
 #, fuzzy
-#| msgid ""
-#| "%B%s%b will not be upgraded to version %B%s%b, to avoid breaking the "
-#| "following dependencies:"
 msgid ""
 "%B%s %s%b will not be upgraded to version %B%s%b, to avoid breaking the "
 "following dependencies:"
@@ -7188,39 +7118,31 @@ msgstr ""
 
 #: src/reason_fragment.cc:503
 #, fuzzy
-#| msgid "%B%s%b is currently installed."
 msgid "%B%s %s%b is currently installed."
 msgstr "%B%s%b está atualmente instalado."
 
 #: src/reason_fragment.cc:510
 #, fuzzy
-#| msgid "%B%s%b is not currently installed."
 msgid "%B%s %s%b is not currently installed."
 msgstr "%B%s%b não está atualmente instalado."
 
 #: src/reason_fragment.cc:519
 #, fuzzy
-#| msgid "Some dependencies of %B%s%b are not satisfied:"
 msgid "Some dependencies of %B%s %s%b are not satisfied:"
 msgstr "Algumas dependências de %B%s%b não estão satisfeitas:"
 
 #: src/reason_fragment.cc:524
 #, fuzzy
-#| msgid "%B%s%b will be downgraded."
 msgid "%B%s %s%b will be downgraded."
 msgstr "%B%s%b será revertido."
 
 #: src/reason_fragment.cc:532
 #, fuzzy
-#| msgid "%B%s%b will not be upgraded to the forbidden version %B%s%b."
 msgid "%B%s %s%b will not be upgraded to the forbidden version %B%s%b."
 msgstr "%B%s%b não será atualizado para a versão proibida %B%s%b."
 
 #: src/reason_fragment.cc:537
 #, fuzzy
-#| msgid ""
-#| "%B%s%b could be upgraded to version %B%s%b, but it is being held at "
-#| "version %B%s%b."
 msgid ""
 "%B%s %s%b could be upgraded to version %B%s%b, but it is being held at "
 "version %B%s%b."
@@ -7230,39 +7152,32 @@ msgstr ""
 
 #: src/reason_fragment.cc:545
 #, fuzzy
-#| msgid "%B%s%b will be re-installed."
 msgid "%B%s %s%b will be re-installed."
 msgstr "%B%s%b será reinstalado."
 
 #: src/reason_fragment.cc:550
 #, fuzzy
-#| msgid "%B%s%b will be installed."
 msgid "%B%s %s%b will be installed."
 msgstr "%B%s%b será instalado."
 
 #: src/reason_fragment.cc:555
 #, fuzzy
-#| msgid "%B%s%b will be removed."
 msgid "%B%s %s%b will be removed."
 msgstr "%B%s%b será removido."
 
 #: src/reason_fragment.cc:561
 #, fuzzy
-#| msgid "%B%s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgid "%B%s %s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgstr "%B%s%b será atualizado da versão %B%s%b para a versão %B%s%b."
 
 #: src/reason_fragment.cc:569
 #, fuzzy
-#| msgid "%B%s%b is only partly installed; its installation will be completed."
 msgid "%B%s %s%b is only partly installed; its installation will be completed."
 msgstr ""
 "%B%s%b é o único parcialmente instalado; sua instalação será completada."
 
 #: src/reason_fragment.cc:602
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on %B%s%b and will be broken by its removal:"
 msgid ""
 "The following packages depend on %B%s %s%b and will be broken by its removal:"
 msgstr ""
@@ -7270,15 +7185,11 @@ msgstr ""
 
 #: src/reason_fragment.cc:606
 #, fuzzy
-#| msgid "The following packages depend on %B%s%b and are broken:"
 msgid "The following packages depend on %B%s %s%b and are broken:"
 msgstr "Os pacotes a seguir dependem de %B%s%b e estão quebrados:"
 
 #: src/reason_fragment.cc:614
 #, fuzzy
-#| msgid ""
-#| "The following packages conflict with %B%s%b and will be broken by its "
-#| "installation:"
 msgid ""
 "The following packages conflict with %B%s %s%b and will be broken by its "
 "installation:"
@@ -7288,10 +7199,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:648
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b other than the "
-#| "currently installed version of %B%s%b, or conflict with the currently "
-#| "installed version:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b, or conflict with the currently "
@@ -7303,9 +7210,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:653
 #, fuzzy
-#| msgid ""
-#| "The following packages conflict with %B%s%b, or depend on a version of it "
-#| "which is not going to be installed."
 msgid ""
 "The following packages conflict with %B%s %s%b, or depend on a version of it "
 "which is not going to be installed."
@@ -7315,15 +7219,11 @@ msgstr ""
 
 #: src/reason_fragment.cc:658
 #, fuzzy
-#| msgid "The following packages conflict with %B%s%b:"
 msgid "The following packages conflict with %B%s %s%b:"
 msgstr "Os pacotes a seguir conflitam com %B%s%b:"
 
 #: src/reason_fragment.cc:664
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b other than the "
-#| "currently installed version of %B%s%b:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b:"
@@ -7333,9 +7233,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:669
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b which is not going "
-#| "to be installed."
 msgid ""
 "The following packages depend on a version of %B%s %s%b which is not going "
 "to be installed."
@@ -7446,7 +7343,6 @@ msgstr "%BReverter%b os pacotes a seguir:%n"
 
 #: src/solution_fragment.cc:511
 #, fuzzy
-#| msgid "Leave the following dependencies unresolved:%n"
 msgid "%BLeave%b the following dependencies %Bunresolved%b:%n"
 msgstr "Manter as seguintes dependências não resolvidas:%n"
 
@@ -7818,7 +7714,6 @@ msgstr ""
 
 #: src/ui.cc:1280
 #, fuzzy
-#| msgid "Press Return to continue."
 msgid "Press Return to continue, 'q' followed by Return to quit."
 msgstr "Pressione Enter para continuar."
 
@@ -7848,7 +7743,6 @@ msgstr ""
 
 #: src/ui.cc:1430
 #, fuzzy
-#| msgid "  %S*%N %s [version %s]%n"
 msgid "  %S*%N %s [version %s] %s%n"
 msgstr "  %S*%N %s [versão %s]%n"
 
@@ -7870,7 +7764,6 @@ msgstr "Visualizar e/ou ajustar as ações que serão executadas"
 
 #: src/ui.cc:1541
 #, fuzzy
-#| msgid "No broken packages."
 msgid "Trying to fix broken packages..."
 msgstr "Nenhum pacote quebrado."
 
@@ -7924,7 +7817,6 @@ msgstr ""
 
 #: src/ui.cc:1810
 #, fuzzy
-#| msgid "Resolving dependencies..."
 msgid "Checking dependencies"
 msgstr "Resolvendo dependências..."
 
@@ -8057,7 +7949,6 @@ msgstr "Canc^elar ações pendentes"
 
 #: src/ui.cc:2554
 #, fuzzy
-#| msgid "Canc^el pending actions"
 msgid "Cancel all pending actions from this session"
 msgstr "Canc^elar ações pendentes"
 
