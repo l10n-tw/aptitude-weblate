@@ -1,3 +1,18 @@
+aptitude (0.8.5-1) UNRELEASED; urgency=medium
+
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
+    - Translation updates:
+      * ru.po: Russian translation by Ulyanich Michael and Lev Lamberov
+        (Closes: #849761)
+      * nl.po: Dutch translation by Frans Spiesschaert (Closes: #851888)
+      * Dutch documentation translation by Frans Spiesschaert (Closes: #851890)
+      * French documentation translation by From: Cédric Boutillier
+        (Closes: #852352)
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Tue, 24 Jan 2017 22:24:47 +0100
+
 aptitude (0.8.4-1) unstable; urgency=medium
 
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
