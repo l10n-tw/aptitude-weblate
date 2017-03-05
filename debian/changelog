@@ -1,14 +1,22 @@
-aptitude (0.8.5-2) UNRELEASED; urgency=medium
+aptitude (0.8.6-1) UNRELEASED; urgency=medium
 
   [ Manuel A. Fernandez Montecelo ]
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
+
+
   * Remove wrong "From:" from contributor name in prev. changelog entry.
+  * d/patches:
+    - drop ftbfs-fix-french-doc.patch
+
 
   [ Axel Beckert ]
   * Restrict build-dependency on google-mock to >= 1.8.0 as aptitude FTBFS
     with earlier versions since the adaptions for 1.8.0 in 0.8.4-1.
     (Closes: #852666)
 
- -- Manuel A. Fernandez Montecelo <manuel.montezelo@gmail.com>  Tue, 31 Jan 2017 00:32:38 +0100
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 05 Mar 2017 21:39:31 +0100
 
 aptitude (0.8.5-1) unstable; urgency=medium
 
