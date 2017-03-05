@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude_0.7.8-1\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2016-12-27 22:43+0100\n"
+"POT-Creation-Date: 2017-03-05 21:18+0100\n"
 "PO-Revision-Date: 2016-03-06 19:13+0100\n"
 "Last-Translator: Morten Bo Johansen <mbj@spamcop.net>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -504,6 +504,9 @@ msgstr ""
 
 #: src/apt_options.cc:353
 #, fuzzy
+#| msgid ""
+#| "If this option is enabled, aptitude will display the status of ongoing "
+#| "downloads at the bottom of the screen, rather than opening a new view."
 msgid ""
 "If this option is enabled, aptitude will use the user's locale for messages "
 "and dates in the log file; otherwise the \"classic\" locale is used for this "
@@ -688,6 +691,7 @@ msgstr "Intern fejl: Løsning returnerede uventet nul."
 
 #: src/broken_indicator.cc:375
 #, fuzzy
+#| msgid "Keep the following packages at their current version:"
 msgid "Keep all packages at their current version"
 msgstr "Behold de følgende pakker i deres nuværende version:"
 
@@ -728,25 +732,27 @@ msgstr[1] "%d nedgraderinger"
 
 #: src/broken_indicator.cc:436
 #, fuzzy
+#| msgid "%s changes"
 msgid "no changes"
 msgstr "%s ændringer"
 
 #: src/broken_indicator.cc:439
 #, fuzzy, c-format
+#| msgid "Actions"
 msgid "Actions: %F"
 msgstr "Handlinger"
 
-#: src/cmdline/cmdline_action.cc:56
+#: src/cmdline/cmdline_action.cc:63
 #, c-format
 msgid "Unable to find the source package for \"%s\"\n"
 msgstr "Kunne ikke finde kildearkivs-pakke for \"%s\"\n"
 
-#: src/cmdline/cmdline_action.cc:216
+#: src/cmdline/cmdline_action.cc:223
 #, c-format
 msgid "Unable to satisfy the build-depends: %s\n"
 msgstr "Kan ikke opfylde pakkebygnings-afhængigheder: %s\n"
 
-#: src/cmdline/cmdline_action.cc:253
+#: src/cmdline/cmdline_action.cc:260
 #, c-format
 msgid ""
 "Note: \"%s\", providing the virtual package \"%s\", is already installed\n"
@@ -754,7 +760,7 @@ msgstr ""
 "Bemærk: \"%s\", som leverer den virtuelle pakke \"%s\", er allerede "
 "installeret\n"
 
-#: src/cmdline/cmdline_action.cc:261
+#: src/cmdline/cmdline_action.cc:268
 #, c-format
 msgid ""
 "Note: \"%s\", providing the virtual package \"%s\", is already going to be "
@@ -763,7 +769,7 @@ msgstr ""
 "Bemærk: \"%s\", som leverer den virtuelle pakke \"%s\", er allerede valgt "
 "til installering.\n"
 
-#: src/cmdline/cmdline_action.cc:284 src/pkg_item.cc:144
+#: src/cmdline/cmdline_action.cc:291 src/pkg_item.cc:144
 #, c-format
 msgid ""
 "\"%s\" exists in the package database, but it is not a real package and no "
@@ -772,32 +778,32 @@ msgstr ""
 "\"%s\" eksisterer i pakkedatabasen, men den er ikke en rigtig pakke og den "
 "leveres ikke af nogen pakke.\n"
 
-#: src/cmdline/cmdline_action.cc:292
+#: src/cmdline/cmdline_action.cc:299
 #, c-format
 msgid "\"%s\" is a virtual package provided by:\n"
 msgstr "\"%s\" er en virtuel pakke som gives af:\n"
 
-#: src/cmdline/cmdline_action.cc:295
+#: src/cmdline/cmdline_action.cc:302
 #, c-format
 msgid "You must choose one to install.\n"
 msgstr "Du skal vælge at installere en.\n"
 
-#: src/cmdline/cmdline_action.cc:303
+#: src/cmdline/cmdline_action.cc:310
 #, c-format
 msgid "Note: selecting \"%s\" instead of the virtual package \"%s\"\n"
 msgstr "Bemærk: vælger \"%s\" i stedet for den virtuelle pakke \"%s\"\n"
 
-#: src/cmdline/cmdline_action.cc:331
+#: src/cmdline/cmdline_action.cc:338
 #, c-format
 msgid "%s is already installed at the requested version (%s)\n"
 msgstr "%s er allerede installeret i den ønskede version (%s)\n"
 
-#: src/cmdline/cmdline_action.cc:343
+#: src/cmdline/cmdline_action.cc:350
 #, c-format
 msgid "%s is not currently installed, so it will not be upgraded\n"
 msgstr "%s er aktuelt ikke installeret, så den vil ikke blive opgraderet\n"
 
-#: src/cmdline/cmdline_action.cc:347
+#: src/cmdline/cmdline_action.cc:354
 #, c-format
 msgid ""
 "%s is already installed at the latest version (%s), so it will not be "
@@ -806,22 +812,22 @@ msgstr ""
 "%s er allerede installeret i den nyeste version (%s), så den vil ikke blive "
 "opgraderet\n"
 
-#: src/cmdline/cmdline_action.cc:354
+#: src/cmdline/cmdline_action.cc:361
 #, c-format
 msgid "%s is not currently installed, so it will not be reinstalled\n"
 msgstr "%s er aktuelt ikke installeret, så den vil ikke blive geninstalleret\n"
 
-#: src/cmdline/cmdline_action.cc:362
+#: src/cmdline/cmdline_action.cc:369
 #, c-format
 msgid "Package %s is not installed, so it will not be removed\n"
 msgstr "Pakke %s er ikke installeret, så den vil ikke blive afinstalleret\n"
 
-#: src/cmdline/cmdline_action.cc:369
+#: src/cmdline/cmdline_action.cc:376
 #, c-format
 msgid "Package %s is not installed, so it will not be purged\n"
 msgstr "Pakke %s er ikke installeret, så den vil ikke blive udrenset\n"
 
-#: src/cmdline/cmdline_action.cc:387 src/cmdline/cmdline_mark.cc:252
+#: src/cmdline/cmdline_action.cc:394 src/cmdline/cmdline_mark.cc:252
 #, c-format
 msgid ""
 "Package %s is not installed, cannot be marked/unmarked as automatically "
@@ -830,58 +836,58 @@ msgstr ""
 "Pakke %s er ikke installeret, kan ikke markeres/afmarkeres som automatisk "
 "installeret\n"
 
-#: src/cmdline/cmdline_action.cc:394 src/cmdline/cmdline_mark.cc:197
+#: src/cmdline/cmdline_action.cc:401 src/cmdline/cmdline_mark.cc:197
 #, c-format
 msgid "Package %s is not installed, cannot forbid an upgrade\n"
 msgstr "Pakke %s er ikke installeret, kan ikke forbyde en opgradering\n"
 
-#: src/cmdline/cmdline_action.cc:397 src/cmdline/cmdline_mark.cc:200
+#: src/cmdline/cmdline_action.cc:404 src/cmdline/cmdline_mark.cc:200
 #, c-format
 msgid "Package %s is not upgradable, cannot forbid an upgrade\n"
 msgstr "Pakke %s er ikke opgradérbar, kan ikke forbyde en opgradering\n"
 
-#: src/cmdline/cmdline_action.cc:432
+#: src/cmdline/cmdline_action.cc:439
 #, c-format
 msgid "Setting package %s on hold\n"
 msgstr "Tilbageholder pakken %s\n"
 
-#: src/cmdline/cmdline_action.cc:440
+#: src/cmdline/cmdline_action.cc:447
 #, c-format
 msgid "Marking package %s as keep\n"
 msgstr "Markerer pakken %s som værende beholdt\n"
 
-#: src/cmdline/cmdline_action.cc:449
+#: src/cmdline/cmdline_action.cc:456
 #, c-format
 msgid "Setting package %s as not on hold\n"
 msgstr "Markerer pakken %s som værende ikke-tilbageholdt\n"
 
-#: src/cmdline/cmdline_action.cc:455
+#: src/cmdline/cmdline_action.cc:462
 #, c-format
 msgid "Package %s is not on hold\n"
 msgstr "Pakken %s er ikke tilbageholdt\n"
 
-#: src/cmdline/cmdline_action.cc:461
+#: src/cmdline/cmdline_action.cc:468
 #, c-format
 msgid "Marking package %s as automatically installed\n"
 msgstr "Markerer pakken %s som automatisk installeret\n"
 
-#: src/cmdline/cmdline_action.cc:469
+#: src/cmdline/cmdline_action.cc:476
 #, c-format
 msgid "Unmarking package %s as automatically installed\n"
 msgstr "Afmarkerer pakken %s som automatisk installeret\n"
 
-#: src/cmdline/cmdline_action.cc:478 src/cmdline/cmdline_action.cc:489
+#: src/cmdline/cmdline_action.cc:485 src/cmdline/cmdline_action.cc:496
 #: src/cmdline/cmdline_mark.cc:167 src/cmdline/cmdline_mark.cc:185
 #, c-format
 msgid "Marking version %s of package %s as forbidden\n"
 msgstr "Markerer version %s af pakken %s som forbudt\n"
 
-#: src/cmdline/cmdline_action.cc:541
+#: src/cmdline/cmdline_action.cc:548
 #, c-format
 msgid "Note: selecting the task \"%s: %s\" for installation\n"
 msgstr "Bemærk: vælger opgavepakken \"%s: %s\" til installering\n"
 
-#: src/cmdline/cmdline_action.cc:571
+#: src/cmdline/cmdline_action.cc:578
 #, c-format
 msgid ""
 "You can only specify a package version with an 'install' command or a "
@@ -890,12 +896,12 @@ msgstr ""
 "Man kan kun angive en pakkeversion med kommandoerne \"install\" eller "
 "\"forbid-version\"\n"
 
-#: src/cmdline/cmdline_action.cc:580
+#: src/cmdline/cmdline_action.cc:587
 #, c-format
 msgid "You can only specify a package archive with an 'install' command\n"
 msgstr "Man kan kun angive et pakkearkiv med kommandoen \"install\"\n"
 
-#: src/cmdline/cmdline_action.cc:618
+#: src/cmdline/cmdline_action.cc:625
 #, c-format
 msgid ""
 "Couldn't find any package whose name is \"%s\", but there are %zu packages "
@@ -904,18 +910,18 @@ msgstr ""
 "Kunne ikke finde nogen pakke med navnet \"%s\", men der er %zu pakker som "
 "har \"%s\" i deres navn:\n"
 
-#: src/cmdline/cmdline_action.cc:623 src/cmdline/cmdline_action.cc:655
+#: src/cmdline/cmdline_action.cc:630 src/cmdline/cmdline_action.cc:662
 #, c-format
 msgid "  (too many to show, the limit is %zu)\n"
 msgstr "  (for mange at vise, grænsen er %zu)\n"
 
-#: src/cmdline/cmdline_action.cc:647
+#: src/cmdline/cmdline_action.cc:654
 #, c-format
 msgid "Couldn't find any package whose name or description matched \"%s\"\n"
 msgstr ""
 "Kunne ikke finde nogen pakke, hvis navn eller beskrivelse passer på \"%s\"\n"
 
-#: src/cmdline/cmdline_action.cc:650
+#: src/cmdline/cmdline_action.cc:657
 #, c-format
 msgid ""
 "Couldn't find any package matching \"%s\", but there are %zu packages which "
@@ -924,24 +930,27 @@ msgstr ""
 "Kunne ikke finde nogen pakke som matcher \"%s\", men der er %zu pakker som "
 "har \"%s\" i deres beskrivelse:\n"
 
-#: src/cmdline/cmdline_action.cc:798
+#: src/cmdline/cmdline_action.cc:805
 #, c-format
 msgid "Bad action character '%c'\n"
 msgstr "Forkert tegn \"%c\" til handling\n"
 
 #: src/cmdline/cmdline_apt_proxy.cc:64
 #, fuzzy
+#| msgid "Failed to fork process for dpkg selections."
 msgid "Failed to fork process."
 msgstr "Kunne ikke forgrene proces til dpkg-udvalg."
 
 # pænere at forkorte lidt
 #: src/cmdline/cmdline_apt_proxy.cc:86
 #, fuzzy, c-format
+#| msgid "Failed to parse the cost settings string: %s"
 msgid "Failed to copy string (strndup): %d: '%s'"
 msgstr "Kunne ikke fortolke omkostningsstreng: %s"
 
 #: src/cmdline/cmdline_apt_proxy.cc:122 src/cmdline/cmdline_apt_proxy.cc:137
 #, fuzzy, c-format
+#| msgid "Failed to fetch %s: %s"
 msgid ""
 "Failed to execute:\n"
 "  '%s'"
@@ -954,6 +963,9 @@ msgstr ""
 
 #: src/cmdline/cmdline_apt_proxy.cc:142
 #, fuzzy, c-format
+#| msgid ""
+#| "Failed to execute process to save dpkg selections, dpkg or trying to "
+#| "execute it exited with status/errno: %d"
 msgid "The process or trying to execute it exited with status/errno: %d"
 msgstr ""
 "Kunne ikke udføre proces til at gemme dpkg-udvalg, dpkg, eller forsøg på at "
@@ -990,6 +1002,7 @@ msgstr ""
 
 #: src/cmdline/cmdline_apt_proxy.cc:226
 #, fuzzy, c-format
+#| msgid "Reconfiguring %s\n"
 msgid ""
 "Executing '%s'\n"
 "\n"
@@ -1052,7 +1065,7 @@ msgstr "Slet %s %s [%sB]\n"
 msgid "E: The autoclean command takes no arguments\n"
 msgstr "E:  kommandoen \"autoclean\" tager ingen argumenter\n"
 
-#: src/cmdline/cmdline_clean.cc:141 src/generic/apt/apt.cc:1633 src/ui.cc:1983
+#: src/cmdline/cmdline_clean.cc:141 src/generic/apt/apt.cc:1636 src/ui.cc:1983
 msgid "Unable to lock the download directory"
 msgstr "Kunne ikke låse kataloget til downloads"
 
@@ -1161,32 +1174,38 @@ msgstr "Ville glemme hvilke pakker der er nye\n"
 
 #: src/cmdline/cmdline_mark.cc:77
 #, fuzzy
+#| msgid "Unexpected pattern argument following \"keep-all\""
 msgid "Unexpected argument following \"keep-all\""
 msgstr "Uventet argument til mønster efter \"keep-all\""
 
 #: src/cmdline/cmdline_mark.cc:82
 #, fuzzy, c-format
+#| msgid "Marking package %s as keep\n"
 msgid "Marking all packages as keep (%s)\n"
 msgstr "Markerer pakken %s som værende beholdt\n"
 
 #: src/cmdline/cmdline_mark.cc:86
 #, fuzzy, c-format
+#| msgid "Source package %s:"
 msgid "Would mark all packages as keep\n"
 msgstr "Kildepakke %s:"
 
 #: src/cmdline/cmdline_mark.cc:98 src/cmdline/cmdline_mark.cc:209
 #, fuzzy
+#| msgid "Command \"%s\" needs arguments\n"
 msgid "Subcommand needs arguments: "
 msgstr "Kommandoen \"%s\" kræver argumenter\n"
 
 #: src/cmdline/cmdline_mark.cc:128 src/cmdline/cmdline_util.cc:893
 #: src/ui.cc:2095
 #, fuzzy, c-format
+#| msgid "No packages matched the pattern \"%ls\"."
 msgid "No packages match pattern \"%s\""
 msgstr "Ingen pakker passer med mønstret \"%ls\"."
 
 #: src/cmdline/cmdline_mark.cc:151
 #, fuzzy, c-format
+#| msgid "%s: Could not parse column definitions: '%ls'\n"
 msgid "Could not parse version for %s: %s\n"
 msgstr "%s: Kunne ikke fortolke kolonne-definitioner: '%ls'\n"
 
@@ -1206,21 +1225,25 @@ msgstr ""
 
 #: src/cmdline/cmdline_mark.cc:244
 #, fuzzy, c-format
+#| msgid "Marking package %s as keep\n"
 msgid "Marking package %s (%s)\n"
 msgstr "Markerer pakken %s som værende beholdt\n"
 
 #: src/cmdline/cmdline_mark.cc:258
 #, fuzzy, c-format
+#| msgid "Unmarking package %s as automatically installed\n"
 msgid "Would mark package %s as auto-installed=%d\n"
 msgstr "Afmarkerer pakken %s som automatisk installeret\n"
 
 #: src/cmdline/cmdline_mark.cc:270
 #, fuzzy, c-format
+#| msgid "Source package %s:"
 msgid "Would mark package %s as hold\n"
 msgstr "Kildepakke %s:"
 
 #: src/cmdline/cmdline_mark.cc:283
 #, fuzzy, c-format
+#| msgid "Source package %s:"
 msgid "Would mark package %s as keep (or unhold)\n"
 msgstr "Kildepakke %s:"
 
@@ -2103,6 +2126,9 @@ msgstr "åbne: %zd; lukkede: %zd; udsat: %zd; konflikt: %zd"
 
 #: src/cmdline/cmdline_resolver.cc:808
 #, fuzzy, c-format
+#| msgid ""
+#| "Would resolve dependencies, but dependency resolution is disabled.\n"
+#| "   (%s::ProblemResolver::StepLimit = 0)\n"
 msgid ""
 "Would resolve dependencies, but dependency resolution is disabled.\n"
 "   (%s::ProblemResolver::StepLimit <= 0)\n"
@@ -2951,113 +2977,114 @@ msgstr "Forsøg på at starte en downloadsekvens to gange!"
 msgid "Can't open Aptitude extended state file"
 msgstr "Kan ikke åbne Aptitudes fil for udvidet tilstand"
 
-#: src/generic/apt/aptcache.cc:330 src/generic/apt/aptcache.cc:491
-#: src/generic/apt/aptcache.cc:506
+#: src/generic/apt/aptcache.cc:330 src/generic/apt/aptcache.cc:498
+#: src/generic/apt/aptcache.cc:513
 msgid "Reading extended state information"
 msgstr "Læser udvidet tilstandsinformation"
 
-#: src/generic/apt/aptcache.cc:419
+#: src/generic/apt/aptcache.cc:426
 #, c-format
 msgid "Cannot parse user-tags for package: %s: '%s'"
 msgstr "Kan ikke fortolke brugermærkat for pakke: %s: \"%s\""
 
-#: src/generic/apt/aptcache.cc:499
+#: src/generic/apt/aptcache.cc:506
 #, c-format
 msgid ""
 "Problem parsing '%s', is it corrupt or malformed? You can try to recover "
 "from '%s.old'."
 msgstr ""
 
-#: src/generic/apt/aptcache.cc:518 src/generic/apt/aptcache.cc:607
-#: src/generic/apt/aptcache.cc:613
+#: src/generic/apt/aptcache.cc:525 src/generic/apt/aptcache.cc:614
+#: src/generic/apt/aptcache.cc:620
 msgid "Initializing package states"
 msgstr "Klargør pakketilstande"
 
-#: src/generic/apt/aptcache.cc:782
+#: src/generic/apt/aptcache.cc:789
 msgid "Cannot open Aptitude state file"
 msgstr "Kan ikke åbne Aptitudes statusfil"
 
-#: src/generic/apt/aptcache.cc:796 src/generic/apt/aptcache.cc:921
-#: src/generic/apt/aptcache.cc:927
+#: src/generic/apt/aptcache.cc:803 src/generic/apt/aptcache.cc:928
+#: src/generic/apt/aptcache.cc:934
 msgid "Writing extended state information"
 msgstr "Skriver oplysninger om udvidet status"
 
-#: src/generic/apt/aptcache.cc:932
+#: src/generic/apt/aptcache.cc:939
 msgid "Couldn't write state file"
 msgstr "Kunne ikke skrive statusfil"
 
-#: src/generic/apt/aptcache.cc:952
+#: src/generic/apt/aptcache.cc:959
 #, c-format
 msgid "failed to remove %s"
 msgstr "kunne ikke afinstallere %s"
 
-#: src/generic/apt/aptcache.cc:960
+#: src/generic/apt/aptcache.cc:967
 #, c-format
 msgid "failed to rename %s to %s"
 msgstr "kunne ikke omdøbe %s til %s"
 
-#: src/generic/apt/aptcache.cc:969
+#: src/generic/apt/aptcache.cc:976
 #, c-format
 msgid "couldn't replace %s with %s"
 msgstr "kunne ikke erstatte %s med %s"
 
-#: src/generic/apt/aptcache.cc:988
+#: src/generic/apt/aptcache.cc:995
 #: src/generic/apt/download_install_manager.cc:246
 msgid ""
 "Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
 msgstr ""
 "Kunne ikke gøre krav på systemlåsen! (Måske kører en anden apt eller dpkg?)"
 
-#: src/generic/apt/aptcache.cc:991
+#: src/generic/apt/aptcache.cc:998
 msgid "failed to save selections to dpkg database"
 msgstr "kunne ikke gemme udvalg i dpkg-database"
 
-#: src/generic/apt/aptcache.cc:1249 src/generic/apt/aptcache.cc:1285
+#: src/generic/apt/aptcache.cc:1256 src/generic/apt/aptcache.cc:1292
 msgid "Cannot remove aptitude within aptitude"
 msgstr "Kan ikke fjerne aptitude inde fra aptitude"
 
-#: src/generic/apt/aptcache.cc:1709
+#: src/generic/apt/aptcache.cc:1716
 #, c-format
 msgid "User-tag '%s' already present for %s"
 msgstr "Brugermærkat \"%s\" findes allerede for %s"
 
-#: src/generic/apt/aptcache.cc:1725
+#: src/generic/apt/aptcache.cc:1732
 #, c-format
 msgid "Could not add user-tag '%s' to package %s"
 msgstr "Kunne ikke føje brugermærkatet \"%s\" til pakken %s"
 
-#: src/generic/apt/aptcache.cc:1751
+#: src/generic/apt/aptcache.cc:1758
 #, c-format
 msgid "Could not find valid user-tag '%s'"
 msgstr "Kunne ikke finde et gyldigt brugermærkat \"%s\""
 
-#: src/generic/apt/aptcache.cc:1767
+#: src/generic/apt/aptcache.cc:1774
 #, c-format
 msgid "Could not remove user-tag '%s' from package %s"
 msgstr "Kunne ikke fjerne brugermærkatet \"%s\" fra pakken %s"
 
-#: src/generic/apt/aptcache.cc:1845
+#: src/generic/apt/aptcache.cc:1852
 msgid "Unable to correct dependencies, some packages cannot be installed"
 msgstr "Kunne ikke reparere afhængigheder, visse pakker kan ikke installeres"
 
-#: src/generic/apt/aptcache.cc:2527
+#: src/generic/apt/aptcache.cc:2534
 msgid "The list of sources could not be read."
 msgstr "Kildelisten til pakker kunne ikke læses."
 
-#: src/generic/apt/aptcache.cc:2535
+#: src/generic/apt/aptcache.cc:2542
 msgid "The package lists or status file could not be parsed or opened."
 msgstr "Pakkelisterne eller statusfilen kunne hverken fortolkes eller åbnes."
 
-#: src/generic/apt/aptcache.cc:2538
+#: src/generic/apt/aptcache.cc:2545
 msgid "You may want to update the package lists to correct these missing files"
 msgstr "En opdatering af pakkelisterne vil måske korrigere for manglende filer"
 
-#: src/generic/apt/aptcache.cc:2554
+#: src/generic/apt/aptcache.cc:2561
 #, fuzzy
+#| msgid "Could not create directory: %s: %s"
 msgid "Could not create dependency cache"
 msgstr "Kunne ikke oprette kataloget: %s: %s"
 
-#: src/generic/apt/aptcache.cc:2564
+#: src/generic/apt/aptcache.cc:2571
 msgid "Could not initialize dependency cache"
 msgstr ""
 
@@ -3116,73 +3143,73 @@ msgstr "Kunne ikke oprette kataloget: %s: %s"
 msgid "Could not create directories: %s: %s"
 msgstr "Kunne ikke oprette katalogerne: %s: %s"
 
-#: src/generic/apt/apt.cc:1400
+#: src/generic/apt/apt.cc:1403
 msgid "(installed locally)"
 msgstr "(installeret lokalt)"
 
-#: src/generic/apt/apt.cc:1462
+#: src/generic/apt/apt.cc:1465
 msgid "foreign"
 msgstr "foreign"
 
-#: src/generic/apt/apt.cc:1464
+#: src/generic/apt/apt.cc:1467
 msgid "same"
 msgstr "same"
 
-#: src/generic/apt/apt.cc:1467
+#: src/generic/apt/apt.cc:1470
 msgid "allowed"
 msgstr "allowed"
 
 #. TRANSLATORS: Imp = Important
-#: src/generic/apt/apt.cc:1514
+#: src/generic/apt/apt.cc:1517
 msgid "Imp"
 msgstr "Vig"
 
 #. TRANSLATORS: Req = Required
-#: src/generic/apt/apt.cc:1517
+#: src/generic/apt/apt.cc:1520
 msgid "Req"
 msgstr "Krv"
 
 #. TRANSLATORS: Std = Standard
-#: src/generic/apt/apt.cc:1520
+#: src/generic/apt/apt.cc:1523
 msgid "Std"
 msgstr "Std"
 
 #. TRANSLATORS: Opt = Optional
-#: src/generic/apt/apt.cc:1523
+#: src/generic/apt/apt.cc:1526
 msgid "Opt"
 msgstr "Valgfri"
 
 #. TRANSLATORS: Xtr = Extra
-#: src/generic/apt/apt.cc:1526
+#: src/generic/apt/apt.cc:1529
 msgid "Xtr"
 msgstr "Ekstra"
 
-#: src/generic/apt/apt.cc:1528
+#: src/generic/apt/apt.cc:1531
 msgid "ERR"
 msgstr "ERR"
 
-#: src/generic/apt/apt.cc:1537 src/pkg_columnizer.cc:268
+#: src/generic/apt/apt.cc:1540 src/pkg_columnizer.cc:268
 #: src/pkg_columnizer.cc:623 src/pkg_ver_item.cc:229
 msgid "ERROR"
 msgstr "FEJL"
 
-#: src/generic/apt/apt.cc:1597
+#: src/generic/apt/apt.cc:1600
 msgid "main"
 msgstr "main"
 
-#: src/generic/apt/apt.cc:1597
+#: src/generic/apt/apt.cc:1600
 msgid "contrib"
 msgstr "contrib"
 
-#: src/generic/apt/apt.cc:1597
+#: src/generic/apt/apt.cc:1600
 msgid "non-free"
 msgstr "non-free"
 
-#: src/generic/apt/apt.cc:1597
+#: src/generic/apt/apt.cc:1600
 msgid "non-US"
 msgstr "non-US"
 
-#: src/generic/apt/apt.cc:1671
+#: src/generic/apt/apt.cc:1674
 msgid "Couldn't read list of sources"
 msgstr "Kunne ikke læse liste over pakkekilder"
 
@@ -3359,6 +3386,7 @@ msgstr "Kunne ikke læse liste over pakkekilder"
 
 #: src/generic/apt/download_update_manager.cc:105
 #, fuzzy
+#| msgid "Failed to download changelogs: %s"
 msgid "Failed to download some files"
 msgstr "Kunne ikke hente ændringslogge: %s"
 
@@ -3716,12 +3744,12 @@ msgid "Failed to parse the cost settings string: %s"
 msgstr "Kunne ikke fortolke omkostningsstreng: %s"
 
 #: src/generic/apt/tags.cc:214 src/generic/apt/tags.cc:227
-#: src/generic/apt/tags.cc:257 src/generic/apt/tags.cc:283
-#: src/generic/apt/tags.cc:296 src/generic/apt/tags.cc:304
+#: src/generic/apt/tags.cc:261 src/generic/apt/tags.cc:287
+#: src/generic/apt/tags.cc:300 src/generic/apt/tags.cc:308
 msgid "Building tag database"
 msgstr "Opbygger database over mærkater"
 
-#: src/generic/apt/tags.cc:432
+#: src/generic/apt/tags.cc:436
 msgid "legacy"
 msgstr "ældre"
 
@@ -5894,11 +5922,13 @@ msgstr " search          Søg efter en pakke ud fra navn og/eller udtryk.\n"
 
 #: src/main.cc:211
 #, fuzzy, c-format
+#| msgid " show            Display detailed information about a package.\n"
 msgid " show            Display detailed info about a package.\n"
 msgstr " show            Vis detaljerede oplysninger om en pakke.\n"
 
 #: src/main.cc:212
 #, fuzzy, c-format
+#| msgid " show            Display detailed information about a package.\n"
 msgid ""
 " showsrc         Display detailed info about a source package (apt "
 "wrapper).\n"
@@ -5926,11 +5956,13 @@ msgstr " changelog       Vis en pakkes ændringslog.\n"
 
 #: src/main.cc:217
 #, fuzzy, c-format
+#| msgid " download        Download the .deb file for a package.\n"
 msgid " download        Download the .deb file for a package (apt wrapper).\n"
 msgstr " download        Hent en pakkes .deb-fil.\n"
 
 #: src/main.cc:218
 #, fuzzy, c-format
+#| msgid " -u              Download new package lists on startup.\n"
 msgid " source          Download source package (apt wrapper).\n"
 msgstr " -u              Hent nye pakkelister ved opstart\n"
 
@@ -6268,6 +6300,7 @@ msgstr "Kommandoen \"%s\" kræver argumenter\n"
 
 #: src/main.cc:1231
 #, fuzzy, c-format
+#| msgid "Command \"%s\" needs arguments\n"
 msgid "Command \"%s\" does not accept arguments\n"
 msgstr "Kommandoen \"%s\" kræver argumenter\n"
 
@@ -6632,6 +6665,10 @@ msgstr "Opgavepakker"
 
 #: src/pkg_grouppolicy.cc:462
 #, fuzzy
+#| msgid ""
+#| "Security Updates\n"
+#| " Security updates for these packages are available from security.debian."
+#| "org."
 msgid ""
 "Security Updates\n"
 " Security updates for these packages are available from security.debian.org "
@@ -7030,6 +7067,7 @@ msgstr " (givet af %F)"
 
 #: src/reason_fragment.cc:378
 #, fuzzy, c-format
+#| msgid "%F%s (%s, %s) %F %F"
 msgid "%F%s %s %F %F"
 msgstr "%F%s (%s, %s) %F %F"
 
@@ -7043,6 +7081,9 @@ msgstr ""
 
 #: src/reason_fragment.cc:466
 #, fuzzy
+#| msgid ""
+#| "%B%s%b was installed automatically; it is being removed because all of "
+#| "the packages which depend upon it are being removed:"
 msgid ""
 "%B%s %s%b was installed automatically; it is being removed because all of "
 "the packages which depend upon it are being removed:"
@@ -7052,11 +7093,15 @@ msgstr ""
 
 #: src/reason_fragment.cc:471
 #, fuzzy
+#| msgid "%B%s%b will be automatically removed because of dependency errors:"
 msgid "%B%s %s%b will be automatically removed because of dependency errors:"
 msgstr "%B%s%b vil blive afinstalleret automatisk p.g.a. afhængighedsfejl:"
 
 #: src/reason_fragment.cc:476
 #, fuzzy
+#| msgid ""
+#| "%B%s%b will be automatically installed to satisfy the following "
+#| "dependencies:"
 msgid ""
 "%B%s %s%b will be automatically installed to satisfy the following "
 "dependencies:"
@@ -7065,6 +7110,9 @@ msgstr ""
 
 #: src/reason_fragment.cc:483 src/reason_fragment.cc:498
 #, fuzzy
+#| msgid ""
+#| "%B%s%b cannot be upgraded now, but if it could be, it would still be held "
+#| "at version %B%s%b."
 msgid ""
 "%B%s %s%b cannot be upgraded now, but if it could be, it would still be held "
 "at version %B%s%b."
@@ -7074,6 +7122,9 @@ msgstr ""
 
 #: src/reason_fragment.cc:488
 #, fuzzy
+#| msgid ""
+#| "%B%s%b will not be upgraded to version %B%s%b, to avoid breaking the "
+#| "following dependencies:"
 msgid ""
 "%B%s %s%b will not be upgraded to version %B%s%b, to avoid breaking the "
 "following dependencies:"
@@ -7083,31 +7134,39 @@ msgstr ""
 
 #: src/reason_fragment.cc:503
 #, fuzzy
+#| msgid "%B%s%b is currently installed."
 msgid "%B%s %s%b is currently installed."
 msgstr "%B%s%b er aktuelt installeret."
 
 #: src/reason_fragment.cc:510
 #, fuzzy
+#| msgid "%B%s%b is not currently installed."
 msgid "%B%s %s%b is not currently installed."
 msgstr "%B%s%b er aktuelt ikke installeret."
 
 #: src/reason_fragment.cc:519
 #, fuzzy
+#| msgid "Some dependencies of %B%s%b are not satisfied:"
 msgid "Some dependencies of %B%s %s%b are not satisfied:"
 msgstr "Visse afhængigheder af %B%s%b er ikke opfyldt:"
 
 #: src/reason_fragment.cc:524
 #, fuzzy
+#| msgid "%B%s%b will be downgraded."
 msgid "%B%s %s%b will be downgraded."
 msgstr "%B%s%b vil blive nedgraderet."
 
 #: src/reason_fragment.cc:532
 #, fuzzy
+#| msgid "%B%s%b will not be upgraded to the forbidden version %B%s%b."
 msgid "%B%s %s%b will not be upgraded to the forbidden version %B%s%b."
 msgstr "%B%s%b vil ikke blive opgraderet til den forbudte version %B%s%b."
 
 #: src/reason_fragment.cc:537
 #, fuzzy
+#| msgid ""
+#| "%B%s%b could be upgraded to version %B%s%b, but it is being held at "
+#| "version %B%s%b."
 msgid ""
 "%B%s %s%b could be upgraded to version %B%s%b, but it is being held at "
 "version %B%s%b."
@@ -7117,32 +7176,39 @@ msgstr ""
 
 #: src/reason_fragment.cc:545
 #, fuzzy
+#| msgid "%B%s%b will be re-installed."
 msgid "%B%s %s%b will be re-installed."
 msgstr "%B%s%b vil blive geninstalleret."
 
 #: src/reason_fragment.cc:550
 #, fuzzy
+#| msgid "%B%s%b will be installed."
 msgid "%B%s %s%b will be installed."
 msgstr "%B%s%b vil blive installeret."
 
 #: src/reason_fragment.cc:555
 #, fuzzy
+#| msgid "%B%s%b will be removed."
 msgid "%B%s %s%b will be removed."
 msgstr "%B%s%b vil blive afinstalleret."
 
 #: src/reason_fragment.cc:561
 #, fuzzy
+#| msgid "%B%s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgid "%B%s %s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgstr "%B%s%b vil blive opgraderet fra version %B%s%b til version %B%s%b."
 
 #: src/reason_fragment.cc:569
 #, fuzzy
+#| msgid "%B%s%b is only partly installed; its installation will be completed."
 msgid "%B%s %s%b is only partly installed; its installation will be completed."
 msgstr ""
 "%B%s%b er kun delvis installeret, dens installering vil blive fuldført."
 
 #: src/reason_fragment.cc:602
 #, fuzzy
+#| msgid ""
+#| "The following packages depend on %B%s%b and will be broken by its removal:"
 msgid ""
 "The following packages depend on %B%s %s%b and will be broken by its removal:"
 msgstr ""
@@ -7151,11 +7217,15 @@ msgstr ""
 
 #: src/reason_fragment.cc:606
 #, fuzzy
+#| msgid "The following packages depend on %B%s%b and are broken:"
 msgid "The following packages depend on %B%s %s%b and are broken:"
 msgstr "Følgende pakker afhænger af %B%s%b og er brudte:"
 
 #: src/reason_fragment.cc:614
 #, fuzzy
+#| msgid ""
+#| "The following packages conflict with %B%s%b and will be broken by its "
+#| "installation:"
 msgid ""
 "The following packages conflict with %B%s %s%b and will be broken by its "
 "installation:"
@@ -7165,6 +7235,10 @@ msgstr ""
 
 #: src/reason_fragment.cc:648
 #, fuzzy
+#| msgid ""
+#| "The following packages depend on a version of %B%s%b other than the "
+#| "currently installed version of %B%s%b, or conflict with the currently "
+#| "installed version:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b, or conflict with the currently "
@@ -7175,6 +7249,9 @@ msgstr ""
 
 #: src/reason_fragment.cc:653
 #, fuzzy
+#| msgid ""
+#| "The following packages conflict with %B%s%b, or depend on a version of it "
+#| "which is not going to be installed."
 msgid ""
 "The following packages conflict with %B%s %s%b, or depend on a version of it "
 "which is not going to be installed."
@@ -7184,11 +7261,15 @@ msgstr ""
 
 #: src/reason_fragment.cc:658
 #, fuzzy
+#| msgid "The following packages conflict with %B%s%b:"
 msgid "The following packages conflict with %B%s %s%b:"
 msgstr "Følgende pakker konflikter med %B%s%b:"
 
 #: src/reason_fragment.cc:664
 #, fuzzy
+#| msgid ""
+#| "The following packages depend on a version of %B%s%b other than the "
+#| "currently installed version of %B%s%b:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b:"
@@ -7198,6 +7279,9 @@ msgstr ""
 
 #: src/reason_fragment.cc:669
 #, fuzzy
+#| msgid ""
+#| "The following packages depend on a version of %B%s%b which is not going "
+#| "to be installed."
 msgid ""
 "The following packages depend on a version of %B%s %s%b which is not going "
 "to be installed."
@@ -7309,6 +7393,7 @@ msgstr "%BNedgradér%b de følgende pakker:%n"
 
 #: src/solution_fragment.cc:511
 #, fuzzy
+#| msgid "Leave the following dependencies unresolved:"
 msgid "%BLeave%b the following dependencies %Bunresolved%b:%n"
 msgstr "Efterlad de følgende afhængigheder uafklaret:"
 
@@ -7680,6 +7765,7 @@ msgstr "Udfører handlinger ..."
 
 #: src/ui.cc:1280
 #, fuzzy
+#| msgid "Press Return to continue."
 msgid "Press Return to continue, 'q' followed by Return to quit."
 msgstr "Tryk retur for at fortsætte."
 
@@ -7729,6 +7815,7 @@ msgstr "Vis og/eller korrigér de handlinger der skal udføres"
 
 #: src/ui.cc:1541
 #, fuzzy
+#| msgid "No broken packages."
 msgid "Trying to fix broken packages..."
 msgstr "Ingen brudte pakker."
 
@@ -7781,6 +7868,7 @@ msgstr ""
 
 #: src/ui.cc:1810
 #, fuzzy
+#| msgid "Resolving dependencies..."
 msgid "Checking dependencies"
 msgstr "Udreder afhængigheder ..."
 

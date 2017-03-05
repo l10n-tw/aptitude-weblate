@@ -1,3 +1,39 @@
+[2017-03-05]
+Version 0.8.6
+
+- User visible changes:
+
+  * [cmdline] Better message when there are no deb-src in sources.list
+    (Closes: #841875)
+
+- Bug fixes:
+
+  * Use a more strict mask for comparison of dependency operators, thanks to
+    Aaron M. Ucko for the initial patch (Closes: #836567, #837946, #849370)
+
+    Recently apt started to use more values in an enum used for dependency
+    operator comparisons, which causes some problems because aptitude's code
+    from many years ago, which did not expect new values.
+
+    Using a stricter mask to capture only the operators, as per the
+    documentation of the enum (lower 4 bits).
+
+  * Fix reading tag and their classification in subtrees (Closes: #853037)
+
+    Newline characters were added to the last tag (or the only one), and it
+    caused extra problems like classifying the tag in their own subtree due to
+    the new-line mismatch in the tag name.
+
+  * Fix misdetection of auto-installed packages from apt
+    (Closes: #831858, #841347)
+
+- Translation updates:
+
+  * ru.po: Russian translation by Lev Lamberov (Closes: #855329)
+
+  * Dutch documentation translation by Frans Spiesschaert (Closes: #854897)
+
+
 [2017-01-24]
 Version 0.8.5
 
@@ -10,8 +46,7 @@ Version 0.8.5
 
   * Dutch documentation translation by Frans Spiesschaert (Closes: #851890)
 
-  * French documentation translation by From: Cédric Boutillier
-    (Closes: #852352)
+  * French documentation translation by Cédric Boutillier (Closes: #852352)
 
 
 [2016-12-27]
