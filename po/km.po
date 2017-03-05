@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude_po_km\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2016-12-27 22:43+0100\n"
+"POT-Creation-Date: 2017-03-05 21:18+0100\n"
 "PO-Revision-Date: 2012-06-03 12:26+0800\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -318,6 +318,7 @@ msgstr ""
 
 #: src/apt_options.cc:294
 #, fuzzy
+#| msgid "Remove obsolete package files after downloading new package lists"
 msgid "Remove all package files after successful operations (e.g. install)"
 msgstr "យក​ឯកសារ​បញ្ចប់​ដែលលែងប្រើ​ចេញ​ បន្ទាប់​ពី​ទាញយក​បញ្ជី​កញ្ចប់​ថ្មី"
 
@@ -560,6 +561,7 @@ msgstr "កំហុស​ខាង​ក្នុង ៖ មិន​រំព
 
 #: src/broken_indicator.cc:375
 #, fuzzy
+#| msgid "Keep the following packages at their current version:"
 msgid "Keep all packages at their current version"
 msgstr "រក្សា​កញ្ចប់​ខាង​ក្រោម​ត្រឹម​កំណែ​បច្ចុប្បន្ន​របស់​ពួកវា​ដដែល ៖"
 
@@ -600,34 +602,42 @@ msgstr[1] ""
 
 #: src/broken_indicator.cc:436
 #, fuzzy
+#| msgid "%s changes"
 msgid "no changes"
 msgstr "ផ្លាស់ប្ដូរ %s ដង"
 
 #: src/broken_indicator.cc:439
 #, fuzzy, c-format
+#| msgid "Actions"
 msgid "Actions: %F"
 msgstr "សកម្មភាព​"
 
-#: src/cmdline/cmdline_action.cc:56
+#: src/cmdline/cmdline_action.cc:63
 #, fuzzy, c-format
 msgid "Unable to find the source package for \"%s\"\n"
 msgstr "មិន​អាច​រកឃើញ​ប័ណ្ណសារ \"%s\" សម្រាប់​កញ្ចប់ \"%s\" ឡើយ\n"
 
-#: src/cmdline/cmdline_action.cc:216
+#: src/cmdline/cmdline_action.cc:223
 #, fuzzy, c-format
 msgid "Unable to satisfy the build-depends: %s\n"
 msgstr "មិន​អាច​រាយ​ឯកសារ​ក្នុង \"%s\" បាន​ឡើយ"
 
-#: src/cmdline/cmdline_action.cc:253
+#: src/cmdline/cmdline_action.cc:260
 #, fuzzy, c-format
+#| msgid ""
+#| "Note: \"%s\", providing the virtual package\n"
+#| "      \"%s\", is already installed.\n"
 msgid ""
 "Note: \"%s\", providing the virtual package \"%s\", is already installed\n"
 msgstr ""
 "ចំណាំ ៖ \"%s\" ដែល​ផ្ដល់​កញ្ចប់​និម្មិត\n"
 "      \"%s\", ត្រូវ​បាន​ដំឡើង​រួច​ហើយ ។\n"
 
-#: src/cmdline/cmdline_action.cc:261
+#: src/cmdline/cmdline_action.cc:268
 #, fuzzy, c-format
+#| msgid ""
+#| "Note: \"%s\", providing the virtual package\n"
+#| "      \"%s\", is already going to be installed.\n"
 msgid ""
 "Note: \"%s\", providing the virtual package \"%s\", is already going to be "
 "installed\n"
@@ -635,8 +645,11 @@ msgstr ""
 "ចំណាំ ៖ \"%s\" ដែល​ផ្ដល់​កញ្ចប់​និម្មិត\n"
 "      \"%s\", កំពុង​តែ​ត្រូវ​បាន​ដំឡើង ។\n"
 
-#: src/cmdline/cmdline_action.cc:284 src/pkg_item.cc:144
+#: src/cmdline/cmdline_action.cc:291 src/pkg_item.cc:144
 #, fuzzy, c-format
+#| msgid ""
+#| "\"%s\" exists in the package database, but it is not a\n"
+#| "real package and no package provides it.\n"
 msgid ""
 "\"%s\" exists in the package database, but it is not a real package and no "
 "package provides it\n"
@@ -644,127 +657,135 @@ msgstr ""
 "មាន \"%s\" រួច​ហើយ​នៅ​ក្នុង​មូលដ្ឋានទិន្នន័យ​កញ្ចប់\n"
 "ប៉ុន្តែ​វា​មិន​មែន​ជា​កញ្ចប់​ពិត​ឡើយ ហើយ​ក៏​មិន​មាន​កញ្ចប់​ណា​ផ្ដល់​វា​ដែរ ។\n"
 
-#: src/cmdline/cmdline_action.cc:292
+#: src/cmdline/cmdline_action.cc:299
 #, c-format
 msgid "\"%s\" is a virtual package provided by:\n"
 msgstr "\"%s\" ជា​កញ្ចប់​និម្មិត  ​ដែល​បាន​ផ្ដល់​ដោយ ៖\n"
 
-#: src/cmdline/cmdline_action.cc:295
+#: src/cmdline/cmdline_action.cc:302
 #, c-format
 msgid "You must choose one to install.\n"
 msgstr "អ្នក​ត្រូវ​តែ​ជ្រើស​កញ្ចប់​មួយ ដើម្បី​ដំឡើង ។\n"
 
-#: src/cmdline/cmdline_action.cc:303
+#: src/cmdline/cmdline_action.cc:310
 #, fuzzy, c-format
+#| msgid ""
+#| "Note: selecting \"%s\" instead of the\n"
+#| "      virtual package \"%s\"\n"
 msgid "Note: selecting \"%s\" instead of the virtual package \"%s\"\n"
 msgstr ""
 "ចំណាំ ៖ ជ្រើស \"%s\" ជំនួស​ឲ្យ\n"
 "      កញ្ចប់​និម្មិត \"%s\"\n"
 
-#: src/cmdline/cmdline_action.cc:331
+#: src/cmdline/cmdline_action.cc:338
 #, c-format
 msgid "%s is already installed at the requested version (%s)\n"
 msgstr "%s បានដំឡើងរួច​ហើយ​នៅ​កំណែ​ដែលបានស្នើ​ (%s)\n"
 
-#: src/cmdline/cmdline_action.cc:343
+#: src/cmdline/cmdline_action.cc:350
 #, fuzzy, c-format
 msgid "%s is not currently installed, so it will not be upgraded\n"
 msgstr "បច្ចុប្បន្ន %s មិនត្រូវបានដំឡើង​ឡើយ ដូច្នេះ​វានឹងមិនត្រូវបាន​ដំឡើង​ម្ដងទៀតឡើយ ។\n"
 
-#: src/cmdline/cmdline_action.cc:347
+#: src/cmdline/cmdline_action.cc:354
 #, fuzzy, c-format
 msgid ""
 "%s is already installed at the latest version (%s), so it will not be "
 "upgraded\n"
 msgstr "%s បានដំឡើងរួច​ហើយ​នៅ​កំណែ​ដែលបានស្នើ​ (%s)\n"
 
-#: src/cmdline/cmdline_action.cc:354
+#: src/cmdline/cmdline_action.cc:361
 #, fuzzy, c-format
+#| msgid "%s is not currently installed, so it will not be reinstalled.\n"
 msgid "%s is not currently installed, so it will not be reinstalled\n"
 msgstr "បច្ចុប្បន្ន %s មិនត្រូវបានដំឡើង​ឡើយ ដូច្នេះ​វានឹងមិនត្រូវបាន​ដំឡើង​ម្ដងទៀតឡើយ ។\n"
 
-#: src/cmdline/cmdline_action.cc:362
+#: src/cmdline/cmdline_action.cc:369
 #, c-format
 msgid "Package %s is not installed, so it will not be removed\n"
 msgstr "កញ្ចប់ %s មិន​ត្រូវ​បាន​ដំឡើង​ឡើយ ដូច្នេះ​វា​នឹង​មិន​ត្រូវ​បាន​យក​ចេញ​ឡើយ\n"
 
-#: src/cmdline/cmdline_action.cc:369
+#: src/cmdline/cmdline_action.cc:376
 #, fuzzy, c-format
 msgid "Package %s is not installed, so it will not be purged\n"
 msgstr "កញ្ចប់ %s មិន​ត្រូវ​បាន​ដំឡើង​ឡើយ ដូច្នេះ​វា​នឹង​មិន​ត្រូវ​បាន​យក​ចេញ​ឡើយ\n"
 
-#: src/cmdline/cmdline_action.cc:387 src/cmdline/cmdline_mark.cc:252
+#: src/cmdline/cmdline_action.cc:394 src/cmdline/cmdline_mark.cc:252
 #, fuzzy, c-format
 msgid ""
 "Package %s is not installed, cannot be marked/unmarked as automatically "
 "installed\n"
 msgstr "កញ្ចប់ %s មិន​ត្រូវ​បាន​ដំឡើង​ឡើយ ដូច្នេះ​មិន​អាច​ហាម​កុំ​ឲ្យ​ធ្វើ​ឲ្យ​ប្រសើរ​បាន​ឡើយ\n"
 
-#: src/cmdline/cmdline_action.cc:394 src/cmdline/cmdline_mark.cc:197
+#: src/cmdline/cmdline_action.cc:401 src/cmdline/cmdline_mark.cc:197
 #, c-format
 msgid "Package %s is not installed, cannot forbid an upgrade\n"
 msgstr "កញ្ចប់ %s មិន​ត្រូវ​បាន​ដំឡើង​ឡើយ ដូច្នេះ​មិន​អាច​ហាម​កុំ​ឲ្យ​ធ្វើ​ឲ្យ​ប្រសើរ​បាន​ឡើយ\n"
 
-#: src/cmdline/cmdline_action.cc:397 src/cmdline/cmdline_mark.cc:200
+#: src/cmdline/cmdline_action.cc:404 src/cmdline/cmdline_mark.cc:200
 #, c-format
 msgid "Package %s is not upgradable, cannot forbid an upgrade\n"
 msgstr "កញ្ចប់ %s មិន​អាច​ធ្វើ​ឲ្យ​ប្រសើរ​បាន​ឡើយ ដូច្នេះ​មិន​អាច​ហាម​កុំ​ឲ្យ​ធ្វើ​ឲ្យ​ប្រសើរ​បាន​ឡើយ\n"
 
-#: src/cmdline/cmdline_action.cc:432
+#: src/cmdline/cmdline_action.cc:439
 #, fuzzy, c-format
 msgid "Setting package %s on hold\n"
 msgstr "'=' ដាក់​កញ្ចប់​នៅ​ក្នុង​ស្ថានភាព​រង់ចាំ"
 
-#: src/cmdline/cmdline_action.cc:440
+#: src/cmdline/cmdline_action.cc:447
 #, fuzzy, c-format
 msgid "Marking package %s as keep\n"
 msgstr "ធ្វើ​ឲ្យ​បញ្ជី​កញ្ចប់​ទាន់​សម័យ"
 
-#: src/cmdline/cmdline_action.cc:449
+#: src/cmdline/cmdline_action.cc:456
 #, c-format
 msgid "Setting package %s as not on hold\n"
 msgstr ""
 
-#: src/cmdline/cmdline_action.cc:455
+#: src/cmdline/cmdline_action.cc:462
 #, fuzzy, c-format
 msgid "Package %s is not on hold\n"
 msgstr "កញ្ចប់​ដែល​អាស្រ័យ​លើ​%s"
 
-#: src/cmdline/cmdline_action.cc:461
+#: src/cmdline/cmdline_action.cc:468
 #, fuzzy, c-format
 msgid "Marking package %s as automatically installed\n"
 msgstr "'&M' ដើម្បី​សម្គាល់​កញ្ចប់​ថា​បាន​ដំឡើង​ដោយ​ស្វ័យប្រវត្តិ"
 
-#: src/cmdline/cmdline_action.cc:469
+#: src/cmdline/cmdline_action.cc:476
 #, fuzzy, c-format
 msgid "Unmarking package %s as automatically installed\n"
 msgstr "'&M' ដើម្បី​សម្គាល់​កញ្ចប់​ថា​បាន​ដំឡើង​ដោយ​ស្វ័យប្រវត្តិ"
 
-#: src/cmdline/cmdline_action.cc:478 src/cmdline/cmdline_action.cc:489
+#: src/cmdline/cmdline_action.cc:485 src/cmdline/cmdline_action.cc:496
 #: src/cmdline/cmdline_mark.cc:167 src/cmdline/cmdline_mark.cc:185
 #, fuzzy, c-format
 msgid "Marking version %s of package %s as forbidden\n"
 msgstr "ពិនិត្យរក​កំណែ​ថ្មី​របស់​កញ្ចប់"
 
-#: src/cmdline/cmdline_action.cc:541
+#: src/cmdline/cmdline_action.cc:548
 #, c-format
 msgid "Note: selecting the task \"%s: %s\" for installation\n"
 msgstr "ចំណាំ ៖ ជ្រើស​ភារកិច្ច​​ \"%s ៖ %s\" សម្រាប់​ការ​ដំឡើង​\n"
 
-#: src/cmdline/cmdline_action.cc:571
+#: src/cmdline/cmdline_action.cc:578
 #, fuzzy, c-format
+#| msgid ""
+#| "You can only specify a package version with an 'install' command or a "
+#| "'forbid-version' command.\n"
 msgid ""
 "You can only specify a package version with an 'install' command or a "
 "'forbid-version' command\n"
 msgstr ""
 "អ្នក​អាច​បញ្ជាក់​តែ​កំណែ​កញ្ចប់ ដោយ​ប្រើ​ពាក្យបញ្ជា 'install' ឬ 'forbid-version' ប៉ុណ្ណោះ ។\n"
 
-#: src/cmdline/cmdline_action.cc:580
+#: src/cmdline/cmdline_action.cc:587
 #, fuzzy, c-format
+#| msgid "You can only specify a package archive with an 'install' command.\n"
 msgid "You can only specify a package archive with an 'install' command\n"
 msgstr "អ្នក​អាច​បញ្ជាក់​តែ​ប័ណ្ណសារ​កញ្ចប់ ដោយ​ប្រើ​ពាក្យបញ្ជា 'install' ប៉ុណ្ណោះ ។\n"
 
-#: src/cmdline/cmdline_action.cc:618
+#: src/cmdline/cmdline_action.cc:625
 #, fuzzy, c-format
 msgid ""
 "Couldn't find any package whose name is \"%s\", but there are %zu packages "
@@ -773,17 +794,17 @@ msgstr ""
 "មិន​អាច​រកក​ញ្ចប់​ \"%s\" ឃើញ​ឡើយ ហើយ​មាន​កញ្ចប់​ជាង ៤០\n"
 "ដែល​មាន \"%s\" នៅ​ក្នុង​ឈ្មោះ​របស់​ពួក​វា ។\n"
 
-#: src/cmdline/cmdline_action.cc:623 src/cmdline/cmdline_action.cc:655
+#: src/cmdline/cmdline_action.cc:630 src/cmdline/cmdline_action.cc:662
 #, c-format
 msgid "  (too many to show, the limit is %zu)\n"
 msgstr ""
 
-#: src/cmdline/cmdline_action.cc:647
+#: src/cmdline/cmdline_action.cc:654
 #, c-format
 msgid "Couldn't find any package whose name or description matched \"%s\"\n"
 msgstr "មិន​អាច​រកឃើញ​កញ្ចប់ ដែល​ឈ្មោះ ឬ សេចក្ដីពណ៌នា​របស់​វា​ដូច \"%s\"\n"
 
-#: src/cmdline/cmdline_action.cc:650
+#: src/cmdline/cmdline_action.cc:657
 #, fuzzy, c-format
 msgid ""
 "Couldn't find any package matching \"%s\", but there are %zu packages which "
@@ -792,7 +813,7 @@ msgstr ""
 "មិន​អាច​រកឃើញ​កញ្ចប់​ដែល​ដូច \"%s\" ឡើយ ហើយ​មាន​កញ្ចប់\n"
 "ច្រើន​ជាង ៤០ មាន \"%s\" នៅ​ក្នុង​សេចក្ដី​ពណ៌នា​របស់​ពួកវា ។\n"
 
-#: src/cmdline/cmdline_action.cc:798
+#: src/cmdline/cmdline_action.cc:805
 #, c-format
 msgid "Bad action character '%c'\n"
 msgstr "តួអក្សរ​អំពើ '%c' មិន​ត្រឹមត្រូវ\n"
@@ -855,6 +876,7 @@ msgstr ""
 
 #: src/cmdline/cmdline_apt_proxy.cc:226
 #, fuzzy, c-format
+#| msgid "Reconfiguring %s\n"
 msgid ""
 "Executing '%s'\n"
 "\n"
@@ -919,7 +941,7 @@ msgstr "Del %s %s [%sB]\n"
 msgid "E: The autoclean command takes no arguments\n"
 msgstr "E ៖ ពាក្យបញ្ជា update មិន​ត្រូវការ​អាគុយម៉ង់​ឡើយ\n"
 
-#: src/cmdline/cmdline_clean.cc:141 src/generic/apt/apt.cc:1633 src/ui.cc:1983
+#: src/cmdline/cmdline_clean.cc:141 src/generic/apt/apt.cc:1636 src/ui.cc:1983
 #, fuzzy
 msgid "Unable to lock the download directory"
 msgstr "មិន​អាច​ស្វែងរក​ថត​ផ្ទះ​របស់​អ្នក​ឃើញ​ឡើយ ។ កំពុង​រក្សាទុក​ទៅ /tmp/function_pkgs !"
@@ -954,6 +976,7 @@ msgstr "មិន​បាន​ឃើញ​អាគុយម៉ង់​លំ
 
 #: src/cmdline/cmdline_do_action.cc:363
 #, fuzzy, c-format
+#| msgid "Unable to open %s to log actions"
 msgid "Unable to apply some actions, aborting\n"
 msgstr "មិន​អាច​បើក %s ដើម្បី​ចុះ​កំណត់​ហេតុ​សកម្មភាព"
 
@@ -1025,6 +1048,7 @@ msgstr "នឹង​ភ្លេច​មា​ន​កញ្ចប់​អ្
 
 #: src/cmdline/cmdline_mark.cc:77
 #, fuzzy
+#| msgid "Unexpected pattern argument following \"keep-all\""
 msgid "Unexpected argument following \"keep-all\""
 msgstr "មិន​បាន​ឃើញ​អាគុយម៉ង់​លំនាំ​នៅ​បន្ទាប់​ពី \"keep-all\" ឡើយ"
 
@@ -1046,11 +1070,13 @@ msgstr "E ៖ ពាក្យបញ្ជា update មិន​ត្រូវ
 #: src/cmdline/cmdline_mark.cc:128 src/cmdline/cmdline_util.cc:893
 #: src/ui.cc:2095
 #, fuzzy, c-format
+#| msgid "No packages matched the pattern \"%ls\"."
 msgid "No packages match pattern \"%s\""
 msgstr "មិន​មាន​កញ្ចប់​ណា​ដូច​លំនាំ \"%ls\" ឡើយ ។"
 
 #: src/cmdline/cmdline_mark.cc:151
 #, fuzzy, c-format
+#| msgid "Couldn't parse column definition"
 msgid "Could not parse version for %s: %s\n"
 msgstr "មិន​អាច​ញែក​អត្ថន័យ​ជួរឈរ​បាន​ឡើយ"
 
@@ -1232,6 +1258,7 @@ msgstr "ដើម្បី​បន្ត សូម​វាយ​ឃ្លា \
 
 #: src/cmdline/cmdline_prompt.cc:475
 #, fuzzy, c-format
+#| msgid "To continue, type the phrase \"%s\":\n"
 msgid "To continue, type the phrase \"%s\" (or: \"%s\"):\n"
 msgstr "ដើម្បី​បន្ត សូម​វាយ​ឃ្លា \"%s\" ៖\n"
 
@@ -1300,12 +1327,14 @@ msgstr "ដើម្បី​បន្ត សូម​វាយ \"%s\" ។ ដ�
 
 #: src/cmdline/cmdline_prompt.cc:582
 #, fuzzy, c-format
+#| msgid "To continue, enter \"%s\"; to abort, enter \"%s\": "
 msgid ""
 "To continue, enter \"%s\" (or \"%s\"); to abort, enter \"%s\" (or \"%s\"): "
 msgstr "ដើម្បី​បន្ត សូម​វាយ \"%s\" ។ ដើម្បី​បញ្ឈប់ សូម​វាយ \"%s\" ៖ "
 
 #: src/cmdline/cmdline_prompt.cc:605
 #, fuzzy, c-format
+#| msgid "Unrecognized tasks"
 msgid "Unrecognized input\n"
 msgstr "ភារកិច្ច​មិន​ទទួលស្គាល់"
 
@@ -2015,6 +2044,7 @@ msgstr "iconv របស់ %s បាន​បរាជ័យ​ហើយ ។\n"
 
 #: src/cmdline/cmdline_search.cc:237 src/cmdline/cmdline_versions.cc:597
 #, fuzzy, c-format
+#| msgid "Couldn't parse column definition"
 msgid "%s: Could not parse column definitions: '%ls'\n"
 msgstr "មិន​អាច​ញែក​អត្ថន័យ​ជួរឈរ​បាន​ឡើយ"
 
@@ -2025,16 +2055,19 @@ msgstr "ស្វែងរក​ ៖ អ្នក​ត្រូវ​តែ​
 
 #: src/cmdline/cmdline_show_broken.cc:38
 #, fuzzy, c-format
+#| msgid "but %s is to be installed."
 msgid "but %s is to be installed"
 msgstr "ប៉ុន្តែ %s នឹង​ត្រូវ​បាន​ដំឡើង ។"
 
 #: src/cmdline/cmdline_show_broken.cc:41
 #, fuzzy, c-format
+#| msgid "but %s is installed and it is kept back."
 msgid "but %s is installed and it is kept back"
 msgstr "ប៉ុន្តែ %s ត្រូវ​បាន​ដំឡើង ហើយ​វា​ត្រូវ​បាន​ទុក​នៅ​ដដែល ។"
 
 #: src/cmdline/cmdline_show_broken.cc:44
 #, fuzzy, c-format
+#| msgid "but %s is installed."
 msgid "but %s is installed"
 msgstr "ប៉ុន្តែ %s ត្រូវ​បាន​ដំឡើង ។"
 
@@ -2603,16 +2636,19 @@ msgstr ""
 
 #: src/cmdline/cmdline_why.cc:1234
 #, fuzzy
+#| msgid "%B%s%b is not currently installed."
 msgid "Not currently installed\n"
 msgstr "បច្ចុប្បន្ន %B%s%b មិន​ត្រូវ​បាន​ដំឡើង​ឡើយ ។"
 
 #: src/cmdline/cmdline_why.cc:1239
 #, fuzzy, c-format
+#| msgid "No candidate version found for %s\n"
 msgid "The candidate version %s has priority %s\n"
 msgstr "រក​មិន​ឃើញ​កំណែ​សាកល្បង​សម្រាប់​ %s ឡើយ\n"
 
 #: src/cmdline/cmdline_why.cc:1244
 #, fuzzy, c-format
+#| msgid "No longer requiring the removal of %s"
 msgid "No dependencies require to remove %s\n"
 msgstr "លែង​ទាមទារឲ្យ​យក %s ចេញ​ទៀត​ហើយ"
 
@@ -2759,114 +2795,115 @@ msgstr ""
 msgid "Can't open Aptitude extended state file"
 msgstr "មិន​អាច​បើក​ឯកសារ​សភាព​បន្ថែម​ទៀត​របស់ Aptitude បាន​ឡើយ"
 
-#: src/generic/apt/aptcache.cc:330 src/generic/apt/aptcache.cc:491
-#: src/generic/apt/aptcache.cc:506
+#: src/generic/apt/aptcache.cc:330 src/generic/apt/aptcache.cc:498
+#: src/generic/apt/aptcache.cc:513
 msgid "Reading extended state information"
 msgstr "កំពុង​អាន​ព័ត៌មាន​ស្ថានភាព​បន្ថែម​ទៀត"
 
-#: src/generic/apt/aptcache.cc:419
+#: src/generic/apt/aptcache.cc:426
 #, c-format
 msgid "Cannot parse user-tags for package: %s: '%s'"
 msgstr ""
 
-#: src/generic/apt/aptcache.cc:499
+#: src/generic/apt/aptcache.cc:506
 #, c-format
 msgid ""
 "Problem parsing '%s', is it corrupt or malformed? You can try to recover "
 "from '%s.old'."
 msgstr ""
 
-#: src/generic/apt/aptcache.cc:518 src/generic/apt/aptcache.cc:607
-#: src/generic/apt/aptcache.cc:613
+#: src/generic/apt/aptcache.cc:525 src/generic/apt/aptcache.cc:614
+#: src/generic/apt/aptcache.cc:620
 msgid "Initializing package states"
 msgstr "កំពុង​ចាប់​ផ្ដើម​ស្ថានភាព​កញ្ចប់"
 
-#: src/generic/apt/aptcache.cc:782
+#: src/generic/apt/aptcache.cc:789
 msgid "Cannot open Aptitude state file"
 msgstr "មិន​អាច​បើក​ឯកសារ​សភាព​របស់ Aptitude បាន​ឡើយ"
 
-#: src/generic/apt/aptcache.cc:796 src/generic/apt/aptcache.cc:921
-#: src/generic/apt/aptcache.cc:927
+#: src/generic/apt/aptcache.cc:803 src/generic/apt/aptcache.cc:928
+#: src/generic/apt/aptcache.cc:934
 msgid "Writing extended state information"
 msgstr "កំពុង​សរសេរ​ព័ត៌មាន​ស្ថានភាព​បន្ថែម"
 
-#: src/generic/apt/aptcache.cc:932
+#: src/generic/apt/aptcache.cc:939
 msgid "Couldn't write state file"
 msgstr "មិន​អាច​សរសេរ​ឯកសារ​ស្ថានភាព​បាន​ឡើយ"
 
-#: src/generic/apt/aptcache.cc:952
+#: src/generic/apt/aptcache.cc:959
 #, c-format
 msgid "failed to remove %s"
 msgstr "បរាជ័យ​ក្នុង​ការ​យក %s ចេញ"
 
-#: src/generic/apt/aptcache.cc:960
+#: src/generic/apt/aptcache.cc:967
 #, c-format
 msgid "failed to rename %s to %s"
 msgstr "បរាជ័យ​ក្នុង​ការ​ប្ដូរ​ឈ្មោះ %s ទៅជា %s"
 
-#: src/generic/apt/aptcache.cc:969
+#: src/generic/apt/aptcache.cc:976
 #, c-format
 msgid "couldn't replace %s with %s"
 msgstr "មិន​អាច​ជំនួស %s ដោយ​ %s បាន​ឡើយ"
 
-#: src/generic/apt/aptcache.cc:988
+#: src/generic/apt/aptcache.cc:995
 #: src/generic/apt/download_install_manager.cc:246
 msgid ""
 "Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
 msgstr ""
 "មិន​អាច​យក​សោ​ប្រព័ន្ធ​មក​វិញ​បាន​ឡើយ !  (ប្រហែល​ជា apt ឬ dpkg មួយ​ទៀត កំពុង​តែ​រត់​ហើយ ​មើល​ទៅ ?)"
 
-#: src/generic/apt/aptcache.cc:991
+#: src/generic/apt/aptcache.cc:998
 msgid "failed to save selections to dpkg database"
 msgstr ""
 
-#: src/generic/apt/aptcache.cc:1249 src/generic/apt/aptcache.cc:1285
+#: src/generic/apt/aptcache.cc:1256 src/generic/apt/aptcache.cc:1292
 #, fuzzy
+#| msgid "Cannot open Aptitude state file"
 msgid "Cannot remove aptitude within aptitude"
 msgstr "មិន​អាច​បើក​ឯកសារ​សភាព​របស់ Aptitude បាន​ឡើយ"
 
-#: src/generic/apt/aptcache.cc:1709
+#: src/generic/apt/aptcache.cc:1716
 #, c-format
 msgid "User-tag '%s' already present for %s"
 msgstr ""
 
-#: src/generic/apt/aptcache.cc:1725
+#: src/generic/apt/aptcache.cc:1732
 #, fuzzy, c-format
 msgid "Could not add user-tag '%s' to package %s"
 msgstr "មិន​អាច​រកឃើញ​កំណែ \"%s\" សម្រាប់​កញ្ចប់ \"%s\" ឡើយ\n"
 
-#: src/generic/apt/aptcache.cc:1751
+#: src/generic/apt/aptcache.cc:1758
 #, fuzzy, c-format
 msgid "Could not find valid user-tag '%s'"
 msgstr "មិនអាចរក​ឃើញកំណត់​ហេតុ​ការផ្លាស់ប្ដូរ​សម្រាប់ %s"
 
-#: src/generic/apt/aptcache.cc:1767
+#: src/generic/apt/aptcache.cc:1774
 #, fuzzy, c-format
 msgid "Could not remove user-tag '%s' from package %s"
 msgstr "មិន​អាច​រកឃើញ​កំណែ \"%s\" សម្រាប់​កញ្ចប់ \"%s\" ឡើយ\n"
 
-#: src/generic/apt/aptcache.cc:1845
+#: src/generic/apt/aptcache.cc:1852
 msgid "Unable to correct dependencies, some packages cannot be installed"
 msgstr "មិន​អាច​កែប្រែ​ភាព​អាស្រ័យ​បាន​ឡើយ ដូច្នេះ​មិន​អាច​ដំឡើង​កញ្ចប់​មួយ​ចំនួន"
 
-#: src/generic/apt/aptcache.cc:2527
+#: src/generic/apt/aptcache.cc:2534
 msgid "The list of sources could not be read."
 msgstr "មិន​អាច​អាន​បញ្ជី​របស់​​ប្រភព​​បាន​ឡើយ ។"
 
-#: src/generic/apt/aptcache.cc:2535
+#: src/generic/apt/aptcache.cc:2542
 msgid "The package lists or status file could not be parsed or opened."
 msgstr "មិន​អាច​ញែក ឬ បើក​បញ្ជី​កញ្ចប់ ឬ ឯកសារ​ស្ថានភាព​បាន​ឡើយ ។"
 
-#: src/generic/apt/aptcache.cc:2538
+#: src/generic/apt/aptcache.cc:2545
 msgid "You may want to update the package lists to correct these missing files"
 msgstr "អ្នក​ប្រហែល​ជា​ត្រូវ​ធ្វើ​ឲ្យ​បញ្ជី​កញ្ចប់​ទាន់សម័យ ដើម្បី​កែ​ឯកសារ​ដែល​បាត់"
 
-#: src/generic/apt/aptcache.cc:2554
+#: src/generic/apt/aptcache.cc:2561
 #, fuzzy
 msgid "Could not create dependency cache"
 msgstr "មិនអាចរក​ឃើញកំណត់​ហេតុ​ការផ្លាស់ប្ដូរ​សម្រាប់ %s"
 
-#: src/generic/apt/aptcache.cc:2564
+#: src/generic/apt/aptcache.cc:2571
 msgid "Could not initialize dependency cache"
 msgstr ""
 
@@ -2924,74 +2961,74 @@ msgstr "មិនអាចរក​ឃើញកំណត់​ហេតុ​ក
 msgid "Could not create directories: %s: %s"
 msgstr "មិន​អាច​ជម្រះ​ថត​បញ្ជី​បាន​ឡើយ"
 
-#: src/generic/apt/apt.cc:1400
+#: src/generic/apt/apt.cc:1403
 #, fuzzy
 msgid "(installed locally)"
 msgstr "បាន​ដំឡើង​"
 
-#: src/generic/apt/apt.cc:1462
+#: src/generic/apt/apt.cc:1465
 msgid "foreign"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1464
+#: src/generic/apt/apt.cc:1467
 msgid "same"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1467
+#: src/generic/apt/apt.cc:1470
 msgid "allowed"
 msgstr ""
 
 #. TRANSLATORS: Imp = Important
-#: src/generic/apt/apt.cc:1514
+#: src/generic/apt/apt.cc:1517
 msgid "Imp"
 msgstr "Imp"
 
 #. TRANSLATORS: Req = Required
-#: src/generic/apt/apt.cc:1517
+#: src/generic/apt/apt.cc:1520
 msgid "Req"
 msgstr "ទាមទារ"
 
 #. TRANSLATORS: Std = Standard
-#: src/generic/apt/apt.cc:1520
+#: src/generic/apt/apt.cc:1523
 msgid "Std"
 msgstr "ខ្នាតគំរូ"
 
 #. TRANSLATORS: Opt = Optional
-#: src/generic/apt/apt.cc:1523
+#: src/generic/apt/apt.cc:1526
 msgid "Opt"
 msgstr "ស្រេចចិត្ត"
 
 #. TRANSLATORS: Xtr = Extra
-#: src/generic/apt/apt.cc:1526
+#: src/generic/apt/apt.cc:1529
 msgid "Xtr"
 msgstr "Xtr"
 
-#: src/generic/apt/apt.cc:1528
+#: src/generic/apt/apt.cc:1531
 msgid "ERR"
 msgstr "កំហុស"
 
-#: src/generic/apt/apt.cc:1537 src/pkg_columnizer.cc:268
+#: src/generic/apt/apt.cc:1540 src/pkg_columnizer.cc:268
 #: src/pkg_columnizer.cc:623 src/pkg_ver_item.cc:229
 msgid "ERROR"
 msgstr "កំហុស​"
 
-#: src/generic/apt/apt.cc:1597
+#: src/generic/apt/apt.cc:1600
 msgid "main"
 msgstr "ចាំបាច់"
 
-#: src/generic/apt/apt.cc:1597
+#: src/generic/apt/apt.cc:1600
 msgid "contrib"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1597
+#: src/generic/apt/apt.cc:1600
 msgid "non-free"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1597
+#: src/generic/apt/apt.cc:1600
 msgid "non-US"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1671
+#: src/generic/apt/apt.cc:1674
 msgid "Couldn't read list of sources"
 msgstr "មិន​អាច​អាន​បញ្ជី​ប្រភព​បាន​ឡើយ"
 
@@ -3502,12 +3539,12 @@ msgid "Failed to parse the cost settings string: %s"
 msgstr "មិន​អាច​ញែក​លំនាំ %s"
 
 #: src/generic/apt/tags.cc:214 src/generic/apt/tags.cc:227
-#: src/generic/apt/tags.cc:257 src/generic/apt/tags.cc:283
-#: src/generic/apt/tags.cc:296 src/generic/apt/tags.cc:304
+#: src/generic/apt/tags.cc:261 src/generic/apt/tags.cc:287
+#: src/generic/apt/tags.cc:300 src/generic/apt/tags.cc:308
 msgid "Building tag database"
 msgstr "កំពុង​បង្កើត​មូលដ្ឋាន​ទិន្នន័យ​ស្លាក"
 
-#: src/generic/apt/tags.cc:432
+#: src/generic/apt/tags.cc:436
 msgid "legacy"
 msgstr ""
 
@@ -5458,6 +5495,7 @@ msgstr "មិន​អាច​ញែក​ប្លង់​បាន​ឡើ
 
 #: src/load_pkgview.cc:106
 #, fuzzy
+#| msgid "Couldn't parse layout: encoding error in column descriptor"
 msgid "Couldn't parse layout: error parsing column definitions"
 msgstr "មិន​អាច​ញែក​ប្លង់​បាន​ឡើយ ៖ មាន​កំហុស​សំណុំតួអក្សរ នៅ​ក្នុង​សញ្ញា​ពណ៌នា​ជួរឈរ"
 
@@ -6372,11 +6410,13 @@ msgstr ""
 
 #: src/pkg_columnizer.cc:417
 #, fuzzy, c-format
+#| msgid "DL Size: %sB"
 msgid "DL: %sB/%sB"
 msgstr "ទំហំ​ទាញយក ៖ %sបៃ"
 
 #: src/pkg_columnizer.cc:423
 #, fuzzy, c-format
+#| msgid "DL Size: %sB"
 msgid "DL: %sB"
 msgstr "ទំហំ​ទាញយក ៖ %sបៃ"
 
@@ -6410,6 +6450,10 @@ msgstr "ភារកិច្ច​"
 
 #: src/pkg_grouppolicy.cc:462
 #, fuzzy
+#| msgid ""
+#| "Security Updates\n"
+#| " Security updates for these packages are available from security.debian."
+#| "org."
 msgid ""
 "Security Updates\n"
 " Security updates for these packages are available from security.debian.org "
@@ -6602,6 +6646,7 @@ msgstr "%s គឺ​ជា​កញ្ចប់​ចាំបាច់ !%n%n�
 
 #: src/pkg_item.cc:154
 #, fuzzy, c-format
+#| msgid "\"%s\" is a virtual package provided by:\n"
 msgid ""
 "\"%s\" is a virtual package provided by:\n"
 "\n"
@@ -6758,6 +6803,7 @@ msgstr "មិន​បាន​ផ្លាស់ប្ដូរ"
 
 #: src/reason_fragment.cc:77
 #, fuzzy
+#| msgid "downgraded"
 msgid "downgrade"
 msgstr "បន្ទាប"
 
@@ -6820,6 +6866,9 @@ msgstr "បើ​អ្នក​ជ្រើស​កញ្ចប់​មួយ
 
 #: src/reason_fragment.cc:466
 #, fuzzy
+#| msgid ""
+#| "%B%s%b was installed automatically;  it is being removed because all of "
+#| "the packages which depend upon it are being removed:"
 msgid ""
 "%B%s %s%b was installed automatically; it is being removed because all of "
 "the packages which depend upon it are being removed:"
@@ -6829,11 +6878,15 @@ msgstr ""
 
 #: src/reason_fragment.cc:471
 #, fuzzy
+#| msgid "%B%s%b will be automatically removed because of dependency errors:"
 msgid "%B%s %s%b will be automatically removed because of dependency errors:"
 msgstr "%B%s%b នឹង​ត្រូវ​បាន​យកចេញ​ដោយ​ស្វ័យប្រវត្តិ ព្រោះ​មាន​កំហុស​ភាព​អាស្រ័យ ៖"
 
 #: src/reason_fragment.cc:476
 #, fuzzy
+#| msgid ""
+#| "%B%s%b will be automatically installed to satisfy the following "
+#| "dependencies:"
 msgid ""
 "%B%s %s%b will be automatically installed to satisfy the following "
 "dependencies:"
@@ -6841,6 +6894,9 @@ msgstr "%B%s%b នឹង​ត្រូវ​បាន​ដំឡើង​ដ�
 
 #: src/reason_fragment.cc:483 src/reason_fragment.cc:498
 #, fuzzy
+#| msgid ""
+#| "%B%s%b cannot be upgraded now, but if it could be, it would still be held "
+#| "at version %B%s%b."
 msgid ""
 "%B%s %s%b cannot be upgraded now, but if it could be, it would still be held "
 "at version %B%s%b."
@@ -6850,6 +6906,9 @@ msgstr ""
 
 #: src/reason_fragment.cc:488
 #, fuzzy
+#| msgid ""
+#| "%B%s%b will not be upgraded to version %B%s%b, to avoid breaking the "
+#| "following dependencies:"
 msgid ""
 "%B%s %s%b will not be upgraded to version %B%s%b, to avoid breaking the "
 "following dependencies:"
@@ -6858,31 +6917,39 @@ msgstr ""
 
 #: src/reason_fragment.cc:503
 #, fuzzy
+#| msgid "%B%s%b is currently installed."
 msgid "%B%s %s%b is currently installed."
 msgstr "បច្ចុ​ប្បន្ន %B%s%b ត្រូវ​បាន​ដំឡើង​ហើយ ។"
 
 #: src/reason_fragment.cc:510
 #, fuzzy
+#| msgid "%B%s%b is not currently installed."
 msgid "%B%s %s%b is not currently installed."
 msgstr "បច្ចុប្បន្ន %B%s%b មិន​ត្រូវ​បាន​ដំឡើង​ឡើយ ។"
 
 #: src/reason_fragment.cc:519
 #, fuzzy
+#| msgid "Some dependencies of %B%s%b are not satisfied:"
 msgid "Some dependencies of %B%s %s%b are not satisfied:"
 msgstr "ភាព​អាស្រ័យ​មួយ​ចំនួន​របស់ %B%s%b មិន​ត្រូវ​បាន​បំពេញ​គ្រប់គ្រាន់​ឡើយ ៖"
 
 #: src/reason_fragment.cc:524
 #, fuzzy
+#| msgid "%B%s%b will be downgraded."
 msgid "%B%s %s%b will be downgraded."
 msgstr "%B%s%b នឹ​ង​ត្រូវ​បាន​បន្ទាប ។"
 
 #: src/reason_fragment.cc:532
 #, fuzzy
+#| msgid "%B%s%b will not be upgraded to the forbidden version %B%s%b."
 msgid "%B%s %s%b will not be upgraded to the forbidden version %B%s%b."
 msgstr "%B%s%b នឹង​មិន​ត្រូវ​បាន​ធ្វើ​ឲ្យ​ប្រសើរ​ទៅ​ជា​កំណែ %B%s%b ឡើយ ។"
 
 #: src/reason_fragment.cc:537
 #, fuzzy
+#| msgid ""
+#| "%B%s%b could be upgraded to version %B%s%b, but it is being held at "
+#| "version %B%s%b."
 msgid ""
 "%B%s %s%b could be upgraded to version %B%s%b, but it is being held at "
 "version %B%s%b."
@@ -6891,21 +6958,25 @@ msgstr ""
 
 #: src/reason_fragment.cc:545
 #, fuzzy
+#| msgid "%B%s%b will be re-installed."
 msgid "%B%s %s%b will be re-installed."
 msgstr "%B%s%b នឹង​ត្រូវ​បាន​ដំឡើង​ឡើង​វិញ ។"
 
 #: src/reason_fragment.cc:550
 #, fuzzy
+#| msgid "%B%s%b will be installed."
 msgid "%B%s %s%b will be installed."
 msgstr "%B%s%b នឹង​ត្រូវ​បាន​ដំឡើង ។"
 
 #: src/reason_fragment.cc:555
 #, fuzzy
+#| msgid "%B%s%b will be removed."
 msgid "%B%s %s%b will be removed."
 msgstr "%B%s%b នឹង​ត្រូវ​បាន​យកចេញ ។"
 
 #: src/reason_fragment.cc:561
 #, fuzzy
+#| msgid "%B%s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgid "%B%s %s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgstr "%B%s%b នឹង​ត្រូវ​បាន​ធ្វើ​ឲ្យ​ប្រសើរ​ពី​កំណែ %B%s%b ទៅ​កំណែ %B%s%b ។"
 
@@ -6916,17 +6987,23 @@ msgstr "បច្ចុប្បន្ន %s មិនត្រូវបាន�
 
 #: src/reason_fragment.cc:602
 #, fuzzy
+#| msgid ""
+#| "The following packages depend on %B%s%b and will be broken by its removal:"
 msgid ""
 "The following packages depend on %B%s %s%b and will be broken by its removal:"
 msgstr "កញ្ចប់​ខាង​ក្រោម​អាស្រ័យ​តាម %B%s%b ហើយ​នឹង​ត្រូវ​បាន​ខូច ដោយ​សារ​តែ​ការ​យក​វា​ចេញ ៖"
 
 #: src/reason_fragment.cc:606
 #, fuzzy
+#| msgid "The following packages depend on %B%s%b and are broken:"
 msgid "The following packages depend on %B%s %s%b and are broken:"
 msgstr "កញ្ចប់​ខាង​ក្រោម​អាស្រ័យ​តាម %B%s%b ហើយ​នឹង​ត្រូវ​បាន​ខូច ៖"
 
 #: src/reason_fragment.cc:614
 #, fuzzy
+#| msgid ""
+#| "The following packages conflict with %B%s%b and will be broken by its "
+#| "installation:"
 msgid ""
 "The following packages conflict with %B%s %s%b and will be broken by its "
 "installation:"
@@ -6935,6 +7012,10 @@ msgstr ""
 
 #: src/reason_fragment.cc:648
 #, fuzzy
+#| msgid ""
+#| "The following packages depend on a version of %B%s%b other than the "
+#| "currently installed version of %B%s%b, or conflict with the currently "
+#| "installed version:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b, or conflict with the currently "
@@ -6945,6 +7026,9 @@ msgstr ""
 
 #: src/reason_fragment.cc:653
 #, fuzzy
+#| msgid ""
+#| "The following packages conflict with %B%s%b, or depend on a version of it "
+#| "which is not going to be installed."
 msgid ""
 "The following packages conflict with %B%s %s%b, or depend on a version of it "
 "which is not going to be installed."
@@ -6952,11 +7036,15 @@ msgstr "កញ្ចប់​ខាង​ក្រោម​ប៉ះទង្គ
 
 #: src/reason_fragment.cc:658
 #, fuzzy
+#| msgid "The following packages conflict with %B%s%b:"
 msgid "The following packages conflict with %B%s %s%b:"
 msgstr "កញ្ចប់​ខាង​ក្រោម​ប៉ះទង្គិច​ជាមួយ %B%s%b ៖៖"
 
 #: src/reason_fragment.cc:664
 #, fuzzy
+#| msgid ""
+#| "The following packages depend on a version of %B%s%b other than the "
+#| "currently installed version of %B%s%b:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b:"
@@ -6964,6 +7052,9 @@ msgstr "កញ្ចប់​ខាង​ក្រោម​អាស្រ័យ
 
 #: src/reason_fragment.cc:669
 #, fuzzy
+#| msgid ""
+#| "The following packages depend on a version of %B%s%b which is not going "
+#| "to be installed."
 msgid ""
 "The following packages depend on a version of %B%s %s%b which is not going "
 "to be installed."
@@ -7068,6 +7159,7 @@ msgstr "%BDowngrade%b កញ្ចប់​ដូច​តទៅ​នេះ �
 
 #: src/solution_fragment.cc:511
 #, fuzzy
+#| msgid "Leave the following dependencies unresolved:%n"
 msgid "%BLeave%b the following dependencies %Bunresolved%b:%n"
 msgstr "មិន​បាច់​ដោះស្រាយ​ភាព​អាស្រ័យ​ដូច​តទៅ​នេះ ៖ %n"
 
@@ -7432,6 +7524,7 @@ msgstr ""
 
 #: src/ui.cc:1280
 #, fuzzy
+#| msgid "Press Return to continue."
 msgid "Press Return to continue, 'q' followed by Return to quit."
 msgstr "ចុចគ្រាប់ចុច បញ្ចូល ដើម្បី​បន្ត ។"
 
@@ -7460,6 +7553,7 @@ msgstr ""
 
 #: src/ui.cc:1430
 #, fuzzy
+#| msgid "  %S*%N %s [version %s]%n"
 msgid "  %S*%N %s [version %s] %s%n"
 msgstr "  %S*%N %s [កំណែ %s]%n"
 
@@ -7481,6 +7575,7 @@ msgstr "មើល និង/ឬ លៃតម្រូវ​សកម្មភា
 
 #: src/ui.cc:1541
 #, fuzzy
+#| msgid "No broken packages."
 msgid "Trying to fix broken packages..."
 msgstr "គ្មាន​កញ្ចប់​ខូច ។"
 
@@ -7530,6 +7625,7 @@ msgstr ""
 
 #: src/ui.cc:1810
 #, fuzzy
+#| msgid "Resolving dependencies..."
 msgid "Checking dependencies"
 msgstr "កំពុង​ដោះស្រាយ​ភាព​អាស្រ័យ..."
 
@@ -7660,6 +7756,7 @@ msgstr "បោះបង់​សកម្មភាព​ដែល​មិន​
 
 #: src/ui.cc:2554
 #, fuzzy
+#| msgid "Canc^el pending actions"
 msgid "Cancel all pending actions from this session"
 msgstr "បោះបង់​សកម្មភាព​ដែល​មិន​ទាន់​សម្រេច"
 

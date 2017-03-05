@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude_nn\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2016-12-27 22:43+0100\n"
+"POT-Creation-Date: 2017-03-05 21:18+0100\n"
 "PO-Revision-Date: 2012-05-23 10:12+0800\n"
 "Last-Translator: Håvard Korsvoll <korsvoll@skulelinux.no>\n"
 "Language-Team: Norwegian nynorsk <i18n-nn@lister.ping.uio.no>\n"
@@ -323,6 +323,7 @@ msgstr ""
 
 #: src/apt_options.cc:294
 #, fuzzy
+#| msgid "Remove obsolete package files after downloading new package lists"
 msgid "Remove all package files after successful operations (e.g. install)"
 msgstr "Fjern forelda pakkefiler etter at nye pakkelister er henta"
 
@@ -608,34 +609,42 @@ msgstr[1] "%d nedgraderingar"
 
 #: src/broken_indicator.cc:436
 #, fuzzy
+#| msgid "%s changes"
 msgid "no changes"
 msgstr "%s endringar"
 
 #: src/broken_indicator.cc:439
 #, fuzzy, c-format
+#| msgid "Actions"
 msgid "Actions: %F"
 msgstr "Handlingar"
 
-#: src/cmdline/cmdline_action.cc:56
+#: src/cmdline/cmdline_action.cc:63
 #, fuzzy, c-format
 msgid "Unable to find the source package for \"%s\"\n"
 msgstr "Klarer ikkje finna eit arkiv «%s» for pakka «%s»\n"
 
-#: src/cmdline/cmdline_action.cc:216
+#: src/cmdline/cmdline_action.cc:223
 #, fuzzy, c-format
 msgid "Unable to satisfy the build-depends: %s\n"
 msgstr "Klarer ikkje opna %s"
 
-#: src/cmdline/cmdline_action.cc:253
+#: src/cmdline/cmdline_action.cc:260
 #, fuzzy, c-format
+#| msgid ""
+#| "Note: \"%s\", providing the virtual package\n"
+#| "      \"%s\", is already installed.\n"
 msgid ""
 "Note: \"%s\", providing the virtual package \"%s\", is already installed\n"
 msgstr ""
 "Merk: «%s», tilbyr den virtuelle pakken\n"
 "      «%s», er allereie installert.\n"
 
-#: src/cmdline/cmdline_action.cc:261
+#: src/cmdline/cmdline_action.cc:268
 #, fuzzy, c-format
+#| msgid ""
+#| "Note: \"%s\", providing the virtual package\n"
+#| "      \"%s\", is already going to be installed.\n"
 msgid ""
 "Note: \"%s\", providing the virtual package \"%s\", is already going to be "
 "installed\n"
@@ -643,8 +652,11 @@ msgstr ""
 "Merk: «%s», tilbyr den virtuelle pakken\n"
 "      «%s», skal allereie til å bli installert.\n"
 
-#: src/cmdline/cmdline_action.cc:284 src/pkg_item.cc:144
+#: src/cmdline/cmdline_action.cc:291 src/pkg_item.cc:144
 #, fuzzy, c-format
+#| msgid ""
+#| "\"%s\" exists in the package database, but it is not a\n"
+#| "real package and no package provides it.\n"
 msgid ""
 "\"%s\" exists in the package database, but it is not a real package and no "
 "package provides it\n"
@@ -652,126 +664,131 @@ msgstr ""
 "«%s» eksisterer i pakkedatabasen, men det er ikkje nokon\n"
 "verkeleg pakke og ingen pakkar gjev det.\n"
 
-#: src/cmdline/cmdline_action.cc:292
+#: src/cmdline/cmdline_action.cc:299
 #, c-format
 msgid "\"%s\" is a virtual package provided by:\n"
 msgstr "«%s» er ein virtuell pakke gjeven av:\n"
 
-#: src/cmdline/cmdline_action.cc:295
+#: src/cmdline/cmdline_action.cc:302
 #, c-format
 msgid "You must choose one to install.\n"
 msgstr "Du må velja ein som skal installerast.\n"
 
-#: src/cmdline/cmdline_action.cc:303
+#: src/cmdline/cmdline_action.cc:310
 #, fuzzy, c-format
+#| msgid ""
+#| "Note: selecting \"%s\" instead of the\n"
+#| "      virtual package \"%s\"\n"
 msgid "Note: selecting \"%s\" instead of the virtual package \"%s\"\n"
 msgstr ""
 "Merk: ved å velja «%s» istaden for\n"
 "      den virtuelle pakka «%s»\n"
 
-#: src/cmdline/cmdline_action.cc:331
+#: src/cmdline/cmdline_action.cc:338
 #, c-format
 msgid "%s is already installed at the requested version (%s)\n"
 msgstr "%s er allereie installert med den førespurde versjonen (%s)\n"
 
-#: src/cmdline/cmdline_action.cc:343
+#: src/cmdline/cmdline_action.cc:350
 #, fuzzy, c-format
 msgid "%s is not currently installed, so it will not be upgraded\n"
 msgstr "%s er ikkje installert no, så han blir ikkje re-installert.\n"
 
-#: src/cmdline/cmdline_action.cc:347
+#: src/cmdline/cmdline_action.cc:354
 #, fuzzy, c-format
 msgid ""
 "%s is already installed at the latest version (%s), so it will not be "
 "upgraded\n"
 msgstr "%s er allereie installert med den førespurde versjonen (%s)\n"
 
-#: src/cmdline/cmdline_action.cc:354
+#: src/cmdline/cmdline_action.cc:361
 #, fuzzy, c-format
+#| msgid "%s is not currently installed, so it will not be reinstalled.\n"
 msgid "%s is not currently installed, so it will not be reinstalled\n"
 msgstr "%s er ikkje installert no, så han blir ikkje re-installert.\n"
 
-#: src/cmdline/cmdline_action.cc:362
+#: src/cmdline/cmdline_action.cc:369
 #, c-format
 msgid "Package %s is not installed, so it will not be removed\n"
 msgstr "Pakke %s er ikkje installert, så han blir ikkje fjerna\n"
 
-#: src/cmdline/cmdline_action.cc:369
+#: src/cmdline/cmdline_action.cc:376
 #, fuzzy, c-format
 msgid "Package %s is not installed, so it will not be purged\n"
 msgstr "Pakke %s er ikkje installert, så han blir ikkje fjerna\n"
 
-#: src/cmdline/cmdline_action.cc:387 src/cmdline/cmdline_mark.cc:252
+#: src/cmdline/cmdline_action.cc:394 src/cmdline/cmdline_mark.cc:252
 #, fuzzy, c-format
 msgid ""
 "Package %s is not installed, cannot be marked/unmarked as automatically "
 "installed\n"
 msgstr "Pakke %s er ikkje installert, kan ikkje forby oppgradering\n"
 
-#: src/cmdline/cmdline_action.cc:394 src/cmdline/cmdline_mark.cc:197
+#: src/cmdline/cmdline_action.cc:401 src/cmdline/cmdline_mark.cc:197
 #, c-format
 msgid "Package %s is not installed, cannot forbid an upgrade\n"
 msgstr "Pakke %s er ikkje installert, kan ikkje forby oppgradering\n"
 
-#: src/cmdline/cmdline_action.cc:397 src/cmdline/cmdline_mark.cc:200
+#: src/cmdline/cmdline_action.cc:404 src/cmdline/cmdline_mark.cc:200
 #, c-format
 msgid "Package %s is not upgradable, cannot forbid an upgrade\n"
 msgstr "Pakke %s kan ikkje oppgraderast, kan ikkje forby oppgradering\n"
 
-#: src/cmdline/cmdline_action.cc:432
+#: src/cmdline/cmdline_action.cc:439
 #, fuzzy, c-format
 msgid "Setting package %s on hold\n"
 msgstr "= for å leggje pakkar på hald"
 
-#: src/cmdline/cmdline_action.cc:440
+#: src/cmdline/cmdline_action.cc:447
 #, fuzzy, c-format
 msgid "Marking package %s as keep\n"
 msgstr "Oppdaterer pakkelister"
 
-#: src/cmdline/cmdline_action.cc:449
+#: src/cmdline/cmdline_action.cc:456
 #, c-format
 msgid "Setting package %s as not on hold\n"
 msgstr ""
 
-#: src/cmdline/cmdline_action.cc:455
+#: src/cmdline/cmdline_action.cc:462
 #, fuzzy, c-format
 msgid "Package %s is not on hold\n"
 msgstr "Pakkar som krev %s"
 
-#: src/cmdline/cmdline_action.cc:461
+#: src/cmdline/cmdline_action.cc:468
 #, fuzzy, c-format
 msgid "Marking package %s as automatically installed\n"
 msgstr "&M for å merkje pakkar som automatisk installerte"
 
-#: src/cmdline/cmdline_action.cc:469
+#: src/cmdline/cmdline_action.cc:476
 #, fuzzy, c-format
 msgid "Unmarking package %s as automatically installed\n"
 msgstr "&M for å merkje pakkar som automatisk installerte"
 
-#: src/cmdline/cmdline_action.cc:478 src/cmdline/cmdline_action.cc:489
+#: src/cmdline/cmdline_action.cc:485 src/cmdline/cmdline_action.cc:496
 #: src/cmdline/cmdline_mark.cc:167 src/cmdline/cmdline_mark.cc:185
 #, fuzzy, c-format
 msgid "Marking version %s of package %s as forbidden\n"
 msgstr "Sjå etter nye versjonar av pakkar"
 
-#: src/cmdline/cmdline_action.cc:541
+#: src/cmdline/cmdline_action.cc:548
 #, c-format
 msgid "Note: selecting the task \"%s: %s\" for installation\n"
 msgstr "Merk: vel oppgåva «%s: %s» for installasjon\n"
 
-#: src/cmdline/cmdline_action.cc:571
+#: src/cmdline/cmdline_action.cc:578
 #, fuzzy, c-format
 msgid ""
 "You can only specify a package version with an 'install' command or a "
 "'forbid-version' command\n"
 msgstr "Du kan berre oppgje ein pakkeversjon med «install»-kommandoen\n"
 
-#: src/cmdline/cmdline_action.cc:580
+#: src/cmdline/cmdline_action.cc:587
 #, fuzzy, c-format
+#| msgid "You can only specify a package archive with an 'install' command.\n"
 msgid "You can only specify a package archive with an 'install' command\n"
 msgstr "Du kan berre oppgje eit arkiv med «install»-kommandoen\n"
 
-#: src/cmdline/cmdline_action.cc:618
+#: src/cmdline/cmdline_action.cc:625
 #, fuzzy, c-format
 msgid ""
 "Couldn't find any package whose name is \"%s\", but there are %zu packages "
@@ -780,19 +797,19 @@ msgstr ""
 "Klarte ikkje finna pakken «%s», og meir enn 40\n"
 "pakkar har «%s» i namnet sitt.\n"
 
-#: src/cmdline/cmdline_action.cc:623 src/cmdline/cmdline_action.cc:655
+#: src/cmdline/cmdline_action.cc:630 src/cmdline/cmdline_action.cc:662
 #, c-format
 msgid "  (too many to show, the limit is %zu)\n"
 msgstr ""
 
-#: src/cmdline/cmdline_action.cc:647
+#: src/cmdline/cmdline_action.cc:654
 #, c-format
 msgid "Couldn't find any package whose name or description matched \"%s\"\n"
 msgstr ""
 "Klarte ikkje finna nokon pakke som har eit namn eller ei skildring\n"
 "som passar med «%s»\n"
 
-#: src/cmdline/cmdline_action.cc:650
+#: src/cmdline/cmdline_action.cc:657
 #, fuzzy, c-format
 msgid ""
 "Couldn't find any package matching \"%s\", but there are %zu packages which "
@@ -801,7 +818,7 @@ msgstr ""
 "Klarte ikkje finna nokon pakke som passar med «%s», og meir enn 40\n"
 "pakkar har «%s» i skildringa si.\n"
 
-#: src/cmdline/cmdline_action.cc:798
+#: src/cmdline/cmdline_action.cc:805
 #, c-format
 msgid "Bad action character '%c'\n"
 msgstr "Feil handlingsteikn «%c»\n"
@@ -864,6 +881,7 @@ msgstr ""
 
 #: src/cmdline/cmdline_apt_proxy.cc:226
 #, fuzzy, c-format
+#| msgid "Reconfiguring %s\n"
 msgid ""
 "Executing '%s'\n"
 "\n"
@@ -928,7 +946,7 @@ msgstr "Slett %s %s [%sB]\n"
 msgid "E: The autoclean command takes no arguments\n"
 msgstr "E: Oppdateringskommandoen tar ingen argument\n"
 
-#: src/cmdline/cmdline_clean.cc:141 src/generic/apt/apt.cc:1633 src/ui.cc:1983
+#: src/cmdline/cmdline_clean.cc:141 src/generic/apt/apt.cc:1636 src/ui.cc:1983
 #, fuzzy
 msgid "Unable to lock the download directory"
 msgstr "Klarer ikkje opna %s"
@@ -963,6 +981,7 @@ msgstr ""
 
 #: src/cmdline/cmdline_do_action.cc:363
 #, fuzzy, c-format
+#| msgid "Unable to open %s to log actions"
 msgid "Unable to apply some actions, aborting\n"
 msgstr "Ikkje i stand til å opna %s for å logga handlingar"
 
@@ -1244,6 +1263,7 @@ msgstr "For å halda fram, skriv inn teksten «%s»:\n"
 
 #: src/cmdline/cmdline_prompt.cc:475
 #, fuzzy, c-format
+#| msgid "To continue, type the phrase \"%s\":\n"
 msgid "To continue, type the phrase \"%s\" (or: \"%s\"):\n"
 msgstr "For å halda fram, skriv inn teksten «%s»:\n"
 
@@ -1307,12 +1327,14 @@ msgstr "For å halda fram, skriv «%s»; for å avbryte, skriv «%s»: "
 
 #: src/cmdline/cmdline_prompt.cc:582
 #, fuzzy, c-format
+#| msgid "To continue, enter \"%s\"; to abort, enter \"%s\": "
 msgid ""
 "To continue, enter \"%s\" (or \"%s\"); to abort, enter \"%s\" (or \"%s\"): "
 msgstr "For å halda fram, skriv «%s»; for å avbryte, skriv «%s»: "
 
 #: src/cmdline/cmdline_prompt.cc:605
 #, fuzzy, c-format
+#| msgid "Unrecognized tasks"
 msgid "Unrecognized input\n"
 msgstr "Ikkje gjenkjende oppgåver"
 
@@ -2041,16 +2063,19 @@ msgstr "søk: Du må oppgje iallefall eitt søkje ord\n"
 
 #: src/cmdline/cmdline_show_broken.cc:38
 #, fuzzy, c-format
+#| msgid "but %s is to be installed."
 msgid "but %s is to be installed"
 msgstr "men %s blir installert."
 
 #: src/cmdline/cmdline_show_broken.cc:41
 #, fuzzy, c-format
+#| msgid "but %s is installed and it is kept back."
 msgid "but %s is installed and it is kept back"
 msgstr "men %s er installert og vert halden tilbake."
 
 #: src/cmdline/cmdline_show_broken.cc:44
 #, fuzzy, c-format
+#| msgid "but %s is installed."
 msgid "but %s is installed"
 msgstr "men %s er installert."
 
@@ -2620,11 +2645,13 @@ msgstr ""
 
 #: src/cmdline/cmdline_why.cc:1234
 #, fuzzy
+#| msgid "%B%s%b is not currently installed."
 msgid "Not currently installed\n"
 msgstr "%B%s%b er ikkje installert."
 
 #: src/cmdline/cmdline_why.cc:1239
 #, fuzzy, c-format
+#| msgid "No candidate version found for %s\n"
 msgid "The candidate version %s has priority %s\n"
 msgstr "Ingen versjonskandidat funnen for %s\n"
 
@@ -2778,57 +2805,57 @@ msgstr ""
 msgid "Can't open Aptitude extended state file"
 msgstr "Klarer ikkje opna Aptitude utvida tilstandsfil"
 
-#: src/generic/apt/aptcache.cc:330 src/generic/apt/aptcache.cc:491
-#: src/generic/apt/aptcache.cc:506
+#: src/generic/apt/aptcache.cc:330 src/generic/apt/aptcache.cc:498
+#: src/generic/apt/aptcache.cc:513
 msgid "Reading extended state information"
 msgstr "Les utvida tilstandsinformasjon"
 
-#: src/generic/apt/aptcache.cc:419
+#: src/generic/apt/aptcache.cc:426
 #, c-format
 msgid "Cannot parse user-tags for package: %s: '%s'"
 msgstr ""
 
-#: src/generic/apt/aptcache.cc:499
+#: src/generic/apt/aptcache.cc:506
 #, c-format
 msgid ""
 "Problem parsing '%s', is it corrupt or malformed? You can try to recover "
 "from '%s.old'."
 msgstr ""
 
-#: src/generic/apt/aptcache.cc:518 src/generic/apt/aptcache.cc:607
-#: src/generic/apt/aptcache.cc:613
+#: src/generic/apt/aptcache.cc:525 src/generic/apt/aptcache.cc:614
+#: src/generic/apt/aptcache.cc:620
 msgid "Initializing package states"
 msgstr "Oppdaterer pakkestatus"
 
-#: src/generic/apt/aptcache.cc:782
+#: src/generic/apt/aptcache.cc:789
 msgid "Cannot open Aptitude state file"
 msgstr "Klarer ikkje opna Aptitude tilstandsfil"
 
-#: src/generic/apt/aptcache.cc:796 src/generic/apt/aptcache.cc:921
-#: src/generic/apt/aptcache.cc:927
+#: src/generic/apt/aptcache.cc:803 src/generic/apt/aptcache.cc:928
+#: src/generic/apt/aptcache.cc:934
 msgid "Writing extended state information"
 msgstr "Skriv utvida tilstandsinformasjon"
 
-#: src/generic/apt/aptcache.cc:932
+#: src/generic/apt/aptcache.cc:939
 msgid "Couldn't write state file"
 msgstr "Klarte ikkje skriva tilstandsfil"
 
-#: src/generic/apt/aptcache.cc:952
+#: src/generic/apt/aptcache.cc:959
 #, fuzzy, c-format
 msgid "failed to remove %s"
 msgstr "Klarer ikkje opna %s"
 
-#: src/generic/apt/aptcache.cc:960
+#: src/generic/apt/aptcache.cc:967
 #, c-format
 msgid "failed to rename %s to %s"
 msgstr ""
 
-#: src/generic/apt/aptcache.cc:969
+#: src/generic/apt/aptcache.cc:976
 #, fuzzy, c-format
 msgid "couldn't replace %s with %s"
 msgstr "klarte ikkje byta ut gamal tilstandsfil"
 
-#: src/generic/apt/aptcache.cc:988
+#: src/generic/apt/aptcache.cc:995
 #: src/generic/apt/download_install_manager.cc:246
 msgid ""
 "Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
@@ -2836,58 +2863,59 @@ msgstr ""
 "Klarte ikkje ta tilbake symbollåsen! (Kanskje ein anna apt eller dpkg "
 "køyrer?)"
 
-#: src/generic/apt/aptcache.cc:991
+#: src/generic/apt/aptcache.cc:998
 msgid "failed to save selections to dpkg database"
 msgstr ""
 
-#: src/generic/apt/aptcache.cc:1249 src/generic/apt/aptcache.cc:1285
+#: src/generic/apt/aptcache.cc:1256 src/generic/apt/aptcache.cc:1292
 #, fuzzy
+#| msgid "Cannot open Aptitude state file"
 msgid "Cannot remove aptitude within aptitude"
 msgstr "Klarer ikkje opna Aptitude tilstandsfil"
 
-#: src/generic/apt/aptcache.cc:1709
+#: src/generic/apt/aptcache.cc:1716
 #, c-format
 msgid "User-tag '%s' already present for %s"
 msgstr ""
 
-#: src/generic/apt/aptcache.cc:1725
+#: src/generic/apt/aptcache.cc:1732
 #, fuzzy, c-format
 msgid "Could not add user-tag '%s' to package %s"
 msgstr "Klarer ikkje finna nokon versjon «%s» for pakka «%s»\n"
 
-#: src/generic/apt/aptcache.cc:1751
+#: src/generic/apt/aptcache.cc:1758
 #, fuzzy, c-format
 msgid "Could not find valid user-tag '%s'"
 msgstr "Klarte ikkje finna endringslogg for %s"
 
-#: src/generic/apt/aptcache.cc:1767
+#: src/generic/apt/aptcache.cc:1774
 #, fuzzy, c-format
 msgid "Could not remove user-tag '%s' from package %s"
 msgstr "Klarer ikkje finna nokon versjon «%s» for pakka «%s»\n"
 
-#: src/generic/apt/aptcache.cc:1845
+#: src/generic/apt/aptcache.cc:1852
 msgid "Unable to correct dependencies, some packages cannot be installed"
 msgstr "Klarte ikkje rette opp pakkekrav, nokre pakkar kan ikkje installerast"
 
-#: src/generic/apt/aptcache.cc:2527
+#: src/generic/apt/aptcache.cc:2534
 msgid "The list of sources could not be read."
 msgstr "Kjeldelista kan ikkje lesast."
 
-#: src/generic/apt/aptcache.cc:2535
+#: src/generic/apt/aptcache.cc:2542
 msgid "The package lists or status file could not be parsed or opened."
 msgstr "Klarte ikkje tolka eller opna pakkelista eller tilstandsfila."
 
-#: src/generic/apt/aptcache.cc:2538
+#: src/generic/apt/aptcache.cc:2545
 msgid "You may want to update the package lists to correct these missing files"
 msgstr ""
 "Du vil kanskje oppdatere pakkelista for å retta på dei manglande filene"
 
-#: src/generic/apt/aptcache.cc:2554
+#: src/generic/apt/aptcache.cc:2561
 #, fuzzy
 msgid "Could not create dependency cache"
 msgstr "Klarte ikkje finna endringslogg for %s"
 
-#: src/generic/apt/aptcache.cc:2564
+#: src/generic/apt/aptcache.cc:2571
 msgid "Could not initialize dependency cache"
 msgstr ""
 
@@ -2942,74 +2970,74 @@ msgstr "Klarte ikkje finna endringslogg for %s"
 msgid "Could not create directories: %s: %s"
 msgstr "Klarte ikkje reinska ut listekatalogane"
 
-#: src/generic/apt/apt.cc:1400
+#: src/generic/apt/apt.cc:1403
 #, fuzzy
 msgid "(installed locally)"
 msgstr "installert"
 
-#: src/generic/apt/apt.cc:1462
+#: src/generic/apt/apt.cc:1465
 msgid "foreign"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1464
+#: src/generic/apt/apt.cc:1467
 msgid "same"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1467
+#: src/generic/apt/apt.cc:1470
 msgid "allowed"
 msgstr ""
 
 #. TRANSLATORS: Imp = Important
-#: src/generic/apt/apt.cc:1514
+#: src/generic/apt/apt.cc:1517
 msgid "Imp"
 msgstr "Vikt"
 
 #. TRANSLATORS: Req = Required
-#: src/generic/apt/apt.cc:1517
+#: src/generic/apt/apt.cc:1520
 msgid "Req"
 msgstr "Krav"
 
 #. TRANSLATORS: Std = Standard
-#: src/generic/apt/apt.cc:1520
+#: src/generic/apt/apt.cc:1523
 msgid "Std"
 msgstr "Std"
 
 #. TRANSLATORS: Opt = Optional
-#: src/generic/apt/apt.cc:1523
+#: src/generic/apt/apt.cc:1526
 msgid "Opt"
 msgstr "Valfri"
 
 #. TRANSLATORS: Xtr = Extra
-#: src/generic/apt/apt.cc:1526
+#: src/generic/apt/apt.cc:1529
 msgid "Xtr"
 msgstr "Xtr"
 
-#: src/generic/apt/apt.cc:1528
+#: src/generic/apt/apt.cc:1531
 msgid "ERR"
 msgstr "FEIL"
 
-#: src/generic/apt/apt.cc:1537 src/pkg_columnizer.cc:268
+#: src/generic/apt/apt.cc:1540 src/pkg_columnizer.cc:268
 #: src/pkg_columnizer.cc:623 src/pkg_ver_item.cc:229
 msgid "ERROR"
 msgstr "FEIL"
 
-#: src/generic/apt/apt.cc:1597
+#: src/generic/apt/apt.cc:1600
 msgid "main"
 msgstr "hovud"
 
-#: src/generic/apt/apt.cc:1597
+#: src/generic/apt/apt.cc:1600
 msgid "contrib"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1597
+#: src/generic/apt/apt.cc:1600
 msgid "non-free"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1597
+#: src/generic/apt/apt.cc:1600
 msgid "non-US"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1671
+#: src/generic/apt/apt.cc:1674
 msgid "Couldn't read list of sources"
 msgstr "Klarte ikkje lesa kjeldelista"
 
@@ -3526,12 +3554,12 @@ msgid "Failed to parse the cost settings string: %s"
 msgstr "Klarer ikkje opna %s"
 
 #: src/generic/apt/tags.cc:214 src/generic/apt/tags.cc:227
-#: src/generic/apt/tags.cc:257 src/generic/apt/tags.cc:283
-#: src/generic/apt/tags.cc:296 src/generic/apt/tags.cc:304
+#: src/generic/apt/tags.cc:261 src/generic/apt/tags.cc:287
+#: src/generic/apt/tags.cc:300 src/generic/apt/tags.cc:308
 msgid "Building tag database"
 msgstr ""
 
-#: src/generic/apt/tags.cc:432
+#: src/generic/apt/tags.cc:436
 msgid "legacy"
 msgstr ""
 
@@ -6452,11 +6480,13 @@ msgstr ""
 
 #: src/pkg_columnizer.cc:417
 #, fuzzy, c-format
+#| msgid "DL Size: %sB"
 msgid "DL: %sB/%sB"
 msgstr "NL strl: %sB"
 
 #: src/pkg_columnizer.cc:423
 #, fuzzy, c-format
+#| msgid "DL Size: %sB"
 msgid "DL: %sB"
 msgstr "NL strl: %sB"
 
@@ -6490,6 +6520,10 @@ msgstr "Oppgåvepakkar"
 
 #: src/pkg_grouppolicy.cc:462
 #, fuzzy
+#| msgid ""
+#| "Security Updates\n"
+#| " Security updates for these packages are available from security.debian."
+#| "org."
 msgid ""
 "Security Updates\n"
 " Security updates for these packages are available from security.debian.org "
@@ -6687,6 +6721,7 @@ msgstr ""
 
 #: src/pkg_item.cc:154
 #, fuzzy, c-format
+#| msgid "\"%s\" is a virtual package provided by:\n"
 msgid ""
 "\"%s\" is a virtual package provided by:\n"
 "\n"
@@ -6846,6 +6881,7 @@ msgstr "%s endringar"
 
 #: src/reason_fragment.cc:77
 #, fuzzy
+#| msgid "downgraded"
 msgid "downgrade"
 msgstr "nedgradert"
 
@@ -6909,6 +6945,9 @@ msgstr ""
 
 #: src/reason_fragment.cc:466
 #, fuzzy
+#| msgid ""
+#| "%B%s%b was installed automatically;  it is being removed because all of "
+#| "the packages which depend upon it are being removed:"
 msgid ""
 "%B%s %s%b was installed automatically; it is being removed because all of "
 "the packages which depend upon it are being removed:"
@@ -6918,11 +6957,15 @@ msgstr ""
 
 #: src/reason_fragment.cc:471
 #, fuzzy
+#| msgid "%B%s%b will be automatically removed because of dependency errors:"
 msgid "%B%s %s%b will be automatically removed because of dependency errors:"
 msgstr "%B%s%b vil bli fjerna automatisk på grunn av feil med pakkekrava:"
 
 #: src/reason_fragment.cc:476
 #, fuzzy
+#| msgid ""
+#| "%B%s%b will be automatically installed to satisfy the following "
+#| "dependencies:"
 msgid ""
 "%B%s %s%b will be automatically installed to satisfy the following "
 "dependencies:"
@@ -6931,6 +6974,9 @@ msgstr ""
 
 #: src/reason_fragment.cc:483 src/reason_fragment.cc:498
 #, fuzzy
+#| msgid ""
+#| "%B%s%b cannot be upgraded now, but if it could be, it would still be held "
+#| "at version %B%s%b."
 msgid ""
 "%B%s %s%b cannot be upgraded now, but if it could be, it would still be held "
 "at version %B%s%b."
@@ -6940,6 +6986,9 @@ msgstr ""
 
 #: src/reason_fragment.cc:488
 #, fuzzy
+#| msgid ""
+#| "%B%s%b will not be upgraded to version %B%s%b, to avoid breaking the "
+#| "following dependencies:"
 msgid ""
 "%B%s %s%b will not be upgraded to version %B%s%b, to avoid breaking the "
 "following dependencies:"
@@ -6949,31 +6998,39 @@ msgstr ""
 
 #: src/reason_fragment.cc:503
 #, fuzzy
+#| msgid "%B%s%b is currently installed."
 msgid "%B%s %s%b is currently installed."
 msgstr "%B%s%b er installert."
 
 #: src/reason_fragment.cc:510
 #, fuzzy
+#| msgid "%B%s%b is not currently installed."
 msgid "%B%s %s%b is not currently installed."
 msgstr "%B%s%b er ikkje installert."
 
 #: src/reason_fragment.cc:519
 #, fuzzy
+#| msgid "Some dependencies of %B%s%b are not satisfied:"
 msgid "Some dependencies of %B%s %s%b are not satisfied:"
 msgstr "Nokre av pakkekrava til %B%s%b er ikkje tilfredsstilt:"
 
 #: src/reason_fragment.cc:524
 #, fuzzy
+#| msgid "%B%s%b will be downgraded."
 msgid "%B%s %s%b will be downgraded."
 msgstr "%B%s%b vil bli nedgradert."
 
 #: src/reason_fragment.cc:532
 #, fuzzy
+#| msgid "%B%s%b will not be upgraded to the forbidden version %B%s%b."
 msgid "%B%s %s%b will not be upgraded to the forbidden version %B%s%b."
 msgstr "%B%s%b vil ikkje bli oppgradert til den forbodne versjonen %B%s%b."
 
 #: src/reason_fragment.cc:537
 #, fuzzy
+#| msgid ""
+#| "%B%s%b could be upgraded to version %B%s%b, but it is being held at "
+#| "version %B%s%b."
 msgid ""
 "%B%s %s%b could be upgraded to version %B%s%b, but it is being held at "
 "version %B%s%b."
@@ -6982,21 +7039,25 @@ msgstr ""
 
 #: src/reason_fragment.cc:545
 #, fuzzy
+#| msgid "%B%s%b will be re-installed."
 msgid "%B%s %s%b will be re-installed."
 msgstr "%B%s%b vil bli installert på ny."
 
 #: src/reason_fragment.cc:550
 #, fuzzy
+#| msgid "%B%s%b will be installed."
 msgid "%B%s %s%b will be installed."
 msgstr "%B%s%b vil bli installert."
 
 #: src/reason_fragment.cc:555
 #, fuzzy
+#| msgid "%B%s%b will be removed."
 msgid "%B%s %s%b will be removed."
 msgstr "%B%s%b vil bli fjerna."
 
 #: src/reason_fragment.cc:561
 #, fuzzy
+#| msgid "%B%s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgid "%B%s %s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgstr "%B%s%b vil bli oppgradert frå versjon %B%s%b til versjon %B%s%b."
 
@@ -7007,17 +7068,23 @@ msgstr "%s er ikkje installert no, så han blir ikkje re-installert.\n"
 
 #: src/reason_fragment.cc:602
 #, fuzzy
+#| msgid ""
+#| "The following packages depend on %B%s%b and will be broken by its removal:"
 msgid ""
 "The following packages depend on %B%s %s%b and will be broken by its removal:"
 msgstr "Desse pakkane krev %B%s%b og vil bli øydelagde viss han vert fjerna:"
 
 #: src/reason_fragment.cc:606
 #, fuzzy
+#| msgid "The following packages depend on %B%s%b and are broken:"
 msgid "The following packages depend on %B%s %s%b and are broken:"
 msgstr "Desse pakkane krev %B%s%b og er øydelagde:"
 
 #: src/reason_fragment.cc:614
 #, fuzzy
+#| msgid ""
+#| "The following packages conflict with %B%s%b and will be broken by its "
+#| "installation:"
 msgid ""
 "The following packages conflict with %B%s %s%b and will be broken by its "
 "installation:"
@@ -7027,6 +7094,10 @@ msgstr ""
 
 #: src/reason_fragment.cc:648
 #, fuzzy
+#| msgid ""
+#| "The following packages depend on a version of %B%s%b other than the "
+#| "currently installed version of %B%s%b, or conflict with the currently "
+#| "installed version:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b, or conflict with the currently "
@@ -7037,6 +7108,9 @@ msgstr ""
 
 #: src/reason_fragment.cc:653
 #, fuzzy
+#| msgid ""
+#| "The following packages conflict with %B%s%b, or depend on a version of it "
+#| "which is not going to be installed."
 msgid ""
 "The following packages conflict with %B%s %s%b, or depend on a version of it "
 "which is not going to be installed."
@@ -7046,11 +7120,15 @@ msgstr ""
 
 #: src/reason_fragment.cc:658
 #, fuzzy
+#| msgid "The following packages conflict with %B%s%b:"
 msgid "The following packages conflict with %B%s %s%b:"
 msgstr "Desse pakkane er i konflikt med %B%s%b:"
 
 #: src/reason_fragment.cc:664
 #, fuzzy
+#| msgid ""
+#| "The following packages depend on a version of %B%s%b other than the "
+#| "currently installed version of %B%s%b:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b:"
@@ -7060,6 +7138,9 @@ msgstr ""
 
 #: src/reason_fragment.cc:669
 #, fuzzy
+#| msgid ""
+#| "The following packages depend on a version of %B%s%b which is not going "
+#| "to be installed."
 msgid ""
 "The following packages depend on a version of %B%s %s%b which is not going "
 "to be installed."
@@ -7540,6 +7621,7 @@ msgstr ""
 
 #: src/ui.cc:1280
 #, fuzzy
+#| msgid "Press Return to continue."
 msgid "Press Return to continue, 'q' followed by Return to quit."
 msgstr "Trykk Enter for å halda fram."
 
@@ -7569,6 +7651,7 @@ msgstr ""
 
 #: src/ui.cc:1430
 #, fuzzy
+#| msgid "  %S*%N %s [version %s]%n"
 msgid "  %S*%N %s [version %s] %s%n"
 msgstr "  %S*%N %s [versjon %s]%n"
 
