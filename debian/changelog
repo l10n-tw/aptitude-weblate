@@ -4,12 +4,25 @@ aptitude (0.8.6-1) UNRELEASED; urgency=medium
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
     log with more details.
 
+    - User visible changes:
+      * [cmdline] Better message when there are no deb-src in sources.list
+        (Closes: #841875)
+
+    - Bug fixes:
+      * Use a more strict mask for comparison of dependency operators, thanks to
+        Aaron M. Ucko for the initial patch (Closes: #836567, #837946, #849370)
+      * Fix reading tag and their classification in subtrees (Closes: #853037)
+      * Fix misdetection of auto-installed packages from apt
+        (Closes: #831858, #841347)
+
+    - Translation updates:
+      * ru.po: Russian translation by Lev Lamberov (Closes: #855329)
+      * Dutch documentation translation by Frans Spiesschaert (Closes: #854897)
 
 
   * Remove wrong "From:" from contributor name in prev. changelog entry.
   * d/patches:
     - drop ftbfs-fix-french-doc.patch
-
 
   [ Axel Beckert ]
   * Restrict build-dependency on google-mock to >= 1.8.0 as aptitude FTBFS
