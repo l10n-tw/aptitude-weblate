@@ -1,3 +1,48 @@
+[2017-04-18]
+Version 0.8.7
+
+- User visible changes:
+
+  * Warn about invalid locales (Closes: #859907)
+
+- Bug fixes:
+
+  * Preserve auto-installed flag with hold/unhold/keep operations
+    (Closes: #843536)
+
+  * [cmdline] Fix extreme slowness of keep-all (Closes: #842707)
+
+    Every change of marking the package to "keep" was triggering a reevaluation
+    in aptitudeDepCache::end_action_group() of what had changed ("mark and sweep",
+    duplicate of cache, triggers of packages state changes... etc), for every
+    package.
+
+  * Avoid problems or improve response in problems related to reinstalling
+    (Closes:  #851901)
+
+    Improvements to deal with several problems that sometimes appear when
+    reinstalling or acting on scheduled reinstall actions, due to the versions
+    disappearing from the repositories.
+
+  * [cmdline] Failing to apply actions are not fatal with -f /
+    Aptitude::CmdLine::Fix-Broken (Closes: #835372)
+
+    The behaviour of refusing to continue when there are errors happens since
+    the change "[cmdline] Abort with Failure when actions cannot be taken
+    (Closes: #121313, #430392, #445034, #498239, #576212, #639789, #798320)",
+    but it's not an optimal solution for automatic installers like FAI, so this
+    is a way to revert to the old behaviour.
+
+- Internal changes:
+
+  * new method is_version_available(), to check if the given version of a
+    package is available (to check availability e.g. for reinstalls)
+
+- Translation updates:
+
+  * Italian documentation translation by Beatrice Torracca (Closes: #858784)
+
+
 [2017-03-05]
 Version 0.8.6
 

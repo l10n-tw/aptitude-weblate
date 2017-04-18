@@ -1,4 +1,4 @@
-// Copyright (C) 2016 Manuel A. Fernandez Montecelo
+// Copyright (C) 2016-2017 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -70,6 +70,14 @@ int cmdline_mark(int argc, char *argv[], const char* status_fname, bool simulate
 
   bool all_ok = true;
 
+  // Instantiate action group, so all changes get collected and actions happen
+  // only once.  Otherwise, every change triggers a reevaluation in
+  // aptitudeDepCache::end_action_group() of what has changed ("mark and sweep",
+  // duplicate of cache, triggers of packages state changes... etc), for every
+  // package marked as "keep" (all of them), and thus causing problems such as
+  // #842707 -- "keep-all hangs forever"
+  aptitudeDepCache::action_group group(*apt_cache_file, NULL);
+
   if (std::string(argv[0]) == "keep-all")
     {
       if (argc != 1)
@@ -88,7 +96,9 @@ int cmdline_mark(int argc, char *argv[], const char* status_fname, bool simulate
       else
 	{
 	  for (pkgCache::PkgIterator it = (*apt_cache_file)->PkgBegin(); !it.end(); ++it)
-	    (*apt_cache_file)->mark_keep(it, false, false, NULL);
+	    {
+	      (*apt_cache_file)->mark_keep(it, is_auto_installed(it), false, NULL);
+	    }
 	}
     }
   else if (std::string(argv[0]) == "forbid-version")
@@ -271,7 +281,7 @@ int cmdline_mark(int argc, char *argv[], const char* status_fname, bool simulate
 		  }
 		else
 		  {
-		    (*apt_cache_file)->mark_keep(pkg, false, true, NULL);
+		    (*apt_cache_file)->mark_keep(pkg, is_auto_installed(pkg), true, NULL);
 		  }
 	      }
 	      break;
@@ -284,7 +294,7 @@ int cmdline_mark(int argc, char *argv[], const char* status_fname, bool simulate
 		  }
 		else
 		  {
-		    (*apt_cache_file)->mark_keep(pkg, false, false, NULL);
+		    (*apt_cache_file)->mark_keep(pkg, is_auto_installed(pkg), false, NULL);
 		  }
 	      }
 	      break;
