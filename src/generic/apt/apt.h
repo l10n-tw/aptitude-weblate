@@ -1,7 +1,7 @@
 // apt.h  -*-c++-*-
 //
 //  Copyright 1999-2002, 2004-2005, 2007-2010 Daniel Burrows
-//  Copyright 2015-2016 Manuel A. Fernandez Montecelo
+//  Copyright 2015-2017 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -367,6 +367,15 @@ inline bool is_auto_installed(const pkgCache::PkgIterator& pkg)
 {
   return (apt_cache_file && is_auto_installed((*apt_cache_file)[pkg]));
 }
+
+/** Check if package version is available to download, reinstall, etc.
+ *
+ * @param pkg Package to check
+ * @param version Version to check
+ *
+ * @return Whether the package version is available
+ */
+bool is_version_available(const pkgCache::PkgIterator& pkg, const std::string& version);
 
 /** A pair (veriterator,verfile) -- used for building a list of
  *  versions sorted by file location.
