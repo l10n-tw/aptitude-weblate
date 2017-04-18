@@ -1,3 +1,26 @@
+aptitude (0.8.7-1) UNRELEASED; urgency=medium
+
+  [ Manuel A. Fernandez Montecelo ]
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
+    - User visible changes:
+      * Warn about invalid locales (Closes: #859907)
+
+    - Bug fixes:
+      * Preserve auto-installed flag with hold/unhold/keep operations
+        (Closes: #843536)
+      * [cmdline] Fix extreme slowness of keep-all (Closes: #842707)
+      * Avoid problems or improve response in problems related to reinstalling
+        (Closes:  #851901)
+      * [cmdline] Failing to apply actions are not fatal with -f /
+        Aptitude::CmdLine::Fix-Broken (Closes: #835372)
+
+    - Translation updates:
+      * Italian documentation translation by Beatrice Torracca (Closes: #858784)
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Wed, 19 Apr 2017 00:18:54 +0200
+
 aptitude (0.8.6-1) unstable; urgency=medium
 
   [ Manuel A. Fernandez Montecelo ]
