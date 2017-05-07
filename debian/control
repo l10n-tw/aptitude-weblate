@@ -1,6 +1,6 @@
 Source: aptitude
 Section: admin
-Priority: important
+Priority: optional
 Maintainer: Aptitude Development Team <aptitude-devel@lists.alioth.debian.org>
 Uploaders: Manuel A. Fernandez Montecelo <mafm@debian.org>,
            Axel Beckert <abe@debian.org>
@@ -74,7 +74,6 @@ Description: architecture independent files for the aptitude package manager
 
 Package: aptitude-doc-cs
 Section: doc
-Priority: optional
 Architecture: all
 Multi-Arch: foreign
 Provides: aptitude-doc
@@ -92,7 +91,6 @@ Description: Czech manual for aptitude, a terminal-based package manager
 
 Package: aptitude-doc-en
 Section: doc
-Priority: optional
 Architecture: all
 Multi-Arch: foreign
 Provides: aptitude-doc
@@ -110,7 +108,6 @@ Description: English manual for aptitude, a terminal-based package manager
 
 Package: aptitude-doc-es
 Section: doc
-Priority: optional
 Architecture: all
 Multi-Arch: foreign
 Provides: aptitude-doc
@@ -128,7 +125,6 @@ Description: Spanish manual for aptitude, a terminal-based package manager
 
 Package: aptitude-doc-fi
 Section: doc
-Priority: optional
 Architecture: all
 Multi-Arch: foreign
 Provides: aptitude-doc
@@ -146,7 +142,6 @@ Description: Finnish manual for aptitude, a terminal-based package manager
 
 Package: aptitude-doc-fr
 Section: doc
-Priority: optional
 Architecture: all
 Multi-Arch: foreign
 Provides: aptitude-doc
@@ -164,7 +159,6 @@ Description: French manual for aptitude, a terminal-based package manager
 
 Package: aptitude-doc-it
 Section: doc
-Priority: optional
 Architecture: all
 Multi-Arch: foreign
 Provides: aptitude-doc
@@ -182,7 +176,6 @@ Description: Italian manual for aptitude, a terminal-based package manager
 
 Package: aptitude-doc-ja
 Section: doc
-Priority: optional
 Architecture: all
 Multi-Arch: foreign
 Provides: aptitude-doc
@@ -200,7 +193,6 @@ Description: Japanese manual for aptitude, a terminal-based package manager
 
 Package: aptitude-doc-nl
 Section: doc
-Priority: optional
 Architecture: all
 Multi-Arch: foreign
 Provides: aptitude-doc
@@ -218,7 +210,6 @@ Description: Dutch manual for aptitude, a terminal-based package manager
 
 Package: aptitude-doc-ru
 Section: doc
-Priority: optional
 Architecture: all
 Multi-Arch: foreign
 Provides: aptitude-doc
