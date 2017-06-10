@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2017-04-19 00:01+0200\n"
+"POT-Creation-Date: 2017-06-11 01:21+0200\n"
 "PO-Revision-Date: 2012-02-23 16:54+0800\n"
 "Last-Translator: Erçin EKER <ercin.eker@linux.org.tr>\n"
 "Language-Team: Turkish <debian-l10n-turkish@lists.debian.org>\n"
@@ -318,7 +318,6 @@ msgstr ""
 
 #: src/apt_options.cc:294
 #, fuzzy
-#| msgid "Remove obsolete package files after downloading new package lists"
 msgid "Remove all package files after successful operations (e.g. install)"
 msgstr "Yeni paket listeleri indirildikten sonra eskimiş paket dosyalarını sil"
 
@@ -567,7 +566,6 @@ msgstr "Dahili Hata: beklenmeyen boş çözüm."
 
 #: src/broken_indicator.cc:375
 #, fuzzy
-#| msgid "Keep the following packages at their current version:"
 msgid "Keep all packages at their current version"
 msgstr "Aşağıdaki paketleri mevcut sürümlerinde tut:"
 
@@ -603,13 +601,11 @@ msgstr[0] "%d eski sürümü kurulacak"
 
 #: src/broken_indicator.cc:436
 #, fuzzy
-#| msgid "%s changes"
 msgid "no changes"
 msgstr "%s değişiklikleri"
 
 #: src/broken_indicator.cc:439
 #, fuzzy, c-format
-#| msgid "Actions"
 msgid "Actions: %F"
 msgstr "Eylemler"
 
@@ -625,9 +621,6 @@ msgstr "\"%s\"deki dosyalar listelenemiyor"
 
 #: src/cmdline/cmdline_action.cc:260
 #, fuzzy, c-format
-#| msgid ""
-#| "Note: \"%s\", providing the virtual package\n"
-#| "      \"%s\", is already installed.\n"
 msgid ""
 "Note: \"%s\", providing the virtual package \"%s\", is already installed\n"
 msgstr ""
@@ -636,9 +629,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_action.cc:268
 #, fuzzy, c-format
-#| msgid ""
-#| "Note: \"%s\", providing the virtual package\n"
-#| "      \"%s\", is already going to be installed.\n"
 msgid ""
 "Note: \"%s\", providing the virtual package \"%s\", is already going to be "
 "installed\n"
@@ -648,9 +638,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_action.cc:291 src/pkg_item.cc:144
 #, fuzzy, c-format
-#| msgid ""
-#| "\"%s\" exists in the package database, but it is not a\n"
-#| "real package and no package provides it.\n"
 msgid ""
 "\"%s\" exists in the package database, but it is not a real package and no "
 "package provides it\n"
@@ -670,9 +657,6 @@ msgstr "Kurmak için birini seçmelisiniz.\n"
 
 #: src/cmdline/cmdline_action.cc:310
 #, fuzzy, c-format
-#| msgid ""
-#| "Note: selecting \"%s\" instead of the\n"
-#| "      virtual package \"%s\"\n"
 msgid "Note: selecting \"%s\" instead of the virtual package \"%s\"\n"
 msgstr ""
 "Not: \"%2$s\" sanal paketi yerine\n"
@@ -697,7 +681,6 @@ msgstr "%s paketinin istenen sürümü zaten kurulu (%s)\n"
 
 #: src/cmdline/cmdline_action.cc:361
 #, fuzzy, c-format
-#| msgid "%s is not currently installed, so it will not be reinstalled.\n"
 msgid "%s is not currently installed, so it will not be reinstalled\n"
 msgstr "%s şu anda kurulu değil, bu nedenle yeniden yüklenmeyecek.\n"
 
@@ -730,56 +713,47 @@ msgstr "%s paketi yükseltilemez, bu nedenle yükseltilmesi engellenemez\n"
 
 #: src/cmdline/cmdline_action.cc:439
 #, fuzzy, c-format
-#| msgid "'=' to place packages on hold"
 msgid "Setting package %s on hold\n"
 msgstr "Paketi tutmak için '='"
 
-#: src/cmdline/cmdline_action.cc:448
+#: src/cmdline/cmdline_action.cc:449
 #, fuzzy, c-format
-#| msgid "Updating package lists"
 msgid "Marking package %s as keep\n"
 msgstr "Paket listeleri güncelleniyor"
 
-#: src/cmdline/cmdline_action.cc:458
+#: src/cmdline/cmdline_action.cc:460
 #, c-format
 msgid "Setting package %s as not on hold\n"
 msgstr ""
 
-#: src/cmdline/cmdline_action.cc:465
+#: src/cmdline/cmdline_action.cc:468
 #, fuzzy, c-format
-#| msgid "Packages which depend on %s"
 msgid "Package %s is not on hold\n"
 msgstr "%s paketine bağımlı paketler"
 
-#: src/cmdline/cmdline_action.cc:471
+#: src/cmdline/cmdline_action.cc:474
 #, fuzzy, c-format
-#| msgid "'&M' to mark packages as automatically installed"
 msgid "Marking package %s as automatically installed\n"
 msgstr "Paketi otomatik kurulmuş olarak işaretlemek için'&M'"
 
-#: src/cmdline/cmdline_action.cc:480
+#: src/cmdline/cmdline_action.cc:484
 #, fuzzy, c-format
-#| msgid "'&M' to mark packages as automatically installed"
 msgid "Unmarking package %s as automatically installed\n"
 msgstr "Paketi otomatik kurulmuş olarak işaretlemek için'&M'"
 
-#: src/cmdline/cmdline_action.cc:490 src/cmdline/cmdline_action.cc:501
+#: src/cmdline/cmdline_action.cc:495 src/cmdline/cmdline_action.cc:506
 #: src/cmdline/cmdline_mark.cc:177 src/cmdline/cmdline_mark.cc:195
 #, fuzzy, c-format
-#| msgid "Check for new versions of packages"
 msgid "Marking version %s of package %s as forbidden\n"
 msgstr "Paketleri yeni sürümleri için denetler"
 
-#: src/cmdline/cmdline_action.cc:553
+#: src/cmdline/cmdline_action.cc:558
 #, c-format
 msgid "Note: selecting the task \"%s: %s\" for installation\n"
 msgstr "Not: \"%s: %s\" görevi kurulum için seçildi\n"
 
-#: src/cmdline/cmdline_action.cc:583
+#: src/cmdline/cmdline_action.cc:588
 #, fuzzy, c-format
-#| msgid ""
-#| "You can only specify a package version with an 'install' command or a "
-#| "'forbid-version' command.\n"
 msgid ""
 "You can only specify a package version with an 'install' command or a "
 "'forbid-version' command\n"
@@ -787,13 +761,12 @@ msgstr ""
 "Paket sürümünü sadece 'install' ya da 'forbid-version' komutu ile "
 "kullanabilirsiniz.\n"
 
-#: src/cmdline/cmdline_action.cc:592
+#: src/cmdline/cmdline_action.cc:597
 #, fuzzy, c-format
-#| msgid "You can only specify a package archive with an 'install' command.\n"
 msgid "You can only specify a package archive with an 'install' command\n"
 msgstr "'kur' komutu için yalnızca bir paket arşivi belirtebilirsiniz\n"
 
-#: src/cmdline/cmdline_action.cc:630
+#: src/cmdline/cmdline_action.cc:635
 #, fuzzy, c-format
 msgid ""
 "Couldn't find any package whose name is \"%s\", but there are %zu packages "
@@ -802,17 +775,17 @@ msgstr ""
 "\"%s\" paketi bulunamadı, ve 40'tan fazla\n"
 "paketin isminde \"%s\" bulunmakta.\n"
 
-#: src/cmdline/cmdline_action.cc:635 src/cmdline/cmdline_action.cc:667
+#: src/cmdline/cmdline_action.cc:640 src/cmdline/cmdline_action.cc:672
 #, c-format
 msgid "  (too many to show, the limit is %zu)\n"
 msgstr ""
 
-#: src/cmdline/cmdline_action.cc:659
+#: src/cmdline/cmdline_action.cc:664
 #, c-format
 msgid "Couldn't find any package whose name or description matched \"%s\"\n"
 msgstr "Adında ya da tanımında \"%s\" içeren hiçbir paket bulunamadı\n"
 
-#: src/cmdline/cmdline_action.cc:662
+#: src/cmdline/cmdline_action.cc:667
 #, fuzzy, c-format
 msgid ""
 "Couldn't find any package matching \"%s\", but there are %zu packages which "
@@ -821,7 +794,7 @@ msgstr ""
 "\"%s\" paketi bulunamadı, ve 40'tan fazla\n"
 "paketin açıklamasında \"%s\" bulunmakta.\n"
 
-#: src/cmdline/cmdline_action.cc:810
+#: src/cmdline/cmdline_action.cc:815
 #, c-format
 msgid "Bad action character '%c'\n"
 msgstr "Kötü eylem karakteri '%c'\n"
@@ -884,7 +857,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_apt_proxy.cc:226
 #, fuzzy, c-format
-#| msgid "Reconfiguring %s\n"
 msgid ""
 "Executing '%s'\n"
 "\n"
@@ -990,7 +962,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_do_action.cc:367
 #, fuzzy, c-format
-#| msgid "Unable to open %s to log actions"
 msgid "Unable to apply some actions, aborting\n"
 msgstr "Günlük eylemleri için %s açılamıyor"
 
@@ -1064,13 +1035,11 @@ msgstr "Hangi paketlerin yeni olduğu unutulsun mu\n"
 
 #: src/cmdline/cmdline_mark.cc:85
 #, fuzzy
-#| msgid "Unexpected pattern argument following \"keep-all\""
 msgid "Unexpected argument following \"keep-all\""
 msgstr "\"keep-all\"dan sonra beklenmeyen kalıp değişkeni"
 
 #: src/cmdline/cmdline_mark.cc:90
 #, fuzzy, c-format
-#| msgid "Updating package lists"
 msgid "Marking all packages as keep (%s)\n"
 msgstr "Paket listeleri güncelleniyor"
 
@@ -1087,13 +1056,11 @@ msgstr "E: Güncelle komutu argüman kabul etmez\n"
 #: src/cmdline/cmdline_mark.cc:138 src/cmdline/cmdline_util.cc:893
 #: src/ui.cc:2095
 #, fuzzy, c-format
-#| msgid "No packages matched the pattern \"%ls\"."
 msgid "No packages match pattern \"%s\""
 msgstr "\"%ls\" kalıbına uygun paket yok."
 
 #: src/cmdline/cmdline_mark.cc:161
 #, fuzzy, c-format
-#| msgid "Couldn't parse column definition"
 msgid "Could not parse version for %s: %s\n"
 msgstr "Sütun tanımlaması ayrıştırılamıyor"
 
@@ -1113,13 +1080,11 @@ msgstr ""
 
 #: src/cmdline/cmdline_mark.cc:254
 #, fuzzy, c-format
-#| msgid "Updating package lists"
 msgid "Marking package %s (%s)\n"
 msgstr "Paket listeleri güncelleniyor"
 
 #: src/cmdline/cmdline_mark.cc:268
 #, fuzzy, c-format
-#| msgid "'&M' to mark packages as automatically installed"
 msgid "Would mark package %s as auto-installed=%d\n"
 msgstr "Paketi otomatik kurulmuş olarak işaretlemek için'&M'"
 
@@ -1262,7 +1227,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_prompt.cc:459
 #, fuzzy, c-format
-#| msgid "Press return to continue.\n"
 msgid "Press any key to continue...\n"
 msgstr "Devam etmek için enter tuşuna basın.\n"
 
@@ -1277,7 +1241,6 @@ msgstr "Devam etmek için, \"%s\" ifadesini girin :\n"
 
 #: src/cmdline/cmdline_prompt.cc:475
 #, fuzzy, c-format
-#| msgid "To continue, type the phrase \"%s\":\n"
 msgid "To continue, type the phrase \"%s\" (or: \"%s\"):\n"
 msgstr "Devam etmek için, \"%s\" ifadesini girin :\n"
 
@@ -1348,14 +1311,12 @@ msgstr "Devam etmek için \"%s\"; çıkmak için \"%s\" girin: "
 
 #: src/cmdline/cmdline_prompt.cc:582
 #, fuzzy, c-format
-#| msgid "To continue, enter \"%s\"; to abort, enter \"%s\": "
 msgid ""
 "To continue, enter \"%s\" (or \"%s\"); to abort, enter \"%s\" (or \"%s\"): "
 msgstr "Devam etmek için \"%s\"; çıkmak için \"%s\" girin: "
 
 #: src/cmdline/cmdline_prompt.cc:605
 #, fuzzy, c-format
-#| msgid "Unrecognized tasks"
 msgid "Unrecognized input\n"
 msgstr "Tanınmayan Görevler"
 
@@ -1371,7 +1332,6 @@ msgstr "Aşağıdaki paketlerin kurulması TEKLİF EDİLDİ, fakat kurulmayacak:
 
 #: src/cmdline/cmdline_prompt.cc:734
 #, fuzzy, c-format
-#| msgid "The following packages will be DOWNGRADED:"
 msgid "The following packages will NOT be UPGRADED:\n"
 msgstr "Aşağıdaki paketlerin ÖNCEKİ SÜRÜMLERİ yüklenecek:  "
 
@@ -2079,7 +2039,6 @@ msgstr "%s için iconv hatalı.\n"
 
 #: src/cmdline/cmdline_search.cc:237 src/cmdline/cmdline_versions.cc:597
 #, fuzzy, c-format
-#| msgid "Couldn't parse column definition"
 msgid "%s: Could not parse column definitions: '%ls'\n"
 msgstr "Sütun tanımlaması ayrıştırılamıyor"
 
@@ -2090,19 +2049,16 @@ msgstr "Arama: En az bir arama terimi girmelisiniz\n"
 
 #: src/cmdline/cmdline_show_broken.cc:38
 #, fuzzy, c-format
-#| msgid "but %s is to be installed."
 msgid "but %s is to be installed"
 msgstr "fakat %s kurulacak."
 
 #: src/cmdline/cmdline_show_broken.cc:41
 #, fuzzy, c-format
-#| msgid "but %s is installed and it is kept back."
 msgid "but %s is installed and it is kept back"
 msgstr "fakat %s kurulu ve tutulacak."
 
 #: src/cmdline/cmdline_show_broken.cc:44
 #, fuzzy, c-format
-#| msgid "but %s is installed."
 msgid "but %s is installed"
 msgstr "fakat %s kurulu."
 
@@ -2129,7 +2085,6 @@ msgstr "%s bir sanal paket, ve şu paket tarafından sağlanıyor:\n"
 
 #: src/cmdline/cmdline_show_broken.cc:143
 #, fuzzy, c-format
-#| msgid "Provides"
 msgid " provides %s=%s"
 msgstr "Sağladığı"
 
@@ -2416,7 +2371,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_user_tag.cc:63 src/reason_fragment.cc:58
 #, fuzzy
-#| msgid "Remove"
 msgid "remove"
 msgstr "Kaldır"
 
@@ -2669,19 +2623,16 @@ msgstr ""
 
 #: src/cmdline/cmdline_why.cc:1234
 #, fuzzy
-#| msgid "%B%s%b is not currently installed."
 msgid "Not currently installed\n"
 msgstr "%B%s%b şu anda kurulu değil."
 
 #: src/cmdline/cmdline_why.cc:1239
 #, fuzzy, c-format
-#| msgid "No candidate version found for %s\n"
 msgid "The candidate version %s has priority %s\n"
 msgstr "%s için kullanılabilir bir sürüm bulunamadı\n"
 
 #: src/cmdline/cmdline_why.cc:1244
 #, fuzzy, c-format
-#| msgid "No longer requiring the removal of %s"
 msgid "No dependencies require to remove %s\n"
 msgstr "Artık %s'in kaldırılması gerekmiyor"
 
@@ -2737,7 +2688,6 @@ msgstr "MEVCUT DEĞİL"
 
 #: src/dep_item.cc:364
 #, fuzzy, c-format
-#| msgid "Provides"
 msgid "%s on provided %s"
 msgstr "Sağladığı"
 
@@ -2899,7 +2849,6 @@ msgstr ""
 
 #: src/generic/apt/aptcache.cc:1269 src/generic/apt/aptcache.cc:1305
 #, fuzzy
-#| msgid "Cannot open Aptitude state file"
 msgid "Cannot remove aptitude within aptitude"
 msgstr "Aptitude durum dosyası açılamıyor"
 
@@ -2999,7 +2948,6 @@ msgstr "%s için değişiklik güncesi bulunamıyor"
 
 #: src/generic/apt/apt.cc:587
 #, fuzzy, c-format
-#| msgid "Couldn't clean out list directories"
 msgid "Could not create directories: %s: %s"
 msgstr "Liste dizinleri temizlenemiyor"
 
@@ -3139,7 +3087,6 @@ msgstr ""
 
 #: src/generic/apt/config_file.cc:59
 #, fuzzy, c-format
-#| msgid "Could not open file \"%s\""
 msgid "Could not remove old configuration file: %s"
 msgstr "Dosya açılamıyor: \"%s\""
 
@@ -3170,13 +3117,11 @@ msgstr "%s yeni yapılandırma dosyası ile değiştirilemiyor"
 
 #: src/generic/apt/config_file.cc:226
 #, fuzzy, c-format
-#| msgid "Error writing state file"
 msgid "Error writing to file: %s"
 msgstr "Durum dosyası yazma hatası"
 
 #: src/generic/apt/config_file.cc:251
 #, fuzzy, c-format
-#| msgid "Could not open file \"%s\""
 msgid "Could not remove file: %s"
 msgstr "Dosya açılamıyor: \"%s\""
 
@@ -3187,7 +3132,6 @@ msgstr ""
 
 #: src/generic/apt/config_file.cc:264
 #, fuzzy, c-format
-#| msgid "Error writing state file"
 msgid "Error removing file: %s"
 msgstr "Durum dosyası yazma hatası"
 
@@ -3330,11 +3274,6 @@ msgstr "günlük raporu"
 
 #: src/generic/apt/log.cc:89
 #, fuzzy, c-format
-#| msgid ""
-#| "IMPORTANT: this log only lists intended actions; actions which fail due "
-#| "to\n"
-#| "dpkg problems may not be completed.\n"
-#| "\n"
 msgid ""
 "  IMPORTANT: this log only lists intended actions; actions which fail\n"
 "  due to dpkg problems may not be completed.\n"
@@ -3722,7 +3661,6 @@ msgstr "\"%s\" şablonundan geçici klasör oluşturulamıyor: %s"
 
 #: src/generic/util/util.cc:387
 #, fuzzy, c-format
-#| msgid "Unable to remove \"%s\""
 msgid "Unable to remove \"%s\": %s"
 msgstr "\"%s\" kaldırılamıyor"
 
@@ -3758,7 +3696,6 @@ msgstr ""
 
 #: src/generic/util/util.cc:515
 #, fuzzy, c-format
-#| msgid "Cannot open package hierarchy file %s"
 msgid "Problem creating temporary dir: %s\n"
 msgstr "%s paket hiyerarşi dosyası açılamadı"
 
@@ -5547,7 +5484,6 @@ msgstr "Düzen ayrıştırılamadı: sütun tanımlayıcıda kodlama hatası"
 
 #: src/load_pkgview.cc:106
 #, fuzzy
-#| msgid "Couldn't parse layout: encoding error in column descriptor"
 msgid "Couldn't parse layout: error parsing column definitions"
 msgstr "Düzen ayrıştırılamadı: sütun tanımlayıcıda kodlama hatası"
 
@@ -5707,9 +5643,6 @@ msgstr "       aptitude [seçenekler] <eylem> ..."
 
 #: src/main.cc:196
 #, fuzzy, c-format
-#| msgid ""
-#| "  Actions (if none is specified, aptitude will enter interactive mode):\n"
-#| "\n"
 msgid ""
 "Actions (if none is specified, aptitude will enter interactive mode):\n"
 "\n"
@@ -5756,9 +5689,6 @@ msgstr " unmarkauto     - Paketler elle kurulacak şekilde işaretlenir\n"
 
 #: src/main.cc:204
 #, fuzzy, c-format
-#| msgid ""
-#| " forbid-version - Forbid aptitude from upgrading to a specific package "
-#| "version.\n"
 msgid ""
 " forbid-version  Forbid aptitude from upgrading to a specific package "
 "version.\n"
@@ -5839,7 +5769,6 @@ msgstr " download    - Bir paket için .deb dosyasını indir\n"
 
 #: src/main.cc:218
 #, fuzzy, c-format
-#| msgid " -u             Download new package lists on startup.\n"
 msgid " source          Download source package (apt wrapper).\n"
 msgstr " -u             Başlangıçta yeni paket listelerini indir.\n"
 
@@ -5850,16 +5779,12 @@ msgstr " reinstall    - Zaten kurulu olan paketi indir ve yeniden kur\n"
 
 #: src/main.cc:220
 #, fuzzy, c-format
-#| msgid ""
-#| " -V             Show which versions of packages are to be installed.\n"
 msgid ""
 " why             Explain why a particular package should be installed.\n"
 msgstr " -V             Paketlerin hangi sürümlerinin kurulacağını göster.\n"
 
 #: src/main.cc:221
 #, fuzzy, c-format
-#| msgid ""
-#| " -V             Show which versions of packages are to be installed.\n"
 msgid ""
 " why-not         Explain why a particular package cannot be installed.\n"
 msgstr " -V             Paketlerin hangi sürümlerinin kurulacağını göster.\n"
@@ -5876,7 +5801,6 @@ msgstr ""
 
 #: src/main.cc:226
 #, fuzzy, c-format
-#| msgid "  Options:\n"
 msgid "Options:\n"
 msgstr "  Seçenekler:\n"
 
@@ -5910,16 +5834,11 @@ msgstr ""
 
 #: src/main.cc:236
 #, fuzzy, c-format
-#| msgid ""
-#| " -s             Simulate actions, but do not actually perform them.\n"
 msgid " -s              Simulate actions, but do not actually perform them.\n"
 msgstr " -s             Eylemi simule et, fakat işlemi gerçekleştirme.\n"
 
 #: src/main.cc:237
 #, fuzzy, c-format
-#| msgid ""
-#| " -d             Only download packages, do not install or remove "
-#| "anything.\n"
 msgid ""
 " -d              Only download packages, do not install or remove anything.\n"
 msgstr ""
@@ -5965,21 +5884,16 @@ msgstr " -w genişlik       Arama sonuçları için gösterme genişliği belirt
 
 #: src/main.cc:243
 #, fuzzy, c-format
-#| msgid " -f             Aggressively try to fix broken packages.\n"
 msgid " -f              Aggressively try to fix broken packages.\n"
 msgstr " -f             Kırık paketleri zorla düzeltmeye çalış.\n"
 
 #: src/main.cc:244
 #, fuzzy, c-format
-#| msgid ""
-#| " -V             Show which versions of packages are to be installed.\n"
 msgid " -V              Show which versions of packages are to be installed.\n"
 msgstr " -V             Paketlerin hangi sürümlerinin kurulacağını göster.\n"
 
 #: src/main.cc:245
 #, fuzzy, c-format
-#| msgid ""
-#| " -D             Show the dependencies of automatically changed packages.\n"
 msgid ""
 " -D              Show the dependencies of automatically changed packages.\n"
 msgstr ""
@@ -5987,7 +5901,6 @@ msgstr ""
 
 #: src/main.cc:246
 #, fuzzy, c-format
-#| msgid " -Z             Show the change in installed size of each package.\n"
 msgid " -Z              Show the change in installed size of each package.\n"
 msgstr ""
 " -Z\t\t     Her bir paketin kurulduktan sonraki büyüklük değişikliğini "
@@ -6030,13 +5943,11 @@ msgstr ""
 
 #: src/main.cc:254
 #, fuzzy, c-format
-#| msgid " -S fname       Read the aptitude extended status info from fname.\n"
 msgid " -S fname        Read the aptitude extended status info from fname.\n"
 msgstr " -S dosyaadi: aptitude gelişmiş durum bilgisini dosyaadi'ndan oku.\n"
 
 #: src/main.cc:255
 #, fuzzy, c-format
-#| msgid " -u             Download new package lists on startup.\n"
 msgid " -u              Download new package lists on startup.\n"
 msgstr " -u             Başlangıçta yeni paket listelerini indir.\n"
 
@@ -6047,7 +5958,6 @@ msgstr " -h             Bu yardım metni\n"
 
 #: src/main.cc:257
 #, fuzzy, c-format
-#| msgid " -i             Perform an install run on startup.\n"
 msgid " -i              Perform an install run on startup.\n"
 msgstr " -i             Bir kurulum yap ve başlangıçta çalıştır.\n"
 
@@ -6059,7 +5969,6 @@ msgstr ""
 
 #: src/main.cc:262
 #, fuzzy, c-format
-#| msgid "                  This aptitude does not have Super Cow Powers.\n"
 msgid "This aptitude does not have Super Cow Powers.\n"
 msgstr "                  Bu yetenek Süper İnek Güçlerine sahip değil.\n"
 
@@ -6395,7 +6304,6 @@ msgstr "Kaynak paketi: "
 
 #: src/pkg_columnizer.cc:109
 #, fuzzy
-#| msgid "Architecture: "
 msgid "Architecture"
 msgstr "Mimari: "
 
@@ -6513,13 +6421,11 @@ msgstr ""
 
 #: src/pkg_columnizer.cc:417
 #, fuzzy, c-format
-#| msgid "DL Size: %sB"
 msgid "DL: %sB/%sB"
 msgstr "İndirme: %sB"
 
 #: src/pkg_columnizer.cc:423
 #, fuzzy, c-format
-#| msgid "DL Size: %sB"
 msgid "DL: %sB"
 msgstr "İndirme: %sB"
 
@@ -6553,10 +6459,6 @@ msgstr "Görevler"
 
 #: src/pkg_grouppolicy.cc:462
 #, fuzzy
-#| msgid ""
-#| "Security Updates\n"
-#| " Security updates for these packages are available from security.debian."
-#| "org."
 msgid ""
 "Security Updates\n"
 " Security updates for these packages are available from security.debian.org "
@@ -6754,7 +6656,6 @@ msgstr ""
 
 #: src/pkg_item.cc:154
 #, fuzzy, c-format
-#| msgid "\"%s\" is a virtual package provided by:\n"
 msgid ""
 "\"%s\" is a virtual package provided by:\n"
 "\n"
@@ -6809,7 +6710,6 @@ msgstr ""
 
 #: src/pkg_view.cc:271
 #, fuzzy
-#| msgid "Provides"
 msgid "provides"
 msgstr "Sağladığı"
 
@@ -6909,13 +6809,11 @@ msgstr "Yardım"
 
 #: src/reason_fragment.cc:69
 #, fuzzy
-#| msgid "Unchanged"
 msgid "held/unchanged"
 msgstr "Değiştirilmemiş"
 
 #: src/reason_fragment.cc:77
 #, fuzzy
-#| msgid "downgraded"
 msgid "downgrade"
 msgstr "eski sürümü kurulursa"
 
@@ -6967,7 +6865,6 @@ msgstr " (%F tarafından sağlanan)"
 
 #: src/reason_fragment.cc:378
 #, fuzzy, c-format
-#| msgid "%F%s %F %F"
 msgid "%F%s %s %F %F"
 msgstr "%F%s %F %F"
 
@@ -6981,9 +6878,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:466
 #, fuzzy
-#| msgid ""
-#| "%B%s%b was installed automatically;  it is being removed because all of "
-#| "the packages which depend upon it are being removed:"
 msgid ""
 "%B%s %s%b was installed automatically; it is being removed because all of "
 "the packages which depend upon it are being removed:"
@@ -6993,16 +6887,12 @@ msgstr ""
 
 #: src/reason_fragment.cc:471
 #, fuzzy
-#| msgid "%B%s%b will be automatically removed because of dependency errors:"
 msgid "%B%s %s%b will be automatically removed because of dependency errors:"
 msgstr ""
 "Bağımlılık hatalarından dolayı %B%s%b paketi otomatik olarak kaldırılacak:"
 
 #: src/reason_fragment.cc:476
 #, fuzzy
-#| msgid ""
-#| "%B%s%b will be automatically installed to satisfy the following "
-#| "dependencies:"
 msgid ""
 "%B%s %s%b will be automatically installed to satisfy the following "
 "dependencies:"
@@ -7011,9 +6901,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:483 src/reason_fragment.cc:498
 #, fuzzy
-#| msgid ""
-#| "%B%s%b cannot be upgraded now, but if it could be, it would still be held "
-#| "at version %B%s%b."
 msgid ""
 "%B%s %s%b cannot be upgraded now, but if it could be, it would still be held "
 "at version %B%s%b."
@@ -7023,9 +6910,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:488
 #, fuzzy
-#| msgid ""
-#| "%B%s%b will not be upgraded to version %B%s%b, to avoid breaking the "
-#| "following dependencies:"
 msgid ""
 "%B%s %s%b will not be upgraded to version %B%s%b, to avoid breaking the "
 "following dependencies:"
@@ -7035,39 +6919,31 @@ msgstr ""
 
 #: src/reason_fragment.cc:503
 #, fuzzy
-#| msgid "%B%s%b is currently installed."
 msgid "%B%s %s%b is currently installed."
 msgstr "%B%s%b şu anda kurulmuş durumda."
 
 #: src/reason_fragment.cc:510
 #, fuzzy
-#| msgid "%B%s%b is not currently installed."
 msgid "%B%s %s%b is not currently installed."
 msgstr "%B%s%b şu anda kurulu değil."
 
 #: src/reason_fragment.cc:519
 #, fuzzy
-#| msgid "Some dependencies of %B%s%b are not satisfied:"
 msgid "Some dependencies of %B%s %s%b are not satisfied:"
 msgstr "%B%s%b paketinin bazı bağımlılıkları karşılanamadı:"
 
 #: src/reason_fragment.cc:524
 #, fuzzy
-#| msgid "%B%s%b will be downgraded."
 msgid "%B%s %s%b will be downgraded."
 msgstr "%B%s%b paketinin eski sürümü kurulacak."
 
 #: src/reason_fragment.cc:532
 #, fuzzy
-#| msgid "%B%s%b will not be upgraded to the forbidden version %B%s%b."
 msgid "%B%s %s%b will not be upgraded to the forbidden version %B%s%b."
 msgstr "%B%s%b paketi, kurulumu engellenen %B%s%b sürümüne yükseltilmeyecek."
 
 #: src/reason_fragment.cc:537
 #, fuzzy
-#| msgid ""
-#| "%B%s%b could be upgraded to version %B%s%b, but it is being held at "
-#| "version %B%s%b."
 msgid ""
 "%B%s %s%b could be upgraded to version %B%s%b, but it is being held at "
 "version %B%s%b."
@@ -7077,25 +6953,21 @@ msgstr ""
 
 #: src/reason_fragment.cc:545
 #, fuzzy
-#| msgid "%B%s%b will be re-installed."
 msgid "%B%s %s%b will be re-installed."
 msgstr "%B%s%b yeniden kurulacak."
 
 #: src/reason_fragment.cc:550
 #, fuzzy
-#| msgid "%B%s%b will be installed."
 msgid "%B%s %s%b will be installed."
 msgstr "%B%s%b kurulacak."
 
 #: src/reason_fragment.cc:555
 #, fuzzy
-#| msgid "%B%s%b will be removed."
 msgid "%B%s %s%b will be removed."
 msgstr "%B%s%b kaldırılacak."
 
 #: src/reason_fragment.cc:561
 #, fuzzy
-#| msgid "%B%s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgid "%B%s %s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgstr "%B%s%b paketi %B%s%b sürümünden %B%s%b sürümüne yükseltilecek."
 
@@ -7106,8 +6978,6 @@ msgstr "%s şu anda kurulu değil, bu nedenle yeniden yüklenmeyecek.\n"
 
 #: src/reason_fragment.cc:602
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on %B%s%b and will be broken by its removal:"
 msgid ""
 "The following packages depend on %B%s %s%b and will be broken by its removal:"
 msgstr ""
@@ -7115,15 +6985,11 @@ msgstr ""
 
 #: src/reason_fragment.cc:606
 #, fuzzy
-#| msgid "The following packages depend on %B%s%b and are broken:"
 msgid "The following packages depend on %B%s %s%b and are broken:"
 msgstr "Bu paketler %B%s%b paketine bağımlıydı ve kırık bağımlılıkları var:"
 
 #: src/reason_fragment.cc:614
 #, fuzzy
-#| msgid ""
-#| "The following packages conflict with %B%s%b and will be broken by its "
-#| "installation:"
 msgid ""
 "The following packages conflict with %B%s %s%b and will be broken by its "
 "installation:"
@@ -7131,10 +6997,6 @@ msgstr "Bu paketler %B%s%b ile çakışıyorlar ve kurulursa bozuk olacaklar:"
 
 #: src/reason_fragment.cc:648
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b other than the "
-#| "currently installed version of %B%s%b, or conflict with the currently "
-#| "installed version:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b, or conflict with the currently "
@@ -7146,9 +7008,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:653
 #, fuzzy
-#| msgid ""
-#| "The following packages conflict with %B%s%b, or depend on a version of it "
-#| "which is not going to be installed."
 msgid ""
 "The following packages conflict with %B%s %s%b, or depend on a version of it "
 "which is not going to be installed."
@@ -7158,15 +7017,11 @@ msgstr ""
 
 #: src/reason_fragment.cc:658
 #, fuzzy
-#| msgid "The following packages conflict with %B%s%b:"
 msgid "The following packages conflict with %B%s %s%b:"
 msgstr "Bu paketler %B%s%b ile çakışıyorlar:"
 
 #: src/reason_fragment.cc:664
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b other than the "
-#| "currently installed version of %B%s%b:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b:"
@@ -7176,9 +7031,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:669
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b which is not going "
-#| "to be installed."
 msgid ""
 "The following packages depend on a version of %B%s %s%b which is not going "
 "to be installed."
@@ -7289,7 +7141,6 @@ msgstr "Aşağıdaki paketlerin %Beski sürümünü kur%b:%n"
 
 #: src/solution_fragment.cc:511
 #, fuzzy
-#| msgid "Leave the following dependencies unresolved:%n"
 msgid "%BLeave%b the following dependencies %Bunresolved%b:%n"
 msgstr "Aşağıdaki bağımlılıkları çözülmemiş bırak:%n"
 
@@ -7659,7 +7510,6 @@ msgstr ""
 
 #: src/ui.cc:1280
 #, fuzzy
-#| msgid "Press Return to continue."
 msgid "Press Return to continue, 'q' followed by Return to quit."
 msgstr "Devam etmek için Enter tuşuna basın."
 
@@ -7689,7 +7539,6 @@ msgstr ""
 
 #: src/ui.cc:1430
 #, fuzzy
-#| msgid "  %S*%N %s [version %s]%n"
 msgid "  %S*%N %s [version %s] %s%n"
 msgstr "  %S*%N %s [sürüm %s]%n"
 
@@ -7711,7 +7560,6 @@ msgstr "Yapılacak değişiklikleri görüntüle ve/veya değiştir"
 
 #: src/ui.cc:1541
 #, fuzzy
-#| msgid "No broken packages."
 msgid "Trying to fix broken packages..."
 msgstr "Kırık paket yok."
 
@@ -7764,7 +7612,6 @@ msgstr ""
 
 #: src/ui.cc:1810
 #, fuzzy
-#| msgid "Resolving dependencies..."
 msgid "Checking dependencies"
 msgstr "Bağımlılıklar çözüleniyor..."
 
@@ -7898,7 +7745,6 @@ msgstr "Bekleyen eylemleri ip^tal et"
 
 #: src/ui.cc:2554
 #, fuzzy
-#| msgid "Canc^el pending actions"
 msgid "Cancel all pending actions from this session"
 msgstr "Bekleyen eylemleri ip^tal et"
 
