@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude 0.4.11\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2017-04-19 00:01+0200\n"
+"POT-Creation-Date: 2017-06-11 01:21+0200\n"
 "PO-Revision-Date: 2012-06-03 12:23+0800\n"
 "Last-Translator: Javier Fernandez-Sanguino <jfs@debian.org>\n"
 "Language-Team: Debian-l10n-Spanish <debian-l10n-spanish@lists.debian.org>\n"
@@ -522,9 +522,6 @@ msgstr ""
 
 #: src/apt_options.cc:353
 #, fuzzy
-#| msgid ""
-#| "If this option is enabled, aptitude will display the status of ongoing "
-#| "downloads at the bottom of the screen, rather than opening a new view."
 msgid ""
 "If this option is enabled, aptitude will use the user's locale for messages "
 "and dates in the log file; otherwise the \"classic\" locale is used for this "
@@ -715,7 +712,6 @@ msgstr "Error interno: solución nula inesperada."
 
 #: src/broken_indicator.cc:375
 #, fuzzy
-#| msgid "Keep the following packages at their current version:"
 msgid "Keep all packages at their current version"
 msgstr "Mantener los paquetes siguientes en la versión actual:"
 
@@ -756,13 +752,11 @@ msgstr[1] "%d desactualizaciones"
 
 #: src/broken_indicator.cc:436
 #, fuzzy
-#| msgid "%s changes"
 msgid "no changes"
 msgstr "%s cambios"
 
 #: src/broken_indicator.cc:439
 #, fuzzy, c-format
-#| msgid "Actions"
 msgid "Actions: %F"
 msgstr "Acciones"
 
@@ -876,43 +870,43 @@ msgstr ""
 msgid "Setting package %s on hold\n"
 msgstr "«=» para bloquear paquetes"
 
-#: src/cmdline/cmdline_action.cc:448
+#: src/cmdline/cmdline_action.cc:449
 #, fuzzy, c-format
 msgid "Marking package %s as keep\n"
 msgstr "Actualizando la lista de paquetes"
 
-#: src/cmdline/cmdline_action.cc:458
+#: src/cmdline/cmdline_action.cc:460
 #, c-format
 msgid "Setting package %s as not on hold\n"
 msgstr ""
 
-#: src/cmdline/cmdline_action.cc:465
+#: src/cmdline/cmdline_action.cc:468
 #, fuzzy, c-format
 msgid "Package %s is not on hold\n"
 msgstr "Paquetes que dependen de %s"
 
-#: src/cmdline/cmdline_action.cc:471
+#: src/cmdline/cmdline_action.cc:474
 #, fuzzy, c-format
 msgid "Marking package %s as automatically installed\n"
 msgstr "«&M» para marcar paquetes como instalados automáticamente"
 
-#: src/cmdline/cmdline_action.cc:480
+#: src/cmdline/cmdline_action.cc:484
 #, fuzzy, c-format
 msgid "Unmarking package %s as automatically installed\n"
 msgstr "«&M» para marcar paquetes como instalados automáticamente"
 
-#: src/cmdline/cmdline_action.cc:490 src/cmdline/cmdline_action.cc:501
+#: src/cmdline/cmdline_action.cc:495 src/cmdline/cmdline_action.cc:506
 #: src/cmdline/cmdline_mark.cc:177 src/cmdline/cmdline_mark.cc:195
 #, fuzzy, c-format
 msgid "Marking version %s of package %s as forbidden\n"
 msgstr "Buscar nuevas versiones de los paquetes"
 
-#: src/cmdline/cmdline_action.cc:553
+#: src/cmdline/cmdline_action.cc:558
 #, c-format
 msgid "Note: selecting the task \"%s: %s\" for installation\n"
 msgstr "Nota: seleccionando la tarea \"%s: %s\" para la instalación\n"
 
-#: src/cmdline/cmdline_action.cc:583
+#: src/cmdline/cmdline_action.cc:588
 #, fuzzy, c-format
 msgid ""
 "You can only specify a package version with an 'install' command or a "
@@ -921,13 +915,13 @@ msgstr ""
 "Sólo puede especificar una versión de un paquete con una orden «install» o "
 "«forbid-version».\n"
 
-#: src/cmdline/cmdline_action.cc:592
+#: src/cmdline/cmdline_action.cc:597
 #, fuzzy, c-format
 msgid "You can only specify a package archive with an 'install' command\n"
 msgstr ""
 "Sólo puede especificar un archivo de un paquete con la orden «install».\n"
 
-#: src/cmdline/cmdline_action.cc:630
+#: src/cmdline/cmdline_action.cc:635
 #, fuzzy, c-format
 msgid ""
 "Couldn't find any package whose name is \"%s\", but there are %zu packages "
@@ -936,19 +930,19 @@ msgstr ""
 "No se puede encontrar el paquete \"%s\", y su nombre\n"
 "\"%s\" se encuentra en más de 40 paquetes.\n"
 
-#: src/cmdline/cmdline_action.cc:635 src/cmdline/cmdline_action.cc:667
+#: src/cmdline/cmdline_action.cc:640 src/cmdline/cmdline_action.cc:672
 #, c-format
 msgid "  (too many to show, the limit is %zu)\n"
 msgstr ""
 
-#: src/cmdline/cmdline_action.cc:659
+#: src/cmdline/cmdline_action.cc:664
 #, c-format
 msgid "Couldn't find any package whose name or description matched \"%s\"\n"
 msgstr ""
 "No se puede encontrar ningún paquete cuyo nombre o descripción coincida con "
 "\"%s\"\n"
 
-#: src/cmdline/cmdline_action.cc:662
+#: src/cmdline/cmdline_action.cc:667
 #, fuzzy, c-format
 msgid ""
 "Couldn't find any package matching \"%s\", but there are %zu packages which "
@@ -957,7 +951,7 @@ msgstr ""
 "No se puede encontrar ningún paquete que coincida con \"%s\", y más de 40\n"
 "paquetes contienen \"%s\" en su descripción.\n"
 
-#: src/cmdline/cmdline_action.cc:810
+#: src/cmdline/cmdline_action.cc:815
 #, c-format
 msgid "Bad action character '%c'\n"
 msgstr "Carácter de acción «%c» incorrecto\n"
@@ -974,7 +968,6 @@ msgstr "No se pudo interpretar el patrón %s"
 
 #: src/cmdline/cmdline_apt_proxy.cc:122 src/cmdline/cmdline_apt_proxy.cc:137
 #, fuzzy, c-format
-#| msgid "Failed to fetch %s: %s"
 msgid ""
 "Failed to execute:\n"
 "  '%s'"
@@ -982,7 +975,6 @@ msgstr "Se produjo un fallo al descargar %s: %s"
 
 #: src/cmdline/cmdline_apt_proxy.cc:125
 #, fuzzy, c-format
-#| msgid "waitpid() failed: %s"
 msgid "waitpid error: %d: '%s'"
 msgstr "falló waitpid(): %s"
 
@@ -1022,7 +1014,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_apt_proxy.cc:226
 #, fuzzy, c-format
-#| msgid "Reconfiguring %s\n"
 msgid ""
 "Executing '%s'\n"
 "\n"
@@ -1211,7 +1202,6 @@ msgstr "Olvidaría que paquetes son nuevos\n"
 
 #: src/cmdline/cmdline_mark.cc:85
 #, fuzzy
-#| msgid "Unexpected pattern argument following \"keep-all\""
 msgid "Unexpected argument following \"keep-all\""
 msgstr "Patrón de argumento inesperado después de \"keep-all\""
 
@@ -1233,7 +1223,6 @@ msgstr "E: La orden «%s» no toma argumentos\n"
 #: src/cmdline/cmdline_mark.cc:138 src/cmdline/cmdline_util.cc:893
 #: src/ui.cc:2095
 #, fuzzy, c-format
-#| msgid "No packages matched the pattern \"%ls\"."
 msgid "No packages match pattern \"%s\""
 msgstr "Ningún paquete concuerda con el patrón \"%ls\"."
 
@@ -2153,9 +2142,6 @@ msgstr "abierto: %zd; cerrado: %zd; diferido: %zd; conflicto: %zd"
 
 #: src/cmdline/cmdline_resolver.cc:808
 #, fuzzy, c-format
-#| msgid ""
-#| "Would resolve dependencies, but dependency resolution is disabled.\n"
-#| "   (%s::ProblemResolver::StepLimit = 0)\n"
 msgid ""
 "Would resolve dependencies, but dependency resolution is disabled.\n"
 "   (%s::ProblemResolver::StepLimit <= 0)\n"
@@ -3943,7 +3929,6 @@ msgstr ""
 
 #: src/generic/util/util.cc:515
 #, fuzzy, c-format
-#| msgid "Cannot open package hierarchy file %s"
 msgid "Problem creating temporary dir: %s\n"
 msgstr "No se puede abrir el fichero con la jerarquía de paquetes %s"
 
@@ -6706,10 +6691,6 @@ msgstr "Tareas"
 
 #: src/pkg_grouppolicy.cc:462
 #, fuzzy
-#| msgid ""
-#| "Security Updates\n"
-#| " Security updates for these packages are available from security.debian."
-#| "org."
 msgid ""
 "Security Updates\n"
 " Security updates for these packages are available from security.debian.org "
@@ -7149,15 +7130,11 @@ msgstr ""
 
 #: src/reason_fragment.cc:471
 #, fuzzy
-#| msgid "%B%s%b will be automatically removed because of dependency errors:"
 msgid "%B%s %s%b will be automatically removed because of dependency errors:"
 msgstr "%B%s%b se eliminará automáticamente por errores de dependencias:"
 
 #: src/reason_fragment.cc:476
 #, fuzzy
-#| msgid ""
-#| "%B%s%b will be automatically installed to satisfy the following "
-#| "dependencies:"
 msgid ""
 "%B%s %s%b will be automatically installed to satisfy the following "
 "dependencies:"
@@ -7167,9 +7144,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:483 src/reason_fragment.cc:498
 #, fuzzy
-#| msgid ""
-#| "%B%s%b cannot be upgraded now, but if it could be, it would still be held "
-#| "at version %B%s%b."
 msgid ""
 "%B%s %s%b cannot be upgraded now, but if it could be, it would still be held "
 "at version %B%s%b."
@@ -7179,9 +7153,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:488
 #, fuzzy
-#| msgid ""
-#| "%B%s%b will not be upgraded to version %B%s%b, to avoid breaking the "
-#| "following dependencies:"
 msgid ""
 "%B%s %s%b will not be upgraded to version %B%s%b, to avoid breaking the "
 "following dependencies:"
@@ -7191,39 +7162,31 @@ msgstr ""
 
 #: src/reason_fragment.cc:503
 #, fuzzy
-#| msgid "%B%s%b is currently installed."
 msgid "%B%s %s%b is currently installed."
 msgstr "%B%s%b está actualmente instalado."
 
 #: src/reason_fragment.cc:510
 #, fuzzy
-#| msgid "%B%s%b is not currently installed."
 msgid "%B%s %s%b is not currently installed."
 msgstr "%B%s%b no está instalado actualmente."
 
 #: src/reason_fragment.cc:519
 #, fuzzy
-#| msgid "Some dependencies of %B%s%b are not satisfied:"
 msgid "Some dependencies of %B%s %s%b are not satisfied:"
 msgstr "Algunas dependencias de %B%s%b no están satisfechas:"
 
 #: src/reason_fragment.cc:524
 #, fuzzy
-#| msgid "%B%s%b will be downgraded."
 msgid "%B%s %s%b will be downgraded."
 msgstr "se desactualizará %B%s%b."
 
 #: src/reason_fragment.cc:532
 #, fuzzy
-#| msgid "%B%s%b will not be upgraded to the forbidden version %B%s%b."
 msgid "%B%s %s%b will not be upgraded to the forbidden version %B%s%b."
 msgstr "No se actualizará %B%s%b a la versión prohibida %B%s%b."
 
 #: src/reason_fragment.cc:537
 #, fuzzy
-#| msgid ""
-#| "%B%s%b could be upgraded to version %B%s%b, but it is being held at "
-#| "version %B%s%b."
 msgid ""
 "%B%s %s%b could be upgraded to version %B%s%b, but it is being held at "
 "version %B%s%b."
@@ -7233,39 +7196,32 @@ msgstr ""
 
 #: src/reason_fragment.cc:545
 #, fuzzy
-#| msgid "%B%s%b will be re-installed."
 msgid "%B%s %s%b will be re-installed."
 msgstr "Se reinstalará %B%s%b."
 
 #: src/reason_fragment.cc:550
 #, fuzzy
-#| msgid "%B%s%b will be installed."
 msgid "%B%s %s%b will be installed."
 msgstr "Se instalará %B%s%b."
 
 #: src/reason_fragment.cc:555
 #, fuzzy
-#| msgid "%B%s%b will be removed."
 msgid "%B%s %s%b will be removed."
 msgstr "Se eliminará %B%s%b."
 
 #: src/reason_fragment.cc:561
 #, fuzzy
-#| msgid "%B%s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgid "%B%s %s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgstr "Se actualizará %B%s%b de la versión %B%s%b a la versión %B%s%b."
 
 #: src/reason_fragment.cc:569
 #, fuzzy
-#| msgid "%B%s%b is only partly installed; its installation will be completed."
 msgid "%B%s %s%b is only partly installed; its installation will be completed."
 msgstr ""
 "%B%s%B está ahora parcialmente instalado. Se completará su instalación."
 
 #: src/reason_fragment.cc:602
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on %B%s%b and will be broken by its removal:"
 msgid ""
 "The following packages depend on %B%s %s%b and will be broken by its removal:"
 msgstr ""
@@ -7273,15 +7229,11 @@ msgstr ""
 
 #: src/reason_fragment.cc:606
 #, fuzzy
-#| msgid "The following packages depend on %B%s%b and are broken:"
 msgid "The following packages depend on %B%s %s%b and are broken:"
 msgstr "Los siguientes paquetes dependen de %B%s%b y están rotos:"
 
 #: src/reason_fragment.cc:614
 #, fuzzy
-#| msgid ""
-#| "The following packages conflict with %B%s%b and will be broken by its "
-#| "installation:"
 msgid ""
 "The following packages conflict with %B%s %s%b and will be broken by its "
 "installation:"
@@ -7291,10 +7243,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:648
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b other than the "
-#| "currently installed version of %B%s%b, or conflict with the currently "
-#| "installed version:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b, or conflict with the currently "
@@ -7306,9 +7254,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:653
 #, fuzzy
-#| msgid ""
-#| "The following packages conflict with %B%s%b, or depend on a version of it "
-#| "which is not going to be installed."
 msgid ""
 "The following packages conflict with %B%s %s%b, or depend on a version of it "
 "which is not going to be installed."
@@ -7318,15 +7263,11 @@ msgstr ""
 
 #: src/reason_fragment.cc:658
 #, fuzzy
-#| msgid "The following packages conflict with %B%s%b:"
 msgid "The following packages conflict with %B%s %s%b:"
 msgstr "Los siguientes paquetes tienen conflictos con %B%s%b:"
 
 #: src/reason_fragment.cc:664
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b other than the "
-#| "currently installed version of %B%s%b:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b:"
@@ -7336,9 +7277,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:669
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b which is not going "
-#| "to be installed."
 msgid ""
 "The following packages depend on a version of %B%s %s%b which is not going "
 "to be installed."
@@ -7450,7 +7388,6 @@ msgstr "%BDesactualizar%b los paquetes siguientes:%n"
 
 #: src/solution_fragment.cc:511
 #, fuzzy
-#| msgid "Leave the following dependencies unresolved:%n"
 msgid "%BLeave%b the following dependencies %Bunresolved%b:%n"
 msgstr "Dejar las siguientes dependencias sin resolver:%n"
 
@@ -7823,7 +7760,6 @@ msgstr ""
 
 #: src/ui.cc:1280
 #, fuzzy
-#| msgid "Press Return to continue."
 msgid "Press Return to continue, 'q' followed by Return to quit."
 msgstr "Presione Enter para continuar."
 
@@ -7875,7 +7811,6 @@ msgstr "Ver y/o ajustar las acciones que se realizarán"
 
 #: src/ui.cc:1541
 #, fuzzy
-#| msgid "No broken packages."
 msgid "Trying to fix broken packages..."
 msgstr "Ningún paquete roto"
 
@@ -7930,7 +7865,6 @@ msgstr ""
 
 #: src/ui.cc:1810
 #, fuzzy
-#| msgid "Resolving dependencies..."
 msgid "Checking dependencies"
 msgstr "Resolviendo las dependencias..."
 

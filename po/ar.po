@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude_po\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2017-04-19 00:01+0200\n"
+"POT-Creation-Date: 2017-06-11 01:21+0200\n"
 "PO-Revision-Date: 2012-06-03 13:13+0800\n"
 "Last-Translator: Ossama M. Khayat <okhayat@yahoo.com>\n"
 "Language-Team: Arabic <support@arabeyes.org>\n"
@@ -561,7 +561,6 @@ msgstr "خطأ داخلي: حلّ غير فارغ متوقع."
 
 #: src/broken_indicator.cc:375
 #, fuzzy
-#| msgid "Keep the following packages at their current version:"
 msgid "Keep all packages at their current version"
 msgstr "إبقاء الحزم التالية بنسختها الحالية:"
 
@@ -612,13 +611,11 @@ msgstr[3] "%d تثبيط"
 
 #: src/broken_indicator.cc:436
 #, fuzzy
-#| msgid "%s changes"
 msgid "no changes"
 msgstr "%s تغييرات"
 
 #: src/broken_indicator.cc:439
 #, fuzzy, c-format
-#| msgid "Actions"
 msgid "Actions: %F"
 msgstr "أعمال"
 
@@ -729,43 +726,43 @@ msgstr "الحزمة %s غير قابلة للترقية، لا يمكن منع 
 msgid "Setting package %s on hold\n"
 msgstr "'=' لوضع الحزم قيد الإبقاء"
 
-#: src/cmdline/cmdline_action.cc:448
+#: src/cmdline/cmdline_action.cc:449
 #, fuzzy, c-format
 msgid "Marking package %s as keep\n"
 msgstr "تحديث لوائح الحزم"
 
-#: src/cmdline/cmdline_action.cc:458
+#: src/cmdline/cmdline_action.cc:460
 #, c-format
 msgid "Setting package %s as not on hold\n"
 msgstr ""
 
-#: src/cmdline/cmdline_action.cc:465
+#: src/cmdline/cmdline_action.cc:468
 #, fuzzy, c-format
 msgid "Package %s is not on hold\n"
 msgstr "الحزم التي تعتمد على %s"
 
-#: src/cmdline/cmdline_action.cc:471
+#: src/cmdline/cmdline_action.cc:474
 #, fuzzy, c-format
 msgid "Marking package %s as automatically installed\n"
 msgstr "'&M' لتحديد الحزم بالتثبيت التلقائي"
 
-#: src/cmdline/cmdline_action.cc:480
+#: src/cmdline/cmdline_action.cc:484
 #, fuzzy, c-format
 msgid "Unmarking package %s as automatically installed\n"
 msgstr "'&M' لتحديد الحزم بالتثبيت التلقائي"
 
-#: src/cmdline/cmdline_action.cc:490 src/cmdline/cmdline_action.cc:501
+#: src/cmdline/cmdline_action.cc:495 src/cmdline/cmdline_action.cc:506
 #: src/cmdline/cmdline_mark.cc:177 src/cmdline/cmdline_mark.cc:195
 #, fuzzy, c-format
 msgid "Marking version %s of package %s as forbidden\n"
 msgstr "التحقق من وجود نسخ جديدة من الحزم"
 
-#: src/cmdline/cmdline_action.cc:553
+#: src/cmdline/cmdline_action.cc:558
 #, c-format
 msgid "Note: selecting the task \"%s: %s\" for installation\n"
 msgstr "ملاحظة: تحديد المهمة \"%s: %s\" للتثبيت\n"
 
-#: src/cmdline/cmdline_action.cc:583
+#: src/cmdline/cmdline_action.cc:588
 #, fuzzy, c-format
 msgid ""
 "You can only specify a package version with an 'install' command or a "
@@ -773,12 +770,12 @@ msgid ""
 msgstr ""
 "يمكنك تحديد نسخة حزمة فقط مع أمر التثبيت 'install' أو أمر 'forbid-version'\n"
 
-#: src/cmdline/cmdline_action.cc:592
+#: src/cmdline/cmdline_action.cc:597
 #, fuzzy, c-format
 msgid "You can only specify a package archive with an 'install' command\n"
 msgstr "يمكنك تحديد أرشيف حزمة فقط مع أمر التثبيت 'install'\n"
 
-#: src/cmdline/cmdline_action.cc:630
+#: src/cmdline/cmdline_action.cc:635
 #, fuzzy, c-format
 msgid ""
 "Couldn't find any package whose name is \"%s\", but there are %zu packages "
@@ -787,17 +784,17 @@ msgstr ""
 "تعذر العثور على \"%s\"، وأكثر من 40\n"
 "حزمة تحتوي %s\" في اسمها.\n"
 
-#: src/cmdline/cmdline_action.cc:635 src/cmdline/cmdline_action.cc:667
+#: src/cmdline/cmdline_action.cc:640 src/cmdline/cmdline_action.cc:672
 #, c-format
 msgid "  (too many to show, the limit is %zu)\n"
 msgstr ""
 
-#: src/cmdline/cmdline_action.cc:659
+#: src/cmdline/cmdline_action.cc:664
 #, c-format
 msgid "Couldn't find any package whose name or description matched \"%s\"\n"
 msgstr "تعذر العثور على أيّة حزمة يطابق اسمها أو وصفها \"%s\"\n"
 
-#: src/cmdline/cmdline_action.cc:662
+#: src/cmdline/cmdline_action.cc:667
 #, fuzzy, c-format
 msgid ""
 "Couldn't find any package matching \"%s\", but there are %zu packages which "
@@ -806,7 +803,7 @@ msgstr ""
 "تعذر العثور على أيّة حزمة تطابق \"%s\"، وأكثر من 40\n"
 "حزمة تحتوي %s\" في وصفها.\n"
 
-#: src/cmdline/cmdline_action.cc:810
+#: src/cmdline/cmdline_action.cc:815
 #, c-format
 msgid "Bad action character '%c'\n"
 msgstr "حرف عمل سيء '%c'\n"
@@ -869,7 +866,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_apt_proxy.cc:226
 #, fuzzy, c-format
-#| msgid "Reconfiguring %s\n"
 msgid ""
 "Executing '%s'\n"
 "\n"
@@ -1048,7 +1044,6 @@ msgstr "قد ينسى ما هي الحزم الجديدة\n"
 
 #: src/cmdline/cmdline_mark.cc:85
 #, fuzzy
-#| msgid "Unexpected pattern argument following \"keep-all\""
 msgid "Unexpected argument following \"keep-all\""
 msgstr "مُعطى صيغة غير متوقع يتبع \"إبقاء الكل\""
 
@@ -1070,7 +1065,6 @@ msgstr "خطأ: أمر التحديث لا يتطلّب أي مُعطيات\n"
 #: src/cmdline/cmdline_mark.cc:138 src/cmdline/cmdline_util.cc:893
 #: src/ui.cc:2095
 #, fuzzy, c-format
-#| msgid "No packages matched the pattern \"%ls\"."
 msgid "No packages match pattern \"%s\""
 msgstr "لم تطابق أية حزم الصيغة \"%ls\"."
 
@@ -3711,7 +3705,6 @@ msgstr ""
 
 #: src/generic/util/util.cc:515
 #, fuzzy, c-format
-#| msgid "Cannot open package hierarchy file %s"
 msgid "Problem creating temporary dir: %s\n"
 msgstr "تعذر فتح ملف هيكلة الحزمة %s"
 
@@ -6502,10 +6495,6 @@ msgstr "المهام"
 
 #: src/pkg_grouppolicy.cc:462
 #, fuzzy
-#| msgid ""
-#| "Security Updates\n"
-#| " Security updates for these packages are available from security.debian."
-#| "org."
 msgid ""
 "Security Updates\n"
 " Security updates for these packages are available from security.debian.org "
@@ -6928,15 +6917,11 @@ msgstr ""
 
 #: src/reason_fragment.cc:471
 #, fuzzy
-#| msgid "%B%s%b will be automatically removed because of dependency errors:"
 msgid "%B%s %s%b will be automatically removed because of dependency errors:"
 msgstr "ستتم إزالة %B%s%b تلقائياً بسبب أخطاء في المعتمدات:"
 
 #: src/reason_fragment.cc:476
 #, fuzzy
-#| msgid ""
-#| "%B%s%b will be automatically installed to satisfy the following "
-#| "dependencies:"
 msgid ""
 "%B%s %s%b will be automatically installed to satisfy the following "
 "dependencies:"
@@ -6944,9 +6929,6 @@ msgstr "سيتم تثبيت %B%s%b تلقائياً لإرضاء المعتمد�
 
 #: src/reason_fragment.cc:483 src/reason_fragment.cc:498
 #, fuzzy
-#| msgid ""
-#| "%B%s%b cannot be upgraded now, but if it could be, it would still be held "
-#| "at version %B%s%b."
 msgid ""
 "%B%s %s%b cannot be upgraded now, but if it could be, it would still be held "
 "at version %B%s%b."
@@ -6955,9 +6937,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:488
 #, fuzzy
-#| msgid ""
-#| "%B%s%b will not be upgraded to version %B%s%b, to avoid breaking the "
-#| "following dependencies:"
 msgid ""
 "%B%s %s%b will not be upgraded to version %B%s%b, to avoid breaking the "
 "following dependencies:"
@@ -6965,39 +6944,31 @@ msgstr "لن تتم ترقية %B%s%b إلى النسخة %B%s%b لتفادي ع
 
 #: src/reason_fragment.cc:503
 #, fuzzy
-#| msgid "%B%s%b is currently installed."
 msgid "%B%s %s%b is currently installed."
 msgstr "%B%s%b مثبت حالياً."
 
 #: src/reason_fragment.cc:510
 #, fuzzy
-#| msgid "%B%s%b is not currently installed."
 msgid "%B%s %s%b is not currently installed."
 msgstr "%B%s%b غير مثبت حالياً."
 
 #: src/reason_fragment.cc:519
 #, fuzzy
-#| msgid "Some dependencies of %B%s%b are not satisfied:"
 msgid "Some dependencies of %B%s %s%b are not satisfied:"
 msgstr "لم يتم إرضاء بعض معتمدات %B%s%b:"
 
 #: src/reason_fragment.cc:524
 #, fuzzy
-#| msgid "%B%s%b will be downgraded."
 msgid "%B%s %s%b will be downgraded."
 msgstr "سيتم تثبيط %B%s%b."
 
 #: src/reason_fragment.cc:532
 #, fuzzy
-#| msgid "%B%s%b will not be upgraded to the forbidden version %B%s%b."
 msgid "%B%s %s%b will not be upgraded to the forbidden version %B%s%b."
 msgstr "لن تتم ترقية %B%s%b إلى النسخة المحظورة %B%s%b."
 
 #: src/reason_fragment.cc:537
 #, fuzzy
-#| msgid ""
-#| "%B%s%b could be upgraded to version %B%s%b, but it is being held at "
-#| "version %B%s%b."
 msgid ""
 "%B%s %s%b could be upgraded to version %B%s%b, but it is being held at "
 "version %B%s%b."
@@ -7006,25 +6977,21 @@ msgstr ""
 
 #: src/reason_fragment.cc:545
 #, fuzzy
-#| msgid "%B%s%b will be re-installed."
 msgid "%B%s %s%b will be re-installed."
 msgstr "ستتم إعادة تثبيت %B%s%b."
 
 #: src/reason_fragment.cc:550
 #, fuzzy
-#| msgid "%B%s%b will be installed."
 msgid "%B%s %s%b will be installed."
 msgstr "سيتم تثبيت %B%s%b."
 
 #: src/reason_fragment.cc:555
 #, fuzzy
-#| msgid "%B%s%b will be removed."
 msgid "%B%s %s%b will be removed."
 msgstr "ستتم إزالة %B%s%b."
 
 #: src/reason_fragment.cc:561
 #, fuzzy
-#| msgid "%B%s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgid "%B%s %s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgstr "ستتم ترقية %B%s%b من النسخة %B%s%b إلى النسخة %B%s%b."
 
@@ -7035,23 +7002,17 @@ msgstr "%s غير مثبتة حالياً، لذا لن يتم تثبيتها م
 
 #: src/reason_fragment.cc:602
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on %B%s%b and will be broken by its removal:"
 msgid ""
 "The following packages depend on %B%s %s%b and will be broken by its removal:"
 msgstr "الحزم التالية تعتمد على %B%s%b وستعطب بإزالته:"
 
 #: src/reason_fragment.cc:606
 #, fuzzy
-#| msgid "The following packages depend on %B%s%b and are broken:"
 msgid "The following packages depend on %B%s %s%b and are broken:"
 msgstr "الحزم التالية تعتمد على %B%s%b وهي معطوبة:"
 
 #: src/reason_fragment.cc:614
 #, fuzzy
-#| msgid ""
-#| "The following packages conflict with %B%s%b and will be broken by its "
-#| "installation:"
 msgid ""
 "The following packages conflict with %B%s %s%b and will be broken by its "
 "installation:"
@@ -7059,10 +7020,6 @@ msgstr "الحزم التالية تتعارض مع %B%s%b وستعطب بتثب
 
 #: src/reason_fragment.cc:648
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b other than the "
-#| "currently installed version of %B%s%b, or conflict with the currently "
-#| "installed version:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b, or conflict with the currently "
@@ -7073,9 +7030,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:653
 #, fuzzy
-#| msgid ""
-#| "The following packages conflict with %B%s%b, or depend on a version of it "
-#| "which is not going to be installed."
 msgid ""
 "The following packages conflict with %B%s %s%b, or depend on a version of it "
 "which is not going to be installed."
@@ -7083,15 +7037,11 @@ msgstr "الحزم التالية تتعارض مع %B%s%b،أو تعتمد عل
 
 #: src/reason_fragment.cc:658
 #, fuzzy
-#| msgid "The following packages conflict with %B%s%b:"
 msgid "The following packages conflict with %B%s %s%b:"
 msgstr "الحزم التالية تتعارض مع %B%s%b:"
 
 #: src/reason_fragment.cc:664
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b other than the "
-#| "currently installed version of %B%s%b:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b:"
@@ -7100,9 +7050,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:669
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b which is not going "
-#| "to be installed."
 msgid ""
 "The following packages depend on a version of %B%s %s%b which is not going "
 "to be installed."
@@ -7207,7 +7154,6 @@ msgstr "%Bتثبيط%b الحزم التالية:%n"
 
 #: src/solution_fragment.cc:511
 #, fuzzy
-#| msgid "Leave the following dependencies unresolved:%n"
 msgid "%BLeave%b the following dependencies %Bunresolved%b:%n"
 msgstr "ترك المعتمدات التالية غير محلولة:%n"
 
@@ -7573,7 +7519,6 @@ msgstr ""
 
 #: src/ui.cc:1280
 #, fuzzy
-#| msgid "Press Return to continue."
 msgid "Press Return to continue, 'q' followed by Return to quit."
 msgstr "إضغط زر الإدخال للاستمرار."
 
@@ -7623,7 +7568,6 @@ msgstr "عرض و/أو تعديل الأعمال التي ستتم"
 
 #: src/ui.cc:1541
 #, fuzzy
-#| msgid "No broken packages."
 msgid "Trying to fix broken packages..."
 msgstr "ليست هناك حزم معطوبة"
 
@@ -7673,7 +7617,6 @@ msgstr ""
 
 #: src/ui.cc:1810
 #, fuzzy
-#| msgid "Resolving dependencies..."
 msgid "Checking dependencies"
 msgstr "إرضاء المعتمدات..."
 

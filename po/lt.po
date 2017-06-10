@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude_lt\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2017-04-19 00:01+0200\n"
+"POT-Creation-Date: 2017-06-11 01:21+0200\n"
 "PO-Revision-Date: 2012-06-03 12:27+0800\n"
 "Last-Translator: Darius Žitkevičius <skystis@gmail.com>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -362,7 +362,6 @@ msgstr ""
 
 #: src/apt_options.cc:294
 #, fuzzy
-#| msgid "Remove obsolete package files after downloading new package lists"
 msgid "Remove all package files after successful operations (e.g. install)"
 msgstr "Gavus naują paketų sąrašą, pašalinti pasenusių paketų bylas"
 
@@ -483,9 +482,6 @@ msgstr ""
 
 #: src/apt_options.cc:353
 #, fuzzy
-#| msgid ""
-#| "If this option is enabled, aptitude will display the status of ongoing "
-#| "downloads at the bottom of the screen, rather than opening a new view."
 msgid ""
 "If this option is enabled, aptitude will use the user's locale for messages "
 "and dates in the log file; otherwise the \"classic\" locale is used for this "
@@ -664,7 +660,6 @@ msgstr "Vidinė klaida: netikėtas tuščias sprendimas."
 
 #: src/broken_indicator.cc:375
 #, fuzzy
-#| msgid "Keep the following packages at their current version:"
 msgid "Keep all packages at their current version"
 msgstr "Palikti šių paketu dabartinesversijas:"
 
@@ -710,33 +705,26 @@ msgstr[2] "%d pasendintų"
 
 #: src/broken_indicator.cc:436
 #, fuzzy
-#| msgid "%s changes"
 msgid "no changes"
 msgstr "%s pakeitimų"
 
 #: src/broken_indicator.cc:439
 #, fuzzy, c-format
-#| msgid "Actions"
 msgid "Actions: %F"
 msgstr "Veiksmai"
 
 #: src/cmdline/cmdline_action.cc:63
 #, fuzzy, c-format
-#| msgid "Unable to find the source package for \"%s\".\n"
 msgid "Unable to find the source package for \"%s\"\n"
 msgstr "Paketui „%s“ nėra išeities tektų paketo.\n"
 
 #: src/cmdline/cmdline_action.cc:223
 #, fuzzy, c-format
-#| msgid "Unable to satisfy the build-depends: %s.\n"
 msgid "Unable to satisfy the build-depends: %s\n"
 msgstr "Nepavyko patenkinti build-depends: %s.\n"
 
 #: src/cmdline/cmdline_action.cc:260
 #, fuzzy, c-format
-#| msgid ""
-#| "Note: \"%s\", providing the virtual package\n"
-#| "      \"%s\", is already installed.\n"
 msgid ""
 "Note: \"%s\", providing the virtual package \"%s\", is already installed\n"
 msgstr ""
@@ -745,9 +733,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_action.cc:268
 #, fuzzy, c-format
-#| msgid ""
-#| "Note: \"%s\", providing the virtual package\n"
-#| "      \"%s\", is already going to be installed.\n"
 msgid ""
 "Note: \"%s\", providing the virtual package \"%s\", is already going to be "
 "installed\n"
@@ -757,9 +742,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_action.cc:291 src/pkg_item.cc:144
 #, fuzzy, c-format
-#| msgid ""
-#| "\"%s\" exists in the package database, but it is not a\n"
-#| "real package and no package provides it.\n"
 msgid ""
 "\"%s\" exists in the package database, but it is not a real package and no "
 "package provides it\n"
@@ -779,9 +761,6 @@ msgstr "Jūs turite pasirinkti vieną įdiegimui.\n"
 
 #: src/cmdline/cmdline_action.cc:310
 #, fuzzy, c-format
-#| msgid ""
-#| "Note: selecting \"%s\" instead of the\n"
-#| "      virtual package \"%s\"\n"
 msgid "Note: selecting \"%s\" instead of the virtual package \"%s\"\n"
 msgstr ""
 "Dėmesio: parenkant „%s“, o ne\n"
@@ -806,7 +785,6 @@ msgstr "tinkama paketo %s versija (%s) jau įdiegta\n"
 
 #: src/cmdline/cmdline_action.cc:361
 #, fuzzy, c-format
-#| msgid "%s is not currently installed, so it will not be reinstalled.\n"
 msgid "%s is not currently installed, so it will not be reinstalled\n"
 msgstr "%s šiuo metu nėra įdiegtas, todėl negali būti įdiegtas iš naujo.\n"
 
@@ -842,47 +820,44 @@ msgstr "Paketas %s neatnaujinamas, todėl negaliu uždrausti jo atnaujinimo\n"
 msgid "Setting package %s on hold\n"
 msgstr "'=' kad užlaykyti paketą"
 
-#: src/cmdline/cmdline_action.cc:448
+#: src/cmdline/cmdline_action.cc:449
 #, fuzzy, c-format
 msgid "Marking package %s as keep\n"
 msgstr "Atnaujinamas paketų sąrašas"
 
-#: src/cmdline/cmdline_action.cc:458
+#: src/cmdline/cmdline_action.cc:460
 #, c-format
 msgid "Setting package %s as not on hold\n"
 msgstr ""
 
-#: src/cmdline/cmdline_action.cc:465
+#: src/cmdline/cmdline_action.cc:468
 #, fuzzy, c-format
 msgid "Package %s is not on hold\n"
 msgstr "Paketai, kuriems reikia %s"
 
-#: src/cmdline/cmdline_action.cc:471
+#: src/cmdline/cmdline_action.cc:474
 #, fuzzy, c-format
 msgid "Marking package %s as automatically installed\n"
 msgstr "'&M' kad pažymėti kaip automatiška įdiegtus"
 
-#: src/cmdline/cmdline_action.cc:480
+#: src/cmdline/cmdline_action.cc:484
 #, fuzzy, c-format
 msgid "Unmarking package %s as automatically installed\n"
 msgstr "'&M' kad pažymėti kaip automatiška įdiegtus"
 
-#: src/cmdline/cmdline_action.cc:490 src/cmdline/cmdline_action.cc:501
+#: src/cmdline/cmdline_action.cc:495 src/cmdline/cmdline_action.cc:506
 #: src/cmdline/cmdline_mark.cc:177 src/cmdline/cmdline_mark.cc:195
 #, fuzzy, c-format
 msgid "Marking version %s of package %s as forbidden\n"
 msgstr "Ieškoti naujų paketų versijų"
 
-#: src/cmdline/cmdline_action.cc:553
+#: src/cmdline/cmdline_action.cc:558
 #, c-format
 msgid "Note: selecting the task \"%s: %s\" for installation\n"
 msgstr "Dėmesio: parenku užduotį „%s: %s“ diegimui\n"
 
-#: src/cmdline/cmdline_action.cc:583
+#: src/cmdline/cmdline_action.cc:588
 #, fuzzy, c-format
-#| msgid ""
-#| "You can only specify a package version with an 'install' command or a "
-#| "'forbid-version' command.\n"
 msgid ""
 "You can only specify a package version with an 'install' command or a "
 "'forbid-version' command\n"
@@ -890,13 +865,12 @@ msgstr ""
 "Su komanda 'install' galima nurodyti tik paketo versiją arba komandą 'forbid-"
 "version'.\n"
 
-#: src/cmdline/cmdline_action.cc:592
+#: src/cmdline/cmdline_action.cc:597
 #, fuzzy, c-format
-#| msgid "You can only specify a package archive with an 'install' command.\n"
 msgid "You can only specify a package archive with an 'install' command\n"
 msgstr "Naudojant komandą „install“ galima nurodyti tik paketo archyvą\n"
 
-#: src/cmdline/cmdline_action.cc:630
+#: src/cmdline/cmdline_action.cc:635
 #, fuzzy, c-format
 msgid ""
 "Couldn't find any package whose name is \"%s\", but there are %zu packages "
@@ -905,19 +879,19 @@ msgstr ""
 "Negaliu rasti paketo „%s“, daugiau nei 40\n"
 "paketų pavadinime turi frazę „%s“.\n"
 
-#: src/cmdline/cmdline_action.cc:635 src/cmdline/cmdline_action.cc:667
+#: src/cmdline/cmdline_action.cc:640 src/cmdline/cmdline_action.cc:672
 #, c-format
 msgid "  (too many to show, the limit is %zu)\n"
 msgstr ""
 
-#: src/cmdline/cmdline_action.cc:659
+#: src/cmdline/cmdline_action.cc:664
 #, c-format
 msgid "Couldn't find any package whose name or description matched \"%s\"\n"
 msgstr ""
 "Negaliu rasti nei vieno paketo, kurio pavadinime arba apraše būtų frazė "
 "„%s“\n"
 
-#: src/cmdline/cmdline_action.cc:662
+#: src/cmdline/cmdline_action.cc:667
 #, fuzzy, c-format
 msgid ""
 "Couldn't find any package matching \"%s\", but there are %zu packages which "
@@ -926,7 +900,7 @@ msgstr ""
 "Negaliu rasti paketo su fraze „%s“, ir yra daugiau nei 40\n"
 "paketų kurių apraše yra frazė „%s“.\n"
 
-#: src/cmdline/cmdline_action.cc:810
+#: src/cmdline/cmdline_action.cc:815
 #, c-format
 msgid "Bad action character '%c'\n"
 msgstr "Netinkamas veiksmo simbolis „%c“\n"
@@ -943,7 +917,6 @@ msgstr "Nepavyko interpretuoti derinio %s"
 
 #: src/cmdline/cmdline_apt_proxy.cc:122 src/cmdline/cmdline_apt_proxy.cc:137
 #, fuzzy, c-format
-#| msgid "Failed to fetch %s: %s"
 msgid ""
 "Failed to execute:\n"
 "  '%s'"
@@ -951,7 +924,6 @@ msgstr "Nepavyko gauti %s: %s"
 
 #: src/cmdline/cmdline_apt_proxy.cc:125
 #, fuzzy, c-format
-#| msgid "waitpid() failed: %s"
 msgid "waitpid error: %d: '%s'"
 msgstr "waitpid() nepavyko: %s"
 
@@ -991,7 +963,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_apt_proxy.cc:226
 #, fuzzy, c-format
-#| msgid "Reconfiguring %s\n"
 msgid ""
 "Executing '%s'\n"
 "\n"
@@ -1098,7 +1069,6 @@ msgstr ""
 
 #: src/cmdline/cmdline_do_action.cc:367
 #, fuzzy, c-format
-#| msgid "Unable to open %s to log actions"
 msgid "Unable to apply some actions, aborting\n"
 msgstr "Negaliu atidaryti %s žurnalui"
 
@@ -1176,7 +1146,6 @@ msgstr "Turėčiau užmiršti kurie paketai yra nauji\n"
 
 #: src/cmdline/cmdline_mark.cc:85
 #, fuzzy
-#| msgid "Unexpected pattern argument following \"keep-all\""
 msgid "Unexpected argument following \"keep-all\""
 msgstr "Netikėtas argumentų derinys po „keep-all“"
 
@@ -1198,13 +1167,11 @@ msgstr "E: Komanda %s nenaudoja jokių argumentų\n"
 #: src/cmdline/cmdline_mark.cc:138 src/cmdline/cmdline_util.cc:893
 #: src/ui.cc:2095
 #, fuzzy, c-format
-#| msgid "No packages matched the pattern \"%ls\"."
 msgid "No packages match pattern \"%s\""
 msgstr "Nei vienas paketas neatitiko derinio „%ls“."
 
 #: src/cmdline/cmdline_mark.cc:161
 #, fuzzy, c-format
-#| msgid "Couldn't parse column definition"
 msgid "Could not parse version for %s: %s\n"
 msgstr "Nepavyko interpretuoti stulpelio aprašymo"
 
@@ -1383,7 +1350,6 @@ msgstr "Norėdami tęsti parašykite frazę „%s“:\n"
 
 #: src/cmdline/cmdline_prompt.cc:475
 #, fuzzy, c-format
-#| msgid "To continue, type the phrase \"%s\":\n"
 msgid "To continue, type the phrase \"%s\" (or: \"%s\"):\n"
 msgstr "Norėdami tęsti parašykite frazę „%s“:\n"
 
@@ -1450,14 +1416,12 @@ msgstr "Norėdami tęsti parašykite frazę „%s“; norėdami sustoti įveskit
 
 #: src/cmdline/cmdline_prompt.cc:582
 #, fuzzy, c-format
-#| msgid "To continue, enter \"%s\"; to abort, enter \"%s\": "
 msgid ""
 "To continue, enter \"%s\" (or \"%s\"); to abort, enter \"%s\" (or \"%s\"): "
 msgstr "Norėdami tęsti parašykite frazę „%s“; norėdami sustoti įveskite „%s“: "
 
 #: src/cmdline/cmdline_prompt.cc:605
 #, fuzzy, c-format
-#| msgid "Unrecognized tasks"
 msgid "Unrecognized input\n"
 msgstr "Neatpažinti darbai"
 
@@ -2094,9 +2058,6 @@ msgstr "atidarytų: %zd; uždarytų: %zd; atidėtų: %zd; konfliktų: %zd"
 
 #: src/cmdline/cmdline_resolver.cc:808
 #, fuzzy, c-format
-#| msgid ""
-#| "Would resolve dependencies, but dependency resolution is disabled.\n"
-#| "   (%s::ProblemResolver::StepLimit = 0)\n"
 msgid ""
 "Would resolve dependencies, but dependency resolution is disabled.\n"
 "   (%s::ProblemResolver::StepLimit <= 0)\n"
@@ -2196,7 +2157,6 @@ msgstr "%s iconv nepavyko.\n"
 
 #: src/cmdline/cmdline_search.cc:237 src/cmdline/cmdline_versions.cc:597
 #, fuzzy, c-format
-#| msgid "Couldn't parse column definition"
 msgid "%s: Could not parse column definitions: '%ls'\n"
 msgstr "Nepavyko interpretuoti stulpelio aprašymo"
 
@@ -2207,19 +2167,16 @@ msgstr "paieška: Jūs turite įvesti bent vieną paieškos žodį\n"
 
 #: src/cmdline/cmdline_show_broken.cc:38
 #, fuzzy, c-format
-#| msgid "but %s is to be installed."
 msgid "but %s is to be installed"
 msgstr "tačiau %s bus įdiegtas"
 
 #: src/cmdline/cmdline_show_broken.cc:41
 #, fuzzy, c-format
-#| msgid "but %s is installed and it is kept back."
 msgid "but %s is installed and it is kept back"
 msgstr "tačiau %s įdiegtas ir jo atnaujinimas sulaikomas"
 
 #: src/cmdline/cmdline_show_broken.cc:44
 #, fuzzy, c-format
-#| msgid "but %s is installed."
 msgid "but %s is installed"
 msgstr "tačiau %s yra įdiegtas."
 
@@ -2791,19 +2748,16 @@ msgstr ""
 
 #: src/cmdline/cmdline_why.cc:1234
 #, fuzzy
-#| msgid "%B%s%b is not currently installed."
 msgid "Not currently installed\n"
 msgstr "%B%s%b šiuo metu nėra įdiegtas."
 
 #: src/cmdline/cmdline_why.cc:1239
 #, fuzzy, c-format
-#| msgid "No candidate version found for %s\n"
 msgid "The candidate version %s has priority %s\n"
 msgstr "Nėra tinkamos versijos paketui %s\n"
 
 #: src/cmdline/cmdline_why.cc:1244
 #, fuzzy, c-format
-#| msgid "No longer requiring the removal of %s"
 msgid "No dependencies require to remove %s\n"
 msgstr "%s pašalinimas nebėra būtinas"
 
@@ -2823,7 +2777,6 @@ msgstr "Nepavyko interpretuoti kai kurių derinių."
 
 #: src/cmdline/cmdline_why.cc:1371
 #, fuzzy
-#| msgid "Unable to parse some match patterns."
 msgid "Unable to parse the default match patterns."
 msgstr "Nepavyko interpretuoti kai kurių derinių."
 
@@ -3022,7 +2975,6 @@ msgstr ""
 
 #: src/generic/apt/aptcache.cc:1269 src/generic/apt/aptcache.cc:1305
 #, fuzzy
-#| msgid "Cannot open Aptitude state file"
 msgid "Cannot remove aptitude within aptitude"
 msgstr "Negaliu atidaryti Aptitude būsenos bylos"
 
@@ -3874,7 +3826,6 @@ msgstr ""
 
 #: src/generic/util/util.cc:515
 #, fuzzy, c-format
-#| msgid "Cannot open package hierarchy file %s"
 msgid "Problem creating temporary dir: %s\n"
 msgstr "Negaliu atidaryti paketo hierarchijos bylos %s"
 
@@ -5696,7 +5647,6 @@ msgstr "Negaliu interpretuoti išdėstymo: stulpelio aprašyme koduotės klaida"
 
 #: src/load_pkgview.cc:106
 #, fuzzy
-#| msgid "Couldn't parse layout: encoding error in column descriptor"
 msgid "Couldn't parse layout: error parsing column definitions"
 msgstr "Negaliu interpretuoti išdėstymo: stulpelio aprašyme koduotės klaida"
 
@@ -6633,13 +6583,11 @@ msgstr ""
 
 #: src/pkg_columnizer.cc:417
 #, fuzzy, c-format
-#| msgid "DL Size: %sB"
 msgid "DL: %sB/%sB"
 msgstr "Gauti: %sB"
 
 #: src/pkg_columnizer.cc:423
 #, fuzzy, c-format
-#| msgid "DL Size: %sB"
 msgid "DL: %sB"
 msgstr "Gauti: %sB"
 
@@ -6673,10 +6621,6 @@ msgstr "Užduotys"
 
 #: src/pkg_grouppolicy.cc:462
 #, fuzzy
-#| msgid ""
-#| "Security Updates\n"
-#| " Security updates for these packages are available from security.debian."
-#| "org."
 msgid ""
 "Security Updates\n"
 " Security updates for these packages are available from security.debian.org "
@@ -6876,7 +6820,6 @@ msgstr ""
 
 #: src/pkg_item.cc:154
 #, fuzzy, c-format
-#| msgid "\"%s\" is a virtual package provided by:\n"
 msgid ""
 "\"%s\" is a virtual package provided by:\n"
 "\n"
@@ -7034,7 +6977,6 @@ msgstr "Nekeistas"
 
 #: src/reason_fragment.cc:77
 #, fuzzy
-#| msgid "downgraded"
 msgid "downgrade"
 msgstr "pasendinta"
 
@@ -7097,9 +7039,6 @@ msgstr "Pažymėjus paketą, šioje vietoje atsiras jo būsenos aprašymas."
 
 #: src/reason_fragment.cc:466
 #, fuzzy
-#| msgid ""
-#| "%B%s%b was installed automatically;  it is being removed because all of "
-#| "the packages which depend upon it are being removed:"
 msgid ""
 "%B%s %s%b was installed automatically; it is being removed because all of "
 "the packages which depend upon it are being removed:"
@@ -7109,16 +7048,12 @@ msgstr ""
 
 #: src/reason_fragment.cc:471
 #, fuzzy
-#| msgid "%B%s%b will be automatically removed because of dependency errors:"
 msgid "%B%s %s%b will be automatically removed because of dependency errors:"
 msgstr ""
 "%B%s%b bus automatiškai pašalintas, nes trūksta jam reikalingų paketų: "
 
 #: src/reason_fragment.cc:476
 #, fuzzy
-#| msgid ""
-#| "%B%s%b will be automatically installed to satisfy the following "
-#| "dependencies:"
 msgid ""
 "%B%s %s%b will be automatically installed to satisfy the following "
 "dependencies:"
@@ -7126,9 +7061,6 @@ msgstr "%B%s%b bus automatiškai įdiegtas, nes jis reikalingas paketams: "
 
 #: src/reason_fragment.cc:483 src/reason_fragment.cc:498
 #, fuzzy
-#| msgid ""
-#| "%B%s%b cannot be upgraded now, but if it could be, it would still be held "
-#| "at version %B%s%b."
 msgid ""
 "%B%s %s%b cannot be upgraded now, but if it could be, it would still be held "
 "at version %B%s%b."
@@ -7138,9 +7070,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:488
 #, fuzzy
-#| msgid ""
-#| "%B%s%b will not be upgraded to version %B%s%b, to avoid breaking the "
-#| "following dependencies:"
 msgid ""
 "%B%s %s%b will not be upgraded to version %B%s%b, to avoid breaking the "
 "following dependencies:"
@@ -7150,39 +7079,31 @@ msgstr ""
 
 #: src/reason_fragment.cc:503
 #, fuzzy
-#| msgid "%B%s%b is currently installed."
 msgid "%B%s %s%b is currently installed."
 msgstr "%B%s%b šiuo metu įdiegtas."
 
 #: src/reason_fragment.cc:510
 #, fuzzy
-#| msgid "%B%s%b is not currently installed."
 msgid "%B%s %s%b is not currently installed."
 msgstr "%B%s%b šiuo metu nėra įdiegtas."
 
 #: src/reason_fragment.cc:519
 #, fuzzy
-#| msgid "Some dependencies of %B%s%b are not satisfied:"
 msgid "Some dependencies of %B%s %s%b are not satisfied:"
 msgstr "Kai kurios %B%s%b priklausomybės netenkinamos:"
 
 #: src/reason_fragment.cc:524
 #, fuzzy
-#| msgid "%B%s%b will be downgraded."
 msgid "%B%s %s%b will be downgraded."
 msgstr "%B%s%b bus pasendintas."
 
 #: src/reason_fragment.cc:532
 #, fuzzy
-#| msgid "%B%s%b will not be upgraded to the forbidden version %B%s%b."
 msgid "%B%s %s%b will not be upgraded to the forbidden version %B%s%b."
 msgstr "%B%s%b nebus atnaujintas iki uždraustos versijos %B%s%b."
 
 #: src/reason_fragment.cc:537
 #, fuzzy
-#| msgid ""
-#| "%B%s%b could be upgraded to version %B%s%b, but it is being held at "
-#| "version %B%s%b."
 msgid ""
 "%B%s %s%b could be upgraded to version %B%s%b, but it is being held at "
 "version %B%s%b."
@@ -7192,53 +7113,42 @@ msgstr ""
 
 #: src/reason_fragment.cc:545
 #, fuzzy
-#| msgid "%B%s%b will be re-installed."
 msgid "%B%s %s%b will be re-installed."
 msgstr "%B%s%b bus įdiegtas iš naujo."
 
 #: src/reason_fragment.cc:550
 #, fuzzy
-#| msgid "%B%s%b will be installed."
 msgid "%B%s %s%b will be installed."
 msgstr "%B%s%b bus įdiegtas."
 
 #: src/reason_fragment.cc:555
 #, fuzzy
-#| msgid "%B%s%b will be removed."
 msgid "%B%s %s%b will be removed."
 msgstr "%B%s%b bus pašalintas."
 
 #: src/reason_fragment.cc:561
 #, fuzzy
-#| msgid "%B%s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgid "%B%s %s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgstr "%B%s%b bus atnaujintas nuo versijos %B%s%b iki versijos %B%s%b."
 
 #: src/reason_fragment.cc:569
 #, fuzzy
-#| msgid "%B%s%b is only partly installed; its installation will be completed."
 msgid "%B%s %s%b is only partly installed; its installation will be completed."
 msgstr "%B%s%b yra įdiegtas dalinai; o diegimas bus pabaigtas."
 
 #: src/reason_fragment.cc:602
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on %B%s%b and will be broken by its removal:"
 msgid ""
 "The following packages depend on %B%s %s%b and will be broken by its removal:"
 msgstr "Šiems paketams reikia %B%s%b, jį pašalinus paketasi bus sugadinti: "
 
 #: src/reason_fragment.cc:606
 #, fuzzy
-#| msgid "The following packages depend on %B%s%b and are broken:"
 msgid "The following packages depend on %B%s %s%b and are broken:"
 msgstr "Šiems paketams reikia %B%s%b ir jie yra sugadinti: "
 
 #: src/reason_fragment.cc:614
 #, fuzzy
-#| msgid ""
-#| "The following packages conflict with %B%s%b and will be broken by its "
-#| "installation:"
 msgid ""
 "The following packages conflict with %B%s %s%b and will be broken by its "
 "installation:"
@@ -7246,10 +7156,6 @@ msgstr "Šie paketai konfliktuoja su %B%s%b, todėl po įdiegimo būtų sugadint
 
 #: src/reason_fragment.cc:648
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b other than the "
-#| "currently installed version of %B%s%b, or conflict with the currently "
-#| "installed version:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b, or conflict with the currently "
@@ -7260,9 +7166,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:653
 #, fuzzy
-#| msgid ""
-#| "The following packages conflict with %B%s%b, or depend on a version of it "
-#| "which is not going to be installed."
 msgid ""
 "The following packages conflict with %B%s %s%b, or depend on a version of it "
 "which is not going to be installed."
@@ -7272,15 +7175,11 @@ msgstr ""
 
 #: src/reason_fragment.cc:658
 #, fuzzy
-#| msgid "The following packages conflict with %B%s%b:"
 msgid "The following packages conflict with %B%s %s%b:"
 msgstr "Šie paketai konfliktuoja su %B%s%b: "
 
 #: src/reason_fragment.cc:664
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b other than the "
-#| "currently installed version of %B%s%b:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b:"
@@ -7289,9 +7188,6 @@ msgstr ""
 
 #: src/reason_fragment.cc:669
 #, fuzzy
-#| msgid ""
-#| "The following packages depend on a version of %B%s%b which is not going "
-#| "to be installed."
 msgid ""
 "The following packages depend on a version of %B%s %s%b which is not going "
 "to be installed."
@@ -7401,7 +7297,6 @@ msgstr "%BPasendinti%b šiuos paketus:%n"
 
 #: src/solution_fragment.cc:511
 #, fuzzy
-#| msgid "Leave the following dependencies unresolved:%n"
 msgid "%BLeave%b the following dependencies %Bunresolved%b:%n"
 msgstr "Palikti šias priklausomybes neišspręstas:%n"
 
@@ -7772,7 +7667,6 @@ msgstr ""
 
 #: src/ui.cc:1280
 #, fuzzy
-#| msgid "Press Return to continue."
 msgid "Press Return to continue, 'q' followed by Return to quit."
 msgstr "Norėdami tęsti spauskite ENTER."
 
@@ -7801,7 +7695,6 @@ msgstr ""
 
 #: src/ui.cc:1430
 #, fuzzy
-#| msgid "  %S*%N %s [version %s]%n"
 msgid "  %S*%N %s [version %s] %s%n"
 msgstr "  %S*%N %s [versija %s]%n"
 
@@ -7823,7 +7716,6 @@ msgstr "Žiūrėti ir/arba keisti veiksmus, kurie bus vykdomi"
 
 #: src/ui.cc:1541
 #, fuzzy
-#| msgid "No broken packages."
 msgid "Trying to fix broken packages..."
 msgstr "Nėra blogų paketų."
 
@@ -7876,7 +7768,6 @@ msgstr ""
 
 #: src/ui.cc:1810
 #, fuzzy
-#| msgid "Resolving dependencies..."
 msgid "Checking dependencies"
 msgstr "Sprendžiamos priklausomybės..."
 
@@ -8008,7 +7899,6 @@ msgstr "Atšaukti ^visus veiksmus"
 
 #: src/ui.cc:2554
 #, fuzzy
-#| msgid "Canc^el pending actions"
 msgid "Cancel all pending actions from this session"
 msgstr "Atšaukti ^visus veiksmus"
 

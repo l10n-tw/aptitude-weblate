@@ -3,14 +3,14 @@
 #
 # Luk Claes <luk@debian.org>, 2005, 2006.
 # Frans Pop <elendil@planet.nl>, 2006, 2007, 2008.
-# Frans Spiesschaert <Frans.Spiesschaert@yucom.be>, 2014, 2015, 2016.
+# Frans Spiesschaert <Frans.Spiesschaert@yucom.be>, 2014, 2015, 2016, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: aptitude_0.8.4-1\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2017-04-19 00:01+0200\n"
-"PO-Revision-Date: 2016-12-31 17:38+0100\n"
+"POT-Creation-Date: 2017-06-11 01:21+0200\n"
+"PO-Revision-Date: 2017-04-30 20:56+0200\n"
 "Last-Translator: Frans Spiesschaert <Frans.Spiesschaert@yucom.be>\n"
 "Language-Team: Debian Dutch l10n Team <debian-l10n-dutch@lists.debian.org>\n"
 "Language: nl\n"
@@ -867,44 +867,44 @@ msgstr ""
 msgid "Setting package %s on hold\n"
 msgstr "Pakket %s wordt als te handhaven ingesteld\n"
 
-#: src/cmdline/cmdline_action.cc:448
+#: src/cmdline/cmdline_action.cc:449
 #, c-format
 msgid "Marking package %s as keep\n"
 msgstr "Pakket %s wordt gemarkeerd als te behouden in de huidige toestand\n"
 
-#: src/cmdline/cmdline_action.cc:458
+#: src/cmdline/cmdline_action.cc:460
 #, c-format
 msgid "Setting package %s as not on hold\n"
 msgstr "Pakket %s wordt ingesteld als niet te handhaven\n"
 
-#: src/cmdline/cmdline_action.cc:465
+#: src/cmdline/cmdline_action.cc:468
 #, c-format
 msgid "Package %s is not on hold\n"
 msgstr "Pakket %s is niet te handhaven\n"
 
-#: src/cmdline/cmdline_action.cc:471
+#: src/cmdline/cmdline_action.cc:474
 #, c-format
 msgid "Marking package %s as automatically installed\n"
 msgstr "Pakket %s wordt gemarkeerd als automatisch geïnstalleerd\n"
 
-#: src/cmdline/cmdline_action.cc:480
+#: src/cmdline/cmdline_action.cc:484
 #, c-format
 msgid "Unmarking package %s as automatically installed\n"
 msgstr ""
 "Bij pakket %s wordt de markering \"automatisch geïnstalleerd\" verwijderd\n"
 
-#: src/cmdline/cmdline_action.cc:490 src/cmdline/cmdline_action.cc:501
+#: src/cmdline/cmdline_action.cc:495 src/cmdline/cmdline_action.cc:506
 #: src/cmdline/cmdline_mark.cc:177 src/cmdline/cmdline_mark.cc:195
 #, c-format
 msgid "Marking version %s of package %s as forbidden\n"
 msgstr "Versie %s van pakket %s wordt als verboden gemarkeerd\n"
 
-#: src/cmdline/cmdline_action.cc:553
+#: src/cmdline/cmdline_action.cc:558
 #, c-format
 msgid "Note: selecting the task \"%s: %s\" for installation\n"
 msgstr "Opmerking: de taak \"%s: %s\" wordt geselecteerd voor installatie\n"
 
-#: src/cmdline/cmdline_action.cc:583
+#: src/cmdline/cmdline_action.cc:588
 #, c-format
 msgid ""
 "You can only specify a package version with an 'install' command or a "
@@ -913,14 +913,14 @@ msgstr ""
 "U kunt enkel een pakketversie opgeven bij het commando "
 "'install' (installeren) of 'forbid-version' (verbied versie)\n"
 
-#: src/cmdline/cmdline_action.cc:592
+#: src/cmdline/cmdline_action.cc:597
 #, c-format
 msgid "You can only specify a package archive with an 'install' command\n"
 msgstr ""
 "U kunt enkel een pakketarchief opgeven bij een commando "
 "'install' (installeren)\n"
 
-#: src/cmdline/cmdline_action.cc:630
+#: src/cmdline/cmdline_action.cc:635
 #, c-format
 msgid ""
 "Couldn't find any package whose name is \"%s\", but there are %zu packages "
@@ -929,19 +929,19 @@ msgstr ""
 "Kon geen pakket vinden met de naam \"%s\", maar er zijn %zu pakketten met "
 "\"%s\" in hun naam:\n"
 
-#: src/cmdline/cmdline_action.cc:635 src/cmdline/cmdline_action.cc:667
+#: src/cmdline/cmdline_action.cc:640 src/cmdline/cmdline_action.cc:672
 #, c-format
 msgid "  (too many to show, the limit is %zu)\n"
 msgstr "  (te veel om te tonen; de limiet is %zu)\n"
 
-#: src/cmdline/cmdline_action.cc:659
+#: src/cmdline/cmdline_action.cc:664
 #, c-format
 msgid "Couldn't find any package whose name or description matched \"%s\"\n"
 msgstr ""
 "Geen enkel pakket gevonden waarvan de naam of de beschrijving overeenkomen "
 "met \"%s\"\n"
 
-#: src/cmdline/cmdline_action.cc:662
+#: src/cmdline/cmdline_action.cc:667
 #, c-format
 msgid ""
 "Couldn't find any package matching \"%s\", but there are %zu packages which "
@@ -950,7 +950,7 @@ msgstr ""
 "Kon geen pakket vinden dat overeenkomt met \"%s\", maar er zijn %zu "
 "pakketten met \"%s\" in hun beschrijving:\n"
 
-#: src/cmdline/cmdline_action.cc:810
+#: src/cmdline/cmdline_action.cc:815
 #, c-format
 msgid "Bad action character '%c'\n"
 msgstr "Slecht actieteken '%c'\n"
@@ -1120,6 +1120,8 @@ msgid ""
 "Unable to apply some actions but Aptitude::CmdLine::Fix-Broken (-f) is "
 "enabled, continuing...\n"
 msgstr ""
+"Kon sommige acties niet aanwenden, maar Aptitude::CmdLine::Fix-Broken (-f) "
+"werd gebruikt, er wordt verdergegaan...\n"
 
 #: src/cmdline/cmdline_do_action.cc:367
 #, c-format
@@ -3021,6 +3023,8 @@ msgid ""
 "Package %s had been marked to reinstall, but the file for the current "
 "installed version %s is not available"
 msgstr ""
+"Pakket %s werd gemarkeerd voor een herinstallatie, maar het bestand voor de "
+"momenteel geïnstalleerde versie %s is niet beschikbaar"
 
 #: src/generic/apt/aptcache.cc:439
 #, c-format
@@ -3397,17 +3401,14 @@ msgid "Internal error: couldn't generate list of packages to download"
 msgstr "Interne fout: kon lijst van op te halen pakketten niet genereren"
 
 #: src/generic/apt/download_install_manager.cc:102
-#, fuzzy
-#| msgid ""
-#| "Perhaps the package lists are out of date, please try 'aptitude "
-#| "update' (or equivalent) first"
 msgid ""
 "Perhaps the package lists are out of date, please try 'aptitude update' (or "
 "equivalent); otherwise some packages or versions are not available from the "
 "current repository sources"
 msgstr ""
-"Misschien zijn de pakketlijsten verouderd; gelieve eerst 'aptitude "
-"update' (of een equivalent ervan) te proberen"
+"Misschien zijn de pakketlijsten verouderd; gelieve 'aptitude update' (of een "
+"equivalent ervan) te proberen; anders zijn sommige pakketten of versies "
+"ervan niet beschikbaar op de huidige pakketbronnen"
 
 #: src/generic/apt/download_install_manager.cc:129
 #: src/generic/apt/download_update_manager.cc:136
@@ -3965,10 +3966,9 @@ msgstr ""
 "\"\n"
 
 #: src/generic/util/util.cc:515
-#, fuzzy, c-format
-#| msgid "Cannot open package hierarchy file %s"
+#, c-format
 msgid "Problem creating temporary dir: %s\n"
-msgstr "Kan pakkethiërarchiebestand %s niet openen"
+msgstr "Probleem met het aanmaken van de tijdelijke map: %s\n"
 
 #: src/gtk/aptitude.glade:6 src/gtk/aptitude.glade:2251
 #: src/qt/windows/main_window.cc:44
@@ -6320,6 +6320,9 @@ msgid ""
 "problems later):\n"
 "  %s\n"
 msgstr ""
+"Waarschuwing: ongeldige taaldefinitie (locale) (kijk de taaldefinitie-"
+"instellingen na, dit kan later problemen geven):\n"
+"  %s\n"
 
 #: src/main.cc:816
 #, c-format
