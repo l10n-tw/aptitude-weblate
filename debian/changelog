@@ -1,4 +1,27 @@
-aptitude (0.8.7-2) UNRELEASED; urgency=medium
+aptitude (0.8.8-1) UNRELEASED; urgency=medium
+
+  [ Manuel A. Fernandez Montecelo ]
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
+    - User visible changes:
+      * Avoid spurious warnings about unused code paths (Closes: #863755)
+
+    - Documentation improvements:
+      * Replace minimal example for configuring resolver hints with a full
+        example. (Closes: #702565, part 1)
+      * Document keywords "maximum" and "minimum" for cost levels.
+        (Closes: #702565, part 2)
+      * Mention in the man page that a tilde character in front of an
+        order keyword reverses the order. (Closes: #814038)
+
+    - Translation updates:
+      * da.po: Danish translation by Morten Bo Johansen (Closes: #861087)
+      * cs.po, aptitude-defaults.cs: Czech translation by Miroslav Kure
+        (Closes: #861940)
+      * nl.po: Dutch translation by Frans Spiesschaert (Closes: #862922)
+      * Dutch documentation translation by Frans Spiesschaert (Closes: #861709)
+
 
   * d/control: Set package priority to Optional instead of Important
     (Closes: #861425)
