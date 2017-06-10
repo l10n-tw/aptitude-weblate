@@ -1,4 +1,4 @@
-aptitude (0.8.8-1) UNRELEASED; urgency=medium
+aptitude (0.8.8-1) unstable; urgency=medium
 
   [ Manuel A. Fernandez Montecelo ]
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
@@ -26,7 +26,7 @@ aptitude (0.8.8-1) UNRELEASED; urgency=medium
   * d/control: Set package priority to Optional instead of Important
     (Closes: #861425)
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 07 May 2017 02:40:01 +0200
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 11 Jun 2017 01:38:34 +0200
 
 aptitude (0.8.7-1) unstable; urgency=medium
 
