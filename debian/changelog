@@ -1,4 +1,4 @@
-aptitude (0.8.9-1) UNRELEASED; urgency=medium
+aptitude (0.8.9-1) unstable; urgency=medium
 
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
     log with more details.
@@ -10,7 +10,7 @@ aptitude (0.8.9-1) UNRELEASED; urgency=medium
     - Translation updates:
       * Dutch documentation translation by Frans Spiesschaert (Closes: #867980)
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 19 Aug 2017 19:12:21 +0200
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 19 Aug 2017 19:15:28 +0200
 
 aptitude (0.8.8-1) unstable; urgency=medium
 
