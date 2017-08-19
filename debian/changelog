@@ -1,3 +1,17 @@
+aptitude (0.8.9-1) UNRELEASED; urgency=medium
+
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
+    - Bug fixes:
+      * Fix crash due to wrong string pointer being printed (Closes: #865346)
+      * Fix compilation error with GCC 7 (Closes: #853316)
+
+    - Translation updates:
+      * Dutch documentation translation by Frans Spiesschaert (Closes: #867980)
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 19 Aug 2017 19:12:21 +0200
+
 aptitude (0.8.8-1) unstable; urgency=medium
 
   [ Manuel A. Fernandez Montecelo ]
