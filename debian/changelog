@@ -4,6 +4,7 @@ aptitude (0.8.9-2) UNRELEASED; urgency=medium
     + Change debian/copyright DEP5 format URL to HTTPS.
   * Set "Rules-Requires-Root: no".
   * Drop debian/aptitude.lintian-overrides, no more needed.
+  * Remove trailing whitespace from ancient debian/changelog entries.
 
  -- Axel Beckert <abe@debian.org>  Wed, 01 Nov 2017 02:31:39 +0100
 
@@ -1234,7 +1235,7 @@ aptitude (0.6.8.1-1) unstable; urgency=low
  -- Daniel Hartwig <mandyke@gmail.com>  Tue, 28 Aug 2012 11:39:01 +0800
 
 aptitude (0.6.8-1) unstable; urgency=low
-  
+
   * Fix build with g++ 4.7
     Thanks Adrian Lang for the patch (Closes: #672335)
   * New binary packages:
@@ -1868,7 +1869,7 @@ aptitude (0.5.9rc3-1) experimental; urgency=low
 
 aptitude (0.5.9rc2-1) experimental; urgency=low
 
-  * New upstream release. 
+  * New upstream release.
 
  -- Daniel Burrows <dburrows@debian.org>  Wed, 09 Sep 2009 20:08:02 -0700
 
@@ -1947,12 +1948,12 @@ aptitude (0.5.9rc1-1) experimental; urgency=low
 aptitude (0.5.3.1-1) experimental; urgency=low
 
   * New upstream release.
-  
+
     - Don't crash the GTK+ interface when displaying a solution that
       cancels the installation of a package. (Closes: #525898)
-  
+
     - aptitude now build-depends on Boost.
-  
+
     - Major performance improvements in the dependency solver.
 
     - Translation updates:
@@ -1967,8 +1968,8 @@ aptitude (0.5.3.1-1) experimental; urgency=low
 aptitude (0.5.2.1-1) experimental; urgency=low
 
   * New upstream release.
-  
-    - Work around some buggy terminals that corrupt the progress 
+
+    - Work around some buggy terminals that corrupt the progress
       display (Closes: #455220).
 
  -- Daniel Burrows <dburrows@debian.org>  Sun, 26 Apr 2009 21:40:57 -0700
@@ -1979,32 +1980,32 @@ aptitude (0.5.2-1) experimental; urgency=low
 
     - Support for guaranteed ordering of solutions produced by the
     dependency resolver. (Closes: #514820, #514930, #524221, #473296)
-  
+
     - The dependency resolver will continue searching for a short time
       after finding a solution, in case a better solution turns up.
       (Closes: #482825)
-  
+
     - The GTK+ interface should no longer crash while trying to find
       dependency chains. (Closes: #514714)
-  
+
     - aptitude is now more careful about automatically canceling the
       removal of an unused package, to avoid triggering a conflict with
       other packages (for instance, packages included in a dependency
       solution). (Closes: #522881, #524667)
-  
+
     - The curses interface no longer warns users when they purge an
       already-removed Essental package. (Closes: #513472)
-  
+
     - The curses interface no longer computes an excessive amount of
       dependency information every time a package is highlighted.
       (Closes: #516296)
-  
+
     - Fixed incorrect formatting in some command-line error messages.
       (Closes: #516296, #514676)
-  
+
     - Fix really stupid column wrapping in "aptitude why".
       (Closes: #516389)
-  
+
     - Translation updates:
 
       + Asturian (Closes: #518981, #519693)
@@ -2014,15 +2015,15 @@ aptitude (0.5.2-1) experimental; urgency=low
       + Norwegian Bokmål (Closes: #510977)
       + Spanish (Closes: #517272)
       + Swedish (Closes: #511238, #514011)
-  
+
   * Change the reportbug script to run in the C locale, so program output
     that's inserted doesn't get translated.
-  
+
   * Change the description of aptitude-gtk to say that it has a GUI
     interface. (Closes: #514545, #521152)
-  
+
   * Give aptitude-gtk a versioned dependency on aptitude. (Closes: #516527)
-  
+
   * Include .desktop file contributed by Fabit Greffrath.  I know that
     using su-to-root is not ideal, but since aptitude-gtk can't be used to
     install / remove packages unless it's run as root, this is probably a
@@ -2031,25 +2032,25 @@ aptitude (0.5.2-1) experimental; urgency=low
     become root and preserve selections). (Closes: #521255)
 
   * New build-deps: liblog4cxx10-dev, inkscape.
-  
+
  -- Daniel Burrows <dburrows@debian.org>  Thu, 23 Apr 2009 09:08:27 -0700
 
 aptitude (0.5.1-1) experimental; urgency=low
 
   * New upstream release.
-  
+
     - Incremental search should work again in the curses UI.
       (Closes: #506651)
-  
+
     - Gives more feedback when dpkg finishes. (Closes: #508536)
-  
+
     - GTK+ interface split out into the package aptitude-gtk, sorry
       ftpmasters. (Closes: #511725, #505467)
-  
+
     - Fix fortify problems in minesweeper. (Closes: #511559)
-  
+
     - Fix several translations of plurals (Closes: #505675)
-  
+
     - Translation updates:
       + Slovak (Closes: #505676)
 
@@ -2058,11 +2059,11 @@ aptitude (0.5.1-1) experimental; urgency=low
 aptitude (0.5.0-1) experimental; urgency=low
 
   * New upstream release.
-  
+
   * This release needs apt-xapian-index, so depend on it.  Also, run
     update-apt-xapian-index in the postinst to make sure we really have
     a working Xapian index.
-  
+
   * Add build-depends on libgtkmm-2.4-dev, libglademm-2.4-dev, and
     libvte-dev.
 
@@ -2149,7 +2150,7 @@ aptitude (0.4.11.7-1) unstable; urgency=low
 
 aptitude (0.4.11.6-1) unstable; urgency=low
 
-  * New upstream release. 
+  * New upstream release.
 
  -- Daniel Burrows <dburrows@debian.org>  Sat, 21 Jun 2008 12:34:11 -0700
 
@@ -2173,7 +2174,7 @@ aptitude (0.4.11.5-1) unstable; urgency=low
 aptitude (0.4.11.4-1) unstable; urgency=low
 
   * New upstream release.
-  
+
     - Fixed a nasty resolver bug that would cause solutions to be chosen
       poorly in some cases involving self-conflicts. (Closes: #483920)
 
@@ -2181,47 +2182,47 @@ aptitude (0.4.11.4-1) unstable; urgency=low
       "--disable-columns" that prevents aptitude from padding or
       truncating strings to line text up into columns.  This makes
       the output much more script-friendly.  (Closes: #136874)
-  
+
     - Fixed the formatting of literal elements in the manpage.
       (Closes: #473580)
-  
+
     - Defaults files for locales that contain an underscore (such as pt_BR
       or zh_CN) should get installed now. (Closes: #483620)
-  
+
     - Translation update for Russian. (Closes: #483943)
-  
+
   * aptitude-dbg recommends libcwidget3-dbg now, not libcwidget1-dbg.
     (Closes: #473829)
-  
+
   * Bring the Standards-Version up-to-date.  No other changes were needed;
     the only change to Policy lately that affects aptitude was the
     restructuring of the menu hierarchy, and aptitude is already
     up-to-date with that.
-  
+
   * Bring README.Debian up-to-date regarding the location of the upstream
     and Debian repositories.
-  
+
  -- Daniel Burrows <dburrows@debian.org>  Sat, 07 Jun 2008 17:05:21 -0700
 
 aptitude (0.4.11.3-1) unstable; urgency=low
 
   * New upstream release.
-  
+
     - "aptitude unhold" should work now. (Closes: #477165)
-  
+
     - Fixed almost complete breakage of "aptitude changelog". (Closes: #481458)
-  
+
     - Fixed retrieving the changelogs of bin-nmued packages from the curses
       interface. (Closes: #333468)
-  
+
     - Always be at least as quiet as the user requested that we be.
       (Closes: #476749)
-  
+
     - Remove a stray hyphen in the output of --help. (Closes: #476835)
-  
+
     - Fix the manpage to talk about Recommends-Important instead of
       Install-Recommends. (Closes: #480533)
-  
+
     - Translation updates:
       * Brazilian Portuguese (Closes: #481007)
       * Danish (Closes: #476732)
@@ -2239,25 +2240,25 @@ aptitude (0.4.11.3-1) unstable; urgency=low
 aptitude (0.4.11.2-1) unstable; urgency=low
 
   * New upstream release.
-  
+
     - Fix XML errors in the manpage source. (Closes: #473722)
-  
+
     - Don't crash if a package's Section field is empty. (Closes: #474115)
-  
+
     - Rewrite the status information to avoid the need for choosing
       between the singular and plural forms of verbs. (Closes: #486186)
-  
+
     - Added "why" and "why-not" to the output of "--help". (Closes: #454088)
-  
+
     - Use a different technique to migrate "Recommends-Important" to
       "Install-Recommends" that doesn't overwrite the old option; instead
       the option "Aptitude::Ignore-Recommends-Important" is set to "true"
       when the setting is migrated; if this option is set, then
       Recommends-Important is ignored.
-  
+
       This should be better for people who share configuration files
       between machines. (Closes: #473872)
-  
+
     - Translation updates:
       * Galician (Closes: #474672)
       * Vietnamese (Closes: #473719)
@@ -2300,64 +2301,64 @@ aptitude (0.4.11-2) experimental; urgency=low
 aptitude (0.4.11-1) experimental; urgency=low
 
   * Upload to experimental so as not to interfere with the installer.
-  
+
   * New upstream release.
-  
+
     - Handle conflicts/provides/replaces in the dependency resolver
       (Closes: #466374).
-  
+
     - Implement a "build-dep" command to install build dependencies of one
       or more source packages. (Closes: #243317)
-  
+
     - Implement support for multi-level sections, thanks to Paul Donahue
       for the patches.
-  
+
     - Use libept to get debtags information. (Closes: #397652, #406201)
-  
+
     - Fixed a case where aptitude would claim that packages could
       fulfill a versioned dependency through a Provides. (Closes: #464131)
-  
+
     - Fix task handling in the case that different versions of a package
       have different task fields. (Closes: #459348)
-  
+
     - Fix building with g++-4.3, assuming the build-deps support g++-4.3.
       (Closes: #452204, #452540)
-  
+
     - Forcibly make the manual compile by allowing through a largely
       untranslated input. (Closes: #470054)
-  
+
     - Migrate the setting for enabling installation of Recommends from
       Aptitude::Recommends-Important to Apt::Install-Recommends.
       (Closes: #458189, #448561)
-  
+
     - Ensure that the resolver state is always synchronized with the
       state of the package cache, to eliminate some cases where it
       would break or produce wrong answers. (Closes: #421395, #432411)
-  
+
     - Eliminate some crashes that occurred when removing packages at the
       command-line while version numbers were displayed (-V).
       (Closes: #459336, #461669)
-  
+
     - If the package lists can't be read in "aptitude update", download
       new ones instead of crashing.  (Closes: #468751)
-  
+
     - Document some of the files that aptitude uses in a FILES section
       in the manpage (Closes: #470839)
-  
+
     - Fix the use of quote in the French translation (Closes: #460808).
-  
+
   * Build-Depend on libept-dev for ept support.
 
  -- Daniel Burrows <dburrows@debian.org>  Sat, 15 Mar 2008 22:43:33 -0700
 
 aptitude (0.4.10-1) unstable; urgency=low
-  
+
   * Add a reportbug script that includes the user's $TERM in the bug.
-  
+
   * Fix a typo in the aptitude description. (Closes: #452710)
-  
+
   * Add VCS fields to the control file.
-  
+
   * Build-Depend on the newest version of cwidget so we link against
     libcwidget1 instead of libcwidget0.
 
@@ -2365,27 +2366,27 @@ aptitude (0.4.10-1) unstable; urgency=low
 
     - Add an option --allow-untrusted to override trust warning.
       (Closes: #452201, #452541)
-  
+
     - Recommended packages are now hidden if quiet mode is enabled.
       (Closes: #452202)
-  
+
     - Fixed a segfault that would happen after updating the package lists
       or doing an install run.
         (Closes: #454695, #454700, #455349, #453362, #455865)
-  
+
     - If StepLimit is 0, abort dependency resolution cleanly instead of
       going into an infinite loop. (Closes: #451311)
-  
+
     - When visual mode is entered from the command-line (e.g., via
       --visual-preview), return a failing exit code if the last
       install run the user performs fails.
-  
+
     - Return a failing exit code from "aptitude update" if any
       download fails. (Closes: #233129)
-  
+
     - Checkboxes and radio buttons in the preferences tree will
       now toggle on both Space and Enter. (Closes: #451765)
-  
+
     - Command-line searches will now only print each result once.
       (Closes: #450798)
 
@@ -2394,9 +2395,9 @@ aptitude (0.4.10-1) unstable; urgency=low
 aptitude (0.4.9-2) unstable; urgency=low
 
   * Add a -dbg package. (Closes: #448884)
-  
+
   * Generate aptitude-doc-ja. (Closes: #390859)
-  
+
   * Talk about software package management, not apt, in the Description.
 
  -- Daniel Burrows <dburrows@debian.org>  Mon, 19 Nov 2007 18:29:45 -0800
@@ -2406,10 +2407,10 @@ aptitude (0.4.9-1) unstable; urgency=low
   * New upstream release.
 
     - Add a matcher for obsolete/local packages (Closes: #397547).
-  
+
     - Don't swap around the name, description, and long description
       of configuration options. (Closes: #449138)
-  
+
     - Don't remove *.gmo in distclean, hopefully fixing problems
       with translations in the Debian packages.
       (Closes: #451584, #441696)
@@ -2419,10 +2420,10 @@ aptitude (0.4.9-1) unstable; urgency=low
 aptitude (0.4.8-1) unstable; urgency=low
 
   * New upstream release.
-  
+
     - Fix display corruption of the broken packages indicator.
       (Closes: #448753)
-  
+
   * This release needs cwidget (0.5.5 or greater due to errors in previous
     versions' include files); add an appropriate build-dep.
 
@@ -2437,21 +2438,21 @@ aptitude (0.4.7-1) unstable; urgency=low
       on string prompts; when the text being edited gets too long, the
       prompt will now expand vertically and wrap around.
       (Closes: #197976, #331200, #424708)
-  
+
     - The online help is now a top-level view, so some of the problems
       with it should go away. (Closes: #434349)
-  
+
     - Support for the "Breaks" field and for trigger states is now
       included.  Thanks to Michael Vogt and Ian Jackson for the patches
       and for prodding me to apply them. (Closes: #438543)
-  
+
     - Display styles for downgraded packages are now available:
       "PkgDowngraded" and "PkgDowngradedHighlighted". (Closes: #434442)
-  
+
   * Acknowledge NMU (Closes: #441696).
-  
+
   * Add support for noopt builds (Closes: #433646).
-  
+
   * Build against the new apt (Closes: #447960).
 
  -- Daniel Burrows <dburrows@debian.org>  Tue, 30 Oct 2007 21:41:00 -0700
@@ -2476,29 +2477,29 @@ aptitude (0.4.6.1-1) unstable; urgency=low
 aptitude (0.4.6-1) unstable; urgency=low
 
   * New upstream release.
-  
+
   * Properly handle EINTR in the keyboard-input thread; should clear up
     the problems where aptitude becomes nonresponsive.
     (Closes: #431054, #431686, #432323)
-  
+
   * Make sure the apt auto-mark flags get initialized on startup, so
     aptitude knows what's automatic and doesn't clear auto flags
     pointlessly. (Closes: #432017)
-  
+
   * Don't crash on startup when something goes wrong early in the
     initialization process. (Closes: #430061)
-  
+
   * Disable unused package removal if Delete-Unused is false.
     (Closes: #431716)
-  
+
   * Don't garble translated descriptions in non-UTF8 locales.
     (Closes: #432911)
-  
+
   * Eliminate another bogus warning about a supposedly locked
     cache. (Closes: #431909)
 
   * Translation updates:
-  
+
     - Basque (Closes: #432535)
     - Vietnamese (Closes: #432283)
 
@@ -2509,19 +2510,19 @@ aptitude (0.4.5.4-1) unstable; urgency=low
   * Upload to unstable since aptitude has been binNMUed against the
     new apt, and this build (although there are still bugs) is less
     broken than that one.
-  
+
   * Fix an out-of-bounds error in the line editor. (Closes: #429673)
 
   * Force aptitude to create the state file the first time it's run
     even if the user didn't install/remove anything, so it knows
     which packages are new. (Closes: #429732)
-  
+
   * Translation updates:
-  
+
     - Basque (Closes: #418862)
     - Galician (Closes: #429504)
     - Vietnamese (Closes: #429447)
-  
+
   * Tidy up the Debian diff some more.
 
  -- Daniel Burrows <dburrows@debian.org>  Tue, 03 Jul 2007 07:18:03 -0700
@@ -2531,7 +2532,7 @@ aptitude (0.4.5.3-2) experimental; urgency=low
   * Trim the diff way down; it looks like the switch to Mercurial, or
     maybe some of the stuff I did in the past with the packaging
     repository, generated a bunch of spurious changes from upstream.
-  
+
     There are still spurious additions of .xml DocBook files that are
     autogenerated by po4a.  These should be deleted by "make clean", but
     that needs to be fixed in the upstream code.
@@ -2539,13 +2540,13 @@ aptitude (0.4.5.3-2) experimental; urgency=low
  -- Daniel Burrows <dburrows@debian.org>  Mon, 18 Jun 2007 17:08:17 -0700
 
 aptitude (0.4.5.3-1) experimental; urgency=low
-  
+
   * Thanks to everyone who tested the last release.  Hopefully this one is
     less buggy than it was.
 
   * Hopefully this release fixes a nasty race condition that caused
     garbled output. (Closes: #414838, #406193)
-  
+
   * Fixed a bug that caused aptitude to keep trying to remove a package it
     had already removed. (Closes: #429388) Or rather, made it harder to
     trigger through normal usage; there's no clean way for anyone but
@@ -2553,10 +2554,10 @@ aptitude (0.4.5.3-1) experimental; urgency=low
 
   * Fix build errors in the code; build-depend on apt >= 0.7.0.
     (Closes: #429348)
-  
+
   * Set packages to manual mode when the user cancels their removal, like
     old aptitudes did.  (Closes: #429271)
-  
+
   * Fix compile failures with g++-4.3. (Closes: #413488)
 
  -- Daniel Burrows <dburrows@debian.org>  Sun, 17 Jun 2007 21:29:25 -0700
@@ -2571,21 +2572,21 @@ aptitude (0.4.5.2-1) experimental; urgency=low
 aptitude (0.4.5.1-1) experimental; urgency=low
 
   * New upstream version.
-  
+
   * This version merges in the code I wrote in 2005 to support the
     patch against apt to add removal of automatic patches.  aptitude
     should merge its list of "automatic" packages into the global apt
     list when it's run.
-  
+
   * aptitude will now let you go ahead when there isn't anything to
     change, but some packages need to be configured. (Closes: #424709)
-  
+
   * Translation updates:
-  
+
     - French (Closes: #428585, #428826)
     - Portuguese (Closes: #425779)
     - Vietnamese (Closes: #426976)
-  
+
   * Use debian/compat instead of DH_COMPAT; switch to debhelper
     compatibility level 5.
 
@@ -2595,14 +2596,14 @@ aptitude (0.4.5-1) unstable; urgency=low
 
   * The "an entire pot of spaghetti gave its life for this upload"
     upload.
-  
+
   * Re-enable werror (it should have always been enabled, but I turned
     it off during a period of brokenness and never turned it back on).
-  
+
   * Rebuild against apt 0.7 (Closes: #428616).  This doesn't include
     support for the auto-mark code; I need to either forward-port
     my patches from 2005 or rewrite them.
-  
+
   * Fix a number of crashes due to inconsistencies in aptitude's
     internal dependency model. (Closes: #420358, #420381, #420407)
 
@@ -2631,35 +2632,35 @@ aptitude (0.4.5-1) unstable; urgency=low
 
   * Put packages that are both "new" and "upgradable" into the "upgradable
     packages" list instead of the "new packages" list. (Closes: #419999)
-  
+
   * Eliminate some cases where aptitude would print an incorrect
     message about being unable to acquire a lock after some other
     error occurred. (Closes: #422700)
-  
+
   * Never display more than one "really quit?" dialog box at once.
     (Closes: #411158)
-  
+
   * Explicitly chmod the aptitude state file to mode 0644 after writing
     it, to avoid surprising results when it gets read back in.
     (Closes: #421809, #421811)
-  
+
   * Print an error message if the user tries to supply arguments
     to commands where this makes no sense. (Closes: #411152)
-  
+
   * Write "[Enter]" instead of "enter" in the media-change prompt.
     (Closes: #414777)
-  
+
   * Remove *.gmo in distclean.  It should now be possible to build
     the Debian package twice in a row. (Closes: #424102)
-  
+
   * Improve the description of Recommends-Important,
     Keep-Recommends, and Keep-Suggests; thanks to Stefan Kangas for
     his suggestions. (Closes: #405002)
-  
+
   * Add some missing commands to the online help. (Closes: #402360)
-  
+
   * Fix the alignment of text in the online help. (Closes: #399048)
-  
+
   * Translation updates:
     - Basque (Closes: #418862)
     - Catalan (Closes: #353308)
@@ -2679,7 +2680,7 @@ aptitude (0.4.5-1) unstable; urgency=low
     - Slovak (Closes: #401105)
     - Spanish (Closes: #416339)
     - Ukranian (Closes: #415448)
- 
+
  -- Daniel Burrows <dburrows@debian.org>  Tue, 12 Jun 2007 19:48:55 -0700
 
 aptitude (0.4.4-5~2) experimental; urgency=low
@@ -2691,25 +2692,25 @@ aptitude (0.4.4-5~2) experimental; urgency=low
  -- Daniel Burrows <dburrows@debian.org>  Sun, 20 May 2007 13:15:51 -0700
 
 aptitude (0.4.4-5~1) experimental; urgency=low
-  
+
     * Eliminate the crashes due to inconsistencies in the dependency
       resolver. (Closes: #420358, #420381, #420407)
-    
+
       Also added checks for errors that occur in the dependency resolution
       thread, so the program can cleanly generate an error message instead
       of blowing up, and improved the errors generated by consistency checks
       to include more context information.
-  
+
     * Eliminated a crash with the revdep column generator (Closes: #420405).
-    
+
     * Add DPKG_NO_TSTP to the environment when doing a package-configure run
       after something failed, so "Z" backgrounding works at the conffile
       prompt. (Closes: #357042)
-    
+
     * Fix how bolding is performed in the docbook templates for manpages;
       this made the manpages completely unreadable when built with a newer
       Docbook (Closes: #415468, #416232).
-  
+
  -- Daniel Burrows <dburrows@debian.org>  Tue, 15 May 2007 19:07:19 -0700
 
 aptitude (0.4.4-4) unstable; urgency=low
@@ -2724,12 +2725,12 @@ aptitude (0.4.4-4) unstable; urgency=low
  -- Daniel Burrows <dburrows@debian.org>  Tue, 13 Mar 2007 20:49:58 -0700
 
 aptitude (0.4.4-3) unstable; urgency=low
-  
+
   * Recompile to get translations back on i386. (Closes: #413698)
-  
+
   * Fix a nasty problem that could cause aptitude to want to remove
     packages installed using apt-get or dpkg. (Closes: #411123)
-  
+
     This is triggered by the installer, so probably this update
     should get into etch if possible.
 
@@ -2748,50 +2749,50 @@ aptitude (0.4.4-2) unstable; urgency=low
 
     - Use delete[] to delete several arrays instead of plain
       delete.
-  
+
     - Update the fix for signal blockage during configure to
       work when a package install fails (in which case the
       previous release ran dpkg --configure -a with signals blocked).
-  
+
   * Many editorial fixes to the user's manual and updates to the
     Japanese translation by Noritada Kobayashi.  There is a Japanese
     version of the manual in the source tree, but this upload does not add
     a new documentation package.
-  
+
   * The FSF's address in the manpage license has been fixed.
-  
+
   * Don't generate two identical author lines in the manpage.
     (Closes: #397224)
-  
+
   * Localize tasks group names.
-  
-  
+
+
   * Fix the alignment of the text in the command-line help. (Closes: #399048)
-  
+
   * Fix yes_key and no_key translations. (Closes: #338056)
-  
+
   * Update aptitude.pot to unfuzzy translations. (Closes: #399048)
-  
+
   * Translation updates:
-  
+
     - Catalan (Closes: #353308)
 
     - Chinese (Simplified) (Closes: #405166)
-  
+
     - Danish (Closes: #409480)
-  
+
     - Finnish (Closes: #392305)
-  
+
     - French (Closes: #388504, #403561)
-  
+
     - Galician (Closes: #412829)
-  
+
     - Greek
-  
+
     - Hungarian (Closes: #405550)
-  
+
     - Nepali (Closes: #352278)
-  
+
     - Slovak (Closes: #401105)
 
  -- Daniel Burrows <dburrows@debian.org>  Sun,  4 Mar 2007 20:37:48 -0800
@@ -2799,42 +2800,42 @@ aptitude (0.4.4-2) unstable; urgency=low
 aptitude (0.4.4-1) unstable; urgency=low
 
   * New upstream release.
-  
+
     - Bulleting has been fixed and re-enabled by default.
       (Closes: #388594)
-  
+
     - Change the default settings to leave unused Linux kernel
       images on the system. (Closes: #386307)
-  
+
     - Produce more useful errors for corrupted or unverifiable downloads
       (Closes: #387537).
-  
+
     - Make minibuffer messages disappear when a key is pressed again.
       (Closes: #395201)
-  
+
     - Remove an assertion about the timing behavior of timed mutex locks,
       which apparently behave differently in virtual machines.
       (Closes: #381481)
-  
+
     - Document the "unhold" command-line action. (Closes: #387336)
-  
+
     - Make the package selected by a search appear at the top of the
       screen, so that it's visible underneath the search dialog.
       (Closes: #389763)
-  
+
     - Make the progress indicator less visually distracting by eliminating
       the yellow "progress" effect (which on many system just produces a
       distracting yellow and blue flashing) (Closes: #390971).
-  
+
     - Unblock all signals (particularly WINCH) before running dpkg, so
       that processes spawned by dpkg don't end up with weird signal masks.
       (Closes: #392870)
-  
+
     - Use the first *character*, not the first byte, when abbreviating
       dependency names in the command-line preview (Closes: #395007).
-  
+
     - Documentation fixes from Kobayashi Noritatda (Closes: #389942).
-  
+
     - Translation updates:
       * Basque (Closes: #389730)
       * Brazilian (Closes: #387734)
@@ -2869,30 +2870,30 @@ aptitude (0.4.4-1) unstable; urgency=low
 aptitude (0.4.3-1) unstable; urgency=low
 
   * New upstream release.
-  
+
     - Request-Stickiness is set to 10000 by default, so the resolver
       should produce more sensible results at the command-line.
       (Closes: #385453)
-  
+
     - Don't crash when displaying non-tab-aligned tabs in the internal
       pages. (Closes: #383488, #383549)
-  
+
     - Don't crash after su-ing to root. (Closes: #382090)
-  
+
     - Don't crash when trying to save a note that a non-default version
       of a package that has no default version is to be installed.
       (Closes: #383767, #384136)
-  
+
     - Eliminate duplicate entries from the "provided by" list displayed
       by "aptitude show". (Closes: #384001)
-  
+
     - Hack around ugly behavior in 256-color terminals. (Closes: #384699)
-  
+
     - Generate groff escapes for extended characters in the manpages.
       (Closes: #383463)
-  
+
     - Translation updates:
-  
+
       * Dzongkha   (Closes: #382606)
       * Galician   (Closes: #381989)
       * Hungarian  (Closes: #383584)
@@ -2905,59 +2906,59 @@ aptitude (0.4.3-1) unstable; urgency=low
 aptitude (0.4.2-1) unstable; urgency=low
 
   * New upstream release.
-  
+
     - Added an option "Aptitude::UI::ViewTabs" that controls
       whether the "tabs" at the top of the screen are displayed.
       (Closes: #344569)
-  
+
     - Make the lockfile default to /var/lock/aptitude as per FHS.
       (Closes: #160418)
-  
+
     - Add support for searching in the on-line user's manual.
       (Closes: #364306)
-  
+
     - Acknowledge NMU (Closes: #357557)
-  
+
     - Fix compilation errors with gcc 4.2. (Closes: #369382)
       Note that the compiled software appears to crash when run.
-  
+
     - Fix sporadic crashes on update that were due to interactions
       with the problem resolver. (Closes: #346380, #348541, #348481,
       #376573)
-  
+
     - Handle NULL returns from get_changelog_from_source; should
       fix some crashes in the command-line changelog fetcher.
       (Closes: #349869)
-  
+
     - Fix a crash that occurred when moving the selection up while
       the package list was empty.
-  
+
     - Disable bullet-detection by default, since it's incompatible
       in a bad way that cannot be easily fixed.  (Closes: #373888)
       Set Aptitude::UI::Parse-Description-Bullets to true to
       re-enable it.
-  
+
     - Make the selection and display of versions in "aptitude show"
       more 'intuitive' (Closes: #375383, #372796).
-  
+
     - Stick to portable pthreads features se we compile on the Hurd.
       (Closes: #361439)
-  
+
     - Don't read the package lists on startup if they're just going to
       be discarded immediately.  (Closes: #366884)
-  
+
     - Correctly handle scrollbar updates after resizing text layouts.
       (Closes: #347445)
-  
+
     - Fix how tab characters are rendered in the internal pager.
       (Closes: #351323)
-  
+
     - Use the apt library's file downloader again, as the extra hacks
       I was using have been implemented better there.  This should allow
       command-line downloads to work with file: sources.  (Closes: #299127)
-  
+
     - Translation updates:
-  
+
       + Use po4a for the manual. (Closes: #351643)
       + Basque (Closes: #349500, #275704, #349500)
       + Brazillian (Closes: #363905)
@@ -3000,16 +3001,16 @@ aptitude (0.4.1-1) unstable; urgency=low
 
   * New upstream release.  In addition to fixes pulled into previous
     uploads, the following bugs are fixed by this release:
-  
+
     - Eliminated another deadlock in the background resolver
       thread. (Closes: #342319)
-  
+
     - Don't auto-unhide the menu bar when the user clicks on the first
       line of the terminal; this allows mouse interaction with the first
       line of the current main widget.
-  
+
     - Translation updates:
-  
+
       + Chinese (Simplified) (Closes: #339140)
 
       + Dutch (Closes: #337629)
@@ -3042,11 +3043,11 @@ aptitude (0.4.0-5experimental2) experimental; urgency=low
 aptitude (0.4.0-5experimental1) experimental; urgency=low
 
   * Pull unmerged changes from -4 and -5.
-  
+
   * Build against the new apt in experimental. (Closes: #341347)
-  
+
   * Pull patches from upstream repository:
-  
+
     - Always display the list of changes made by the resolver in a
       pop-up dialog, even if minibuffer displays are enabled. (Closes: #341292)
 
@@ -3055,56 +3056,56 @@ aptitude (0.4.0-5experimental1) experimental; urgency=low
 aptitude (0.4.0-5) unstable; urgency=low
 
   * Pull patches from upstream repository:
-  
+
     - Never allow the program to explicitly select a version that was
       removed but not purged.  This was causing segfaults.  (Closes: #340385)
-  
+
     - Fix cases where the dependency resolver would present trivially
       redundant solutions.
 
     - Eliminate an infinite loop caused by repeatedly trying to
       discover new solutions after the solution set is exhausted.
       (Closes: #340067)
-  
+
     - Eliminate a segfault that occurred when the solution examination
       screen was visible while the package lists were updated.
       (Closes: #338441)
-  
+
     - The correct encoding is now used to read help files.
       (Closes: #340950)
 
     - Consider a version to be trusted if any source for that version
       is trusted. (Closes: #337982)
-  
+
     - Document the new behavior of backslash (Closes: #337810).
-  
+
     - Correctly handle parsing and displaying single-character
       keybindings. (Closes: #339131)
 
     - Add a pointer to the documentation on using patterns from the
       command-line.
-  
+
     - Add a command-line option --purge-unused as a shortcut for
       the Purge-Unused configuration option.
-  
+
     - Document the use of the default color.
 
     - Fail cleanly instead of dying with an assertion failure if the user
       tries to use a non-available color.
-  
+
     - Czech documentation updates from Miroslave Kure.
-  
+
     - Better debugging output from the garbage collector.
-  
+
  -- Daniel Burrows <dburrows@debian.org>  Wed, 30 Nov 2005 09:40:38 -0600
 
 aptitude (0.4.0-4) unstable; urgency=low
-  
+
   * Make the postrm succeed even if the log file doesn't exist.
     (Closes: #338779)
 
   * Pull patches from upstream repository:
-  
+
     - A more correct message is printed when an inconsistency in the
       dependency model is detected.
 
@@ -3126,36 +3127,36 @@ aptitude (0.4.0-3experimental2) experimental; urgency=low
 aptitude (0.4.0-3experimental1) experimental; urgency=low
 
   * Compile against the experimental apt.
-  
+
   * Add the URL of the aptitude web site to debian/copyright.
-  
+
   * Support ddtp (enabled when aptitude is compiled against a version of
     apt with ddtp support).
 
   * Make the postrm succeed when the log file is missing.
     (Closes: #338779)
-  
+
   * Pull fixes from head:
-  
+
     - Document the new behavior of backslash in help.txt.
       (Closes: #337810)
-  
+
     - Only consider a package version to be untrusted if all the sources
       from which it is available are untrusted. (Closes: #337982)
-  
+
     - Don't segfault when the cache is reloaded while a solution is being
       examined (Closes: #338441).
-  
+
     - Fix the error message that is displayed when it is detected that the
       problem resolver is in an inconsistent state.
-  
+
     - Print debugging output from the GC if Aptitude::GC-Debug is true.
-  
+
     - Fix an assertion failure in the problem resolver.
-  
+
     - Add --purge-unused as a shortcut to enable the purging of unused
       packages.
-  
+
     - Fix how keybindings are parsed (Closes: #339131).
 
  -- Daniel Burrows <dburrows@debian.org>  Tue, 15 Nov 2005 16:26:43 -0800
@@ -3166,7 +3167,7 @@ aptitude (0.4.0-3) unstable; urgency=low
 
     - Handle the case where the old package list isn't available to
       preserve (Closes: #337869).
-  
+
     - Make "Cancel" in the "download complete" dialog do what it should.
       (Closes: #337554, #337778)
 
@@ -3185,44 +3186,44 @@ aptitude (0.4.0-2) unstable; urgency=low
  -- Daniel Burrows <dburrows@debian.org>  Fri,  4 Nov 2005 17:01:12 -0500
 
 aptitude (0.4.0-1) unstable; urgency=low
-  
+
   * aptitude 0.4.0 is released and going into unstable!  Rejoice!
 
   * New upstream release
-  
+
     - An additional menu toggle binding has been added that works on all
       terminals, and it is the default binding (meaning it shows up on all
       terminals). (Closes: #147862, #335034)
-  
+
     - Several command-line operations deal with the -t command in a sane
       way now. (Closes: #334096)
-  
+
     - "search" completely ignores fake packages. (Closes: #337407)
-  
+
     - Bullet lists can include any number of spaces after a bullet
       character. (Closes: #337344)
-  
+
     - The preview screen is only hidden now when the user actually asked
       to continue the installation, not whenever any download starts.
       (Closes: #334343)
-  
+
     - Fixed more real and potential UTF-8 display problems.
       (Closes: #317119)
-  
+
     - Added "install" to the manpage synopsis. (Closes: #336584)
-  
+
     - Translation updates:
-  
+
       + Chinese (Simplified) (Closes: #335290)
-  
+
       + Danish (Closes: #335880)
-  
+
       + Finnish
 
       + French (Closes: #336261)
-  
+
       + Romanian (Closes: #335680, #325749)
-  
+
       + Russian (Closes: #336261, #336420)
 
  -- Daniel Burrows <dburrows@debian.org>  Fri,  4 Nov 2005 13:02:22 -0500
@@ -3230,22 +3231,22 @@ aptitude (0.4.0-1) unstable; urgency=low
 aptitude (0.3.5.1-2) experimental; urgency=low
 
   * Rebuild against apt 0.6.41.0exp1.
-  
+
   * Pull changes from darcs head:
-  
+
     - Handle wide characters more carefully when painting trees.
-  
+
     - Never display a spurious right arrow in the menu bar.
-  
+
     - Correct the sigc++ version displayed in the output of --version.
-  
+
     - Shut down the preview only when installing packages, not for all
       downloads. (Closes: #334343)
-  
+
     - Don't crash when a changelog contains tabs.
-  
+
     - Highlight characters that look like bullets in parsed changelogs.
-  
+
   * Remove the silly "extreme flexibility and customization" line from the
     description.
 
@@ -3254,14 +3255,14 @@ aptitude (0.3.5.1-2) experimental; urgency=low
 aptitude (0.3.5.1-1) experimental; urgency=low
 
   * New upstream release
-  
+
     - Fix a segfault caused by a reference to freed memory. (Closes: #331400)
-  
+
     - Don't crash when the user asks for a changelog of a non-installed
       package. (Closes: #331245)
-  
+
     - Don't reopen the cache after a download unnecessarily. (Closes: #332708)
-  
+
     - Use the correct encoding to decode the names of dependency types
       ("Depends", etc). (Closes: #331199)
 
@@ -3270,29 +3271,29 @@ aptitude (0.3.5.1-1) experimental; urgency=low
 
     - Make sure that clicking Ok in a dialog is just like pushing Enter.
       (Closes: #332179)
-  
+
     - Read the debtags vocabulary file from the correct location.
       (Closes: #331408)
-  
+
     - Fix the parser of the backwards-compatibility filter grouping policy.
       (Closes: #331404)
 
     - Make the behavior of -q and --quiet more closely conform to how
       apt-get behaves. (Closes: #217477)
-  
+
     - Make Ignore-Trust-Violations actually bypass the authentication
       prompt instead of just saying that it will. (Closes: #332883)
-  
+
     - Document "aptitude reinstall" in the --help output. (Closes: #333872)
-  
+
     - Don't output useless error messages in the cronjob if pkgstates
       doesn't exist. (Closes: #332891)
-  
+
     - Set the priority to 'important' in the source, so I stop getting
       override disparity errors.
 
     - Translation updates:
-  
+
       + Basque (Closes: #275704)
       + Czech
       + French
@@ -3303,74 +3304,74 @@ aptitude (0.3.5.1-1) experimental; urgency=low
 aptitude (0.3.4-1) experimental; urgency=low
 
   * New upstream release
-  
+
     - g++-4.0 transition. (Closes: #321889)
-  
+
     - Add a build-dependency on libncursesw5. (Closes: #321677, #325003)
-  
+
     - Remove the log files when the package is purged. (Closes: #315346)
-  
+
     - Update the copyright file.
-  
+
     - Fix some crashes in the problem resolver. (Closes: #312553)
-  
+
     - Handle -s and Simulate=true in visual mode as well as command-line
       mode. (Closes: #243192)
-  
+
     - Fix the warning message printed when you can't forbid a particular
       version. (Closes: #246140)
 
     - Back up aptitude's pkgstates file in the same manner as dpkg's.
       (Closes: #225095)
-  
+
     - In addition, keep the last version of pkgstates around every time it
       is modified. (Closes: #316460)
-  
+
     - Don't use recursive main-loops or otherwise trap 'q'.
       (Closes: #136973)
-  
+
     - The visual "Keep" command now implicitly cancels holds.
       (Closes: #326949)
-  
+
     - A generic grouping policy based on search patterns is available.
       (Closes: #156065)
 
     - If a package version other than the default candidate or the current
       version is selected, aptitude will remember this selection.
       (Closes: #158771)
-  
+
     - Debtags support. (Closes: #243830)
-  
+
     - New command-line actions 'keep' and 'keep-all'. (Closes: #312923)
 
     - New command-line option --schedule-only that just records the
       requested actions in the state file without actually performing them.
       (Closes: #312249)
-  
+
     - Backward searching is available (bound to backslash). (Closes: #323239)
-  
+
     - It is now possible to repeat the last search in all pagers.
       (Closes: #270699)
-  
+
     - The default terminal background color can be used; add
-  
+
       Aptitude::Styles::Default { bg default; };
-  
+
       to /etc/apt/apt.conf to enable it.  (Closes: #161872)
-  
+
     - A warning is displayed when you modify the cache in read-only mode.
       (Closes: #175408)
-  
+
     - If the option Aptitude::Purge-Unused is set, unused packages will be
       purged instead of just being removed. (Closes: #275150)
-  
+
     - Add the current timezone to the timestamp printed in the log
       file. (Closes: #318501)
-  
+
     - If libparse-debianchangelog-perl is installed, aptitude will extract
       version numbers from changelogs and highlight entries that are newer
       than the currently installed version.  (Closes: #290692)
-  
+
     - aptitude now cleanly handles being suspended while dpkg is running.
       (Closes: #137311, #169479)
 
@@ -3381,59 +3382,59 @@ aptitude (0.3.4-1) experimental; urgency=low
       aptitude's configuration file goes, so people using sudo don't end up
       with root-owned mode 0700 files in their home directory.
       (Closes: #272429, #274216, #285334, #272409)
-  
+
     - Temporary files and directories are created in /tmp instead of
       ~/.aptitude/.tmp. (Closes: #146485, #245348)
-  
+
     - If aptitude fails to su to root, it will restore its previous
       selections instead of discarding them. (Closes: #281232)
-  
+
     - Fix several display bugs related to UTF-8. (Closes: #317115)
-  
+
     - Be sure to correctly set and update the screen width when running in
       command-line mode. (Closes: #230187)
-  
+
     - Make keep properly cancel the removal of packages that are
       unused. (Closes: #278490)
-  
+
     - Abort cleanly instead of crashing when the command-line mode gets
       EOF on stdin. (Closes: #318749)
-  
+
     - Editorial fix to the amount freed/used indicator. (Closes: #318396)
-  
+
     - Don't segfault if errors occur while the program is initializing (in
       particular, if the configuration files have errors). (Closes: #309445, #290408)
-  
+
     - If there are currently broken packages when we go to upgrade, print
       a useful error message instead of just silently quitting.
       (Closes: #316027)
-  
+
     - Fix the exit value of 'aptitude clean'. (Closes: #274098)
-  
+
     - Terminate abnormally if the user tries to show a non-existant
       package. (Closes: #301291)
-  
+
     - Display a more levelheaded message when problems occur during a dpkg
       run. (Closes: #230188)
-  
+
     - Add a quietness option for command-line mode. (Closes: #217477)
-  
+
     - Don't try to use terminal output tricks on non-ttys. (Closes: #276767)
-  
+
     - Don't discard the user's selections to run reportbug. (Closes: #304748)
-  
+
     - Fix the SEE ALSO entry for the reference manual. (Closes: #265723)
-  
+
     - Documentation typo fixes. (Closes: #268916)
-  
+
     - Document that ~a is a way to find packages according to the action
       that is currently going to be applied to them. (Closes: #311290)
-  
+
     - Delete some unnecessary text that lacks a trailing newline.
       (Closes: #295924)
-  
+
     - Don't include the upstream blow-by-blow changelog in the package.
-  
+
     - Translation updates:
 
       + Czech (Closes: #330014)
@@ -3448,24 +3449,24 @@ aptitude (0.3.4-1) experimental; urgency=low
 aptitude (0.3.3-1) experimental; urgency=low
 
   * New upstream release
-  
+
     - UTF-8 support.  Closes: #198257 and friends.
 
     - Fix a case where different packages would be selected on startup
       than on shutdown. (Closes: #315359)
-  
+
     - Fixed the startup progress bar. (Closes: #173259)
 
     - Don't crash when trying to display information about packages that
       have no Archive. (Closes: #312533)
-  
+
     - Allow media changes to be cancelled (Closes: #315885)
-  
+
     - Be more explicit when warning the user that the program is in
       read-only mode. (Closes: #313417)
-  
+
     - Typo fix for cmdline_prompt.  (Closes: #313322)
-  
+
     - Translation updates:
 
       * Chinese (Simplified) (Closes: #314330)
@@ -3521,17 +3522,17 @@ aptitude (0.3.2-2) experimental; urgency=low
 aptitude (0.3.2-1) experimental; urgency=low
 
   * New upstream release, fixing the following Debian bugs:
-  
+
     - Don't discard apt's helpful error message explaining that dpkg
       --configure -a needs to be run.  (Closes: #160418)
-  
+
     - Separated the search pattern for "has a sticky hold set" from the
       pattern for "will not be upgraded" (to get the effect of the old
       ~ahold, use ~U~akeep).  (Closes: #216730)
 
     - Don't crash when the user asks to see the help dialog.
       (Closes: #293935, #306619)
-  
+
     - Properly preprocess and format the messsage about failed downloads
       (Closes: #298713)
 
@@ -3561,7 +3562,7 @@ aptitude (0.3.1-2) experimental; urgency=low
 aptitude (0.3.1-1) experimental; urgency=low
 
   * New upstream release
-  
+
   * Standards-Version bumped to 3.6.1.0.
 
  -- Daniel Burrows <dburrows@debian.org>  Mon, 10 Jan 2005 18:03:47 -0800
@@ -3629,9 +3630,9 @@ aptitude (0.2.15.6-1) unstable; urgency=low
 
   * New upstream release.  Give up on getting into testing the usual way.
     - Un-reverse the display of the size change of individual versions.
-  
+
     - Install localized manpages in 'make install'.
-  
+
     - Translation updates:
       + Czech (Closes: #262524)
       + Danish (Closes: #262129)
@@ -3737,8 +3738,8 @@ aptitude (0.2.15-2) unstable; urgency=low
 aptitude (0.2.15-1) unstable; urgency=low
 
   * New upstream release, closing the following Debian bugs:
-    - Hopefully this version compiles on ia64. (Closes: #243932)  
-  
+    - Hopefully this version compiles on ia64. (Closes: #243932)
+
     - aptitude no longer displays a warning about removing Essential
       packages if the removal is cancelled. (Closes: #254422)
 
@@ -3753,7 +3754,7 @@ aptitude (0.2.15-1) unstable; urgency=low
       being fixed; until it is fixed, aptitude will not use it.
       This means the categorical browser actually works again.
       (Closes: #120978, #144079, #144083, #151437, #242397)
-  
+
     - ORed dependencies are shown correctly in 'aptitude show'.
       (Closes: #254740)
 
@@ -3761,26 +3762,26 @@ aptitude (0.2.15-1) unstable; urgency=low
       (Closes: #253335)
 
     - Translated task descriptions will be displayed. (Closes: #203725)
-  
+
     - Removed trailing periods from all menu descriptions.
       (Closes: #244676)
-  
+
     - Applied a manpage patch from Sebastian Kapfer; unfortunately,
       the old manpage has been superseded by a (pretty much identical)
       new manpage generated from DocBook :-/.  (Closes: #242304)
 
     - Fixed the display of ORed dependencies when describing reasons
-      for a package's state. (Closes: #242663)  
-  
+      for a package's state. (Closes: #242663)
+
     - Improved the calculation of reasons for a package's state in the
       presence of virtual packages. (Closes: #244817)
-  
+
     - Fixed -R and -r.  (Closes: #243289)
 
     - Translations:
-  
+
       - Basque updates (Closes: #244858)
-  
+
       - Brazilian updates (Closes: #242332)
 
       - Catalan updates (Closes: #248764)
@@ -3801,7 +3802,7 @@ aptitude (0.2.15-1) unstable; urgency=low
 
       - Norwegian Bokmal translation added (Closes: #250500, #252507)
 
-      - Polish updates (Closes: #248365)  
+      - Polish updates (Closes: #248365)
 
       - Portugese updates (Closes: #242309, #242372, #244850, #245699)
 
@@ -3811,7 +3812,7 @@ aptitude (0.2.15-1) unstable; urgency=low
 
   * Added build-depends on xsltproc, docbook-xsl, and html2text for
     the shiny new DocBook documentation.
-  
+
   * Quote some more menu strings to make lintian happy.
 
  -- Daniel Burrows <dburrows@debian.org>  Thu,  1 Jul 2004 17:07:14 -0400
@@ -3885,7 +3886,7 @@ aptitude (0.2.14-1) unstable; urgency=low
   * New upstream release
     - No longer crashes if sources.list and/or apt.conf are missing
       or unreadable. (Closes: #220732)
-  
+
     - Many bugs were closed in the experimental versions below; I doubt
     Katie will autoclose them, so here they are again in the first upload
     to unstable since 0.2.13.
@@ -3931,7 +3932,7 @@ aptitude (0.2.13.9999-1) experimental; urgency=low
       (Closes: #214021)
     - Added a pt_BR translation.
       (Closes: #214116)
-  
+
   * Uploaded to experimental to give translators a chance to catch up.
     (also to let experimental users and aptitude fans find any remaining
      gotchas)
@@ -4017,9 +4018,9 @@ aptitude (0.2.12-1) unstable; urgency=low
 
   * Wrote a logrotate script, so aptitude's log file should now be rotated
     monthly.  (Closes: #160795)
-  
+
   * Update standards version.
-  
+
   * debhelper 4.0.
 
  -- Daniel Burrows <dburrows@debian.org>  Mon, 10 Feb 2003 15:19:25 -0500
@@ -4179,7 +4180,7 @@ aptitude (0.2.9.1-1) unstable; urgency=low
  -- Daniel Burrows <dburrows@debian.org>  Sat,  9 Feb 2002 11:43:08 -0500
 
 aptitude (0.2.9-1) unstable; urgency=low
-  
+
   * New upstream release.  Debian bug-related changes:
     - aptitude now tracks automatically installed packages, similarly
       to deborphan/debfoster.  (Closes: #122726, #102205, #114464)
@@ -4243,7 +4244,7 @@ aptitude (0.2.8.1-1) unstable; urgency=low
     - The descriptions of "j" and "k" were reversed in the help text.
     (so it said that "j" moved up and "k" moved down)  This has been fixed.
     (Closes: #122061)
-  
+
     - Updated pt_BR with patch from Andre Luis Lopes <andrelop@ig.com.br>.
     (Closes: #122251)
 
@@ -4370,7 +4371,7 @@ aptitude (0.2.6.1-1) unstable; urgency=low
  -- Daniel Burrows <dburrows@debian.org>  Thu, 13 Sep 2001 12:20:34 -0400
 
 aptitude (0.2.6-1) unstable; urgency=low
-  
+
   * The "deity is kaput" upload.  I was going to wait until the previous
   upload went into testing, but deity is not being fixed and not being
   fixed...which seems to be keeping the new apt and thus the new aptitude
@@ -4484,7 +4485,7 @@ aptitude (0.2.2-1) unstable; urgency=low
 
   * New upstream release
     - Default widths are now modifiable by the translator.  Closes: #101406
-  
+
  -- Daniel Burrows <dburrows@debian.org>  Fri, 29 Jun 2001 14:36:57 -0400
 
 aptitude (0.2.1-1) unstable; urgency=low
@@ -4493,7 +4494,7 @@ aptitude (0.2.1-1) unstable; urgency=low
     - CD-ROM installs should work now.  Closes: #98956
     - Really fixed signedness issues.  Closes: #101398,#101504
     - Options are autosaved now.  Closes: #102599
-  
+
   * Maintainer address changed to @debian.org
   * Removed beta-software warnings from the package description.
 
@@ -4554,7 +4555,7 @@ aptitude (0.1.9-2) experimental; urgency=low
 aptitude (0.1.9-1) experimental; urgency=low
 
   * New upstream release
-  
+
   * This is probably going to be the last release before 0.2.0 (the
   version numbers worked out conveniently for once); please tell me if
   you think there are bugs which need to be fixed before I release this
@@ -4627,7 +4628,7 @@ aptitude (0.1.1-1) unstable; urgency=low
 aptitude (0.1.0-1) unstable; urgency=low
 
   * New upstream version.
-  
+
  -- Daniel Burrows <Daniel_Burrows@brown.edu>  Sun,  3 Dec 2000 22:49:59 -0500
 
 aptitude (0.0.7.12-1) unstable; urgency=low
@@ -4720,7 +4721,7 @@ aptitude (0.0.7.1-1) unstable; urgency=low
     62368, 63358, and 66711, just on the grounds that the reports are using
     ancient/doogieized versions and/or failed to respond to requests for
     more info, but that wouldn't be nice now would it?)
-  
+
   * Eliminated a lot of unneeded cruft in debian/
 
  -- Daniel Burrows <Daniel_Burrows@brown.edu>  Thu,  3 Aug 2000 18:49:17 -0400
