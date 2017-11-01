@@ -30,7 +30,7 @@ Build-Depends: automake,
                xsltproc
 Vcs-Git: https://anonscm.debian.org/git/aptitude/aptitude.git -b debian-sid
 Vcs-Browser: https://anonscm.debian.org/cgit/aptitude/aptitude.git
-Standards-Version: 3.9.8
+Standards-Version: 4.1.1
 Homepage: https://aptitude.alioth.debian.org/
 
 Package: aptitude
