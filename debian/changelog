@@ -19,6 +19,8 @@ aptitude (0.8.10-1) UNRELEASED; urgency=medium
 
   * Build-Depend on autoconf-archive (to remove embedded copies of ./m4/
     in the upstream part)
+    - Add temporary fix-missing-mkinstalldirs.patch for last minute
+      problem related with this removal
 
   [ Axel Beckert ]
   * Declare compliance with Debian Policy 4.1.1.
