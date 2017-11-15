@@ -1,4 +1,4 @@
-aptitude (0.8.10-1) UNRELEASED; urgency=medium
+aptitude (0.8.10-1) unstable; urgency=medium
 
   [ Manuel A. Fernandez Montecelo ]
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
@@ -35,7 +35,7 @@ aptitude (0.8.10-1) UNRELEASED; urgency=medium
     + Drop build-dependency on automake, now implicit via debhelper and
       dh-autoreconf (and not called directly anyways).
 
- -- Axel Beckert <abe@debian.org>  Wed, 01 Nov 2017 02:31:39 +0100
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Wed, 15 Nov 2017 23:36:58 +0100
 
 aptitude (0.8.9-1) unstable; urgency=medium
 
