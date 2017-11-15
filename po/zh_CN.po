@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2017-08-19 19:05+0200\n"
+"POT-Creation-Date: 2017-11-15 01:20+0100\n"
 "PO-Revision-Date: 2012-06-03 12:32+0800\n"
 "Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
@@ -340,6 +340,10 @@ msgstr "下载新的软件包列表后删除过期的软件包文件"
 
 #: src/apt_options.cc:289
 #, fuzzy
+#| msgid ""
+#| "If this option is enabled, then after every install run, aptitude will "
+#| "delete from the package cache any package files that can no longer be "
+#| "downloaded from any archive in sources.list."
 msgid ""
 "If this option is enabled, then after package lists are updated aptitude "
 "will delete from the package cache any package files that can no longer be "
@@ -350,11 +354,16 @@ msgstr ""
 
 #: src/apt_options.cc:294
 #, fuzzy
+#| msgid "Remove obsolete package files after downloading new package lists"
 msgid "Remove all package files after successful operations (e.g. install)"
 msgstr "下载新的软件包列表后删除过期的软件包文件"
 
 #: src/apt_options.cc:295
 #, fuzzy
+#| msgid ""
+#| "If this option is enabled, then after every install run, aptitude will "
+#| "delete from the package cache any package files that can no longer be "
+#| "downloaded from any archive in sources.list."
 msgid ""
 "If this option is enabled, then after packages are installed successfully "
 "(or similar operations) all the package files in the download area will be "
@@ -463,6 +472,9 @@ msgstr ""
 
 #: src/apt_options.cc:353
 #, fuzzy
+#| msgid ""
+#| "If this option is enabled, aptitude will display the status of ongoing "
+#| "downloads at the bottom of the screen, rather than opening a new view."
 msgid ""
 "If this option is enabled, aptitude will use the user's locale for messages "
 "and dates in the log file; otherwise the \"classic\" locale is used for this "
@@ -630,6 +642,7 @@ msgstr "内部错误：意料之外的空解决方案。"
 
 #: src/broken_indicator.cc:375
 #, fuzzy
+#| msgid "Keep the following packages at their current version:"
 msgid "Keep all packages at their current version"
 msgstr "保持下列软件包于其当前版本："
 
@@ -665,26 +678,33 @@ msgstr[0] "降级 %d 个包"
 
 #: src/broken_indicator.cc:436
 #, fuzzy
+#| msgid "%s changes"
 msgid "no changes"
 msgstr "%s 个包已改变"
 
 #: src/broken_indicator.cc:439
 #, fuzzy, c-format
+#| msgid "Actions"
 msgid "Actions: %F"
 msgstr "动作"
 
 #: src/cmdline/cmdline_action.cc:63
 #, fuzzy, c-format
+#| msgid "Unable to find the source package for \"%s\".\n"
 msgid "Unable to find the source package for \"%s\"\n"
 msgstr "无法找到“%s”的源代码包。\n"
 
 #: src/cmdline/cmdline_action.cc:223
 #, fuzzy, c-format
+#| msgid "Unable to satisfy the build-depends: %s.\n"
 msgid "Unable to satisfy the build-depends: %s\n"
 msgstr "无法满足构建依赖：%s。\n"
 
 #: src/cmdline/cmdline_action.cc:260
 #, fuzzy, c-format
+#| msgid ""
+#| "Note: \"%s\", providing the virtual package\n"
+#| "      \"%s\", is already installed.\n"
 msgid ""
 "Note: \"%s\", providing the virtual package \"%s\", is already installed\n"
 msgstr ""
@@ -693,6 +713,9 @@ msgstr ""
 
 #: src/cmdline/cmdline_action.cc:268
 #, fuzzy, c-format
+#| msgid ""
+#| "Note: \"%s\", providing the virtual package\n"
+#| "      \"%s\", is already going to be installed.\n"
 msgid ""
 "Note: \"%s\", providing the virtual package \"%s\", is already going to be "
 "installed\n"
@@ -702,6 +725,9 @@ msgstr ""
 
 #: src/cmdline/cmdline_action.cc:291 src/pkg_item.cc:144
 #, fuzzy, c-format
+#| msgid ""
+#| "\"%s\" exists in the package database, but it is not a\n"
+#| "real package and no package provides it.\n"
 msgid ""
 "\"%s\" exists in the package database, but it is not a real package and no "
 "package provides it\n"
@@ -721,6 +747,9 @@ msgstr "您必须选择一个来安装。\n"
 
 #: src/cmdline/cmdline_action.cc:310
 #, fuzzy, c-format
+#| msgid ""
+#| "Note: selecting \"%s\" instead of the\n"
+#| "      virtual package \"%s\"\n"
 msgid "Note: selecting \"%s\" instead of the virtual package \"%s\"\n"
 msgstr "注意：选择“%s”而不是虚拟软件包“%s”\n"
 
@@ -731,6 +760,7 @@ msgstr "%s 的 (%s) 版本已经按要求安装了\n"
 
 #: src/cmdline/cmdline_action.cc:350
 #, fuzzy, c-format
+#| msgid "%s is not currently installed, so it will not be upgraded.\n"
 msgid "%s is not currently installed, so it will not be upgraded\n"
 msgstr "%s 目前未被安装，所以它不会被升级。\n"
 
@@ -743,6 +773,7 @@ msgstr "%s 已经安装了最新版本，所以不会升级。\n"
 
 #: src/cmdline/cmdline_action.cc:361
 #, fuzzy, c-format
+#| msgid "%s is not currently installed, so it will not be reinstalled.\n"
 msgid "%s is not currently installed, so it will not be reinstalled\n"
 msgstr "%s 目前未被安装，所以它不会被重新安装。\n"
 
@@ -753,11 +784,13 @@ msgstr "软件包 %s 并未安装，所以不删除\n"
 
 #: src/cmdline/cmdline_action.cc:376
 #, fuzzy, c-format
+#| msgid "Package %s is not installed, so it will not be removed\n"
 msgid "Package %s is not installed, so it will not be purged\n"
 msgstr "软件包 %s 并未安装，所以不删除\n"
 
 #: src/cmdline/cmdline_action.cc:394 src/cmdline/cmdline_mark.cc:262
 #, fuzzy, c-format
+#| msgid "Package %s is not installed, cannot forbid an upgrade\n"
 msgid ""
 "Package %s is not installed, cannot be marked/unmarked as automatically "
 "installed\n"
@@ -775,11 +808,13 @@ msgstr "软件包 %s 是不可升级的，不能设为禁止升级\n"
 
 #: src/cmdline/cmdline_action.cc:439
 #, fuzzy, c-format
+#| msgid "'=' to place packages on hold"
 msgid "Setting package %s on hold\n"
 msgstr "按 '=' 将软件包置于保持状态"
 
 #: src/cmdline/cmdline_action.cc:449
 #, fuzzy, c-format
+#| msgid "Updating package lists"
 msgid "Marking package %s as keep\n"
 msgstr "正在更新软件包列表"
 
@@ -790,22 +825,26 @@ msgstr ""
 
 #: src/cmdline/cmdline_action.cc:468
 #, fuzzy, c-format
+#| msgid "Packages which depend on %s"
 msgid "Package %s is not on hold\n"
 msgstr "依赖于 %s 的软件包"
 
 #: src/cmdline/cmdline_action.cc:474
 #, fuzzy, c-format
+#| msgid "'&M' to mark packages as automatically installed"
 msgid "Marking package %s as automatically installed\n"
 msgstr "按 '&M' 将软件包标记为自动安装"
 
 #: src/cmdline/cmdline_action.cc:484
 #, fuzzy, c-format
+#| msgid "'&M' to mark packages as automatically installed"
 msgid "Unmarking package %s as automatically installed\n"
 msgstr "按 '&M' 将软件包标记为自动安装"
 
 #: src/cmdline/cmdline_action.cc:495 src/cmdline/cmdline_action.cc:506
 #: src/cmdline/cmdline_mark.cc:177 src/cmdline/cmdline_mark.cc:195
 #, fuzzy, c-format
+#| msgid "Check for new versions of packages"
 msgid "Marking version %s of package %s as forbidden\n"
 msgstr "正在检查新版本的软件包"
 
@@ -816,6 +855,9 @@ msgstr "注意：选择软件集“%s：%s”安装\n"
 
 #: src/cmdline/cmdline_action.cc:588
 #, fuzzy, c-format
+#| msgid ""
+#| "You can only specify a package version with an 'install' command or a "
+#| "'forbid-version' command.\n"
 msgid ""
 "You can only specify a package version with an 'install' command or a "
 "'forbid-version' command\n"
@@ -823,6 +865,7 @@ msgstr "您只能在“install”或“forbid-version”命令中指定一个软
 
 #: src/cmdline/cmdline_action.cc:597
 #, fuzzy, c-format
+#| msgid "You can only specify a package archive with an 'install' command.\n"
 msgid "You can only specify a package archive with an 'install' command\n"
 msgstr "在“install”命令中您只能指定一个软件包的存档\n"
 
@@ -861,6 +904,7 @@ msgstr "非法的动作字符“%c”\n"
 
 #: src/cmdline/cmdline_apt_proxy.cc:64
 #, fuzzy
+#| msgid "Unable to fork: %s"
 msgid "Failed to fork process."
 msgstr "无法产生子进程：%s"
 
@@ -871,6 +915,7 @@ msgstr ""
 
 #: src/cmdline/cmdline_apt_proxy.cc:122 src/cmdline/cmdline_apt_proxy.cc:137
 #, fuzzy, c-format
+#| msgid "Failed to fetch %s: %s"
 msgid ""
 "Failed to execute:\n"
 "  '%s'"
@@ -878,6 +923,7 @@ msgstr "无法下载 %s：%s"
 
 #: src/cmdline/cmdline_apt_proxy.cc:125
 #, fuzzy, c-format
+#| msgid "waitpid() failed: %s"
 msgid "waitpid error: %d: '%s'"
 msgstr "waitpid() 失败：%s"
 
@@ -917,6 +963,7 @@ msgstr ""
 
 #: src/cmdline/cmdline_apt_proxy.cc:226
 #, fuzzy, c-format
+#| msgid "Reconfiguring %s\n"
 msgid ""
 "Executing '%s'\n"
 "\n"
@@ -940,7 +987,7 @@ msgid "Changelog download failed: %s"
 msgstr "变更日志下载失败：%s"
 
 #: src/cmdline/cmdline_changelog.cc:197 src/generic/apt/pkg_changelog.cc:463
-#: src/generic/apt/pkg_changelog.cc:635 src/view_changelog.cc:276
+#: src/generic/apt/pkg_changelog.cc:637 src/view_changelog.cc:276
 #, c-format
 msgid "Changelog of %s"
 msgstr "%s 的变更日志"
@@ -1021,6 +1068,7 @@ msgstr ""
 
 #: src/cmdline/cmdline_do_action.cc:367
 #, fuzzy, c-format
+#| msgid "Unable to open %s to log actions"
 msgid "Unable to apply some actions, aborting\n"
 msgstr "无法打开 %s 来记录动作"
 
@@ -1089,32 +1137,38 @@ msgstr "将忘记哪些软件包是新的\n"
 
 #: src/cmdline/cmdline_mark.cc:85
 #, fuzzy
+#| msgid "Unexpected pattern argument following \"keep-all\""
 msgid "Unexpected argument following \"keep-all\""
 msgstr "在参数“keep-all”之后有意料之外的模式"
 
 #: src/cmdline/cmdline_mark.cc:90
 #, fuzzy, c-format
+#| msgid "Updating package lists"
 msgid "Marking all packages as keep (%s)\n"
 msgstr "正在更新软件包列表"
 
 #: src/cmdline/cmdline_mark.cc:94
 #, fuzzy, c-format
+#| msgid "Source package %s:"
 msgid "Would mark all packages as keep\n"
 msgstr "源码包 %s："
 
 #: src/cmdline/cmdline_mark.cc:108 src/cmdline/cmdline_mark.cc:219
 #, fuzzy
+#| msgid "E: The clean command takes no arguments\n"
 msgid "Subcommand needs arguments: "
 msgstr "E: clean 命令不接受任何参数\n"
 
 #: src/cmdline/cmdline_mark.cc:138 src/cmdline/cmdline_util.cc:893
 #: src/ui.cc:2095
 #, fuzzy, c-format
+#| msgid "No packages matched the pattern \"%ls\"."
 msgid "No packages match pattern \"%s\""
 msgstr "没有软件包匹配模式“%ls”。"
 
 #: src/cmdline/cmdline_mark.cc:161
 #, fuzzy, c-format
+#| msgid "Couldn't parse column definition"
 msgid "Could not parse version for %s: %s\n"
 msgstr "无法解析列定义"
 
@@ -1134,21 +1188,25 @@ msgstr ""
 
 #: src/cmdline/cmdline_mark.cc:254
 #, fuzzy, c-format
+#| msgid "Updating package lists"
 msgid "Marking package %s (%s)\n"
 msgstr "正在更新软件包列表"
 
 #: src/cmdline/cmdline_mark.cc:268
 #, fuzzy, c-format
+#| msgid "'&M' to mark packages as automatically installed"
 msgid "Would mark package %s as auto-installed=%d\n"
 msgstr "按 '&M' 将软件包标记为自动安装"
 
 #: src/cmdline/cmdline_mark.cc:280
 #, fuzzy, c-format
+#| msgid "Source package %s:"
 msgid "Would mark package %s as hold\n"
 msgstr "源码包 %s："
 
 #: src/cmdline/cmdline_mark.cc:293
 #, fuzzy, c-format
+#| msgid "Source package %s:"
 msgid "Would mark package %s as keep (or unhold)\n"
 msgstr "源码包 %s："
 
@@ -1278,6 +1336,7 @@ msgstr ""
 
 #: src/cmdline/cmdline_prompt.cc:459
 #, fuzzy, c-format
+#| msgid "Press return to continue.\n"
 msgid "Press any key to continue...\n"
 msgstr "按回车继续。\n"
 
@@ -1292,6 +1351,7 @@ msgstr "要继续的话，键入词组“%s”：\n"
 
 #: src/cmdline/cmdline_prompt.cc:475
 #, fuzzy, c-format
+#| msgid "To continue, type the phrase \"%s\":\n"
 msgid "To continue, type the phrase \"%s\" (or: \"%s\"):\n"
 msgstr "要继续的话，键入词组“%s”：\n"
 
@@ -1335,6 +1395,7 @@ msgstr ""
 #. can be removed from your translation.
 #: src/cmdline/cmdline_prompt.cc:558
 #, fuzzy
+#| msgid "Go ahead and ignore the warning|Yes"
 msgid "Go ahead and ignore the warning|yes"
 msgstr "Shi"
 
@@ -1345,6 +1406,7 @@ msgstr "Shi"
 #. can be removed from your translation.
 #: src/cmdline/cmdline_prompt.cc:564
 #, fuzzy
+#| msgid "Abort instead of overriding the warning|No"
 msgid "Abort instead of overriding the warning|no"
 msgstr "Fou"
 
@@ -1360,12 +1422,14 @@ msgstr "要继续，请键入“%s”；要中止，请键入“%s”："
 
 #: src/cmdline/cmdline_prompt.cc:582
 #, fuzzy, c-format
+#| msgid "To continue, enter \"%s\"; to abort, enter \"%s\": "
 msgid ""
 "To continue, enter \"%s\" (or \"%s\"); to abort, enter \"%s\" (or \"%s\"): "
 msgstr "要继续，请键入“%s”；要中止，请键入“%s”："
 
 #: src/cmdline/cmdline_prompt.cc:605
 #, fuzzy, c-format
+#| msgid "Unrecognized tasks"
 msgid "Unrecognized input\n"
 msgstr "无法识别的软件集"
 
@@ -1381,6 +1445,7 @@ msgstr "下列软件包被“建议”安装但是将“不会”被安装：\n"
 
 #: src/cmdline/cmdline_prompt.cc:734
 #, fuzzy, c-format
+#| msgid "The following packages will be DOWNGRADED:"
 msgid "The following packages will NOT be UPGRADED:\n"
 msgstr "下列软件包将被“降级”："
 
@@ -1656,6 +1721,7 @@ msgstr "手动解决这些依赖吗？ [N/+/-/_/:/?] "
 
 #: src/cmdline/cmdline_prompt.cc:1120
 #, fuzzy, c-format
+#| msgid "Not available"
 msgid "%s (stdin unavailable)\n"
 msgstr "不可用"
 
@@ -1990,6 +2056,9 @@ msgstr "打开：%zd；关闭；%zd；defer: %zd; 冲突；%zd"
 
 #: src/cmdline/cmdline_resolver.cc:808
 #, fuzzy, c-format
+#| msgid ""
+#| "Would resolve dependencies, but dependency resolution is disabled.\n"
+#| "   (%s::ProblemResolver::StepLimit = 0)\n"
 msgid ""
 "Would resolve dependencies, but dependency resolution is disabled.\n"
 "   (%s::ProblemResolver::StepLimit <= 0)\n"
@@ -2089,6 +2158,7 @@ msgstr "用 iconv 转换 %s 失败。\n"
 
 #: src/cmdline/cmdline_search.cc:237 src/cmdline/cmdline_versions.cc:597
 #, fuzzy, c-format
+#| msgid "Couldn't parse column definition"
 msgid "%s: Could not parse column definitions: '%ls'\n"
 msgstr "无法解析列定义"
 
@@ -2099,42 +2169,50 @@ msgstr "查找：您必须提供至少一个查找项\n"
 
 #: src/cmdline/cmdline_show_broken.cc:38
 #, fuzzy, c-format
+#| msgid "but %s is to be installed."
 msgid "but %s is to be installed"
 msgstr "但是 %s 将被安装。"
 
 #: src/cmdline/cmdline_show_broken.cc:41
 #, fuzzy, c-format
+#| msgid "but %s is installed and it is kept back."
 msgid "but %s is installed and it is kept back"
 msgstr "但是 %s 已被安装并且被保持不升级。"
 
 #: src/cmdline/cmdline_show_broken.cc:44
 #, fuzzy, c-format
+#| msgid "but %s is installed."
 msgid "but %s is installed"
 msgstr "但是 %s 已安装。"
 
 #: src/cmdline/cmdline_show_broken.cc:51
 #, fuzzy, c-format
+#| msgid "but it is not installable."
 msgid "but it is not installable"
 msgstr "但它是不可安装的"
 
 #: src/cmdline/cmdline_show_broken.cc:53
 #, fuzzy, c-format
+#| msgid "but it is not going to be installed."
 msgid "but it is not going to be installed"
 msgstr "但它将不会被安装。"
 
 #: src/cmdline/cmdline_show_broken.cc:119
 #, fuzzy, c-format
+#| msgid "%s is a virtual package provided by:\n"
 msgid ""
 " which is a virtual package and is not provided by any available package\n"
 msgstr "%s 是虚拟软件包，提供者：\n"
 
 #: src/cmdline/cmdline_show_broken.cc:123
 #, fuzzy, c-format
+#| msgid "%s is a virtual package provided by:\n"
 msgid " which is a virtual package, provided by:\n"
 msgstr "%s 是虚拟软件包，提供者：\n"
 
 #: src/cmdline/cmdline_show_broken.cc:143
 #, fuzzy, c-format
+#| msgid "Provides"
 msgid " provides %s=%s"
 msgstr "提供"
 
@@ -2156,6 +2234,8 @@ msgstr "<NULL>"
 
 #: src/cmdline/cmdline_show.cc:213
 #, fuzzy, c-format
+#| msgid "%d upgrade"
+#| msgid_plural "%d upgrades"
 msgid "%s (%s), upgrade available (%s)"
 msgstr "升级 %d 个包"
 
@@ -2420,6 +2500,7 @@ msgstr ""
 
 #: src/cmdline/cmdline_user_tag.cc:63 src/reason_fragment.cc:58
 #, fuzzy
+#| msgid "Remove"
 msgid "remove"
 msgstr "删除"
 
@@ -2435,6 +2516,7 @@ msgstr ""
 
 #: src/cmdline/cmdline_user_tag.cc:124
 #, fuzzy, c-format
+#| msgid "%s: too few arguments; expected at least a tag name and a package.\n"
 msgid ""
 "%s: too few arguments; expected at least a tag name and a package or "
 "pattern\n"
@@ -2477,12 +2559,16 @@ msgstr "无法找到 %s 的变更日志"
 
 #: src/cmdline/cmdline_util.cc:371
 #, fuzzy, c-format
+#| msgid "%d broken [%+d]"
+#| msgid_plural "%d broken [%+d]"
 msgid "%d (%+d) broken"
 msgid_plural "%d (%+d) broken"
 msgstr[0] "%d 个被破坏 [%+d]"
 
 #: src/cmdline/cmdline_util.cc:385
 #, fuzzy, c-format
+#| msgid "%d upgrade"
+#| msgid_plural "%d upgrades"
 msgid "%d (%+d) upgradable"
 msgid_plural "%d (%+d) upgradable"
 msgstr[0] "升级 %d 个包"
@@ -2527,6 +2613,9 @@ msgstr "存档 %s："
 
 #: src/cmdline/cmdline_versions.cc:537
 #, fuzzy, c-format
+#| msgid ""
+#| "Invalid package grouping mode \"%s\" (should be \"auto\", \"none\", "
+#| "\"package\", or \"source-package\")"
 msgid ""
 "Invalid package grouping mode \"%s\" (should be \"auto\", \"none\", \"package"
 "\", \"source-package\" or \"source-version\")"
@@ -2668,16 +2757,19 @@ msgstr ""
 
 #: src/cmdline/cmdline_why.cc:1234
 #, fuzzy
+#| msgid "%B%s%b is not currently installed."
 msgid "Not currently installed\n"
 msgstr "%B%s%b 目前未被安装。"
 
 #: src/cmdline/cmdline_why.cc:1239
 #, fuzzy, c-format
+#| msgid "No candidate version found for %s\n"
 msgid "The candidate version %s has priority %s\n"
 msgstr "未发现 %s 的候选版本\n"
 
 #: src/cmdline/cmdline_why.cc:1244
 #, fuzzy, c-format
+#| msgid "No longer requiring the removal of %s"
 msgid "No dependencies require to remove %s\n"
 msgstr "不再要求删除 %s"
 
@@ -2697,6 +2789,7 @@ msgstr "无法分析某些匹配模式"
 
 #: src/cmdline/cmdline_why.cc:1371
 #, fuzzy
+#| msgid "Unable to parse some match patterns."
 msgid "Unable to parse the default match patterns."
 msgstr "无法分析某些匹配模式"
 
@@ -2732,6 +2825,7 @@ msgstr "不可用"
 
 #: src/dep_item.cc:364
 #, fuzzy, c-format
+#| msgid "Provides"
 msgid "%s on provided %s"
 msgstr "提供"
 
@@ -2890,6 +2984,7 @@ msgstr ""
 
 #: src/generic/apt/aptcache.cc:1269 src/generic/apt/aptcache.cc:1305
 #, fuzzy
+#| msgid "Cannot open Aptitude state file"
 msgid "Cannot remove aptitude within aptitude"
 msgstr "无法打开 Aptitude 扩展状态文件"
 
@@ -2900,6 +2995,7 @@ msgstr ""
 
 #: src/generic/apt/aptcache.cc:1745
 #, fuzzy, c-format
+#| msgid "Adding user tag \"%s\" to the package \"%s\".\n"
 msgid "Could not add user-tag '%s' to package %s"
 msgstr "添加用户标签“%s”到软件包“%s”。\n"
 
@@ -2910,6 +3006,7 @@ msgstr "无法找到 %s 的变更日志"
 
 #: src/generic/apt/aptcache.cc:1787
 #, fuzzy, c-format
+#| msgid "Removing user tag \"%s\" from the package \"%s\".\n"
 msgid "Could not remove user-tag '%s' from package %s"
 msgstr "将用户标签“%s”移除出软件包“%s”。\n"
 
@@ -2940,6 +3037,7 @@ msgstr ""
 
 #: src/generic/apt/apt.cc:138
 #, fuzzy, c-format
+#| msgid "Configuration files and data remain"
 msgid "Configuration file '%s' is not correct, please fix it"
 msgstr "配置文件和数据仍然保留着"
 
@@ -2959,6 +3057,9 @@ msgstr "aptitude-defaults.zh_CN"
 
 #: src/generic/apt/apt.cc:286
 #, fuzzy
+#| msgid ""
+#| "Replace configuration file\n"
+#| "'%s'?"
 msgid "Error saving configuration file"
 msgstr ""
 "替代配置文件\n"
@@ -2990,11 +3091,13 @@ msgstr "无法找到 %s 的变更日志"
 
 #: src/generic/apt/apt.cc:587
 #, fuzzy, c-format
+#| msgid "Couldn't clean out list directories"
 msgid "Could not create directories: %s: %s"
 msgstr "无法清空列表目录"
 
 #: src/generic/apt/apt.cc:1428
 #, fuzzy
+#| msgid "installed locally"
 msgid "(installed locally)"
 msgstr "已从本地安装"
 
@@ -3131,16 +3234,19 @@ msgstr ""
 
 #: src/generic/apt/config_file.cc:59
 #, fuzzy, c-format
+#| msgid "Could not open file \"%s\""
 msgid "Could not remove old configuration file: %s"
 msgstr "无法打开文件“%s”"
 
 #: src/generic/apt/config_file.cc:91
 #, fuzzy, c-format
+#| msgid "Asking whether to replace the configuration file %s"
 msgid "Could not get the content of the old configuration file: %s"
 msgstr "询问是否替换配置文件 %s"
 
 #: src/generic/apt/config_file.cc:111
 #, fuzzy, c-format
+#| msgid "Configuration files and data remain"
 msgid "Old configuration file is not a regular file: %s"
 msgstr "配置文件和数据仍然保留着"
 
@@ -3156,16 +3262,19 @@ msgstr ""
 
 #: src/generic/apt/config_file.cc:195
 #, fuzzy, c-format
+#| msgid "Asking whether to replace the configuration file %s"
 msgid "Error reading from old configuration file: %s"
 msgstr "询问是否替换配置文件 %s"
 
 #: src/generic/apt/config_file.cc:226
 #, fuzzy, c-format
+#| msgid "Error writing state file"
 msgid "Error writing to file: %s"
 msgstr "写入状态文件时发生错误"
 
 #: src/generic/apt/config_file.cc:251
 #, fuzzy, c-format
+#| msgid "Could not open file \"%s\""
 msgid "Could not remove file: %s"
 msgstr "无法打开文件“%s”"
 
@@ -3176,6 +3285,7 @@ msgstr ""
 
 #: src/generic/apt/config_file.cc:264
 #, fuzzy, c-format
+#| msgid "Error writing state file"
 msgid "Error removing file: %s"
 msgstr "写入状态文件时发生错误"
 
@@ -3226,6 +3336,7 @@ msgstr "无法读取软件包源列表"
 
 #: src/generic/apt/download_update_manager.cc:105
 #, fuzzy
+#| msgid "Failed to download changelogs: %s"
 msgid "Failed to download some files"
 msgstr "下载变更日志失败：%s"
 
@@ -3277,6 +3388,7 @@ msgstr ""
 
 #: src/generic/apt/dpkg_selections.cc:180
 #, fuzzy, c-format
+#| msgid "Unable to create the output file: child killed by signal %d."
 msgid ""
 "Failed to execute process to save dpkg selections, dpkg killed by signal: %d"
 msgstr "无法创建输出文件：子进程被信号 %d 杀死。"
@@ -3318,6 +3430,11 @@ msgstr "日志报告"
 
 #: src/generic/apt/log.cc:89
 #, fuzzy, c-format
+#| msgid ""
+#| "IMPORTANT: this log only lists intended actions; actions which fail due "
+#| "to\n"
+#| "dpkg problems may not be completed.\n"
+#| "\n"
 msgid ""
 "  IMPORTANT: this log only lists intended actions; actions which fail\n"
 "  due to dpkg problems may not be completed.\n"
@@ -3399,16 +3516,19 @@ msgstr ""
 
 #: src/generic/apt/log.cc:138 src/generic/apt/log.cc:139
 #, fuzzy
+#| msgid "No resolution found."
 msgid "(no version found)"
 msgstr "未发现任何解决方案。"
 
 #: src/generic/apt/log.cc:155 src/generic/apt/log.cc:168
 #, fuzzy, c-format
+#| msgid "[%s] %s\n"
 msgid "[%s] %s %s\n"
 msgstr "[%s] %s\n"
 
 #: src/generic/apt/log.cc:176
 #, fuzzy, c-format
+#| msgid "[UPGRADE] %s %s -> %s\n"
 msgid "[%s] %s %s -> %s\n"
 msgstr "[升级] %s %s -> %s\n"
 
@@ -3419,6 +3539,7 @@ msgstr "[%s] %s\n"
 
 #: src/generic/apt/log.cc:192
 #, fuzzy
+#| msgid "Completed"
 msgid "Log complete."
 msgstr "已完成"
 
@@ -3540,17 +3661,18 @@ msgstr "软件包索引文件被损坏。软件包 %s 无 Filename：域。"
 msgid "No URIs for this download"
 msgstr ""
 
-#: src/generic/apt/pkg_changelog.cc:611 src/generic/apt/pkg_changelog.cc:616
+#: src/generic/apt/pkg_changelog.cc:613 src/generic/apt/pkg_changelog.cc:618
 #, c-format
 msgid "Failed to download changelogs: %s"
 msgstr "下载变更日志失败：%s"
 
-#: src/generic/apt/pkg_changelog.cc:621
+#: src/generic/apt/pkg_changelog.cc:623
 #, fuzzy
+#| msgid "Failed to download changelogs: unexpected exception."
 msgid "Failed to download changelogs: unexpected exception"
 msgstr "下载变更日志失败：预期之外的异常。"
 
-#: src/generic/apt/pkg_changelog.cc:696
+#: src/generic/apt/pkg_changelog.cc:698
 #, c-format
 msgid ""
 "Cannot display changelog: Origin of %s version %s is unknown (maybe not an "
@@ -3699,6 +3821,7 @@ msgstr "无法从前缀“%s”创建临时文件名"
 
 #: src/generic/util/util.cc:387
 #, fuzzy, c-format
+#| msgid "Unable to remove \"%s\""
 msgid "Unable to remove \"%s\": %s"
 msgstr "无法删除“%s”"
 
@@ -3734,6 +3857,7 @@ msgstr ""
 
 #: src/generic/util/util.cc:515
 #, fuzzy, c-format
+#| msgid "Can't create a temporary file: %s"
 msgid "Problem creating temporary dir: %s\n"
 msgstr "无法创建临时文件：%s"
 
@@ -5400,6 +5524,7 @@ msgstr "必须提供一个也只能是一个过滤器的名称作为过滤器策
 
 #: src/load_grouppolicy.cc:552
 #, fuzzy, c-format
+#| msgid "Bad section name '%s' (use 'none', 'topdir', 'subdir', or 'subdirs')"
 msgid "Bad mode name '%s' (use 'binary' or 'source')"
 msgstr "坏的区段名称“%s”(使用“none”，“topdir”，“subdir”，或者“subdirs”)"
 
@@ -5438,6 +5563,7 @@ msgstr "无法分析布局：列标识符编码错误"
 
 #: src/load_pkgview.cc:106
 #, fuzzy
+#| msgid "Couldn't parse layout: encoding error in column descriptor"
 msgid "Couldn't parse layout: error parsing column definitions"
 msgstr "无法分析布局：列标识符编码错误"
 
@@ -5587,6 +5713,9 @@ msgstr "       aptitude [选项] <动作> ..."
 
 #: src/main.cc:196
 #, fuzzy, c-format
+#| msgid ""
+#| "  Actions (if none is specified, aptitude will enter interactive mode):\n"
+#| "\n"
 msgid ""
 "Actions (if none is specified, aptitude will enter interactive mode):\n"
 "\n"
@@ -5596,42 +5725,53 @@ msgstr ""
 
 #: src/main.cc:197
 #, fuzzy, c-format
+#| msgid " install      - Install/upgrade packages.\n"
 msgid " install         Install/upgrade packages.\n"
 msgstr " install      - 安装/升级软件包。\n"
 
 #: src/main.cc:198
 #, fuzzy, c-format
+#| msgid " remove       - Remove packages.\n"
 msgid " remove          Remove packages.\n"
 msgstr " remove       - 卸载软件包。\n"
 
 #: src/main.cc:199
 #, fuzzy, c-format
+#| msgid " purge        - Remove packages and their configuration files.\n"
 msgid " purge           Remove packages and their configuration files.\n"
 msgstr " purge        - 卸载软件包并删除其配置文件。\n"
 
 #: src/main.cc:200
 #, fuzzy, c-format
+#| msgid " hold         - Place packages on hold.\n"
 msgid " hold            Place packages on hold.\n"
 msgstr " hold         - 将软件包置于保持状态。\n"
 
 #: src/main.cc:201
 #, fuzzy, c-format
+#| msgid " unhold       - Cancel a hold command for a package.\n"
 msgid " unhold          Cancel a hold command for a package.\n"
 msgstr " unhold       - 取消对一个软件包的保持命令。\n"
 
 #: src/main.cc:202
 #, fuzzy, c-format
+#| msgid ""
+#| " markauto     - Mark packages as having been automatically installed.\n"
 msgid ""
 " markauto        Mark packages as having been automatically installed.\n"
 msgstr " markauto     - 将软件包标记为已经自动安装。\n"
 
 #: src/main.cc:203
 #, fuzzy, c-format
+#| msgid " unmarkauto   - Mark packages as having been manually installed.\n"
 msgid " unmarkauto      Mark packages as having been manually installed.\n"
 msgstr " unmarkauto   - 将软件包标记为已经手动安装。\n"
 
 #: src/main.cc:204
 #, fuzzy, c-format
+#| msgid ""
+#| " forbid-version - Forbid aptitude from upgrading to a specific package "
+#| "version.\n"
 msgid ""
 " forbid-version  Forbid aptitude from upgrading to a specific package "
 "version.\n"
@@ -5639,16 +5779,21 @@ msgstr " forbid-version - 禁止 aptitude 升级到某一特定版本的软件�
 
 #: src/main.cc:205
 #, fuzzy, c-format
+#| msgid " update       - Download lists of new/upgradable packages.\n"
 msgid " update          Download lists of new/upgradable packages.\n"
 msgstr " update       - 下载新/可升级软件包列表。\n"
 
 #: src/main.cc:206
 #, fuzzy, c-format
+#| msgid " safe-upgrade - Perform a safe upgrade.\n"
 msgid " safe-upgrade    Perform a safe upgrade.\n"
 msgstr " safe-upgrade - 执行一次安全的升级。\n"
 
 #: src/main.cc:207
 #, fuzzy, c-format
+#| msgid ""
+#| " full-upgrade - Perform an upgrade, possibly installing and removing "
+#| "packages.\n"
 msgid ""
 " full-upgrade    Perform an upgrade, possibly installing and removing "
 "packages.\n"
@@ -5656,26 +5801,31 @@ msgstr " full-upgrade - 执行升级，可能会安装和卸载软件包。\n"
 
 #: src/main.cc:208
 #, fuzzy, c-format
+#| msgid " build-dep    - Install the build-dependencies of packages.\n"
 msgid " build-dep       Install the build-dependencies of packages.\n"
 msgstr " build-dep    - 安装软件包的编译依赖。\n"
 
 #: src/main.cc:209
 #, fuzzy, c-format
+#| msgid " forget-new   - Forget what packages are \"new\".\n"
 msgid " forget-new      Forget what packages are \"new\".\n"
 msgstr " forget-new   - 忘记哪些软件包是“新”的。\n"
 
 #: src/main.cc:210
 #, fuzzy, c-format
+#| msgid " search       - Search for a package by name and/or expression.\n"
 msgid " search          Search for a package by name and/or expression.\n"
 msgstr " search       - 按名称 和/或 表达式搜索软件包。\n"
 
 #: src/main.cc:211
 #, fuzzy, c-format
+#| msgid " show         - Display detailed information about a package.\n"
 msgid " show            Display detailed info about a package.\n"
 msgstr " show       - 显示一个软件包的详细信息。\n"
 
 #: src/main.cc:212
 #, fuzzy, c-format
+#| msgid " show         - Display detailed information about a package.\n"
 msgid ""
 " showsrc         Display detailed info about a source package (apt "
 "wrapper).\n"
@@ -5688,42 +5838,54 @@ msgstr " show       - 显示一个软件包的详细信息。\n"
 
 #: src/main.cc:214
 #, fuzzy, c-format
+#| msgid " clean        - Erase downloaded package files.\n"
 msgid " clean           Erase downloaded package files.\n"
 msgstr " clean        - 删除已下载的软件包文件。\n"
 
 #: src/main.cc:215
 #, fuzzy, c-format
+#| msgid " autoclean    - Erase old downloaded package files.\n"
 msgid " autoclean       Erase old downloaded package files.\n"
 msgstr " autoclean    - 删除旧的已下载软件包文件。\n"
 
 #: src/main.cc:216
 #, fuzzy, c-format
+#| msgid " changelog    - View a package's changelog.\n"
 msgid " changelog       View a package's changelog.\n"
 msgstr " changelog    - 查看一个软件包的变更日志。\n"
 
 #: src/main.cc:217
 #, fuzzy, c-format
+#| msgid " download     - Download the .deb file for a package.\n"
 msgid " download        Download the .deb file for a package (apt wrapper).\n"
 msgstr " download     - 下载软件包的 .deb 文件。\n"
 
 #: src/main.cc:218
 #, fuzzy, c-format
+#| msgid " -u             Download new package lists on startup.\n"
 msgid " source          Download source package (apt wrapper).\n"
 msgstr " -u             开始运行时下载新的软件包列表。\n"
 
 #: src/main.cc:219
 #, fuzzy, c-format
+#| msgid ""
+#| " reinstall    - Download and (possibly) reinstall a currently installed "
+#| "package.\n"
 msgid " reinstall       Reinstall a currently installed package.\n"
 msgstr " reinstall    - 下载并(可能)重新安装一个现在已经安装了的软件包。\n"
 
 #: src/main.cc:220
 #, fuzzy, c-format
+#| msgid ""
+#| " -V             Show which versions of packages are to be installed.\n"
 msgid ""
 " why             Explain why a particular package should be installed.\n"
 msgstr " -V             显示就要安装的软件包版本。\n"
 
 #: src/main.cc:221
 #, fuzzy, c-format
+#| msgid ""
+#| " -V             Show which versions of packages are to be installed.\n"
 msgid ""
 " why-not         Explain why a particular package cannot be installed.\n"
 msgstr " -V             显示就要安装的软件包版本。\n"
@@ -5740,32 +5902,41 @@ msgstr ""
 
 #: src/main.cc:226
 #, fuzzy, c-format
+#| msgid "  Options:\n"
 msgid "Options:\n"
 msgstr "  选项：\n"
 
 #: src/main.cc:227
 #, fuzzy, c-format
+#| msgid " -h             This help text.\n"
 msgid " -h              This help text.\n"
 msgstr " -h             此帮助文本。\n"
 
 #: src/main.cc:229
 #, fuzzy, c-format
+#| msgid ""
+#| " --gui          Use the GTK GUI even if disabled in the configuration.\n"
 msgid ""
 " --gui           Use the GTK GUI even if disabled in the configuration.\n"
 msgstr " --gui          即使配置中禁用了，也要使用 GTK 图形用户界面。\n"
 
 #: src/main.cc:231
 #, fuzzy, c-format
+#| msgid " --no-gui       Do not use the GTK GUI even if available.\n"
 msgid " --no-gui        Do not use the GTK GUI even if available.\n"
 msgstr " --no-gui       即使可用，也不使用 GTK 图形用户界面。\n"
 
 #: src/main.cc:233
 #, fuzzy, c-format
+#| msgid " --qt           Use the Qt GUI.\n"
 msgid " --qt            Use the Qt GUI.\n"
 msgstr " --qt           使用 Qt 图形界面。\n"
 
 #: src/main.cc:234
 #, fuzzy, c-format
+#| msgid ""
+#| " --no-qt        Do not use the Qt GUI even if enabled in the "
+#| "configuration.\n"
 msgid ""
 " --no-qt         Do not use the Qt GUI even if enabled in the "
 "configuration.\n"
@@ -5773,11 +5944,16 @@ msgstr " --no-qt        不要使用 Qt 图形界面，即使在配置中启用�
 
 #: src/main.cc:236
 #, fuzzy, c-format
+#| msgid ""
+#| " -s             Simulate actions, but do not actually perform them.\n"
 msgid " -s              Simulate actions, but do not actually perform them.\n"
 msgstr " -s             模拟动作，但是并不真正执行。\n"
 
 #: src/main.cc:237
 #, fuzzy, c-format
+#| msgid ""
+#| " -d             Only download packages, do not install or remove "
+#| "anything.\n"
 msgid ""
 " -d              Only download packages, do not install or remove anything.\n"
 msgstr " -d             仅仅下载软件包，不安装或者卸载任何东西。\n"
@@ -5789,6 +5965,9 @@ msgstr " -P             总是提示确认执行动作。\n"
 
 #: src/main.cc:239
 #, fuzzy, c-format
+#| msgid ""
+#| " -y             Assume that the answer to simple yes/no questions is "
+#| "'yes'.\n"
 msgid ""
 " -y              Assume that the answer to simple yes/no questions is "
 "'yes'.\n"
@@ -5796,6 +5975,9 @@ msgstr " -y             假设对简单的 yes/no 问题回答“yes”。\n"
 
 #: src/main.cc:240
 #, fuzzy, c-format
+#| msgid ""
+#| " -F format      Specify a format for displaying search results; see the "
+#| "manual.\n"
 msgid ""
 " -F format       Specify a format for displaying search results; see the "
 "manual.\n"
@@ -5803,6 +5985,9 @@ msgstr " -F 格式        指定显示搜索结果的格式；参见手册。\n"
 
 #: src/main.cc:241
 #, fuzzy, c-format
+#| msgid ""
+#| " -O order       Specify how search results should be sorted; see the "
+#| "manual.\n"
 msgid ""
 " -O order        Specify how search results should be sorted; see the "
 "manual.\n"
@@ -5810,33 +5995,44 @@ msgstr " -O 次序        指定如何排列显示搜索结果；参见手册。
 
 #: src/main.cc:242
 #, fuzzy, c-format
+#| msgid ""
+#| " -w width       Specify the display width for formatting search results.\n"
 msgid ""
 " -w width        Specify the display width for formatting search results.\n"
 msgstr " -w 宽度        指定显示搜索结果的格式宽度。\n"
 
 #: src/main.cc:243
 #, fuzzy, c-format
+#| msgid " -f             Aggressively try to fix broken packages.\n"
 msgid " -f              Aggressively try to fix broken packages.\n"
 msgstr " -f             积极地尝试修复损坏的软件包。\n"
 
 #: src/main.cc:244
 #, fuzzy, c-format
+#| msgid ""
+#| " -V             Show which versions of packages are to be installed.\n"
 msgid " -V              Show which versions of packages are to be installed.\n"
 msgstr " -V             显示就要安装的软件包版本。\n"
 
 #: src/main.cc:245
 #, fuzzy, c-format
+#| msgid ""
+#| " -D             Show the dependencies of automatically changed packages.\n"
 msgid ""
 " -D              Show the dependencies of automatically changed packages.\n"
 msgstr " -D             显示自动改变的软件包的依赖关系\n"
 
 #: src/main.cc:246
 #, fuzzy, c-format
+#| msgid " -Z             Show the change in installed size of each package.\n"
 msgid " -Z              Show the change in installed size of each package.\n"
 msgstr " -Z\t\t    显示每个软件包的安装尺寸的变化。\n"
 
 #: src/main.cc:247
 #, fuzzy, c-format
+#| msgid ""
+#| " -v             Display extra information. (may be supplied multiple "
+#| "times).\n"
 msgid ""
 " -v              Display extra information. (may be supplied multiple "
 "times).\n"
@@ -5844,6 +6040,8 @@ msgstr " -v             显示附加信息。(可能会提供多次)。\n"
 
 #: src/main.cc:248
 #, fuzzy, c-format
+#| msgid ""
+#| " -t [release]   Set the release from which packages should be installed.\n"
 msgid ""
 " -t [release]    Set the release from which packages should be installed.\n"
 msgstr " -t [release]   设置将要从中安装软件包的发布版本。\n"
@@ -5857,6 +6055,7 @@ msgstr " -q            在命令行状态下，不显示增量进度指示器。
 
 #: src/main.cc:251
 #, fuzzy, c-format
+#| msgid " -o key=val     Directly set the configuration option named 'key'.\n"
 msgid " -o key=val      Directly set the configuration option named 'key'.\n"
 msgstr " -o key=val     直接设置名为“key”的配置选项。\n"
 
@@ -5869,11 +6068,13 @@ msgstr " --with(out)-recommends\t指定是否将推荐处理为强依赖关系�
 
 #: src/main.cc:254
 #, fuzzy, c-format
+#| msgid " -S fname       Read the aptitude extended status info from fname.\n"
 msgid " -S fname        Read the aptitude extended status info from fname.\n"
 msgstr " -S fname       从文件名中读取 aptitude 的扩展状态信息。\n"
 
 #: src/main.cc:255
 #, fuzzy, c-format
+#| msgid " -u             Download new package lists on startup.\n"
 msgid " -u              Download new package lists on startup.\n"
 msgstr " -u             开始运行时下载新的软件包列表。\n"
 
@@ -5884,6 +6085,7 @@ msgstr "                  (只有终端界面)"
 
 #: src/main.cc:257
 #, fuzzy, c-format
+#| msgid " -i             Perform an install run on startup.\n"
 msgid " -i              Perform an install run on startup.\n"
 msgstr " -i             开始运行时执行安装。\n"
 
@@ -5895,6 +6097,7 @@ msgstr ""
 
 #: src/main.cc:262
 #, fuzzy, c-format
+#| msgid "                  This aptitude does not have Super Cow Powers.\n"
 msgid "This aptitude does not have Super Cow Powers.\n"
 msgstr "                  这个 aptitude 没有超级牛力。\n"
 
@@ -6019,11 +6222,13 @@ msgstr "选项 -u，-i 和 --clean-on-startup 不能在和一个命令一起指�
 
 #: src/main.cc:1226 src/main.cc:1259
 #, fuzzy, c-format
+#| msgid "E: The clean command takes no arguments\n"
 msgid "Command \"%s\" needs arguments\n"
 msgstr "E: clean 命令不接受任何参数\n"
 
 #: src/main.cc:1234
 #, fuzzy, c-format
+#| msgid "E: The clean command takes no arguments\n"
 msgid "Command \"%s\" does not accept arguments\n"
 msgstr "E: clean 命令不接受任何参数\n"
 
@@ -6230,11 +6435,13 @@ msgstr ""
 
 #: src/pkg_columnizer.cc:108
 #, fuzzy
+#| msgid "Source: "
 msgid "Source"
 msgstr "源："
 
 #: src/pkg_columnizer.cc:109
 #, fuzzy
+#| msgid "Architecture: "
 msgid "Architecture"
 msgstr "体系："
 
@@ -6352,11 +6559,13 @@ msgstr ""
 
 #: src/pkg_columnizer.cc:417
 #, fuzzy, c-format
+#| msgid "%s: %sB/s"
 msgid "DL: %sB/%sB"
 msgstr "%s：%sB/s"
 
 #: src/pkg_columnizer.cc:423
 #, fuzzy, c-format
+#| msgid "DL Size: %sB"
 msgid "DL: %sB"
 msgstr "需下载：%sB"
 
@@ -6390,6 +6599,10 @@ msgstr "软件集"
 
 #: src/pkg_grouppolicy.cc:462
 #, fuzzy
+#| msgid ""
+#| "Security Updates\n"
+#| " Security updates for these packages are available from security.debian."
+#| "org."
 msgid ""
 "Security Updates\n"
 " Security updates for these packages are available from security.debian.org "
@@ -6584,6 +6797,7 @@ msgstr ""
 
 #: src/pkg_item.cc:154
 #, fuzzy, c-format
+#| msgid "\"%s\" is a virtual package provided by:\n"
 msgid ""
 "\"%s\" is a virtual package provided by:\n"
 "\n"
@@ -6636,16 +6850,19 @@ msgstr ""
 
 #: src/pkg_view.cc:271
 #, fuzzy
+#| msgid "Provides"
 msgid "provides"
 msgstr "提供"
 
 #: src/pkg_view.cc:284
 #, fuzzy
+#| msgid "%s is a virtual package provided by:\n"
 msgid "Virtual package not provided by any package."
 msgstr "%s 是虚拟软件包，提供者：\n"
 
 #: src/pkg_view.cc:289
 #, fuzzy
+#| msgid "%s is a virtual package provided by:\n"
 msgid "Virtual package provided by:"
 msgstr "%s 是虚拟软件包，提供者：\n"
 
@@ -6729,11 +6946,13 @@ msgstr ""
 
 #: src/reason_fragment.cc:77
 #, fuzzy
+#| msgid "downgraded"
 msgid "downgrade"
 msgstr "已下载"
 
 #: src/reason_fragment.cc:89
 #, fuzzy
+#| msgid "Half-configured"
 msgid "unconfigured"
 msgstr "配置完成一半的"
 
@@ -6780,6 +6999,7 @@ msgstr "(由 %F 提供)"
 
 #: src/reason_fragment.cc:378
 #, fuzzy, c-format
+#| msgid "%F%s %F %F"
 msgid "%F%s %s %F %F"
 msgstr "%F%s %F %F"
 
@@ -6791,6 +7011,9 @@ msgstr "如果您选择了一个软件包，其当前状态的描述将会出现
 
 #: src/reason_fragment.cc:466
 #, fuzzy
+#| msgid ""
+#| "%B%s%b was installed automatically;  it is being removed because all of "
+#| "the packages which depend upon it are being removed:"
 msgid ""
 "%B%s %s%b was installed automatically; it is being removed because all of "
 "the packages which depend upon it are being removed:"
@@ -6799,11 +7022,15 @@ msgstr ""
 
 #: src/reason_fragment.cc:471
 #, fuzzy
+#| msgid "%B%s%b will be automatically removed because of dependency errors:"
 msgid "%B%s %s%b will be automatically removed because of dependency errors:"
 msgstr "由于依赖关系出错，%B%s%b 将被自动删除："
 
 #: src/reason_fragment.cc:476
 #, fuzzy
+#| msgid ""
+#| "%B%s%b will be automatically installed to satisfy the following "
+#| "dependencies:"
 msgid ""
 "%B%s %s%b will be automatically installed to satisfy the following "
 "dependencies:"
@@ -6811,6 +7038,9 @@ msgstr "%B%s%b 将被自动安装以满足下列依赖关系："
 
 #: src/reason_fragment.cc:483 src/reason_fragment.cc:498
 #, fuzzy
+#| msgid ""
+#| "%B%s%b cannot be upgraded now, but if it could be, it would still be held "
+#| "at version %B%s%b."
 msgid ""
 "%B%s %s%b cannot be upgraded now, but if it could be, it would still be held "
 "at version %B%s%b."
@@ -6818,6 +7048,9 @@ msgstr "%B%s%b 现在无法升级，但是如果可以升级的话，它仍将�
 
 #: src/reason_fragment.cc:488
 #, fuzzy
+#| msgid ""
+#| "%B%s%b will not be upgraded to version %B%s%b, to avoid breaking the "
+#| "following dependencies:"
 msgid ""
 "%B%s %s%b will not be upgraded to version %B%s%b, to avoid breaking the "
 "following dependencies:"
@@ -6825,31 +7058,39 @@ msgstr "%B%s%b 将不会被升级到版本 %B%s%b，以避免破坏下列依赖�
 
 #: src/reason_fragment.cc:503
 #, fuzzy
+#| msgid "%B%s%b is currently installed."
 msgid "%B%s %s%b is currently installed."
 msgstr "%B%s%b 目前已安装。"
 
 #: src/reason_fragment.cc:510
 #, fuzzy
+#| msgid "%B%s%b is not currently installed."
 msgid "%B%s %s%b is not currently installed."
 msgstr "%B%s%b 目前未被安装。"
 
 #: src/reason_fragment.cc:519
 #, fuzzy
+#| msgid "Some dependencies of %B%s%b are not satisfied:"
 msgid "Some dependencies of %B%s %s%b are not satisfied:"
 msgstr "%B%s%b 的某些依赖关系未被满足："
 
 #: src/reason_fragment.cc:524
 #, fuzzy
+#| msgid "%B%s%b will be downgraded."
 msgid "%B%s %s%b will be downgraded."
 msgstr "%B%s%b 将被降级。"
 
 #: src/reason_fragment.cc:532
 #, fuzzy
+#| msgid "%B%s%b will not be upgraded to the forbidden version %B%s%b."
 msgid "%B%s %s%b will not be upgraded to the forbidden version %B%s%b."
 msgstr "%B%s%b 将从不会升级到禁止的版本 %B%s%b。"
 
 #: src/reason_fragment.cc:537
 #, fuzzy
+#| msgid ""
+#| "%B%s%b could be upgraded to version %B%s%b, but it is being held at "
+#| "version %B%s%b."
 msgid ""
 "%B%s %s%b could be upgraded to version %B%s%b, but it is being held at "
 "version %B%s%b."
@@ -6857,42 +7098,53 @@ msgstr "%B%s%b 可以升级到版本 %B%s%b，但是它将被保持在版本%B%s
 
 #: src/reason_fragment.cc:545
 #, fuzzy
+#| msgid "%B%s%b will be re-installed."
 msgid "%B%s %s%b will be re-installed."
 msgstr "%B%s%b 将被重新安装。"
 
 #: src/reason_fragment.cc:550
 #, fuzzy
+#| msgid "%B%s%b will be installed."
 msgid "%B%s %s%b will be installed."
 msgstr "%B%s%b 将被安装。"
 
 #: src/reason_fragment.cc:555
 #, fuzzy
+#| msgid "%B%s%b will be removed."
 msgid "%B%s %s%b will be removed."
 msgstr "%B%s%b 将被删除。"
 
 #: src/reason_fragment.cc:561
 #, fuzzy
+#| msgid "%B%s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgid "%B%s %s%b will be upgraded from version %B%s%b to version %B%s%b."
 msgstr "%B%s%b 将从版本 %B%s%b升级到版本%B%s%b。"
 
 #: src/reason_fragment.cc:569
 #, fuzzy
+#| msgid "%B%s%b is only partly installed; its installation will be completed."
 msgid "%B%s %s%b is only partly installed; its installation will be completed."
 msgstr "%B%s%b 仅被部分安装；它的安装将会完成。"
 
 #: src/reason_fragment.cc:602
 #, fuzzy
+#| msgid ""
+#| "The following packages depend on %B%s%b and will be broken by its removal:"
 msgid ""
 "The following packages depend on %B%s %s%b and will be broken by its removal:"
 msgstr "下列软件包依赖于 %B%s%b，删除该软件包将使它们破损："
 
 #: src/reason_fragment.cc:606
 #, fuzzy
+#| msgid "The following packages depend on %B%s%b and are broken:"
 msgid "The following packages depend on %B%s %s%b and are broken:"
 msgstr "下列软件包依赖于 %B%s%b，它们目前是破损的："
 
 #: src/reason_fragment.cc:614
 #, fuzzy
+#| msgid ""
+#| "The following packages conflict with %B%s%b and will be broken by its "
+#| "installation:"
 msgid ""
 "The following packages conflict with %B%s %s%b and will be broken by its "
 "installation:"
@@ -6900,6 +7152,10 @@ msgstr "下列软件包与 %B%s%b 相冲突，安装该软件包将使它们破�
 
 #: src/reason_fragment.cc:648
 #, fuzzy
+#| msgid ""
+#| "The following packages depend on a version of %B%s%b other than the "
+#| "currently installed version of %B%s%b, or conflict with the currently "
+#| "installed version:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b, or conflict with the currently "
@@ -6910,6 +7166,9 @@ msgstr ""
 
 #: src/reason_fragment.cc:653
 #, fuzzy
+#| msgid ""
+#| "The following packages conflict with %B%s%b, or depend on a version of it "
+#| "which is not going to be installed."
 msgid ""
 "The following packages conflict with %B%s %s%b, or depend on a version of it "
 "which is not going to be installed."
@@ -6917,11 +7176,15 @@ msgstr "下列软件包与 %B%s%b 冲突，或者依赖于它的某一版本，�
 
 #: src/reason_fragment.cc:658
 #, fuzzy
+#| msgid "The following packages conflict with %B%s%b:"
 msgid "The following packages conflict with %B%s %s%b:"
 msgstr "下列软件包与 %B%s%b 相冲突："
 
 #: src/reason_fragment.cc:664
 #, fuzzy
+#| msgid ""
+#| "The following packages depend on a version of %B%s%b other than the "
+#| "currently installed version of %B%s%b:"
 msgid ""
 "The following packages depend on a version of %B%s %s%b other than the "
 "currently installed version of %B%s%b:"
@@ -6929,6 +7192,9 @@ msgstr "下列软件包依赖于某一版本的 %B%s%b，该版本当前安装�
 
 #: src/reason_fragment.cc:669
 #, fuzzy
+#| msgid ""
+#| "The following packages depend on a version of %B%s%b which is not going "
+#| "to be installed."
 msgid ""
 "The following packages depend on a version of %B%s %s%b which is not going "
 "to be installed."
@@ -7033,6 +7299,7 @@ msgstr "%B降级%b 下列软件包：%n"
 
 #: src/solution_fragment.cc:511
 #, fuzzy
+#| msgid "Leave the following dependencies unresolved:%n"
 msgid "%BLeave%b the following dependencies %Bunresolved%b:%n"
 msgstr "保留下列未解决的依赖关系：%n"
 
@@ -7212,33 +7479,39 @@ msgstr "推荐"
 
 #: src/ui.cc:967 src/ui.cc:969
 #, fuzzy
+#| msgid "Packages: "
 msgid "Packages (flat)"
 msgstr "软件包："
 
 #: src/ui.cc:968
 #, fuzzy
+#| msgid "View available packages and choose actions to perform"
 msgid ""
 "View available packages (flat, no grouping) and choose actions to perform"
 msgstr "查看可选软件包以及选择要执行的动作"
 
 #: src/ui.cc:995 src/ui.cc:997
 #, fuzzy
+#| msgid "Packages: "
 msgid "Packages (debtags)"
 msgstr "软件包："
 
 #: src/ui.cc:996
 #, fuzzy
+#| msgid "View available packages and choose actions to perform"
 msgid ""
 "View available packages (debtags grouping) and choose actions to perform"
 msgstr "查看可选软件包以及选择要执行的动作"
 
 #: src/ui.cc:1015 src/ui.cc:1017
 #, fuzzy
+#| msgid "Packages: "
 msgid "Packages (source)"
 msgstr "软件包："
 
 #: src/ui.cc:1016
 #, fuzzy
+#| msgid "View available packages and choose actions to perform"
 msgid "View available packages (source grouping) and choose actions to perform"
 msgstr "查看可选软件包以及选择要执行的动作"
 
@@ -7388,11 +7661,13 @@ msgstr ""
 
 #: src/ui.cc:1273
 #, fuzzy
+#| msgid "Perform Changes"
 msgid "Performing actions..."
 msgstr "执行更改"
 
 #: src/ui.cc:1280
 #, fuzzy
+#| msgid "Press Return to continue."
 msgid "Press Return to continue, 'q' followed by Return to quit."
 msgstr "按回车继续。"
 
@@ -7421,6 +7696,7 @@ msgstr ""
 
 #: src/ui.cc:1430
 #, fuzzy
+#| msgid "  %S*%N %s [version %s]%n"
 msgid "  %S*%N %s [version %s] %s%n"
 msgstr " %S*%N %s [版本号 %s]%n"
 
@@ -7442,6 +7718,7 @@ msgstr "查看以及/或者调整将要被执行的动作"
 
 #: src/ui.cc:1541
 #, fuzzy
+#| msgid "No broken packages."
 msgid "Trying to fix broken packages..."
 msgstr "无破损的软件包。"
 
@@ -7490,6 +7767,7 @@ msgstr ""
 
 #: src/ui.cc:1810
 #, fuzzy
+#| msgid "Resolving dependencies..."
 msgid "Checking dependencies"
 msgstr "依赖关系分析中..."
 
@@ -7615,6 +7893,7 @@ msgstr "取消待执行的动作(^E)"
 
 #: src/ui.cc:2554
 #, fuzzy
+#| msgid "Canc^el pending actions"
 msgid "Cancel all pending actions from this session"
 msgstr "取消待执行的动作(^E)"
 
@@ -7996,6 +8275,7 @@ msgstr "用 Debtags 的信息来浏览软件包"
 
 #: src/ui.cc:2801
 #, fuzzy
+#| msgid "New Package ^View"
 msgid "New ^Source Package View"
 msgstr "新建软件包视图(^V)"
 

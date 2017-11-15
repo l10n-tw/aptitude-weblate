@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2017-08-19 19:05+0200\n"
+"POT-Creation-Date: 2017-11-15 01:20+0100\n"
 "PO-Revision-Date: 2012-06-03 12:23+0800\n"
 "Last-Translator: quad-nrg.net <yodesy@quad-nrg.net>\n"
 "Language-Team: Greek <debian-l10n-greek@lists.debian.org>\n"
@@ -1025,7 +1025,7 @@ msgid "Changelog download failed: %s"
 msgstr "Αρχείο Αλλαγής του %s"
 
 #: src/cmdline/cmdline_changelog.cc:197 src/generic/apt/pkg_changelog.cc:463
-#: src/generic/apt/pkg_changelog.cc:635 src/view_changelog.cc:276
+#: src/generic/apt/pkg_changelog.cc:637 src/view_changelog.cc:276
 #, fuzzy, c-format
 msgid "Changelog of %s"
 msgstr "Αρχείο Αλλαγής του %s"
@@ -3704,17 +3704,17 @@ msgstr "Οι κατάλογοι των πακέτων είναι κατεστρ�
 msgid "No URIs for this download"
 msgstr ""
 
-#: src/generic/apt/pkg_changelog.cc:611 src/generic/apt/pkg_changelog.cc:616
+#: src/generic/apt/pkg_changelog.cc:613 src/generic/apt/pkg_changelog.cc:618
 #, fuzzy, c-format
 msgid "Failed to download changelogs: %s"
 msgstr "Διεύθυνση που θα χρησιμοποιηθεί για τη μεταφόρτωση των αρχείων αλλαγών"
 
-#: src/generic/apt/pkg_changelog.cc:621
+#: src/generic/apt/pkg_changelog.cc:623
 #, fuzzy
 msgid "Failed to download changelogs: unexpected exception"
 msgstr "Διεύθυνση που θα χρησιμοποιηθεί για τη μεταφόρτωση των αρχείων αλλαγών"
 
-#: src/generic/apt/pkg_changelog.cc:696
+#: src/generic/apt/pkg_changelog.cc:698
 #, c-format
 msgid ""
 "Cannot display changelog: Origin of %s version %s is unknown (maybe not an "
