@@ -1,3 +1,26 @@
+[2017-11-15]
+Version 0.8.10
+
+- User visible changes:
+
+  * [Guillem Jover] Update section descriptions: Add "golang". Remove
+    long-obsolete "non-US".
+
+- Bug fixes:
+
+  * Restore ability to download changelogs with recent libapt (Closes: #881422)
+
+    There were changes in the backend of downloads of changelogs, so the URI can
+    be store:// instead of gzip:// since (lib)apt 1.2, and has to be since in
+    recent uploads.  So it was just switched to use store:// unconditionally,
+    backporting to Jessie at this point is not high in priority...
+
+- Internal changes:
+
+  * Remove m4/ with embedded copies of building-system helpers.  The debian part
+    of the package will depend on autoconf-archive to provide those needed.
+
+
 [2017-08-19]
 Version 0.8.9
 

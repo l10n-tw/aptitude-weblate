@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apt\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2017-08-19 19:05+0200\n"
+"POT-Creation-Date: 2017-11-15 01:20+0100\n"
 "PO-Revision-Date: 2008-05-06 12:52+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -597,6 +597,7 @@ msgstr ""
 
 #: src/cmdline/cmdline_action.cc:63
 #, fuzzy, c-format
+#| msgid "Unable to locate package %s"
 msgid "Unable to find the source package for \"%s\"\n"
 msgstr "ไม่พบแพกเกจ %s"
 
@@ -853,7 +854,7 @@ msgid "Changelog download failed: %s"
 msgstr ""
 
 #: src/cmdline/cmdline_changelog.cc:197 src/generic/apt/pkg_changelog.cc:463
-#: src/generic/apt/pkg_changelog.cc:635 src/view_changelog.cc:276
+#: src/generic/apt/pkg_changelog.cc:637 src/view_changelog.cc:276
 #, c-format
 msgid "Changelog of %s"
 msgstr ""
@@ -1281,6 +1282,7 @@ msgstr ""
 
 #: src/cmdline/cmdline_prompt.cc:734
 #, fuzzy, c-format
+#| msgid "The following packages will be DOWNGRADED:"
 msgid "The following packages will NOT be UPGRADED:\n"
 msgstr "จะปรับรุ่นแพกเกจต่อไปนี้ *ลง*:"
 
@@ -1968,6 +1970,7 @@ msgstr ""
 
 #: src/cmdline/cmdline_show_broken.cc:44
 #, fuzzy, c-format
+#| msgid "but it is not installable"
 msgid "but %s is installed"
 msgstr "แต่ไม่สามารถติดตั้งได้"
 
@@ -3388,17 +3391,17 @@ msgstr "แฟ้มดัชนีแพกเกจเสียหาย ไ�
 msgid "No URIs for this download"
 msgstr ""
 
-#: src/generic/apt/pkg_changelog.cc:611 src/generic/apt/pkg_changelog.cc:616
+#: src/generic/apt/pkg_changelog.cc:613 src/generic/apt/pkg_changelog.cc:618
 #, fuzzy, c-format
 msgid "Failed to download changelogs: %s"
 msgstr "ไม่พบแพกเกจ %s"
 
-#: src/generic/apt/pkg_changelog.cc:621
+#: src/generic/apt/pkg_changelog.cc:623
 #, fuzzy
 msgid "Failed to download changelogs: unexpected exception"
 msgstr "ไม่พบแพกเกจ %s"
 
-#: src/generic/apt/pkg_changelog.cc:696
+#: src/generic/apt/pkg_changelog.cc:698
 #, c-format
 msgid ""
 "Cannot display changelog: Origin of %s version %s is unknown (maybe not an "
@@ -6649,6 +6652,7 @@ msgstr ""
 
 #: src/reason_fragment.cc:606
 #, fuzzy
+#| msgid "The following packages have been kept back:"
 msgid "The following packages depend on %B%s %s%b and are broken:"
 msgstr "จะคงรุ่นแพกเกจต่อไปนี้:"
 
@@ -6673,6 +6677,7 @@ msgstr ""
 
 #: src/reason_fragment.cc:658
 #, fuzzy
+#| msgid "The following packages will be REMOVED:"
 msgid "The following packages conflict with %B%s %s%b:"
 msgstr "จะ *ลบ* แพกเกจต่อไปนี้:"
 

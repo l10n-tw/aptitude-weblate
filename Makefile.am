@@ -7,7 +7,7 @@ SRCDIRS=@SRCDIRS@
 DOCDIRS=@DOCDIRS@
 TESTDIRS=@TESTDIRS@
 
-SUBDIRS=buildlib $(SRCDIRS) $(DOCDIRS) m4 po $(TESTDIRS)
+SUBDIRS=buildlib $(SRCDIRS) $(DOCDIRS) po $(TESTDIRS)
 
 dist_bin_SCRIPTS = aptitude-create-state-bundle aptitude-run-state-bundle
 
@@ -49,5 +49,3 @@ install-data-local:
 update-po:
 	$(MAKE) -C po  update-po
 	$(MAKE) -C doc update-po
-
-ACLOCAL_AMFLAGS = -I m4

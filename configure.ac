@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([aptitude], [0.8.9], [aptitude-devel@lists.alioth.debian.org])
+AC_INIT([aptitude], [0.8.10], [aptitude-devel@lists.alioth.debian.org])
 AC_CONFIG_SRCDIR([src/main.cc])
 AM_INIT_AUTOMAKE([foreign dist-xz no-dist-gzip -Wno-portability])
 AM_CONFIG_HEADER(config.h)
@@ -744,7 +744,6 @@ AC_CONFIG_FILES([
 	doc/po4a/add_nl/Makefile
 	doc/po4a/add_pl/Makefile
 	doc/po4a/add_ru/Makefile
-	m4/Makefile
 	po/Makefile.in
 	src/Makefile
 	src/gtk/Makefile

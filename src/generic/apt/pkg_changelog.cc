@@ -525,14 +525,16 @@ namespace aptitude
 				    download.push_back("file://" + changelog_file);
 				  }
 
+				// could/should use APT::Configuration::getCompressorExtensions()
 				changelog_file += ".gz";
 
 				if(stat(changelog_file.c_str(), &buf) == 0)
 				  {
+				    std::string changelog_uri = "store://" + changelog_file;
 				    LOG_TRACE(logger,
-					      "Adding " << "gzip://" << changelog_file
+					      "Adding " << changelog_uri
 					      << " as a URI for the changelog of " << source_package << " " << source_version);
-				    download.push_back("gzip://" + changelog_file);
+				    download.push_back(changelog_uri);
 				  }
 
 				// Beware the races here -- ideally we

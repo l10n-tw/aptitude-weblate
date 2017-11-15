@@ -99,15 +99,8 @@ build_triplet = @build@
 host_triplet = @host@
 subdir = doc/es
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/ax_boost_base.m4 \
-	$(top_srcdir)/m4/ax_boost_filesystem.m4 \
-	$(top_srcdir)/m4/ax_boost_iostreams.m4 \
-	$(top_srcdir)/m4/ax_boost_system.m4 \
-	$(top_srcdir)/m4/gettext.m4 $(top_srcdir)/m4/iconv.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/lib-link.m4 \
-	$(top_srcdir)/m4/lib-prefix.m4 $(top_srcdir)/m4/nls.m4 \
-	$(top_srcdir)/m4/po.m4 $(top_srcdir)/m4/progtest.m4 \
-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(am__DIST_COMMON)
@@ -267,9 +260,11 @@ ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 FOP = @FOP@
+GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GLIBMM_CFLAGS = @GLIBMM_CFLAGS@
 GLIBMM_LIBS = @GLIBMM_LIBS@
 GMSGFMT = @GMSGFMT@
+GMSGFMT_015 = @GMSGFMT_015@
 GREP = @GREP@
 GTHREAD_CFLAGS = @GTHREAD_CFLAGS@
 GTHREAD_LIBS = @GTHREAD_LIBS@
@@ -294,9 +289,9 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
-MKINSTALLDIRS = @MKINSTALLDIRS@
 MOC = @MOC@
 MSGFMT = @MSGFMT@
+MSGFMT_015 = @MSGFMT_015@
 MSGMERGE = @MSGMERGE@
 OBJEXT = @OBJEXT@
 PACKAGE = @PACKAGE@
@@ -318,6 +313,7 @@ QtGui_CFLAGS = @QtGui_CFLAGS@
 QtGui_LIBS = @QtGui_LIBS@
 RANLIB = @RANLIB@
 RSVG_CONVERT = @RSVG_CONVERT@
+SED = @SED@
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 SIGC_CFLAGS = @SIGC_CFLAGS@
@@ -334,6 +330,8 @@ VTE_CFLAGS = @VTE_CFLAGS@
 VTE_LIBS = @VTE_LIBS@
 XAPIAN_CONFIG = @XAPIAN_CONFIG@
 XGETTEXT = @XGETTEXT@
+XGETTEXT_015 = @XGETTEXT_015@
+XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
 XSLTPROC = @XSLTPROC@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
