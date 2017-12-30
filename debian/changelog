@@ -6,6 +6,8 @@ aptitude (0.8.10-2) UNRELEASED; urgency=medium
 
   [ Axel Beckert ]
   * Declare compliance with Debian Policy 4.1.3. (No changes needed.)
+  * Bump debhelper compatibility level to 11.
+    + Update versioned debhelper build-dependency accordingly.
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 16 Nov 2017 00:10:41 +0100
 
