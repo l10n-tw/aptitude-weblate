@@ -1,4 +1,4 @@
-aptitude (0.8.10-2) UNRELEASED; urgency=medium
+aptitude (0.8.10-2) unstable; urgency=medium
 
   [ Manuel A. Fernandez Montecelo ]
   * Move elinks and librsvg2-bin to Build-Depends-Indep, needed only for
@@ -9,7 +9,7 @@ aptitude (0.8.10-2) UNRELEASED; urgency=medium
   * Bump debhelper compatibility level to 11.
     + Update versioned debhelper build-dependency accordingly.
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 16 Nov 2017 00:10:41 +0100
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Wed, 03 Jan 2018 22:22:19 +0100
 
 aptitude (0.8.10-1) unstable; urgency=medium
 
