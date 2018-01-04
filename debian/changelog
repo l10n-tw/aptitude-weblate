@@ -1,8 +1,10 @@
 aptitude (0.8.10-3) UNRELEASED; urgency=medium
 
-  * 
+  * Reinstate elinks and librsvg2-bin as arch-dependent Build-Depends to
+    avoid FTBFS in buildds (they appeared to be working due to a flaw when
+    testing)
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Wed, 03 Jan 2018 22:52:19 +0100
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 04 Jan 2018 01:59:25 +0100
 
 aptitude (0.8.10-2) unstable; urgency=medium
 
