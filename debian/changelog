@@ -1,3 +1,37 @@
+aptitude (0.8.10-4) UNRELEASED; urgency=medium
+
+  * Improve builds using -indep/-arch and skipping docs for -arch
+    + Move doc-related dependencies to Build-Depends-Indep, create
+      separate -indep/-arch targets.
+
+      In this way we can disable building the docs for each arch; and
+      obtain huge savings in terms of resources (time, disk, network),
+      because some of these dependencies pull lots of packages.
+
+      The doc-related dependencies are:
+      - docbook-xml
+      - docbook-xsl
+      - elinks
+      - librsvg2-bin
+      - xsltproc
+
+    + Move man pages to aptitude-common, it's depended on by the binary
+      package and so we save ~200KB in the arch packages.
+
+      The biggest saving is that we can avoid building docs in -arch and
+      having to pull the dependencies explained in 1).
+
+    + Disable tests for boost headers at configure time.
+
+      They take 30~50 seconds in fast computers, and haven't failed for a
+      few years, so they provide very little value.  If there's something
+      wrong, the compilations will fail only a few seconds later.
+
+      In any case, they could pass the initial test and fail later anyway,
+      Boost libraries sometimes change APIs in incompatible ways.
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 04 Jan 2018 18:32:05 +0100
+
 aptitude (0.8.10-3) unstable; urgency=medium
 
   * Reinstate elinks and librsvg2-bin as arch-dependent Build-Depends to

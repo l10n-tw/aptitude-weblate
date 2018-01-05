@@ -8,3 +8,4 @@ debian/tmp/usr/share/aptitude/help*.txt
 debian/tmp/usr/share/aptitude/mine-help*.txt
 debian/tmp/usr/share/aptitude/section-descriptions
 debian/tmp/usr/share/locale/
+debian/tmp/usr/share/man

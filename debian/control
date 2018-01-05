@@ -6,10 +6,7 @@ Uploaders: Manuel A. Fernandez Montecelo <mafm@debian.org>,
            Axel Beckert <abe@debian.org>
 Build-Depends: debhelper (>= 11~),
                autoconf-archive,
-               docbook-xml,
-               docbook-xsl,
                dpkg-dev (>= 1.16.1),
-               elinks,
                gettext,
                google-mock (>= 1.8.0),
                libapt-pkg-dev (>= 1.1),
@@ -21,13 +18,17 @@ Build-Depends: debhelper (>= 11~),
                libcwidget-dev (>= 0.5.6.1-2),
                libgtest-dev,
                libncursesw5-dev,
-               librsvg2-bin,
                libsigc++-2.0-dev,
                libsqlite3-dev,
                libxapian-dev,
                pkg-config,
                po4a,
-               xsltproc
+Build-Depends-Indep:
+ docbook-xml,
+ docbook-xsl,
+ elinks,
+ librsvg2-bin,
+ xsltproc,
 Vcs-Git: https://anonscm.debian.org/git/aptitude/aptitude.git -b debian-sid
 Vcs-Browser: https://anonscm.debian.org/cgit/aptitude/aptitude.git
 Standards-Version: 4.1.3
