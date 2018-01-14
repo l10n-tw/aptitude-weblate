@@ -1,4 +1,4 @@
-aptitude (0.8.10-4) UNRELEASED; urgency=medium
+aptitude (0.8.10-4) experimental; urgency=medium
 
   * Improve builds using -indep/-arch and skipping docs for -arch
     + Move doc-related dependencies to Build-Depends-Indep, create
@@ -34,7 +34,7 @@ aptitude (0.8.10-4) UNRELEASED; urgency=medium
     s390 (now superseded by s390x) and sh4, forcing "gcc -fno-gcse"
     (optimisation enabled by default at levels -O2, -O3 and -Os)
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 04 Jan 2018 18:32:05 +0100
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 14 Jan 2018 23:02:55 +0100
 
 aptitude (0.8.10-3) unstable; urgency=medium
 
