@@ -5,14 +5,6 @@
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
-# Temporary hack to ensure that aptitude builds on s390 and sh4. As of this
-# writing, g++ on s390 miscompiles some of the parsing code unless
-# -fno-gcse is enabled.  See Debian bug #580085.
-DEB_BUILD_ARCH_CPU ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH_CPU)
-ifneq (,$(findstring $(DEB_BUILD_ARCH_CPU), s390 sh4))
-  DEB_CXXFLAGS_MAINT_APPEND += -fno-gcse
-endif
-
 ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
   DEB_CXXFLAGS_MAINT_APPEND += -fno-inline
 endif

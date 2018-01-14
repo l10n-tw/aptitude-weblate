@@ -30,6 +30,10 @@ aptitude (0.8.10-4) UNRELEASED; urgency=medium
       In any case, they could pass the initial test and fail later anyway,
       Boost libraries sometimes change APIs in incompatible ways.
 
+  * Remove special workaround in d/rules due to bug #580085 from 2010 in
+    s390 (now superseded by s390x) and sh4, forcing "gcc -fno-gcse"
+    (optimisation enabled by default at levels -O2, -O3 and -Os)
+
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Thu, 04 Jan 2018 18:32:05 +0100
 
 aptitude (0.8.10-3) unstable; urgency=medium
