@@ -1,8 +1,9 @@
-aptitude (0.8.10-5) UNRELEASED; urgency=medium
+aptitude (0.8.10-5) unstable; urgency=medium
 
+  * Release to unstable
   * Also move po4a to Build-Depends-Indep, only needed for doc translations
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Mon, 15 Jan 2018 00:29:40 +0100
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Mon, 15 Jan 2018 18:25:17 +0100
 
 aptitude (0.8.10-4) experimental; urgency=medium
 
