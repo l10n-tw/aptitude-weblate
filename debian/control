@@ -62,8 +62,8 @@ Architecture: all
 Multi-Arch: foreign
 Depends: ${misc:Depends}
 Recommends: aptitude
-Replaces: aptitude (<< 0.6.8-1)
-Breaks: aptitude (<< 0.6.8-1)
+Replaces: aptitude (<< 0.8.10-4)
+Breaks: aptitude (<< 0.8.10-4)
 Description: architecture independent files for the aptitude package manager
  aptitude is a package manager with a number of useful features,
  including: a mutt-like syntax for matching packages in a flexible

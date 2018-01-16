@@ -1,3 +1,12 @@
+aptitude (0.8.10-6) UNRELEASED; urgency=medium
+
+  * Bump Breaks/Replaces of aptitude-common to aptitude (<< 0.8.10-4) from
+    an ancient version 0.6.8-1, because in 0.8.10-4 we moved the manpages
+    from the main package to -common without adding these changes.
+    (Closes: #887421)
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Tue, 16 Jan 2018 22:25:52 +0100
+
 aptitude (0.8.10-5) unstable; urgency=medium
 
   * Release to unstable
