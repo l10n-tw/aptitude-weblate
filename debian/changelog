@@ -1,4 +1,4 @@
-aptitude (0.8.10-7) UNRELEASED; urgency=medium
+aptitude (0.8.10-7) unstable; urgency=medium
 
   [ Sven Joachim ]
   * Build-Depend on libcwidget-dev (>= 0.5.17-8) and
@@ -8,7 +8,7 @@ aptitude (0.8.10-7) UNRELEASED; urgency=medium
   * Bump Policy Standards-Version to 4.1.4 (no changes needed)
   * Switch Vcs-* fields from Alitoh to Salsa
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 27 Apr 2018 01:23:40 +0200
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 27 Apr 2018 01:31:22 +0200
 
 aptitude (0.8.10-6) unstable; urgency=medium
 
