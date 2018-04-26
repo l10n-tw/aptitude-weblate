@@ -6,6 +6,7 @@ aptitude (0.8.10-7) UNRELEASED; urgency=medium
 
   [ Manuel A. Fernandez Montecelo ]
   * Bump Policy Standards-Version to 4.1.4 (no changes needed)
+  * Switch Vcs-* fields from Alitoh to Salsa
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 27 Apr 2018 01:23:40 +0200
 
