@@ -1,3 +1,9 @@
+aptitude (0.8.10-9) unstable; urgency=medium
+
+  * Release to unstable
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 27 Apr 2018 09:57:04 +0200
+
 aptitude (0.8.10-8) experimental; urgency=medium
 
   * google-mock does not provide the -dev files anymore, this was changed
