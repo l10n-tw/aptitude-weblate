@@ -1,4 +1,4 @@
-aptitude (0.8.10-8) UNRELEASED; urgency=medium
+aptitude (0.8.10-8) experimental; urgency=medium
 
   * google-mock does not provide the -dev files anymore, this was changed
     in the last few days (#896559) and was not announced (at least not
