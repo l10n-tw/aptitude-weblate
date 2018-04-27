@@ -1,3 +1,12 @@
+aptitude (0.8.10-8) UNRELEASED; urgency=medium
+
+  * google-mock does not provide the -dev files anymore, this was changed
+    in the last few days (#896559) and was not announced (at least not
+    through BTS to reverse-dependencies like aptitude)
+    - Set build depends to libgmock-dev and libgtest-dev, both (>= 1.8.0-9)
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 27 Apr 2018 02:39:08 +0200
+
 aptitude (0.8.10-7) unstable; urgency=medium
 
   [ Sven Joachim ]
