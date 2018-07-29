@@ -1,3 +1,29 @@
+aptitude (0.8.11-1) UNRELEASED; urgency=medium
+
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
+    - New features:
+      * Add search term for release label (?label) (Closes: #892983)
+        by Tomas Pospisek <tpo_deb@sourcepole.ch>
+
+    - Documentation:
+      * Change en/README_encoding to use utf-8 as all the other languages,
+        instead of iso-8859-1
+
+    - Internal changes:
+      * Misc changes to adapt to GCC-8, use C++17 standard library instead
+        of Boost (e.g. filesystem, optional), and other updates to the build
+        system
+
+    - Translation updates:
+      * zh_CN.po: Simplified Chinese translation by Boyuan Yang
+        (Closes: #885916)
+      * ru.po: Russian translation by Lev Lamberov (Closes: #893027)
+      * Russian documentation translation by Lev Lamberov (Closes: #893028)
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 29 Jul 2018 16:50:20 +0200
+
 aptitude (0.8.10-9) unstable; urgency=medium
 
   * Release to unstable
