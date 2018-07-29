@@ -1,4 +1,4 @@
-aptitude (0.8.11-1) UNRELEASED; urgency=medium
+aptitude (0.8.11-1) experimental; urgency=medium
 
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
     log with more details.
@@ -22,11 +22,12 @@ aptitude (0.8.11-1) UNRELEASED; urgency=medium
       * ru.po: Russian translation by Lev Lamberov (Closes: #893027)
       * Russian documentation translation by Lev Lamberov (Closes: #893028)
 
+
   * d/patches:
     - drop fix-missing-mkinstalldirs.patch, fixed in the upstream code
     - add fix-changelog-retrieval.patch to fix changelog downloads
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 29 Jul 2018 16:50:20 +0200
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 29 Jul 2018 18:09:10 +0200
 
 aptitude (0.8.10-9) unstable; urgency=medium
 
