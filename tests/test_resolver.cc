@@ -1,6 +1,7 @@
 // test_resolver.cc                       -*-c++-*-
 //
 //   Copyright (C) 2005, 2007-2011 Daniel Burrows
+//   Copyright (C) 2018 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -243,7 +244,7 @@ private:
           {
             output.push_back(r.find_next_solution(num_steps, visited_packages));
           }
-        catch(NoMoreSolutions)
+        catch(const NoMoreSolutions&)
           {
             break;
           }
@@ -421,7 +422,7 @@ private:
       {
 	r.find_next_solution(1000000, NULL);
       }
-    catch(NoMoreSolutions)
+    catch(const NoMoreSolutions&)
       {
 	CPPUNIT_FAIL("Expected at least one solution, got none.");
       }
@@ -452,7 +453,7 @@ private:
 	sol = r.find_next_solution(1000, NULL);
 	LOG_TRACE(logger, "Got first solution: " << sol);
       }
-    catch(NoMoreSolutions)
+    catch(const NoMoreSolutions&)
       {
 	LOG_ERROR(logger, "Expected exactly one solution, got none.");
 	CPPUNIT_FAIL("Expected exactly one solution, got none.");
@@ -467,7 +468,7 @@ private:
       {
 	sol = r.find_next_solution(1000, NULL);
       }
-    catch(NoMoreSolutions)
+    catch(const NoMoreSolutions&)
       {
 	LOG_TRACE(logger, "Success: only one solution was found.");
 
@@ -483,7 +484,7 @@ private:
 	    expected_solution2.insert_or_narrow(choice::make_install_version(a.version_from_name("v2"), 1));
 	    assertSameEffect(expected_solution2, sol.get_choices());
 	  }
-	catch(NoMoreSolutions)
+	catch(const NoMoreSolutions&)
 	  {
 	    LOG_ERROR(logger, "Mandating a second solution didn't cancel the first mandate.");
 	    CPPUNIT_FAIL("Mandating a second solution didn't cancel the first mandate.");
@@ -495,7 +496,7 @@ private:
 	    LOG_ERROR(logger, "Got an extra solution: " << sol);
 	    CPPUNIT_FAIL("Too many solutions after a solution was re-enabled because a solver was mandated.");
 	  }
-	catch(NoMoreSolutions)
+	catch(const NoMoreSolutions&)
 	  {
 	    try
 	      {
@@ -507,7 +508,7 @@ private:
 		LOG_ERROR(logger, "Got an extra solution: " << sol);
 		CPPUNIT_FAIL("Too many solutions after a solution was re-enabled because a solver was mandated, and after breaking the dep was rejected and unrejected.");
 	      }
-	    catch(NoMoreSolutions)
+	    catch(const NoMoreSolutions&)
 	      {
 		return;
 	      }
@@ -543,7 +544,7 @@ private:
 	sol = r.find_next_solution(1000, NULL);
 	LOG_TRACE(logger, "Got first solution: " << sol);
       }
-    catch(NoMoreSolutions)
+    catch(const NoMoreSolutions&)
       {
 	LOG_ERROR(logger, "Expected exactly one solution, got none.");
 	CPPUNIT_FAIL("Expected exactly one solution, got none.");
@@ -557,7 +558,7 @@ private:
       {
 	sol = r.find_next_solution(1000, NULL);
       }
-    catch(NoMoreSolutions)
+    catch(const NoMoreSolutions&)
       {
 	LOG_TRACE(logger, "Success: only one solution was found.");
 
@@ -573,7 +574,7 @@ private:
 	    expected_solution2.insert_or_narrow(choice::make_install_version(b.version_from_name("v2"), 0));
 	    assertSameEffect(expected_solution2, sol.get_choices());
 	  }
-	catch(NoMoreSolutions)
+	catch(const NoMoreSolutions&)
 	  {
 	    LOG_ERROR(logger, "Mandating a second solution didn't cancel the first mandate.");
 	    CPPUNIT_FAIL("Mandating a second solution didn't cancel the first mandate.");
@@ -585,7 +586,7 @@ private:
 	    LOG_ERROR(logger, "Got an extra solution: " << sol);
 	    CPPUNIT_FAIL("Too many solutions after a solution was re-enabled because a solver was mandated.");
 	  }
-	catch(NoMoreSolutions)
+	catch(const NoMoreSolutions&)
 	  {
 	    try
 	      {
@@ -597,7 +598,7 @@ private:
 		LOG_ERROR(logger, "Got an extra solution: " << sol);
 		CPPUNIT_FAIL("Too many solutions after a solution was re-enabled because a solver was mandated, and after a version was rejected and unrejected.");
 	      }
-	    catch(NoMoreSolutions)
+	    catch(const NoMoreSolutions&)
 	      {
 		return;
 	      }
@@ -633,7 +634,7 @@ private:
 	sol = r.find_next_solution(1000, NULL);
 	LOG_TRACE(logger, "Got first solution: " << sol);
       }
-    catch(NoMoreSolutions)
+    catch(const NoMoreSolutions&)
       {
 	LOG_ERROR(logger, "Expected exactly one solution, got none.");
 	CPPUNIT_FAIL("Expected exactly one solution, got none.");
@@ -648,7 +649,7 @@ private:
       {
 	sol = r.find_next_solution(1000, NULL);
       }
-    catch(NoMoreSolutions)
+    catch(const NoMoreSolutions&)
       {
 	LOG_TRACE(logger, "Success: only one solution was found.");
 	return;
@@ -683,7 +684,7 @@ private:
 	sol = r.find_next_solution(1000, NULL);
 	LOG_TRACE(logger, "Got first solution: " << sol);
       }
-    catch(NoMoreSolutions)
+    catch(const NoMoreSolutions&)
       {
 	LOG_ERROR(logger, "Expected exactly one solution, got none.");
 	CPPUNIT_FAIL("Expected exactly one solution, got none.");
@@ -698,7 +699,7 @@ private:
       {
 	sol = r.find_next_solution(1000, NULL);
       }
-    catch(NoMoreSolutions)
+    catch(const NoMoreSolutions&)
       {
 	LOG_TRACE(logger, "Success: only one solution was found.");
 	return;
@@ -730,7 +731,7 @@ private:
 	sol = r.find_next_solution(1000, NULL);
 	LOG_TRACE(logger, "Got first solution: " << sol);
       }
-    catch(NoMoreSolutions)
+    catch(const NoMoreSolutions&)
       {
 	LOG_ERROR(logger, "Expected exactly one solution, got none.");
 	CPPUNIT_FAIL("Expected exactly one solution, got none.");
@@ -744,7 +745,7 @@ private:
       {
 	sol = r.find_next_solution(1000, NULL);
       }
-    catch(NoMoreSolutions)
+    catch(const NoMoreSolutions&)
       {
 	LOG_TRACE(logger, "Success: only one solution was found.");
 	return;
@@ -791,12 +792,12 @@ private:
 	sol = r.find_next_solution(50, NULL);
 	LOG_TRACE(logger, "Got solution: " << sol << ".");
       }
-    catch(NoMoreSolutions)
+    catch(const NoMoreSolutions&)
       {
 	LOG_TRACE(logger, "Unable to find a solution.");
 	CPPUNIT_FAIL("Unable to find a solution.");
       }
-    catch(NoMoreTime)
+    catch(const NoMoreTime&)
       {
 	LOG_TRACE(logger, "No more time to find a solution.");
 	CPPUNIT_FAIL("No more time to find a solution.");
@@ -845,12 +846,12 @@ private:
 	sol = r.find_next_solution(50, NULL);
 	LOG_TRACE(logger, "Got solution: " << sol << ".");
       }
-    catch(NoMoreSolutions)
+    catch(const NoMoreSolutions&)
       {
 	LOG_TRACE(logger, "Unable to find a solution.");
 	CPPUNIT_FAIL("Unable to find a solution.");
       }
-    catch(NoMoreTime)
+    catch(const NoMoreTime&)
       {
 	LOG_TRACE(logger, "No more time to find a solution.");
 	CPPUNIT_FAIL("No more time to find a solution.");
@@ -901,7 +902,7 @@ private:
 	{
 	  sol = r.find_next_solution(1000000, NULL);
 	}
-      catch(NoMoreSolutions)
+      catch(const NoMoreSolutions&)
 	{
 	  CPPUNIT_FAIL("Expected two solutions, got none.");
 	}
@@ -914,7 +915,7 @@ private:
 	{
 	  sol = r.find_next_solution(1000000, NULL);
 	}
-      catch(NoMoreSolutions)
+      catch(const NoMoreSolutions&)
 	{
 	  CPPUNIT_FAIL("Expected two solutions, got only one.");
 	}
@@ -928,7 +929,7 @@ private:
 	{
 	  sol = r.find_next_solution(1000000, NULL);
 	}
-      catch(NoMoreSolutions)
+      catch(const NoMoreSolutions&)
 	{
 	  done = true;
 	}
@@ -959,7 +960,7 @@ private:
 	{
 	  sol = r.find_next_solution(1000000, NULL);
 	}
-      catch(NoMoreSolutions)
+      catch(const NoMoreSolutions&)
 	{
 	  CPPUNIT_FAIL("Expected two solutions, got none.");
 	}
@@ -972,7 +973,7 @@ private:
 	{
 	  sol = r.find_next_solution(1000000, NULL);
 	}
-      catch(NoMoreSolutions)
+      catch(const NoMoreSolutions&)
 	{
 	  CPPUNIT_FAIL("Expected two solutions, got only one.");
 	}
@@ -986,7 +987,7 @@ private:
 	{
 	  sol = r.find_next_solution(1000000, NULL);
 	}
-      catch(NoMoreSolutions)
+      catch(const NoMoreSolutions&)
 	{
 	  done = true;
 	}
@@ -1279,7 +1280,7 @@ private:
       {
         doTestCostOperations();
       }
-    catch(const cwidget::util::Exception &ex)
+    catch(const cwidget::util::Exception& ex)
       {
         CPPUNIT_FAIL("Uncaught exception: " + ex.errmsg());
       }
@@ -1356,18 +1357,18 @@ private:
 	  {
 	    sol = r.find_next_solution(1000000, NULL);
 	  }
-	catch(NoMoreSolutions&)
+	catch(const NoMoreSolutions&)
 	  {
 	    out_of_solutions = true;
 	  }
 	CPPUNIT_ASSERT_MESSAGE("There should be only one solution.",
 			       out_of_solutions);
       }
-    catch(NoMoreTime&)
+    catch(const NoMoreTime&)
       {
 	CPPUNIT_FAIL("Unable to solve the solution in the ridiculous amount of time I allocated.");
       }
-    catch(NoMoreSolutions&)
+    catch(const NoMoreSolutions&)
       {
 	CPPUNIT_FAIL("The empty solution should be returned.");
       }
@@ -1437,11 +1438,11 @@ private:
 				     sol.get_score());
 	      }
 	  }
-	catch(NoMoreTime&)
+	catch(const NoMoreTime&)
 	  {
 	    CPPUNIT_FAIL("Unable to solve the solution in the ridiculous amount of time I allocated.");
 	  }
-	catch(NoMoreSolutions&)
+	catch(const NoMoreSolutions&)
 	  {
 	    if(!saw_one_positive)
 	      CPPUNIT_FAIL("Expected at least one solution containing a, version 2 and b, version 1");
@@ -1478,7 +1479,7 @@ private:
       {
 	s = r.find_next_solution(100, NULL);
       }
-    catch(NoMoreSolutions)
+    catch(const NoMoreSolutions&)
       {
 	CPPUNIT_FAIL("Expected at least one solution, got none.");
       }
@@ -1490,7 +1491,7 @@ private:
       {
 	s = r.find_next_solution(100, NULL);
       }
-    catch(NoMoreSolutions)
+    catch(const NoMoreSolutions&)
       {
 	CPPUNIT_FAIL("Expected at least two solutions, got only one.");
       }
@@ -1509,7 +1510,7 @@ private:
 	s = r.find_next_solution(100, NULL);
 	CPPUNIT_FAIL("Expected exactly two solutions, got more than two.");
       }
-    catch(NoMoreSolutions)
+    catch(const NoMoreSolutions&)
       {
       }
   }
@@ -1558,7 +1559,7 @@ private:
         {
           find_all_solutions(r, 50, NULL, sols);
         }
-      catch(NoMoreTime)
+      catch(const NoMoreTime&)
         {
           CPPUNIT_FAIL("Ran out of time trying to solve a simple problem.");
         }
@@ -1586,7 +1587,7 @@ private:
         {
           find_all_solutions(r, 50, NULL, sols);
         }
-      catch(NoMoreTime)
+      catch(const NoMoreTime&)
         {
           CPPUNIT_FAIL("Ran out of time trying to solve a simple problem.");
         }

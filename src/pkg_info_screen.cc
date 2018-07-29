@@ -149,6 +149,11 @@ void pkg_grouppolicy_info::setup_package_info(const pkgCache::PkgIterator &pkg,
 					_("Source Package: "), source_package.c_str()
 				      )));
 
+      std::string label = get_label(ver, apt_package_records);
+      frags.push_back(clipbox(cw::fragf("%B%s%b%s%n",
+					_("Label: "), label.c_str()
+					)));
+
       std::string origin = get_origin(ver, apt_package_records);
       frags.push_back(clipbox(cw::fragf("%B%s%b%s%n",
 					_("Origin: "), origin.c_str()

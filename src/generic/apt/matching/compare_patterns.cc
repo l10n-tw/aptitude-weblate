@@ -195,6 +195,10 @@ namespace aptitude
 	  case pattern::installed:
 	    return 0;
 
+	  case pattern::label:
+	    return compare_regex_info(p1->get_label_regex_info(),
+				      p2->get_label_regex_info());
+
 	  case pattern::maintainer:
 	    return compare_regex_info(p1->get_maintainer_regex_info(),
 				      p2->get_maintainer_regex_info());

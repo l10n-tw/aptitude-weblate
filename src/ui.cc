@@ -1,7 +1,7 @@
 // ui.cc
 //
 //   Copyright 2000-2009 Daniel Burrows <dburrows@debian.org>
-//   Copyright 2012-2016 Manuel A. Fernandez Montecelo
+//   Copyright 2012-2018 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -1563,13 +1563,13 @@ static void auto_fix_broken()
 
       popup_widget(d, true);
     }
-  catch(NoMoreSolutions)
+  catch(const NoMoreSolutions&)
     {
       show_message(_("No solution to these dependency problems exists!"),
 		   NULL,
 		   cw::get_style("Error"));
     }
-  catch(NoMoreTime)
+  catch(const NoMoreTime&)
     {
       show_message(cw::fragf(_("Ran out of time while trying to resolve dependencies (press \"%s\" to try harder)"),
 			 cw::config::global_bindings.readable_keyname("NextSolution").c_str()),
@@ -2406,13 +2406,13 @@ void do_apply_solution()
 										aptcfg->FindI(PACKAGE "::ProblemResolver::StepLimit", 5000));
 	  (*apt_cache_file)->apply_solution(sol, undo);
 	}
-      catch(NoMoreSolutions)
+      catch(const NoMoreSolutions&)
 	{
 	  show_message(_("Unable to find a solution to apply."),
 		       NULL,
 		       cw::get_style("Error"));
 	}
-      catch(NoMoreTime)
+      catch(const NoMoreTime&)
 	{
 	  show_message(_("Ran out of time while trying to find a solution."),
 		       NULL,

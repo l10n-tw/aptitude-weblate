@@ -1,6 +1,7 @@
 /** \file download_progress.h */    // -*-c++-*-
 
 // Copyright (C) 2010 Daniel Burrows
+// Copyright (C) 2015-2018 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -27,6 +28,8 @@
 #include <gmock/gmock.h>
 
 #include <memory>
+#include <optional>
+#include <string>
 
 namespace aptitude
 {
@@ -44,14 +47,14 @@ namespace aptitude
       public:
         MOCK_METHOD1(update_progress, bool(const status &));
         MOCK_METHOD3(file_started, void(const std::string &,
-                                        const boost::optional<unsigned long> &,
-                                        const boost::optional<unsigned long long> &));
+                                        const std::optional<unsigned long> &,
+                                        const std::optional<unsigned long long> &));
         MOCK_METHOD4(error, void(bool,
                                  const std::string &,
                                  const std::string &,
-                                 const boost::optional<unsigned long> &));
+                                 const std::optional<unsigned long> &));
         MOCK_METHOD2(file_finished, void(const std::string &,
-                                         const boost::optional<unsigned long> &));
+                                         const std::optional<unsigned long> &));
         MOCK_METHOD3(done, void(unsigned long long, unsigned long long, unsigned long long));
         MOCK_METHOD3(media_change, void(const std::string &,
                                         const std::string &,

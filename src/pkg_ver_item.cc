@@ -379,6 +379,7 @@ cw::column_disposition pkg_ver_columnizer::setup_column(const pkgCache::VerItera
     case shortpriority:
     case source:
     case architecture:
+    case label:
     case origin:
       // fall through
     default:

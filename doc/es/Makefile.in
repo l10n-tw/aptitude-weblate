@@ -235,7 +235,6 @@ AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
 BOOST_CPPFLAGS = @BOOST_CPPFLAGS@
-BOOST_FILESYSTEM_LIB = @BOOST_FILESYSTEM_LIB@
 BOOST_IOSTREAMS_LIB = @BOOST_IOSTREAMS_LIB@
 BOOST_LDFLAGS = @BOOST_LDFLAGS@
 BOOST_SYSTEM_LIB = @BOOST_SYSTEM_LIB@
@@ -258,6 +257,7 @@ ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
+ELINKS = @ELINKS@
 EXEEXT = @EXEEXT@
 FOP = @FOP@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
@@ -1087,7 +1087,9 @@ docbook-html-images-stamp: $(DOCBOOK_IMAGES) docbook-html-stamp
 	touch docbook-html-images-stamp
 
 $(DOCBOOK_MANS): $(findstring docbook-man,$(DOCBOOK_TARGETS))
-$(README): $(findstring docbook-readme,$(DOCBOOK_TARGETS))
+
+@HAVE_ELINKS_TRUE@$(README): $(findstring docbook-readme,$(DOCBOOK_TARGETS))
+
 $(aptitude.pdf): $(findstring docbook-pdf,$(DOCBOOK_TARGETS)
 
 @HAVE_RSVG_CONVERT_TRUE@images/%.png: images/%.svg
@@ -1110,13 +1112,13 @@ $(aptitude.pdf): $(findstring docbook-pdf,$(DOCBOOK_TARGETS)
 @HAVE_XSLTPROC_TRUE@	$(XSLTPROC) -o output-html/ $(firstword $(filter %.xsl,$^)) $<
 @HAVE_XSLTPROC_TRUE@	touch docbook-html-stamp
 
-@HAVE_XSLTPROC_TRUE@docbook-readme-stamp: $(DOCBOOK_XML) aptitude-txt.xsl aptitude-common.xsl
-@HAVE_XSLTPROC_TRUE@	-rm -fr output-readme/ $(README)
-@HAVE_XSLTPROC_TRUE@	$(XSLTPROC) -o output-readme/index.html $(firstword $(filter %.xsl,$^)) $<
-@HAVE_XSLTPROC_TRUE@	@echo "$(HTML2TEXT) output-readme/index.html $(README_encoding) > $(README)"; \
-@HAVE_XSLTPROC_TRUE@	$(HTML2TEXT) output-readme/index.html $(README_encoding) > $(README) \
-@HAVE_XSLTPROC_TRUE@	    || (rm -f $(README); exit 1)
-@HAVE_XSLTPROC_TRUE@	touch docbook-readme-stamp
+@HAVE_ELINKS_TRUE@@HAVE_XSLTPROC_TRUE@docbook-readme-stamp: $(DOCBOOK_XML) aptitude-txt.xsl aptitude-common.xsl
+@HAVE_ELINKS_TRUE@@HAVE_XSLTPROC_TRUE@	-rm -fr output-readme/ $(README)
+@HAVE_ELINKS_TRUE@@HAVE_XSLTPROC_TRUE@	$(XSLTPROC) -o output-readme/index.html $(firstword $(filter %.xsl,$^)) $<
+@HAVE_ELINKS_TRUE@@HAVE_XSLTPROC_TRUE@	@echo "$(HTML2TEXT) output-readme/index.html $(README_encoding) > $(README)"; \
+@HAVE_ELINKS_TRUE@@HAVE_XSLTPROC_TRUE@	$(HTML2TEXT) output-readme/index.html $(README_encoding) > $(README) \
+@HAVE_ELINKS_TRUE@@HAVE_XSLTPROC_TRUE@	    || (rm -f $(README); exit 1)
+@HAVE_ELINKS_TRUE@@HAVE_XSLTPROC_TRUE@	touch docbook-readme-stamp
 
 @HAVE_XSLTPROC_TRUE@docbook-fo-stamp: $(DOCBOOK_XML) aptitude-fo.xsl aptitude-common.xsl $(IMAGES)
 @HAVE_XSLTPROC_TRUE@	-rm -fr output-fo/

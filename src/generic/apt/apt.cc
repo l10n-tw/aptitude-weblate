@@ -1,7 +1,7 @@
 // apt.cc
 //
 //  Copyright 1999-2010 Daniel Burrows
-//  Copyright 2015-2017 Manuel A. Fernandez Montecelo
+//  Copyright 2015-2018 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -55,9 +55,8 @@
 #include <apt-pkg/sourcelist.h>
 #include <apt-pkg/version.h>
 
-#include <boost/filesystem.hpp>
-
 #include <exception>
+#include <filesystem>
 #include <fstream>
 #include <regex>
 #include <sstream>
@@ -71,7 +70,7 @@ using namespace std;
 using aptitude::Loggers;
 
 namespace cw = cwidget;
-namespace fs = boost::filesystem;
+namespace fs = std::filesystem;
 
 enum interesting_state {uncached = 0, uninteresting, interesting};
 static interesting_state *cached_deps_interesting = NULL;
@@ -1411,6 +1410,22 @@ std::string get_uri(const pkgCache::VerIterator& ver,
     }
 
   return string{};
+}
+
+std::string get_label(const pkgCache::VerIterator& ver,
+		       const pkgRecords* records)
+{
+  if (ver.end() || ver.FileList().end() || records == nullptr)
+    return string{};
+
+  if (ver.Downloadable())
+    {
+      return ver.FileList().File().Label();
+    }
+  else
+    {
+      return _("(installed locally)");
+    }
 }
 
 std::string get_origin(const pkgCache::VerIterator& ver,

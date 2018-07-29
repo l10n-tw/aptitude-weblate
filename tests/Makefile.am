@@ -6,6 +6,7 @@ AUTOMAKE_OPTIONS=subdir-objects
 BOOST_TEST_LDFLAGS = @BOOST_UNIT_TEST_LIBS@
 AM_CPPFLAGS = -I$(top_builddir) -I$(top_srcdir) -I$(top_srcdir)/src -I$(srcdir) \
               -DBOOST_TEST_DYN_LINK -DSRCDIR=\"$(srcdir)\"
+FILESYSTEM_LDFLAGS = -lstdc++fs
 LDADD = $(top_builddir)/src/loggers.o			       \
 $(top_builddir)/src/generic/apt/matching/libgeneric-matching.a \
 $(top_builddir)/src/cmdline/libcmdline.a \
@@ -20,7 +21,7 @@ $(top_builddir)/src/generic/util/libgeneric-util.a \
 $(top_builddir)/src/generic/views/libgeneric-views.a \
 $(top_builddir)/src/generic/views/mocks/libgeneric-views-mocks.a \
 -lcppunit \
-$(BOOST_TEST_LDFLAGS) $(GMOCK_LDFLAGS)
+$(BOOST_TEST_LDFLAGS) $(GMOCK_LDFLAGS) $(FILESYSTEM_LDFLAGS)
 
 check_PROGRAMS = gtest_test cppunit_test boost_test gtest_test
 

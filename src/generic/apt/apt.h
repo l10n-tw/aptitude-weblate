@@ -1,7 +1,7 @@
 // apt.h  -*-c++-*-
 //
 //  Copyright 1999-2002, 2004-2005, 2007-2010 Daniel Burrows
-//  Copyright 2015-2017 Manuel A. Fernandez Montecelo
+//  Copyright 2015-2018 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -239,6 +239,16 @@ void surrounding_or(pkgCache::DepIterator dep,
  */
 std::string get_uri(const pkgCache::VerIterator& ver,
 		    const pkgRecords* records);
+
+/** Get Label of a package version
+ *
+ * @param ver The package version
+ * @param records The package records
+ *
+ * @return The requested value
+ */
+std::string get_label(const pkgCache::VerIterator& ver,
+		      const pkgRecords* records);
 
 /** Get Origin of a package version
  *

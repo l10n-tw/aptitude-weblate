@@ -1,5 +1,5 @@
 //
-// Copyright 2015 Manuel A. Fernandez Montecelo
+// Copyright (C) 2015-2018 Manuel A. Fernandez Montecelo
 //
 //
 // This program is free software; you can redistribute it and/or modify
@@ -26,18 +26,17 @@
 
 #include <apt-pkg/error.h>
 
-#include <boost/filesystem.hpp>
-
+#include <filesystem>
 #include <fstream>
 #include <sstream>
 #include <streambuf>
 
 #include <error.h>
 #include <sys/stat.h>
-
+#include <unistd.h>
 
 using std::string;
-namespace fs = boost::filesystem;
+namespace fs = std::filesystem;
 
 
 namespace aptitude {

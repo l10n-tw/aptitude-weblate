@@ -106,7 +106,11 @@ docbook-html-images-stamp: $(DOCBOOK_IMAGES) docbook-html-stamp
 	touch docbook-html-images-stamp
 
 $(DOCBOOK_MANS): $(findstring docbook-man,$(DOCBOOK_TARGETS))
+
+if HAVE_ELINKS
 $(README): $(findstring docbook-readme,$(DOCBOOK_TARGETS))
+endif
+
 $(aptitude.pdf): $(findstring docbook-pdf,$(DOCBOOK_TARGETS)
 
 if HAVE_RSVG_CONVERT
@@ -135,6 +139,7 @@ docbook-html-stamp: $(DOCBOOK_XML) $(DOCBOOK_HTML_XSL)
 	$(XSLTPROC) -o output-html/ $(firstword $(filter %.xsl,$^)) $<
 	touch docbook-html-stamp
 
+if HAVE_ELINKS
 docbook-readme-stamp: $(DOCBOOK_XML) aptitude-txt.xsl aptitude-common.xsl
 	-rm -fr output-readme/ $(README)
 	$(XSLTPROC) -o output-readme/index.html $(firstword $(filter %.xsl,$^)) $<
@@ -142,6 +147,7 @@ docbook-readme-stamp: $(DOCBOOK_XML) aptitude-txt.xsl aptitude-common.xsl
 	$(HTML2TEXT) output-readme/index.html $(README_encoding) > $(README) \
 	    || (rm -f $(README); exit 1)
 	touch docbook-readme-stamp
+endif
 
 docbook-fo-stamp: $(DOCBOOK_XML) aptitude-fo.xsl aptitude-common.xsl $(IMAGES)
 	-rm -fr output-fo/

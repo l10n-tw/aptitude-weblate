@@ -1,7 +1,7 @@
 // cmdline_resolver.cc
 //
 //   Copyright (C) 2005-2010 Daniel Burrows
-//   Copyright (C) 2014-2016 Manuel A. Fernandez Montecelo
+//   Copyright (C) 2014-2018 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -1039,7 +1039,7 @@ cmdline_resolve_deps(pkgset &to_install,
 		    break;
 		  }
 	      }
-	    catch(NoMoreTime)
+	    catch(const NoMoreTime&)
 	      {
 		bool done=false;
 		while(!done)
@@ -1066,7 +1066,7 @@ cmdline_resolve_deps(pkgset &to_install,
 			    calculate_current_solution(false, term_metrics);
 			    done=true;
 			  }
-			catch(NoMoreTime)
+			catch(const NoMoreTime&)
 			  {
 			    // ignore and continue looping.
 			  }
@@ -1081,7 +1081,7 @@ cmdline_resolve_deps(pkgset &to_install,
 		  }
 	      }
 	  }
-	catch(NoMoreSolutions)
+	catch(const NoMoreSolutions&)
 	  {
 	    if(resman->generated_solution_count()==0)
 	      {
@@ -1099,7 +1099,7 @@ cmdline_resolve_deps(pkgset &to_install,
 		lastsol.nullify();
 	      }
 	  }
-	catch(StdinEOFException)
+	catch(const StdinEOFException&)
 	  {
 	    throw;
 	  }
@@ -1185,7 +1185,7 @@ namespace aptitude
 	  (*apt_cache_file)->apply_solution(sol, NULL);
 	}
       // If anything goes wrong, we give up (silently if verbosity is disabled).
-      catch(NoMoreTime)
+      catch(const NoMoreTime&)
 	{
 	  std::cout << cw::util::ssprintf(_("Unable to resolve dependencies for the upgrade because the resolver timed out.\n  You may be able to solve this problem by increasing\n  Aptitude::ProblemResolver::StepLimit (currently %d)."),
 					  // TODO: bad magic number
@@ -1195,7 +1195,7 @@ namespace aptitude
 		    << std::endl;
 	  return false;
 	}
-      catch(NoMoreSolutions)
+      catch(const NoMoreSolutions&)
 	{
 	  std::cout << _("Unable to resolve dependencies for the upgrade: no solution found.")
 		    << std::endl;

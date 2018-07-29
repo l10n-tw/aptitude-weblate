@@ -2,7 +2,7 @@
 
 
 // Copyright (C) 2009-2010 Daniel Burrows
-// Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
+// Copyright (C) 2015-2018 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as

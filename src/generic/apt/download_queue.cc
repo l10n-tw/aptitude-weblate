@@ -1,8 +1,7 @@
 /** \file download_queue.cc */
 
-
 // Copyright (C) 2009-2011 Daniel Burrows
-// Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
+// Copyright (C) 2015-2018 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -27,6 +26,7 @@
 #include <generic/util/file_cache.h>
 #include <generic/util/job_queue_thread.h>
 #include <generic/util/util.h>
+#include <generic/util/temp.h>
 
 #include <apt-pkg/acquire.h>
 #include <apt-pkg/acquire-item.h>
@@ -35,9 +35,9 @@
 
 #include <sigc++/bind.h>
 
-#include <boost/filesystem.hpp>
 #include <boost/format.hpp>
 
+#include <filesystem>
 #include <list>
 #include <memory>
 #include <unordered_map>
@@ -45,7 +45,7 @@
 
 
 namespace cw = cwidget;
-namespace fs = boost::filesystem;
+namespace fs = std::filesystem;
 
 namespace aptitude
 {
@@ -960,7 +960,7 @@ namespace aptitude
 	    _error->Error("Failed to create temporary directory for download");
 	    return rval;
 	  }
-	std::string dest_filename = dest_dir + "/" + fs::unique_path().string();
+	std::string dest_filename = temp::name(dest_dir).get_name();
 
 	auto start = std::make_shared<start_request>(uri,
 						     short_description,

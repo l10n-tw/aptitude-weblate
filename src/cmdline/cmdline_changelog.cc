@@ -1,7 +1,7 @@
 // cmdline_changelog.cc
 //
 // Copyright (C) 2004, 2010 Daniel Burrows
-// Copyright (C) 2014-2016 Manuel A. Fernandez Montecelo
+// Copyright (C) 2014-2018 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -44,7 +44,6 @@
 #include <apt-pkg/sourcelist.h>
 #include <apt-pkg/srcrecords.h>
 
-#include <boost/filesystem.hpp>
 #include <boost/format.hpp>
 
 #include <sigc++/adaptors/bind.h>
@@ -52,6 +51,7 @@
 #include <signal.h>
 #include <stdlib.h>
 
+#include <filesystem>
 #include <sstream>
 
 using namespace std;
@@ -60,7 +60,7 @@ using aptitude::cmdline::create_terminal;
 using aptitude::cmdline::terminal_io;
 using aptitude::cmdline::terminal_metrics;
 
-namespace fs = boost::filesystem;
+namespace fs = std::filesystem;
 
 namespace
 {

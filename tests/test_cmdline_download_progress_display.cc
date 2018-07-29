@@ -1,6 +1,7 @@
 /** \file test_cmdline_download_progress_display.cc */
 
 // Copyright (C) 2010-2011 Daniel Burrows
+// Copyright (C) 2015-2018 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -31,10 +32,11 @@
 #include <gtest/gtest.h>
 
 #include <memory>
+#include <optional>
 
 using aptitude::cmdline::create_download_progress_display;
 using aptitude::views::download_progress;
-using boost::optional;
+using std::optional;
 using testing::InSequence;
 using testing::Mock;
 using testing::Return;

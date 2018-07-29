@@ -2,6 +2,7 @@
 
 
 // Copyright (C) 2010 Daniel Burrows
+// Copyright (C) 2015-2018 Manuel A. Fernandez Montecelo
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -60,7 +61,7 @@ namespace
       // Note that "max" is not an allowed cost name, to make room for
       // using it as an operator in future expansions.
 
-      return apply(make_entry(),
+      return parsers::apply(make_entry(),
                    (  ( (lexeme(integer()) << lexeme(ch('*'))) | val(1) ) << notFollowedBy(str("max")),
                       container(std::string(), lexeme(alpha() + many(alnum() | ch('-') | ch('_'))))  )).parse(input);
     }

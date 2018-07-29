@@ -1,6 +1,7 @@
 /** \file aptitude_resolver_cost_settings.cc */
 
 // Copyright (C) 2010 Daniel Burrows
+// Copyright (C) 2015-2018 Manuel A. Fernandez Montecelo
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -28,7 +29,8 @@
 #include <boost/multi_index/hashed_index.hpp>
 #include <boost/multi_index/mem_fun.hpp>
 #include <boost/multi_index/random_access_index.hpp>
-#include <boost/optional.hpp>
+
+#include <optional>
 
 using namespace boost::multi_index;
 
@@ -66,13 +68,13 @@ class aptitude_resolver_cost_settings::settings_impl
     // If the type doesn't have a value, it's because the component
     // hasn't been seen in a typed context yet, so its type is
     // "bottom".
-    boost::optional<component_type> type;
+    std::optional<component_type> type;
     // The actual cost components that are modified by this entry.
     std::vector<component_effect> effects;
 
   public:
     entry(const std::string &_name,
-          const boost::optional<component_type> &_type,
+          const std::optional<component_type> &_type,
           const std::vector<component_effect> &_effects)
       : name(_name),
         type(_type),
@@ -81,8 +83,8 @@ class aptitude_resolver_cost_settings::settings_impl
     }
 
     const std::string &get_name() const { return name; }
-    const boost::optional<component_type> &get_type() const { return type; }
-    void set_type(const boost::optional<component_type> &new_type)
+    const std::optional<component_type> &get_type() const { return type; }
+    void set_type(const std::optional<component_type> &new_type)
     {
       type = new_type;
     }
@@ -110,11 +112,11 @@ class aptitude_resolver_cost_settings::settings_impl
   // throwing an error if they're incompatible.
   class merge_types_f
   {
-    boost::optional<component_type> type;
+    std::optional<component_type> type;
     std::string name;
 
   public:
-    merge_types_f(const boost::optional<component_type> &_type)
+    merge_types_f(const std::optional<component_type> &_type)
       : type(_type)
     {
     }
@@ -173,7 +175,7 @@ public:
         std::vector<cost_component_structure::entry> &component =
           *settings_it->get_entries();
 
-        boost::optional<component_type> type;
+        std::optional<component_type> type;
         switch(op)
           {
           case cost_component_structure::combine_add:
@@ -185,7 +187,7 @@ public:
             break;
 
           case cost_component_structure::combine_none:
-            type = boost::optional<component_type>();
+            type = std::optional<component_type>();
             break;
 
           default:

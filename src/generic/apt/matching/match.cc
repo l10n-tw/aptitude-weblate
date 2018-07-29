@@ -1171,6 +1171,38 @@ namespace aptitude
 	      return NULL;
 	    break;
 
+	  case pattern::label:
+	    if(!target.get_has_version())
+	      return NULL;
+	    {
+	      pkgCache::PkgIterator pkg(target.get_package_iterator(cache));
+	      pkgCache::VerIterator ver(target.get_version_iterator(cache));
+
+	      for(pkgCache::VerFileIterator f = ver.FileList(); !f.end(); ++f)
+		{
+		  pkgCache::PkgFileIterator cur = f.File();
+		  if (!cur.end())
+		    {
+		      const char* label = cur.Label();
+		      if (label != nullptr)
+			{
+			  ref_ptr<match>
+			    m(evaluate_regexp(p,
+					      p->get_label_regex_info(),
+					      label,
+					      debug));
+
+			  if (m.valid())
+			    return m;
+			}
+		    }
+		}
+
+	      return NULL;
+	    }
+
+	    break;
+
 	  case pattern::maintainer:
 	    if(!target.get_has_version())
 	      return NULL;
@@ -1263,18 +1295,21 @@ namespace aptitude
 	      for(pkgCache::VerFileIterator f = ver.FileList(); !f.end(); ++f)
 		{
 		  pkgCache::PkgFileIterator cur = f.File();
-		  const char *origin = cur.Origin();
-
-		  if(!cur.end() && origin != NULL)
+		  if (!cur.end())
 		    {
-		      ref_ptr<match>
-			m(evaluate_regexp(p,
-					  p->get_origin_regex_info(),
-					  origin,
-					  debug));
+		      const char* origin = cur.Origin();
+		      if (origin != nullptr)
+			{
 
-		      if(m.valid())
-			return m;
+			  ref_ptr<match>
+			    m(evaluate_regexp(p,
+					      p->get_origin_regex_info(),
+					      origin,
+					      debug));
+
+			  if (m.valid())
+			    return m;
+			}
 		    }
 		}
 
@@ -2098,6 +2133,7 @@ namespace aptitude
 	  case pattern::garbage:
 	  case pattern::install_version:
 	  case pattern::installed:
+	  case pattern::label:
 	  case pattern::maintainer:
 	  case pattern::multiarch:
 	  case pattern::name:
@@ -2311,6 +2347,7 @@ namespace aptitude
 	  case pattern::garbage:
 	  case pattern::install_version:
 	  case pattern::installed:
+	  case pattern::label:
 	  case pattern::maintainer:
 	  case pattern::multiarch:
 	  case pattern::name:
@@ -2437,6 +2474,7 @@ namespace aptitude
 	  case pattern::garbage:
 	  case pattern::install_version:
 	  case pattern::installed:
+	  case pattern::label:
 	  case pattern::maintainer:
 	  case pattern::multiarch:
 	  case pattern::name:
@@ -2637,6 +2675,7 @@ namespace aptitude
 	  case pattern::garbage:
 	  case pattern::install_version:
 	  case pattern::installed:
+	  case pattern::label:
 	  case pattern::maintainer:
 	  case pattern::multiarch:
 	  case pattern::name:
@@ -2928,6 +2967,7 @@ namespace aptitude
 	  case pattern::garbage:
 	  case pattern::install_version:
 	  case pattern::installed:
+	  case pattern::label:
 	  case pattern::maintainer:
 	  case pattern::multiarch:
 	  case pattern::name:

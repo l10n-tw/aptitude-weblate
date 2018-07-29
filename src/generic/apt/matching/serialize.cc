@@ -358,6 +358,12 @@ namespace aptitude
 	    out << "?installed";
 	    break;
 
+	  case pattern::label:
+	    serialize_regexp_term("label",
+				  p->get_label_regex_info(),
+				  out);
+	    break;
+
 	  case pattern::maintainer:
 	    serialize_regexp_term("maintainer",
 				  p->get_maintainer_regex_info(),

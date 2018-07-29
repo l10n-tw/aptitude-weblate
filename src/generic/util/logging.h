@@ -1,7 +1,7 @@
 /** \file logging.h */    // -*-c++-*-
 
 // Copyright (C) 2010 Daniel Burrows
-// Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
+// Copyright (C) 2015-2018 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -21,12 +21,11 @@
 #ifndef APTITUDE_UTIL_LOGGING_H
 #define APTITUDE_UTIL_LOGGING_H
 
-#include <boost/optional.hpp>
-
 #include <sigc++/connection.h>
 #include <sigc++/slot.h>
 
 #include <memory>
+#include <optional>
 #include <sstream>
 
 #include <limits.h> // For INT_MIN
@@ -142,10 +141,10 @@ namespace aptitude
          *  before any background threads are created.
          *
          *  \param value The new level to configure, or an empty
-         *  boost::optional value to clear the configuration of this
+         *  std::optional value to clear the configuration of this
          *  logger.
          */
-        virtual void setLevel(const boost::optional<log_level> &value) = 0;
+        virtual void setLevel(const std::optional<log_level> &value) = 0;
 
         /** \brief Register a slot that is to be invoked when a
          *  message should be logged.

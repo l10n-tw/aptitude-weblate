@@ -1,7 +1,7 @@
 // parse.cc
 //
 //  Copyright 2000-2005, 2007-2009, 2011 Daniel Burrows
-//  Copyright 2014-2016 Manuel A. Fernandez Montecelo
+//  Copyright 2014-2018 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -121,6 +121,7 @@ namespace
       term_type_for,
       term_type_garbage,
       term_type_installed,
+      term_type_label,
       term_type_maintainer,
       term_type_multiarch,
       term_type_name,
@@ -177,6 +178,7 @@ namespace
     { "for", term_type_for },
     { "garbage", term_type_garbage },
     { "installed", term_type_installed },
+    { "label", term_type_label },
     { "maintainer", term_type_maintainer },
     { "multiarch", term_type_multiarch },
     { "name", term_type_name },
@@ -989,6 +991,8 @@ ref_ptr<pattern> parse_term_args(const string &term_name,
       return pattern::make_garbage();
     case term_type_installed:
       return pattern::make_installed();
+    case term_type_label:
+      return pattern::make_label(parse_string_match_args(start, end));
     case term_type_maintainer:
       return pattern::make_maintainer(parse_string_match_args(start, end));
     case term_type_multiarch:
@@ -1353,6 +1357,8 @@ ref_ptr<pattern> parse_atom(string::const_iterator &start,
 		      return pattern::make_source_package(substr);
 		    case 'G':
 		      return pattern::make_tag(substr);
+		    case 'l':
+		      return pattern::make_label(substr);
 		    case 'm':
 		      return pattern::make_maintainer(substr);
 		    case 'n':
@@ -1511,7 +1517,7 @@ ref_ptr<pattern> parse(string::const_iterator &start,
     {
       return parse_with_errors(start, end, terminators, require_full_parse, partial);
     }
-  catch(MatchingException e)
+  catch(const MatchingException& e)
     {
       if(flag_errors)
 	_error->Error("%s", e.errmsg().c_str());

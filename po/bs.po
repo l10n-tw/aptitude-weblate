@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2017-11-15 01:20+0100\n"
+"POT-Creation-Date: 2018-07-29 16:45+0200\n"
 "PO-Revision-Date: 2004-05-08 17:40+0100\n"
 "Last-Translator: Safir Šećerović <sapphire@linux.org.ba>\n"
 "Language-Team: Bosnian <lokal@lugbih.org>\n"
@@ -844,14 +844,14 @@ msgid ""
 msgstr ""
 
 #: src/cmdline/cmdline_changelog.cc:135
-#: src/cmdline/cmdline_download_progress_display.cc:138
+#: src/cmdline/cmdline_download_progress_display.cc:139
 msgid "Get:"
 msgstr ""
 
 #. TRANSLATORS: this stands for "error" and should be the
 #. same width as the translation of "Ign".
 #: src/cmdline/cmdline_changelog.cc:145
-#: src/cmdline/cmdline_download_progress_display.cc:192
+#: src/cmdline/cmdline_download_progress_display.cc:193
 msgid "Err"
 msgstr ""
 
@@ -900,7 +900,7 @@ msgstr ""
 msgid "E: The autoclean command takes no arguments\n"
 msgstr ""
 
-#: src/cmdline/cmdline_clean.cc:141 src/generic/apt/apt.cc:1661 src/ui.cc:1983
+#: src/cmdline/cmdline_clean.cc:141 src/generic/apt/apt.cc:1676 src/ui.cc:1983
 msgid "Unable to lock the download directory"
 msgstr ""
 
@@ -951,34 +951,34 @@ msgid ""
 msgstr ""
 
 #: src/cmdline/cmdline_do_action.cc:419 src/cmdline/cmdline_simulate.cc:62
-#: src/main.cc:1337
+#: src/main.cc:1334
 #, c-format
 msgid "Abort.\n"
 msgstr ""
 
-#: src/cmdline/cmdline_download_progress_display.cc:161
+#: src/cmdline/cmdline_download_progress_display.cc:162
 msgid "Hit"
 msgstr ""
 
 #. TRANSLATORS: this stands for "ignored" and should be
 #. the same width as the translation of "Err".
-#: src/cmdline/cmdline_download_progress_display.cc:188
+#: src/cmdline/cmdline_download_progress_display.cc:189
 msgid "Ign"
 msgstr ""
 
-#: src/cmdline/cmdline_download_progress_display.cc:218
+#: src/cmdline/cmdline_download_progress_display.cc:219
 #, c-format
 msgid "Fetched %sB in %s (%sB/s)"
 msgstr ""
 
-#: src/cmdline/cmdline_download_progress_display.cc:237
+#: src/cmdline/cmdline_download_progress_display.cc:238
 #, c-format
 msgid ""
 "Media change: Please insert the disc labeled '%s' into the drive '%s' and "
 "press [Enter]."
 msgstr ""
 
-#: src/cmdline/cmdline_download_progress_display.cc:491
+#: src/cmdline/cmdline_download_progress_display.cc:492
 msgid "[Working]"
 msgstr ""
 
@@ -2035,7 +2035,7 @@ msgstr "Automatski nadogradi instalirane pakete"
 msgid "not installed"
 msgstr ""
 
-#: src/cmdline/cmdline_show.cc:224 src/pkg_columnizer.cc:254
+#: src/cmdline/cmdline_show.cc:224 src/pkg_columnizer.cc:256
 #: src/pkg_ver_item.cc:215
 msgid "unpacked"
 msgstr ""
@@ -2060,7 +2060,7 @@ msgstr ""
 msgid "awaiting trigger processing"
 msgstr ""
 
-#: src/cmdline/cmdline_show.cc:236 src/pkg_columnizer.cc:262
+#: src/cmdline/cmdline_show.cc:236 src/pkg_columnizer.cc:264
 #: src/pkg_ver_item.cc:223 src/qt/widgets/packages_tab.cc:72
 msgid "installed"
 msgstr ""
@@ -2128,7 +2128,7 @@ msgid "Package: "
 msgstr "Paket:"
 
 #: src/cmdline/cmdline_show.cc:379 src/cmdline/cmdline_show.cc:411
-#: src/pkg_columnizer.cc:95
+#: src/pkg_columnizer.cc:96
 msgid "State"
 msgstr ""
 
@@ -2816,7 +2816,7 @@ msgstr ""
 msgid "Could not initialize dependency cache"
 msgstr ""
 
-#: src/generic/apt/apt.cc:138
+#: src/generic/apt/apt.cc:137
 #, c-format
 msgid "Configuration file '%s' is not correct, please fix it"
 msgstr ""
@@ -2831,109 +2831,109 @@ msgstr ""
 #. indicated by translating "Localized defaults|" below to
 #. "aptitude-defaults.ww".  If you use this mechanism, you should
 #. also add your defaults file to pkgdata_DATA in Makefile.am.
-#: src/generic/apt/apt.cc:204
+#: src/generic/apt/apt.cc:203
 msgid "Localized defaults|"
 msgstr ""
 
-#: src/generic/apt/apt.cc:286
+#: src/generic/apt/apt.cc:285
 msgid "Error saving configuration file"
 msgstr ""
 
-#: src/generic/apt/apt.cc:441
+#: src/generic/apt/apt.cc:440
 msgid ""
 "Could not lock the cache file; this usually means that dpkg or another apt "
 "tool is already installing packages.  Opening in read-only mode; any changes "
 "you make to the states of packages will NOT be preserved!"
 msgstr ""
 
-#: src/generic/apt/apt.cc:532
+#: src/generic/apt/apt.cc:531
 #, c-format
 msgid "Could not establish home directory (username: '%s')"
 msgstr ""
 
-#: src/generic/apt/apt.cc:536
+#: src/generic/apt/apt.cc:535
 #, c-format
 msgid "Home directory does not exist or is not a directory: '%s')"
 msgstr ""
 
-#: src/generic/apt/apt.cc:562
+#: src/generic/apt/apt.cc:561
 #, c-format
 msgid "Could not create directory: %s: %s"
 msgstr ""
 
-#: src/generic/apt/apt.cc:587
+#: src/generic/apt/apt.cc:586
 #, c-format
 msgid "Could not create directories: %s: %s"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1428
+#: src/generic/apt/apt.cc:1427 src/generic/apt/apt.cc:1443
 #, fuzzy
 msgid "(installed locally)"
 msgstr "Instal·la automàticament els paquets suggerits"
 
-#: src/generic/apt/apt.cc:1490
+#: src/generic/apt/apt.cc:1505
 msgid "foreign"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1492
+#: src/generic/apt/apt.cc:1507
 msgid "same"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1495
+#: src/generic/apt/apt.cc:1510
 msgid "allowed"
 msgstr ""
 
 #. TRANSLATORS: Imp = Important
-#: src/generic/apt/apt.cc:1542
+#: src/generic/apt/apt.cc:1557
 msgid "Imp"
 msgstr ""
 
 #. TRANSLATORS: Req = Required
-#: src/generic/apt/apt.cc:1545
+#: src/generic/apt/apt.cc:1560
 msgid "Req"
 msgstr ""
 
 #. TRANSLATORS: Std = Standard
-#: src/generic/apt/apt.cc:1548
+#: src/generic/apt/apt.cc:1563
 msgid "Std"
 msgstr ""
 
 #. TRANSLATORS: Opt = Optional
-#: src/generic/apt/apt.cc:1551
+#: src/generic/apt/apt.cc:1566
 msgid "Opt"
 msgstr ""
 
 #. TRANSLATORS: Xtr = Extra
-#: src/generic/apt/apt.cc:1554
+#: src/generic/apt/apt.cc:1569
 msgid "Xtr"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1556
+#: src/generic/apt/apt.cc:1571
 msgid "ERR"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1565 src/pkg_columnizer.cc:268
-#: src/pkg_columnizer.cc:623 src/pkg_ver_item.cc:229
+#: src/generic/apt/apt.cc:1580 src/pkg_columnizer.cc:270
+#: src/pkg_columnizer.cc:632 src/pkg_ver_item.cc:229
 msgid "ERROR"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1625
+#: src/generic/apt/apt.cc:1640
 msgid "main"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1625
+#: src/generic/apt/apt.cc:1640
 msgid "contrib"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1625
+#: src/generic/apt/apt.cc:1640
 msgid "non-free"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1625
+#: src/generic/apt/apt.cc:1640
 msgid "non-US"
 msgstr ""
 
-#: src/generic/apt/apt.cc:1699
+#: src/generic/apt/apt.cc:1714
 msgid "Couldn't read list of sources"
 msgstr ""
 
@@ -2988,7 +2988,7 @@ msgid ""
 "a number."
 msgstr ""
 
-#: src/generic/apt/aptitude_resolver_cost_settings.cc:129
+#: src/generic/apt/aptitude_resolver_cost_settings.cc:131
 #, c-format
 msgid "Conflicting types for the cost component %s."
 msgstr ""
@@ -3000,52 +3000,52 @@ msgid ""
 "an integer)."
 msgstr ""
 
-#: src/generic/apt/config_file.cc:59
+#: src/generic/apt/config_file.cc:58
 #, c-format
 msgid "Could not remove old configuration file: %s"
 msgstr ""
 
-#: src/generic/apt/config_file.cc:91
+#: src/generic/apt/config_file.cc:90
 #, c-format
 msgid "Could not get the content of the old configuration file: %s"
 msgstr ""
 
-#: src/generic/apt/config_file.cc:111
+#: src/generic/apt/config_file.cc:110
 #, c-format
 msgid "Old configuration file is not a regular file: %s"
 msgstr ""
 
-#: src/generic/apt/config_file.cc:122
+#: src/generic/apt/config_file.cc:121
 #, c-format
 msgid "Directory does not exist and could not create it: %s"
 msgstr ""
 
-#: src/generic/apt/config_file.cc:181
+#: src/generic/apt/config_file.cc:180
 #, c-format
 msgid "File is unexpectedly large (> %zu bytes): %s"
 msgstr ""
 
-#: src/generic/apt/config_file.cc:195
+#: src/generic/apt/config_file.cc:194
 #, c-format
 msgid "Error reading from old configuration file: %s"
 msgstr ""
 
-#: src/generic/apt/config_file.cc:226
+#: src/generic/apt/config_file.cc:225
 #, c-format
 msgid "Error writing to file: %s"
 msgstr ""
 
-#: src/generic/apt/config_file.cc:251
+#: src/generic/apt/config_file.cc:250
 #, c-format
 msgid "Could not remove file: %s"
 msgstr ""
 
-#: src/generic/apt/config_file.cc:257
+#: src/generic/apt/config_file.cc:256
 #, c-format
 msgid "Will not remove file, it is not a regular file: %s"
 msgstr ""
 
-#: src/generic/apt/config_file.cc:264
+#: src/generic/apt/config_file.cc:263
 #, fuzzy, c-format
 msgid "Error removing file: %s"
 msgstr "Paket:"
@@ -3289,94 +3289,94 @@ msgstr ""
 msgid "Log complete."
 msgstr ""
 
-#: src/generic/apt/matching/match.cc:3083
-#: src/generic/apt/matching/match.cc:3200
+#: src/generic/apt/matching/match.cc:3123
+#: src/generic/apt/matching/match.cc:3240
 msgid "Accessing index"
 msgstr ""
 
-#: src/generic/apt/matching/match.cc:3093
-#: src/generic/apt/matching/match.cc:3207
+#: src/generic/apt/matching/match.cc:3133
+#: src/generic/apt/matching/match.cc:3247
 #, fuzzy
 msgid "Filtering packages"
 msgstr "Paket:"
 
-#: src/generic/apt/matching/parse.cc:316
+#: src/generic/apt/matching/parse.cc:318
 #, c-format
 msgid "Unknown action type: %s"
 msgstr ""
 
-#: src/generic/apt/matching/parse.cc:331
+#: src/generic/apt/matching/parse.cc:333
 #, c-format
 msgid "Unknown multiarch type: %s"
 msgstr ""
 
-#: src/generic/apt/matching/parse.cc:371
+#: src/generic/apt/matching/parse.cc:373
 #, c-format
 msgid "Unterminated literal string after %s"
 msgstr ""
 
-#: src/generic/apt/matching/parse.cc:468
+#: src/generic/apt/matching/parse.cc:470
 #, c-format
 msgid "Unknown priority %s"
 msgstr ""
 
-#: src/generic/apt/matching/parse.cc:487
+#: src/generic/apt/matching/parse.cc:489
 #, c-format
 msgid "Match pattern ends unexpectedly (expected '%c')."
 msgstr ""
 
-#: src/generic/apt/matching/parse.cc:490
+#: src/generic/apt/matching/parse.cc:492
 #, c-format
 msgid "Expected '%c', got '%c'."
 msgstr ""
 
-#: src/generic/apt/matching/parse.cc:862 src/generic/apt/matching/parse.cc:1307
-#: src/generic/apt/matching/parse.cc:1347
+#: src/generic/apt/matching/parse.cc:864 src/generic/apt/matching/parse.cc:1311
+#: src/generic/apt/matching/parse.cc:1351
 #, c-format
 msgid "Unknown dependency type: %s"
 msgstr ""
 
-#: src/generic/apt/matching/parse.cc:915
+#: src/generic/apt/matching/parse.cc:917
 #, c-format
 msgid "Unknown term type: \"%s\"."
 msgstr ""
 
 #. TRANSLATORS: Question marks ("?") are used as prefix for function names.
 #. Leave the question marks attached to the string placeholders.
-#: src/generic/apt/matching/parse.cc:929 src/generic/apt/matching/parse.cc:938
+#: src/generic/apt/matching/parse.cc:931 src/generic/apt/matching/parse.cc:940
 #, c-format
 msgid ""
 "The ?%s term must be used in a \"wide\" context (a top-level context, or a "
 "context enclosed by ?%s)."
 msgstr ""
 
-#: src/generic/apt/matching/parse.cc:1165
+#: src/generic/apt/matching/parse.cc:1169
 msgid "Unmatched '('"
 msgstr ""
 
-#: src/generic/apt/matching/parse.cc:1313
+#: src/generic/apt/matching/parse.cc:1317
 msgid "Provides: cannot be broken"
 msgstr ""
 
-#: src/generic/apt/matching/parse.cc:1373
+#: src/generic/apt/matching/parse.cc:1379
 #, c-format
 msgid "Unknown pattern type: %c"
 msgstr ""
 
-#: src/generic/apt/matching/parse.cc:1393
+#: src/generic/apt/matching/parse.cc:1399
 msgid "Can't search for \"\""
 msgstr ""
 
-#: src/generic/apt/matching/parse.cc:1421
+#: src/generic/apt/matching/parse.cc:1427
 msgid "Unexpected empty expression"
 msgstr ""
 
-#: src/generic/apt/matching/parse.cc:1450
+#: src/generic/apt/matching/parse.cc:1456
 #, c-format
 msgid "Badly formed expression: expected '|', got '%c'"
 msgstr ""
 
-#: src/generic/apt/matching/parse.cc:1497
+#: src/generic/apt/matching/parse.cc:1503
 msgid "Unexpected ')'"
 msgstr ""
 
@@ -3484,81 +3484,81 @@ msgstr ""
 msgid "A single cost level was both added and lower-bounded."
 msgstr ""
 
-#: src/generic/util/parsers.h:734
+#: src/generic/util/parsers.h:735
 #, c-format
 msgid "Expected '%s', but got EOF."
 msgstr ""
 
-#: src/generic/util/parsers.h:736
+#: src/generic/util/parsers.h:737
 #, c-format
 msgid "Expected '%s', but got '%s'."
 msgstr ""
 
-#: src/generic/util/parsers.h:777
+#: src/generic/util/parsers.h:778
 msgid "Expected any character, but got EOF."
 msgstr ""
 
-#: src/generic/util/parsers.h:790
+#: src/generic/util/parsers.h:791
 msgid "any character"
 msgstr ""
 
-#: src/generic/util/parsers.h:831
+#: src/generic/util/parsers.h:832
 #, c-format
 msgid "Expected %s, but got EOF."
 msgstr ""
 
-#: src/generic/util/parsers.h:842
+#: src/generic/util/parsers.h:843
 #, c-format
 msgid "Expected %s, but got '%c'."
 msgstr ""
 
-#: src/generic/util/parsers.h:1016
+#: src/generic/util/parsers.h:1017
 msgid "Expected an integer, got EOF."
 msgstr ""
 
-#: src/generic/util/parsers.h:1025
+#: src/generic/util/parsers.h:1026
 msgid "Expected an integer following '-', got EOF."
 msgstr ""
 
-#: src/generic/util/parsers.h:1031
+#: src/generic/util/parsers.h:1032
 #, c-format
 msgid "Expected an integer, got '%c'."
 msgstr ""
 
-#: src/generic/util/parsers.h:1045 src/generic/util/parsers.h:1053
+#: src/generic/util/parsers.h:1046 src/generic/util/parsers.h:1054
 #, c-format
 msgid "Invalid integer: \"%s\"."
 msgstr ""
 
-#: src/generic/util/parsers.h:1076
+#: src/generic/util/parsers.h:1077
 #, c-format
 msgid "Expected EOF, got '%c'."
 msgstr ""
 
-#: src/generic/util/parsers.h:1190
+#: src/generic/util/parsers.h:1191
 msgid "anything"
 msgstr ""
 
 #. TRANSLATORS: this is used to generate an error
 #. message; a brief description of what we expected to see
 #. is inserted into it.
-#: src/generic/util/parsers.h:1940 src/generic/util/parsers.h:2033
-#: src/generic/util/parsers.h:2084
+#: src/generic/util/parsers.h:1941 src/generic/util/parsers.h:2034
+#: src/generic/util/parsers.h:2085
 #, c-format
 msgid "Expected %s"
 msgstr ""
 
-#: src/generic/util/parsers.h:2006
+#: src/generic/util/parsers.h:2007
 #, fuzzy
 msgid " or "
 msgstr " ili"
 
-#: src/generic/util/parsers.h:2769
+#: src/generic/util/parsers.h:2770
 #, c-format
 msgid "Unexpected %s"
 msgstr ""
 
-#: src/generic/util/temp.cc:322
+#: src/generic/util/temp.cc:323
 #, c-format
 msgid "Unable to create temporary filename from prefix \"%s\""
 msgstr ""
@@ -4090,7 +4090,7 @@ msgstr ""
 msgid "Already downloaded"
 msgstr ""
 
-#: src/gtk/download.cc:248 src/gtk/entityview.cc:397 src/pkg_columnizer.cc:97
+#: src/gtk/download.cc:248 src/gtk/entityview.cc:397 src/pkg_columnizer.cc:98
 #: src/pkg_view.cc:697
 msgid "Description"
 msgstr ""
@@ -4305,7 +4305,7 @@ msgstr ""
 msgid "Icons showing the current and future status of this package."
 msgstr ""
 
-#: src/gtk/entityview.cc:564 src/pkg_columnizer.cc:106
+#: src/gtk/entityview.cc:564 src/pkg_columnizer.cc:107
 msgid "Auto"
 msgstr ""
 
@@ -4621,7 +4621,7 @@ msgid "Info"
 msgstr ""
 
 #: src/gtk/packageinformation.cc:104 src/gtk/packageinformation.cc:106
-#: src/pkg_columnizer.cc:364 src/pkg_columnizer.cc:374
+#: src/pkg_columnizer.cc:366 src/pkg_columnizer.cc:376
 #: src/pkg_grouppolicy.cc:254 src/pkg_info_screen.cc:143
 #: src/pkg_info_screen.cc:144 src/pkg_ver_item.cc:336 src/qt/package.cc:226
 #: src/qt/version.cc:117
@@ -5356,421 +5356,421 @@ msgstr ""
 msgid "Invalid sorting policy type '%s'"
 msgstr ""
 
-#: src/main.cc:136
+#: src/main.cc:133
 #, c-format
 msgid "Can't decode multibyte string after \"%ls\""
 msgstr ""
 
-#: src/main.cc:145
+#: src/main.cc:142
 #, c-format
 msgid "Can't decode wide-character string after \"%s\""
 msgstr ""
 
-#: src/main.cc:157
+#: src/main.cc:154
 #, c-format
 msgid "Compiler: g++ %s\n"
 msgstr ""
 
-#: src/main.cc:159
+#: src/main.cc:156
 msgid "Compiled against:\n"
 msgstr ""
 
-#: src/main.cc:160
+#: src/main.cc:157
 #, c-format
 msgid "  apt version %d.%d.%d\n"
 msgstr ""
 
-#: src/main.cc:163
+#: src/main.cc:160
 #, c-format
 msgid "  NCurses version: Unknown\n"
 msgstr ""
 
-#: src/main.cc:165
+#: src/main.cc:162
 #, fuzzy, c-format
 msgid "  NCurses version %s\n"
 msgstr "Verzija:"
 
-#: src/main.cc:167
+#: src/main.cc:164
 #, c-format
 msgid "  libsigc++ version: %s\n"
 msgstr ""
 
-#: src/main.cc:169
+#: src/main.cc:166
 #, fuzzy, c-format
 msgid "  Gtk+ version %d.%d.%d\n"
 msgstr "Verzija:"
 
-#: src/main.cc:171
+#: src/main.cc:168
 #, fuzzy, c-format
 msgid "  Gtk-- version %d.%d.%d\n"
 msgstr "Verzija:"
 
-#: src/main.cc:174
+#: src/main.cc:171
 #, c-format
 msgid "  Gtk+ support disabled.\n"
 msgstr ""
 
-#: src/main.cc:177
+#: src/main.cc:174
 #, c-format
 msgid "  Compiled with Qt %s\n"
 msgstr ""
 
-#: src/main.cc:178
+#: src/main.cc:175
 #, c-format
 msgid "  Running on Qt %s\n"
 msgstr ""
 
-#: src/main.cc:180
+#: src/main.cc:177
 #, c-format
 msgid "  Qt support disabled.\n"
 msgstr ""
 
-#: src/main.cc:182
+#: src/main.cc:179
 msgid ""
 "\n"
 "Current library versions:\n"
 msgstr ""
 
-#: src/main.cc:183
+#: src/main.cc:180
 #, fuzzy, c-format
 msgid "  NCurses version: %s\n"
 msgstr "Verzija:"
 
-#: src/main.cc:184
+#: src/main.cc:181
 #, c-format
 msgid "  cwidget version: %s\n"
 msgstr ""
 
-#: src/main.cc:185
+#: src/main.cc:182
 #, fuzzy, c-format
 msgid "  Apt version: %s\n"
 msgstr "Verzija:"
 
-#: src/main.cc:191
+#: src/main.cc:188
 #, c-format
 msgid "Usage: aptitude [-S fname] [-u|-i]"
 msgstr ""
 
-#: src/main.cc:193
+#: src/main.cc:190
 #, c-format
 msgid "       aptitude [options] <action> ..."
 msgstr ""
 
-#: src/main.cc:196
+#: src/main.cc:193
 #, c-format
 msgid ""
 "Actions (if none is specified, aptitude will enter interactive mode):\n"
 "\n"
 msgstr ""
 
-#: src/main.cc:197
+#: src/main.cc:194
 #, c-format
 msgid " install         Install/upgrade packages.\n"
 msgstr ""
 
-#: src/main.cc:198
+#: src/main.cc:195
 #, fuzzy, c-format
 msgid " remove          Remove packages.\n"
 msgstr "Paket:"
 
-#: src/main.cc:199
+#: src/main.cc:196
 #, c-format
 msgid " purge           Remove packages and their configuration files.\n"
 msgstr ""
 
-#: src/main.cc:200
+#: src/main.cc:197
 #, c-format
 msgid " hold            Place packages on hold.\n"
 msgstr ""
 
-#: src/main.cc:201
+#: src/main.cc:198
 #, c-format
 msgid " unhold          Cancel a hold command for a package.\n"
 msgstr ""
 
-#: src/main.cc:202
+#: src/main.cc:199
 #, fuzzy, c-format
 msgid ""
 " markauto        Mark packages as having been automatically installed.\n"
 msgstr "Slijedeći NOVI paketi će biti automatski instalirani:"
 
-#: src/main.cc:203
+#: src/main.cc:200
 #, fuzzy, c-format
 msgid " unmarkauto      Mark packages as having been manually installed.\n"
 msgstr "Slijedeći NOVI paketi će biti automatski instalirani:"
 
-#: src/main.cc:204
+#: src/main.cc:201
 #, c-format
 msgid ""
 " forbid-version  Forbid aptitude from upgrading to a specific package "
 "version.\n"
 msgstr ""
 
-#: src/main.cc:205
+#: src/main.cc:202
 #, c-format
 msgid " update          Download lists of new/upgradable packages.\n"
 msgstr ""
 
-#: src/main.cc:206
+#: src/main.cc:203
 #, c-format
 msgid " safe-upgrade    Perform a safe upgrade.\n"
 msgstr ""
 
-#: src/main.cc:207
+#: src/main.cc:204
 #, c-format
 msgid ""
 " full-upgrade    Perform an upgrade, possibly installing and removing "
 "packages.\n"
 msgstr ""
 
-#: src/main.cc:208
+#: src/main.cc:205
 #, c-format
 msgid " build-dep       Install the build-dependencies of packages.\n"
 msgstr ""
 
-#: src/main.cc:209
+#: src/main.cc:206
 #, c-format
 msgid " forget-new      Forget what packages are \"new\".\n"
 msgstr ""
 
-#: src/main.cc:210
+#: src/main.cc:207
 #, c-format
 msgid " search          Search for a package by name and/or expression.\n"
 msgstr ""
 
-#: src/main.cc:211
+#: src/main.cc:208
 #, c-format
 msgid " show            Display detailed info about a package.\n"
 msgstr ""
 
-#: src/main.cc:212
+#: src/main.cc:209
 #, c-format
 msgid ""
 " showsrc         Display detailed info about a source package (apt "
 "wrapper).\n"
 msgstr ""
 
-#: src/main.cc:213
+#: src/main.cc:210
 #, c-format
 msgid " versions        Displays the versions of specified packages.\n"
 msgstr ""
 
-#: src/main.cc:214
+#: src/main.cc:211
 #, c-format
 msgid " clean           Erase downloaded package files.\n"
 msgstr ""
 
-#: src/main.cc:215
+#: src/main.cc:212
 #, c-format
 msgid " autoclean       Erase old downloaded package files.\n"
 msgstr ""
 
-#: src/main.cc:216
+#: src/main.cc:213
 #, c-format
 msgid " changelog       View a package's changelog.\n"
 msgstr ""
 
-#: src/main.cc:217
+#: src/main.cc:214
 #, c-format
 msgid " download        Download the .deb file for a package (apt wrapper).\n"
 msgstr ""
 
-#: src/main.cc:218
+#: src/main.cc:215
 #, c-format
 msgid " source          Download source package (apt wrapper).\n"
 msgstr ""
 
-#: src/main.cc:219
+#: src/main.cc:216
 #, c-format
 msgid " reinstall       Reinstall a currently installed package.\n"
 msgstr ""
 
-#: src/main.cc:220
+#: src/main.cc:217
 #, c-format
 msgid ""
 " why             Explain why a particular package should be installed.\n"
 msgstr ""
 
-#: src/main.cc:221
+#: src/main.cc:218
 #, c-format
 msgid ""
 " why-not         Explain why a particular package cannot be installed.\n"
 msgstr ""
 
-#: src/main.cc:223
+#: src/main.cc:220
 #, c-format
 msgid " add-user-tag    Add user tag to packages/patterns.\n"
 msgstr ""
 
-#: src/main.cc:224
+#: src/main.cc:221
 #, c-format
 msgid " remove-user-tag Remove user tag from packages/patterns.\n"
 msgstr ""
 
-#: src/main.cc:226
+#: src/main.cc:223
 #, fuzzy, c-format
 msgid "Options:\n"
 msgstr "Opcije"
 
-#: src/main.cc:227
+#: src/main.cc:224
 #, c-format
 msgid " -h              This help text.\n"
 msgstr ""
 
-#: src/main.cc:229
+#: src/main.cc:226
 #, c-format
 msgid ""
 " --gui           Use the GTK GUI even if disabled in the configuration.\n"
 msgstr ""
 
-#: src/main.cc:231
+#: src/main.cc:228
 #, c-format
 msgid " --no-gui        Do not use the GTK GUI even if available.\n"
 msgstr ""
 
-#: src/main.cc:233
+#: src/main.cc:230
 #, c-format
 msgid " --qt            Use the Qt GUI.\n"
 msgstr ""
 
-#: src/main.cc:234
+#: src/main.cc:231
 #, c-format
 msgid ""
 " --no-qt         Do not use the Qt GUI even if enabled in the "
 "configuration.\n"
 msgstr ""
 
-#: src/main.cc:236
+#: src/main.cc:233
 #, c-format
 msgid " -s              Simulate actions, but do not actually perform them.\n"
 msgstr ""
 
-#: src/main.cc:237
+#: src/main.cc:234
 #, c-format
 msgid ""
 " -d              Only download packages, do not install or remove anything.\n"
 msgstr ""
 
-#: src/main.cc:238
+#: src/main.cc:235
 #, fuzzy, c-format
 msgid " -P              Always prompt for confirmation of actions.\n"
 msgstr "Tražiti potvrdu prilikom izlaska"
 
-#: src/main.cc:239
+#: src/main.cc:236
 #, c-format
 msgid ""
 " -y              Assume that the answer to simple yes/no questions is "
 "'yes'.\n"
 msgstr ""
 
-#: src/main.cc:240
+#: src/main.cc:237
 #, c-format
 msgid ""
 " -F format       Specify a format for displaying search results; see the "
 "manual.\n"
 msgstr ""
 
-#: src/main.cc:241
+#: src/main.cc:238
 #, c-format
 msgid ""
 " -O order        Specify how search results should be sorted; see the "
 "manual.\n"
 msgstr ""
 
-#: src/main.cc:242
+#: src/main.cc:239
 #, c-format
 msgid ""
 " -w width        Specify the display width for formatting search results.\n"
 msgstr ""
 
-#: src/main.cc:243
+#: src/main.cc:240
 #, c-format
 msgid " -f              Aggressively try to fix broken packages.\n"
 msgstr ""
 
-#: src/main.cc:244
+#: src/main.cc:241
 #, c-format
 msgid " -V              Show which versions of packages are to be installed.\n"
 msgstr ""
 
-#: src/main.cc:245
+#: src/main.cc:242
 #, c-format
 msgid ""
 " -D              Show the dependencies of automatically changed packages.\n"
 msgstr ""
 
-#: src/main.cc:246
+#: src/main.cc:243
 #, c-format
 msgid " -Z              Show the change in installed size of each package.\n"
 msgstr ""
 
-#: src/main.cc:247
+#: src/main.cc:244
 #, c-format
 msgid ""
 " -v              Display extra information. (may be supplied multiple "
 "times).\n"
 msgstr ""
 
-#: src/main.cc:248
+#: src/main.cc:245
 #, c-format
 msgid ""
 " -t [release]    Set the release from which packages should be installed.\n"
 msgstr ""
 
-#: src/main.cc:249
+#: src/main.cc:246
 #, c-format
 msgid ""
 " -q              In command-line mode, suppress the incremental progress\n"
 "                  indicators.\n"
 msgstr ""
 
-#: src/main.cc:251
+#: src/main.cc:248
 #, c-format
 msgid " -o key=val      Directly set the configuration option named 'key'.\n"
 msgstr ""
 
-#: src/main.cc:252
+#: src/main.cc:249
 #, c-format
 msgid ""
 " --with(out)-recommends     Specify whether or not to treat recommends as\n"
 "                            strong dependencies.\n"
 msgstr ""
 
-#: src/main.cc:254
+#: src/main.cc:251
 #, fuzzy, c-format
 msgid " -S fname        Read the aptitude extended status info from fname.\n"
 msgstr ""
 " -S fnom: llegeix la informació d'estat estesa de l'aptitude del fitxer "
 "fnom.\n"
 
-#: src/main.cc:255
+#: src/main.cc:252
 #, c-format
 msgid " -u              Download new package lists on startup.\n"
 msgstr ""
 
-#: src/main.cc:256 src/main.cc:258
+#: src/main.cc:253 src/main.cc:255
 #, c-format
 msgid "                  (terminal interface only)\n"
 msgstr ""
 
-#: src/main.cc:257
+#: src/main.cc:254
 #, c-format
 msgid " -i              Perform an install run on startup.\n"
 msgstr ""
 
-#: src/main.cc:260
+#: src/main.cc:257
 #, c-format
 msgid ""
 "See the manual page for a complete list and description of all the options.\n"
 msgstr ""
 
-#: src/main.cc:262
+#: src/main.cc:259
 #, c-format
 msgid "This aptitude does not have Super Cow Powers.\n"
 msgstr ""
 
 #. TRANSLATORS: levels are not translatable anymore
-#: src/main.cc:460
+#: src/main.cc:457
 #, c-format
 msgid ""
 "Unknown log level name \"%s\" (expected \"trace\", \"debug\", \"info\", "
@@ -5791,12 +5791,12 @@ msgstr ""
 #. * levels for different categories (e.g. level 'warn' for
 #. * 'aptitude.changelog', debug for 'aptitude.why'), etc.
 #.
-#: src/main.cc:483
+#: src/main.cc:480
 #, c-format
 msgid "Invalid logger name \"%s\"."
 msgstr ""
 
-#: src/main.cc:674
+#: src/main.cc:671
 #, c-format
 msgid ""
 "Warning: Invalid locale (please review locale settings, this might lead to "
@@ -5804,50 +5804,50 @@ msgid ""
 "  %s\n"
 msgstr ""
 
-#: src/main.cc:816
+#: src/main.cc:813
 #, c-format
 msgid "Expected a number after -q=\n"
 msgstr ""
 
-#: src/main.cc:825
+#: src/main.cc:822
 #, c-format
 msgid "Expected a number after -q=, got %s\n"
 msgstr ""
 
-#: src/main.cc:849
+#: src/main.cc:846
 #, c-format
 msgid "-o requires an argument of the form key=value, got %s\n"
 msgstr ""
 
-#: src/main.cc:926
+#: src/main.cc:923
 #, c-format
 msgid ""
 "Invalid option \"%s\" (only \"--purge-unused\" is valid).  Perhaps you want "
 "the \"purge\" action?\n"
 msgstr ""
 
-#: src/main.cc:947
+#: src/main.cc:944
 #, c-format
 msgid "No comma following tag name \"%s\".\n"
 msgstr ""
 
-#: src/main.cc:1039 src/main.cc:1049
+#: src/main.cc:1036 src/main.cc:1046
 msgid "WEIRDNESS: unknown option code received\n"
 msgstr ""
 
-#: src/main.cc:1067
+#: src/main.cc:1064
 msgid "--show-package-names|never"
 msgstr ""
 
-#: src/main.cc:1070
+#: src/main.cc:1067
 msgid "--show-package-names|auto"
 msgstr ""
 
-#: src/main.cc:1073
+#: src/main.cc:1070
 msgid "--show-package-names|always"
 msgstr ""
 
-#: src/main.cc:1078
+#: src/main.cc:1075
 #, c-format
 msgid ""
 "Invalid package names display mode \"%s\" (should be \"never\", \"auto\", or "
@@ -5856,7 +5856,7 @@ msgstr ""
 
 #. TRANSLATORS: "why" and "modes" here are the aptitude command name and
 #. parameters, and should not be translated.
-#: src/main.cc:1098
+#: src/main.cc:1095
 #, c-format
 msgid ""
 "Invalid \"why\" summary mode \"%s\": expected \"no-summary\", \"first-package"
@@ -5864,43 +5864,43 @@ msgid ""
 "versions\"."
 msgstr ""
 
-#: src/main.cc:1139
+#: src/main.cc:1136
 msgid ""
 "Only one of --auto-clean-on-startup, --clean-on-startup, -i, and -u may be "
 "specified\n"
 msgstr ""
 
-#: src/main.cc:1148
+#: src/main.cc:1145
 msgid ""
 "-u, -i, and --clean-on-startup may not be specified in command-line mode "
 "(eg, with 'install')"
 msgstr ""
 
-#: src/main.cc:1165
+#: src/main.cc:1162
 msgid "-u, -i, and --clean-on-startup may not be specified with a command"
 msgstr ""
 
-#: src/main.cc:1226 src/main.cc:1259
+#: src/main.cc:1223 src/main.cc:1256
 #, c-format
 msgid "Command \"%s\" needs arguments\n"
 msgstr ""
 
-#: src/main.cc:1234
+#: src/main.cc:1231
 #, c-format
 msgid "Command \"%s\" does not accept arguments\n"
 msgstr ""
 
-#: src/main.cc:1330
+#: src/main.cc:1327
 #, c-format
 msgid "Unknown command \"%s\"\n"
 msgstr ""
 
-#: src/main.cc:1342 src/main.cc:1436
+#: src/main.cc:1339 src/main.cc:1433
 #, c-format
 msgid "Uncaught exception: %s\n"
 msgstr ""
 
-#: src/main.cc:1346 src/main.cc:1440
+#: src/main.cc:1343 src/main.cc:1437
 #, c-format
 msgid ""
 "Backtrace:\n"
@@ -6032,213 +6032,217 @@ msgstr ""
 msgid "Encoding of mine-help.txt|UTF-8"
 msgstr ""
 
-#: src/pkg_columnizer.cc:89
-msgid "30 8 8 1 1 40 14 14 11 10 35 9 10 2 1 30 30 10 30 10 9 12 16 22 8"
+#: src/pkg_columnizer.cc:90
+msgid "30 8 8 1 1 40 14 14 11 10 35 9 10 2 1 30 30 10 30 30 10 9 12 16 22 8"
 msgstr ""
 
-#: src/pkg_columnizer.cc:92 src/ui.cc:2978
+#: src/pkg_columnizer.cc:93 src/ui.cc:2978
 msgid "Package"
 msgstr ""
 
-#: src/pkg_columnizer.cc:93
+#: src/pkg_columnizer.cc:94
 msgid "InstSz"
 msgstr ""
 
-#: src/pkg_columnizer.cc:94
+#: src/pkg_columnizer.cc:95
 msgid "DebSz"
 msgstr ""
 
-#: src/pkg_columnizer.cc:96
+#: src/pkg_columnizer.cc:97
 msgid "Action"
 msgstr ""
 
-#: src/pkg_columnizer.cc:98
+#: src/pkg_columnizer.cc:99
 msgid "InstVer"
 msgstr ""
 
-#: src/pkg_columnizer.cc:99
+#: src/pkg_columnizer.cc:100
 msgid "CandVer"
 msgstr ""
 
-#: src/pkg_columnizer.cc:100
+#: src/pkg_columnizer.cc:101
 msgid "LongState"
 msgstr ""
 
-#: src/pkg_columnizer.cc:101
+#: src/pkg_columnizer.cc:102
 msgid "LongAction"
 msgstr ""
 
-#: src/pkg_columnizer.cc:102 src/qt/widgets/packages_tab.cc:105
+#: src/pkg_columnizer.cc:103 src/qt/widgets/packages_tab.cc:105
 msgid "Maintainer"
 msgstr ""
 
-#: src/pkg_columnizer.cc:103
+#: src/pkg_columnizer.cc:104
 msgid "Priority"
 msgstr ""
 
-#: src/pkg_columnizer.cc:104
+#: src/pkg_columnizer.cc:105
 msgid "Section"
 msgstr ""
 
-#: src/pkg_columnizer.cc:105
+#: src/pkg_columnizer.cc:106
 msgid "RC"
 msgstr ""
 
-#: src/pkg_columnizer.cc:107
+#: src/pkg_columnizer.cc:108
 msgid "Tag/user-tags"
 msgstr ""
 
-#: src/pkg_columnizer.cc:108
+#: src/pkg_columnizer.cc:109
 msgid "Source"
 msgstr ""
 
-#: src/pkg_columnizer.cc:109
+#: src/pkg_columnizer.cc:110
 #, fuzzy
 msgid "Architecture"
 msgstr "Arhitektura:"
 
-#: src/pkg_columnizer.cc:110
+#: src/pkg_columnizer.cc:111
+msgid "Label"
+msgstr ""
+
+#: src/pkg_columnizer.cc:112
 msgid "Origin"
 msgstr ""
 
-#: src/pkg_columnizer.cc:113
+#: src/pkg_columnizer.cc:115
 msgid "ProgName"
 msgstr ""
 
-#: src/pkg_columnizer.cc:114
+#: src/pkg_columnizer.cc:116
 msgid "ProgVer"
 msgstr ""
 
-#: src/pkg_columnizer.cc:115
+#: src/pkg_columnizer.cc:117
 msgid "#Broken"
 msgstr ""
 
-#: src/pkg_columnizer.cc:116
+#: src/pkg_columnizer.cc:118
 msgid "DiskUsage"
 msgstr ""
 
-#: src/pkg_columnizer.cc:117
+#: src/pkg_columnizer.cc:119
 msgid "DownloadSize"
 msgstr ""
 
-#: src/pkg_columnizer.cc:145 src/pkg_columnizer.cc:157 src/pkg_ver_item.cc:98
+#: src/pkg_columnizer.cc:147 src/pkg_columnizer.cc:159 src/pkg_ver_item.cc:98
 #: src/pkg_ver_item.cc:150
 msgid "<N/A>"
 msgstr ""
 
-#: src/pkg_columnizer.cc:187 src/pkg_columnizer.cc:198
+#: src/pkg_columnizer.cc:189 src/pkg_columnizer.cc:200
 msgid "<none>"
 msgstr ""
 
-#: src/pkg_columnizer.cc:242 src/pkg_grouppolicy.cc:249
+#: src/pkg_columnizer.cc:244 src/pkg_grouppolicy.cc:249
 #: src/pkg_grouppolicy.cc:1653 src/qt/package.cc:236
 #: src/qt/widgets/packages_tab.cc:73
 msgid "virtual"
 msgstr ""
 
-#: src/pkg_columnizer.cc:249 src/pkg_ver_item.cc:202 src/pkg_ver_item.cc:210
+#: src/pkg_columnizer.cc:251 src/pkg_ver_item.cc:202 src/pkg_ver_item.cc:210
 msgid "purged"
 msgstr ""
 
-#: src/pkg_columnizer.cc:256 src/pkg_ver_item.cc:217
+#: src/pkg_columnizer.cc:258 src/pkg_ver_item.cc:217
 msgid "half-config"
 msgstr ""
 
-#: src/pkg_columnizer.cc:258 src/pkg_ver_item.cc:219
+#: src/pkg_columnizer.cc:260 src/pkg_ver_item.cc:219
 msgid "half-install"
 msgstr ""
 
-#: src/pkg_columnizer.cc:260 src/pkg_ver_item.cc:221
+#: src/pkg_columnizer.cc:262 src/pkg_ver_item.cc:221
 msgid "config-files"
 msgstr ""
 
-#: src/pkg_columnizer.cc:264 src/pkg_ver_item.cc:225
+#: src/pkg_columnizer.cc:266 src/pkg_ver_item.cc:225
 msgid "triggers-awaited"
 msgstr ""
 
-#: src/pkg_columnizer.cc:266 src/pkg_ver_item.cc:227
+#: src/pkg_columnizer.cc:268 src/pkg_ver_item.cc:227
 msgid "triggers-pending"
 msgstr ""
 
-#: src/pkg_columnizer.cc:317 src/pkg_ver_item.cc:287
+#: src/pkg_columnizer.cc:319 src/pkg_ver_item.cc:287
 msgid "hold"
 msgstr ""
 
-#: src/pkg_columnizer.cc:320
+#: src/pkg_columnizer.cc:322
 msgid "forbidden upgrade"
 msgstr ""
 
-#: src/pkg_columnizer.cc:322
+#: src/pkg_columnizer.cc:324
 msgid "purge"
 msgstr ""
 
-#: src/pkg_columnizer.cc:322 src/pkg_ver_item.cc:311
+#: src/pkg_columnizer.cc:324 src/pkg_ver_item.cc:311
 msgid "delete"
 msgstr ""
 
-#: src/pkg_columnizer.cc:324 src/pkg_ver_item.cc:205 src/pkg_ver_item.cc:293
+#: src/pkg_columnizer.cc:326 src/pkg_ver_item.cc:205 src/pkg_ver_item.cc:293
 #: src/reason_fragment.cc:73
 msgid "broken"
 msgstr ""
 
-#: src/pkg_columnizer.cc:326 src/pkg_ver_item.cc:297 src/pkg_ver_item.cc:304
+#: src/pkg_columnizer.cc:328 src/pkg_ver_item.cc:297 src/pkg_ver_item.cc:304
 #: src/pkg_ver_item.cc:313 src/reason_fragment.cc:63
 msgid "install"
 msgstr ""
 
-#: src/pkg_columnizer.cc:328 src/reason_fragment.cc:81
+#: src/pkg_columnizer.cc:330 src/reason_fragment.cc:81
 msgid "reinstall"
 msgstr ""
 
-#: src/pkg_columnizer.cc:330 src/reason_fragment.cc:85
+#: src/pkg_columnizer.cc:332 src/reason_fragment.cc:85
 msgid "upgrade"
 msgstr ""
 
-#: src/pkg_columnizer.cc:332 src/pkg_columnizer.cc:334 src/pkg_ver_item.cc:299
+#: src/pkg_columnizer.cc:334 src/pkg_columnizer.cc:336 src/pkg_ver_item.cc:299
 #: src/pkg_ver_item.cc:306 src/pkg_ver_item.cc:315 src/pkg_ver_item.cc:318
 msgid "none"
 msgstr ""
 
-#: src/pkg_columnizer.cc:388
+#: src/pkg_columnizer.cc:390
 #, c-format
 msgid "#Broken: %ld"
 msgstr ""
 
-#: src/pkg_columnizer.cc:403
+#: src/pkg_columnizer.cc:405
 #, c-format
 msgid "Disk: %c%sB"
 msgstr ""
 
-#: src/pkg_columnizer.cc:417
+#: src/pkg_columnizer.cc:419
 #, c-format
 msgid "DL: %sB/%sB"
 msgstr ""
 
-#: src/pkg_columnizer.cc:423
+#: src/pkg_columnizer.cc:425
 #, c-format
 msgid "DL: %sB"
 msgstr ""
 
 #. TRANSLATORS: Hostname
-#: src/pkg_columnizer.cc:565
+#: src/pkg_columnizer.cc:574
 msgid "HN too long"
 msgstr ""
 
-#: src/pkg_columnizer.cc:758
+#: src/pkg_columnizer.cc:770
 #, c-format
 msgid "Using default for %s string: '%s'"
 msgstr ""
 
-#: src/pkg_columnizer.cc:763 src/pkg_columnizer.cc:775
+#: src/pkg_columnizer.cc:775 src/pkg_columnizer.cc:787
 #, c-format
 msgid "Unable to transcode package display format after \"%ls\""
 msgstr ""
 
-#: src/pkg_columnizer.cc:782
+#: src/pkg_columnizer.cc:794
 msgid "Internal error: Default column string is unparsable"
 msgstr ""
 
-#: src/pkg_columnizer.cc:809
+#: src/pkg_columnizer.cc:821
 #, c-format
 msgid "Forbidden character in position %zu of %s string: '%s'"
 msgstr ""
@@ -6382,24 +6386,28 @@ msgid "Source Package: "
 msgstr ""
 
 #: src/pkg_info_screen.cc:154
+msgid "Label: "
+msgstr ""
+
+#: src/pkg_info_screen.cc:159
 msgid "Origin: "
 msgstr ""
 
-#: src/pkg_info_screen.cc:161
+#: src/pkg_info_screen.cc:166
 msgid "Origin URI: "
 msgstr ""
 
-#: src/pkg_info_screen.cc:172
+#: src/pkg_info_screen.cc:177
 #, c-format
 msgid "Package names provided by %s"
 msgstr ""
 
-#: src/pkg_info_screen.cc:185
+#: src/pkg_info_screen.cc:190
 #, c-format
 msgid "Packages which depend on %s"
 msgstr ""
 
-#: src/pkg_info_screen.cc:191
+#: src/pkg_info_screen.cc:196
 #, fuzzy, c-format
 msgid "Versions of %s"
 msgstr "Verzija:"

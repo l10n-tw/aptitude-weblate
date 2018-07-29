@@ -14,6 +14,7 @@ SUBDIRS=generic $(MAYBE_GTK) $(MAYBE_QT) cmdline mine
 
 localedir = $(datadir)/locale
 AM_CPPFLAGS = -I$(top_builddir) -I$(srcdir) -I$(top_srcdir) -I$(top_srcdir)/src
+FILESYSTEM_LDFLAGS = -lstdc++fs
 DEFS = -DLOCALEDIR=\"$(localedir)\" @DEFS@
 
 bin_PROGRAMS=aptitude
@@ -23,7 +24,8 @@ LDADD=@LIBINTL@ $(MAYBE_LIBGTK) $(MAYBE_LIBQT) cmdline/libcmdline.a mine/libcmin
 	generic/apt/matching/libgeneric-matching.a \
 	generic/controllers/libgeneric-controllers.a \
 	generic/problemresolver/libgeneric-problemresolver.a \
-	generic/views/libgeneric-views.a
+	generic/views/libgeneric-views.a \
+	$(FILESYSTEM_LDFLAGS)
 
 aptitude_SOURCES= 	\
 	aptitude.h	\

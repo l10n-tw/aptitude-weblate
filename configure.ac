@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT([aptitude], [0.8.10], [aptitude-devel@lists.alioth.debian.org])
+AC_INIT([aptitude], [0.8.11], [aptitude-devel@lists.alioth.debian.org])
 AC_CONFIG_SRCDIR([src/main.cc])
 AM_INIT_AUTOMAKE([foreign dist-xz no-dist-gzip -Wno-portability])
 AM_CONFIG_HEADER(config.h)
@@ -13,16 +13,19 @@ AM_GNU_GETTEXT([external])
 dnl Checks for programs.
 AC_PROG_CXX
 AC_PROG_RANLIB
+AC_PROG_MKDIR_P
 dnl Checks for programs used to generate the documentation.
 AC_PATH_PROG(PO4A, po4a)
 AC_PATH_PROG(XSLTPROC, xsltproc)
 AC_PATH_PROG(RSVG_CONVERT, rsvg-convert)
 AC_PATH_PROG(FOP, fop)
+AC_PATH_PROG(ELINKS, elinks)
 
 AM_CONDITIONAL(HAVE_PO4A, [test "x$PO4A" != "x"])
 AM_CONDITIONAL(HAVE_XSLTPROC, [test "x$XSLTPROC" != "x"])
 AM_CONDITIONAL(HAVE_RSVG_CONVERT, [test "x$RSVG_CONVERT" != "x"])
 AM_CONDITIONAL(HAVE_FOP, [test "x$FOP" != "x"])
+AM_CONDITIONAL(HAVE_ELINKS, [test "x$ELINKS" != "x"])
 
 dnl C++ has const and inline!!!
 ac_cv_c_const=yes
@@ -105,7 +108,6 @@ dnl it you'll get an error when you run the configure script.
 boost/algorithm/string.hpp dnl
 boost/algorithm/string/join.hpp dnl
 boost/compressed_pair.hpp dnl
-boost/filesystem.hpp dnl
 boost/flyweight/hashed_factory.hpp dnl
 boost/flyweight.hpp dnl
 boost/format.hpp dnl
@@ -140,10 +142,6 @@ boost/iostreams/seek.hpp dnl
 boost/iostreams/stream.hpp dnl
 boost/iostreams/write.hpp dnl
 boost/lambda/bind.hpp dnl
-dnl Can't check this because of bugs in Boost, left here to fool my
-dnl sanity-check of the config file:
-dnl boost/lambda/construct.hpp dnl
-boost/lambda/lambda.hpp dnl
 boost/lexical_cast.hpp dnl
 boost/mpl/begin.hpp dnl
 boost/mpl/fold.hpp dnl
@@ -156,7 +154,6 @@ boost/multi_index/mem_fun.hpp dnl
 boost/multi_index/random_access_index.hpp dnl
 boost/multi_index/sequenced_index.hpp dnl
 boost/numeric/conversion/cast.hpp dnl
-boost/optional.hpp dnl
 boost/preprocessor/repetition/enum_binary_params.hpp dnl
 boost/preprocessor/repetition/enum_params.hpp dnl
 boost/preprocessor/repetition/repeat.hpp dnl
@@ -165,7 +162,6 @@ boost/test/unit_test.hpp dnl
 boost/type_traits/is_same.hpp dnl
 boost/unordered_map.hpp dnl
 boost/unordered_set.hpp dnl
-boost/utility.hpp dnl
 boost/variant.hpp dnl
                   , []
                   , [AC_MSG_FAILURE([Boost install not found, too old, or incomplete; install libboost-dev.])])
@@ -173,7 +169,6 @@ boost/variant.hpp dnl
 
 AX_BOOST_BASE()
 AX_BOOST_IOSTREAMS
-AX_BOOST_FILESYSTEM
 AX_BOOST_SYSTEM
 
 AC_MSG_CHECKING([the calling convertion of boost::fusion::fold])
@@ -389,7 +384,7 @@ then
 fi
 
 CXXFLAGS="$SIGC_CFLAGS $CWIDGET_CFLAGS $ept_CFLAGS $SQLITE3_CFLAGS $XAPIAN_CXXFLAGS $CXXFLAGS"
-LIBS="$LIBS $SIGC_LIBS $CWIDGET_LIBS $ept_LIBS $SQLITE3_LIBS $BOOST_IOSTREAMS_LIB $BOOST_FILESYSTEM_LIB $BOOST_SYSTEM_LIB $XAPIAN_LIBS"
+LIBS="$LIBS $SIGC_LIBS $CWIDGET_LIBS $ept_LIBS $SQLITE3_LIBS $BOOST_IOSTREAMS_LIB $BOOST_SYSTEM_LIB $XAPIAN_LIBS"
 CPPFLAGS="$BOOST_CPPFLAGS $CPPFLAGS"
 LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
 
@@ -688,7 +683,7 @@ AC_ARG_ENABLE(resolver-sanity-checks,
 	fi
 	)
 
-CXXFLAGS="$CXXFLAGS -Wall $WERROR"
+CXXFLAGS="$CXXFLAGS -std=gnu++17 -Wall $WERROR"
 
 AC_SUBST(SRCDIRS)
 AC_SUBST(DOCDIRS)

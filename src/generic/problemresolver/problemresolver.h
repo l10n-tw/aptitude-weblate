@@ -24,6 +24,7 @@
 #include <algorithm>
 #include <map>
 #include <set>
+#include <optional>
 #include <vector>
 
 #include <iostream>
@@ -4261,12 +4262,12 @@ private:
   class count_action_hits
   {
     unsigned int &action_hits;
-    boost::optional<choice> &mismatch;
+    std::optional<choice> &mismatch;
     const step &s;
 
   public:
     count_action_hits(unsigned int &_action_hits,
-		      boost::optional<choice> &_mismatch,
+		      std::optional<choice> &_mismatch,
 		      const step &_s)
       : action_hits(_action_hits),
 	mismatch(_mismatch),
@@ -4302,7 +4303,7 @@ private:
 		  << " against step " << s.step_num);
 
 	unsigned int action_hits;
-	boost::optional<choice> mismatch;
+	std::optional<choice> mismatch;
 	if(!p.get_choices().for_each(count_action_hits(action_hits,
 						       mismatch,
 						       s)))

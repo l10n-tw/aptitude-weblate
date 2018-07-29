@@ -1,6 +1,7 @@
 // dummy_universe.h                               -*-c++-*-
 //
 //   Copyright (C) 2005, 2007, 2009-2010 Daniel Burrows
+//   Copyright (C) 2015-2018 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -569,7 +570,7 @@ private:
 
   struct compare_dummy_packages
   {
-    bool operator()(dummy_package *p1, dummy_package *p2)
+    bool operator()(dummy_package *p1, dummy_package *p2) const
     {
       return p1->get_id() < p2->get_id();
     }
@@ -577,7 +578,7 @@ private:
 
   struct compare_dummy_versions
   {
-    bool operator()(dummy_version *v1, dummy_version *v2)
+    bool operator()(dummy_version *v1, dummy_version *v2) const
     {
       return v1->get_id() < v2->get_id();
     }

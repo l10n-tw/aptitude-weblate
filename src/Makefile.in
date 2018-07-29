@@ -123,13 +123,14 @@ am_aptitude_OBJECTS = main.$(OBJEXT) desc_render.$(OBJEXT) \
 	ui_download_manager.$(OBJEXT) view_changelog.$(OBJEXT)
 aptitude_OBJECTS = $(am_aptitude_OBJECTS)
 aptitude_LDADD = $(LDADD)
+am__DEPENDENCIES_1 =
 aptitude_DEPENDENCIES = $(MAYBE_LIBGTK) $(MAYBE_LIBQT) \
 	cmdline/libcmdline.a mine/libcmine.a \
 	generic/apt/libgeneric-apt.a generic/util/libgeneric-util.a \
 	generic/apt/matching/libgeneric-matching.a \
 	generic/controllers/libgeneric-controllers.a \
 	generic/problemresolver/libgeneric-problemresolver.a \
-	generic/views/libgeneric-views.a
+	generic/views/libgeneric-views.a $(am__DEPENDENCIES_1)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -250,7 +251,6 @@ AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
 BOOST_CPPFLAGS = @BOOST_CPPFLAGS@
-BOOST_FILESYSTEM_LIB = @BOOST_FILESYSTEM_LIB@
 BOOST_IOSTREAMS_LIB = @BOOST_IOSTREAMS_LIB@
 BOOST_LDFLAGS = @BOOST_LDFLAGS@
 BOOST_SYSTEM_LIB = @BOOST_SYSTEM_LIB@
@@ -273,6 +273,7 @@ ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
+ELINKS = @ELINKS@
 EXEEXT = @EXEEXT@
 FOP = @FOP@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
@@ -407,12 +408,14 @@ MAINTAINERCLEANFILES = Makefile.in
 @BUILD_QT_TRUE@MAYBE_LIBQT = qt/libqt.a
 SUBDIRS = generic $(MAYBE_GTK) $(MAYBE_QT) cmdline mine
 AM_CPPFLAGS = -I$(top_builddir) -I$(srcdir) -I$(top_srcdir) -I$(top_srcdir)/src
+FILESYSTEM_LDFLAGS = -lstdc++fs
 LDADD = @LIBINTL@ $(MAYBE_LIBGTK) $(MAYBE_LIBQT) cmdline/libcmdline.a mine/libcmine.a \
 	generic/apt/libgeneric-apt.a generic/util/libgeneric-util.a \
 	generic/apt/matching/libgeneric-matching.a \
 	generic/controllers/libgeneric-controllers.a \
 	generic/problemresolver/libgeneric-problemresolver.a \
-	generic/views/libgeneric-views.a
+	generic/views/libgeneric-views.a \
+	$(FILESYSTEM_LDFLAGS)
 
 aptitude_SOURCES = \
 	aptitude.h	\

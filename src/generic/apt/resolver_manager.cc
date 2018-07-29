@@ -1,7 +1,7 @@
 // resolver_manager.cc
 //
 //   Copyright (C) 2005, 2007-2010 Daniel Burrows
-//   Copyright (C) 2014-2016 Manuel A. Fernandez Montecelo
+//   Copyright (C) 2014-2018 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -616,7 +616,7 @@ void resolver_manager::background_thread_execution()
 	  // Wrap a keepalive slot around that so job.k lives.
 	  job.post_thunk(make_keepalive_slot(success_slot, job.k));
 	}
-      catch(InterruptedException)
+      catch(const InterruptedException&)
 	{
 	  // Put it back into the pot.
 	  l.acquire();
@@ -635,7 +635,7 @@ void resolver_manager::background_thread_execution()
 
 	  l.release();
 	}
-      catch(NoMoreSolutions)
+      catch(const NoMoreSolutions&)
 	{
 	  l.acquire();
 
@@ -653,7 +653,7 @@ void resolver_manager::background_thread_execution()
 			  &background_continuation::no_more_solutions);
 	  job.post_thunk(make_keepalive_slot(no_more_solutions_slot, job.k));
 	}
-      catch(NoMoreTime)
+      catch(const NoMoreTime&)
 	{
 	  l.acquire();
 
@@ -1179,12 +1179,12 @@ resolver_manager::do_get_solution(int max_steps, unsigned int solution_num,
 	  ticks_since_last_solution += e.get_steps();
 	  throw e;
 	}
-      catch(NoMoreTime)
+      catch(const NoMoreTime&)
 	{
 	  ticks_since_last_solution += max_steps;
 	  throw NoMoreTime();
 	}
-      catch(NoMoreSolutions)
+      catch(const NoMoreSolutions&)
 	{
 	  throw NoMoreSolutions();
 	}

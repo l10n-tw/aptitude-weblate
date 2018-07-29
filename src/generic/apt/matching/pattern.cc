@@ -1,7 +1,7 @@
 // pattern.cc
 //
 //   Copyright (C) 2008-2009 Daniel Burrows
-//   Copyright (C) 2014-2016 Manuel A. Fernandez Montecelo
+//   Copyright (C) 2014-2018 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -131,6 +131,7 @@ switch(p->get_type())
   case pattern::garbage:
   case pattern::install_version:
   case pattern::installed:
+  case pattern::label:
   case pattern::maintainer:
   case pattern::multiarch:
   case pattern::name:

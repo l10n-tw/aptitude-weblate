@@ -1,7 +1,7 @@
 // pkg_columnizer.h  -*-c++-*-
 //
 //  Copyright 1999-2002, 2004-2005, 2007 Daniel Burrows
-//  Copyright 2012-2016 Manuel A. Fernandez Montecelo
+//  Copyright 2012-2018 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ public:
   enum types {name, installed_size, debsize, stateflag, actionflag,
 	      description, currver, candver, longstate, longaction,
 	      maintainer, priority, shortpriority, section, revdepcount,
-	      autoset, tagged, source, architecture, origin, archive, sizechange,
+	      autoset, tagged, source, architecture, label, origin, archive, sizechange,
 
               progname, progver, brokencount, diskusage, downloadsize,
 	      pin_priority, hostname, trust_state, numtypes};

@@ -1,6 +1,7 @@
 // dpkg.h  -*-c++-*-
 //
 //  Copyright 2012 Daniel Hartwig
+//  Copyright (C) 2018 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by

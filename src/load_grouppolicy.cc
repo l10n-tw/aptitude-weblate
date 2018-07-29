@@ -1,7 +1,7 @@
 // load_grouppolicy.cc
 //
 //  Copyright 2001 Daniel Burrows
-//  Copyright 2015 Manuel A. Fernandez Montecelo
+//  Copyright 2015-2018 Manuel A. Fernandez Montecelo
 
 
 ///  Routines to parse grouping policies
@@ -817,7 +817,7 @@ pkg_grouppolicy_factory *parse_grouppolicy(const string &s)
 
       return rval;
     }
-  catch(GroupParseException e)
+  catch(const GroupParseException& e)
     {
       _error->Error("%s", e.get_msg().c_str());
 
