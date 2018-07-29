@@ -2,6 +2,8 @@ aptitude (0.8.11-2) UNRELEASED; urgency=medium
 
   * Declare compliance with Debian Policy 4.1.5. (No changes needed.)
   * Fix Vcs-Git header, ".git" was missing in the URL.
+  * Add lintian overrides for missing-depends-on-sensible-utils due to
+    false positives in aptitude-common's aptitude.mo locale files.
 
  -- Axel Beckert <abe@debian.org>  Sun, 29 Jul 2018 19:44:08 +0200
 
