@@ -1,0 +1,27 @@
+--- a/src/generic/util/util.cc
++++ b/src/generic/util/util.cc
+@@ -526,6 +526,7 @@
+ 	if (!tmp_dir_ok)
+ 	  return {};
+ 
++	dest_dir = tmpdir;
+ 	fs::permissions(dest_dir,
+ 			fs::perms::owner_all);
+ 
+--- a/src/generic/apt/download_queue.cc
++++ b/src/generic/apt/download_queue.cc
+@@ -954,13 +954,7 @@
+ 	    }
+ 	}
+ 
+-	std::string dest_dir = aptitude::util::create_temporary_changelog_dir();
+-	if (dest_dir.empty())
+-	  {
+-	    _error->Error("Failed to create temporary directory for download");
+-	    return rval;
+-	  }
+-	std::string dest_filename = temp::name(dest_dir).get_name();
++	std::string dest_filename = temp::name("aptitude-download-").get_name();
+ 
+ 	auto start = std::make_shared<start_request>(uri,
+ 						     short_description,

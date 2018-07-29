@@ -24,6 +24,7 @@ aptitude (0.8.11-1) UNRELEASED; urgency=medium
 
   * d/patches:
     - drop fix-missing-mkinstalldirs.patch, fixed in the upstream code
+    - add fix-changelog-retrieval.patch to fix changelog downloads
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 29 Jul 2018 16:50:20 +0200
 
