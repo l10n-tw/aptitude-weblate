@@ -2,6 +2,7 @@
 
 
 //   Copyright (C) 2009-2010 Daniel Burrows
+//   Copyright (C) 2015-2018 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -38,7 +39,8 @@
 #include <boost/flyweight.hpp>
 #include <boost/flyweight/hashed_factory.hpp>
 #include <boost/functional/hash.hpp>
-#include <boost/optional.hpp>
+
+#include <optional>
 
 // solver_information and dep_solvers are top-level declarations so
 // they can easily get an operator<< that works.
@@ -571,7 +573,7 @@ public:
 private:
   unsigned int action_sum;
   unsigned int index;
-  boost::optional<std::pair<promotion, std::shared_ptr<generic_promotion_queue_entry> > > contents;
+  std::optional<std::pair<promotion, std::shared_ptr<generic_promotion_queue_entry> > > contents;
 
 public:
   /** \brief Create a promotion queue entry with no successor link or
@@ -611,13 +613,7 @@ public:
    *  successor.
    */
   bool get_has_contents() const {
-    // this code was working for many years (with boost 1.55 and many versions
-    // before), but now the straightforward option to convert boost::optional to
-    // bool does not work with gcc-5.2 and boost-1.58, so use .is_initialized()
-    // instead.
-
-    //return contents;
-    return contents.is_initialized();
+    return contents.has_value();
   }
 
   /** \brief Retrieve the promotion associated with this queue entry.

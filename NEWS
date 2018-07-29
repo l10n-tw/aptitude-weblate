@@ -1,3 +1,46 @@
+[2018-07-29]
+Version 0.8.11
+
+- New features:
+
+  * Add search term for release label (?label) (Closes: #892983)
+    by Tomas Pospisek <tpo_deb@sourcepole.ch>
+
+- Documentation:
+
+  * Change en/README_encoding to use utf-8 as all the other languages, instead
+    of iso-8859-1
+
+- Internal changes:
+
+  * Use MKDIR_P instead of MKINSTALLDIRS in the building system, the latter was
+    lost when m4/gettext.m4 was removed, and it was deprecated anyway.
+
+  * Pass "-no-home" to elinks when creating text files from HTML, to avoid the
+    annoying errors when creating the localised documentation (with "terminal
+    beep" included):
+
+    "ERROR at home.c:156: Unable to find or create ELinks config
+    directory. Please check if you have $HOME variable set correctly and if you
+    have write permission to your home directory."
+
+  * Use elinks only if available (similar to po4a, rsvg-convert, etc.)
+
+  * Switch to several std:: facilities from C++17's instead of Boost
+    - std::filesystem instead of boost::filesystem
+    - std::optional instead of boost::optional
+
+  * Fixes needed by GCC-8 and more strict versions of the library
+
+- Translation updates:
+
+  * zh_CN.po: Simplified Chinese translation by Boyuan Yang (Closes: #885916)
+
+  * ru.po: Russian translation by Lev Lamberov (Closes: #893027)
+
+  * Russian documentation translation by Lev Lamberov (Closes: #893028)
+
+
 [2017-11-15]
 Version 0.8.10
 

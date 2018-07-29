@@ -1,6 +1,7 @@
 // test_parsers.cc
 //
 // Copyright (C) 2010 Daniel Burrows
+// Copyright (C) 2015-2018 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -26,13 +27,14 @@
 #include <boost/numeric/conversion/cast.hpp>
 
 #include <memory>
+#include <optional>
 
 using namespace parsers;
 
 typedef std::string::const_iterator::difference_type iter_difftype;
 
 template<typename T>
-std::ostream &operator<<(std::ostream &out, const boost::optional<T> &o)
+std::ostream &operator<<(std::ostream &out, const std::optional<T> &o)
 {
   if(o)
     return out << "Just " << *o;
@@ -416,7 +418,7 @@ public:
     std::string input = "abc def ghi";
     std::string::const_iterator begin = input.begin(), end = input.end();
 
-    boost::optional<ParseException> thrown;
+    std::optional<ParseException> thrown;
     try
       {
         ( (maybe(str("def")) >> fail("This is an ex-parser") >> val(std::shared_ptr<std::vector<std::shared_ptr<std::string> > >()))
@@ -1379,9 +1381,9 @@ public:
       std::string input("123478zs");
       std::string::const_iterator begin = input.begin(), end = input.end();
 
-      boost::optional<int> result;
+      std::optional<int> result;
       CPPUNIT_ASSERT_NO_THROW( result = optional(integer()).parse(begin, end) );
-      CPPUNIT_ASSERT_EQUAL(boost::optional<int>(123478), result);
+      CPPUNIT_ASSERT_EQUAL(std::optional<int>(123478), result);
       CPPUNIT_ASSERT_EQUAL((iter_difftype)6, begin - input.begin());
     }
 
@@ -1389,9 +1391,9 @@ public:
       std::string input("alsdkfj");
       std::string::const_iterator begin = input.begin(), end = input.end();
 
-      boost::optional<int> result;
+      std::optional<int> result;
       CPPUNIT_ASSERT_NO_THROW( result = optional(integer()).parse(begin, end) );
-      CPPUNIT_ASSERT_EQUAL(boost::optional<int>(), result);
+      CPPUNIT_ASSERT_EQUAL(std::optional<int>(), result);
       CPPUNIT_ASSERT_EQUAL((iter_difftype)0, begin - input.begin());
     }
   }

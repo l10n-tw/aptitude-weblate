@@ -2,7 +2,7 @@
 //
 //   Copyright (C) 2005, 2007, 2009-2010 Daniel Burrows
 //   Copyright (C) 2014 Daniel Hartwig
-//   Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
+//   Copyright (C) 2015-2018 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -30,6 +30,7 @@
 #include <pwd.h>
 #include <stdarg.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -42,8 +43,7 @@
 
 #include <cwidget/generic/util/eassert.h>
 
-#include <boost/filesystem.hpp>
-
+#include <filesystem>
 #include <mutex>
 
 #include <sys/time.h>
@@ -506,11 +506,11 @@ namespace aptitude
 
     std::string create_temporary_changelog_dir()
     {
-      namespace fs = boost::filesystem;
+      namespace fs = std::filesystem;
 
       fs::path dest_dir;
       try {
-	dest_dir = fs::temp_directory_path() / fs::unique_path("aptitude-download-%%%%-%%%%-%%%%-%%%%");
+	dest_dir = fs::temp_directory_path() / fs::path("aptitude-download-XXXXXX");
       } catch (const std::exception& e) {
 	fprintf(stderr, _("Problem creating temporary dir: %s\n"), e.what());
 	return {};
@@ -519,12 +519,15 @@ namespace aptitude
       try {
 
 	// create and set permissions
-	bool tmp_dir_ok = fs::create_directory(dest_dir);
+	char* tmpdir = strdup(dest_dir.c_str());
+	if (tmpdir)
+	  tmpdir = mkdtemp(tmpdir);
+	bool tmp_dir_ok = (tmpdir != nullptr);
 	if (!tmp_dir_ok)
 	  return {};
 
 	fs::permissions(dest_dir,
-			fs::perms::owner_all | fs::perms::group_all | fs::perms::others_all);
+			fs::perms::owner_all);
 
 	// register for deletion
 	{

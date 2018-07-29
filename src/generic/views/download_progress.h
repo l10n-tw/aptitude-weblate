@@ -1,6 +1,7 @@
 /** \file download_progress.h */    // -*-c++-*-
 
 // Copyright (C) 2010-2011 Daniel Burrows
+// Copyright (C) 2018 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -21,11 +22,11 @@
 #define APTITUDE_GENERIC_VIEWS_DOWNLOAD_PROGRESS_H
 
 // System includes:
-#include <boost/optional.hpp>
 #include <boost/variant.hpp>
 
 #include <sigc++/slot.h>
 
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -53,7 +54,7 @@ namespace aptitude
 
         bool complete;
         std::string description;
-        boost::optional<unsigned long> id;
+        std::optional<unsigned long> id;
         std::string mode;
 
       public:
@@ -61,7 +62,7 @@ namespace aptitude
                       unsigned long long _total_size,
                       bool _complete,
                       const std::string &_description,
-                      const boost::optional<unsigned long> &_id,
+                      const std::optional<unsigned long> &_id,
                       const std::string &_mode)
           : current_size(_current_size),
             total_size(_total_size),
@@ -91,7 +92,7 @@ namespace aptitude
          *
          *  May be unset if the item doesn't have an ID yet.
          */
-        const boost::optional<unsigned long> &get_id() const { return id; }
+        const std::optional<unsigned long> &get_id() const { return id; }
 
         /** \brief Retrieve the current mode string for the file.
          *
@@ -173,8 +174,8 @@ namespace aptitude
        *                        file size isn't known.
        */
       virtual void file_started(const std::string &description,
-                                const boost::optional<unsigned long> &id,
-                                const boost::optional<unsigned long long> &file_size) = 0;
+                                const std::optional<unsigned long> &id,
+                                const std::optional<unsigned long long> &file_size) = 0;
 
       /** \brief Invoked when a file isn't even started because it was
        *  already downloaded.
@@ -187,8 +188,8 @@ namespace aptitude
        */
 
       virtual void file_already_downloaded(const std::string &description,
-                                           const boost::optional<unsigned long> &id,
-                                           const boost::optional<unsigned long long> &file_size) = 0;
+                                           const std::optional<unsigned long> &id,
+                                           const std::optional<unsigned long long> &file_size) = 0;
 
       /** \brief Invoked when a file fails to download.
        *
@@ -205,7 +206,7 @@ namespace aptitude
       virtual void error(bool ignored,
                          const std::string &error,
                          const std::string &description,
-                         const boost::optional<unsigned long> &id) = 0;
+                         const std::optional<unsigned long> &id) = 0;
 
       /** \brief Invoked when something is done being downloaded.
        *
@@ -214,7 +215,7 @@ namespace aptitude
        *                        unset if it hasn't been assigned yet.
        */
       virtual void file_finished(const std::string &description,
-                                 const boost::optional<unsigned long> &id) = 0;
+                                 const std::optional<unsigned long> &id) = 0;
 
       /** \brief Invoked when each stage of the download is complete.
        *

@@ -36,12 +36,6 @@
 /* Define to 1 if you have the <boost/compressed_pair.hpp> header file. */
 #undef HAVE_BOOST_COMPRESSED_PAIR_HPP
 
-/* define if the Boost::Filesystem library is available */
-#undef HAVE_BOOST_FILESYSTEM
-
-/* Define to 1 if you have the <boost/filesystem.hpp> header file. */
-#undef HAVE_BOOST_FILESYSTEM_HPP
-
 /* Define to 1 if you have the <boost/flyweight/hashed_factory.hpp> header
    file. */
 #undef HAVE_BOOST_FLYWEIGHT_HASHED_FACTORY_HPP
@@ -166,9 +160,6 @@
 /* Define to 1 if you have the <boost/lambda/bind.hpp> header file. */
 #undef HAVE_BOOST_LAMBDA_BIND_HPP
 
-/* Define to 1 if you have the <boost/lambda/lambda.hpp> header file. */
-#undef HAVE_BOOST_LAMBDA_LAMBDA_HPP
-
 /* Define to 1 if you have the <boost/lexical_cast.hpp> header file. */
 #undef HAVE_BOOST_LEXICAL_CAST_HPP
 
@@ -210,9 +201,6 @@
    file. */
 #undef HAVE_BOOST_NUMERIC_CONVERSION_CAST_HPP
 
-/* Define to 1 if you have the <boost/optional.hpp> header file. */
-#undef HAVE_BOOST_OPTIONAL_HPP
-
 /* Define to 1 if you have the
    <boost/preprocessor/repetition/enum_binary_params.hpp> header file. */
 #undef HAVE_BOOST_PREPROCESSOR_REPETITION_ENUM_BINARY_PARAMS_HPP
@@ -242,9 +230,6 @@
 
 /* Define to 1 if you have the <boost/unordered_set.hpp> header file. */
 #undef HAVE_BOOST_UNORDERED_SET_HPP
-
-/* Define to 1 if you have the <boost/utility.hpp> header file. */
-#undef HAVE_BOOST_UTILITY_HPP
 
 /* Define to 1 if you have the <boost/variant.hpp> header file. */
 #undef HAVE_BOOST_VARIANT_HPP

@@ -1,6 +1,7 @@
 /** \file acquire_download_progress.cc */
 
 // Copyright (C) 2010 Daniel Burrows
+// Copyright (C) 2015-2018 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -29,6 +30,7 @@
 
 #include <sigc++/bind.h>
 
+#include <optional>
 
 namespace aptitude
 {
@@ -37,12 +39,12 @@ namespace aptitude
     namespace
     {
       template<typename T>
-      boost::optional<T> if_not_zero(const T &t)
+      std::optional<T> if_not_zero(const T &t)
       {
         if(t == 0)
-          return boost::optional<T>();
+          return std::optional<T>();
         else
-          return boost::optional<T>(t);
+          return std::optional<T>(t);
       }
     }
 

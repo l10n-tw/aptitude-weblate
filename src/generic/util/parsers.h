@@ -1,6 +1,7 @@
 /** \file parsers.h */   // -*-c++-*-
 
 // Copyright (C) 2010 Daniel Burrows
+// Copyright (C) 2014-2018 Manuel A. Fernandez Montecelo
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -22,6 +23,7 @@
 
 #include <exception>
 #include <memory>
+#include <optional>
 #include <string>
 #include <sstream>
 #include <ostream>
@@ -58,7 +60,6 @@
 #include <boost/mpl/front.hpp>
 #include <boost/mpl/transform.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-#include <boost/optional.hpp>
 #include <boost/preprocessor/repetition/enum_binary_params.hpp>
 #include <boost/preprocessor/repetition/enum_params.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
@@ -2334,7 +2335,7 @@ namespace parsers
    */
   template<typename P>
   class optional_p : public parser_base<optional_p<P>,
-                                        boost::optional<typename P::result_type> >
+                                        std::optional<typename P::result_type> >
   {
     P p;
 
@@ -2344,7 +2345,7 @@ namespace parsers
     {
     }
 
-    typedef boost::optional<typename P::result_type> result_type;
+    typedef std::optional<typename P::result_type> result_type;
     typedef typename P::element_type element_type;
 
     template<typename ParseInput>

@@ -1,7 +1,7 @@
 // load_grouppolicy.h
 //
 //  Copyright 2001 Daniel Burrows
-//
+//  Copyright 2015-2018 Manuel A. Fernandez Montecelo
 
 #ifndef LOAD_GROUPPOLICY_H
 #define LOAD_GROUPPOLICY_H

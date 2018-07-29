@@ -2,7 +2,7 @@
 
 
 // Copyright (C) 2010 Daniel Burrows
-// Copyright (C) 2015-2016 Manuel A. Fernandez Montecelo
+// Copyright (C) 2015-2018 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -28,7 +28,6 @@
 #include <cwidget/generic/threads/threads.h>
 
 #include <iostream>
-#include <memory>
 
 using boost::multi_index_container;
 using boost::multi_index::const_mem_fun;
@@ -36,7 +35,6 @@ using boost::multi_index::hashed_non_unique;
 using boost::multi_index::hashed_unique;
 using boost::multi_index::indexed_by;
 using boost::multi_index::tag;
-using boost::optional;
 using cwidget::threads::mutex;
 
 namespace aptitude
@@ -64,7 +62,7 @@ namespace aptitude
         // If set, the level that has been configured for this
         // logger; otherwise, indicates that no level is configured
         // (the logger will inherit its level from its parent).
-        optional<log_level> configuredLevel;
+	std::optional<log_level> configuredLevel;
 
         const std::string category;
 
@@ -95,7 +93,7 @@ namespace aptitude
         const std::string &getCategory() const;
         const std::shared_ptr<Logger::Impl> &getParent() const;
 
-        void setLevel(const optional<log_level> &value);
+        void setLevel(const std::optional<log_level> &value);
 
         sigc::connection
         connect_message_logged(const sigc::slot<
@@ -249,7 +247,7 @@ namespace aptitude
         }
 
         void setLevel(const std::shared_ptr<Logger::Impl> &category,
-                      const optional<log_level> &level);
+                      const std::optional<log_level> &level);
 
         LoggerPtr getLogger(const std::string &category);
 
@@ -283,7 +281,7 @@ namespace aptitude
       };
 
       void LoggingSystem::Impl::setLevel(const std::shared_ptr<Logger::Impl> &category,
-                                         const optional<log_level> &level)
+                                         const std::optional<log_level> &level)
       {
         mutex::lock l(loggers_mutex);
 
@@ -354,7 +352,7 @@ namespace aptitude
         return rval;
       }
 
-      void Logger::Impl::setLevel(const optional<log_level> &value)
+      void Logger::Impl::setLevel(const std::optional<log_level> &value)
       {
         std::shared_ptr<LoggingSystem::Impl> loggingSystem =
           loggingSystemWeak.lock();

@@ -3,7 +3,7 @@
 //  The pkg_columnizer class.
 //
 //  Copyright 1999-2005, 2007-2008, 2010 Daniel Burrows
-//  Copyright 2012-2016 Manuel A. Fernandez Montecelo
+//  Copyright 2012-2018 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -67,6 +67,7 @@ cw::config::column_type_defaults pkg_item::pkg_columnizer::defaults[pkg_columniz
   {30, false, false},   // tagged (also user-tags)
   {30, false, false},   // source
   {10, false, false},   // architecture
+  {30, false, false},   // label
   {30, false, false},   // origin
   {10, true, true},     // archive
   {9, false, false},    // sizechange
@@ -86,7 +87,7 @@ cw::config::column_type_defaults pkg_item::pkg_columnizer::defaults[pkg_columniz
 // "progname" and "progver" are fixed (not affected by translation), and that
 // shortpriority, pin_priority and trust_state have also fixed sizes due to
 // being of numerical nature or size requirements that translators sould respect
-const char *default_widths = N_("30 8 8 1 1 40 14 14 11 10 35 9 10 2 1 30 30 10 30 10 9 12 16 22 8");
+const char *default_widths = N_("30 8 8 1 1 40 14 14 11 10 35 9 10 2 1 30 30 10 30 30 10 9 12 16 22 8");
 
 const char *pkg_item::pkg_columnizer::column_names[pkg_columnizer::numtypes]=
   {N_("Package"),
@@ -107,6 +108,7 @@ const char *pkg_item::pkg_columnizer::column_names[pkg_columnizer::numtypes]=
    N_("Tag/user-tags"),
    N_("Source"),
    N_("Architecture"),
+   N_("Label"),
    N_("Origin"),
 
    // These don't make sense with headers, but whatever:
@@ -531,6 +533,13 @@ cw::column_disposition pkg_item::pkg_columnizer::setup_column(const pkgCache::Pk
       }
       break;
 
+    case label:
+      {
+	std::string label_str = get_label(visible_ver, apt_package_records);
+	return cw::column_disposition(label_str, 0);
+      }
+      break;
+
     case origin:
       {
 	std::string origin_str = get_origin(visible_ver, apt_package_records);
@@ -671,6 +680,8 @@ int pkg_item::pkg_columnizer::parse_column_type(char id)
       return architecture;
     case 'e':
       return source;
+    case 'l':
+      return label;
     case 'O':
       return origin;
 
@@ -729,6 +740,7 @@ void pkg_item::pkg_columnizer::init_formatting()
 	 &defaults[tagged].width,
 	 &defaults[source].width,
 	 &defaults[architecture].width,
+	 &defaults[label].width,
 	 &defaults[origin].width,
 	 &defaults[archive].width,
 	 &defaults[sizechange].width,

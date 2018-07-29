@@ -1,7 +1,7 @@
 // pattern.h      -*-c++-*-
 //
 //   Copyright (C) 2008-2009 Daniel Burrows
-//   Copyright (C) 2014-2016 Manuel A. Fernandez Montecelo
+//   Copyright (C) 2014-2018 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -127,7 +127,7 @@ namespace aptitude
        *
        *  \return \b true if the expression matched and \b false otherwise.
        */
-      bool exec(const std::string &s, regmatch_t *matches, size_t num_matches,
+      bool exec(const std::string& s, regmatch_t *matches, size_t num_matches,
 		int eflags) const
       {
 	return exec(s.c_str(), matches, num_matches, eflags);
@@ -157,7 +157,7 @@ namespace aptitude
        *
        *  \return \b true if the expression matched and \b false otherwise.
        */
-      bool exec(const std::string &s, regmatch_t *matches, size_t num_matches) const
+      bool exec(const std::string& s, regmatch_t *matches, size_t num_matches) const
       {
 	return exec(s.c_str(), matches, num_matches);
       }
@@ -181,7 +181,7 @@ namespace aptitude
        *
        *  \return \b true if the expression matched and \b false otherwise.
        */
-      bool exec(const std::string &s, int eflags) const
+      bool exec(const std::string& s, int eflags) const
       {
 	return exec(s.c_str(), eflags);
       }
@@ -205,7 +205,7 @@ namespace aptitude
        *
        *  \return \b true if the expression matched and \b false otherwise.
        */
-      bool exec(const std::string &s) const
+      bool exec(const std::string& s) const
       {
 	return exec(s.c_str());
       }
@@ -388,6 +388,13 @@ namespace aptitude
 	   *  Matches installed packages/versions.
 	   */
 	  installed,
+	  /** \brief ?label(PATTERN)
+	   *
+	   *  Matches packages by their label.
+	   *
+	   *  Fields: regex_info.
+	   */
+	  label,
 	  /** \brief ?maintainer(PATTERN)
 	   *
 	   *  Matches packages by their Maintainer field.
@@ -733,7 +740,7 @@ namespace aptitude
       }
 
       // Allocate a pattern that has a regular expression.
-      pattern(type _tp, const regex_info &_regex_information)
+      pattern(type _tp, const regex_info&_regex_information)
 	: tp(_tp),
 	  regex_information(_regex_information)
       {
@@ -852,13 +859,13 @@ namespace aptitude
        *  \param s  The regular expression to match against.
        */
       static cwidget::util::ref_ptr<pattern>
-      make_archive(const std::string &s)
+      make_archive(const std::string& s)
       {
 	return new pattern(archive, regex_info(s));
       }
 
       /** \brief Get the regex_info field of an ?archive term. */
-      const regex_info &get_archive_regex_info() const
+      const regex_info& get_archive_regex_info() const
       {
 	eassert(tp == archive);
 
@@ -947,7 +954,7 @@ namespace aptitude
        *  \param spec  The architecture specification string to match.
        */
       static cwidget::util::ref_ptr<pattern>
-      make_architecture(const std::string &spec)
+      make_architecture(const std::string& spec)
       {
         return new pattern(architecture,
                            new arch_specification(spec));
@@ -1218,7 +1225,7 @@ namespace aptitude
        *  \param s   The regular expression to match against the
        *             description.
        */
-      static cwidget::util::ref_ptr<pattern> make_description(const std::string &s)
+      static cwidget::util::ref_ptr<pattern> make_description(const std::string& s)
       {
 	return new pattern(description, regex_info(s));
       }
@@ -1226,7 +1233,7 @@ namespace aptitude
       /** \brief Retrieve the regular expression info for a
        *  description term.
        */
-      const regex_info &get_description_regex_info() const
+      const regex_info& get_description_regex_info() const
       {
 	eassert(tp == description);
 
@@ -1379,6 +1386,30 @@ namespace aptitude
 
       // @}
 
+      /** \name label term constructor and accessors */
+
+      // @{
+
+      /** \brief Create a ?label term.
+       *
+       *  \param s   The regular expression to match against
+       *             the package's label.
+       */
+      static cwidget::util::ref_ptr<pattern> make_label(const std::string& s)
+      {
+	return new pattern(label, regex_info(s));
+      }
+
+      /** \brief Retrieve the regex_info field of a ?label term. */
+      const regex_info& get_label_regex_info() const
+      {
+	eassert(tp == label);
+
+	return regex_information;
+      }
+
+      // @}
+
       /** \name maintainer term constructor and accessors */
 
       // @{
@@ -1388,7 +1419,7 @@ namespace aptitude
        *  \param s   The regular expression to match against the
        *             package maintainer.
        */
-      static cwidget::util::ref_ptr<pattern> make_maintainer(const std::string &s)
+      static cwidget::util::ref_ptr<pattern> make_maintainer(const std::string& s)
       {
 	return new pattern(maintainer, regex_info(s));
       }
@@ -1396,7 +1427,7 @@ namespace aptitude
       /** \brief Retrieve the regular expression info for a
        *  maintainer term.
        */
-      const regex_info &get_maintainer_regex_info() const
+      const regex_info& get_maintainer_regex_info() const
       {
 	eassert(tp == maintainer);
 
@@ -1440,7 +1471,7 @@ namespace aptitude
        *  \param s   The regular expression to match against the
        *             package name.
        */
-      static cwidget::util::ref_ptr<pattern> make_name(const std::string &s)
+      static cwidget::util::ref_ptr<pattern> make_name(const std::string& s)
       {
 	return new pattern(name, regex_info(s));
       }
@@ -1448,7 +1479,7 @@ namespace aptitude
       /** \brief Retrieve the regular expression info for a
        *  name term.
        */
-      const regex_info &get_name_regex_info() const
+      const regex_info& get_name_regex_info() const
       {
 	eassert(tp == name);
 
@@ -1636,13 +1667,13 @@ namespace aptitude
        *  \param s   The regular expression to match against
        *             the package's origin.
        */
-      static cwidget::util::ref_ptr<pattern> make_origin(const std::string &s)
+      static cwidget::util::ref_ptr<pattern> make_origin(const std::string& s)
       {
 	return new pattern(origin, regex_info(s));
       }
 
       /** \brief Retrieve the regex_info field of an ?origin term. */
-      const regex_info &get_origin_regex_info() const
+      const regex_info& get_origin_regex_info() const
       {
 	eassert(tp == origin);
 
@@ -1779,13 +1810,13 @@ namespace aptitude
        *             package's section.
        */
       static cwidget::util::ref_ptr<pattern>
-      make_section(const std::string &s)
+      make_section(const std::string& s)
       {
 	return new pattern(section, regex_info(s));
       }
 
       /** \brief Retrieve the regex_info field of a ?section term. */
-      const regex_info &get_section_regex_info() const
+      const regex_info& get_section_regex_info() const
       {
 	eassert(tp == section);
 
@@ -1804,13 +1835,13 @@ namespace aptitude
        *             source package.
        */
       static cwidget::util::ref_ptr<pattern>
-      make_source_package(const std::string &s)
+      make_source_package(const std::string& s)
       {
 	return new pattern(source_package, regex_info(s));
       }
 
       /** \brief Retrieve the regex_info field of a ?source-package term. */
-      const regex_info &get_source_package_regex_info() const
+      const regex_info& get_source_package_regex_info() const
       {
 	eassert(tp == source_package);
 
@@ -1829,13 +1860,13 @@ namespace aptitude
        *             source package version.
        */
       static cwidget::util::ref_ptr<pattern>
-      make_source_version(const std::string &s)
+      make_source_version(const std::string& s)
       {
 	return new pattern(source_version, regex_info(s));
       }
 
       /** \brief Retrieve the regex_info field of a ?source-version term. */
-      const regex_info &get_source_version_regex_info() const
+      const regex_info& get_source_version_regex_info() const
       {
 	eassert(tp == source_version);
 
@@ -1854,13 +1885,13 @@ namespace aptitude
        *             package's tags.
        */
       static cwidget::util::ref_ptr<pattern>
-      make_tag(const std::string &s)
+      make_tag(const std::string& s)
       {
 	return new pattern(tag, regex_info(s));
       }
 
       /** \brief Retrieve the regex_info field of a ?tag term. */
-      const regex_info &get_tag_regex_info() const
+      const regex_info& get_tag_regex_info() const
       {
 	eassert(tp == tag);
 
@@ -1879,13 +1910,13 @@ namespace aptitude
        *             package's tasks.
        */
       static cwidget::util::ref_ptr<pattern>
-      make_task(const std::string &s)
+      make_task(const std::string& s)
       {
 	return new pattern(task, regex_info(s));
       }
 
       /** \brief Retrieve the regex_info field of a ?task term. */
-      const regex_info &get_task_regex_info() const
+      const regex_info& get_task_regex_info() const
       {
 	eassert(tp == task);
 
@@ -1903,7 +1934,7 @@ namespace aptitude
        *  \param s  The keyword to search for.
        */
       static cwidget::util::ref_ptr<pattern>
-      make_term(const std::string &s)
+      make_term(const std::string& s)
       {
 	return new pattern(term, s);
       }
@@ -1926,7 +1957,7 @@ namespace aptitude
        *  \param s  The keyword to search for.
        */
       static cwidget::util::ref_ptr<pattern>
-      make_term_prefix(const std::string &s)
+      make_term_prefix(const std::string& s)
       {
 	return new pattern(term_prefix, s);
       }
@@ -1975,13 +2006,13 @@ namespace aptitude
        *             package's user tags.
        */
       static cwidget::util::ref_ptr<pattern>
-      make_user_tag(const std::string &s)
+      make_user_tag(const std::string& s)
       {
 	return new pattern(user_tag, regex_info(s));
       }
 
       /** \brief Retrieve the regex_info field of a ?user-tag term. */
-      const regex_info &get_user_tag_regex_info() const
+      const regex_info& get_user_tag_regex_info() const
       {
 	eassert(tp == user_tag);
 
@@ -2000,13 +2031,13 @@ namespace aptitude
        *             package's versions.
        */
       static cwidget::util::ref_ptr<pattern>
-      make_version(const std::string &s)
+      make_version(const std::string& s)
       {
 	return new pattern(version, regex_info(s));
       }
 
       /** \brief Retrieve the regex_info field of a ?version term. */
-      const regex_info &get_version_regex_info() const
+      const regex_info& get_version_regex_info() const
       {
 	eassert(tp == version);
 
@@ -2065,7 +2096,7 @@ namespace aptitude
      *
      *  \return \b true if the string qualifies as a search pattern.
      */
-    bool is_pattern(const std::string &s);
+    bool is_pattern(const std::string& s);
   }
 }
 

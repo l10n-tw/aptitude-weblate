@@ -1,5 +1,5 @@
 //
-// Copyright 2015 Manuel A. Fernandez Montecelo
+// Copyright (C) 2015-2018 Manuel A. Fernandez Montecelo
 //
 //
 // This program is free software; you can redistribute it and/or modify

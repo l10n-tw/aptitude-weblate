@@ -1,7 +1,7 @@
 // main.cc  (neé testscr.cc)
 //
 //  Copyright 1999-2011 Daniel Burrows
-//  Copyright 2014-2016 Manuel A. Fernandez Montecelo
+//  Copyright 2014-2018 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -83,7 +83,6 @@
 #include <apt-pkg/init.h>
 
 #include <boost/format.hpp>
-#include <boost/optional.hpp>
 
 #ifdef HAVE_GTK
 #include "gtk/gui.h"
@@ -107,8 +106,6 @@
 namespace cw = cwidget;
 
 using aptitude::Loggers;
-
-using boost::optional;
 
 using logging::DEBUG_LEVEL;
 using logging::ERROR_LEVEL;
@@ -446,7 +443,7 @@ namespace
 	logger_name = std::string(s, 0, colon_loc);
       }
 
-    optional<log_level> level;
+    std::optional<log_level> level;
 
     log_level_map::const_iterator found =
       log_levels.find(level_name);
@@ -1332,7 +1329,7 @@ int main(int argc, char *argv[])
 	      exit(1);
 	    }
 	}
-      catch(StdinEOFException)
+      catch(const StdinEOFException&)
 	{
 	  printf("%s", _("Abort.\n"));
 	  return 1;

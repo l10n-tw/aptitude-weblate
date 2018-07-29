@@ -1,6 +1,7 @@
 // dpkg.cc
 //
 //  Copyright 2012 Daniel Hartwig
+//  Copyright (C) 2018 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -26,9 +27,8 @@
 #include <apt-pkg/fileutl.h>
 #include <apt-pkg/pkgcache.h>
 
-#include <boost/optional.hpp>
-
 #include <cerrno>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -81,7 +81,7 @@ std::vector<const char *> dpkg_base_args(const bool cached)
 
 bool dpkg_multi_arch(const bool cached)
 {
-   static boost::optional<bool> dpkgMultiArch;
+   static std::optional<bool> dpkgMultiArch;
 
    if (cached == true && dpkgMultiArch)
       return *dpkgMultiArch;
@@ -112,7 +112,7 @@ bool dpkg_multi_arch(const bool cached)
       _exit(2);
    }
 
-   dpkgMultiArch.reset(false);
+   dpkgMultiArch = false;
    if (dpkgAssertMultiArch > 0)
    {
       int Status = 0;
@@ -126,7 +126,7 @@ bool dpkg_multi_arch(const bool cached)
 	 break;
       }
       if (WIFEXITED(Status) == true && WEXITSTATUS(Status) == 0)
-         dpkgMultiArch.reset(true);
+         dpkgMultiArch = true;
    }
 
    return *dpkgMultiArch;

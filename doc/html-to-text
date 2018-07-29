@@ -8,4 +8,4 @@
 in="$1"
 encoding=$2
 
-exec elinks -dump -dump-charset $encoding -no-references -no-numbering "$in"
+exec elinks -dump -dump-charset $encoding -no-references -no-numbering -no-home "$in"

@@ -1,6 +1,7 @@
 /** \file cmdline_download_progress_display.cc */
 
 // Copyright (C) 2010-2011 Daniel Burrows
+// Copyright (C) 2014-2018 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -75,20 +76,20 @@ namespace aptitude
         bool update_progress(const status &current_status);
 
         void file_started(const std::string &description,
-                          const boost::optional<unsigned long> &id,
-                          const boost::optional<unsigned long long> &file_size);
+                          const std::optional<unsigned long> &id,
+                          const std::optional<unsigned long long> &file_size);
 
         void file_already_downloaded(const std::string &description,
-                                     const boost::optional<unsigned long> &id,
-                                     const boost::optional<unsigned long long> &file_size);
+                                     const std::optional<unsigned long> &id,
+                                     const std::optional<unsigned long long> &file_size);
 
         void error(bool ignored,
                    const std::string &error,
                    const std::string &description,
-                   const boost::optional<unsigned long> &id);
+                   const std::optional<unsigned long> &id);
 
         void file_finished(const std::string &description,
-                           const boost::optional<unsigned long> &id);
+                           const std::optional<unsigned long> &id);
 
         void done(unsigned long long fetched_bytes,
                   unsigned long long elapsed_time,
@@ -128,8 +129,8 @@ namespace aptitude
       }
 
       void download_progress::file_started(const std::string &description,
-                                           const boost::optional<unsigned long> &id,
-                                           const boost::optional<unsigned long long> &file_size)
+                                           const std::optional<unsigned long> &id,
+                                           const std::optional<unsigned long long> &file_size)
       {
         if(display_messages)
           {
@@ -151,8 +152,8 @@ namespace aptitude
       }
 
       void download_progress::file_already_downloaded(const std::string &description,
-                                                      const boost::optional<unsigned long> &id,
-                                                      const boost::optional<unsigned long long> &file_size)
+                                                      const std::optional<unsigned long> &id,
+                                                      const std::optional<unsigned long long> &file_size)
       {
         if(display_messages)
           {
@@ -176,7 +177,7 @@ namespace aptitude
       void download_progress::error(bool ignored,
                                     const std::string &error,
                                     const std::string &description,
-                                    const boost::optional<unsigned long> &id)
+                                    const std::optional<unsigned long> &id)
       {
         if(display_messages)
           {
@@ -202,7 +203,7 @@ namespace aptitude
       }
 
       void download_progress::file_finished(const std::string &description,
-                                            const boost::optional<unsigned long> &id)
+                                            const std::optional<unsigned long> &id)
       {
       }
 
@@ -242,7 +243,7 @@ namespace aptitude
           {
             term_input->prompt_for_input(transcode(prompt));
           }
-        catch(StdinEOFException)
+        catch(const StdinEOFException&)
           {
             k(false);
             return;
@@ -392,7 +393,7 @@ namespace aptitude
 
           const bool complete = progress.get_complete();
           const std::string &description = progress.get_description();
-          const boost::optional<unsigned long> &id = progress.get_id();
+          const std::optional<unsigned long> &id = progress.get_id();
           const std::string &mode = progress.get_mode();
 
           std::vector<std::wstring> components;

@@ -1,6 +1,7 @@
 // download_progress.cc
 //
 // Copyright (C) 2010 Daniel Burrows
+// Copyright (C) 2018 Manuel A. Fernandez Montecelo
 //
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -117,4 +118,3 @@ namespace aptitude
     }
   }
 }
-

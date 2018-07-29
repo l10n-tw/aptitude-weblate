@@ -141,7 +141,8 @@ boost_test_DEPENDENCIES = $(top_builddir)/src/loggers.o \
 	$(top_builddir)/src/generic/util/libgeneric-util.a \
 	$(top_builddir)/src/generic/views/libgeneric-views.a \
 	$(top_builddir)/src/generic/views/mocks/libgeneric-views-mocks.a \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2)
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2) \
+	$(am__DEPENDENCIES_1)
 am_cppunit_test_OBJECTS = cppunit_test_main.$(OBJEXT) \
 	test_choice.$(OBJEXT) test_choice_set.$(OBJEXT) \
 	test_config_pusher.$(OBJEXT) test_dense_setset.$(OBJEXT) \
@@ -165,7 +166,8 @@ cppunit_test_DEPENDENCIES = $(top_builddir)/src/loggers.o \
 	$(top_builddir)/src/generic/util/libgeneric-util.a \
 	$(top_builddir)/src/generic/views/libgeneric-views.a \
 	$(top_builddir)/src/generic/views/mocks/libgeneric-views-mocks.a \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2)
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2) \
+	$(am__DEPENDENCIES_1)
 am_gtest_test_OBJECTS = gtest_test_main.$(OBJEXT) \
 	test_cmdline_download_progress_display.$(OBJEXT) \
 	test_cmdline_download_status_display.$(OBJEXT) \
@@ -188,7 +190,8 @@ gtest_test_DEPENDENCIES = $(top_builddir)/src/loggers.o \
 	$(top_builddir)/src/generic/util/libgeneric-util.a \
 	$(top_builddir)/src/generic/views/libgeneric-views.a \
 	$(top_builddir)/src/generic/views/mocks/libgeneric-views-mocks.a \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2)
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2) \
+	$(am__DEPENDENCIES_1)
 am_interactive_set_test_OBJECTS = interactive_set_test.$(OBJEXT)
 interactive_set_test_OBJECTS = $(am_interactive_set_test_OBJECTS)
 interactive_set_test_LDADD = $(LDADD)
@@ -205,7 +208,8 @@ interactive_set_test_DEPENDENCIES = $(top_builddir)/src/loggers.o \
 	$(top_builddir)/src/generic/util/libgeneric-util.a \
 	$(top_builddir)/src/generic/views/libgeneric-views.a \
 	$(top_builddir)/src/generic/views/mocks/libgeneric-views-mocks.a \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2)
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2) \
+	$(am__DEPENDENCIES_1)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -483,7 +487,6 @@ AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
 BOOST_CPPFLAGS = @BOOST_CPPFLAGS@
-BOOST_FILESYSTEM_LIB = @BOOST_FILESYSTEM_LIB@
 BOOST_IOSTREAMS_LIB = @BOOST_IOSTREAMS_LIB@
 BOOST_LDFLAGS = @BOOST_LDFLAGS@
 BOOST_SYSTEM_LIB = @BOOST_SYSTEM_LIB@
@@ -506,6 +509,7 @@ ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 EGREP = @EGREP@
+ELINKS = @ELINKS@
 EXEEXT = @EXEEXT@
 FOP = @FOP@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
@@ -641,6 +645,7 @@ BOOST_TEST_LDFLAGS = @BOOST_UNIT_TEST_LIBS@
 AM_CPPFLAGS = -I$(top_builddir) -I$(top_srcdir) -I$(top_srcdir)/src -I$(srcdir) \
               -DBOOST_TEST_DYN_LINK -DSRCDIR=\"$(srcdir)\"
 
+FILESYSTEM_LDFLAGS = -lstdc++fs
 LDADD = $(top_builddir)/src/loggers.o			       \
 $(top_builddir)/src/generic/apt/matching/libgeneric-matching.a \
 $(top_builddir)/src/cmdline/libcmdline.a \
@@ -655,7 +660,7 @@ $(top_builddir)/src/generic/util/libgeneric-util.a \
 $(top_builddir)/src/generic/views/libgeneric-views.a \
 $(top_builddir)/src/generic/views/mocks/libgeneric-views-mocks.a \
 -lcppunit \
-$(BOOST_TEST_LDFLAGS) $(GMOCK_LDFLAGS)
+$(BOOST_TEST_LDFLAGS) $(GMOCK_LDFLAGS) $(FILESYSTEM_LDFLAGS)
 
 EXTRA_DIST = file_caches
 interactive_set_test_SOURCES = interactive_set_test.cc
