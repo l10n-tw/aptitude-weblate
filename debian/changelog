@@ -1,4 +1,4 @@
-aptitude (0.8.11-3) UNRELEASED; urgency=medium
+aptitude (0.8.11-3) unstable; urgency=medium
 
   [ Axel Beckert ]
   * Declare compliance with Debian Policy 4.1.5. (No changes needed.)
@@ -12,7 +12,7 @@ aptitude (0.8.11-3) UNRELEASED; urgency=medium
     - add fix-crash-907436.patch to fix crashes when Label of a repository
       is empty (Closes: #907436)
 
- -- Axel Beckert <abe@debian.org>  Sun, 29 Jul 2018 19:44:08 +0200
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sat, 08 Sep 2018 01:21:15 +0200
 
 aptitude (0.8.11-2) unstable; urgency=medium
 
