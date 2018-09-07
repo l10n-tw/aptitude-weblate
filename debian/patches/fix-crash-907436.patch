@@ -1,0 +1,19 @@
+--- a/src/generic/apt/apt.cc
++++ b/src/generic/apt/apt.cc
+@@ -1420,7 +1420,15 @@
+ 
+   if (ver.Downloadable())
+     {
+-      return ver.FileList().File().Label();
++      if (ver.FileList().File() &&
++	  ver.FileList().File().Label())
++	{
++	  return ver.FileList().File().Label();
++	}
++      else
++	{
++	  return string{};
++	}
+     }
+   else
+     {

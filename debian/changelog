@@ -1,10 +1,16 @@
 aptitude (0.8.11-3) UNRELEASED; urgency=medium
 
+  [ Axel Beckert ]
   * Declare compliance with Debian Policy 4.1.5. (No changes needed.)
   * Fix Vcs-Git header, ".git" was missing in the URL.
   * Add lintian overrides for missing-depends-on-sensible-utils due to
     false positives in aptitude-common's aptitude.mo locale files.
   * Add a minimal DEP3 patch header to fix-changelog-retrieval.patch.
+
+  [ Manuel A. Fernandez Montecelo ]
+  * d/patches:
+    - add fix-crash-907436.patch to fix crashes when Label of a repository
+      is empty (Closes: #907436)
 
  -- Axel Beckert <abe@debian.org>  Sun, 29 Jul 2018 19:44:08 +0200
 
