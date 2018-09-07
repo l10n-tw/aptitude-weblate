@@ -1,3 +1,9 @@
+aptitude (0.8.11-2) unstable; urgency=medium
+
+  * Release to unstable
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 07 Sep 2018 22:05:46 +0200
+
 aptitude (0.8.11-1) experimental; urgency=medium
 
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
