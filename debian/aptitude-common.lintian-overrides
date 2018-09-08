@@ -1,3 +1,1 @@
 aptitude-common: package-contains-broken-symlink usr/share/aptitude/COPYING ../common-licenses/GPL
-# False positive, see #904936 in lintian
-aptitude-common: missing-depends-on-sensible-utils usr/share/locale/*/LC_MESSAGES/aptitude.mo
