@@ -1,3 +1,11 @@
+aptitude (0.8.11-4) UNRELEASED; urgency=medium
+
+  [ Chris Lamb ]
+  * Drop override for missing-depends-on-sensible-utils now that #904936
+    in Lintian is fixed and in stretch-backports.
+
+ -- Axel Beckert <abe@debian.org>  Sun, 09 Sep 2018 18:24:18 +0200
+
 aptitude (0.8.11-3) unstable; urgency=medium
 
   [ Axel Beckert ]
