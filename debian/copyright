@@ -1,10 +1,10 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Aptitude
-Source: https://anonscm.debian.org/cgit/aptitude/aptitude.git
+Source: https://salsa.debian.org/apt-team/aptitude
 
 Files: *
 Copyright: 1999-2011 Daniel Burrows <dburrows@debian.org>
-           2014-2016 Manuel A. Fernandez Montecelo <mafm@debian.org>
+           2012-2018 Manuel A. Fernandez Montecelo <mafm@debian.org>
 License: GPL-2+
 
 License: GPL-2+
