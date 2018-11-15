@@ -7,6 +7,7 @@ aptitude (0.8.11-4) UNRELEASED; urgency=medium
   [ Manuel A. Fernandez Montecelo ]
   * Bump Policy Standards-Version to 4.2.1 (no changes needed)
   * d/copyright: update Source URL and copyright years
+  * d/watch: add
 
  -- Axel Beckert <abe@debian.org>  Sun, 09 Sep 2018 18:24:18 +0200
 
