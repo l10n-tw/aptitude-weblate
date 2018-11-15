@@ -4,6 +4,9 @@ aptitude (0.8.11-4) UNRELEASED; urgency=medium
   * Drop override for missing-depends-on-sensible-utils now that #904936
     in Lintian is fixed and in stretch-backports.
 
+  [ Manuel A. Fernandez Montecelo ]
+  * Bump Policy Standards-Version to 4.2.1 (no changes needed)
+
  -- Axel Beckert <abe@debian.org>  Sun, 09 Sep 2018 18:24:18 +0200
 
 aptitude (0.8.11-3) unstable; urgency=medium
