@@ -8,6 +8,12 @@ aptitude (0.8.11-4) UNRELEASED; urgency=medium
   * Bump Policy Standards-Version to 4.2.1 (no changes needed)
   * d/copyright: update Source URL and copyright years
   * d/watch: add
+  * Change Build-Depends related to Boost
+    - Change Build-Depends to require Boost version 1.67 or greater
+    - Remove Boost::Filesystem (not used in this upstream version, but had
+      not been removed yet as build-dependency in d/control)
+    - Add Boost::System, it was already used before but it needs to be
+      pulled in explicitly now
 
  -- Axel Beckert <abe@debian.org>  Sun, 09 Sep 2018 18:24:18 +0200
 
