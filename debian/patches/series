@@ -1,2 +1,3 @@
+changelogs-debian-ports.patch
 fix-crash-907436.patch
 fix-changelog-retrieval.patch

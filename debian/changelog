@@ -14,6 +14,9 @@ aptitude (0.8.11-4) UNRELEASED; urgency=medium
       not been removed yet as build-dependency in d/control)
     - Add Boost::System, it was already used before but it needs to be
       pulled in explicitly now
+  * d/patches:
+    - add changelogs-debian-ports.patch to allow to view changelogs of packages
+      from Debian Ports repositories
 
  -- Axel Beckert <abe@debian.org>  Sun, 09 Sep 2018 18:24:18 +0200
 

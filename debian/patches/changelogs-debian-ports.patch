@@ -1,0 +1,10 @@
+--- a/src/generic/apt/pkg_changelog.cc
++++ b/src/generic/apt/pkg_changelog.cc
+@@ -689,6 +689,7 @@
+       if (!vf.File().end() &&
+ 	  vf.File().Origin() &&
+ 	  (string("Debian") == vf.File().Origin() ||
++	   string("Debian Ports") == vf.File().Origin() ||
+ 	   string("Debian Backports") == vf.File().Origin()))
+ 	{
+ 	  return true;
