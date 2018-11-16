@@ -1,8 +1,4 @@
-aptitude (0.8.11-4) UNRELEASED; urgency=medium
-
-  [ Chris Lamb ]
-  * Drop override for missing-depends-on-sensible-utils now that #904936
-    in Lintian is fixed and in stretch-backports.
+aptitude (0.8.11-4) unstable; urgency=medium
 
   [ Manuel A. Fernandez Montecelo ]
   * Bump Policy Standards-Version to 4.2.1 (no changes needed)
@@ -21,7 +17,11 @@ aptitude (0.8.11-4) UNRELEASED; urgency=medium
       to change of behaviour in Boost.MultiIndex library.  Thanks to Julian
       Andres Klode.
 
- -- Axel Beckert <abe@debian.org>  Sun, 09 Sep 2018 18:24:18 +0200
+  [ Chris Lamb ]
+  * Drop override for missing-depends-on-sensible-utils now that #904936
+    in Lintian is fixed and in stretch-backports.
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 16 Nov 2018 03:35:30 +0100
 
 aptitude (0.8.11-3) unstable; urgency=medium
 
