@@ -1,3 +1,13 @@
+aptitude (0.8.11-5) UNRELEASED; urgency=medium
+
+  * Add new line to debian/patches/series, the upload of the last version
+    was rejected:
+
+      lintian output: 'quilt-series-without-trailing-newline ',
+      automatically rejected package.
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Fri, 16 Nov 2018 10:36:45 +0100
+
 aptitude (0.8.11-4) unstable; urgency=medium
 
   [ Manuel A. Fernandez Montecelo ]
