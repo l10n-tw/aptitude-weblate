@@ -17,6 +17,9 @@ aptitude (0.8.11-4) UNRELEASED; urgency=medium
   * d/patches:
     - add changelogs-debian-ports.patch to allow to view changelogs of packages
       from Debian Ports repositories
+    - add support-boost1.67.patch to support Boost >= 1.66, problems due
+      to change of behaviour in Boost.MultiIndex library.  Thanks to Julian
+      Andres Klode.
 
  -- Axel Beckert <abe@debian.org>  Sun, 09 Sep 2018 18:24:18 +0200
 
