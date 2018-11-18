@@ -1,3 +1,15 @@
+aptitude (0.8.11-6) UNRELEASED; urgency=medium
+
+  * Build-Depends: do not require Boost version 1.67 or greater:
+    - boost-defaults already points to 1.67 on most arches so we don't need
+      to ensure that aptitude builds against that version after the needed
+      fix
+    - and boost1.67 fails to build in some architectures and aptitude is
+      used as resolver in some builders, so it's important to keep things
+      working even if it's built against an older boost
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 18 Nov 2018 22:49:44 +0100
+
 aptitude (0.8.11-5) unstable; urgency=medium
 
   * Add new line to debian/patches/series, the upload of the last version
