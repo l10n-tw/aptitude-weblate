@@ -1,4 +1,4 @@
-aptitude (0.8.11-6) UNRELEASED; urgency=medium
+aptitude (0.8.11-6) unstable; urgency=medium
 
   * Build-Depends: do not require Boost version 1.67 or greater:
     - boost-defaults already points to 1.67 on most arches so we don't need
@@ -8,7 +8,7 @@ aptitude (0.8.11-6) UNRELEASED; urgency=medium
       used as resolver in some builders, so it's important to keep things
       working even if it's built against an older boost
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 18 Nov 2018 22:49:44 +0100
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 18 Nov 2018 22:58:28 +0100
 
 aptitude (0.8.11-5) unstable; urgency=medium
 
