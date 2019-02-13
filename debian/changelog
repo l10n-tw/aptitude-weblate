@@ -5,6 +5,8 @@ aptitude (0.8.11-7) UNRELEASED; urgency=medium
   * Declare compliance with Debian Policy 4.3.0. (No changes needed.)
   * Make all patches DEP-3 compliant by adding according meta data.
   * Drop unused lintian override wrt. to a missing watch file.
+  * Add lintian override for warnings about its inline documentation
+    located at /usr/share/aptitude/README*.
 
  -- Axel Beckert <abe@debian.org>  Wed, 13 Feb 2019 19:19:15 +0100
 

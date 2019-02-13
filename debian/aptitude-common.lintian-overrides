@@ -1,1 +1,3 @@
 aptitude-common: package-contains-broken-symlink usr/share/aptitude/COPYING ../common-licenses/GPL
+# Aptitude looks for inline documentation in /usr/share/aptitude/
+aptitude-common: package-contains-documentation-outside-usr-share-doc usr/share/aptitude/README*
