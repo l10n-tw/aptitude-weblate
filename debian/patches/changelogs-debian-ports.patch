@@ -1,3 +1,7 @@
+Description: Allow viewing changelogs of packages from Debian Ports repositories
+Author: Manuel A. Fernandez Montecelo <manuel.montezelo@gmail.com>
+Forwarded: no
+
 --- a/src/generic/apt/pkg_changelog.cc
 +++ b/src/generic/apt/pkg_changelog.cc
 @@ -689,6 +689,7 @@

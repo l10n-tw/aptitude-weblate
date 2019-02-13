@@ -1,5 +1,6 @@
 Description: Fix changelog retrieval
 Author: Manuel A. Fernandez Montecelo <manuel.montezelo@gmail.com>
+Forwarded: no
 
 --- a/src/generic/util/util.cc
 +++ b/src/generic/util/util.cc

@@ -1,3 +1,8 @@
+Description: Fix crashes when Label of a repository is empty
+Author: Manuel A. Fernandez Montecelo <manuel.montezelo@gmail.com>
+Bug-Debian: https://bugs.debian.org/907436
+Forwarded: no
+
 --- a/src/generic/apt/apt.cc
 +++ b/src/generic/apt/apt.cc
 @@ -1420,7 +1420,15 @@
