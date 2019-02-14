@@ -1,4 +1,4 @@
-aptitude (0.8.11-7) UNRELEASED; urgency=medium
+aptitude (0.8.11-7) unstable; urgency=medium
 
   * Change Homepage header from vanished aptitude.alioth.debian.org site
     to https://wiki.debian.org/Aptitude. Thanks to henk for the reminder!
@@ -9,7 +9,7 @@ aptitude (0.8.11-7) UNRELEASED; urgency=medium
     located at /usr/share/aptitude/README*.
   * Add a bunch of generated documentation XML files to debian/clean.
 
- -- Axel Beckert <abe@debian.org>  Wed, 13 Feb 2019 19:19:15 +0100
+ -- Axel Beckert <abe@debian.org>  Thu, 14 Feb 2019 01:51:08 +0100
 
 aptitude (0.8.11-6) unstable; urgency=medium
 
