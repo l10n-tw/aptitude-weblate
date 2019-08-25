@@ -1,3 +1,29 @@
+aptitude (0.8.12-1) UNRELEASED; urgency=medium
+
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
+    - New features:
+      * Permit to retrieve changelogs of packages from Debian Ports
+        repositories.
+      * Adapt for changes in apt 1.9, like addressing deprecation and API
+        changes.  Thanks to Julian Andres Klode.
+
+    - Bug fixes:
+      * Adapt code to adapt to change of behaviour in Boost.MultiIndex
+        library, and so we can start using Boost >= 1.66, 1.67 is about to
+        become the default in Debian unstable.  Thanks to Julian Andres Klode.
+      * Fix crashes when Label of a repository is empty (Closes: #907436)
+      * Fix changelog downloads
+      * Read the correct number of elements in
+        pkg_item::pkg_columnizer::init_formatting() -- it was ignoring the last
+        element, reading only 25 out of 26.
+
+    - Internal changes:
+      * Misc. fixes about deprecation issues and minor compilation problems
+
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 25 Aug 2019 23:31:44 +0200
+
 aptitude (0.8.11-7) unstable; urgency=medium
 
   * Change Homepage header from vanished aptitude.alioth.debian.org site
