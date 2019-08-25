@@ -1386,12 +1386,12 @@ public:
 };
 
 /** \brief Write an aptitude_resolver_package to the given stream. */
-std::ostream &operator<<(ostream &out, const aptitude_resolver_package &p);
+std::ostream &operator<<(std::ostream &out, const aptitude_resolver_package &p);
 
 /** \brief Write an aptitude_resolver_dep to the given stream. */
-std::ostream &operator<<(ostream &out, const aptitude_resolver_dep &d);
+std::ostream &operator<<(std::ostream &out, const aptitude_resolver_dep &d);
 
 /** \brief Write an aptitude_resolver_version to the given stream. */
-std::ostream &operator<<(ostream &out, const aptitude_resolver_version &d);
+std::ostream &operator<<(std::ostream &out, const aptitude_resolver_version &d);
 
 #endif

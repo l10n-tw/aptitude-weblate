@@ -10,7 +10,6 @@ noinst_LIBRARIES = libgeneric-util.a
 libgeneric_util_a_SOURCES = \
 	compare3.h \
 	dense_setset.h \
-	dirent_safe.h \
 	dynamic_list.h \
 	dynamic_list_collection.h \
 	dynamic_list_impl.h \

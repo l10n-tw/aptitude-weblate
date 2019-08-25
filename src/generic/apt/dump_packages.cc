@@ -1,7 +1,7 @@
 // dump_packages.cc     -*-c++-*-
 //
 //   Copyright (C) 2007, 2009 Daniel Burrows
-//   Copyright (C) 2016 Manuel A. Fernandez Montecelo
+//   Copyright (C) 2016-2019 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -24,6 +24,8 @@
 
 #include <apt-pkg/configuration.h>
 #include <apt-pkg/error.h>
+#include <apt-pkg/fileutl.h>
+#include <apt-pkg/progress.h>
 #include <apt-pkg/tagfile.h>
 
 #include <cwidget/generic/util/eassert.h>
@@ -31,7 +33,6 @@
 #include <cwidget/generic/util/ssprintf.h>
 
 #include <aptitude.h>
-#include <generic/util/dirent_safe.h>
 #include <generic/util/temp.h>
 
 #include <dirent.h>
@@ -561,12 +562,8 @@ namespace aptitude
       if(d == NULL) // Assume no dir means no files to copy.
 	return;
 
-      struct dirent *tmp;
-      dirent_safe dir_entry;
-      for(int readdir_result = readdir_r(d, &dir_entry.d, &tmp);
-	  readdir_result == 0 && tmp != NULL;
-	  readdir_result = readdir_r(d, &dir_entry.d, &tmp))
-	out.push_back(dir_entry.d.d_name);
+      for (dirent* dent = readdir(d); dent != NULL; dent = readdir(d))
+	out.push_back(dent->d_name);
     }
 
     void copy_dir_truncated(const std::string &dir,

@@ -195,7 +195,6 @@ src/generic/problemresolver/solution.h
 src/generic/problemresolver/test.cc
 src/generic/util/compare3.h
 src/generic/util/dense_setset.h
-src/generic/util/dirent_safe.h
 src/generic/util/dynamic_list_collection.h
 src/generic/util/dynamic_list.h
 src/generic/util/dynamic_list_impl.h

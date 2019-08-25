@@ -31,6 +31,8 @@
 #include <string>
 #include <fstream>
 
+#include <fcntl.h>
+#include <unistd.h>
 #include <stdlib.h>
 
 #ifndef DONT_USE_FANCYBOXES

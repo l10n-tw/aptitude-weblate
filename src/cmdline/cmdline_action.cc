@@ -34,10 +34,10 @@ using aptitude::cmdline::terminal_metrics;
 
 namespace
 {
-  bool cmdline_do_build_depends(const string &pkg,
+  bool cmdline_do_build_depends(const std::string &pkg,
 				std::set<pkgCache::PkgIterator> &seen_virtual_packages,
 				cmdline_version_source version_source,
-				const string &version_source_string,
+				const std::string &version_source_string,
 				bool arch_only,
 				pkgPolicy &policy,
 				pkgset &to_install, pkgset &to_hold,
@@ -236,7 +236,7 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
 			 pkgset &to_remove, pkgset &to_purge,
 			 int verbose,
 			 cmdline_version_source source,
-			 const string &sourcestr,
+			 const std::string &sourcestr,
 			 pkgPolicy &policy,
 			 bool arch_only,
 			 bool allow_auto,
@@ -529,7 +529,7 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
   return true;
 }
 
-bool cmdline_applyaction(string s,
+bool cmdline_applyaction(std::string s,
 			 std::set<pkgCache::PkgIterator> &seen_virtual_packages,
 			 cmdline_pkgaction_type action,
 			 pkgset &to_install, pkgset &to_hold,
@@ -545,14 +545,14 @@ bool cmdline_applyaction(string s,
 
   cmdline_version_source source=cmdline_version_cand;
 
-  string sourcestr, package;
+  std::string sourcestr, package;
 
   if(!cmdline_parse_source(s, source, package, sourcestr))
     return false;
 
   // Handle task installation.  Won't work if tasksel isn't installed.
   aptitude::apt::task task;
-  string arch;
+  std::string arch;
   if(cmdline_parse_task(package, task, arch) == true)
   {
     printf(_("Note: selecting the task \"%s: %s\" for installation\n"),
@@ -720,8 +720,8 @@ bool cmdline_applyaction(string s,
 /** \return \b false iff the beginning of s doesn't look like an
  *  action specifier.
  */
-static bool parse_action_str(const string &s,
-			     string::size_type &loc,
+static bool parse_action_str(const std::string &s,
+			     std::string::size_type &loc,
 			     cmdline_pkgaction_type &action)
 {
   if(loc<s.size())
@@ -791,7 +791,7 @@ static bool parse_action_str(const string &s,
     return false;
 }
 
-void cmdline_parse_action(string s,
+void cmdline_parse_action(std::string s,
 			  std::set<pkgCache::PkgIterator> &seen_virtual_packages,
 			  pkgset &to_install, pkgset &to_hold,
 			  pkgset &to_remove, pkgset &to_purge,
@@ -800,7 +800,7 @@ void cmdline_parse_action(string s,
 			  bool allow_auto,
                           const std::shared_ptr<aptitude::cmdline::terminal_metrics> &term_metrics)
 {
-  string::size_type loc=0;
+  std::string::size_type loc=0;
 
   while(loc<s.size() && isspace(s[loc]))
     ++loc;
@@ -825,7 +825,7 @@ void cmdline_parse_action(string s,
 	{
 	  if(!parse_action_str(s, loc, action))
 	    {
-	      string pkgname;
+	      std::string pkgname;
 	      while(loc<s.size() && !isspace(s[loc]))
 		pkgname+=s[loc++];
 

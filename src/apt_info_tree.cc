@@ -30,7 +30,7 @@ namespace cwidget
 
 namespace cw = cwidget;
 
-apt_info_tree::apt_info_tree(const string &_package, const string &_version)
+apt_info_tree::apt_info_tree(const std::string &_package, const std::string &_version)
   :package(_package), version(_version)
 {
   cache_closed.connect(sigc::mem_fun(*this, &apt_info_tree::handle_cache_close));

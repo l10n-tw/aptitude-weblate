@@ -1697,12 +1697,12 @@ namespace aptitude
 	    {
 	      pkgCache::PkgIterator pkg(target.get_package_iterator(cache));
 
-	      std::set<string> *l = aptitude::apt::get_tasks(pkg);
+	      std::set<std::string> *l = aptitude::apt::get_tasks(pkg);
 
 	      if(!l)
 		return NULL;
 
-	      for(std::set<string>::iterator i = l->begin();
+	      for(std::set<std::string>::iterator i = l->begin();
 		  i != l->end();
 		  ++i)
 		{

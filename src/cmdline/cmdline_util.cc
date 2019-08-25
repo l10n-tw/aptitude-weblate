@@ -57,6 +57,7 @@
 #include <sigc++/functors/ptr_fun.h>
 
 #include <algorithm>
+#include <vector>
 
 namespace cw = cwidget;
 
@@ -159,7 +160,7 @@ void cmdline_show_pkglist(pkgvector &items,
 
 pkgCache::VerIterator cmdline_find_ver(pkgCache::PkgIterator pkg,
 				       cmdline_version_source source,
-				       string sourcestr)
+				       std::string sourcestr)
 {
   switch(source)
     {
@@ -222,12 +223,12 @@ pkgCache::VerIterator cmdline_find_ver(pkgCache::PkgIterator pkg,
     }
 }
 
-bool cmdline_parse_source(const string &input,
+bool cmdline_parse_source(const std::string &input,
 			  cmdline_version_source &source,
-			  string &package,
-			  string &sourcestr)
+			  std::string &package,
+			  std::string &sourcestr)
 {
-  string scratch=input;
+  std::string scratch=input;
 
   source=cmdline_version_cand;
   sourcestr="";
@@ -236,9 +237,9 @@ bool cmdline_parse_source(const string &input,
     {
       source=cmdline_version_archive;
       // Use the last one.
-      string::size_type loc=scratch.rfind('/');
+      std::string::size_type loc=scratch.rfind('/');
 
-      sourcestr=string(scratch, loc+1);
+      sourcestr=std::string(scratch, loc+1);
       scratch.erase(loc);
     }
 
@@ -251,9 +252,9 @@ bool cmdline_parse_source(const string &input,
 	}
 
       source=cmdline_version_version;
-      string::size_type loc=scratch.rfind('=');
+      std::string::size_type loc=scratch.rfind('=');
 
-      sourcestr=string(scratch, loc+1);
+      sourcestr=std::string(scratch, loc+1);
       scratch.erase(loc);
     }
 
@@ -262,13 +263,13 @@ bool cmdline_parse_source(const string &input,
   return true;
 }
 
-bool cmdline_parse_task(string pattern,
+bool cmdline_parse_task(std::string pattern,
                         aptitude::apt::task &task,
-                        string &arch)
+                        std::string &arch)
 {
-  const string::size_type archfound = pattern.find_last_of(':');
+  const std::string::size_type archfound = pattern.find_last_of(':');
   arch = "native";
-  if(archfound != string::npos)
+  if(archfound != std::string::npos)
     {
       arch = pattern.substr(archfound+1);
       pattern.erase(archfound);
@@ -600,9 +601,9 @@ namespace aptitude
 	  if((*i)->GetDist() != archive)
 	    continue;
 
-	  vector<pkgIndexFile *> *indexes = (*i)->GetIndexFiles();
+	  std::vector<pkgIndexFile *> *indexes = (*i)->GetIndexFiles();
 
-	  for(vector<pkgIndexFile *>::const_iterator j = indexes->begin();
+	  for(std::vector<pkgIndexFile *>::const_iterator j = indexes->begin();
 	      j != indexes->end(); ++j)
 	    {
 	      std::unique_ptr<pkgSrcRecords::Parser> p((*j)->CreateSrcParser());
@@ -637,7 +638,7 @@ namespace aptitude
       if(apt_cache_file == NULL || apt_package_records == NULL || apt_source_list == NULL)
 	return NULL;
 
-      string default_release = aptcfg->Find("APT::Default-Release");
+      std::string default_release = aptcfg->Find("APT::Default-Release");
       if(version_source == cmdline_version_cand && !default_release.empty())
 	{
 	  version_source        = cmdline_version_archive;

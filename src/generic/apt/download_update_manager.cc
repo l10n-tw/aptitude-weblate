@@ -28,20 +28,34 @@
 #include <apt-pkg/cachefile.h>
 #include <apt-pkg/clean.h>
 #include <apt-pkg/error.h>
+#include <apt-pkg/fileutl.h>
 #include <apt-pkg/strutl.h>
+
+#include <unistd.h>
 
 namespace cw = cwidget;
 
 class my_cleaner:public pkgArchiveCleaner
 {
 protected:
+#if APT_PKG_ABI >= 590
+  virtual void Erase(int dirfd,
+		     const char *file,
+		     const std::string &pkg,
+		     const std::string &ver,
+		     const struct stat &stat) override
+  {
+    unlinkat(dirfd, file, 0);
+  }
+#else
   virtual void Erase(const char *file,
-		     string pkg,
-		     string ver,
-		     struct stat &stat)
+		     std::string pkg,
+		     std::string ver,
+		     struct stat &stat) override
   {
     unlink(file);
   }
+#endif
 };
 
 download_update_manager::download_update_manager()

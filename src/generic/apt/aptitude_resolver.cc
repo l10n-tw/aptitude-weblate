@@ -1,7 +1,7 @@
 // aptitude_resolver.cc
 //
 //   Copyright (C) 2005, 2008-2011 Daniel Burrows
-//   Copyright (C) 2014-2016 Manuel A. Fernandez Montecelo
+//   Copyright (C) 2014-2019 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -25,7 +25,7 @@
 #include <apt-pkg/algorithms.h>
 #include <apt-pkg/error.h>
 #include <apt-pkg/policy.h>
-#include <apt-pkg/sptr.h>
+#include <apt-pkg/prettyprinters.h>
 
 #include <aptitude.h>
 #include <generic/apt/matching/compare_patterns.h>
@@ -1139,7 +1139,7 @@ void aptitude_resolver::add_default_resolution_score(const pkgCache::DepIterator
 		    << std::noshowpos << " for installing "
 		    << target_ver
 		    << "; it is the default apt resolution to the dependency \""
-		    << dep << "\" (" << source_ver << " is already installed)");
+		    << APT::PrettyDep(cache, dep) << "\" (" << source_ver << " is already installed)");
 	  add_version_score(source_ver, default_resolution_score);
 	}
       else
@@ -1149,7 +1149,7 @@ void aptitude_resolver::add_default_resolution_score(const pkgCache::DepIterator
 		    << std::noshowpos << " for installing "
 		    << source_ver << " and " << target_ver
 		    << " simultaneously; the latter is the default apt resolution to the dependency \""
-		    << dep << "\"");
+		    << APT::PrettyDep(cache, dep) << "\"");
 
 	  imm::set<aptitude_universe::version> s;
 	  s.insert(source_ver);
@@ -1651,7 +1651,7 @@ void aptitude_resolver::add_action_scores(int preserve_score, int auto_score,
 		      if(d.broken_under(initial_state))
 			{
 			  LOG_TRACE(loggerScores,
-				    "Adjusting scores to promote a default resolution for \"" << dep << "\"");
+				    "Adjusting scores to promote a default resolution for \"" << APT::PrettyDep(cache, dep) << "\"");
 			  // If they aren't satisfied, then give a
 			  // bonus to having the depender and the
 			  // candidate version of the first entry in
@@ -1662,7 +1662,7 @@ void aptitude_resolver::add_action_scores(int preserve_score, int auto_score,
 		      else
 			{
 			  LOG_TRACE(loggerScores,
-				    "Not adjusting scores to promote a default resolution for \"" << dep << "\": it is already satisfied.");
+				    "Not adjusting scores to promote a default resolution for \"" << APT::PrettyDep(cache, dep) << "\": it is already satisfied.");
 			}
 		    }
 

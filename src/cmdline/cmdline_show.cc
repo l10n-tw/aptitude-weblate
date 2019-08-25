@@ -46,6 +46,7 @@
 #include <apt-pkg/init.h>
 #include <apt-pkg/pkgcache.h>
 #include <apt-pkg/pkgrecords.h>
+#include <apt-pkg/pkgsystem.h>
 #include <apt-pkg/progress.h>
 #include <apt-pkg/strutl.h>
 #include <apt-pkg/version.h>

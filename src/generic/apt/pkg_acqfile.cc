@@ -37,13 +37,14 @@
 
 #include <apt-pkg/error.h>
 #include <apt-pkg/acquire-item.h>
+#include <apt-pkg/fileutl.h>
 #include <apt-pkg/sourcelist.h>
 #include <apt-pkg/strutl.h>
 
 // Mostly copied from pkgAcqArchive.
 bool get_archive(pkgAcquire *Owner, pkgSourceList *Sources,
 		 pkgRecords *Recs, pkgCache::VerIterator const &Version,
-		 string directory, string &StoreFilename)
+		 std::string directory, std::string &StoreFilename)
 {
   pkgCache::VerFileIterator Vf=Version.FileList();
 
@@ -94,7 +95,7 @@ bool get_archive(pkgAcquire *Owner, pkgSourceList *Sources,
       if (_error->PendingError() == true)
          return false;
 
-      const string PkgFile = Parse.FileName();
+      const std::string PkgFile = Parse.FileName();
       const HashStringList hashes = Parse.Hashes();
       if (PkgFile.empty())
 	{
@@ -103,7 +104,7 @@ bool get_archive(pkgAcquire *Owner, pkgSourceList *Sources,
 			       Version.ParentPkg().FullName().c_str());
 	}
 
-      string DestFile = directory + "/" + flNotDir(StoreFilename);
+      std::string DestFile = directory + "/" + flNotDir(StoreFilename);
 
       // Create the item
       new pkgAcqFile(Owner,

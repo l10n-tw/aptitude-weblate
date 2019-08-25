@@ -16,6 +16,7 @@
 #include <config.h>
 #endif
 
+#include <string>
 #include <map>
 #include <vector>
 
@@ -59,7 +60,7 @@ class signalling_config:public sigc::trackable
 {
   Configuration *user_config, *system_config, *theme_config;
 
-  typedef std::map<string, sigc::signal0<void> *> connmap;
+  typedef std::map<std::string, sigc::signal0<void> *> connmap;
 
   connmap conn_table;
 
@@ -77,14 +78,14 @@ public:
 		    Configuration *_theme_config);
   ~signalling_config();
 
-  inline string Find(const char *Name,const char *Default = 0)
+  inline std::string Find(const char *Name,const char *Default = 0)
   {
     if(themeroot.empty() || system_config->Exists(Name))
       return system_config->Find(Name, Default);
     else
       return theme_config->Find(themeroot+Name, Default);
   }
-  inline string Find(string Name,const char *Default = 0)
+  inline std::string Find(std::string Name,const char *Default = 0)
   {
     if(themeroot.empty() || system_config->Exists(Name))
       return system_config->Find(Name, Default);
@@ -92,7 +93,7 @@ public:
       return theme_config->Find(themeroot+Name, Default);
   }
 
-  inline string FindFile(const char *Name,const char *Default = 0)
+  inline std::string FindFile(const char *Name,const char *Default = 0)
   {
     if(themeroot.empty() || system_config->Exists(Name))
       return system_config->FindFile(Name, Default);
@@ -100,7 +101,7 @@ public:
       return theme_config->FindFile((themeroot+Name).c_str(), Default);
   }
 
-  inline string FindDir(const char *Name,const char *Default = 0)
+  inline std::string FindDir(const char *Name,const char *Default = 0)
   {
     if(themeroot.empty() || system_config->Exists(Name))
       return system_config->FindDir(Name, Default);
@@ -108,7 +109,7 @@ public:
       return theme_config->FindDir((themeroot+Name).c_str(), Default);
   }
 
-  inline std::vector<string> FindVector(const char *Name)
+  inline std::vector<std::string> FindVector(const char *Name)
   {
     if(themeroot.empty() || system_config->Exists(Name))
       return system_config->FindVector(Name);
@@ -116,7 +117,7 @@ public:
       return theme_config->FindVector(themeroot+Name);
   }
 
-  inline std::vector<string> FindVector(string Name)
+  inline std::vector<std::string> FindVector(std::string Name)
   {
     if(themeroot.empty() || system_config->Exists(Name))
       return system_config->FindVector(Name);
@@ -132,7 +133,7 @@ public:
       return theme_config->FindI(themeroot+Name, Default);
   }
 
-  inline int FindI(string Name,bool Default = 0)
+  inline int FindI(std::string Name,bool Default = 0)
   {
     if(themeroot.empty() || system_config->Exists(Name))
       return system_config->FindI(Name, Default);
@@ -148,7 +149,7 @@ public:
       return theme_config->FindB(themeroot+Name, Default);
   }
 
-  inline bool FindB(string Name,bool Default = false)
+  inline bool FindB(std::string Name,bool Default = false)
   {
     if(themeroot.empty() || system_config->Exists(Name))
       return system_config->FindB(Name, Default);
@@ -156,14 +157,14 @@ public:
       return theme_config->FindB(themeroot+Name, Default);
   }
 
-  void Set(string Name,string Value);
-  void Set(string Name,int Value);
+  void Set(std::string Name,std::string Value);
+  void Set(std::string Name,int Value);
 
   /** Sets Name to Value without modifying the user's configuration. */
-  void SetNoUser(string Name, string Value);
+  void SetNoUser(std::string Name, std::string Value);
 
   /** Sets Name to Value without modifying the user's configuration. */
-  void SetNoUser(string name, int Value);
+  void SetNoUser(std::string name, int Value);
 
   /** Switches to a different configuration tree (this will involve
    *  emitting various signals)
@@ -176,7 +177,7 @@ public:
 	      Configuration *new_system_cfg,
 	      Configuration *new_theme_cfg);
 
-  inline bool Exists(string Name)
+  inline bool Exists(std::string Name)
   {
     if(system_config->Exists(Name))
       return true;
@@ -192,7 +193,7 @@ public:
       return !themeroot.empty() && theme_config->Exists(themeroot+Name);
   }
 
-  inline bool ExistsUser(string Name)
+  inline bool ExistsUser(std::string Name)
   {
     return user_config->Exists(Name);
   }
@@ -212,7 +213,7 @@ public:
     return theme?theme_config:system_config;
   }
 
-  void connect(string name, const sigc::slot0<void> &slot);
+  void connect(std::string name, const sigc::slot0<void> &slot);
 
   void Dump(std::ostream &out);
 };

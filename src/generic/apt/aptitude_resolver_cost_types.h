@@ -1,7 +1,7 @@
 /** \file aptitude_resolver_cost_types.h */   // -*-c++-*-
 
-
 // Copyright (C) 2010 Daniel Burrows
+// Copyright (C) 2015-2019 Manuel A. Fernandez Montecelo
 
 // This program is free software; you can redistribute it and/or
 // modify it under the terms of the GNU General Public License as
@@ -26,6 +26,7 @@
 #include <iosfwd>
 #include <memory>
 #include <string>
+#include <vector>
 
 class CostTypeCheckFailure : public std::exception
 {

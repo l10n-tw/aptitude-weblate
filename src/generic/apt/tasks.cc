@@ -25,7 +25,9 @@
 #include <aptitude.h>
 
 #include <apt-pkg/error.h>
+#include <apt-pkg/fileutl.h>
 #include <apt-pkg/pkgrecords.h>
+#include <apt-pkg/progress.h>
 #include <apt-pkg/tagfile.h>
 
 #include <cwidget/generic/util/eassert.h>

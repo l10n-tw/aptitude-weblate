@@ -110,6 +110,10 @@ class aptitude_resolver_cost_settings::settings_impl
 
   // Combine the target value's component type with the incoming type,
   // throwing an error if they're incompatible.
+  //
+  // Call .assertType first before calling modify() with this modifier,
+  // as the throw here would otherwise cause boost >= 1.66 to remove
+  // the element rather than keeping it unmodified.
   class merge_types_f
   {
     std::optional<component_type> type;
@@ -131,6 +135,13 @@ class aptitude_resolver_cost_settings::settings_impl
             throw CostTypeCheckFailure((boost::format(_("Conflicting types for the cost component %s."))
                                         % e.get_name()).str());
         }
+    }
+
+    void assertType(const entry &e) const
+    {
+      if(type && e.get_type() && type != e.get_type())
+        throw CostTypeCheckFailure((boost::format(_("Conflicting types for the cost component %s."))
+                                    % e.get_name()).str());
     }
   };
 
@@ -213,6 +224,7 @@ public:
               }
             else
               {
+                merge_types_f(type).assertType(*found);
                 by_name.modify(found, merge_types_f(type));
                 by_name.modify(found, add_effect_f(effect));
               }
@@ -245,6 +257,7 @@ public:
         ordered_index::iterator found_ordered = entries.project<ordered_t>(found);
         component rval(found->get_effects().empty() ? -1 : found_ordered - ordered.begin());
 
+        merge_types_f(type).assertType(*found);
         by_name.modify(found, merge_types_f(type));
 
         return rval;
@@ -266,6 +279,7 @@ public:
     if((unsigned int)component.id >= ordered.size())
       throw CostTypeCheckFailure("Internal error: mismatch between component ID and the number of components.");
 
+    merge_types_f(additive).assertType(*(ordered.begin() + component.id));
     ordered.modify(ordered.begin() + component.id, merge_types_f(additive));
 
     const entry &e = ordered[component.id];
@@ -297,6 +311,7 @@ public:
     if((unsigned int)component.id >= ordered.size())
       throw CostTypeCheckFailure("Internal error: mismatch between component ID and the number of components.");
 
+    merge_types_f(maximized).assertType(*(ordered.begin() + component.id));
     ordered.modify(ordered.begin() + component.id, merge_types_f(maximized));
 
     cost rval;

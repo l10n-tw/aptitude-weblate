@@ -37,6 +37,7 @@
 #include <apt-pkg/acquire.h>
 #include <apt-pkg/clean.h>
 #include <apt-pkg/error.h>
+#include <apt-pkg/fileutl.h>
 #include <apt-pkg/strutl.h>
 
 #include <iostream>
@@ -46,6 +47,7 @@
 #include <cstdio>
 #include <cstdint>
 #include <sys/stat.h>
+#include <unistd.h>
 
 using namespace std;
 
@@ -95,7 +97,11 @@ class LogCleaner : public pkgArchiveCleaner
   uint64_t total_size;
 
 protected:
-  virtual void Erase(const char *File,string Pkg,string Ver,struct stat &St) 
+#if APT_PKG_ABI >= 590
+  virtual void Erase(int dirfd, const char *File,const std::string &Pkg,const std::string &Ver,const struct stat &St) override
+#else
+  virtual void Erase(const char *File,std::string Pkg,std::string Ver,struct stat &St)
+#endif
   {
     printf(_("Del %s %s [%sB]\n"),
 	   Pkg.c_str(),
@@ -104,7 +110,11 @@ protected:
 
     if (!simulate)
       {
+#if APT_PKG_ABI >= 590
+	if(unlinkat(dirfd, File, 0)==0)
+#else
 	if(unlink(File)==0)
+#endif
 	  total_size+=St.st_size;
       }
     else

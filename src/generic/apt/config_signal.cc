@@ -31,14 +31,14 @@ void signalling_config::do_update_theme()
   update_theme(system_config->Find(PACKAGE "::Theme", ""));
 }
 
-void signalling_config::update_theme(string newtheme)
+void signalling_config::update_theme(std::string newtheme)
 {
   themeroot=newtheme;
   if(!themeroot.empty())
     themeroot=PACKAGE "::Themes::"+themeroot+"::";
 }
 
-void signalling_config::Set(string Name, string Value)
+void signalling_config::Set(std::string Name, std::string Value)
 {
   user_config->Set(Name, Value);
   system_config->Set(Name, Value);
@@ -49,7 +49,7 @@ void signalling_config::Set(string Name, string Value)
     found->second->emit();
 }
 
-void signalling_config::Set(string Name, int Value)
+void signalling_config::Set(std::string Name, int Value)
 {
   user_config->Set(Name.c_str(), Value);
   system_config->Set(Name.c_str(), Value);
@@ -60,7 +60,7 @@ void signalling_config::Set(string Name, int Value)
     found->second->emit();
 }
 
-void signalling_config::SetNoUser(string Name, string Value)
+void signalling_config::SetNoUser(std::string Name, std::string Value)
 {
   system_config->Set(Name, Value);
 
@@ -70,7 +70,7 @@ void signalling_config::SetNoUser(string Name, string Value)
     found->second->emit();
 }
 
-void signalling_config::SetNoUser(string Name, int Value)
+void signalling_config::SetNoUser(std::string Name, int Value)
 {
   system_config->Set(Name.c_str(), Value);
 
@@ -80,7 +80,7 @@ void signalling_config::SetNoUser(string Name, int Value)
     found->second->emit();
 }
 
-void signalling_config::connect(string name, const sigc::slot0<void> &slot)
+void signalling_config::connect(std::string name, const sigc::slot0<void> &slot)
 {
   connmap::iterator found=conn_table.find(name);
 
@@ -120,7 +120,7 @@ void signalling_config::setcfg(Configuration *new_user_cfg,
       i->second->emit();
 }
 
-void signalling_config::Dump(ostream &out)
+void signalling_config::Dump(std::ostream &out)
 {
   user_config->Dump(out);
 }

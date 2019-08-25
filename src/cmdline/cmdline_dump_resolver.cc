@@ -28,6 +28,7 @@
 #include <generic/problemresolver/dump_universe.h>
 
 #include <apt-pkg/error.h>
+#include <apt-pkg/progress.h>
 
 using namespace std;
 

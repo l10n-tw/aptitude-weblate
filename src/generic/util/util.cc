@@ -2,7 +2,7 @@
 //
 //   Copyright (C) 2005, 2007, 2009-2010 Daniel Burrows
 //   Copyright (C) 2014 Daniel Hartwig
-//   Copyright (C) 2015-2018 Manuel A. Fernandez Montecelo
+//   Copyright (C) 2015-2019 Manuel A. Fernandez Montecelo
 //
 //   This program is free software; you can redistribute it and/or
 //   modify it under the terms of the GNU General Public License as
@@ -21,21 +21,7 @@
 
 #include "util.h"
 
-#include "dirent_safe.h"
-
 #include <aptitude.h>
-
-#include <ctype.h>
-#include <errno.h>
-#include <pwd.h>
-#include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <time.h>
-#include <unistd.h>
 
 #include <apt-pkg/error.h>
 #include <apt-pkg/fileutl.h>
@@ -46,7 +32,19 @@
 #include <filesystem>
 #include <mutex>
 
+#include <ctype.h>
+#include <dirent.h>
+#include <errno.h>
+#include <pwd.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <sys/time.h>
+#include <time.h>
+#include <unistd.h>
 
 using namespace std;
 
@@ -422,15 +420,18 @@ namespace aptitude
 	}
 
       bool rval = true;
-
-      dirent_safe dent;
-      dirent *tmp;
-      for(int dirent_result = readdir_r(dir, &dent.d, &tmp);
-	  dirent_result == 0 && tmp != NULL;
-	  dirent_result = readdir_r(dir, &dent.d, &tmp))
-	if(strcmp(dent.d.d_name, ".") != 0 &&
-	   strcmp(dent.d.d_name, "..") != 0)
-	  rval = (rval && recursive_remdir(dirname + "/" + dent.d.d_name));
+      errno = 0;
+      for (dirent* dent = readdir(dir); dent != NULL; dent = readdir(dir)) {
+	std::string d_name = dent->d_name;
+	if (d_name != "." && d_name != "..") {
+	  rval = (rval && recursive_remdir(dirname + "/" + d_name));
+	}
+      }
+      if (errno != 0)
+	{
+	  _error->Errno("recursive_remdir", _("Failure reading directory \"%s\""), dirname.c_str());
+	  rval = false;
+	}
 
       if(closedir(dir) != 0)
 	{
@@ -526,6 +527,7 @@ namespace aptitude
 	if (!tmp_dir_ok)
 	  return {};
 
+	dest_dir = tmpdir;
 	fs::permissions(dest_dir,
 			fs::perms::owner_all);
 

@@ -39,6 +39,8 @@
 #include <sigc++/bind.h>
 
 #include <apt-pkg/acquire-item.h>
+#include <apt-pkg/error.h>
+#include <apt-pkg/metaindex.h>
 #include <apt-pkg/sourcelist.h>
 
 #include <cwidget/generic/util/ssprintf.h>
@@ -689,6 +691,7 @@ bool check_valid_origin(const pkgCache::VerIterator& ver)
       if (!vf.File().end() &&
 	  vf.File().Origin() &&
 	  (string("Debian") == vf.File().Origin() ||
+	   string("Debian Ports") == vf.File().Origin() ||
 	   string("Debian Backports") == vf.File().Origin()))
 	{
 	  return true;

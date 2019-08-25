@@ -31,6 +31,7 @@
 #include <apt-pkg/clean.h>
 #include <apt-pkg/configuration.h>
 #include <apt-pkg/error.h>
+#include <apt-pkg/fileutl.h>
 #include <apt-pkg/packagemanager.h>
 
 #include <errno.h>
@@ -1939,14 +1940,26 @@ class my_cleaner:public pkgArchiveCleaner
 {
   long total_size;
 protected:
+#if APT_PKG_ABI >= 590
+  virtual void Erase(int dirfd,
+		     const char *file,
+		     const std::string &pkg,
+		     const std::string &ver,
+		     const struct stat &stat) override
+  {
+    if(unlinkat(dirfd, file, 0)==0)
+      total_size+=stat.st_size;
+  }
+#else
   virtual void Erase(const char *file,
-		     string pkg,
-		     string ver,
+		     std::string pkg,
+		     std::string ver,
 		     struct stat &stat)
   {
     if(unlink(file)==0)
       total_size+=stat.st_size;
   }
+#endif
 public:
   my_cleaner();
   long get_total_size() {return total_size;}
