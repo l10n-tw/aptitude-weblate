@@ -26,6 +26,11 @@ aptitude (0.8.12-1) UNRELEASED; urgency=medium
   * Bump build-dependencies on cwidget to >= 0.5.18-1, that implies a
     library transition.  This ensures that aptitude is built against the
     latest cwidget ABI in the buildds.
+  * d/patches, drop all patches because they are fixed in the upstream code:
+    - changelogs-debian-ports.patch
+    - fix-changelog-retrieval.patch
+    - fix-crash-907436.patch
+    - support-boost1.67.patch
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 25 Aug 2019 23:31:44 +0200
 
