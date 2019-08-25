@@ -305,7 +305,7 @@ void download_list::update_workers(pkgAcquire *Owner)
 	}
       else
 	{
-	  pkgAcquire::ItemDesc *item=serf->CurrentItem;
+	  auto item=serf->CurrentItem;
 	  string status =
 	    (item->Owner->Status == pkgAcquire::Item::StatFetching)
 	      ? item->ShortDesc
@@ -314,17 +314,21 @@ void download_list::update_workers(pkgAcquire *Owner)
 
 	  size_t bufsize = 256;
 	  char intbuf[bufsize];
-
+#if APT_PKG_ABI >= 590
+#define progress_container(worker) (worker)->CurrentItem
+#else
+#define progress_container(worker) (worker)
+#endif
 	  snprintf(intbuf, bufsize,
 		  " [ %sB/%sB ]",
-		  SizeToStr(serf->CurrentSize).c_str(),
-		  SizeToStr(serf->TotalSize).c_str());
+		  SizeToStr(progress_container(serf)->CurrentSize).c_str(),
+		  SizeToStr(progress_container(serf)->TotalSize).c_str());
 
 	  output += cw::util::transcode(intbuf);
 
 	  workers.push_back(workerinf(output,
-				      serf->CurrentSize,
-				      serf->TotalSize));
+				      progress_container(serf)->CurrentSize,
+				      progress_container(serf)->TotalSize));
 	  if(get_visible())
 	    cw::toplevel::queuelayout();
 	}

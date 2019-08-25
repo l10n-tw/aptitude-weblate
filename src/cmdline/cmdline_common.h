@@ -19,7 +19,7 @@
 
 typedef std::vector<pkgCache::PkgIterator> pkgvector;
 typedef std::set<pkgCache::PkgIterator> pkgset;
-typedef std::vector<string> strvector;
+typedef std::vector<std::string> strvector;
 
 enum cmdline_pkgaction_type
   {cmdline_install, cmdline_installauto, cmdline_remove,

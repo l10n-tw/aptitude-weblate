@@ -44,6 +44,7 @@
 #include <apt-pkg/error.h>
 #include <apt-pkg/pkgcache.h>
 #include <apt-pkg/pkgsystem.h>
+#include <apt-pkg/progress.h>
 #include <apt-pkg/version.h>
 
 #include <cwidget/fragment.h>

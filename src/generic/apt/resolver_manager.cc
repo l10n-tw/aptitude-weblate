@@ -1724,7 +1724,7 @@ void resolver_manager::tweak_score(const pkgCache::PkgIterator &pkg,
   resolver->add_version_score(res_ver, score);
 }
 
-void resolver_manager::dump(ostream &out)
+void resolver_manager::dump(std::ostream &out)
 {
   cwidget::threads::mutex::lock l(mutex);
   background_suspender bs(*this);

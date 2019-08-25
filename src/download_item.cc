@@ -66,7 +66,7 @@ void download_item::paint(cw::tree *win, int y, bool hierarchical,
   // do, a rather specialized set of code is called and then returns. (that's
   // the confusing bit :) )
 {
-  string output=((item.Owner->Status==pkgAcquire::Item::StatFetching)?item.ShortDesc:item.Description)+": ";
+  std::string output=((item.Owner->Status==pkgAcquire::Item::StatFetching)?item.ShortDesc:item.Description)+": ";
   int width,height;
 
   win->getmaxyx(height,width);
@@ -86,12 +86,17 @@ void download_item::paint(cw::tree *win, int y, bool hierarchical,
       else
 	{
 	  eassert(worker->CurrentItem->Owner==item.Owner);
-
-	  if(worker->TotalSize>0)
+#if APT_PKG_ABI >= 590
+#define progress_container(worker) (worker)->CurrentItem
+#else
+#define progress_container(worker) (worker)
+#endif
+	  if(progress_container(worker)->TotalSize>0)
 	    {
 	      size_t bufsize = 256;
 	      char intbuf[bufsize];
-	      barsize=(width*worker->CurrentSize)/worker->TotalSize;
+
+	      barsize=(width*progress_container(worker)->CurrentSize)/progress_container(worker)->TotalSize;
 	      win->apply_style(progress_style);
 
 	      if(barsize>width)
@@ -100,9 +105,9 @@ void download_item::paint(cw::tree *win, int y, bool hierarchical,
 	      win->apply_style(get_normal_style());
 	      snprintf(intbuf, bufsize,
 		      "%sB/%sB",
-		      SizeToStr(worker->CurrentSize).c_str(),
-		      SizeToStr(worker->TotalSize).c_str());
-	      output+=string(" [ ")+intbuf+" ]";
+		      SizeToStr(progress_container(worker)->CurrentSize).c_str(),
+		      SizeToStr(progress_container(worker)->TotalSize).c_str());
+	      output+=std::string(" [ ")+intbuf+" ]";
 	    }
 	  else
 	    output+=_(" [Working]");

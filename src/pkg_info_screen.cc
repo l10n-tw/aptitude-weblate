@@ -42,6 +42,9 @@
 #include <apt-pkg/pkgrecords.h>
 #include <apt-pkg/strutl.h>
 
+#include <string>
+#include <vector>
+
 namespace cw = cwidget;
 namespace cwidget
 {
@@ -87,7 +90,7 @@ void pkg_grouppolicy_info::setup_package_info(const pkgCache::PkgIterator &pkg,
       std::wstring desc(get_long_description(ver, apt_package_records));
       std::wstring shortdesc(desc, 0, desc.find(L'\n'));
 
-      vector<cw::fragment*> frags;
+      std::vector<cw::fragment*> frags;
 
       cw::fragment *untrusted_warning=make_untrusted_warning(ver);
       if (untrusted_warning)
@@ -116,7 +119,7 @@ void pkg_grouppolicy_info::setup_package_info(const pkgCache::PkgIterator &pkg,
 	frags.push_back(clipbox(cw::fragf("%B%s%b%s",
 				      _("Essential: "), _("yes"))));
 
-      const string multiarch(multiarch_type(ver->MultiArch));
+      const std::string multiarch(multiarch_type(ver->MultiArch));
       if(!multiarch.empty())
         frags.push_back(clipbox(cw::fragf("%B%s%b%s",
                                           _("Multi-Arch: "), multiarch.c_str())));
@@ -174,7 +177,7 @@ void pkg_grouppolicy_info::setup_package_info(const pkgCache::PkgIterator &pkg,
       // Note: reverse provides show up in the version list
       if(!ver.ProvidesList().end())
 	{
-	  string msg = cwidget::util::ssprintf(_("Package names provided by %s"), pkg.FullName(true).c_str());
+	  std::string msg = cwidget::util::ssprintf(_("Package names provided by %s"), pkg.FullName(true).c_str());
 	  pkg_subtree *prvtree=new pkg_subtree(cw::util::transcode(msg));
 
 	  for(pkgCache::PrvIterator prv=ver.ProvidesList(); !prv.end(); ++prv)
@@ -187,7 +190,7 @@ void pkg_grouppolicy_info::setup_package_info(const pkgCache::PkgIterator &pkg,
 	}
     }
 
-  string msg = cwidget::util::ssprintf(_("Packages which depend on %s"), pkg.FullName(true).c_str());
+  std::string msg = cwidget::util::ssprintf(_("Packages which depend on %s"), pkg.FullName(true).c_str());
   pkg_subtree *revtree=new pkg_subtree(cw::util::transcode(msg));
   setup_package_deps<pkg_subtree>(pkg, ver, revtree, sig, true);
   tree->add_child(revtree);

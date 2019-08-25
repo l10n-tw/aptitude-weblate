@@ -42,6 +42,7 @@
 // System includes:
 #include <apt-pkg/error.h>
 #include <apt-pkg/aptconfiguration.h>
+#include <apt-pkg/progress.h>
 
 #include <boost/format.hpp>
 

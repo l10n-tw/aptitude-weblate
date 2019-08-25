@@ -100,7 +100,7 @@ bool cmdline_show_preview(bool as_upgrade, pkgset &to_install,
  *
  *  \throws StdinEOFException
  */
-string prompt_string(const string &prompt);
+std::string prompt_string(const std::string &prompt);
 
 
 #endif // CMDLINE_PROMPT_H

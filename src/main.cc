@@ -687,15 +687,15 @@ int main(int argc, char *argv[])
 
   // The filename to read status information from.
   char *status_fname=NULL;
-  string package_display_format = aptcfg->Find(PACKAGE "::CmdLine::Package-Display-Format", "%c%a%M %p# - %d#");
-  string version_display_format = aptcfg->Find(PACKAGE "::CmdLine::Version-Display-Format", "%c%a%M %p# %t %i");
-  string group_by_mode_string = aptcfg->Find(PACKAGE "::CmdLine::Versions-Group-By", "auto");
-  string show_package_names_mode_string = aptcfg->Find(PACKAGE "::CmdLine::Versions-Show-Package-Names", "auto");
-  string sort_policy="name,version";
-  string width=aptcfg->Find(PACKAGE "::CmdLine::Package-Display-Width", "");
+  std::string package_display_format = aptcfg->Find(PACKAGE "::CmdLine::Package-Display-Format", "%c%a%M %p# - %d#");
+  std::string version_display_format = aptcfg->Find(PACKAGE "::CmdLine::Version-Display-Format", "%c%a%M %p# %t %i");
+  std::string group_by_mode_string = aptcfg->Find(PACKAGE "::CmdLine::Versions-Group-By", "auto");
+  std::string show_package_names_mode_string = aptcfg->Find(PACKAGE "::CmdLine::Versions-Show-Package-Names", "auto");
+  std::string sort_policy="name,version";
+  std::string width=aptcfg->Find(PACKAGE "::CmdLine::Package-Display-Width", "");
   // Set to a non-empty string to enable logging simplistically; set
   // to "-" to log to stdout.
-  string log_file = aptcfg->Find(PACKAGE "::Logging::File", "");
+  std::string log_file = aptcfg->Find(PACKAGE "::Logging::File", "");
   bool simulate = aptcfg->FindB(PACKAGE "::CmdLine::Simulate", false) ||
     aptcfg->FindB(PACKAGE "::Simulate", false);
   bool download_only=aptcfg->FindB(PACKAGE "::CmdLine::Download-Only", false);;
@@ -720,7 +720,7 @@ int main(int argc, char *argv[])
   bool showdeps=aptcfg->FindB(PACKAGE "::CmdLine::Show-Deps", false);
   bool showsize=aptcfg->FindB(PACKAGE "::CmdLine::Show-Size-Changes", false);
   bool showwhy = aptcfg->FindB(PACKAGE "::CmdLine::Show-Why", false);
-  string show_why_summary_mode = aptcfg->Find(PACKAGE "::CmdLine::Show-Summary", "no-summary");
+  std::string show_why_summary_mode = aptcfg->Find(PACKAGE "::CmdLine::Show-Summary", "no-summary");
   bool visual_preview=aptcfg->FindB(PACKAGE "::CmdLine::Visual-Preview", false);
   bool always_prompt=aptcfg->FindB(PACKAGE "::CmdLine::Always-Prompt", false);
   int verbose=aptcfg->FindI(PACKAGE "::CmdLine::Verbose", 0);
@@ -838,15 +838,15 @@ int main(int argc, char *argv[])
 	  break;
 	case 'o':
 	  {
-	    string s=optarg;
-	    string::size_type eqloc=s.find('=');
+	    std::string s=optarg;
+	    std::string::size_type eqloc=s.find('=');
 
 	    // note that if eqloc!=s.npos, s.size()>0
 	    if(eqloc==s.npos || eqloc==s.size()-1)
 	      fprintf(stderr, _("-o requires an argument of the form key=value, got %s\n"), optarg);
 	    else
 	      {
-		string key(s, 0, eqloc), value(s, eqloc+1);
+		std::string key(s, 0, eqloc), value(s, eqloc+1);
 
 		aptcfg->SetNoUser(key, value);
 	      }
@@ -914,7 +914,7 @@ int main(int argc, char *argv[])
 	      queue_only=true;
 	      break;
 	    case OPTION_PURGE_UNUSED:
-	      if (string("--purge-unused") == argv[optind-1])
+	      if (std::string("--purge-unused") == argv[optind-1])
 		{
 		  aptcfg->Set(PACKAGE "::Purge-Unused", "true");
 		}

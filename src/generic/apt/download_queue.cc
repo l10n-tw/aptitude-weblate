@@ -31,6 +31,7 @@
 #include <apt-pkg/acquire.h>
 #include <apt-pkg/acquire-item.h>
 #include <apt-pkg/acquire-worker.h>
+#include <apt-pkg/error.h>
 #include <apt-pkg/strutl.h>
 
 #include <sigc++/bind.h>
@@ -231,7 +232,7 @@ namespace aptitude
     public:
       AcqQueuedFile(pkgAcquire *Owner,
 		    const std::shared_ptr<download_job> &_job)
-	: pkgAcqFile(Owner, _job->get_uri(), "", 0,
+	: pkgAcqFile(Owner, _job->get_uri(), HashStringList(), 0,
 		     "", _job->get_short_description(), "",
 		     _job->get_filename()),
 	  job(_job)
@@ -380,7 +381,7 @@ namespace aptitude
 	if(job.get() == NULL || job->get_last_modified_time() == 0)
 	  return "";
 	else
-	  return "Last-Modified: " + TimeRFC1123(job->get_last_modified_time());
+	  return "Last-Modified: " + TimeRFC1123(job->get_last_modified_time(), false);
       }
     };
 
@@ -668,16 +669,20 @@ namespace aptitude
 	      if(found != active_downloads.end())
 		{
 		  const download_job &job = *found->second->get_job();
-
+#if APT_PKG_ABI >= 590
+#define progress_container(worker) (worker)->CurrentItem
+#else
+#define progress_container(worker) (worker)
+#endif
 		  LOG_TRACE(Loggers::getAptitudeDownloadQueue(),
 			    "Noting a partial download of "
 			    << found->first << " to " << job.get_filename()
-			    << " (" << w->CurrentSize << " of "
-			    << w->TotalSize << " bytes)");
+			    << " (" << (w->CurrentItem ? progress_container(w)->CurrentSize : 0) << " of "
+			    <<  (w->CurrentItem ? progress_container(w)->TotalSize : 0) << " bytes)");
 
 		  job.invoke_partial_download(job.get_filename(),
-					      w->CurrentSize,
-					      w->TotalSize);
+					      w->CurrentItem ? progress_container(w)->CurrentSize : 0,
+					      w->CurrentItem ? progress_container(w)->TotalSize : 0);
 		}
 	    }
 
@@ -954,13 +959,7 @@ namespace aptitude
 	    }
 	}
 
-	std::string dest_dir = aptitude::util::create_temporary_changelog_dir();
-	if (dest_dir.empty())
-	  {
-	    _error->Error("Failed to create temporary directory for download");
-	    return rval;
-	  }
-	std::string dest_filename = temp::name(dest_dir).get_name();
+	std::string dest_filename = temp::name("aptitude-download-").get_name();
 
 	auto start = std::make_shared<start_request>(uri,
 						     short_description,

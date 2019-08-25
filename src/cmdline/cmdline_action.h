@@ -106,7 +106,7 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
 			 pkgset &to_remove, pkgset &to_purge,
 			 int verbose,
 			 cmdline_version_source source,
-			 const string &sourcestr,
+			 const std::string &sourcestr,
 			 pkgPolicy &policy,
 			 bool arch_only,
 			 bool allow_auto,
@@ -163,7 +163,7 @@ bool cmdline_applyaction(cmdline_pkgaction_type action,
  *  \param allow_auto If \b false, auto-installation of dependencies
  *  will be disabled regardless of the value of Auto-Install.
  */
-bool cmdline_applyaction(string s,
+bool cmdline_applyaction(std::string s,
 			 std::set<pkgCache::PkgIterator> &seen_virtual_packages,
 			 cmdline_pkgaction_type action,
 			 pkgset &to_install, pkgset &to_hold,
@@ -221,7 +221,7 @@ bool cmdline_applyaction(string s,
  *  \param allow_auto If \b false, auto-installation of dependencies
  *  will be disabled regardless of the value of Auto-Install.
  */
-void cmdline_parse_action(string s,
+void cmdline_parse_action(std::string s,
 			  std::set<pkgCache::PkgIterator> &seen_virtual_packages,
 			  pkgset &to_install, pkgset &to_hold,
 			  pkgset &to_remove, pkgset &to_purge,

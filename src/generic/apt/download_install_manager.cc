@@ -31,6 +31,7 @@
 #include <apt-pkg/acquire-item.h>
 #include <apt-pkg/dpkgpm.h>
 #include <apt-pkg/error.h>
+#include <apt-pkg/install-progress.h>
 #include <apt-pkg/sourcelist.h>
 
 #include <sigc++/bind.h>

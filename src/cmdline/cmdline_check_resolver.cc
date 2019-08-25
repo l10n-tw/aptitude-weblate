@@ -28,6 +28,7 @@
 #include <generic/problemresolver/sanity_check_universe.h>
 
 #include <apt-pkg/error.h>
+#include <apt-pkg/progress.h>
 
 #include <algorithm>
 #include <iterator>

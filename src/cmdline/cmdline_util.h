@@ -33,6 +33,7 @@
 
 // System includes:
 #include <apt-pkg/srcrecords.h>
+#include <apt-pkg/error.h>
 
 // Ew: for column_definition_list.
 #include <cwidget/config/column_definition.h>
@@ -69,7 +70,7 @@ void cmdline_show_stringlist(strvector &items,
  */
 pkgCache::VerIterator cmdline_find_ver(pkgCache::PkgIterator pkg,
 				       cmdline_version_source source,
-				       string sourcestr);
+				       std::string sourcestr);
 
 /** Starts up the visual UI in preview mode, and exits with status 0
  *  when the UI shuts down.
@@ -93,10 +94,10 @@ void ui_solution_screen();
  *
  *  \return \b true if the source was successfully parsed.
  */
-bool cmdline_parse_source(const string &input,
+bool cmdline_parse_source(const std::string &input,
 			  cmdline_version_source &source,
-			  string &package,
-			  string &sourcestr);
+			  std::string &package,
+			  std::string &sourcestr);
 
 bool cmdline_parse_task(std::string pattern,
                         aptitude::apt::task &task,

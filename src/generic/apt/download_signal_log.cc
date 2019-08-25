@@ -47,13 +47,13 @@ void download_signal_log::Fetched(unsigned long long Size, unsigned long long Re
   Fetched_sig(Size, ResumePoint, *this);
 }
 
-void download_signal_log::MediaChange(const string &Media, const string &Drive,
+void download_signal_log::MediaChange(const std::string &Media, const std::string &Drive,
 				   const sigc::slot1<void, bool> &k)
 {
   MediaChange_sig(Media, Drive, *this, k);
 }
 
-bool download_signal_log::MediaChange(string Media, string Drive)
+bool download_signal_log::MediaChange(std::string Media, std::string Drive)
 {
   int rval = -1;
 

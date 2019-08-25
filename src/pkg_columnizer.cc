@@ -3,7 +3,7 @@
 //  The pkg_columnizer class.
 //
 //  Copyright 1999-2005, 2007-2008, 2010 Daniel Burrows
-//  Copyright 2012-2018 Manuel A. Fernandez Montecelo
+//  Copyright 2012-2019 Manuel A. Fernandez Montecelo
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -427,7 +427,7 @@ cw::column_disposition pkg_item::pkg_columnizer::setup_column(const pkgCache::Pk
 	      }
 
 	    // align to the right
-	    string s(buf);
+	    std::string s(buf);
 	    size_t total_size = defaults[downloadsize].width;
 	    int fill_size = (total_size - s.size());
 	    if (fill_size > 0)
@@ -442,10 +442,13 @@ cw::column_disposition pkg_item::pkg_columnizer::setup_column(const pkgCache::Pk
       break;
     case pin_priority:
       {
+	#if APT_PKG_ABI >= 590
+	return cw::column_disposition("(pinning not available)", 0);
+	#else
 	// sibling implementation of the one in pkg_ver_item.cc
 
 	// empty by default
-	string pin_priority_str;
+	std::string pin_priority_str;
 
 	pkgPolicy* policy = dynamic_cast<pkgPolicy *>(&(*apt_cache_file)->GetPolicy());
 
@@ -461,6 +464,7 @@ cw::column_disposition pkg_item::pkg_columnizer::setup_column(const pkgCache::Pk
 
 	// return whatever was gathered
 	return cw::column_disposition(pin_priority_str, 0);
+	#endif
       }
       break;
     case autoset:
@@ -477,14 +481,14 @@ cw::column_disposition pkg_item::pkg_columnizer::setup_column(const pkgCache::Pk
       break;
     case tagged:
       {
-	string tagged_str = "";
+	std::string tagged_str = "";
 
 	// old "tagged" (actually unused)
 	if (!pkg.end() && (*apt_cache_file)->get_ext_state(pkg).tagged)
 	  tagged_str = "*";
 
 	// reuse field also for user-tags (some parts of #498442 and #665824)
-	for (const string& s : (*apt_cache_file)->get_user_tags(pkg))
+	for (const std::string& s : (*apt_cache_file)->get_user_tags(pkg))
 	  {
 	    if (tagged_str == "*")
 	      tagged_str += " ";
@@ -551,7 +555,7 @@ cw::column_disposition pkg_item::pkg_columnizer::setup_column(const pkgCache::Pk
       if(!visible_ver.end())
 	{
 	  bool ignore_local = true;
-	  string archives = archives_text(visible_ver, ignore_local, ",");
+	  std::string archives = archives_text(visible_ver, ignore_local, ",");
 	  // see #349413 -- say 'now' for obsolete/local installed packages only
 	  if (archives.empty())
 	    {
@@ -721,7 +725,7 @@ public:
 void pkg_item::pkg_columnizer::init_formatting()
 {
   sscanf(_(default_widths),
-	 "%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
+	 "%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
 	 &defaults[name].width,
 	 &defaults[installed_size].width,
 	 &defaults[debsize].width,

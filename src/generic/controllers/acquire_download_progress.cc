@@ -149,8 +149,13 @@ namespace aptitude
           else
             {
               file_progress
-                current_file(it->CurrentSize,
-                             it->TotalSize,
+#if APT_PKG_ABI >= 590
+#define progress_container(worker) (worker)->CurrentItem
+#else
+#define progress_container(worker) (worker)
+#endif
+                current_file(progress_container(it)->CurrentSize,
+                             progress_container(it)->TotalSize,
                              it->CurrentItem->Owner->Complete,
                              it->CurrentItem->ShortDesc,
                              if_not_zero(it->CurrentItem->Owner->ID),

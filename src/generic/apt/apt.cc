@@ -50,6 +50,7 @@
 #include <apt-pkg/dpkgpm.h>
 #include <apt-pkg/error.h>
 #include <apt-pkg/fileutl.h>
+#include <apt-pkg/indexfile.h>
 #include <apt-pkg/init.h>
 #include <apt-pkg/pkgcachegen.h>
 #include <apt-pkg/sourcelist.h>
@@ -1420,7 +1421,15 @@ std::string get_label(const pkgCache::VerIterator& ver,
 
   if (ver.Downloadable())
     {
-      return ver.FileList().File().Label();
+      if (ver.FileList().File() &&
+	  ver.FileList().File().Label())
+	{
+	  return ver.FileList().File().Label();
+	}
+      else
+	{
+	  return string{};
+	}
     }
   else
     {

@@ -43,6 +43,7 @@
 #include <apt-pkg/algorithms.h>
 #include <apt-pkg/pkgsystem.h>
 #include <apt-pkg/policy.h>
+#include <apt-pkg/progress.h>
 #include <apt-pkg/version.h>
 
 #include <vector>
