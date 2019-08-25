@@ -22,6 +22,11 @@ aptitude (0.8.12-1) UNRELEASED; urgency=medium
     - Internal changes:
       * Misc. fixes about deprecation issues and minor compilation problems
 
+
+  * Bump build-dependencies on cwidget to >= 0.5.18-1, that implies a
+    library transition.  This ensures that aptitude is built against the
+    latest cwidget ABI in the buildds.
+
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 25 Aug 2019 23:31:44 +0200
 
 aptitude (0.8.11-7) unstable; urgency=medium
