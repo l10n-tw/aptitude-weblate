@@ -23,7 +23,7 @@ aptitude (0.8.12-1) UNRELEASED; urgency=medium
       * Misc. fixes about deprecation issues and minor compilation problems
 
 
-  * Bump build-dependencies on cwidget to >= 0.5.18-1, that implies a
+  * Bump build-dependencies on cwidget to >= 0.5.18, that implies a
     library transition.  This ensures that aptitude is built against the
     latest cwidget ABI in the buildds.
   * d/patches, drop all patches because they are fixed in the upstream code:
