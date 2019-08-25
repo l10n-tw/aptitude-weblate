@@ -1,4 +1,4 @@
-aptitude (0.8.12-1) UNRELEASED; urgency=medium
+aptitude (0.8.12-1) unstable; urgency=medium
 
   * New upstream release. Please see /usr/share/aptitude/NEWS for a change
     log with more details.
@@ -34,7 +34,7 @@ aptitude (0.8.12-1) UNRELEASED; urgency=medium
   * Ensure that it builds in unstable with all the GCC compiler and
     library changes (Closes: #935615)
 
- -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 25 Aug 2019 23:31:44 +0200
+ -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Mon, 26 Aug 2019 00:51:12 +0200
 
 aptitude (0.8.11-7) unstable; urgency=medium
 
