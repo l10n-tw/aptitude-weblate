@@ -31,6 +31,8 @@ aptitude (0.8.12-1) UNRELEASED; urgency=medium
     - fix-changelog-retrieval.patch
     - fix-crash-907436.patch
     - support-boost1.67.patch
+  * Ensure that it builds in unstable with all the GCC compiler and
+    library changes (Closes: #935615)
 
  -- Manuel A. Fernandez Montecelo <mafm@debian.org>  Sun, 25 Aug 2019 23:31:44 +0200
 
