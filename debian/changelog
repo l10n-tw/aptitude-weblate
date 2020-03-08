@@ -1,10 +1,11 @@
-aptitude (0.8.12-3) UNRELEASED; urgency=medium
+aptitude (0.8.12-3) unstable; urgency=medium
 
+  * Team upload.
   * d/patches:
     - Add error-object.patch to work around an earlier change in
       apt 1.9.x
 
- -- Julian Andres Klode <jak@debian.org>  Sun, 08 Mar 2020 19:18:50 +0100
+ -- Julian Andres Klode <jak@debian.org>  Sun, 08 Mar 2020 19:20:06 +0100
 
 aptitude (0.8.12-2) unstable; urgency=medium
 
