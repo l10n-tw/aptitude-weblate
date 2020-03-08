@@ -33,6 +33,7 @@
 #include <apt-pkg/error.h>
 #include <apt-pkg/install-progress.h>
 #include <apt-pkg/sourcelist.h>
+#include <apt-pkg/pkgsystem.h>
 
 #include <sigc++/bind.h>
 
@@ -44,7 +45,7 @@ using namespace std;
 
 download_install_manager::download_install_manager(bool _download_only,
 						   const run_dpkg_in_terminal_func &_run_dpkg_in_terminal)
-  : log(NULL), download_only(_download_only), pm(new pkgDPkgPM(*apt_cache_file)),
+  : log(NULL), download_only(_download_only), pm(_system->CreatePM(*apt_cache_file)),
     run_dpkg_in_terminal(_run_dpkg_in_terminal)
 {
 }
