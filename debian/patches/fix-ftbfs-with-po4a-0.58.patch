@@ -1,0 +1,17 @@
+Description: fix FTBFS with po4a ≥ 0.58
+Author: Axel Beckert <abe@debian.org>
+Bug-Debian: https://bugs.debian.org/960865
+Comment: The necessity for this patch has been reported to the po4a
+ maintainer (and hence also po4a upstream) at
+ https://bugs.debian.org/960892
+
+diff --git a/doc/po4a/po4a.cfg b/doc/po4a/po4a.cfg
+index dd5da8d6..eaacdea7 100644
+--- a/doc/po4a/po4a.cfg
++++ b/doc/po4a/po4a.cfg
+@@ -1,4 +1,4 @@
+-[po_directory] po4a/po
++[po_directory] ../../../doc/po4a/po
+ 
+ [po4a_alias:docbook] docbook opt:"-M utf-8 -o untranslated=<entry><literal>"
+ 
