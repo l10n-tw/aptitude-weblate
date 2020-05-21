@@ -20,10 +20,10 @@ aptitude (0.8.13-1) UNRELEASED; urgency=medium
       * doc/po4a/po/fr.po: French documentation translation by
         Jean-Pierre Giraud (Closes: #942094)
 
-    - Packaging changes needed for new upstream release:
-      * Recommend libdpkg-perl instead of libparse-debianchangelog-perl.
-      * Install aptitude-changelog-parser into aptitude-common.
-      * Drop patches from the 0.8.12-2 and 0.8.12-2 uploads.
+  * Packaging changes needed for new upstream release:
+    + Recommend libdpkg-perl instead of libparse-debianchangelog-perl.
+    + Install aptitude-changelog-parser into aptitude-common.
+    + Drop patches from the 0.8.12-2 and 0.8.12-2 uploads.
 
   * Work around FTBFS with po4a 0.58. (See #960892, closes: #960865)
   * Rename debian/README.Debian to debian/README.source and update it
