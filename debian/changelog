@@ -28,6 +28,9 @@ aptitude (0.8.13-1) UNRELEASED; urgency=medium
   * Work around FTBFS with po4a 0.58. (See #960892, closes: #960865)
   * Rename debian/README.Debian to debian/README.source and update it
     with regards to git repository URLs.
+  * Bump debhelper compatibility level to 13.
+    + Build-depend on "debhelper-compat (= 13)" to replace debian/compat.
+    + Disable dh_missing, we generate some file lists dynamically.
 
  -- Axel Beckert <abe@debian.org>  Wed, 06 May 2020 23:11:21 +0200
 
