@@ -1,4 +1,4 @@
-debian/README.Debian TODO usr/share/doc/aptitude
+TODO usr/share/doc/aptitude
 debian/tmp/usr/bin/aptitude-*-state-bundle
 debian/tmp/usr/bin/aptitude-changelog-parser
 debian/tmp/usr/share/aptitude/FAQ
