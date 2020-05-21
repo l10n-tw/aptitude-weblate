@@ -1,0 +1,19 @@
+# Directories
+/.debhelper/
+/aptitude-common/
+/aptitude-doc-*/
+/aptitude/
+/tmp/
+
+# Files
+/*.debhelper
+/*.debhelper.log
+/*.substvars
+/autoreconf.after
+/autoreconf.before
+/debhelper-build-stamp
+/files
+
+# Other common stuff like editor backup files
+*~
+*.sw?
