@@ -32,6 +32,7 @@ aptitude (0.8.13-1) UNRELEASED; urgency=medium
     + Build-depend on "debhelper-compat (= 13)" to replace debian/compat.
     + Disable dh_missing, we generate some file lists dynamically.
   * Declare compliance with Debian Policy 4.5.0. (No changes needed.)
+  * Apply "wrap-and-sort -a".
 
  -- Axel Beckert <abe@debian.org>  Wed, 06 May 2020 23:11:21 +0200
 
