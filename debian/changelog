@@ -1,4 +1,29 @@
-aptitude (0.8.12-4) UNRELEASED; urgency=medium
+aptitude (0.8.13-1) UNRELEASED; urgency=medium
+
+  * New upstream release. Please see /usr/share/aptitude/NEWS for a change
+    log with more details.
+
+    - Internal changes:
+      * Import patches by Julian Andres Klode from the 0.8.12-2 and
+        0.8.12-2 uploads. Related to changes in apt 1.9.x.
+      * Switch from libparse-debianchangelog-perl to libdpkg-perl.
+        (Patch by Guillem Jover; Closes: #934135)
+      * Rename README to README.DOCUMENTATION.
+
+    - Translation updates:
+      * po/nl.po: Dutch program translation by Frans Spiesschaert (Closes:
+        #909687, #950541, #955506)
+      * aptitude-defaults.ru: Russian sections translation by Sergey
+        Alyoshin (Closes: #914786)
+      * doc/po4a/po/it.po: Italian documentation translation by Beatrice
+        Torracca (Closes: #959895)
+      * doc/po4a/po/fr.po: French documentation translation by
+        Jean-Pierre Giraud (Closes: #942094)
+
+    - Packaging changes needed for new upstream release:
+      * Recommend libdpkg-perl instead of libparse-debianchangelog-perl.
+      * Install aptitude-changelog-parser into aptitude-common.
+      * Drop patches from the 0.8.12-2 and 0.8.12-2 uploads.
 
   * Work around FTBFS with po4a 0.58. (See #960892, closes: #960865)
   * Rename debian/README.Debian to debian/README.source and update it

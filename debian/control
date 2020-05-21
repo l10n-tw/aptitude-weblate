@@ -41,7 +41,7 @@ Multi-Arch: foreign
 Depends: aptitude-common (= ${source:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Recommends: libparse-debianchangelog-perl,
+Recommends: libdpkg-perl,
             sensible-utils
 Suggests: aptitude-doc-en | aptitude-doc,
           apt-xapian-index,
