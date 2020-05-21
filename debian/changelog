@@ -26,6 +26,10 @@ aptitude (0.8.13-1) UNRELEASED; urgency=medium
     + Drop patches from the 0.8.12-2 and 0.8.12-2 uploads.
 
   * Work around FTBFS with po4a 0.58. (See #960892, closes: #960865)
+    + This is deemed to be a temporary fix until po4a is fixed. It is not
+      merged into the upstream release on purpose to keep that working
+      independent of the build directory's location and to be easily
+      removable once #960892 is fixed.
   * Rename debian/README.Debian to debian/README.source and update it
     with regards to git repository URLs.
   * Bump debhelper compatibility level to 13.
