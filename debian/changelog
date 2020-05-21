@@ -37,6 +37,9 @@ aptitude (0.8.13-1) UNRELEASED; urgency=medium
     + Disable dh_missing, we generate some file lists dynamically.
   * Declare compliance with Debian Policy 4.5.0. (No changes needed.)
   * Apply "wrap-and-sort -a".
+  * Add lintian overrides for "uses-dpkg-database-directly" due to
+    aptitude-*-state-bundle: These are debugging tools and do nothing but
+    capture the state of the dpkg database whatever it looks like.
 
  -- Axel Beckert <abe@debian.org>  Wed, 06 May 2020 23:11:21 +0200
 
