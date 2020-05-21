@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2019-08-25 22:42+0200\n"
+"POT-Creation-Date: 2020-05-21 04:37+0200\n"
 "PO-Revision-Date: 2017-05-06 09:06+0200\n"
 "Last-Translator: Miroslav Kure <kurem@debian.cz>\n"
 "Language-Team: Czech <debian-l10n-czech@lists.debian.org>\n"
@@ -2162,58 +2162,6 @@ msgstr "%s: Nelze zpracovat definice sloupců: „%ls“\n"
 msgid "search: You must provide at least one search term\n"
 msgstr "search: Musíte zadat alespoň jeden hledaný term\n"
 
-#: src/cmdline/cmdline_show_broken.cc:38
-#, c-format
-msgid "but %s is to be installed"
-msgstr "ale %s se bude instalovat"
-
-#: src/cmdline/cmdline_show_broken.cc:41
-#, c-format
-msgid "but %s is installed and it is kept back"
-msgstr "ale %s je nainstalován a je podržen v aktuálním stavu"
-
-#: src/cmdline/cmdline_show_broken.cc:44
-#, c-format
-msgid "but %s is installed"
-msgstr "ale %s je nainstalovaný"
-
-#: src/cmdline/cmdline_show_broken.cc:51
-#, c-format
-msgid "but it is not installable"
-msgstr "ale ten nelze nainstalovat"
-
-#: src/cmdline/cmdline_show_broken.cc:53
-#, c-format
-msgid "but it is not going to be installed"
-msgstr "ale ten se nebude instalovat"
-
-#: src/cmdline/cmdline_show_broken.cc:119
-#, c-format
-msgid ""
-" which is a virtual package and is not provided by any available package\n"
-msgstr ""
-" což je virtuální balík, který není poskytovaný žádným dostupným balíkem\n"
-
-#: src/cmdline/cmdline_show_broken.cc:123
-#, c-format
-msgid " which is a virtual package, provided by:\n"
-msgstr " což je virtuální balík poskytovaný:\n"
-
-#: src/cmdline/cmdline_show_broken.cc:143
-#, c-format
-msgid " provides %s=%s"
-msgstr " poskytuje %s=%s"
-
-#: src/cmdline/cmdline_show_broken.cc:157
-#, c-format
-msgid " or"
-msgstr " nebo"
-
-#: src/cmdline/cmdline_show_broken.cc:179
-#, c-format
-msgid "The following packages have unmet dependencies:\n"
-msgstr "Následující balíky mají nesplněné závislosti:\n"
-
 #: src/cmdline/cmdline_show.cc:192 src/cmdline/cmdline_show.cc:461
 #: src/cmdline/cmdline_versions.cc:227 src/gtk/resolver.cc:1192
 #: src/solution_fragment.cc:63
@@ -2461,6 +2409,58 @@ msgstr "Nemohu nalézt balík %s"
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "Nelze zpracovat vzor %s"
+
+#: src/cmdline/cmdline_show_broken.cc:38
+#, c-format
+msgid "but %s is to be installed"
+msgstr "ale %s se bude instalovat"
+
+#: src/cmdline/cmdline_show_broken.cc:41
+#, c-format
+msgid "but %s is installed and it is kept back"
+msgstr "ale %s je nainstalován a je podržen v aktuálním stavu"
+
+#: src/cmdline/cmdline_show_broken.cc:44
+#, c-format
+msgid "but %s is installed"
+msgstr "ale %s je nainstalovaný"
+
+#: src/cmdline/cmdline_show_broken.cc:51
+#, c-format
+msgid "but it is not installable"
+msgstr "ale ten nelze nainstalovat"
+
+#: src/cmdline/cmdline_show_broken.cc:53
+#, c-format
+msgid "but it is not going to be installed"
+msgstr "ale ten se nebude instalovat"
+
+#: src/cmdline/cmdline_show_broken.cc:119
+#, c-format
+msgid ""
+" which is a virtual package and is not provided by any available package\n"
+msgstr ""
+" což je virtuální balík, který není poskytovaný žádným dostupným balíkem\n"
+
+#: src/cmdline/cmdline_show_broken.cc:123
+#, c-format
+msgid " which is a virtual package, provided by:\n"
+msgstr " což je virtuální balík poskytovaný:\n"
+
+#: src/cmdline/cmdline_show_broken.cc:143
+#, c-format
+msgid " provides %s=%s"
+msgstr " poskytuje %s=%s"
+
+#: src/cmdline/cmdline_show_broken.cc:157
+#, c-format
+msgid " or"
+msgstr " nebo"
+
+#: src/cmdline/cmdline_show_broken.cc:179
+#, c-format
+msgid "The following packages have unmet dependencies:\n"
+msgstr "Následující balíky mají nesplněné závislosti:\n"
 
 #: src/cmdline/cmdline_simulate.cc:68
 #, c-format
@@ -2892,129 +2892,6 @@ msgstr "[CHYBA]"
 msgid "Attempt to start a download thread twice!"
 msgstr "Pokus o druhé spuštění stahovacího vlákna!"
 
-#: src/generic/apt/aptcache.cc:312
-msgid "Can't open Aptitude extended state file"
-msgstr "Nelze otevřít rozšířený stavový soubor programu Aptitude"
-
-#: src/generic/apt/aptcache.cc:331 src/generic/apt/aptcache.cc:512
-#: src/generic/apt/aptcache.cc:527
-msgid "Reading extended state information"
-msgstr "Načítají se rozšířené stavové informace"
-
-#: src/generic/apt/aptcache.cc:378
-#, c-format
-msgid ""
-"Package %s had been marked to reinstall, but the file for the current "
-"installed version %s is not available"
-msgstr ""
-"Balík %s byl označen pro přeinstalaci, avšak soubor nainstalované verze %s "
-"není dostupný"
-
-#: src/generic/apt/aptcache.cc:440
-#, c-format
-msgid "Cannot parse user-tags for package: %s: '%s'"
-msgstr "Nelze zpracovat uživatelské štítky pro balík %s: „%s“"
-
-#: src/generic/apt/aptcache.cc:520
-#, c-format
-msgid ""
-"Problem parsing '%s', is it corrupt or malformed? You can try to recover "
-"from '%s.old'."
-msgstr ""
-"Problém při zpracování „%s“, je porušený nabo špatně zadaný? Můžete se "
-"pokusit o obnovu z „%s.old“."
-
-#: src/generic/apt/aptcache.cc:539 src/generic/apt/aptcache.cc:628
-#: src/generic/apt/aptcache.cc:634
-msgid "Initializing package states"
-msgstr "Inicializují se stavy balíků"
-
-#: src/generic/apt/aptcache.cc:803
-msgid "Cannot open Aptitude state file"
-msgstr "Nelze otevřít stavový soubor programu Aptitude"
-
-#: src/generic/apt/aptcache.cc:817 src/generic/apt/aptcache.cc:942
-#: src/generic/apt/aptcache.cc:948
-msgid "Writing extended state information"
-msgstr "Zapisují se rozšířené stavové informace"
-
-#: src/generic/apt/aptcache.cc:953
-msgid "Couldn't write state file"
-msgstr "Nelze zapsat stavový soubor"
-
-#: src/generic/apt/aptcache.cc:973
-#, c-format
-msgid "failed to remove %s"
-msgstr "selhalo odstranění %s"
-
-#: src/generic/apt/aptcache.cc:981
-#, c-format
-msgid "failed to rename %s to %s"
-msgstr "selhalo přejmenování %s na %s"
-
-#: src/generic/apt/aptcache.cc:990
-#, c-format
-msgid "couldn't replace %s with %s"
-msgstr "nelze nahradit %s za %s"
-
-#: src/generic/apt/aptcache.cc:1009
-#: src/generic/apt/download_install_manager.cc:247
-msgid ""
-"Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
-msgstr "Nelze získat systémový zámek! (Možná běží další apt nebo dpkg?)"
-
-#: src/generic/apt/aptcache.cc:1012
-msgid "failed to save selections to dpkg database"
-msgstr "nepodařilo se uložit výběr do databáze dpkg"
-
-#: src/generic/apt/aptcache.cc:1270 src/generic/apt/aptcache.cc:1306
-msgid "Cannot remove aptitude within aptitude"
-msgstr "Aptitude nelze odstranit z aptitude"
-
-#: src/generic/apt/aptcache.cc:1730
-#, c-format
-msgid "User-tag '%s' already present for %s"
-msgstr "Uživatelský štítek „%s“ je již v balíku „%s“ přítomen"
-
-#: src/generic/apt/aptcache.cc:1746
-#, c-format
-msgid "Could not add user-tag '%s' to package %s"
-msgstr "Nelze přidat uživatelský štítek „%s“ k balíku „%s“"
-
-#: src/generic/apt/aptcache.cc:1772
-#, c-format
-msgid "Could not find valid user-tag '%s'"
-msgstr "Nelze najít platný uživatelský štítek „%s“"
-
-#: src/generic/apt/aptcache.cc:1788
-#, c-format
-msgid "Could not remove user-tag '%s' from package %s"
-msgstr "Nelze odebrat uživatelský štítek „%s“ z balíku „%s“"
-
-#: src/generic/apt/aptcache.cc:1866
-msgid "Unable to correct dependencies, some packages cannot be installed"
-msgstr "Nelze opravit závislosti, některé balíky nemohou být nainstalovány"
-
-#: src/generic/apt/aptcache.cc:2548
-msgid "The list of sources could not be read."
-msgstr "Nelze přečíst seznam zdrojů."
-
-#: src/generic/apt/aptcache.cc:2556
-msgid "The package lists or status file could not be parsed or opened."
-msgstr "Seznamy balíků nebo stavový soubor nelze otevřít nebo zpracovat."
-
-#: src/generic/apt/aptcache.cc:2559
-msgid "You may want to update the package lists to correct these missing files"
-msgstr "Pro opravení chybějících souborů zkuste aktualizovat seznamy balíků"
-
-#: src/generic/apt/aptcache.cc:2575
-msgid "Could not create dependency cache"
-msgstr "Nelze vytvořit cache závislostí"
-
-#: src/generic/apt/aptcache.cc:2585
-msgid "Could not initialize dependency cache"
-msgstr "Nelze inicializovat cache závislostí"
-
 #: src/generic/apt/apt.cc:138
 #, c-format
 msgid "Configuration file '%s' is not correct, please fix it"
@@ -3138,6 +3015,129 @@ msgstr "non-US"
 msgid "Couldn't read list of sources"
 msgstr "Nelze číst seznam zdrojů"
 
+#: src/generic/apt/aptcache.cc:312
+msgid "Can't open Aptitude extended state file"
+msgstr "Nelze otevřít rozšířený stavový soubor programu Aptitude"
+
+#: src/generic/apt/aptcache.cc:331 src/generic/apt/aptcache.cc:512
+#: src/generic/apt/aptcache.cc:527
+msgid "Reading extended state information"
+msgstr "Načítají se rozšířené stavové informace"
+
+#: src/generic/apt/aptcache.cc:378
+#, c-format
+msgid ""
+"Package %s had been marked to reinstall, but the file for the current "
+"installed version %s is not available"
+msgstr ""
+"Balík %s byl označen pro přeinstalaci, avšak soubor nainstalované verze %s "
+"není dostupný"
+
+#: src/generic/apt/aptcache.cc:440
+#, c-format
+msgid "Cannot parse user-tags for package: %s: '%s'"
+msgstr "Nelze zpracovat uživatelské štítky pro balík %s: „%s“"
+
+#: src/generic/apt/aptcache.cc:520
+#, c-format
+msgid ""
+"Problem parsing '%s', is it corrupt or malformed? You can try to recover "
+"from '%s.old'."
+msgstr ""
+"Problém při zpracování „%s“, je porušený nabo špatně zadaný? Můžete se "
+"pokusit o obnovu z „%s.old“."
+
+#: src/generic/apt/aptcache.cc:539 src/generic/apt/aptcache.cc:628
+#: src/generic/apt/aptcache.cc:634
+msgid "Initializing package states"
+msgstr "Inicializují se stavy balíků"
+
+#: src/generic/apt/aptcache.cc:803
+msgid "Cannot open Aptitude state file"
+msgstr "Nelze otevřít stavový soubor programu Aptitude"
+
+#: src/generic/apt/aptcache.cc:817 src/generic/apt/aptcache.cc:942
+#: src/generic/apt/aptcache.cc:948
+msgid "Writing extended state information"
+msgstr "Zapisují se rozšířené stavové informace"
+
+#: src/generic/apt/aptcache.cc:953
+msgid "Couldn't write state file"
+msgstr "Nelze zapsat stavový soubor"
+
+#: src/generic/apt/aptcache.cc:973
+#, c-format
+msgid "failed to remove %s"
+msgstr "selhalo odstranění %s"
+
+#: src/generic/apt/aptcache.cc:981
+#, c-format
+msgid "failed to rename %s to %s"
+msgstr "selhalo přejmenování %s na %s"
+
+#: src/generic/apt/aptcache.cc:990
+#, c-format
+msgid "couldn't replace %s with %s"
+msgstr "nelze nahradit %s za %s"
+
+#: src/generic/apt/aptcache.cc:1009
+#: src/generic/apt/download_install_manager.cc:248
+msgid ""
+"Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
+msgstr "Nelze získat systémový zámek! (Možná běží další apt nebo dpkg?)"
+
+#: src/generic/apt/aptcache.cc:1012
+msgid "failed to save selections to dpkg database"
+msgstr "nepodařilo se uložit výběr do databáze dpkg"
+
+#: src/generic/apt/aptcache.cc:1270 src/generic/apt/aptcache.cc:1306
+msgid "Cannot remove aptitude within aptitude"
+msgstr "Aptitude nelze odstranit z aptitude"
+
+#: src/generic/apt/aptcache.cc:1730
+#, c-format
+msgid "User-tag '%s' already present for %s"
+msgstr "Uživatelský štítek „%s“ je již v balíku „%s“ přítomen"
+
+#: src/generic/apt/aptcache.cc:1746
+#, c-format
+msgid "Could not add user-tag '%s' to package %s"
+msgstr "Nelze přidat uživatelský štítek „%s“ k balíku „%s“"
+
+#: src/generic/apt/aptcache.cc:1772
+#, c-format
+msgid "Could not find valid user-tag '%s'"
+msgstr "Nelze najít platný uživatelský štítek „%s“"
+
+#: src/generic/apt/aptcache.cc:1788
+#, c-format
+msgid "Could not remove user-tag '%s' from package %s"
+msgstr "Nelze odebrat uživatelský štítek „%s“ z balíku „%s“"
+
+#: src/generic/apt/aptcache.cc:1866
+msgid "Unable to correct dependencies, some packages cannot be installed"
+msgstr "Nelze opravit závislosti, některé balíky nemohou být nainstalovány"
+
+#: src/generic/apt/aptcache.cc:2548
+msgid "The list of sources could not be read."
+msgstr "Nelze přečíst seznam zdrojů."
+
+#: src/generic/apt/aptcache.cc:2556
+msgid "The package lists or status file could not be parsed or opened."
+msgstr "Seznamy balíků nebo stavový soubor nelze otevřít nebo zpracovat."
+
+#: src/generic/apt/aptcache.cc:2559
+msgid "You may want to update the package lists to correct these missing files"
+msgstr "Pro opravení chybějících souborů zkuste aktualizovat seznamy balíků"
+
+#: src/generic/apt/aptcache.cc:2575
+msgid "Could not create dependency cache"
+msgstr "Nelze vytvořit cache závislostí"
+
+#: src/generic/apt/aptcache.cc:2585
+msgid "Could not initialize dependency cache"
+msgstr "Nelze inicializovat cache závislostí"
+
 #: src/generic/apt/aptitude_resolver.cc:442
 #, c-format
 msgid "Invalid hint \"%s\": expected an action, but found nothing."
@@ -3257,22 +3257,22 @@ msgstr "Neodstraním soubor, jelikož není běžným souborem: %s"
 msgid "Error removing file: %s"
 msgstr "Chyba při odstraňování souboru: %s"
 
-#: src/generic/apt/download_install_manager.cc:65
+#: src/generic/apt/download_install_manager.cc:66
 msgid ""
 "The package cache is not available; unable to download and install packages."
 msgstr ""
 "Vyrovnávací paměť balíků není není dostupná, nelze tedy balíky stahovat ani "
 "instalovat."
 
-#: src/generic/apt/download_install_manager.cc:90
+#: src/generic/apt/download_install_manager.cc:91
 msgid "Couldn't read source list"
 msgstr "Nelze číst seznam zdrojů"
 
-#: src/generic/apt/download_install_manager.cc:100
+#: src/generic/apt/download_install_manager.cc:101
 msgid "Internal error: couldn't generate list of packages to download"
 msgstr "Vnitřní chyba: nelze vytvořit seznam balíků ke stažení"
 
-#: src/generic/apt/download_install_manager.cc:103
+#: src/generic/apt/download_install_manager.cc:104
 msgid ""
 "Perhaps the package lists are out of date, please try 'aptitude update' (or "
 "equivalent); otherwise some packages or versions are not available from the "
@@ -3282,21 +3282,21 @@ msgstr ""
 "update“ (nebo ekvivalent), protože jinak nemusí být některé balíky nebo "
 "verze dostupné."
 
-#: src/generic/apt/download_install_manager.cc:130
+#: src/generic/apt/download_install_manager.cc:131
 #: src/generic/apt/download_update_manager.cc:147
 #, c-format
 msgid "Failed to fetch %s: %s"
 msgstr "Selhalo stažení %s: %s"
 
-#: src/generic/apt/download_install_manager.cc:139
+#: src/generic/apt/download_install_manager.cc:140
 msgid "Some files failed to download"
 msgstr "Některé soubory se nepodařilo stáhnout"
 
-#: src/generic/apt/download_install_manager.cc:156
+#: src/generic/apt/download_install_manager.cc:157
 msgid "Unable to correct for unavailable packages"
 msgstr "Nelze opravit kvůli nedostupným balíkům"
 
-#: src/generic/apt/download_install_manager.cc:162
+#: src/generic/apt/download_install_manager.cc:163
 #, c-format
 msgid ""
 "Unable to fetch some packages; try '-o %s=true' to continue with missing "

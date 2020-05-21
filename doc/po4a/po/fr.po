@@ -4,13 +4,14 @@
 # Olivier Trichet <nive@nivalis.org>, 2004-2006.
 # Sylvain Cherrier <sylvain.cherrier@free.fr>, 2007, 2008.
 # Cédric Boutillier <boutil@debian.org>, 2012, 2014, 2017.
+# Jean-Pierre Giraud <jean-pierregiraud@neuf.fr>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: aptitude-devel@lists.alioth.debian.org\n"
 "POT-Creation-Date: 2019-08-25 22:42+0200\n"
-"PO-Revision-Date: 2017-01-20 18:47+0100\n"
-"Last-Translator: Cédric Boutillier <boutil@debian.org>\n"
+"PO-Revision-Date: 2019-09-27 15:35+0100\n"
+"Last-Translator: Jean-Pierre Giraud <jean-pierregiraud@neuf.fr>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -51,10 +52,9 @@ msgstr "<systemitem class=\"username\">root</systemitem>"
 
 #. type: Content of the VERSION entity
 #: en/aptitude.xml:10
-#, fuzzy
 #| msgid "0.8.3"
 msgid "0.8.12"
-msgstr "0.8.3"
+msgstr "0.8.12"
 
 # type: Content of the actions-install entity
 #. type: Content of the actions-install entity
@@ -8590,6 +8590,11 @@ msgid ""
 "levels. They refer to the maximal respective minimal integer value possible "
 "on the hardware architecture of your system."
 msgstr ""
+"En plus des nombres, il est aussi possible d'utiliser les mots clés <quote>"
+"<literal>maximum</literal></quote> et <quote><literal>minimum</literal></"
+"quote> pour les niveaux de coût. Ils se réfèrent respectivement à la valeur "
+"entière la plus grande et la plus petite possible sur l'architecture "
+"matérielle de votre système."
 
 # type: Content of: <book><chapter><section><section><title>
 #. type: Content of: <book><chapter><section><section><title>
@@ -8941,7 +8946,6 @@ msgstr ""
 # type: Content of: <book><chapter><section><section><section><orderedlist><listitem><para>
 #. type: Content of: <book><chapter><section><section><section><orderedlist><listitem><para>
 #: en/aptitude.xml:5185
-#, fuzzy
 #| msgid ""
 #| "<quote><literal>:UNINST</literal></quote>: instead of affecting any of "
 #| "the versions of <replaceable>target</replaceable>, the hint affects the "
@@ -8959,8 +8963,8 @@ msgstr ""
 "<quote><literal>:UNINST</literal></quote> : au lieu d'affecter l'une des "
 "versions de <replaceable>cible</replaceable>, l'indicateur affecte la "
 "décision de supprimer <replaceable>cible</replaceable>. Par exemple "
-"<quote><literal>reject aptitude :UNINST</literal></quote> empêchera toute "
-"tentative du solveur de supprimer &aptitude;."
+"<quote><literal>Aptitude::ProblemResolver::Hints { \"reject aptitude :UNINST"
+"\"; };</literal></quote> empêchera toute tentative du solveur de supprimer &aptitude;."
 
 # type: Content of: <refentry><refsect1><variablelist><varlistentry><term>
 #. type: Content of: <book><chapter><section><section><section><orderedlist><listitem><para>
@@ -25917,6 +25921,8 @@ msgid ""
 "Prepending the order keyword with a tilde character (<literal>~</literal>) "
 "reverses the order from ascending to descending."
 msgstr ""
+"Faire précéder le mot clé d'ordre d'un caractère tilde (<literal>~</"
+"literal>) inverse l'ordre d'ascendant à descendant."
 
 # type: Content of: <book><chapter><section><variablelist><varlistentry><term>
 #. type: Content of: <refentry><refsect1><variablelist><varlistentry><listitem><para>

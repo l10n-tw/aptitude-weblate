@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude 0.4.x\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2019-08-25 22:42+0200\n"
+"POT-Creation-Date: 2020-05-21 04:37+0200\n"
 "PO-Revision-Date: 2012-05-23 11:47+0800\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
@@ -2256,61 +2256,6 @@ msgstr "Không thể phân tích lời định nghĩa cột"
 msgid "search: You must provide at least one search term\n"
 msgstr "tìm kiếm: bạn phải cung cấp ít nhất một từ tìm kiếm\n"
 
-#: src/cmdline/cmdline_show_broken.cc:38
-#, fuzzy, c-format
-#| msgid "but %s is to be installed."
-msgid "but %s is to be installed"
-msgstr "nhưng mà %s sẽ được cài đặt."
-
-#: src/cmdline/cmdline_show_broken.cc:41
-#, fuzzy, c-format
-#| msgid "but %s is installed and it is kept back."
-msgid "but %s is installed and it is kept back"
-msgstr "nhưng mà %s được cài đặt và nó được giữ lại."
-
-#: src/cmdline/cmdline_show_broken.cc:44
-#, fuzzy, c-format
-#| msgid "but %s is installed."
-msgid "but %s is installed"
-msgstr "nhưng mà %s được cai đặt."
-
-#: src/cmdline/cmdline_show_broken.cc:51
-#, c-format
-msgid "but it is not installable"
-msgstr "nhưng mà nó không có khả năng cài đặt"
-
-#: src/cmdline/cmdline_show_broken.cc:53
-#, fuzzy, c-format
-msgid "but it is not going to be installed"
-msgstr "nhưng mà %s sẽ được cài đặt."
-
-#: src/cmdline/cmdline_show_broken.cc:119
-#, fuzzy, c-format
-msgid ""
-" which is a virtual package and is not provided by any available package\n"
-msgstr "« %s » là gói ảo được cung cấp bởi:\n"
-
-#: src/cmdline/cmdline_show_broken.cc:123
-#, fuzzy, c-format
-msgid " which is a virtual package, provided by:\n"
-msgstr "« %s » là gói ảo được cung cấp bởi:\n"
-
-#: src/cmdline/cmdline_show_broken.cc:143
-#, fuzzy, c-format
-#| msgid "Provides"
-msgid " provides %s=%s"
-msgstr "Cung cấp"
-
-#: src/cmdline/cmdline_show_broken.cc:157
-#, c-format
-msgid " or"
-msgstr " hoặc"
-
-#: src/cmdline/cmdline_show_broken.cc:179
-#, c-format
-msgid "The following packages have unmet dependencies:\n"
-msgstr "Những gói sau có quan hệ phụ thuộc chưa thỏa:\n"
-
 #: src/cmdline/cmdline_show.cc:192 src/cmdline/cmdline_show.cc:461
 #: src/cmdline/cmdline_versions.cc:227 src/gtk/resolver.cc:1192
 #: src/solution_fragment.cc:63
@@ -2560,6 +2505,61 @@ msgstr "Không thể định vị gói %s"
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "Không thể phân tích hình mẫu %s"
+
+#: src/cmdline/cmdline_show_broken.cc:38
+#, fuzzy, c-format
+#| msgid "but %s is to be installed."
+msgid "but %s is to be installed"
+msgstr "nhưng mà %s sẽ được cài đặt."
+
+#: src/cmdline/cmdline_show_broken.cc:41
+#, fuzzy, c-format
+#| msgid "but %s is installed and it is kept back."
+msgid "but %s is installed and it is kept back"
+msgstr "nhưng mà %s được cài đặt và nó được giữ lại."
+
+#: src/cmdline/cmdline_show_broken.cc:44
+#, fuzzy, c-format
+#| msgid "but %s is installed."
+msgid "but %s is installed"
+msgstr "nhưng mà %s được cai đặt."
+
+#: src/cmdline/cmdline_show_broken.cc:51
+#, c-format
+msgid "but it is not installable"
+msgstr "nhưng mà nó không có khả năng cài đặt"
+
+#: src/cmdline/cmdline_show_broken.cc:53
+#, fuzzy, c-format
+msgid "but it is not going to be installed"
+msgstr "nhưng mà %s sẽ được cài đặt."
+
+#: src/cmdline/cmdline_show_broken.cc:119
+#, fuzzy, c-format
+msgid ""
+" which is a virtual package and is not provided by any available package\n"
+msgstr "« %s » là gói ảo được cung cấp bởi:\n"
+
+#: src/cmdline/cmdline_show_broken.cc:123
+#, fuzzy, c-format
+msgid " which is a virtual package, provided by:\n"
+msgstr "« %s » là gói ảo được cung cấp bởi:\n"
+
+#: src/cmdline/cmdline_show_broken.cc:143
+#, fuzzy, c-format
+#| msgid "Provides"
+msgid " provides %s=%s"
+msgstr "Cung cấp"
+
+#: src/cmdline/cmdline_show_broken.cc:157
+#, c-format
+msgid " or"
+msgstr " hoặc"
+
+#: src/cmdline/cmdline_show_broken.cc:179
+#, c-format
+msgid "The following packages have unmet dependencies:\n"
+msgstr "Những gói sau có quan hệ phụ thuộc chưa thỏa:\n"
 
 #: src/cmdline/cmdline_simulate.cc:68
 #, c-format
@@ -2996,135 +2996,6 @@ msgstr "[LỖI]"
 msgid "Attempt to start a download thread twice!"
 msgstr ""
 
-#: src/generic/apt/aptcache.cc:312
-msgid "Can't open Aptitude extended state file"
-msgstr "Không thể mở tập tin tình trạng kéo dài Aptitude"
-
-#: src/generic/apt/aptcache.cc:331 src/generic/apt/aptcache.cc:512
-#: src/generic/apt/aptcache.cc:527
-msgid "Reading extended state information"
-msgstr "Đang đọc thông tin tình trạng kéo dài"
-
-#: src/generic/apt/aptcache.cc:378
-#, c-format
-msgid ""
-"Package %s had been marked to reinstall, but the file for the current "
-"installed version %s is not available"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:440
-#, c-format
-msgid "Cannot parse user-tags for package: %s: '%s'"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:520
-#, c-format
-msgid ""
-"Problem parsing '%s', is it corrupt or malformed? You can try to recover "
-"from '%s.old'."
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:539 src/generic/apt/aptcache.cc:628
-#: src/generic/apt/aptcache.cc:634
-msgid "Initializing package states"
-msgstr "Đang khởi tạo các tình trạng gói"
-
-#: src/generic/apt/aptcache.cc:803
-msgid "Cannot open Aptitude state file"
-msgstr "Không thể mở tập tin tình trạng Aptitude"
-
-#: src/generic/apt/aptcache.cc:817 src/generic/apt/aptcache.cc:942
-#: src/generic/apt/aptcache.cc:948
-msgid "Writing extended state information"
-msgstr "Đang ghi thông tin tình trạng kéo dài"
-
-#: src/generic/apt/aptcache.cc:953
-msgid "Couldn't write state file"
-msgstr "Không thể ghi tâp tin tình trạng"
-
-#: src/generic/apt/aptcache.cc:973
-#, c-format
-msgid "failed to remove %s"
-msgstr "lỗi gỡ bỏ %s"
-
-#: src/generic/apt/aptcache.cc:981
-#, c-format
-msgid "failed to rename %s to %s"
-msgstr "lỗi thay đổi tên %s thành %s"
-
-#: src/generic/apt/aptcache.cc:990
-#, c-format
-msgid "couldn't replace %s with %s"
-msgstr "không thể thay thế %s bằng %s"
-
-#: src/generic/apt/aptcache.cc:1009
-#: src/generic/apt/download_install_manager.cc:247
-msgid ""
-"Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
-msgstr ""
-"Không thể lấy lại khoá hệ thống. (Tiến trình apt hay dpkg khác có chạy "
-"không?)"
-
-#: src/generic/apt/aptcache.cc:1012
-msgid "failed to save selections to dpkg database"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:1270 src/generic/apt/aptcache.cc:1306
-#, fuzzy
-#| msgid "Cannot open Aptitude state file"
-msgid "Cannot remove aptitude within aptitude"
-msgstr "Không thể mở tập tin tình trạng Aptitude"
-
-#: src/generic/apt/aptcache.cc:1730
-#, c-format
-msgid "User-tag '%s' already present for %s"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:1746
-#, fuzzy, c-format
-#| msgid "Adding user tag \"%s\" to the package \"%s\".\n"
-msgid "Could not add user-tag '%s' to package %s"
-msgstr "Đang thêm thẻ người dùng « %s » vào gói « %s ».\n"
-
-#: src/generic/apt/aptcache.cc:1772
-#, fuzzy, c-format
-msgid "Could not find valid user-tag '%s'"
-msgstr "Không tìm thấy bản ghi các thay đổi cho « %s »"
-
-#: src/generic/apt/aptcache.cc:1788
-#, fuzzy, c-format
-#| msgid "Removing user tag \"%s\" from the package \"%s\".\n"
-msgid "Could not remove user-tag '%s' from package %s"
-msgstr "Đang gỡ bỏ thẻ người dùng « %s » khỏi gói « %s ».\n"
-
-#: src/generic/apt/aptcache.cc:1866
-msgid "Unable to correct dependencies, some packages cannot be installed"
-msgstr ""
-"Không thể sửa chữa các quan hệ phụ thuộc vì một số gói không thể được cài đặt"
-
-#: src/generic/apt/aptcache.cc:2548
-msgid "The list of sources could not be read."
-msgstr "Không thể đọc danh sách các nguồn."
-
-#: src/generic/apt/aptcache.cc:2556
-msgid "The package lists or status file could not be parsed or opened."
-msgstr "Không thể phân tích hoặc mở danh sách gói hoặc tâp tin trạng thái."
-
-#: src/generic/apt/aptcache.cc:2559
-msgid "You may want to update the package lists to correct these missing files"
-msgstr ""
-"Khuyên bạn cập nhật các danh sách gói để sửa chữa trường hợp có những tập "
-"tin này còn thiếu"
-
-#: src/generic/apt/aptcache.cc:2575
-#, fuzzy
-msgid "Could not create dependency cache"
-msgstr "Không tìm thấy bản ghi các thay đổi cho « %s »"
-
-#: src/generic/apt/aptcache.cc:2585
-msgid "Could not initialize dependency cache"
-msgstr ""
-
 #: src/generic/apt/apt.cc:138
 #, fuzzy, c-format
 msgid "Configuration file '%s' is not correct, please fix it"
@@ -3252,6 +3123,135 @@ msgstr ""
 msgid "Couldn't read list of sources"
 msgstr "Không thể đọc danh sách các nguồn"
 
+#: src/generic/apt/aptcache.cc:312
+msgid "Can't open Aptitude extended state file"
+msgstr "Không thể mở tập tin tình trạng kéo dài Aptitude"
+
+#: src/generic/apt/aptcache.cc:331 src/generic/apt/aptcache.cc:512
+#: src/generic/apt/aptcache.cc:527
+msgid "Reading extended state information"
+msgstr "Đang đọc thông tin tình trạng kéo dài"
+
+#: src/generic/apt/aptcache.cc:378
+#, c-format
+msgid ""
+"Package %s had been marked to reinstall, but the file for the current "
+"installed version %s is not available"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:440
+#, c-format
+msgid "Cannot parse user-tags for package: %s: '%s'"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:520
+#, c-format
+msgid ""
+"Problem parsing '%s', is it corrupt or malformed? You can try to recover "
+"from '%s.old'."
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:539 src/generic/apt/aptcache.cc:628
+#: src/generic/apt/aptcache.cc:634
+msgid "Initializing package states"
+msgstr "Đang khởi tạo các tình trạng gói"
+
+#: src/generic/apt/aptcache.cc:803
+msgid "Cannot open Aptitude state file"
+msgstr "Không thể mở tập tin tình trạng Aptitude"
+
+#: src/generic/apt/aptcache.cc:817 src/generic/apt/aptcache.cc:942
+#: src/generic/apt/aptcache.cc:948
+msgid "Writing extended state information"
+msgstr "Đang ghi thông tin tình trạng kéo dài"
+
+#: src/generic/apt/aptcache.cc:953
+msgid "Couldn't write state file"
+msgstr "Không thể ghi tâp tin tình trạng"
+
+#: src/generic/apt/aptcache.cc:973
+#, c-format
+msgid "failed to remove %s"
+msgstr "lỗi gỡ bỏ %s"
+
+#: src/generic/apt/aptcache.cc:981
+#, c-format
+msgid "failed to rename %s to %s"
+msgstr "lỗi thay đổi tên %s thành %s"
+
+#: src/generic/apt/aptcache.cc:990
+#, c-format
+msgid "couldn't replace %s with %s"
+msgstr "không thể thay thế %s bằng %s"
+
+#: src/generic/apt/aptcache.cc:1009
+#: src/generic/apt/download_install_manager.cc:248
+msgid ""
+"Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
+msgstr ""
+"Không thể lấy lại khoá hệ thống. (Tiến trình apt hay dpkg khác có chạy "
+"không?)"
+
+#: src/generic/apt/aptcache.cc:1012
+msgid "failed to save selections to dpkg database"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:1270 src/generic/apt/aptcache.cc:1306
+#, fuzzy
+#| msgid "Cannot open Aptitude state file"
+msgid "Cannot remove aptitude within aptitude"
+msgstr "Không thể mở tập tin tình trạng Aptitude"
+
+#: src/generic/apt/aptcache.cc:1730
+#, c-format
+msgid "User-tag '%s' already present for %s"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:1746
+#, fuzzy, c-format
+#| msgid "Adding user tag \"%s\" to the package \"%s\".\n"
+msgid "Could not add user-tag '%s' to package %s"
+msgstr "Đang thêm thẻ người dùng « %s » vào gói « %s ».\n"
+
+#: src/generic/apt/aptcache.cc:1772
+#, fuzzy, c-format
+msgid "Could not find valid user-tag '%s'"
+msgstr "Không tìm thấy bản ghi các thay đổi cho « %s »"
+
+#: src/generic/apt/aptcache.cc:1788
+#, fuzzy, c-format
+#| msgid "Removing user tag \"%s\" from the package \"%s\".\n"
+msgid "Could not remove user-tag '%s' from package %s"
+msgstr "Đang gỡ bỏ thẻ người dùng « %s » khỏi gói « %s ».\n"
+
+#: src/generic/apt/aptcache.cc:1866
+msgid "Unable to correct dependencies, some packages cannot be installed"
+msgstr ""
+"Không thể sửa chữa các quan hệ phụ thuộc vì một số gói không thể được cài đặt"
+
+#: src/generic/apt/aptcache.cc:2548
+msgid "The list of sources could not be read."
+msgstr "Không thể đọc danh sách các nguồn."
+
+#: src/generic/apt/aptcache.cc:2556
+msgid "The package lists or status file could not be parsed or opened."
+msgstr "Không thể phân tích hoặc mở danh sách gói hoặc tâp tin trạng thái."
+
+#: src/generic/apt/aptcache.cc:2559
+msgid "You may want to update the package lists to correct these missing files"
+msgstr ""
+"Khuyên bạn cập nhật các danh sách gói để sửa chữa trường hợp có những tập "
+"tin này còn thiếu"
+
+#: src/generic/apt/aptcache.cc:2575
+#, fuzzy
+msgid "Could not create dependency cache"
+msgstr "Không tìm thấy bản ghi các thay đổi cho « %s »"
+
+#: src/generic/apt/aptcache.cc:2585
+msgid "Could not initialize dependency cache"
+msgstr ""
+
 #: src/generic/apt/aptitude_resolver.cc:442
 #, c-format
 msgid "Invalid hint \"%s\": expected an action, but found nothing."
@@ -3370,41 +3370,41 @@ msgstr ""
 msgid "Error removing file: %s"
 msgstr "Gặp lỗi khi ghi tâp tin tình trạng"
 
-#: src/generic/apt/download_install_manager.cc:65
+#: src/generic/apt/download_install_manager.cc:66
 msgid ""
 "The package cache is not available; unable to download and install packages."
 msgstr "Bộ nhớ tạm gói chưa sẵn sàng nên không thể tải về và cài đặt gói."
 
-#: src/generic/apt/download_install_manager.cc:90
+#: src/generic/apt/download_install_manager.cc:91
 msgid "Couldn't read source list"
 msgstr "Không thể đọc danh sách nguồn"
 
-#: src/generic/apt/download_install_manager.cc:100
+#: src/generic/apt/download_install_manager.cc:101
 msgid "Internal error: couldn't generate list of packages to download"
 msgstr "Gặp lỗi nội bộ : không thể tạo ra danh sách các gói cần tải về"
 
-#: src/generic/apt/download_install_manager.cc:103
+#: src/generic/apt/download_install_manager.cc:104
 msgid ""
 "Perhaps the package lists are out of date, please try 'aptitude update' (or "
 "equivalent); otherwise some packages or versions are not available from the "
 "current repository sources"
 msgstr ""
 
-#: src/generic/apt/download_install_manager.cc:130
+#: src/generic/apt/download_install_manager.cc:131
 #: src/generic/apt/download_update_manager.cc:147
 #, c-format
 msgid "Failed to fetch %s: %s"
 msgstr "Lỗi lấy %s: %s"
 
-#: src/generic/apt/download_install_manager.cc:139
+#: src/generic/apt/download_install_manager.cc:140
 msgid "Some files failed to download"
 msgstr ""
 
-#: src/generic/apt/download_install_manager.cc:156
+#: src/generic/apt/download_install_manager.cc:157
 msgid "Unable to correct for unavailable packages"
 msgstr "Không thể sửa chữa trường hợp có các gói không sẵn sàng"
 
-#: src/generic/apt/download_install_manager.cc:162
+#: src/generic/apt/download_install_manager.cc:163
 #, c-format
 msgid ""
 "Unable to fetch some packages; try '-o %s=true' to continue with missing "

@@ -18,8 +18,8 @@
 //   the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
 //   Boston, MA 02110-1301, USA.
 //
-// At the moment this code uses parsechangelog to convert changelogs
-// into something easier to read.
+// At the moment this code uses aptitude-changelog-parser which abstracts
+// the actual parsing to convert changelogs into something easier to read.
 
 #include "changelog_parse.h"
 
@@ -326,20 +326,17 @@ namespace aptitude
       temp::name rval("parsedchangelog");
 
       std::string version_fragment;
-      if(from.empty())
-	version_fragment = "--all";
-      else
+      if(!from.empty())
 	{
-	  version_fragment = "-f ";
 	  // Note that escaping the version is *critical*, because
 	  // it is untrusted data.
-	  version_fragment += backslash_escape_nonalnum(from);
+	  version_fragment = backslash_escape_nonalnum(from);
 	}
 
       std::string cmd =
-	cw::util::ssprintf("/usr/bin/parsechangelog --format rfc822 %s -l %s > %s 2> /dev/null",
-			   version_fragment.c_str(),
+	cw::util::ssprintf("aptitude-changelog-parser %s %s > %s",
 			   filename.c_str(),
+			   version_fragment.c_str(),
 			   rval.get_name().c_str());
 
       if(system(cmd.c_str()) == 0)
@@ -432,7 +429,7 @@ namespace aptitude
        *  The purpose of the queue is to ensure that aptitude only
        *  parses one changelog at a time and doesn't waste a ton of time
        *  starting new changelog parse threads and spawning copies of
-       *  parsechangelog.
+       *  aptitude-changelog-parser.
        *
        *  This is a self-terminating singleton thread.
        */

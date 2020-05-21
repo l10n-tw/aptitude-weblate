@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2019-08-25 22:42+0200\n"
+"POT-Creation-Date: 2020-05-21 04:37+0200\n"
 "PO-Revision-Date: 2012-02-23 16:54+0800\n"
 "Last-Translator: Erçin EKER <ercin.eker@linux.org.tr>\n"
 "Language-Team: Turkish <debian-l10n-turkish@lists.debian.org>\n"
@@ -2088,61 +2088,6 @@ msgstr "Sütun tanımlaması ayrıştırılamıyor"
 msgid "search: You must provide at least one search term\n"
 msgstr "Arama: En az bir arama terimi girmelisiniz\n"
 
-#: src/cmdline/cmdline_show_broken.cc:38
-#, fuzzy, c-format
-#| msgid "but %s is to be installed."
-msgid "but %s is to be installed"
-msgstr "fakat %s kurulacak."
-
-#: src/cmdline/cmdline_show_broken.cc:41
-#, fuzzy, c-format
-#| msgid "but %s is installed and it is kept back."
-msgid "but %s is installed and it is kept back"
-msgstr "fakat %s kurulu ve tutulacak."
-
-#: src/cmdline/cmdline_show_broken.cc:44
-#, fuzzy, c-format
-#| msgid "but %s is installed."
-msgid "but %s is installed"
-msgstr "fakat %s kurulu."
-
-#: src/cmdline/cmdline_show_broken.cc:51
-#, c-format
-msgid "but it is not installable"
-msgstr "fakat kurulabilir değil"
-
-#: src/cmdline/cmdline_show_broken.cc:53
-#, fuzzy, c-format
-msgid "but it is not going to be installed"
-msgstr "fakat %s kurulacak."
-
-#: src/cmdline/cmdline_show_broken.cc:119
-#, fuzzy, c-format
-msgid ""
-" which is a virtual package and is not provided by any available package\n"
-msgstr "%s bir sanal paket, ve şu paket tarafından sağlanıyor:\n"
-
-#: src/cmdline/cmdline_show_broken.cc:123
-#, fuzzy, c-format
-msgid " which is a virtual package, provided by:\n"
-msgstr "%s bir sanal paket, ve şu paket tarafından sağlanıyor:\n"
-
-#: src/cmdline/cmdline_show_broken.cc:143
-#, fuzzy, c-format
-#| msgid "Provides"
-msgid " provides %s=%s"
-msgstr "Sağladığı"
-
-#: src/cmdline/cmdline_show_broken.cc:157
-#, c-format
-msgid " or"
-msgstr " ya da"
-
-#: src/cmdline/cmdline_show_broken.cc:179
-#, c-format
-msgid "The following packages have unmet dependencies:\n"
-msgstr "Aşağıdaki paketler bağımlılıkları karşılamıyor:\n"
-
 #: src/cmdline/cmdline_show.cc:192 src/cmdline/cmdline_show.cc:461
 #: src/cmdline/cmdline_versions.cc:227 src/gtk/resolver.cc:1192
 #: src/solution_fragment.cc:63
@@ -2391,6 +2336,61 @@ msgstr "%s paketi konumlandırılamıyor"
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "%s kalıbı ayrıştırılamıyor"
+
+#: src/cmdline/cmdline_show_broken.cc:38
+#, fuzzy, c-format
+#| msgid "but %s is to be installed."
+msgid "but %s is to be installed"
+msgstr "fakat %s kurulacak."
+
+#: src/cmdline/cmdline_show_broken.cc:41
+#, fuzzy, c-format
+#| msgid "but %s is installed and it is kept back."
+msgid "but %s is installed and it is kept back"
+msgstr "fakat %s kurulu ve tutulacak."
+
+#: src/cmdline/cmdline_show_broken.cc:44
+#, fuzzy, c-format
+#| msgid "but %s is installed."
+msgid "but %s is installed"
+msgstr "fakat %s kurulu."
+
+#: src/cmdline/cmdline_show_broken.cc:51
+#, c-format
+msgid "but it is not installable"
+msgstr "fakat kurulabilir değil"
+
+#: src/cmdline/cmdline_show_broken.cc:53
+#, fuzzy, c-format
+msgid "but it is not going to be installed"
+msgstr "fakat %s kurulacak."
+
+#: src/cmdline/cmdline_show_broken.cc:119
+#, fuzzy, c-format
+msgid ""
+" which is a virtual package and is not provided by any available package\n"
+msgstr "%s bir sanal paket, ve şu paket tarafından sağlanıyor:\n"
+
+#: src/cmdline/cmdline_show_broken.cc:123
+#, fuzzy, c-format
+msgid " which is a virtual package, provided by:\n"
+msgstr "%s bir sanal paket, ve şu paket tarafından sağlanıyor:\n"
+
+#: src/cmdline/cmdline_show_broken.cc:143
+#, fuzzy, c-format
+#| msgid "Provides"
+msgid " provides %s=%s"
+msgstr "Sağladığı"
+
+#: src/cmdline/cmdline_show_broken.cc:157
+#, c-format
+msgid " or"
+msgstr " ya da"
+
+#: src/cmdline/cmdline_show_broken.cc:179
+#, c-format
+msgid "The following packages have unmet dependencies:\n"
+msgstr "Aşağıdaki paketler bağımlılıkları karşılamıyor:\n"
 
 #: src/cmdline/cmdline_simulate.cc:68
 #, c-format
@@ -2825,129 +2825,6 @@ msgstr "[HATA]"
 msgid "Attempt to start a download thread twice!"
 msgstr ""
 
-#: src/generic/apt/aptcache.cc:312
-msgid "Can't open Aptitude extended state file"
-msgstr "Aptitude geniş durum dosyası açılamıyor"
-
-#: src/generic/apt/aptcache.cc:331 src/generic/apt/aptcache.cc:512
-#: src/generic/apt/aptcache.cc:527
-msgid "Reading extended state information"
-msgstr "Geniş durum bilgisi okunuyor"
-
-#: src/generic/apt/aptcache.cc:378
-#, c-format
-msgid ""
-"Package %s had been marked to reinstall, but the file for the current "
-"installed version %s is not available"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:440
-#, c-format
-msgid "Cannot parse user-tags for package: %s: '%s'"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:520
-#, c-format
-msgid ""
-"Problem parsing '%s', is it corrupt or malformed? You can try to recover "
-"from '%s.old'."
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:539 src/generic/apt/aptcache.cc:628
-#: src/generic/apt/aptcache.cc:634
-msgid "Initializing package states"
-msgstr "Paketlerin durumu güncelleniyor"
-
-#: src/generic/apt/aptcache.cc:803
-msgid "Cannot open Aptitude state file"
-msgstr "Aptitude durum dosyası açılamıyor"
-
-#: src/generic/apt/aptcache.cc:817 src/generic/apt/aptcache.cc:942
-#: src/generic/apt/aptcache.cc:948
-msgid "Writing extended state information"
-msgstr "Geniş durum bilgisi yazılıyor"
-
-#: src/generic/apt/aptcache.cc:953
-msgid "Couldn't write state file"
-msgstr "Durum dosyası yazılamıyor"
-
-#: src/generic/apt/aptcache.cc:973
-#, c-format
-msgid "failed to remove %s"
-msgstr "%s kaldırılırken hata oluştu"
-
-#: src/generic/apt/aptcache.cc:981
-#, c-format
-msgid "failed to rename %s to %s"
-msgstr "%s'i %s olarak yeniden adlandırmada hata"
-
-#: src/generic/apt/aptcache.cc:990
-#, c-format
-msgid "couldn't replace %s with %s"
-msgstr "%s %s ile değiştirilemiyor"
-
-#: src/generic/apt/aptcache.cc:1009
-#: src/generic/apt/download_install_manager.cc:247
-msgid ""
-"Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
-msgstr ""
-"Sistem kilidi ele geçirilemiyor!  (Belki başka bir apt ya da dpkg çalışıyor?)"
-
-#: src/generic/apt/aptcache.cc:1012
-msgid "failed to save selections to dpkg database"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:1270 src/generic/apt/aptcache.cc:1306
-#, fuzzy
-#| msgid "Cannot open Aptitude state file"
-msgid "Cannot remove aptitude within aptitude"
-msgstr "Aptitude durum dosyası açılamıyor"
-
-#: src/generic/apt/aptcache.cc:1730
-#, c-format
-msgid "User-tag '%s' already present for %s"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:1746
-#, fuzzy, c-format
-msgid "Could not add user-tag '%s' to package %s"
-msgstr "\"%2$s\" paketi için sürüm \"%1$s\" bulunamıyor\n"
-
-#: src/generic/apt/aptcache.cc:1772
-#, fuzzy, c-format
-msgid "Could not find valid user-tag '%s'"
-msgstr "%s için değişiklik güncesi bulunamıyor"
-
-#: src/generic/apt/aptcache.cc:1788
-#, fuzzy, c-format
-msgid "Could not remove user-tag '%s' from package %s"
-msgstr "\"%2$s\" paketi için sürüm \"%1$s\" bulunamıyor\n"
-
-#: src/generic/apt/aptcache.cc:1866
-msgid "Unable to correct dependencies, some packages cannot be installed"
-msgstr "Bağımlılıklar sağlanamıyor, bazı paketler kurulamıyor"
-
-#: src/generic/apt/aptcache.cc:2548
-msgid "The list of sources could not be read."
-msgstr "Kaynak listesi okunamıyor"
-
-#: src/generic/apt/aptcache.cc:2556
-msgid "The package lists or status file could not be parsed or opened."
-msgstr "Paket listesi ya da durum dosyası anlaşılamadı ya da açılamadı"
-
-#: src/generic/apt/aptcache.cc:2559
-msgid "You may want to update the package lists to correct these missing files"
-msgstr "Bu kayıp dosyalar için paket listesini güncellemek istemelisiniz"
-
-#: src/generic/apt/aptcache.cc:2575
-#, fuzzy
-msgid "Could not create dependency cache"
-msgstr "%s için değişiklik güncesi bulunamıyor"
-
-#: src/generic/apt/aptcache.cc:2585
-msgid "Could not initialize dependency cache"
-msgstr ""
-
 #: src/generic/apt/apt.cc:138
 #, fuzzy, c-format
 msgid "Configuration file '%s' is not correct, please fix it"
@@ -3074,6 +2951,129 @@ msgstr ""
 msgid "Couldn't read list of sources"
 msgstr "Kaynak listesi okunamıyor"
 
+#: src/generic/apt/aptcache.cc:312
+msgid "Can't open Aptitude extended state file"
+msgstr "Aptitude geniş durum dosyası açılamıyor"
+
+#: src/generic/apt/aptcache.cc:331 src/generic/apt/aptcache.cc:512
+#: src/generic/apt/aptcache.cc:527
+msgid "Reading extended state information"
+msgstr "Geniş durum bilgisi okunuyor"
+
+#: src/generic/apt/aptcache.cc:378
+#, c-format
+msgid ""
+"Package %s had been marked to reinstall, but the file for the current "
+"installed version %s is not available"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:440
+#, c-format
+msgid "Cannot parse user-tags for package: %s: '%s'"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:520
+#, c-format
+msgid ""
+"Problem parsing '%s', is it corrupt or malformed? You can try to recover "
+"from '%s.old'."
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:539 src/generic/apt/aptcache.cc:628
+#: src/generic/apt/aptcache.cc:634
+msgid "Initializing package states"
+msgstr "Paketlerin durumu güncelleniyor"
+
+#: src/generic/apt/aptcache.cc:803
+msgid "Cannot open Aptitude state file"
+msgstr "Aptitude durum dosyası açılamıyor"
+
+#: src/generic/apt/aptcache.cc:817 src/generic/apt/aptcache.cc:942
+#: src/generic/apt/aptcache.cc:948
+msgid "Writing extended state information"
+msgstr "Geniş durum bilgisi yazılıyor"
+
+#: src/generic/apt/aptcache.cc:953
+msgid "Couldn't write state file"
+msgstr "Durum dosyası yazılamıyor"
+
+#: src/generic/apt/aptcache.cc:973
+#, c-format
+msgid "failed to remove %s"
+msgstr "%s kaldırılırken hata oluştu"
+
+#: src/generic/apt/aptcache.cc:981
+#, c-format
+msgid "failed to rename %s to %s"
+msgstr "%s'i %s olarak yeniden adlandırmada hata"
+
+#: src/generic/apt/aptcache.cc:990
+#, c-format
+msgid "couldn't replace %s with %s"
+msgstr "%s %s ile değiştirilemiyor"
+
+#: src/generic/apt/aptcache.cc:1009
+#: src/generic/apt/download_install_manager.cc:248
+msgid ""
+"Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
+msgstr ""
+"Sistem kilidi ele geçirilemiyor!  (Belki başka bir apt ya da dpkg çalışıyor?)"
+
+#: src/generic/apt/aptcache.cc:1012
+msgid "failed to save selections to dpkg database"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:1270 src/generic/apt/aptcache.cc:1306
+#, fuzzy
+#| msgid "Cannot open Aptitude state file"
+msgid "Cannot remove aptitude within aptitude"
+msgstr "Aptitude durum dosyası açılamıyor"
+
+#: src/generic/apt/aptcache.cc:1730
+#, c-format
+msgid "User-tag '%s' already present for %s"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:1746
+#, fuzzy, c-format
+msgid "Could not add user-tag '%s' to package %s"
+msgstr "\"%2$s\" paketi için sürüm \"%1$s\" bulunamıyor\n"
+
+#: src/generic/apt/aptcache.cc:1772
+#, fuzzy, c-format
+msgid "Could not find valid user-tag '%s'"
+msgstr "%s için değişiklik güncesi bulunamıyor"
+
+#: src/generic/apt/aptcache.cc:1788
+#, fuzzy, c-format
+msgid "Could not remove user-tag '%s' from package %s"
+msgstr "\"%2$s\" paketi için sürüm \"%1$s\" bulunamıyor\n"
+
+#: src/generic/apt/aptcache.cc:1866
+msgid "Unable to correct dependencies, some packages cannot be installed"
+msgstr "Bağımlılıklar sağlanamıyor, bazı paketler kurulamıyor"
+
+#: src/generic/apt/aptcache.cc:2548
+msgid "The list of sources could not be read."
+msgstr "Kaynak listesi okunamıyor"
+
+#: src/generic/apt/aptcache.cc:2556
+msgid "The package lists or status file could not be parsed or opened."
+msgstr "Paket listesi ya da durum dosyası anlaşılamadı ya da açılamadı"
+
+#: src/generic/apt/aptcache.cc:2559
+msgid "You may want to update the package lists to correct these missing files"
+msgstr "Bu kayıp dosyalar için paket listesini güncellemek istemelisiniz"
+
+#: src/generic/apt/aptcache.cc:2575
+#, fuzzy
+msgid "Could not create dependency cache"
+msgstr "%s için değişiklik güncesi bulunamıyor"
+
+#: src/generic/apt/aptcache.cc:2585
+msgid "Could not initialize dependency cache"
+msgstr ""
+
 #: src/generic/apt/aptitude_resolver.cc:442
 #, c-format
 msgid "Invalid hint \"%s\": expected an action, but found nothing."
@@ -3192,41 +3192,41 @@ msgstr ""
 msgid "Error removing file: %s"
 msgstr "Durum dosyası yazma hatası"
 
-#: src/generic/apt/download_install_manager.cc:65
+#: src/generic/apt/download_install_manager.cc:66
 msgid ""
 "The package cache is not available; unable to download and install packages."
 msgstr "Paket tamponu mevcut değil; paketler indirilip kurulamıyor"
 
-#: src/generic/apt/download_install_manager.cc:90
+#: src/generic/apt/download_install_manager.cc:91
 msgid "Couldn't read source list"
 msgstr "Kaynak listesi okunamıyor"
 
-#: src/generic/apt/download_install_manager.cc:100
+#: src/generic/apt/download_install_manager.cc:101
 msgid "Internal error: couldn't generate list of packages to download"
 msgstr "İç hata: indirilecek paketlerin listesi oluşturulamıyor"
 
-#: src/generic/apt/download_install_manager.cc:103
+#: src/generic/apt/download_install_manager.cc:104
 msgid ""
 "Perhaps the package lists are out of date, please try 'aptitude update' (or "
 "equivalent); otherwise some packages or versions are not available from the "
 "current repository sources"
 msgstr ""
 
-#: src/generic/apt/download_install_manager.cc:130
+#: src/generic/apt/download_install_manager.cc:131
 #: src/generic/apt/download_update_manager.cc:147
 #, fuzzy, c-format
 msgid "Failed to fetch %s: %s"
 msgstr "%s'i %s olarak yeniden adlandırmada hata"
 
-#: src/generic/apt/download_install_manager.cc:139
+#: src/generic/apt/download_install_manager.cc:140
 msgid "Some files failed to download"
 msgstr ""
 
-#: src/generic/apt/download_install_manager.cc:156
+#: src/generic/apt/download_install_manager.cc:157
 msgid "Unable to correct for unavailable packages"
 msgstr "Mevcut olmayan paketler için düzeltme yapılamıyor"
 
-#: src/generic/apt/download_install_manager.cc:162
+#: src/generic/apt/download_install_manager.cc:163
 #, c-format
 msgid ""
 "Unable to fetch some packages; try '-o %s=true' to continue with missing "

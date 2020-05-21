@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude_po_ne\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2019-08-25 22:42+0200\n"
+"POT-Creation-Date: 2020-05-21 04:37+0200\n"
 "PO-Revision-Date: 2012-06-03 12:27+0800\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -2048,57 +2048,6 @@ msgstr "स्तम्भ परिभाषा पद वर्णन गर�
 msgid "search: You must provide at least one search term\n"
 msgstr "खोज्नुहोस्: तपाईँले कम्तिमा एउटा खोज शब्द उपलब्ध गर्नुहोस्\n"
 
-#: src/cmdline/cmdline_show_broken.cc:38
-#, fuzzy, c-format
-msgid "but %s is to be installed"
-msgstr "तर  %s स्थापना हुनुपर्छ ।"
-
-#: src/cmdline/cmdline_show_broken.cc:41
-#, fuzzy, c-format
-msgid "but %s is installed and it is kept back"
-msgstr "%s स्थापना भयो तर यो पछाडि राखियो ।"
-
-#: src/cmdline/cmdline_show_broken.cc:44
-#, fuzzy, c-format
-msgid "but %s is installed"
-msgstr "तर %s स्थापना भयो ।"
-
-#: src/cmdline/cmdline_show_broken.cc:51
-#, c-format
-msgid "but it is not installable"
-msgstr "तर यो स्थापना योग्य छैन"
-
-#: src/cmdline/cmdline_show_broken.cc:53
-#, fuzzy, c-format
-msgid "but it is not going to be installed"
-msgstr "तर  %s स्थापना हुनुपर्छ ।"
-
-#: src/cmdline/cmdline_show_broken.cc:119
-#, fuzzy, c-format
-msgid ""
-" which is a virtual package and is not provided by any available package\n"
-msgstr "\"%s\" द्वारा उपलब्ध गराइएको अवास्तविक प्याकेज हो:\n"
-
-#: src/cmdline/cmdline_show_broken.cc:123
-#, fuzzy, c-format
-msgid " which is a virtual package, provided by:\n"
-msgstr "\"%s\" द्वारा उपलब्ध गराइएको अवास्तविक प्याकेज हो:\n"
-
-#: src/cmdline/cmdline_show_broken.cc:143
-#, fuzzy, c-format
-msgid " provides %s=%s"
-msgstr "प्रदान गर्दछ"
-
-#: src/cmdline/cmdline_show_broken.cc:157
-#, c-format
-msgid " or"
-msgstr " वा"
-
-#: src/cmdline/cmdline_show_broken.cc:179
-#, c-format
-msgid "The following packages have unmet dependencies:\n"
-msgstr "निम्न प्याकेजहरु संग अनुपयोक्त निर्भरताहरू छन्:\n"
-
 #: src/cmdline/cmdline_show.cc:192 src/cmdline/cmdline_show.cc:461
 #: src/cmdline/cmdline_versions.cc:227 src/gtk/resolver.cc:1192
 #: src/solution_fragment.cc:63
@@ -2346,6 +2295,57 @@ msgstr "प्याकेज %s स्थानिय गर्न असक्
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "बान्की %s पद वर्णन गर्न असक्षम भयो"
+
+#: src/cmdline/cmdline_show_broken.cc:38
+#, fuzzy, c-format
+msgid "but %s is to be installed"
+msgstr "तर  %s स्थापना हुनुपर्छ ।"
+
+#: src/cmdline/cmdline_show_broken.cc:41
+#, fuzzy, c-format
+msgid "but %s is installed and it is kept back"
+msgstr "%s स्थापना भयो तर यो पछाडि राखियो ।"
+
+#: src/cmdline/cmdline_show_broken.cc:44
+#, fuzzy, c-format
+msgid "but %s is installed"
+msgstr "तर %s स्थापना भयो ।"
+
+#: src/cmdline/cmdline_show_broken.cc:51
+#, c-format
+msgid "but it is not installable"
+msgstr "तर यो स्थापना योग्य छैन"
+
+#: src/cmdline/cmdline_show_broken.cc:53
+#, fuzzy, c-format
+msgid "but it is not going to be installed"
+msgstr "तर  %s स्थापना हुनुपर्छ ।"
+
+#: src/cmdline/cmdline_show_broken.cc:119
+#, fuzzy, c-format
+msgid ""
+" which is a virtual package and is not provided by any available package\n"
+msgstr "\"%s\" द्वारा उपलब्ध गराइएको अवास्तविक प्याकेज हो:\n"
+
+#: src/cmdline/cmdline_show_broken.cc:123
+#, fuzzy, c-format
+msgid " which is a virtual package, provided by:\n"
+msgstr "\"%s\" द्वारा उपलब्ध गराइएको अवास्तविक प्याकेज हो:\n"
+
+#: src/cmdline/cmdline_show_broken.cc:143
+#, fuzzy, c-format
+msgid " provides %s=%s"
+msgstr "प्रदान गर्दछ"
+
+#: src/cmdline/cmdline_show_broken.cc:157
+#, c-format
+msgid " or"
+msgstr " वा"
+
+#: src/cmdline/cmdline_show_broken.cc:179
+#, c-format
+msgid "The following packages have unmet dependencies:\n"
+msgstr "निम्न प्याकेजहरु संग अनुपयोक्त निर्भरताहरू छन्:\n"
 
 #: src/cmdline/cmdline_simulate.cc:68
 #, c-format
@@ -2780,127 +2780,6 @@ msgstr "[ERROR]"
 msgid "Attempt to start a download thread twice!"
 msgstr ""
 
-#: src/generic/apt/aptcache.cc:312
-msgid "Can't open Aptitude extended state file"
-msgstr "विस्तारित अभिरुचि स्थिति फाइल खोल्न सकिएन"
-
-#: src/generic/apt/aptcache.cc:331 src/generic/apt/aptcache.cc:512
-#: src/generic/apt/aptcache.cc:527
-msgid "Reading extended state information"
-msgstr "विस्तारित राज्य सूचना पढिदैछ"
-
-#: src/generic/apt/aptcache.cc:378
-#, c-format
-msgid ""
-"Package %s had been marked to reinstall, but the file for the current "
-"installed version %s is not available"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:440
-#, c-format
-msgid "Cannot parse user-tags for package: %s: '%s'"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:520
-#, c-format
-msgid ""
-"Problem parsing '%s', is it corrupt or malformed? You can try to recover "
-"from '%s.old'."
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:539 src/generic/apt/aptcache.cc:628
-#: src/generic/apt/aptcache.cc:634
-msgid "Initializing package states"
-msgstr "प्याकेज प्रान्तहरू सुरुवात गरिदैछ"
-
-#: src/generic/apt/aptcache.cc:803
-msgid "Cannot open Aptitude state file"
-msgstr "अभिरुचि स्थिति फाइल खोल्न सकिएन"
-
-#: src/generic/apt/aptcache.cc:817 src/generic/apt/aptcache.cc:942
-#: src/generic/apt/aptcache.cc:948
-msgid "Writing extended state information"
-msgstr "विस्तारित राज्य सूचना लेखिदैछ"
-
-#: src/generic/apt/aptcache.cc:953
-msgid "Couldn't write state file"
-msgstr "राज्य फाइल लेख्न सकिएन"
-
-#: src/generic/apt/aptcache.cc:973
-#, c-format
-msgid "failed to remove %s"
-msgstr "%s हटाउन असफल "
-
-#: src/generic/apt/aptcache.cc:981
-#, c-format
-msgid "failed to rename %s to %s"
-msgstr "%s लाई %s मा पुन:नामकरण गर्न असफल"
-
-#: src/generic/apt/aptcache.cc:990
-#, c-format
-msgid "couldn't replace %s with %s"
-msgstr "%s लाई %s संग बदल्न सकिदैन"
-
-#: src/generic/apt/aptcache.cc:1009
-#: src/generic/apt/download_install_manager.cc:247
-msgid ""
-"Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
-msgstr "प्रणाली ताल्चा पुन:लाभ गर्न सकिदैन!  (संभवतः अर्को apt वा dpkg चलिरहेको हुन्छ ?)"
-
-#: src/generic/apt/aptcache.cc:1012
-msgid "failed to save selections to dpkg database"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:1270 src/generic/apt/aptcache.cc:1306
-#, fuzzy
-msgid "Cannot remove aptitude within aptitude"
-msgstr "अभिरुचि स्थिति फाइल खोल्न सकिएन"
-
-#: src/generic/apt/aptcache.cc:1730
-#, c-format
-msgid "User-tag '%s' already present for %s"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:1746
-#, fuzzy, c-format
-msgid "Could not add user-tag '%s' to package %s"
-msgstr "प्याकेज \"%s\" को लागि एउटा संस्करण \"%s\" फेला पार्न असक्षम भयो\n"
-
-#: src/generic/apt/aptcache.cc:1772
-#, fuzzy, c-format
-msgid "Could not find valid user-tag '%s'"
-msgstr "%s को लागि परिवर्तन लग फेला पार्न सकिदैन"
-
-#: src/generic/apt/aptcache.cc:1788
-#, fuzzy, c-format
-msgid "Could not remove user-tag '%s' from package %s"
-msgstr "प्याकेज \"%s\" को लागि एउटा संस्करण \"%s\" फेला पार्न असक्षम भयो\n"
-
-#: src/generic/apt/aptcache.cc:1866
-msgid "Unable to correct dependencies, some packages cannot be installed"
-msgstr "निर्भरताहरू सही गर्न असक्षम भयो, केही प्याकेजहरू स्थापना हुन सकेन"
-
-#: src/generic/apt/aptcache.cc:2548
-msgid "The list of sources could not be read."
-msgstr "स्रोतहरुको सूचि पढ्न सकिदैन ।"
-
-#: src/generic/apt/aptcache.cc:2556
-msgid "The package lists or status file could not be parsed or opened."
-msgstr "प्याकेज सूचिहरू वा स्थिति फाइल पद वर्णन गर्न सक्दैन वा खोल्न सक्दैन ।"
-
-#: src/generic/apt/aptcache.cc:2559
-msgid "You may want to update the package lists to correct these missing files"
-msgstr "तपाईँ यी हराइरहेका फाइलहरुमा सुधार गर्न प्याकेज सूचिहरुलाई अद्यावधिक गर्न चाहनुहुन्छ"
-
-#: src/generic/apt/aptcache.cc:2575
-#, fuzzy
-msgid "Could not create dependency cache"
-msgstr "%s को लागि परिवर्तन लग फेला पार्न सकिदैन"
-
-#: src/generic/apt/aptcache.cc:2585
-msgid "Could not initialize dependency cache"
-msgstr ""
-
 #: src/generic/apt/apt.cc:138
 #, fuzzy, c-format
 msgid "Configuration file '%s' is not correct, please fix it"
@@ -3026,6 +2905,127 @@ msgstr ""
 msgid "Couldn't read list of sources"
 msgstr "स्रोतहरुको सूचि पढ्न सकिदैन"
 
+#: src/generic/apt/aptcache.cc:312
+msgid "Can't open Aptitude extended state file"
+msgstr "विस्तारित अभिरुचि स्थिति फाइल खोल्न सकिएन"
+
+#: src/generic/apt/aptcache.cc:331 src/generic/apt/aptcache.cc:512
+#: src/generic/apt/aptcache.cc:527
+msgid "Reading extended state information"
+msgstr "विस्तारित राज्य सूचना पढिदैछ"
+
+#: src/generic/apt/aptcache.cc:378
+#, c-format
+msgid ""
+"Package %s had been marked to reinstall, but the file for the current "
+"installed version %s is not available"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:440
+#, c-format
+msgid "Cannot parse user-tags for package: %s: '%s'"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:520
+#, c-format
+msgid ""
+"Problem parsing '%s', is it corrupt or malformed? You can try to recover "
+"from '%s.old'."
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:539 src/generic/apt/aptcache.cc:628
+#: src/generic/apt/aptcache.cc:634
+msgid "Initializing package states"
+msgstr "प्याकेज प्रान्तहरू सुरुवात गरिदैछ"
+
+#: src/generic/apt/aptcache.cc:803
+msgid "Cannot open Aptitude state file"
+msgstr "अभिरुचि स्थिति फाइल खोल्न सकिएन"
+
+#: src/generic/apt/aptcache.cc:817 src/generic/apt/aptcache.cc:942
+#: src/generic/apt/aptcache.cc:948
+msgid "Writing extended state information"
+msgstr "विस्तारित राज्य सूचना लेखिदैछ"
+
+#: src/generic/apt/aptcache.cc:953
+msgid "Couldn't write state file"
+msgstr "राज्य फाइल लेख्न सकिएन"
+
+#: src/generic/apt/aptcache.cc:973
+#, c-format
+msgid "failed to remove %s"
+msgstr "%s हटाउन असफल "
+
+#: src/generic/apt/aptcache.cc:981
+#, c-format
+msgid "failed to rename %s to %s"
+msgstr "%s लाई %s मा पुन:नामकरण गर्न असफल"
+
+#: src/generic/apt/aptcache.cc:990
+#, c-format
+msgid "couldn't replace %s with %s"
+msgstr "%s लाई %s संग बदल्न सकिदैन"
+
+#: src/generic/apt/aptcache.cc:1009
+#: src/generic/apt/download_install_manager.cc:248
+msgid ""
+"Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
+msgstr "प्रणाली ताल्चा पुन:लाभ गर्न सकिदैन!  (संभवतः अर्को apt वा dpkg चलिरहेको हुन्छ ?)"
+
+#: src/generic/apt/aptcache.cc:1012
+msgid "failed to save selections to dpkg database"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:1270 src/generic/apt/aptcache.cc:1306
+#, fuzzy
+msgid "Cannot remove aptitude within aptitude"
+msgstr "अभिरुचि स्थिति फाइल खोल्न सकिएन"
+
+#: src/generic/apt/aptcache.cc:1730
+#, c-format
+msgid "User-tag '%s' already present for %s"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:1746
+#, fuzzy, c-format
+msgid "Could not add user-tag '%s' to package %s"
+msgstr "प्याकेज \"%s\" को लागि एउटा संस्करण \"%s\" फेला पार्न असक्षम भयो\n"
+
+#: src/generic/apt/aptcache.cc:1772
+#, fuzzy, c-format
+msgid "Could not find valid user-tag '%s'"
+msgstr "%s को लागि परिवर्तन लग फेला पार्न सकिदैन"
+
+#: src/generic/apt/aptcache.cc:1788
+#, fuzzy, c-format
+msgid "Could not remove user-tag '%s' from package %s"
+msgstr "प्याकेज \"%s\" को लागि एउटा संस्करण \"%s\" फेला पार्न असक्षम भयो\n"
+
+#: src/generic/apt/aptcache.cc:1866
+msgid "Unable to correct dependencies, some packages cannot be installed"
+msgstr "निर्भरताहरू सही गर्न असक्षम भयो, केही प्याकेजहरू स्थापना हुन सकेन"
+
+#: src/generic/apt/aptcache.cc:2548
+msgid "The list of sources could not be read."
+msgstr "स्रोतहरुको सूचि पढ्न सकिदैन ।"
+
+#: src/generic/apt/aptcache.cc:2556
+msgid "The package lists or status file could not be parsed or opened."
+msgstr "प्याकेज सूचिहरू वा स्थिति फाइल पद वर्णन गर्न सक्दैन वा खोल्न सक्दैन ।"
+
+#: src/generic/apt/aptcache.cc:2559
+msgid "You may want to update the package lists to correct these missing files"
+msgstr "तपाईँ यी हराइरहेका फाइलहरुमा सुधार गर्न प्याकेज सूचिहरुलाई अद्यावधिक गर्न चाहनुहुन्छ"
+
+#: src/generic/apt/aptcache.cc:2575
+#, fuzzy
+msgid "Could not create dependency cache"
+msgstr "%s को लागि परिवर्तन लग फेला पार्न सकिदैन"
+
+#: src/generic/apt/aptcache.cc:2585
+msgid "Could not initialize dependency cache"
+msgstr ""
+
 #: src/generic/apt/aptitude_resolver.cc:442
 #, c-format
 msgid "Invalid hint \"%s\": expected an action, but found nothing."
@@ -3140,41 +3140,41 @@ msgstr ""
 msgid "Error removing file: %s"
 msgstr "राज्य फाइल लेख्दा त्रुटि"
 
-#: src/generic/apt/download_install_manager.cc:65
+#: src/generic/apt/download_install_manager.cc:66
 msgid ""
 "The package cache is not available; unable to download and install packages."
 msgstr "प्याकेज क्यास उपलब्ध छैन; प्याकेजहरू डाउनलोड गर्न र स्थापना गर्न असक्षम भयो ।"
 
-#: src/generic/apt/download_install_manager.cc:90
+#: src/generic/apt/download_install_manager.cc:91
 msgid "Couldn't read source list"
 msgstr "स्रोत सूचि पढ्न सकिदैन"
 
-#: src/generic/apt/download_install_manager.cc:100
+#: src/generic/apt/download_install_manager.cc:101
 msgid "Internal error: couldn't generate list of packages to download"
 msgstr "आन्तरिक त्रुटि: डाउनलोड गर्न प्याकेजहरुको सूचि सिर्जना गर्न सक्दैन"
 
-#: src/generic/apt/download_install_manager.cc:103
+#: src/generic/apt/download_install_manager.cc:104
 msgid ""
 "Perhaps the package lists are out of date, please try 'aptitude update' (or "
 "equivalent); otherwise some packages or versions are not available from the "
 "current repository sources"
 msgstr ""
 
-#: src/generic/apt/download_install_manager.cc:130
+#: src/generic/apt/download_install_manager.cc:131
 #: src/generic/apt/download_update_manager.cc:147
 #, c-format
 msgid "Failed to fetch %s: %s"
 msgstr "%s: %s तान्न असफल भयो"
 
-#: src/generic/apt/download_install_manager.cc:139
+#: src/generic/apt/download_install_manager.cc:140
 msgid "Some files failed to download"
 msgstr ""
 
-#: src/generic/apt/download_install_manager.cc:156
+#: src/generic/apt/download_install_manager.cc:157
 msgid "Unable to correct for unavailable packages"
 msgstr "उपलब्ध नभएको प्याकेजहरुका लागि सुधार गर्न सकिएन "
 
-#: src/generic/apt/download_install_manager.cc:162
+#: src/generic/apt/download_install_manager.cc:163
 #, c-format
 msgid ""
 "Unable to fetch some packages; try '-o %s=true' to continue with missing "
