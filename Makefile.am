@@ -9,7 +9,8 @@ TESTDIRS=@TESTDIRS@
 
 SUBDIRS=buildlib $(SRCDIRS) $(DOCDIRS) po $(TESTDIRS)
 
-dist_bin_SCRIPTS = aptitude-create-state-bundle aptitude-run-state-bundle
+dist_bin_SCRIPTS = aptitude-changelog-parser \
+	aptitude-create-state-bundle aptitude-run-state-bundle
 
 MANPAGE_LOCALES=gl
 
@@ -18,8 +19,8 @@ TLHELPTXTS = help.txt $(wildcard $(srcdir)/help-??.txt) $(wildcard $(srcdir)/hel
 TLDEFAULTS = $(wildcard $(srcdir)/aptitude-defaults.??) $(wildcard $(srcdir)/aptitude-defaults.??_??)
 EXTRA_DIST = config.rpath  ChangeLog.SVN Doxyfile.in aclocal.m4 \
 	FAQ README.BOOST README.CWIDGET README.i18n README.INTERFACES README.NAMING \
-	README.SMART-POINTERS README.THREADS aptitude-hackers-guide.txt \
-	aptitude-defaults section-descriptions \
+	README.SMART-POINTERS README.THREADS README.DOCUMENTATION \
+	aptitude-hackers-guide.txt aptitude-defaults section-descriptions \
 	$(TLDEFAULTS) \
 	$(TLMANPAGES) $(TLHELPTXTS)
 

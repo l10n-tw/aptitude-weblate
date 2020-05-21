@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude 0.8.7-1\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2019-08-25 22:42+0200\n"
+"POT-Creation-Date: 2020-05-21 04:37+0200\n"
 "PO-Revision-Date: 2017-04-23 15:03+0200\n"
 "Last-Translator: Morten Bo Johansen <mbj@mbjnet.dk>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -2224,58 +2224,6 @@ msgstr "%s: Kunne ikke fortolke kolonne-definitioner: '%ls'\n"
 msgid "search: You must provide at least one search term\n"
 msgstr "søg: du skal indtaste mindst én søgeterm\n"
 
-#: src/cmdline/cmdline_show_broken.cc:38
-#, c-format
-msgid "but %s is to be installed"
-msgstr "men %s vil blive installeret"
-
-#: src/cmdline/cmdline_show_broken.cc:41
-#, c-format
-msgid "but %s is installed and it is kept back"
-msgstr "men %s er installeret, og den er tilbageholdt"
-
-#: src/cmdline/cmdline_show_broken.cc:44
-#, c-format
-msgid "but %s is installed"
-msgstr "men %s er installeret"
-
-#: src/cmdline/cmdline_show_broken.cc:51
-#, c-format
-msgid "but it is not installable"
-msgstr "men den kan ikke installeres"
-
-#: src/cmdline/cmdline_show_broken.cc:53
-#, c-format
-msgid "but it is not going to be installed"
-msgstr "men den vil ikke blive installeret"
-
-#: src/cmdline/cmdline_show_broken.cc:119
-#, c-format
-msgid ""
-" which is a virtual package and is not provided by any available package\n"
-msgstr ""
-" som er en virtuel pakke og som ikke leveres af nogen tilgængelig pakke\n"
-
-#: src/cmdline/cmdline_show_broken.cc:123
-#, c-format
-msgid " which is a virtual package, provided by:\n"
-msgstr " som er en virtuel pakke der leveres af:\n"
-
-#: src/cmdline/cmdline_show_broken.cc:143
-#, c-format
-msgid " provides %s=%s"
-msgstr " leverer %s=%s"
-
-#: src/cmdline/cmdline_show_broken.cc:157
-#, c-format
-msgid " or"
-msgstr " eller"
-
-#: src/cmdline/cmdline_show_broken.cc:179
-#, c-format
-msgid "The following packages have unmet dependencies:\n"
-msgstr "Følgende pakker har uopfyldte afhængigheder:\n"
-
 #: src/cmdline/cmdline_show.cc:192 src/cmdline/cmdline_show.cc:461
 #: src/cmdline/cmdline_versions.cc:227 src/gtk/resolver.cc:1192
 #: src/solution_fragment.cc:63
@@ -2523,6 +2471,58 @@ msgstr "Kunne ikke finde pakke %s"
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "Kunne ikke fortolke mønster %s"
+
+#: src/cmdline/cmdline_show_broken.cc:38
+#, c-format
+msgid "but %s is to be installed"
+msgstr "men %s vil blive installeret"
+
+#: src/cmdline/cmdline_show_broken.cc:41
+#, c-format
+msgid "but %s is installed and it is kept back"
+msgstr "men %s er installeret, og den er tilbageholdt"
+
+#: src/cmdline/cmdline_show_broken.cc:44
+#, c-format
+msgid "but %s is installed"
+msgstr "men %s er installeret"
+
+#: src/cmdline/cmdline_show_broken.cc:51
+#, c-format
+msgid "but it is not installable"
+msgstr "men den kan ikke installeres"
+
+#: src/cmdline/cmdline_show_broken.cc:53
+#, c-format
+msgid "but it is not going to be installed"
+msgstr "men den vil ikke blive installeret"
+
+#: src/cmdline/cmdline_show_broken.cc:119
+#, c-format
+msgid ""
+" which is a virtual package and is not provided by any available package\n"
+msgstr ""
+" som er en virtuel pakke og som ikke leveres af nogen tilgængelig pakke\n"
+
+#: src/cmdline/cmdline_show_broken.cc:123
+#, c-format
+msgid " which is a virtual package, provided by:\n"
+msgstr " som er en virtuel pakke der leveres af:\n"
+
+#: src/cmdline/cmdline_show_broken.cc:143
+#, c-format
+msgid " provides %s=%s"
+msgstr " leverer %s=%s"
+
+#: src/cmdline/cmdline_show_broken.cc:157
+#, c-format
+msgid " or"
+msgstr " eller"
+
+#: src/cmdline/cmdline_show_broken.cc:179
+#, c-format
+msgid "The following packages have unmet dependencies:\n"
+msgstr "Følgende pakker har uopfyldte afhængigheder:\n"
 
 #: src/cmdline/cmdline_simulate.cc:68
 #, c-format
@@ -2955,130 +2955,6 @@ msgstr "[FEJL]"
 msgid "Attempt to start a download thread twice!"
 msgstr "Forsøg på at starte en downloadsekvens to gange!"
 
-#: src/generic/apt/aptcache.cc:312
-msgid "Can't open Aptitude extended state file"
-msgstr "Kan ikke åbne Aptitudes fil for udvidet tilstand"
-
-#: src/generic/apt/aptcache.cc:331 src/generic/apt/aptcache.cc:512
-#: src/generic/apt/aptcache.cc:527
-msgid "Reading extended state information"
-msgstr "Læser udvidet tilstandsinformation"
-
-#: src/generic/apt/aptcache.cc:378
-#, c-format
-msgid ""
-"Package %s had been marked to reinstall, but the file for the current "
-"installed version %s is not available"
-msgstr ""
-"Pakken %s er blevet markeret til geninstallering, men filen til den aktuelt "
-"installerede version %s er ikke tilgængelig"
-
-#: src/generic/apt/aptcache.cc:440
-#, c-format
-msgid "Cannot parse user-tags for package: %s: '%s'"
-msgstr "Kan ikke fortolke brugermærkat for pakke: %s: \"%s\""
-
-#: src/generic/apt/aptcache.cc:520
-#, c-format
-msgid ""
-"Problem parsing '%s', is it corrupt or malformed? You can try to recover "
-"from '%s.old'."
-msgstr ""
-"Problem ved fortolkning af '%s', er den ødelagt eller misdannet? Du kan "
-"prøve at genoprette fra '%s.old'."
-
-#: src/generic/apt/aptcache.cc:539 src/generic/apt/aptcache.cc:628
-#: src/generic/apt/aptcache.cc:634
-msgid "Initializing package states"
-msgstr "Klargør pakketilstande"
-
-#: src/generic/apt/aptcache.cc:803
-msgid "Cannot open Aptitude state file"
-msgstr "Kan ikke åbne Aptitudes statusfil"
-
-#: src/generic/apt/aptcache.cc:817 src/generic/apt/aptcache.cc:942
-#: src/generic/apt/aptcache.cc:948
-msgid "Writing extended state information"
-msgstr "Skriver oplysninger om udvidet status"
-
-#: src/generic/apt/aptcache.cc:953
-msgid "Couldn't write state file"
-msgstr "Kunne ikke skrive statusfil"
-
-#: src/generic/apt/aptcache.cc:973
-#, c-format
-msgid "failed to remove %s"
-msgstr "kunne ikke afinstallere %s"
-
-#: src/generic/apt/aptcache.cc:981
-#, c-format
-msgid "failed to rename %s to %s"
-msgstr "kunne ikke omdøbe %s til %s"
-
-#: src/generic/apt/aptcache.cc:990
-#, c-format
-msgid "couldn't replace %s with %s"
-msgstr "kunne ikke erstatte %s med %s"
-
-#: src/generic/apt/aptcache.cc:1009
-#: src/generic/apt/download_install_manager.cc:247
-msgid ""
-"Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
-msgstr ""
-"Kunne ikke gøre krav på systemlåsen! (Måske kører en anden apt eller dpkg?)"
-
-#: src/generic/apt/aptcache.cc:1012
-msgid "failed to save selections to dpkg database"
-msgstr "kunne ikke gemme udvalg i dpkg-database"
-
-#: src/generic/apt/aptcache.cc:1270 src/generic/apt/aptcache.cc:1306
-msgid "Cannot remove aptitude within aptitude"
-msgstr "Kan ikke fjerne aptitude inde fra aptitude"
-
-#: src/generic/apt/aptcache.cc:1730
-#, c-format
-msgid "User-tag '%s' already present for %s"
-msgstr "Brugermærkat \"%s\" findes allerede for %s"
-
-#: src/generic/apt/aptcache.cc:1746
-#, c-format
-msgid "Could not add user-tag '%s' to package %s"
-msgstr "Kunne ikke føje brugermærkatet \"%s\" til pakken %s"
-
-#: src/generic/apt/aptcache.cc:1772
-#, c-format
-msgid "Could not find valid user-tag '%s'"
-msgstr "Kunne ikke finde et gyldigt brugermærkat \"%s\""
-
-#: src/generic/apt/aptcache.cc:1788
-#, c-format
-msgid "Could not remove user-tag '%s' from package %s"
-msgstr "Kunne ikke fjerne brugermærkatet \"%s\" fra pakken %s"
-
-#: src/generic/apt/aptcache.cc:1866
-msgid "Unable to correct dependencies, some packages cannot be installed"
-msgstr "Kunne ikke reparere afhængigheder, visse pakker kan ikke installeres"
-
-#: src/generic/apt/aptcache.cc:2548
-msgid "The list of sources could not be read."
-msgstr "Kildelisten til pakker kunne ikke læses."
-
-#: src/generic/apt/aptcache.cc:2556
-msgid "The package lists or status file could not be parsed or opened."
-msgstr "Pakkelisterne eller statusfilen kunne hverken fortolkes eller åbnes."
-
-#: src/generic/apt/aptcache.cc:2559
-msgid "You may want to update the package lists to correct these missing files"
-msgstr "En opdatering af pakkelisterne vil måske korrigere for manglende filer"
-
-#: src/generic/apt/aptcache.cc:2575
-msgid "Could not create dependency cache"
-msgstr "Kunne ikke danne cache over afhængigheder"
-
-#: src/generic/apt/aptcache.cc:2585
-msgid "Could not initialize dependency cache"
-msgstr "Kunne ikke klargøre cache over afhængigheder"
-
 #: src/generic/apt/apt.cc:138
 #, c-format
 msgid "Configuration file '%s' is not correct, please fix it"
@@ -3204,6 +3080,130 @@ msgstr "non-US"
 msgid "Couldn't read list of sources"
 msgstr "Kunne ikke læse liste over pakkekilder"
 
+#: src/generic/apt/aptcache.cc:312
+msgid "Can't open Aptitude extended state file"
+msgstr "Kan ikke åbne Aptitudes fil for udvidet tilstand"
+
+#: src/generic/apt/aptcache.cc:331 src/generic/apt/aptcache.cc:512
+#: src/generic/apt/aptcache.cc:527
+msgid "Reading extended state information"
+msgstr "Læser udvidet tilstandsinformation"
+
+#: src/generic/apt/aptcache.cc:378
+#, c-format
+msgid ""
+"Package %s had been marked to reinstall, but the file for the current "
+"installed version %s is not available"
+msgstr ""
+"Pakken %s er blevet markeret til geninstallering, men filen til den aktuelt "
+"installerede version %s er ikke tilgængelig"
+
+#: src/generic/apt/aptcache.cc:440
+#, c-format
+msgid "Cannot parse user-tags for package: %s: '%s'"
+msgstr "Kan ikke fortolke brugermærkat for pakke: %s: \"%s\""
+
+#: src/generic/apt/aptcache.cc:520
+#, c-format
+msgid ""
+"Problem parsing '%s', is it corrupt or malformed? You can try to recover "
+"from '%s.old'."
+msgstr ""
+"Problem ved fortolkning af '%s', er den ødelagt eller misdannet? Du kan "
+"prøve at genoprette fra '%s.old'."
+
+#: src/generic/apt/aptcache.cc:539 src/generic/apt/aptcache.cc:628
+#: src/generic/apt/aptcache.cc:634
+msgid "Initializing package states"
+msgstr "Klargør pakketilstande"
+
+#: src/generic/apt/aptcache.cc:803
+msgid "Cannot open Aptitude state file"
+msgstr "Kan ikke åbne Aptitudes statusfil"
+
+#: src/generic/apt/aptcache.cc:817 src/generic/apt/aptcache.cc:942
+#: src/generic/apt/aptcache.cc:948
+msgid "Writing extended state information"
+msgstr "Skriver oplysninger om udvidet status"
+
+#: src/generic/apt/aptcache.cc:953
+msgid "Couldn't write state file"
+msgstr "Kunne ikke skrive statusfil"
+
+#: src/generic/apt/aptcache.cc:973
+#, c-format
+msgid "failed to remove %s"
+msgstr "kunne ikke afinstallere %s"
+
+#: src/generic/apt/aptcache.cc:981
+#, c-format
+msgid "failed to rename %s to %s"
+msgstr "kunne ikke omdøbe %s til %s"
+
+#: src/generic/apt/aptcache.cc:990
+#, c-format
+msgid "couldn't replace %s with %s"
+msgstr "kunne ikke erstatte %s med %s"
+
+#: src/generic/apt/aptcache.cc:1009
+#: src/generic/apt/download_install_manager.cc:248
+msgid ""
+"Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
+msgstr ""
+"Kunne ikke gøre krav på systemlåsen! (Måske kører en anden apt eller dpkg?)"
+
+#: src/generic/apt/aptcache.cc:1012
+msgid "failed to save selections to dpkg database"
+msgstr "kunne ikke gemme udvalg i dpkg-database"
+
+#: src/generic/apt/aptcache.cc:1270 src/generic/apt/aptcache.cc:1306
+msgid "Cannot remove aptitude within aptitude"
+msgstr "Kan ikke fjerne aptitude inde fra aptitude"
+
+#: src/generic/apt/aptcache.cc:1730
+#, c-format
+msgid "User-tag '%s' already present for %s"
+msgstr "Brugermærkat \"%s\" findes allerede for %s"
+
+#: src/generic/apt/aptcache.cc:1746
+#, c-format
+msgid "Could not add user-tag '%s' to package %s"
+msgstr "Kunne ikke føje brugermærkatet \"%s\" til pakken %s"
+
+#: src/generic/apt/aptcache.cc:1772
+#, c-format
+msgid "Could not find valid user-tag '%s'"
+msgstr "Kunne ikke finde et gyldigt brugermærkat \"%s\""
+
+#: src/generic/apt/aptcache.cc:1788
+#, c-format
+msgid "Could not remove user-tag '%s' from package %s"
+msgstr "Kunne ikke fjerne brugermærkatet \"%s\" fra pakken %s"
+
+#: src/generic/apt/aptcache.cc:1866
+msgid "Unable to correct dependencies, some packages cannot be installed"
+msgstr "Kunne ikke reparere afhængigheder, visse pakker kan ikke installeres"
+
+#: src/generic/apt/aptcache.cc:2548
+msgid "The list of sources could not be read."
+msgstr "Kildelisten til pakker kunne ikke læses."
+
+#: src/generic/apt/aptcache.cc:2556
+msgid "The package lists or status file could not be parsed or opened."
+msgstr "Pakkelisterne eller statusfilen kunne hverken fortolkes eller åbnes."
+
+#: src/generic/apt/aptcache.cc:2559
+msgid "You may want to update the package lists to correct these missing files"
+msgstr "En opdatering af pakkelisterne vil måske korrigere for manglende filer"
+
+#: src/generic/apt/aptcache.cc:2575
+msgid "Could not create dependency cache"
+msgstr "Kunne ikke danne cache over afhængigheder"
+
+#: src/generic/apt/aptcache.cc:2585
+msgid "Could not initialize dependency cache"
+msgstr "Kunne ikke klargøre cache over afhængigheder"
+
 #: src/generic/apt/aptitude_resolver.cc:442
 #, c-format
 msgid "Invalid hint \"%s\": expected an action, but found nothing."
@@ -3327,21 +3327,21 @@ msgstr "Vil ikke fjerne fil, det er ikke en regulær fil: %s"
 msgid "Error removing file: %s"
 msgstr "Fejl ved fjernelse af filen: %s"
 
-#: src/generic/apt/download_install_manager.cc:65
+#: src/generic/apt/download_install_manager.cc:66
 msgid ""
 "The package cache is not available; unable to download and install packages."
 msgstr ""
 "Pakkecachen er ikke tilgængelig; kunne ikke hente og installere pakker."
 
-#: src/generic/apt/download_install_manager.cc:90
+#: src/generic/apt/download_install_manager.cc:91
 msgid "Couldn't read source list"
 msgstr "Kunne ikke læse liste over pakkekilder"
 
-#: src/generic/apt/download_install_manager.cc:100
+#: src/generic/apt/download_install_manager.cc:101
 msgid "Internal error: couldn't generate list of packages to download"
 msgstr "Intern fejl: kunne ikke lave en liste over pakker til download"
 
-#: src/generic/apt/download_install_manager.cc:103
+#: src/generic/apt/download_install_manager.cc:104
 msgid ""
 "Perhaps the package lists are out of date, please try 'aptitude update' (or "
 "equivalent); otherwise some packages or versions are not available from the "
@@ -3351,21 +3351,21 @@ msgstr ""
 "tilsvarende). Ellers er visse pakker eller versioner ikke tilgængelige fra "
 "deaktuelle kildearkiver"
 
-#: src/generic/apt/download_install_manager.cc:130
+#: src/generic/apt/download_install_manager.cc:131
 #: src/generic/apt/download_update_manager.cc:147
 #, c-format
 msgid "Failed to fetch %s: %s"
 msgstr "Kunne ikke hente %s: %s"
 
-#: src/generic/apt/download_install_manager.cc:139
+#: src/generic/apt/download_install_manager.cc:140
 msgid "Some files failed to download"
 msgstr "Visse filer kunne ikke hentes"
 
-#: src/generic/apt/download_install_manager.cc:156
+#: src/generic/apt/download_install_manager.cc:157
 msgid "Unable to correct for unavailable packages"
 msgstr "Kan ikke korrigere for utilgængelige pakker"
 
-#: src/generic/apt/download_install_manager.cc:162
+#: src/generic/apt/download_install_manager.cc:163
 #, c-format
 msgid ""
 "Unable to fetch some packages; try '-o %s=true' to continue with missing "

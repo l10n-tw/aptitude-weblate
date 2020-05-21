@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude 0.6.8.2-1\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2019-08-25 22:42+0200\n"
+"POT-Creation-Date: 2020-05-21 04:37+0200\n"
 "PO-Revision-Date: 2013-01-19 16:53+0100\n"
 "Last-Translator: ivarela <ivarela@softastur.org>\n"
 "Language-Team: Asturian <alministradores@softastur.org>\n"
@@ -2212,57 +2212,6 @@ msgstr "Nun pue interpretase la definición de la columna"
 msgid "search: You must provide at least one search term\n"
 msgstr "gueta: Tienes de dar al menos un términu de gueta\n"
 
-#: src/cmdline/cmdline_show_broken.cc:38
-#, fuzzy, c-format
-msgid "but %s is to be installed"
-msgstr "pero %s va instalase."
-
-#: src/cmdline/cmdline_show_broken.cc:41
-#, fuzzy, c-format
-msgid "but %s is installed and it is kept back"
-msgstr "pero %s ta instaláu y reteniu."
-
-#: src/cmdline/cmdline_show_broken.cc:44
-#, fuzzy, c-format
-msgid "but %s is installed"
-msgstr "pero ta instaláu %s."
-
-#: src/cmdline/cmdline_show_broken.cc:51
-#, fuzzy, c-format
-msgid "but it is not installable"
-msgstr "pero nun ye instalable."
-
-#: src/cmdline/cmdline_show_broken.cc:53
-#, fuzzy, c-format
-msgid "but it is not going to be installed"
-msgstr "pero nun va instalase."
-
-#: src/cmdline/cmdline_show_broken.cc:119
-#, fuzzy, c-format
-msgid ""
-" which is a virtual package and is not provided by any available package\n"
-msgstr "%s ye un paquete virtual proporcionáu por:\n"
-
-#: src/cmdline/cmdline_show_broken.cc:123
-#, fuzzy, c-format
-msgid " which is a virtual package, provided by:\n"
-msgstr "%s ye un paquete virtual proporcionáu por:\n"
-
-#: src/cmdline/cmdline_show_broken.cc:143
-#, fuzzy, c-format
-msgid " provides %s=%s"
-msgstr "Proporciona"
-
-#: src/cmdline/cmdline_show_broken.cc:157
-#, c-format
-msgid " or"
-msgstr " o"
-
-#: src/cmdline/cmdline_show_broken.cc:179
-#, c-format
-msgid "The following packages have unmet dependencies:\n"
-msgstr "Los siguientes paquetes tienen dependencies non satisfeches:\n"
-
 #: src/cmdline/cmdline_show.cc:192 src/cmdline/cmdline_show.cc:461
 #: src/cmdline/cmdline_versions.cc:227 src/gtk/resolver.cc:1192
 #: src/solution_fragment.cc:63
@@ -2510,6 +2459,57 @@ msgstr "Nun pue llocalizase paquete %s"
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "Nun pue interpretase'l patrón %s"
+
+#: src/cmdline/cmdline_show_broken.cc:38
+#, fuzzy, c-format
+msgid "but %s is to be installed"
+msgstr "pero %s va instalase."
+
+#: src/cmdline/cmdline_show_broken.cc:41
+#, fuzzy, c-format
+msgid "but %s is installed and it is kept back"
+msgstr "pero %s ta instaláu y reteniu."
+
+#: src/cmdline/cmdline_show_broken.cc:44
+#, fuzzy, c-format
+msgid "but %s is installed"
+msgstr "pero ta instaláu %s."
+
+#: src/cmdline/cmdline_show_broken.cc:51
+#, fuzzy, c-format
+msgid "but it is not installable"
+msgstr "pero nun ye instalable."
+
+#: src/cmdline/cmdline_show_broken.cc:53
+#, fuzzy, c-format
+msgid "but it is not going to be installed"
+msgstr "pero nun va instalase."
+
+#: src/cmdline/cmdline_show_broken.cc:119
+#, fuzzy, c-format
+msgid ""
+" which is a virtual package and is not provided by any available package\n"
+msgstr "%s ye un paquete virtual proporcionáu por:\n"
+
+#: src/cmdline/cmdline_show_broken.cc:123
+#, fuzzy, c-format
+msgid " which is a virtual package, provided by:\n"
+msgstr "%s ye un paquete virtual proporcionáu por:\n"
+
+#: src/cmdline/cmdline_show_broken.cc:143
+#, fuzzy, c-format
+msgid " provides %s=%s"
+msgstr "Proporciona"
+
+#: src/cmdline/cmdline_show_broken.cc:157
+#, c-format
+msgid " or"
+msgstr " o"
+
+#: src/cmdline/cmdline_show_broken.cc:179
+#, c-format
+msgid "The following packages have unmet dependencies:\n"
+msgstr "Los siguientes paquetes tienen dependencies non satisfeches:\n"
 
 #: src/cmdline/cmdline_simulate.cc:68
 #, c-format
@@ -2942,133 +2942,6 @@ msgstr "[FALLU]"
 msgid "Attempt to start a download thread twice!"
 msgstr "¡Intentu de baxar un filu dos vegaes!"
 
-#: src/generic/apt/aptcache.cc:312
-msgid "Can't open Aptitude extended state file"
-msgstr "Nun pue abrise ficheru d'estáu estendíu d'Aptitude"
-
-#: src/generic/apt/aptcache.cc:331 src/generic/apt/aptcache.cc:512
-#: src/generic/apt/aptcache.cc:527
-msgid "Reading extended state information"
-msgstr "Lleendo información d'estáu estendiu"
-
-#: src/generic/apt/aptcache.cc:378
-#, c-format
-msgid ""
-"Package %s had been marked to reinstall, but the file for the current "
-"installed version %s is not available"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:440
-#, c-format
-msgid "Cannot parse user-tags for package: %s: '%s'"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:520
-#, c-format
-msgid ""
-"Problem parsing '%s', is it corrupt or malformed? You can try to recover "
-"from '%s.old'."
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:539 src/generic/apt/aptcache.cc:628
-#: src/generic/apt/aptcache.cc:634
-msgid "Initializing package states"
-msgstr "Aniciando estaos de paquetes"
-
-#: src/generic/apt/aptcache.cc:803
-msgid "Cannot open Aptitude state file"
-msgstr "Nun pue abrise ficheru d'estáu d'Aptitude"
-
-#: src/generic/apt/aptcache.cc:817 src/generic/apt/aptcache.cc:942
-#: src/generic/apt/aptcache.cc:948
-msgid "Writing extended state information"
-msgstr "Escribiendo información d'estáu estendiu"
-
-#: src/generic/apt/aptcache.cc:953
-msgid "Couldn't write state file"
-msgstr "Nun pue escribise ficheru d'estáu"
-
-#: src/generic/apt/aptcache.cc:973
-#, c-format
-msgid "failed to remove %s"
-msgstr "falló desaniciar %s"
-
-#: src/generic/apt/aptcache.cc:981
-#, c-format
-msgid "failed to rename %s to %s"
-msgstr "falló renomar %s a %s"
-
-#: src/generic/apt/aptcache.cc:990
-#, c-format
-msgid "couldn't replace %s with %s"
-msgstr "Nun pue trocase %s con %s"
-
-#: src/generic/apt/aptcache.cc:1009
-#: src/generic/apt/download_install_manager.cc:247
-msgid ""
-"Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
-msgstr ""
-"¡Nun pue volver a obtener el sistema de bloquéu! (¿Quiciabés tas executando "
-"otru apt o dpkg?)"
-
-#: src/generic/apt/aptcache.cc:1012
-msgid "failed to save selections to dpkg database"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:1270 src/generic/apt/aptcache.cc:1306
-#, fuzzy
-msgid "Cannot remove aptitude within aptitude"
-msgstr "Nun pue abrise ficheru d'estáu d'Aptitude"
-
-#: src/generic/apt/aptcache.cc:1730
-#, c-format
-msgid "User-tag '%s' already present for %s"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:1746
-#, fuzzy, c-format
-msgid "Could not add user-tag '%s' to package %s"
-msgstr "Amestando etiqueta d'usuariu \"%s\" al paquete \"%s\".\n"
-
-#: src/generic/apt/aptcache.cc:1772
-#, fuzzy, c-format
-msgid "Could not find valid user-tag '%s'"
-msgstr "Nun pue atopase la xera «%s»"
-
-#: src/generic/apt/aptcache.cc:1788
-#, fuzzy, c-format
-msgid "Could not remove user-tag '%s' from package %s"
-msgstr "Desaniciando etiqueta d'usariu \"%s\" del paquete \"%s\".\n"
-
-#: src/generic/apt/aptcache.cc:1866
-msgid "Unable to correct dependencies, some packages cannot be installed"
-msgstr ""
-"Nun puen correxise les dependencies, dalgunos paquetes nun puen instalase"
-
-#: src/generic/apt/aptcache.cc:2548
-msgid "The list of sources could not be read."
-msgstr "Nun pue lleesela llista de fontes"
-
-#: src/generic/apt/aptcache.cc:2556
-msgid "The package lists or status file could not be parsed or opened."
-msgstr ""
-"Les llistes de paquetes o ficheru d'estáu nun pue interpretase o abrise."
-
-#: src/generic/apt/aptcache.cc:2559
-msgid "You may want to update the package lists to correct these missing files"
-msgstr ""
-"Quiciabes quies anovar la llista de paquetes pa correxir esos ficheros que "
-"falten"
-
-#: src/generic/apt/aptcache.cc:2575
-#, fuzzy
-msgid "Could not create dependency cache"
-msgstr "Nun pue facese chroot en %s pa %s"
-
-#: src/generic/apt/aptcache.cc:2585
-msgid "Could not initialize dependency cache"
-msgstr ""
-
 #: src/generic/apt/apt.cc:138
 #, fuzzy, c-format
 msgid "Configuration file '%s' is not correct, please fix it"
@@ -3197,6 +3070,133 @@ msgstr "non-EE.XX."
 msgid "Couldn't read list of sources"
 msgstr "Nun pue lleese llista de fontes"
 
+#: src/generic/apt/aptcache.cc:312
+msgid "Can't open Aptitude extended state file"
+msgstr "Nun pue abrise ficheru d'estáu estendíu d'Aptitude"
+
+#: src/generic/apt/aptcache.cc:331 src/generic/apt/aptcache.cc:512
+#: src/generic/apt/aptcache.cc:527
+msgid "Reading extended state information"
+msgstr "Lleendo información d'estáu estendiu"
+
+#: src/generic/apt/aptcache.cc:378
+#, c-format
+msgid ""
+"Package %s had been marked to reinstall, but the file for the current "
+"installed version %s is not available"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:440
+#, c-format
+msgid "Cannot parse user-tags for package: %s: '%s'"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:520
+#, c-format
+msgid ""
+"Problem parsing '%s', is it corrupt or malformed? You can try to recover "
+"from '%s.old'."
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:539 src/generic/apt/aptcache.cc:628
+#: src/generic/apt/aptcache.cc:634
+msgid "Initializing package states"
+msgstr "Aniciando estaos de paquetes"
+
+#: src/generic/apt/aptcache.cc:803
+msgid "Cannot open Aptitude state file"
+msgstr "Nun pue abrise ficheru d'estáu d'Aptitude"
+
+#: src/generic/apt/aptcache.cc:817 src/generic/apt/aptcache.cc:942
+#: src/generic/apt/aptcache.cc:948
+msgid "Writing extended state information"
+msgstr "Escribiendo información d'estáu estendiu"
+
+#: src/generic/apt/aptcache.cc:953
+msgid "Couldn't write state file"
+msgstr "Nun pue escribise ficheru d'estáu"
+
+#: src/generic/apt/aptcache.cc:973
+#, c-format
+msgid "failed to remove %s"
+msgstr "falló desaniciar %s"
+
+#: src/generic/apt/aptcache.cc:981
+#, c-format
+msgid "failed to rename %s to %s"
+msgstr "falló renomar %s a %s"
+
+#: src/generic/apt/aptcache.cc:990
+#, c-format
+msgid "couldn't replace %s with %s"
+msgstr "Nun pue trocase %s con %s"
+
+#: src/generic/apt/aptcache.cc:1009
+#: src/generic/apt/download_install_manager.cc:248
+msgid ""
+"Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
+msgstr ""
+"¡Nun pue volver a obtener el sistema de bloquéu! (¿Quiciabés tas executando "
+"otru apt o dpkg?)"
+
+#: src/generic/apt/aptcache.cc:1012
+msgid "failed to save selections to dpkg database"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:1270 src/generic/apt/aptcache.cc:1306
+#, fuzzy
+msgid "Cannot remove aptitude within aptitude"
+msgstr "Nun pue abrise ficheru d'estáu d'Aptitude"
+
+#: src/generic/apt/aptcache.cc:1730
+#, c-format
+msgid "User-tag '%s' already present for %s"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:1746
+#, fuzzy, c-format
+msgid "Could not add user-tag '%s' to package %s"
+msgstr "Amestando etiqueta d'usuariu \"%s\" al paquete \"%s\".\n"
+
+#: src/generic/apt/aptcache.cc:1772
+#, fuzzy, c-format
+msgid "Could not find valid user-tag '%s'"
+msgstr "Nun pue atopase la xera «%s»"
+
+#: src/generic/apt/aptcache.cc:1788
+#, fuzzy, c-format
+msgid "Could not remove user-tag '%s' from package %s"
+msgstr "Desaniciando etiqueta d'usariu \"%s\" del paquete \"%s\".\n"
+
+#: src/generic/apt/aptcache.cc:1866
+msgid "Unable to correct dependencies, some packages cannot be installed"
+msgstr ""
+"Nun puen correxise les dependencies, dalgunos paquetes nun puen instalase"
+
+#: src/generic/apt/aptcache.cc:2548
+msgid "The list of sources could not be read."
+msgstr "Nun pue lleesela llista de fontes"
+
+#: src/generic/apt/aptcache.cc:2556
+msgid "The package lists or status file could not be parsed or opened."
+msgstr ""
+"Les llistes de paquetes o ficheru d'estáu nun pue interpretase o abrise."
+
+#: src/generic/apt/aptcache.cc:2559
+msgid "You may want to update the package lists to correct these missing files"
+msgstr ""
+"Quiciabes quies anovar la llista de paquetes pa correxir esos ficheros que "
+"falten"
+
+#: src/generic/apt/aptcache.cc:2575
+#, fuzzy
+msgid "Could not create dependency cache"
+msgstr "Nun pue facese chroot en %s pa %s"
+
+#: src/generic/apt/aptcache.cc:2585
+msgid "Could not initialize dependency cache"
+msgstr ""
+
 #: src/generic/apt/aptitude_resolver.cc:442
 #, c-format
 msgid "Invalid hint \"%s\": expected an action, but found nothing."
@@ -3322,43 +3322,43 @@ msgstr ""
 msgid "Error removing file: %s"
 msgstr "Fallu escribiendo nel ficheru d'estáu"
 
-#: src/generic/apt/download_install_manager.cc:65
+#: src/generic/apt/download_install_manager.cc:66
 msgid ""
 "The package cache is not available; unable to download and install packages."
 msgstr ""
 "La caché de paquetes nun ta disponible; nun puen baxase ya instalase "
 "paquetes."
 
-#: src/generic/apt/download_install_manager.cc:90
+#: src/generic/apt/download_install_manager.cc:91
 msgid "Couldn't read source list"
 msgstr "Nun pue lleese llista de fontes"
 
-#: src/generic/apt/download_install_manager.cc:100
+#: src/generic/apt/download_install_manager.cc:101
 msgid "Internal error: couldn't generate list of packages to download"
 msgstr "Fallu internu: nun pue xenerase la llista de paquetes a baxar"
 
-#: src/generic/apt/download_install_manager.cc:103
+#: src/generic/apt/download_install_manager.cc:104
 msgid ""
 "Perhaps the package lists are out of date, please try 'aptitude update' (or "
 "equivalent); otherwise some packages or versions are not available from the "
 "current repository sources"
 msgstr ""
 
-#: src/generic/apt/download_install_manager.cc:130
+#: src/generic/apt/download_install_manager.cc:131
 #: src/generic/apt/download_update_manager.cc:147
 #, c-format
 msgid "Failed to fetch %s: %s"
 msgstr "Falló algamar %s: %s"
 
-#: src/generic/apt/download_install_manager.cc:139
+#: src/generic/apt/download_install_manager.cc:140
 msgid "Some files failed to download"
 msgstr "Dalgunos ficheros fallaron al descargar"
 
-#: src/generic/apt/download_install_manager.cc:156
+#: src/generic/apt/download_install_manager.cc:157
 msgid "Unable to correct for unavailable packages"
 msgstr "Nun puen correxise los paquetes nun disponibles"
 
-#: src/generic/apt/download_install_manager.cc:162
+#: src/generic/apt/download_install_manager.cc:163
 #, c-format
 msgid ""
 "Unable to fetch some packages; try '-o %s=true' to continue with missing "

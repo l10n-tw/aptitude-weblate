@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aptitude 0.4.11\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
-"POT-Creation-Date: 2019-08-25 22:42+0200\n"
+"POT-Creation-Date: 2020-05-21 04:37+0200\n"
 "PO-Revision-Date: 2012-06-03 12:23+0800\n"
 "Last-Translator: Javier Fernandez-Sanguino <jfs@debian.org>\n"
 "Language-Team: Debian-l10n-Spanish <debian-l10n-spanish@lists.debian.org>\n"
@@ -2258,57 +2258,6 @@ msgstr "No se pudo interpretar la definición de la columna"
 msgid "search: You must provide at least one search term\n"
 msgstr "búsqueda: Debe proporcionar al menos una término de búsqueda\n"
 
-#: src/cmdline/cmdline_show_broken.cc:38
-#, fuzzy, c-format
-msgid "but %s is to be installed"
-msgstr "pero se va a instalar %s."
-
-#: src/cmdline/cmdline_show_broken.cc:41
-#, fuzzy, c-format
-msgid "but %s is installed and it is kept back"
-msgstr "pero %s está instalado y retenido."
-
-#: src/cmdline/cmdline_show_broken.cc:44
-#, fuzzy, c-format
-msgid "but %s is installed"
-msgstr "pero está instalado %s."
-
-#: src/cmdline/cmdline_show_broken.cc:51
-#, c-format
-msgid "but it is not installable"
-msgstr "pero no es instalable"
-
-#: src/cmdline/cmdline_show_broken.cc:53
-#, fuzzy, c-format
-msgid "but it is not going to be installed"
-msgstr "pero no será instalado."
-
-#: src/cmdline/cmdline_show_broken.cc:119
-#, fuzzy, c-format
-msgid ""
-" which is a virtual package and is not provided by any available package\n"
-msgstr "%s es un paquete virtual proporcionado por:\n"
-
-#: src/cmdline/cmdline_show_broken.cc:123
-#, fuzzy, c-format
-msgid " which is a virtual package, provided by:\n"
-msgstr "%s es un paquete virtual proporcionado por:\n"
-
-#: src/cmdline/cmdline_show_broken.cc:143
-#, fuzzy, c-format
-msgid " provides %s=%s"
-msgstr "Proporciona"
-
-#: src/cmdline/cmdline_show_broken.cc:157
-#, c-format
-msgid " or"
-msgstr " o"
-
-#: src/cmdline/cmdline_show_broken.cc:179
-#, c-format
-msgid "The following packages have unmet dependencies:\n"
-msgstr "No se satisfacen las dependencias de los siguientes paquetes:\n"
-
 #: src/cmdline/cmdline_show.cc:192 src/cmdline/cmdline_show.cc:461
 #: src/cmdline/cmdline_versions.cc:227 src/gtk/resolver.cc:1192
 #: src/solution_fragment.cc:63
@@ -2556,6 +2505,57 @@ msgstr "No se pudo localizar el paquete %s"
 #, c-format
 msgid "Unable to parse pattern %s"
 msgstr "No se pudo interpretar el patrón %s"
+
+#: src/cmdline/cmdline_show_broken.cc:38
+#, fuzzy, c-format
+msgid "but %s is to be installed"
+msgstr "pero se va a instalar %s."
+
+#: src/cmdline/cmdline_show_broken.cc:41
+#, fuzzy, c-format
+msgid "but %s is installed and it is kept back"
+msgstr "pero %s está instalado y retenido."
+
+#: src/cmdline/cmdline_show_broken.cc:44
+#, fuzzy, c-format
+msgid "but %s is installed"
+msgstr "pero está instalado %s."
+
+#: src/cmdline/cmdline_show_broken.cc:51
+#, c-format
+msgid "but it is not installable"
+msgstr "pero no es instalable"
+
+#: src/cmdline/cmdline_show_broken.cc:53
+#, fuzzy, c-format
+msgid "but it is not going to be installed"
+msgstr "pero no será instalado."
+
+#: src/cmdline/cmdline_show_broken.cc:119
+#, fuzzy, c-format
+msgid ""
+" which is a virtual package and is not provided by any available package\n"
+msgstr "%s es un paquete virtual proporcionado por:\n"
+
+#: src/cmdline/cmdline_show_broken.cc:123
+#, fuzzy, c-format
+msgid " which is a virtual package, provided by:\n"
+msgstr "%s es un paquete virtual proporcionado por:\n"
+
+#: src/cmdline/cmdline_show_broken.cc:143
+#, fuzzy, c-format
+msgid " provides %s=%s"
+msgstr "Proporciona"
+
+#: src/cmdline/cmdline_show_broken.cc:157
+#, c-format
+msgid " or"
+msgstr " o"
+
+#: src/cmdline/cmdline_show_broken.cc:179
+#, c-format
+msgid "The following packages have unmet dependencies:\n"
+msgstr "No se satisfacen las dependencias de los siguientes paquetes:\n"
 
 #: src/cmdline/cmdline_simulate.cc:68
 #, c-format
@@ -2990,134 +2990,6 @@ msgstr "[ERROR]"
 msgid "Attempt to start a download thread twice!"
 msgstr "Intento de iniciar una segunda descarga."
 
-#: src/generic/apt/aptcache.cc:312
-msgid "Can't open Aptitude extended state file"
-msgstr "No se puede abrir el fichero de estado extendido de Aptitude"
-
-#: src/generic/apt/aptcache.cc:331 src/generic/apt/aptcache.cc:512
-#: src/generic/apt/aptcache.cc:527
-msgid "Reading extended state information"
-msgstr "Leyendo la información de estado extendido"
-
-#: src/generic/apt/aptcache.cc:378
-#, c-format
-msgid ""
-"Package %s had been marked to reinstall, but the file for the current "
-"installed version %s is not available"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:440
-#, c-format
-msgid "Cannot parse user-tags for package: %s: '%s'"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:520
-#, c-format
-msgid ""
-"Problem parsing '%s', is it corrupt or malformed? You can try to recover "
-"from '%s.old'."
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:539 src/generic/apt/aptcache.cc:628
-#: src/generic/apt/aptcache.cc:634
-msgid "Initializing package states"
-msgstr "Inicializando el estado de los paquetes"
-
-#: src/generic/apt/aptcache.cc:803
-msgid "Cannot open Aptitude state file"
-msgstr "No se puede abrir el fichero de estado de Aptitude"
-
-#: src/generic/apt/aptcache.cc:817 src/generic/apt/aptcache.cc:942
-#: src/generic/apt/aptcache.cc:948
-msgid "Writing extended state information"
-msgstr "Escribiendo información de estado extendido"
-
-#: src/generic/apt/aptcache.cc:953
-msgid "Couldn't write state file"
-msgstr "No se pudo escribir el fichero de estado"
-
-#: src/generic/apt/aptcache.cc:973
-#, c-format
-msgid "failed to remove %s"
-msgstr "No se pudo eliminar %s"
-
-#: src/generic/apt/aptcache.cc:981
-#, c-format
-msgid "failed to rename %s to %s"
-msgstr "Se produjo un fallo al renombrar %s a %s"
-
-#: src/generic/apt/aptcache.cc:990
-#, c-format
-msgid "couldn't replace %s with %s"
-msgstr "No se pudo reemplazar %s con %s"
-
-#: src/generic/apt/aptcache.cc:1009
-#: src/generic/apt/download_install_manager.cc:247
-msgid ""
-"Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
-msgstr ""
-"¡No se puede volver a obtener el sistema de bloqueo! (¿Quizá se está "
-"ejecutando otro apt o dpkg?)"
-
-#: src/generic/apt/aptcache.cc:1012
-msgid "failed to save selections to dpkg database"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:1270 src/generic/apt/aptcache.cc:1306
-#, fuzzy
-msgid "Cannot remove aptitude within aptitude"
-msgstr "No se puede abrir el fichero de estado de Aptitude"
-
-#: src/generic/apt/aptcache.cc:1730
-#, c-format
-msgid "User-tag '%s' already present for %s"
-msgstr ""
-
-#: src/generic/apt/aptcache.cc:1746
-#, fuzzy, c-format
-msgid "Could not add user-tag '%s' to package %s"
-msgstr "Añadiendo la marca de usuario «%s» al paquete «%s».\n"
-
-#: src/generic/apt/aptcache.cc:1772
-#, fuzzy, c-format
-msgid "Could not find valid user-tag '%s'"
-msgstr "No se puede encontrar el registro de cambios para %s"
-
-#: src/generic/apt/aptcache.cc:1788
-#, fuzzy, c-format
-msgid "Could not remove user-tag '%s' from package %s"
-msgstr "Eliminando la marca de usuario «%s» del paquete «%s».\n"
-
-#: src/generic/apt/aptcache.cc:1866
-msgid "Unable to correct dependencies, some packages cannot be installed"
-msgstr ""
-"No ha sido posible corregir las dependencias, no se pueden instalar algunos "
-"de los paquetes"
-
-#: src/generic/apt/aptcache.cc:2548
-msgid "The list of sources could not be read."
-msgstr "No se pudo leer la lista de fuentes."
-
-#: src/generic/apt/aptcache.cc:2556
-msgid "The package lists or status file could not be parsed or opened."
-msgstr ""
-"No se pudo abrir o interpretar las listas de paquetes o el fichero de estado."
-
-#: src/generic/apt/aptcache.cc:2559
-msgid "You may want to update the package lists to correct these missing files"
-msgstr ""
-"Puede que quiera actualizar las listas de paquetes para corregir los "
-"ficheros que faltan"
-
-#: src/generic/apt/aptcache.cc:2575
-#, fuzzy
-msgid "Could not create dependency cache"
-msgstr "No se puede encontrar el registro de cambios para %s"
-
-#: src/generic/apt/aptcache.cc:2585
-msgid "Could not initialize dependency cache"
-msgstr ""
-
 #: src/generic/apt/apt.cc:138
 #, fuzzy, c-format
 msgid "Configuration file '%s' is not correct, please fix it"
@@ -3247,6 +3119,134 @@ msgstr ""
 msgid "Couldn't read list of sources"
 msgstr "No se pudo leer la lista de fuentes"
 
+#: src/generic/apt/aptcache.cc:312
+msgid "Can't open Aptitude extended state file"
+msgstr "No se puede abrir el fichero de estado extendido de Aptitude"
+
+#: src/generic/apt/aptcache.cc:331 src/generic/apt/aptcache.cc:512
+#: src/generic/apt/aptcache.cc:527
+msgid "Reading extended state information"
+msgstr "Leyendo la información de estado extendido"
+
+#: src/generic/apt/aptcache.cc:378
+#, c-format
+msgid ""
+"Package %s had been marked to reinstall, but the file for the current "
+"installed version %s is not available"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:440
+#, c-format
+msgid "Cannot parse user-tags for package: %s: '%s'"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:520
+#, c-format
+msgid ""
+"Problem parsing '%s', is it corrupt or malformed? You can try to recover "
+"from '%s.old'."
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:539 src/generic/apt/aptcache.cc:628
+#: src/generic/apt/aptcache.cc:634
+msgid "Initializing package states"
+msgstr "Inicializando el estado de los paquetes"
+
+#: src/generic/apt/aptcache.cc:803
+msgid "Cannot open Aptitude state file"
+msgstr "No se puede abrir el fichero de estado de Aptitude"
+
+#: src/generic/apt/aptcache.cc:817 src/generic/apt/aptcache.cc:942
+#: src/generic/apt/aptcache.cc:948
+msgid "Writing extended state information"
+msgstr "Escribiendo información de estado extendido"
+
+#: src/generic/apt/aptcache.cc:953
+msgid "Couldn't write state file"
+msgstr "No se pudo escribir el fichero de estado"
+
+#: src/generic/apt/aptcache.cc:973
+#, c-format
+msgid "failed to remove %s"
+msgstr "No se pudo eliminar %s"
+
+#: src/generic/apt/aptcache.cc:981
+#, c-format
+msgid "failed to rename %s to %s"
+msgstr "Se produjo un fallo al renombrar %s a %s"
+
+#: src/generic/apt/aptcache.cc:990
+#, c-format
+msgid "couldn't replace %s with %s"
+msgstr "No se pudo reemplazar %s con %s"
+
+#: src/generic/apt/aptcache.cc:1009
+#: src/generic/apt/download_install_manager.cc:248
+msgid ""
+"Could not regain the system lock!  (Perhaps another apt or dpkg is running?)"
+msgstr ""
+"¡No se puede volver a obtener el sistema de bloqueo! (¿Quizá se está "
+"ejecutando otro apt o dpkg?)"
+
+#: src/generic/apt/aptcache.cc:1012
+msgid "failed to save selections to dpkg database"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:1270 src/generic/apt/aptcache.cc:1306
+#, fuzzy
+msgid "Cannot remove aptitude within aptitude"
+msgstr "No se puede abrir el fichero de estado de Aptitude"
+
+#: src/generic/apt/aptcache.cc:1730
+#, c-format
+msgid "User-tag '%s' already present for %s"
+msgstr ""
+
+#: src/generic/apt/aptcache.cc:1746
+#, fuzzy, c-format
+msgid "Could not add user-tag '%s' to package %s"
+msgstr "Añadiendo la marca de usuario «%s» al paquete «%s».\n"
+
+#: src/generic/apt/aptcache.cc:1772
+#, fuzzy, c-format
+msgid "Could not find valid user-tag '%s'"
+msgstr "No se puede encontrar el registro de cambios para %s"
+
+#: src/generic/apt/aptcache.cc:1788
+#, fuzzy, c-format
+msgid "Could not remove user-tag '%s' from package %s"
+msgstr "Eliminando la marca de usuario «%s» del paquete «%s».\n"
+
+#: src/generic/apt/aptcache.cc:1866
+msgid "Unable to correct dependencies, some packages cannot be installed"
+msgstr ""
+"No ha sido posible corregir las dependencias, no se pueden instalar algunos "
+"de los paquetes"
+
+#: src/generic/apt/aptcache.cc:2548
+msgid "The list of sources could not be read."
+msgstr "No se pudo leer la lista de fuentes."
+
+#: src/generic/apt/aptcache.cc:2556
+msgid "The package lists or status file could not be parsed or opened."
+msgstr ""
+"No se pudo abrir o interpretar las listas de paquetes o el fichero de estado."
+
+#: src/generic/apt/aptcache.cc:2559
+msgid "You may want to update the package lists to correct these missing files"
+msgstr ""
+"Puede que quiera actualizar las listas de paquetes para corregir los "
+"ficheros que faltan"
+
+#: src/generic/apt/aptcache.cc:2575
+#, fuzzy
+msgid "Could not create dependency cache"
+msgstr "No se puede encontrar el registro de cambios para %s"
+
+#: src/generic/apt/aptcache.cc:2585
+msgid "Could not initialize dependency cache"
+msgstr ""
+
 #: src/generic/apt/aptitude_resolver.cc:442
 #, c-format
 msgid "Invalid hint \"%s\": expected an action, but found nothing."
@@ -3361,43 +3361,43 @@ msgstr ""
 msgid "Error removing file: %s"
 msgstr "Error al escribir el fichero de estado"
 
-#: src/generic/apt/download_install_manager.cc:65
+#: src/generic/apt/download_install_manager.cc:66
 msgid ""
 "The package cache is not available; unable to download and install packages."
 msgstr ""
 "No está disponible el almacén de paquetes. No se puede descargar e instalar "
 "los paquetes."
 
-#: src/generic/apt/download_install_manager.cc:90
+#: src/generic/apt/download_install_manager.cc:91
 msgid "Couldn't read source list"
 msgstr "No se pudo leer la lista de fuentes"
 
-#: src/generic/apt/download_install_manager.cc:100
+#: src/generic/apt/download_install_manager.cc:101
 msgid "Internal error: couldn't generate list of packages to download"
 msgstr "Error interno: no se pudo generar la lista de paquetes a descargar"
 
-#: src/generic/apt/download_install_manager.cc:103
+#: src/generic/apt/download_install_manager.cc:104
 msgid ""
 "Perhaps the package lists are out of date, please try 'aptitude update' (or "
 "equivalent); otherwise some packages or versions are not available from the "
 "current repository sources"
 msgstr ""
 
-#: src/generic/apt/download_install_manager.cc:130
+#: src/generic/apt/download_install_manager.cc:131
 #: src/generic/apt/download_update_manager.cc:147
 #, c-format
 msgid "Failed to fetch %s: %s"
 msgstr "Se produjo un fallo al descargar %s: %s"
 
-#: src/generic/apt/download_install_manager.cc:139
+#: src/generic/apt/download_install_manager.cc:140
 msgid "Some files failed to download"
 msgstr ""
 
-#: src/generic/apt/download_install_manager.cc:156
+#: src/generic/apt/download_install_manager.cc:157
 msgid "Unable to correct for unavailable packages"
 msgstr "Incapaz de corregir los paquetes no disponibles"
 
-#: src/generic/apt/download_install_manager.cc:162
+#: src/generic/apt/download_install_manager.cc:163
 #, c-format
 msgid ""
 "Unable to fetch some packages; try '-o %s=true' to continue with missing "

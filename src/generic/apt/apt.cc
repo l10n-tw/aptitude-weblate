@@ -1724,8 +1724,8 @@ namespace aptitude
 	  return;
 	}
 
-      pkgDPkgPM pm(*apt_cache_file);
-      pm.GetArchives(&fetcher, &l, apt_package_records);
+      std::unique_ptr<pkgPackageManager> pm(_system->CreatePM(*apt_cache_file));
+      pm->GetArchives(&fetcher, &l, apt_package_records);
       if (_error->PendingError())
 	return;
 

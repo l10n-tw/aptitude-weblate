@@ -1,3 +1,57 @@
+[2020-05-21]
+Version 0.8.13
+
+- Internal changes:
+
+  * Adjust for apt 1.9.11
+
+    pkgDPkgPM should not be used directly, use _system->CreatePM()
+    instead; also compare map_pointer in cache against new
+    MapPointer() method instead of Index().
+
+    (Patch by Julian Andres Klode; from the 0.8.12-2 upload; Closes: #953306)
+
+  * Handle _error becoming a smart pointer thingy
+
+    This should be fixed nicer in apt, so that we can use _error again
+    somehow, as _GetErrorObj() is not really part of the API (but the
+    ABI).
+
+    (Patch by Julian Andres Klode; from the 0.8.12-3 upload)
+
+  * Switch from libparse-debianchangelog-perl to libdpkg-perl
+
+    The former was merged into the latter some time ago, with the main
+    difference being the lack of some of the output formats that are not
+    being used by aptitude.
+
+    This seems to have been attempted in the past, but was reverted due to
+    performance problems. The performance from current libdpkg-perl should
+    be comparable.
+
+    We use the perl module directly via a new aptitude-changelog-parser
+    wrapper to avoid pulling dpkg-dev and its dependencies. This new
+    wrapper will also make sure the module is available before proceeding.
+
+    (Patch by Guillem Jover; Closes: #934135)
+
+  * Rename README to README.DOCUMENTATION.
+
+- Translation updates:
+
+  * po/nl.po: Dutch program translation by Frans Spiesschaert (Closes:
+    #909687, #950541, #955506)
+
+  * aptitude-defaults.ru: Russian sections translation by Sergey
+    Alyoshin (Closes: #914786)
+
+  * doc/po4a/po/it.po: Italian documentation translation by Beatrice
+    Torracca (Closes: #959895)
+
+  * doc/po4a/po/fr.po: French documentation translation by Jean-Pierre
+    Giraud (Closes: #942094)
+
+
 [2019-08-25]
 Version 0.8.12
 

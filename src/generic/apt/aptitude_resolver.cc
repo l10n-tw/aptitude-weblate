@@ -1085,7 +1085,7 @@ void aptitude_resolver::add_default_resolution_score(const pkgCache::DepIterator
   pkgCache::VerIterator instVer(*cache, NULL);
 
   // See if we have a match that's not through a Provides.
-  for( ; *curr != NULL && (*curr)->ParentPkg == p.Index(); ++curr)
+  for( ; *curr != NULL && (*curr)->ParentPkg == p.MapPointer(); ++curr)
     {
       pkgCache::PkgIterator currPkg(*cache, cache->GetCache().PkgP + (*curr)->ParentPkg);
       if((*cache)[currPkg].CandidateVer != *curr)
