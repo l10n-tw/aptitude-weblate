@@ -1,5 +1,6 @@
 aptitude (0.8.13-2) UNRELEASED; urgency=medium
 
+  [ Axel Beckert ]
   * Drop fix-ftbfs-with-po4a-0.58.patch and build-depend on po4a versions
     not affected by #960892.
   * Add a debian/gitlab-ci.yml file.
@@ -7,6 +8,9 @@ aptitude (0.8.13-2) UNRELEASED; urgency=medium
     doesn't make sense to have a less informative copy (without branch
     information) of the Vcs-* headers in there again. It just causes work
     because the Lintian Janitor bot files useless merge requests.
+
+  [ Debian Janitor ]
+  * Set upstream metadata fields: Repository, Repository-Browse.
 
  -- Axel Beckert <abe@debian.org>  Fri, 22 May 2020 02:36:57 +0200
 
