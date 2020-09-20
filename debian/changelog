@@ -1,3 +1,12 @@
+aptitude (0.8.13-3) UNRELEASED; urgency=medium
+
+  * Add lintian overrides for tons of overzealous
+    package-contains-documentation-outside-usr-share-doc tags arguing
+    about data files for aptitude's inline help.
+  * Drop package-contains-broken-symlink lintian override, seems obsolete.
+
+ -- Axel Beckert <abe@debian.org>  Sun, 20 Sep 2020 05:39:13 +0200
+
 aptitude (0.8.13-2) unstable; urgency=medium
 
   * Drop fix-ftbfs-with-po4a-0.58.patch and build-depend on po4a versions

@@ -1,7 +1,6 @@
-aptitude-common: package-contains-broken-symlink usr/share/aptitude/COPYING ../common-licenses/GPL
-
 # Aptitude looks for inline documentation in /usr/share/aptitude/
 aptitude-common: package-contains-documentation-outside-usr-share-doc usr/share/aptitude/README*
+aptitude-common: package-contains-documentation-outside-usr-share-doc usr/share/aptitude/*help*.txt
 
 # These are debugging tools and do nothing but capture the state of
 # the dpkg database whatever it looks like.
