@@ -6,8 +6,3 @@ aptitude-common: package-contains-documentation-outside-usr-share-doc usr/share/
 # the dpkg database whatever it looks like.
 aptitude-common: uses-dpkg-database-directly usr/bin/aptitude-create-state-bundle
 aptitude-common: uses-dpkg-database-directly usr/bin/aptitude-run-state-bundle
-
-# False positives, these files are valid UTF-8.
-aptitude-common: national-encoding usr/share/aptitude/help-zh_TW.txt
-aptitude-common: national-encoding usr/share/aptitude/mine-help-fi.txt
-aptitude-common: national-encoding usr/share/aptitude/mine-help-fr.txt
