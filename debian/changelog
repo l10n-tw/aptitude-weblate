@@ -5,6 +5,7 @@ aptitude (0.8.13-3) UNRELEASED; urgency=medium
     package-contains-documentation-outside-usr-share-doc tags arguing
     about data files for aptitude's inline help.
   * Drop package-contains-broken-symlink lintian override, seems obsolete.
+  * Declare compliance with Debian Policy 4.5.1. (No changes needed.)
 
   [ Manuel A. Fernandez Montecelo ]
   * Build-Depend on libfmt-dev to be able to use it in the code, as a
