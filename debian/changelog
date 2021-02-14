@@ -5,6 +5,8 @@ aptitude (0.8.13-3) UNRELEASED; urgency=medium
     about data files for aptitude's inline help.
   * Drop package-contains-broken-symlink lintian override, seems obsolete.
   * Declare compliance with Debian Policy 4.5.1. (No changes needed.)
+  * Add patch to fix FTBFS regression from StrToNum fixes in apt 2.1.19.
+    Thanks to David Kalnischkies for  help! (Closes: #982716)
 
  -- Axel Beckert <abe@debian.org>  Sun, 20 Sep 2020 05:39:13 +0200
 
