@@ -11,14 +11,16 @@ msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
 "POT-Creation-Date: 2020-05-21 04:37+0200\n"
-"PO-Revision-Date: 2012-02-23 16:55+0800\n"
-"Last-Translator: Asho Yeh <ashoyeh@gmail.com>\n"
-"Language-Team: Chinese/Traditional <zh-l10n@linux.org.tw>\n"
+"PO-Revision-Date: 2021-12-04 00:26+0000\n"
+"Last-Translator: Yi-Jyun Pan <pan93412@gmail.com>\n"
+"Language-Team: Chinese (Traditional) <http://weblate.slat.org/projects/"
+"aptitude/aptitude/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.8.1\n"
 
 #. TRANSLATORS: These strings describing config items
 #. should be the same width.
@@ -50,9 +52,9 @@ msgid "%BValue:%b   "
 msgstr "%B值:%b   "
 
 #: src/apt_config_treeitems.cc:280
-#, fuzzy, c-format
+#, c-format
 msgid "Editing \"%ls\": "
-msgstr "編輯中 \"%ls\""
+msgstr "正在編輯「%ls」： "
 
 #. TRANSLATORS: These strings describing config items
 #. should be the same width.
