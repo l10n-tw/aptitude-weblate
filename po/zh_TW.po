@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: aptitude\n"
 "Report-Msgid-Bugs-To: aptitude@packages.debian.org\n"
 "POT-Creation-Date: 2020-05-21 04:37+0200\n"
-"PO-Revision-Date: 2021-12-04 00:26+0000\n"
-"Last-Translator: Yi-Jyun Pan <pan93412@gmail.com>\n"
+"PO-Revision-Date: 2021-12-13 05:09+0000\n"
+"Last-Translator: Kiruya Momochi <kyaru@cock.li>\n"
 "Language-Team: Chinese (Traditional) <http://weblate.slat.org/projects/"
 "aptitude/aptitude/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -3943,8 +3943,9 @@ msgstr "預覽"
 
 #: src/gtk/aptitude.glade:369 src/gtk/aptitude.glade:2628 src/gtk/gui.cc:1028
 #: src/qt/tabs_manager.cc:263 src/ui.cc:2992
+#, fuzzy
 msgid "Resolver"
-msgstr "解除器"
+msgstr "相依解決器"
 
 #: src/gtk/aptitude.glade:380 src/gtk/aptitude.glade:2639
 #, fuzzy
@@ -4116,7 +4117,7 @@ msgstr "源碼套件："
 #: src/gtk/aptitude.glade:1643
 #, fuzzy
 msgid "Fix Manually"
-msgstr "為手動"
+msgstr "手動修正"
 
 #: src/gtk/aptitude.glade:1656 src/gtk/areas.cc:67 src/gtk/gui.cc:93
 #: src/gtk/gui.cc:1408
@@ -6249,7 +6250,7 @@ msgstr "向前搜尋："
 
 #: src/mine/cmine.cc:117 src/mine/cmine.cc:156 src/ui.cc:1886
 msgid "Minesweeper"
-msgstr "掃雷"
+msgstr "踩地雷"
 
 #: src/mine/cmine.cc:122
 #, c-format
@@ -7605,7 +7606,7 @@ msgstr "閱讀 aptitude 的完整的使用者手冊"
 
 #: src/ui.cc:1197
 msgid "Manual"
-msgstr "為手動"
+msgstr "手冊"
 
 #: src/ui.cc:1204 src/ui.cc:1206
 msgid "FAQ"
